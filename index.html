@@ -30,299 +30,26 @@
     <link rel="apple-touch-icon" href="/favicon.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
-        :root {
-            --primary-color: #23a6d5;
-            --accent-color: #e73c7e;
-            --text-color: #ffffff;
-            --bg-opacity: 0.15;
-            --shadow-color: rgba(31, 38, 135, 0.4);
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .container {
-            text-align: center;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, var(--bg-opacity));
-            border-radius: 24px;
-            box-shadow: 0 12px 40px 0 var(--shadow-color);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            animation: fadeIn 1.2s ease-in;
-            max-width: 800px;
-            width: 90%;
-            margin: 1rem auto;
-            transition: transform 0.3s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-5px);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-            animation: borderColor 5s linear infinite, pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes borderColor {
-            0% {
-                border-color: #ee7752;
-            }
-
-            25% {
-                border-color: #e73c7e;
-            }
-
-            50% {
-                border-color: #23a6d5;
-            }
-
-            75% {
-                border-color: #23d5ab;
-            }
-
-            100% {
-                border-color: #ee7752;
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            }
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: slideIn 0.8s ease-out forwards;
-            margin: 1rem 0;
-        }
-
-        p {
-            font-size: 1.1rem;
-            opacity: 0;
-            animation: slideIn 0.8s ease-out forwards;
-            animation-delay: 0.5s;
-            line-height: 1.6;
-            max-width: 700px;
-            margin: 1rem auto;
-            font-weight: 300;
-        }
-
-        p a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        p a:hover {
-            color: #ffffff;
-        }
-
-        p a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #ffffff;
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-
-        p a:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .social-links {
-            margin-top: 1.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.4s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .social-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(0);
-            transition: 0.5s;
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-8px) rotate(360deg);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .social-links a:hover::before {
-            transform: scale(1.5);
-        }
-
-        .social-links i,
-        .social-links img {
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .twitter {
-            background: #000000;
-        }
-
-        .twitter:hover {
-            background: #fff;
-            color: #000000;
-        }
-
-        .linkedin {
-            background: #0077B5;
-        }
-
-        .linkedin:hover {
-            background: #fff;
-            color: #0077B5;
-        }
-
-        .youtube {
-            background: #FF0000;
-        }
-
-        .youtube:hover {
-            background: #fff;
-            color: #FF0000;
-        }
-
-        .pinkary {
-            background: #333333;
-        }
-
-        .pinkary:hover {
-            background: #fff;
-        }
-
-        .email {
-            background: #FF5722;
-        }
-
-        .email:hover {
-            background: #fff;
-            color: #FF5722;
-        }
-
-        .github {
-            background: #333333;
-        }
-
-        .github:hover {
-            background: #fff;
-            color: #333333;
-        }
-    </style>
+    <link rel="stylesheet" href="/app.css">
 </head>
 
 <body>
+    <div class="props-container" id="propsContainer">
+        <!-- Circles -->
+        <div class="prop prop-circle float-1" style="width: 50px; height: 50px; top: 15%; left: 10%;"></div>
+        <div class="prop prop-circle float-2" style="width: 30px; height: 30px; top: 60%; left: 80%;"></div>
+        <div class="prop prop-circle float-3" style="width: 70px; height: 70px; top: 80%; left: 30%;"></div>
+
+        <!-- Squares -->
+        <div class="prop prop-square float-4" style="width: 40px; height: 40px; top: 25%; left: 85%;"></div>
+        <div class="prop prop-square float-1" style="width: 20px; height: 20px; top: 70%; left: 15%;"></div>
+
+        <!-- Code symbols -->
+        <div class="prop prop-code float-3" style="top: 20%; left: 25%;">{ }</div>
+        <div class="prop prop-code float-2" style="top: 75%; left: 60%;">&lt;/&gt;</div>
+        <div class="prop prop-code float-4" style="top: 40%; left: 75%;">&lt;?&gt;</div>
+    </div>
+
     <div class="container">
         <img src="profile-image.jpg" alt="MrPunyapal" class="profile-image">
         <h1>Punyapal Shah</h1>
@@ -352,6 +79,183 @@
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
+    </div>
+
+    <div class="elephant-container" id="runningElephant">
+        <svg class="elephant" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Enhanced gradients and filters for more depth -->
+            <defs>
+                <radialGradient id="elephantGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+                    <stop offset="0%" style="stop-color:#c4b0d6" />
+                    <stop offset="60%" style="stop-color:#a58fc0" />
+                    <stop offset="90%" style="stop-color:#8a73a2" />
+                    <stop offset="100%" style="stop-color:#7a6691" />
+                </radialGradient>
+                <linearGradient id="trunkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#a58fc0" />
+                    <stop offset="50%" style="stop-color:#9f85b8" />
+                    <stop offset="100%" style="stop-color:#8a73a2" />
+                </linearGradient>
+                <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                    <feOffset dx="0" dy="4" result="offsetblur" />
+                    <feComponentTransfer>
+                        <feFuncA type="linear" slope="0.3" />
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+                <filter id="bodyTexture" x="0%" y="0%" width="100%" height="100%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="noise" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+            </defs>
+            
+            <!-- Enhanced body with more realistic shape -->
+            <path class="elephant-body" 
+                  d="M120,180 
+                     Q130,120 200,120 
+                     Q270,120 290,160 
+                     Q320,180 320,200 
+                     Q320,240 260,260 
+                     Q200,275 140,260 
+                     Q110,250 110,210 
+                     Q110,190 120,180" 
+                  fill="url(#elephantGradient)" 
+                  filter="url(#softShadow)" />
+            
+            <!-- Body texture lines -->
+            <path class="body-detail" d="M140,170 Q190,150 240,170" stroke="#9882b2" stroke-width="1" fill="none" opacity="0.5" />
+            <path class="body-detail" d="M150,200 Q190,190 230,200" stroke="#9882b2" stroke-width="1" fill="none" opacity="0.5" />
+            <path class="body-detail" d="M160,230 Q190,220 220,230" stroke="#9882b2" stroke-width="1" fill="none" opacity="0.5" />
+            
+            <!-- Head with better shape -->
+            <ellipse class="elephant-head" cx="120" cy="140" rx="55" ry="50" fill="url(#elephantGradient)" />
+            
+            <!-- Ears with more detail -->
+            <ellipse class="elephant-ear left-ear" cx="80" cy="120" rx="40" ry="50" fill="#b299c4" />
+            <path class="ear-detail" d="M70,100 Q90,95 100,110" stroke="#9882b2" stroke-width="2" fill="none" />
+            <path class="ear-detail" d="M65,115 Q85,110 95,125" stroke="#9882b2" stroke-width="2" fill="none" />
+            <path class="ear-detail" d="M60,130 Q75,125 90,140" stroke="#9882b2" stroke-width="1.5" fill="none" />
+            
+            <ellipse class="elephant-ear right-ear" cx="160" cy="120" rx="40" ry="50" fill="#b299c4" />
+            <path class="ear-detail" d="M140,100 Q160,95 170,110" stroke="#9882b2" stroke-width="2" fill="none" />
+            <path class="ear-detail" d="M135,115 Q155,110 165,125" stroke="#9882b2" stroke-width="2" fill="none" />
+            <path class="ear-detail" d="M130,130 Q145,125 160,140" stroke="#9882b2" stroke-width="1.5" fill="none" />
+            
+            <!-- Enhanced eyes with more expression -->
+            <circle class="elephant-eye left-eye" cx="105" cy="130" r="10" fill="white" />
+            <circle class="elephant-eye-pupil left-pupil" cx="105" cy="130" r="5" fill="#222" />
+            <circle class="eye-highlight left-highlight" cx="103" cy="128" r="2" fill="white" />
+            
+            <circle class="elephant-eye right-eye" cx="135" cy="130" r="10" fill="white" />
+            <circle class="elephant-eye-pupil right-pupil" cx="135" cy="130" r="5" fill="#222" />
+            <circle class="eye-highlight right-highlight" cx="133" cy="128" r="2" fill="white" />
+            
+            <!-- Enhanced trunk with more detail and better shape -->
+            <path class="elephant-trunk" 
+                  d="M120,155 
+                     C110,175 105,195 110,215 
+                     Q115,235 125,245 
+                     Q135,235 132,215 
+                     C132,195 128,175 120,155" 
+                  fill="url(#trunkGradient)" 
+                  stroke="#8a73a2" 
+                  stroke-width="2" />
+                  
+            <path class="trunk-detail" d="M115,180 Q125,185 125,175" stroke="#8a73a2" stroke-width="1.5" fill="none" />
+            <path class="trunk-detail" d="M115,200 Q125,205 125,195" stroke="#8a73a2" stroke-width="1.5" fill="none" />
+            <path class="trunk-detail" d="M115,220 Q125,225 125,215" stroke="#8a73a2" stroke-width="1.5" fill="none" />
+            <path class="trunk-tip" d="M122,245 Q125,248 128,245" stroke="#7a6691" stroke-width="2" fill="none" />
+            
+            <!-- Enhanced legs with bigger and more detailed foot parts -->
+            <path class="elephant-leg front-left-leg" 
+                  d="M140,235 
+                     Q138,245 140,260
+                     Q144,272 150,273
+                     Q160,273 165,260
+                     Q167,245 165,235" 
+                  fill="url(#elephantGradient)" />
+            <ellipse class="foot-detail" cx="152" cy="273" rx="15" ry="6" fill="#8a73a2" />
+            
+            <path class="elephant-leg front-right-leg" 
+                  d="M190,235 
+                     Q188,245 190,260
+                     Q194,272 200,273
+                     Q210,273 215,260
+                     Q217,245 215,235" 
+                  fill="url(#elephantGradient)" />
+            <ellipse class="foot-detail" cx="202" cy="273" rx="15" ry="6" fill="#8a73a2" />
+            
+            <path class="elephant-leg back-left-leg" 
+                  d="M230,235 
+                     Q228,245 230,260
+                     Q234,272 240,273
+                     Q250,273 255,260
+                     Q257,245 255,235" 
+                  fill="url(#elephantGradient)" />
+            <ellipse class="foot-detail" cx="242" cy="273" rx="15" ry="6" fill="#8a73a2" />
+            
+            <path class="elephant-leg back-right-leg" 
+                  d="M280,235 
+                     Q278,245 280,260
+                     Q284,272 290,273
+                     Q300,273 305,260
+                     Q307,245 305,235" 
+                  fill="url(#elephantGradient)" />
+            <ellipse class="foot-detail" cx="292" cy="273" rx="15" ry="6" fill="#8a73a2" />
+            
+            <!-- Enhanced tail with smaller, more proportional size -->
+            <path class="elephant-tail-base" 
+                  d="M300,200 
+                     C308,193 312,195 315,197" 
+                  stroke="#8a73a2" 
+                  stroke-width="4" 
+                  fill="none" 
+                  stroke-linecap="round" />
+            <path class="elephant-tail-middle" 
+                  d="M315,197 
+                     C318,199 320,202 318,205" 
+                  stroke="#9882b2" 
+                  stroke-width="3" 
+                  fill="none" 
+                  stroke-linecap="round" />
+            <path class="tail-end" 
+                  d="M318,205 
+                     Q320,208 318,210" 
+                  stroke="#9f85b8" 
+                  stroke-width="2.5" 
+                  fill="none" 
+                  stroke-linecap="round" />
+            <path class="tail-tuft" 
+                  d="M318,210 
+                     C319,212 317,214 318,216
+                     M318,210
+                     C317,212 318.5,215 317,216
+                     M318,210
+                     C318,212 317.5,213 319,215"
+                  stroke="#7a6691" 
+                  stroke-width="1.5" 
+                  fill="none" 
+                  stroke-linecap="round" />
+                  
+            <!-- Add tusks for a more realistic elephant -->
+            <path class="elephant-tusk left-tusk" 
+                  d="M110,160 Q100,170 105,180" 
+                  stroke="#f5f5f5" 
+                  stroke-width="5" 
+                  fill="none" 
+                  stroke-linecap="round" />
+                  
+            <path class="elephant-tusk right-tusk" 
+                  d="M130,160 Q140,170 135,180" 
+                  stroke="#f5f5f5" 
+                  stroke-width="5" 
+                  fill="none" 
+                  stroke-linecap="round" />
+        </svg>
     </div>
 </body>
 
