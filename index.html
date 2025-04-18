@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/elephant.css">
 </head>
 
 <body>
@@ -146,13 +147,16 @@
             <path class="ear-detail" d="M130,130 Q145,125 160,140" stroke="#9882b2" stroke-width="1.5" fill="none" />
             
             <!-- Enhanced eyes with more expression -->
-            <circle class="elephant-eye left-eye" cx="105" cy="130" r="10" fill="white" />
-            <circle class="elephant-eye-pupil left-pupil" cx="105" cy="130" r="5" fill="#222" />
-            <circle class="eye-highlight left-highlight" cx="103" cy="128" r="2" fill="white" />
-            
-            <circle class="elephant-eye right-eye" cx="135" cy="130" r="10" fill="white" />
-            <circle class="elephant-eye-pupil right-pupil" cx="135" cy="130" r="5" fill="#222" />
-            <circle class="eye-highlight right-highlight" cx="133" cy="128" r="2" fill="white" />
+            <g class="eye-group left-eye-group">
+                <circle class="elephant-eye left-eye" cx="105" cy="130" r="10" fill="white" />
+                <circle class="elephant-eye-pupil left-pupil" cx="105" cy="130" r="5" fill="#222" />
+                <circle class="eye-highlight left-highlight" cx="103" cy="128" r="2" fill="white" />
+            </g>
+            <g class="eye-group right-eye-group">
+                <circle class="elephant-eye right-eye" cx="135" cy="130" r="10" fill="white" />
+                <circle class="elephant-eye-pupil right-pupil" cx="135" cy="130" r="5" fill="#222" />
+                <circle class="eye-highlight right-highlight" cx="133" cy="128" r="2" fill="white" />
+            </g>
             
             <!-- Enhanced trunk with more detail and better shape -->
             <path class="elephant-trunk" 

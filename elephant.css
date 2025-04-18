@@ -250,6 +250,24 @@
     100% { transform: rotate(0deg); }
 }
 
+/* Blink animation for eyes */
+.eye-group {
+    animation: eyeBlink 6s infinite;
+    transform-origin: center center;
+}
+.left-eye-group {
+    animation-delay: 2s;
+}
+.right-eye-group {
+    animation-delay: 3s;
+}
+
+@keyframes eyeBlink {
+    0%, 5%, 60%, 100% { transform: scaleY(1); }
+    6%, 7% { transform: scaleY(0.1); }
+    8% { transform: scaleY(1); }
+}
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .elephant-container {
