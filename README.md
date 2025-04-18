@@ -1,1 +1,0 @@
-# mrpunyapal.dev
