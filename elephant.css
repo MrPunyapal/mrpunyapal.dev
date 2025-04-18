@@ -143,40 +143,36 @@
     }
 }
 
-/* More realistic running leg animations with ground contact simulation */
-.front-left-leg {
-    animation: frontLegRun 0.4s infinite !important;
+/* Leg animations for redesigned rectangular legs */
+.elephant-legs .elephant-leg {
+    animation: legRun 0.8s infinite ease-in-out;
+    transform-origin: center top;
+}
+.elephant-legs .elephant-leg:nth-child(1),
+.elephant-legs .elephant-leg:nth-child(3) {
+    animation-delay: 0s;
+}
+.elephant-legs .elephant-leg:nth-child(2),
+.elephant-legs .elephant-leg:nth-child(4) {
+    animation-delay: 0.4s;
 }
 
-.front-right-leg {
-    animation: frontLegRun 0.4s infinite !important;
-    animation-delay: 0.2s !important;
+@keyframes legRun {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    25%      { transform: rotate(8deg) translateY(-2px); }
+    50%      { transform: rotate(0deg) translateY(0); }
+    75%      { transform: rotate(-8deg) translateY(-2px); }
 }
 
-.back-left-leg {
-    animation: backLegRun 0.4s infinite !important;
-    animation-delay: 0.1s !important;
+/* Tail animation for unified tail path */
+.elephant-tail-unified {
+    animation: tailSway 2s infinite ease-in-out;
+    transform-origin: 300px 200px;
 }
 
-.back-right-leg {
-    animation: backLegRun 0.4s infinite !important;
-    animation-delay: 0.3s !important;
-}
-
-@keyframes frontLegRun {
-    0% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-8px) rotate(-5deg); }
-    50% { transform: translateY(-2px) rotate(0deg); }
-    75% { transform: translateY(0) rotate(5deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-}
-
-@keyframes backLegRun {
-    0% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(0) rotate(5deg); }
-    50% { transform: translateY(-5px) rotate(0deg); }
-    75% { transform: translateY(-8px) rotate(-5deg); }
-    100% { transform: translateY(0) rotate(0deg); }
+@keyframes tailSway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(15deg); }
 }
 
 /* Realistic body bounce with running motion */
@@ -220,34 +216,6 @@
     50% { transform: rotate(-5deg) scaleY(0.98); }
     75% { transform: rotate(-15deg) scaleY(0.93); }
     100% { transform: rotate(0deg) scaleY(1); }
-}
-
-/* Tail whips with momentum */
-.elephant-tail-base, .elephant-tail-middle {
-    animation: tailBaseSway 0.8s infinite !important;
-    transform-origin: top left;
-}
-
-.elephant-tail-end, .elephant-tail-tuft {
-    animation: tailEndWhip 0.8s infinite !important;
-    transform-origin: top left;
-    animation-delay: 0.2s !important;
-}
-
-@keyframes tailBaseSway {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(15deg); }
-    50% { transform: rotate(10deg); }
-    75% { transform: rotate(20deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@keyframes tailEndWhip {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(25deg); }
-    50% { transform: rotate(15deg); }
-    75% { transform: rotate(30deg); }
-    100% { transform: rotate(0deg); }
 }
 
 /* Blink animation for eyes */
