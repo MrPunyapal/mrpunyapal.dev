@@ -1,273 +1,858 @@
-/* elephant */
+/* Enhanced Elephant Animation System with screen impact */
 .elephant-container {
     position: fixed;
     width: 180px;
     height: 180px;
     z-index: 10;
-    opacity: 0.85;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    opacity: 0.9;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+            drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+            drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
     pointer-events: none;
-    animation: runAroundScreen 30s linear infinite;
+    animation: runAroundScreen 35s cubic-bezier(0.4, 0.0, 0.6, 1) infinite,
+               dynamicGlow 3s ease-in-out infinite,
+               screenImpact 0.6s infinite ease-in-out;
     transform-origin: center center;
+    will-change: transform, filter;
+    backface-visibility: hidden;
+}
+
+@keyframes screenImpact {
+    0%, 90%, 100% { 
+        transform: translate(0, 0);
+    }
+    5% { 
+        transform: translate(0.5px, -0.5px);
+    }
+    55% { 
+        transform: translate(-0.5px, 0.5px);
+    }
 }
 
 @keyframes runAroundScreen {
-    /* Start at bottom right */
+    /* Start at bottom right with subtle bounce preparation */
     0% { 
         bottom: 20px; 
         right: 20px;
-        transform: scaleX(1) translateY(0);
+        transform: scaleX(1) translateY(0) rotate(0deg);
+        filter: brightness(1) saturate(1);
     }
-    /* Running to bottom left with bouncing */
+    
+    /* Acceleration phase with dynamic bouncing */
+    2% { 
+        bottom: 18px; 
+        right: calc(95% - 140px);
+        transform: scaleX(1) translateY(-2px) rotate(-1deg);
+    }
     5% { 
-        bottom: 25px; 
-        right: calc(80% - 140px);
-        transform: scaleX(1) translateY(-5px);
+        bottom: 28px; 
+        right: calc(85% - 140px);
+        transform: scaleX(1) translateY(-8px) rotate(2deg);
+        filter: brightness(1.1) saturate(1.1);
     }
-    10% { 
-        bottom: 15px; 
-        right: calc(60% - 100px);
-        transform: scaleX(1) translateY(5px);
+    8% { 
+        bottom: 12px; 
+        right: calc(70% - 100px);
+        transform: scaleX(1) translateY(8px) rotate(-1deg);
+    }
+    12% { 
+        bottom: 30px; 
+        right: calc(55% - 80px);
+        transform: scaleX(1) translateY(-10px) rotate(1deg);
     }
     15% { 
-        bottom: 25px; 
+        bottom: 10px; 
         right: calc(40% - 60px);
-        transform: scaleX(1) translateY(-5px);
+        transform: scaleX(1) translateY(10px) rotate(-2deg);
     }
-    20% { 
-        bottom: 15px; 
-        right: calc(20% - 20px);
-        transform: scaleX(1) translateY(5px);
+    18% { 
+        bottom: 32px; 
+        right: calc(25% - 40px);
+        transform: scaleX(1) translateY(-12px) rotate(1deg);
     }
-    /* Slow down and turn at bottom left */
+    21% { 
+        bottom: 8px; 
+        right: calc(10% - 20px);
+        transform: scaleX(1) translateY(12px) rotate(-1deg);
+    }
+    
+    /* Deceleration and turn preparation at bottom left */
     23% { 
+        bottom: 22px; 
+        right: calc(100% - 200px);
+        transform: scaleX(1) translateY(-2px) rotate(0deg);
+        filter: brightness(1) saturate(1);
+    }
+    24% { 
         bottom: 20px; 
         right: calc(100% - 200px);
-        transform: scaleX(1) translateY(0);
+        transform: scaleX(0.9) translateY(0) rotate(0deg);
     }
     25% { 
         bottom: 20px; 
         right: calc(100% - 200px);
-        transform: scaleX(-1) translateY(0);
+        transform: scaleX(-1) translateY(0) rotate(0deg);
     }
-    /* Run up left side with slight wobble */
-    30% { 
-        bottom: calc(20% + 20px); 
+    26% { 
+        bottom: 18px; 
         right: calc(100% - 195px);
-        transform: scaleX(-1) translateX(-5px);
+        transform: scaleX(-1) translateY(-2px) rotate(1deg);
     }
-    35% { 
-        bottom: calc(40% + 20px); 
-        right: calc(100% - 205px);
-        transform: scaleX(-1) translateX(5px);
+    
+    /* Running up left side with enhanced physics */
+    28% { 
+        bottom: calc(15% + 20px); 
+        right: calc(100% - 190px);
+        transform: scaleX(-1) translateX(-8px) translateY(-4px) rotate(-1deg);
+    }
+    32% { 
+        bottom: calc(30% + 20px); 
+        right: calc(100% - 208px);
+        transform: scaleX(-1) translateX(8px) translateY(-6px) rotate(2deg);
+        filter: brightness(1.05) saturate(1.05);
+    }
+    36% { 
+        bottom: calc(45% + 20px); 
+        right: calc(100% - 192px);
+        transform: scaleX(-1) translateX(-10px) translateY(-8px) rotate(-1deg);
     }
     40% { 
         bottom: calc(60% + 20px); 
+        right: calc(100% - 210px);
+        transform: scaleX(-1) translateX(10px) translateY(-10px) rotate(2deg);
+    }
+    44% { 
+        bottom: calc(75% + 20px); 
         right: calc(100% - 195px);
-        transform: scaleX(-1) translateX(-5px);
+        transform: scaleX(-1) translateX(-8px) translateY(-6px) rotate(-1deg);
     }
-    45% { 
-        bottom: calc(80% + 20px); 
+    47% { 
+        bottom: calc(90% + 20px); 
         right: calc(100% - 205px);
-        transform: scaleX(-1) translateX(5px);
+        transform: scaleX(-1) translateX(6px) translateY(-4px) rotate(1deg);
     }
-    /* Turn at top left */
+    
+    /* Enhanced turn at top left with momentum */
     48% { 
         bottom: calc(100% - 200px); 
         right: calc(100% - 200px);
-        transform: scaleX(-1);
+        transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
+        filter: brightness(1) saturate(1);
+    }
+    49% { 
+        bottom: calc(100% - 195px); 
+        right: calc(100% - 195px);
+        transform: scaleX(-1) translateX(2px) translateY(-5px) rotate(-2deg);
     }
     50% { 
         bottom: calc(100% - 200px); 
         right: calc(100% - 200px);
-        transform: scaleX(-1);
+        transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
     }
-    /* Move across top with bouncing */
-    55% { 
-        bottom: calc(100% - 190px); 
-        right: calc(80% - 160px);
-        transform: scaleX(-1) translateY(10px);
+    51% { 
+        bottom: calc(100% - 195px); 
+        right: calc(100% - 195px);
+        transform: scaleX(-1) translateX(-2px) translateY(-5px) rotate(2deg);
+    }
+    
+    /* Running across top with enhanced bouncing physics */
+    54% { 
+        bottom: calc(100% - 185px); 
+        right: calc(85% - 160px);
+        transform: scaleX(-1) translateY(15px) rotate(-2deg);
+        filter: brightness(1.1) saturate(1.1);
+    }
+    57% { 
+        bottom: calc(100% - 215px); 
+        right: calc(70% - 140px);
+        transform: scaleX(-1) translateY(-15px) rotate(1deg);
     }
     60% { 
-        bottom: calc(100% - 210px); 
-        right: calc(60% - 120px);
-        transform: scaleX(-1) translateY(-10px);
+        bottom: calc(100% - 180px); 
+        right: calc(55% - 120px);
+        transform: scaleX(-1) translateY(20px) rotate(-2deg);
     }
-    65% { 
-        bottom: calc(100% - 190px); 
-        right: calc(40% - 80px);
-        transform: scaleX(-1) translateY(10px);
+    63% { 
+        bottom: calc(100% - 220px); 
+        right: calc(40% - 100px);
+        transform: scaleX(-1) translateY(-20px) rotate(1deg);
     }
-    70% { 
-        bottom: calc(100% - 210px); 
-        right: calc(20% - 40px);
-        transform: scaleX(-1) translateY(-10px);
+    66% { 
+        bottom: calc(100% - 175px); 
+        right: calc(25% - 80px);
+        transform: scaleX(-1) translateY(25px) rotate(-2deg);
     }
-    /* Turn at top right */
+    69% { 
+        bottom: calc(100% - 225px); 
+        right: calc(10% - 60px);
+        transform: scaleX(-1) translateY(-25px) rotate(1deg);
+    }
+    
+    /* Enhanced turn at top right */
+    72% { 
+        bottom: calc(100% - 195px); 
+        right: 25px;
+        transform: scaleX(-1) translateX(0) translateY(5px) rotate(0deg);
+        filter: brightness(1) saturate(1);
+    }
     73% { 
         bottom: calc(100% - 200px); 
         right: 20px;
-        transform: scaleX(-1);
+        transform: scaleX(-0.9) translateX(0) translateY(0) rotate(0deg);
+    }
+    74% { 
+        bottom: calc(100% - 200px); 
+        right: 20px;
+        transform: scaleX(-0.1) translateX(0) translateY(0) rotate(0deg);
     }
     75% { 
         bottom: calc(100% - 200px); 
         right: 20px;
-        transform: scaleX(1);
+        transform: scaleX(1) translateX(0) translateY(0) rotate(0deg);
     }
-    /* Move down right side with wobble */
-    80% { 
-        bottom: calc(80% - 160px); 
+    76% { 
+        bottom: calc(100% - 195px); 
         right: 25px;
-        transform: scaleX(1) translateX(5px);
+        transform: scaleX(1) translateX(2px) translateY(-5px) rotate(-1deg);
     }
-    85% { 
-        bottom: calc(60% - 120px); 
-        right: 15px;
-        transform: scaleX(1) translateX(-5px);
+    
+    /* Enhanced descent on right side with realistic gravity */
+    78% { 
+        bottom: calc(85% - 140px); 
+        right: 30px;
+        transform: scaleX(1) translateX(8px) translateY(0) rotate(1deg);
+    }
+    81% { 
+        bottom: calc(70% - 120px); 
+        right: 10px;
+        transform: scaleX(1) translateX(-10px) translateY(5px) rotate(-2deg);
+        filter: brightness(1.05) saturate(1.05);
+    }
+    84% { 
+        bottom: calc(55% - 100px); 
+        right: 35px;
+        transform: scaleX(1) translateX(12px) translateY(10px) rotate(1deg);
+    }
+    87% { 
+        bottom: calc(40% - 80px); 
+        right: 5px;
+        transform: scaleX(1) translateX(-12px) translateY(15px) rotate(-2deg);
     }
     90% { 
-        bottom: calc(40% - 80px); 
+        bottom: calc(25% - 60px); 
+        right: 30px;
+        transform: scaleX(1) translateX(10px) translateY(20px) rotate(1deg);
+    }
+    93% { 
+        bottom: calc(10% - 40px); 
+        right: 10px;
+        transform: scaleX(1) translateX(-8px) translateY(25px) rotate(-1deg);
+    }
+    96% { 
+        bottom: calc(5% - 20px); 
         right: 25px;
-        transform: scaleX(1) translateX(5px);
+        transform: scaleX(1) translateX(6px) translateY(15px) rotate(1deg);
     }
-    95% { 
-        bottom: calc(20% - 40px); 
-        right: 15px;
-        transform: scaleX(1) translateX(-5px);
+    98% { 
+        bottom: 22px; 
+        right: 18px;
+        transform: scaleX(1) translateX(-2px) translateY(2px) rotate(0deg);
     }
-    /* Complete cycle */
+    
+    /* Complete cycle with gentle landing */
     100% { 
         bottom: 20px; 
         right: 20px;
-        transform: scaleX(1);
+        transform: scaleX(1) translateY(0) rotate(0deg);
+        filter: brightness(1) saturate(1);
     }
 }
 
-/* Leg animations for redesigned rectangular legs */
+/* Enhanced leg animations with more realistic running motion */
 .elephant-legs .elephant-leg {
-    animation: legRun 0.8s infinite ease-in-out;
-    transform-origin: center top;
+    animation: legRun 1.8s infinite cubic-bezier(0.4, 0.0, 0.6, 1);
+    transform-origin: center 25%;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
 }
-.elephant-legs .elephant-leg:nth-child(1),
-.elephant-legs .elephant-leg:nth-child(3) {
+
+.elephant-legs .elephant-leg:nth-child(1) {
     animation-delay: 0s;
 }
-.elephant-legs .elephant-leg:nth-child(2),
+.elephant-legs .elephant-leg:nth-child(2) {
+    animation-delay: 0.9s;
+}
+.elephant-legs .elephant-leg:nth-child(3) {
+    animation-delay: 0.45s;
+}
 .elephant-legs .elephant-leg:nth-child(4) {
-    animation-delay: 0.4s;
+    animation-delay: 1.35s;
 }
 
 @keyframes legRun {
-    0%, 100% { transform: rotate(0deg) translateY(0); }
-    25%      { transform: rotate(8deg) translateY(-2px); }
-    50%      { transform: rotate(0deg) translateY(0); }
-    75%      { transform: rotate(-8deg) translateY(-2px); }
+    0% { transform: rotate(0deg) translateY(0) scaleY(1) translateX(0); }
+    15% { transform: rotate(14deg) translateY(-5px) scaleY(0.94) translateX(-2px); }
+    30% { transform: rotate(7deg) translateY(-2px) scaleY(0.98) translateX(-1px); }
+    45% { transform: rotate(-8deg) translateY(-3px) scaleY(0.96) translateX(1px); }
+    60% { transform: rotate(-16deg) translateY(-6px) scaleY(0.92) translateX(3px); }
+    75% { transform: rotate(-5deg) translateY(-2px) scaleY(0.98) translateX(1px); }
+    90% { transform: rotate(10deg) translateY(-4px) scaleY(0.95) translateX(-2px); }
+    100% { transform: rotate(0deg) translateY(0) scaleY(1) translateX(0); }
 }
 
-/* Tail animation for unified tail path */
+/* Enhanced tail animation with more dynamic movement and inertia */
 .elephant-tail-unified {
-    animation: tailSway 2s infinite ease-in-out;
+    animation: tailSway 2.7s infinite cubic-bezier(0.4, 0.0, 0.6, 1),
+               tailInertia 0.9s infinite ease-in-out;
     transform-origin: 300px 200px;
 }
 
 @keyframes tailSway {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(15deg); }
+    0% { transform: rotate(0deg) scale(1); }
+    20% { transform: rotate(18deg) scale(1.02); }
+    40% { transform: rotate(-5deg) scale(0.98); }
+    60% { transform: rotate(22deg) scale(1.03); }
+    80% { transform: rotate(-8deg) scale(0.97); }
+    100% { transform: rotate(0deg) scale(1); }
 }
 
-/* Realistic body bounce with running motion */
+@keyframes tailInertia {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-2px) translateY(1px); }
+    50% { transform: translateX(1px) translateY(-1px); }
+    75% { transform: translateX(2px) translateY(1px); }
+}
+
+/* Enhanced body bounce with more realistic physics */
 .elephant-body {
-    animation: bodyBounce 0.4s infinite ease-in-out !important;
+    animation: bodyBounce 0.9s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94),
+               bodyTexture 8s infinite ease-in-out,
+               bodyMomentum 1.8s infinite ease-in-out,
+               heartbeat 4.5s infinite ease-in-out;
 }
 
 @keyframes bodyBounce {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
-    100% { transform: translateY(0); }
+    0% { transform: translateY(0) scaleY(1) translateX(0); }
+    30% { transform: translateY(-6px) scaleY(0.98) translateX(-1px); }
+    60% { transform: translateY(-2px) scaleY(1.01) translateX(1px); }
+    100% { transform: translateY(0) scaleY(1) translateX(0); }
 }
 
-/* Make trunk sway with running motion more naturally */
+@keyframes bodyMomentum {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-1px) rotate(-0.5deg); }
+    50% { transform: translateX(0) rotate(0deg); }
+    75% { transform: translateX(1px) rotate(0.5deg); }
+}
+
+@keyframes bodyTexture {
+    0%, 100% { 
+        filter: brightness(1) saturate(1);
+    }
+    50% { 
+        filter: brightness(1.05) saturate(1.1);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 50%, 100% { transform: scale(1); }
+    5% { transform: scale(1.008); }
+    10% { transform: scale(1); }
+    15% { transform: scale(1.005); }
+    20% { transform: scale(1); }
+}
+
+/* Enhanced trunk movement with more natural sway and running response */
 .elephant-trunk {
-    animation: runningTrunkMove 0.4s infinite !important;
+    animation: runningTrunkMove 0.45s infinite cubic-bezier(0.4, 0.0, 0.6, 1),
+               trunkInertia 0.9s infinite ease-in-out;
     transform-origin: top center;
 }
 
 @keyframes runningTrunkMove {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(5deg); }
-    50% { transform: rotate(0deg); }
-    75% { transform: rotate(-5deg); }
-    100% { transform: rotate(0deg); }
+    0% { transform: rotate(0deg) scaleX(1) translateX(0); }
+    20% { transform: rotate(12deg) scaleX(1.02) translateX(-2px); }
+    40% { transform: rotate(-4deg) scaleX(0.98) translateX(1px); }
+    60% { transform: rotate(-14deg) scaleX(0.96) translateX(3px); }
+    80% { transform: rotate(4deg) scaleX(1.01) translateX(-1px); }
+    100% { transform: rotate(0deg) scaleX(1) translateX(0); }
 }
 
-/* Ears flap with air resistance */
+@keyframes trunkInertia {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-1px) translateY(1px); }
+    50% { transform: translateX(0) translateY(-1px); }
+    75% { transform: translateX(1px) translateY(1px); }
+}
+
+/* Enhanced ear flapping with wind resistance effect and directional awareness */
 .elephant-ear {
-    animation: runningEarFlap 0.8s infinite !important;
+    animation: runningEarFlap 1.0s infinite cubic-bezier(0.4, 0.0, 0.6, 1),
+               earWindResistance 3.0s infinite ease-in-out;
     transform-origin: top center;
 }
 
 .left-ear {
-    animation-delay: 0.1s !important;
+    animation-delay: 0.15s, 0.45s;
+}
+
+.right-ear {
+    animation-delay: 0.075s, 0.225s;
 }
 
 @keyframes runningEarFlap {
-    0% { transform: rotate(0deg) scaleY(1); }
-    25% { transform: rotate(-10deg) scaleY(0.95); }
-    50% { transform: rotate(-5deg) scaleY(0.98); }
-    75% { transform: rotate(-15deg) scaleY(0.93); }
-    100% { transform: rotate(0deg) scaleY(1); }
+    0% { transform: rotate(0deg) scaleY(1) scaleX(1); }
+    15% { transform: rotate(-12deg) scaleY(0.92) scaleX(1.03); }
+    30% { transform: rotate(-8deg) scaleY(0.96) scaleX(1.01); }
+    45% { transform: rotate(-18deg) scaleY(0.88) scaleX(1.05); }
+    60% { transform: rotate(-5deg) scaleY(0.98) scaleX(1.02); }
+    75% { transform: rotate(-15deg) scaleY(0.90) scaleX(1.04); }
+    90% { transform: rotate(-2deg) scaleY(0.99) scaleX(1.01); }
+    100% { transform: rotate(0deg) scaleY(1) scaleX(1); }
 }
 
-/* Blink animation for eyes */
+@keyframes earWindResistance {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(1px) translateY(-1px); }
+    50% { transform: translateX(-1px) translateY(1px); }
+    75% { transform: translateX(1px) translateY(0); }
+}
+
+/* Enhanced eye blinking with more realistic timing */
 .eye-group {
-    animation: eyeBlink 6s infinite;
+    animation: eyeBlink 8s infinite cubic-bezier(0.4, 0.0, 0.6, 1);
     transform-origin: center center;
 }
+
 .left-eye-group {
-    animation-delay: 2s;
-}
-.right-eye-group {
     animation-delay: 3s;
 }
 
-@keyframes eyeBlink {
-    0%, 5%, 60%, 100% { transform: scaleY(1); }
-    6%, 7% { transform: scaleY(0.1); }
-    8% { transform: scaleY(1); }
+.right-eye-group {
+    animation-delay: 4.5s;
 }
 
-/* Media query for smaller screens */
+@keyframes eyeBlink {
+    0%, 8%, 70%, 100% { transform: scaleY(1); }
+    9%, 10% { transform: scaleY(0.05); }
+    11% { transform: scaleY(1); }
+    72%, 73% { transform: scaleY(0.05); }
+    74% { transform: scaleY(1); }
+}
+
+/* Add pupil tracking animation for more liveliness */
+.elephant-eye-pupil {
+    animation: pupilLook 12s infinite ease-in-out;
+    transform-origin: center center;
+}
+
+.left-pupil {
+    animation-delay: 1s;
+}
+
+.right-pupil {
+    animation-delay: 1.5s;
+}
+
+@keyframes pupilLook {
+    0%, 100% { transform: translate(0, 0); }
+    20% { transform: translate(1px, -1px); }
+    40% { transform: translate(-1px, 0); }
+    60% { transform: translate(0, 1px); }
+    80% { transform: translate(1px, 0); }
+}
+
+/* Add breathing effect to the head with running momentum */
+.elephant-head {
+    animation: headBreathe 4s infinite ease-in-out,
+               headMomentum 0.9s infinite ease-in-out;
+}
+
+@keyframes headBreathe {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.02) translateY(-1px); }
+}
+
+@keyframes headMomentum {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-1px) rotate(-1.2deg); }
+    50% { transform: translateX(0) rotate(0deg); }
+    75% { transform: translateX(1px) rotate(1.2deg); }
+}
+
+/* Add subtle tusk movement */
+.elephant-tusk {
+    animation: tuskGleam 6s infinite ease-in-out;
+}
+
+.left-tusk {
+    animation-delay: 0s;
+}
+
+.right-tusk {
+    animation-delay: 3s;
+}
+
+@keyframes tuskGleam {
+    0%, 100% { opacity: 0.9; filter: brightness(1); }
+    50% { opacity: 1; filter: brightness(1.2); }
+}
+
+/* Enhanced responsive design for mobile devices */
 @media (max-width: 768px) {
     .elephant-container {
         width: 120px;
         height: 120px;
+        animation-duration: 40s; /* Slightly slower on mobile for better visibility */
     }
     
     @keyframes runAroundScreen {
-        /* Same keyframe pattern but with adjusted positions for smaller screens */
-        0% { bottom: 15px; right: 15px; transform: scaleX(1); }
-        5% { bottom: 20px; right: calc(80% - 100px); transform: scaleX(1) translateY(-5px); }
-        10% { bottom: 10px; right: calc(60% - 70px); transform: scaleX(1) translateY(5px); }
-        15% { bottom: 20px; right: calc(40% - 40px); transform: scaleX(1) translateY(-5px); }
-        20% { bottom: 10px; right: calc(20% - 10px); transform: scaleX(1) translateY(5px); }
-        23% { bottom: 15px; right: calc(100% - 140px); transform: scaleX(1); }
-        25% { bottom: 15px; right: calc(100% - 140px); transform: scaleX(-1); }
-        30% { bottom: calc(20% + 10px); right: calc(100% - 135px); transform: scaleX(-1) translateX(-5px); }
-        35% { bottom: calc(40% + 10px); right: calc(100% - 145px); transform: scaleX(-1) translateX(5px); }
-        40% { bottom: calc(60% + 10px); right: calc(100% - 135px); transform: scaleX(-1) translateX(-5px); }
-        45% { bottom: calc(80% + 10px); right: calc(100% - 145px); transform: scaleX(-1) translateX(5px); }
-        48% { bottom: calc(100% - 140px); right: calc(100% - 140px); transform: scaleX(-1); }
-        50% { bottom: calc(100% - 140px); right: calc(100% - 140px); transform: scaleX(-1); }
-        55% { bottom: calc(100% - 130px); right: calc(80% - 120px); transform: scaleX(-1) translateY(10px); }
-        60% { bottom: calc(100% - 150px); right: calc(60% - 80px); transform: scaleX(-1) translateY(-10px); }
-        65% { bottom: calc(100% - 130px); right: calc(40% - 50px); transform: scaleX(-1) translateY(10px); }
-        70% { bottom: calc(100% - 150px); right: calc(20% - 20px); transform: scaleX(-1) translateY(-10px); }
-        73% { bottom: calc(100% - 140px); right: 15px; transform: scaleX(-1); }
-        75% { bottom: calc(100% - 140px); right: 15px; transform: scaleX(1); }
-        80% { bottom: calc(80% - 120px); right: 20px; transform: scaleX(1) translateX(5px); }
-        85% { bottom: calc(60% - 80px); right: 10px; transform: scaleX(1) translateX(-5px); }
-        90% { bottom: calc(40% - 50px); right: 20px; transform: scaleX(1) translateX(5px); }
-        95% { bottom: calc(20% - 20px); right: 10px; transform: scaleX(1) translateX(-5px); }
-        100% { bottom: 15px; right: 15px; transform: scaleX(1); }
+        /* Enhanced mobile keyframes with adjusted positions and smoother motion */
+        0% { 
+            bottom: 15px; 
+            right: 15px; 
+            transform: scaleX(1) translateY(0) rotate(0deg);
+            filter: brightness(1) saturate(1);
+        }
+        3% { 
+            bottom: 22px; 
+            right: calc(85% - 90px);
+            transform: scaleX(1) translateY(-7px) rotate(1deg);
+        }
+        8% { 
+            bottom: 8px; 
+            right: calc(65% - 70px);
+            transform: scaleX(1) translateY(7px) rotate(-1deg);
+            filter: brightness(1.1) saturate(1.1);
+        }
+        15% { 
+            bottom: 25px; 
+            right: calc(45% - 50px);
+            transform: scaleX(1) translateY(-10px) rotate(1deg);
+        }
+        22% { 
+            bottom: 5px; 
+            right: calc(25% - 30px);
+            transform: scaleX(1) translateY(10px) rotate(-1deg);
+        }
+        25% { 
+            bottom: 15px; 
+            right: calc(100% - 140px);
+            transform: scaleX(-1) translateY(0) rotate(0deg);
+            filter: brightness(1) saturate(1);
+        }
+        30% { 
+            bottom: calc(20% + 10px); 
+            right: calc(100% - 135px);
+            transform: scaleX(-1) translateX(-6px) translateY(-3px) rotate(-1deg);
+        }
+        40% { 
+            bottom: calc(50% + 10px); 
+            right: calc(100% - 145px);
+            transform: scaleX(-1) translateX(6px) translateY(-6px) rotate(1deg);
+            filter: brightness(1.05) saturate(1.05);
+        }
+        48% { 
+            bottom: calc(100% - 140px); 
+            right: calc(100% - 140px);
+            transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
+        }
+        50% { 
+            bottom: calc(100% - 140px); 
+            right: calc(100% - 140px);
+            transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
+            filter: brightness(1) saturate(1);
+        }
+        58% { 
+            bottom: calc(100% - 125px); 
+            right: calc(70% - 100px);
+            transform: scaleX(-1) translateY(15px) rotate(-1deg);
+            filter: brightness(1.1) saturate(1.1);
+        }
+        66% { 
+            bottom: calc(100% - 155px); 
+            right: calc(40% - 70px);
+            transform: scaleX(-1) translateY(-15px) rotate(1deg);
+        }
+        73% { 
+            bottom: calc(100% - 140px); 
+            right: 15px;
+            transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
+        }
+        75% { 
+            bottom: calc(100% - 140px); 
+            right: 15px;
+            transform: scaleX(1) translateX(0) translateY(0) rotate(0deg);
+            filter: brightness(1) saturate(1);
+        }
+        82% { 
+            bottom: calc(70% - 100px); 
+            right: 20px;
+            transform: scaleX(1) translateX(6px) translateY(8px) rotate(1deg);
+            filter: brightness(1.05) saturate(1.05);
+        }
+        90% { 
+            bottom: calc(40% - 70px); 
+            right: 10px;
+            transform: scaleX(1) translateX(-6px) translateY(15px) rotate(-1deg);
+        }
+        97% { 
+            bottom: calc(10% - 30px); 
+            right: 20px;
+            transform: scaleX(1) translateX(4px) translateY(8px) rotate(1deg);
+        }
+        100% { 
+            bottom: 15px; 
+            right: 15px;
+            transform: scaleX(1) translateY(0) rotate(0deg);
+            filter: brightness(1) saturate(1);
+        }
+    }
+}
+
+/* Ultra-mobile optimization for very small screens */
+@media (max-width: 480px) {
+    .elephant-container {
+        width: 100px;
+        height: 100px;
+        opacity: 0.8;
+    }
+}
+
+/* Performance optimizations for all screen sizes */
+.elephant-container {
+    contain: layout style paint;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.elephant-container * {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Pause animations when not visible (Intersection Observer support) */
+@media (prefers-reduced-motion: reduce) {
+    .elephant-container,
+    .elephant-container * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+    .elephant-container {
+        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.8)) contrast(1.2);
+    }
+}
+
+/* Enhanced particle trail effects with sound waves */
+.elephant-container::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, rgba(138, 115, 162, 0.6), transparent);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: trailParticle 0.5s infinite ease-out;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.elephant-container::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, rgba(196, 176, 214, 0.4), transparent);
+    border-radius: 50%;
+    top: 60%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    animation: trailParticle 0.7s infinite ease-out 0.2s;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Add sound wave effect for footsteps */
+.elephant-container {
+    position: relative;
+}
+
+.elephant-container:before,
+.elephant-container:after {
+    animation-name: trailParticle, soundWave;
+    animation-duration: 0.5s, 1.2s;
+    animation-timing-function: ease-out, ease-out;
+    animation-iteration-count: infinite, infinite;
+    animation-delay: 0s, 0.3s;
+}
+
+@keyframes trailParticle {
+    0% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3) translateY(20px);
+    }
+}
+
+@keyframes soundWave {
+    0% {
+        box-shadow: 0 0 0 0 rgba(138, 115, 162, 0.3);
+        border-radius: 50%;
+    }
+    50% {
+        box-shadow: 0 0 0 20px rgba(138, 115, 162, 0.1);
+        border-radius: 50%;
+    }
+    100% {
+        box-shadow: 0 0 0 40px rgba(138, 115, 162, 0);
+        border-radius: 50%;
+    }
+}
+
+/* Add dynamic shadow that responds to movement */
+.elephant-container {
+    position: fixed;
+    width: 180px;
+    height: 180px;
+    z-index: 10;
+    opacity: 0.9;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+            drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+            drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
+    pointer-events: none;
+    animation: runAroundScreen 35s cubic-bezier(0.4, 0.0, 0.6, 1) infinite,
+               dynamicGlow 3s ease-in-out infinite;
+    transform-origin: center center;
+    will-change: transform, filter;
+    backface-visibility: hidden;
+}
+
+@keyframes dynamicGlow {
+    0%, 100% {
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+                drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
+    }
+    50% {
+        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) 
+                drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))
+                drop-shadow(0 0 30px rgba(138, 115, 162, 0.2));
+    }
+}
+
+/* Add subtle hover interaction when user gets close */
+.elephant-container:hover {
+    animation-play-state: paused;
+    transform: scale(1.1) !important;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4)) 
+            drop-shadow(0 0 40px rgba(138, 115, 162, 0.3)) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.6, 1);
+}
+
+/* Enhanced body texture with breathing effect */
+.elephant-body {
+    animation: bodyBounce 0.3s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94),
+               bodyTexture 8s infinite ease-in-out !important;
+}
+
+@keyframes bodyBounce {
+    0% { transform: translateY(0) scaleY(1); }
+    30% { transform: translateY(-6px) scaleY(0.98); }
+    60% { transform: translateY(-2px) scaleY(1.01); }
+    100% { transform: translateY(0) scaleY(1); }
+}
+
+@keyframes bodyTexture {
+    0%, 100% { 
+        filter: brightness(1) saturate(1);
+    }
+    50% { 
+        filter: brightness(1.05) saturate(1.1);
+    }
+}
+
+/* Add ear detail animation */
+.ear-detail {
+    animation: earDetailShimmer 4s infinite ease-in-out;
+}
+
+@keyframes earDetailShimmer {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+/* Add trunk tip animation for more liveliness */
+.trunk-tip {
+    animation: trunkTipTwitch 2s infinite ease-in-out;
+}
+
+@keyframes trunkTipTwitch {
+    0%, 90%, 100% { transform: translateX(0) translateY(0); }
+    5% { transform: translateX(1px) translateY(-1px); }
+    10% { transform: translateX(-1px) translateY(1px); }
+    15% { transform: translateX(0) translateY(0); }
+}
+
+/* Enhanced leg shadows for depth */
+.elephant-leg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Add subtle ground impact effect during running with dust particles */
+.elephant-legs {
+    animation: groundImpact 1.8s infinite ease-in-out;
+    position: relative;
+}
+
+.elephant-legs::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    width: 80px;
+    height: 8px;
+    background: radial-gradient(ellipse, rgba(138, 115, 162, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: dustCloud 1.8s infinite ease-out;
+}
+
+@keyframes groundImpact {
+    0%, 100% { 
+        filter: drop-shadow(0 0 0 transparent);
+    }
+    25% { 
+        filter: drop-shadow(0 1px 6px rgba(138, 115, 162, 0.2));
+    }
+    50% { 
+        filter: drop-shadow(0 2px 8px rgba(138, 115, 162, 0.3));
+    }
+    75% { 
+        filter: drop-shadow(0 1px 6px rgba(138, 115, 162, 0.2));
+    }
+}
+
+@keyframes dustCloud {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(1.5);
     }
 }
