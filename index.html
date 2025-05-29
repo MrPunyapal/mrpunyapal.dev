@@ -58,12 +58,9 @@
             "name": "Laravel Artisans"
         }
     }
-    </script>
-
-    <!-- Favicon and Icons -->
+    </script>    <!-- Favicon and Icons -->
     <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="/favicon.png">
-    <link rel="manifest" href="/manifest.json">
 
     <!-- Preload critical resources -->
     <link rel="preload" href="/profile-image.jpg" as="image" type="image/jpeg">
@@ -71,18 +68,21 @@
         as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
-    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com"> <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="/app.css">
     <link rel="stylesheet" href="/elephant.css">
+
+    <!-- Performance hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 </head>
 
 <body>
-    <div class="props-container" id="propsContainer">
+    <!-- Background decorative elements -->
+    <div class="props-container" id="propsContainer" role="presentation" aria-hidden="true">
         <!-- Circles -->
         <div class="prop prop-circle float-1" style="width: 50px; height: 50px; top: 15%; left: 10%;"></div>
         <div class="prop prop-circle float-2" style="width: 30px; height: 30px; top: 60%; left: 80%;"></div>
@@ -98,36 +98,48 @@
         <div class="prop prop-code float-4" style="top: 40%; left: 75%;">&lt;?&gt;</div>
     </div>
 
-    <div class="container">
-        <img src="profile-image.jpg" alt="MrPunyapal" class="profile-image">
-        <h1>Punyapal Shah</h1>
-        <p>I'm a Laravel Artisan, dedicated Open Source Contributor, engaging Speaker, and creative Content Creator. I'm
-            a core member of the <a href="https://pinkary.com" target="_blank">Pinkary Project</a> and the proud Founder
-            of the <a href="https://telegram.me/laravelartisans" target="_blank">Laravel Artisans</a> community. As a
-            full-time
-            Freelancer, I collaborate with clients across the US, UK, and EU, bringing Laravel mastery to
-            diverse projects.</p>
-        <div class="social-links">
-            <a href="https://x.com/MrPunyapal" target="_blank" class="twitter">
+    <main class="container">
+        <header class="profile-header">
+            <img src="profile-image.jpg" alt="Portrait of Punyapal Shah" class="profile-image">
+            <h1>Punyapal Shah</h1>
+        </header>
+        <section class="about">
+            <p>I'm a Laravel Artisan, dedicated Open Source Contributor, engaging Speaker, and creative Content Creator.
+                I'm
+                a core member of the <a href="https://pinkary.com" target="_blank" rel="noopener">Pinkary Project</a>
+                and the proud Founder
+                of the <a href="https://telegram.me/laravelartisans" target="_blank" rel="noopener">Laravel Artisans</a>
+                community. As a
+                full-time Freelancer, I collaborate with clients across the US, UK, and EU, bringing Laravel mastery to
+                diverse projects.</p>
+        </section>
+
+        <nav class="social-links" aria-label="Social media links">
+            <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener" class="twitter"
+                aria-label="Follow me on X (Twitter)">
                 <i class="fab fa-x-twitter" aria-hidden="true"></i>
             </a>
-            <a href="https://github.com/MrPunyapal" target="_blank" class="github">
+            <a href="https://github.com/MrPunyapal" target="_blank" rel="noopener" class="github"
+                aria-label="View my GitHub profile">
                 <i class="fab fa-github" aria-hidden="true"></i>
             </a>
-            <a href="https://linkedin.com/in/MrPunyapal" target="_blank" class="linkedin">
-                <i class="fab fa-linkedin"></i>
+            <a href="https://linkedin.com/in/MrPunyapal" target="_blank" rel="noopener" class="linkedin"
+                aria-label="Connect with me on LinkedIn">
+                <i class="fab fa-linkedin" aria-hidden="true"></i>
             </a>
-            <a href="https://youtube.com/@MrPunyapal" target="_blank" class="youtube">
-                <i class="fab fa-youtube"></i>
+            <a href="https://youtube.com/@MrPunyapal" target="_blank" rel="noopener" class="youtube"
+                aria-label="Subscribe to my YouTube channel">
+                <i class="fab fa-youtube" aria-hidden="true"></i>
             </a>
-            <a href="https://pinkary.com/@MrPunyapal" target="_blank" class="pinkary">
-                <img src="pinkary-icon.png" alt="Pinkary" style="width: 1.8rem; height: 1.8rem;">
+            <a href="https://pinkary.com/@MrPunyapal" target="_blank" rel="noopener" class="pinkary"
+                aria-label="Follow me on Pinkary">
+                <img src="pinkary-icon.png" alt="Pinkary" width="29" height="29">
             </a>
-            <a href="mailto:mrpunyapal@gmail.com" target="_blank" class="email">
-                <i class="fas fa-envelope"></i>
+            <a href="mailto:mrpunyapal@gmail.com" class="email" aria-label="Send me an email">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
             </a>
-        </div>
-    </div>
+        </nav>
+    </main>
 
     <div class="elephant-container" id="runningElephant">
         <svg class="elephant" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
@@ -157,42 +169,43 @@
                 </filter>
                 <filter id="bodyTexture" x="0%" y="0%" width="100%" height="100%">
                     <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="noise" />
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R"
+                        yChannelSelector="G" />
                 </filter>
             </defs>
-            
+
             <!-- Enhanced body with more realistic shape -->
-            <path class="elephant-body" 
-                  d="M120,180 
+            <path class="elephant-body" d="M120,180 
                      Q130,140 200,140 
                      Q270,140 290,170 
                      Q310,185 310,200 
                      Q310,235 260,250 
                      Q200,265 140,250 
                      Q115,245 115,210 
-                     Q115,190 120,180" 
-                  fill="url(#elephantGradient)" 
-                  filter="url(#softShadow)" />
-            
+                     Q115,190 120,180" fill="url(#elephantGradient)" filter="url(#softShadow)" />
+
             <!-- Body texture lines -->
-            <path class="body-detail" d="M140,170 Q190,150 240,170" stroke="#9882b2" stroke-width="1" fill="none" opacity="0.5" />
-            <path class="body-detail" d="M150,200 Q190,190 230,200" stroke="#9882b2" stroke-width="1" fill="none" opacity="0.5" />
-            <path class="body-detail" d="M160,230 Q190,220 220,230" stroke="#9882b2" stroke-width="1" fill="none" opacity="0.5" />
-            
+            <path class="body-detail" d="M140,170 Q190,150 240,170" stroke="#9882b2" stroke-width="1" fill="none"
+                opacity="0.5" />
+            <path class="body-detail" d="M150,200 Q190,190 230,200" stroke="#9882b2" stroke-width="1" fill="none"
+                opacity="0.5" />
+            <path class="body-detail" d="M160,230 Q190,220 220,230" stroke="#9882b2" stroke-width="1" fill="none"
+                opacity="0.5" />
+
             <!-- Head with better shape -->
             <ellipse class="elephant-head" cx="120" cy="140" rx="55" ry="50" fill="url(#elephantGradient)" />
-            
+
             <!-- Ears with more detail -->
             <ellipse class="elephant-ear left-ear" cx="80" cy="120" rx="40" ry="50" fill="#b299c4" />
             <path class="ear-detail" d="M70,100 Q90,95 100,110" stroke="#9882b2" stroke-width="2" fill="none" />
             <path class="ear-detail" d="M65,115 Q85,110 95,125" stroke="#9882b2" stroke-width="2" fill="none" />
             <path class="ear-detail" d="M60,130 Q75,125 90,140" stroke="#9882b2" stroke-width="1.5" fill="none" />
-            
+
             <ellipse class="elephant-ear right-ear" cx="160" cy="120" rx="40" ry="50" fill="#b299c4" />
             <path class="ear-detail" d="M140,100 Q160,95 170,110" stroke="#9882b2" stroke-width="2" fill="none" />
             <path class="ear-detail" d="M135,115 Q155,110 165,125" stroke="#9882b2" stroke-width="2" fill="none" />
             <path class="ear-detail" d="M130,130 Q145,125 160,140" stroke="#9882b2" stroke-width="1.5" fill="none" />
-            
+
             <!-- Enhanced eyes with more expression -->
             <g class="eye-group left-eye-group">
                 <circle class="elephant-eye left-eye" cx="105" cy="130" r="10" fill="white" />
@@ -204,50 +217,41 @@
                 <circle class="elephant-eye-pupil right-pupil" cx="135" cy="130" r="5" fill="#222" />
                 <circle class="eye-highlight right-highlight" cx="133" cy="128" r="2" fill="white" />
             </g>
-            
+
             <!-- Enhanced trunk with more detail and better shape -->
-            <path class="elephant-trunk" 
-                  d="M120,155 
+            <path class="elephant-trunk" d="M120,155 
                      C110,175 105,195 110,215 
                      Q115,235 125,245 
                      Q135,235 132,215 
-                     C132,195 128,175 120,155" 
-                  fill="url(#trunkGradient)" 
-                  stroke="#8a73a2" 
-                  stroke-width="2" />
-                  
+                     C132,195 128,175 120,155" fill="url(#trunkGradient)" stroke="#8a73a2" stroke-width="2" />
+
             <path class="trunk-detail" d="M115,180 Q125,185 125,175" stroke="#8a73a2" stroke-width="1.5" fill="none" />
             <path class="trunk-detail" d="M115,200 Q125,205 125,195" stroke="#8a73a2" stroke-width="1.5" fill="none" />
             <path class="trunk-detail" d="M115,220 Q125,225 125,215" stroke="#8a73a2" stroke-width="1.5" fill="none" />
             <path class="trunk-tip" d="M122,245 Q125,248 128,245" stroke="#7a6691" stroke-width="2" fill="none" />
-            
+
             <!-- Enhanced legs with more realistic rectangular shape -->
             <g class="elephant-legs">
-                <rect class="elephant-leg" x="140" y="235" width="20" height="50" rx="8" ry="8" fill="url(#elephantGradient)" />
-                <rect class="elephant-leg" x="185" y="235" width="20" height="50" rx="8" ry="8" fill="url(#elephantGradient)" />
-                <rect class="elephant-leg" x="225" y="235" width="20" height="50" rx="8" ry="8" fill="url(#elephantGradient)" />
-                <rect class="elephant-leg" x="275" y="235" width="20" height="50" rx="8" ry="8" fill="url(#elephantGradient)" />
+                <rect class="elephant-leg" x="140" y="235" width="20" height="50" rx="8" ry="8"
+                    fill="url(#elephantGradient)" />
+                <rect class="elephant-leg" x="185" y="235" width="20" height="50" rx="8" ry="8"
+                    fill="url(#elephantGradient)" />
+                <rect class="elephant-leg" x="225" y="235" width="20" height="50" rx="8" ry="8"
+                    fill="url(#elephantGradient)" />
+                <rect class="elephant-leg" x="275" y="235" width="20" height="50" rx="8" ry="8"
+                    fill="url(#elephantGradient)" />
             </g>
-            
+
             <!-- Redesigned single-path tail -->
-            <path class="elephant-tail-unified" 
-                  d="M300,200 C310,210 330,220 325,230 S315,250 320,260"
-                  stroke="#8a73a2" stroke-width="4" fill="none" stroke-linecap="round" />
-                  
+            <path class="elephant-tail-unified" d="M300,200 C310,210 330,220 325,230 S315,250 320,260" stroke="#8a73a2"
+                stroke-width="4" fill="none" stroke-linecap="round" />
+
             <!-- Add tusks for a more realistic elephant -->
-            <path class="elephant-tusk left-tusk" 
-                  d="M110,160 Q100,170 105,180" 
-                  stroke="#f5f5f5" 
-                  stroke-width="5" 
-                  fill="none" 
-                  stroke-linecap="round" />
-                  
-            <path class="elephant-tusk right-tusk" 
-                  d="M130,160 Q140,170 135,180" 
-                  stroke="#f5f5f5" 
-                  stroke-width="5" 
-                  fill="none" 
-                  stroke-linecap="round" />
+            <path class="elephant-tusk left-tusk" d="M110,160 Q100,170 105,180" stroke="#f5f5f5" stroke-width="5"
+                fill="none" stroke-linecap="round" />
+
+            <path class="elephant-tusk right-tusk" d="M130,160 Q140,170 135,180" stroke="#f5f5f5" stroke-width="5"
+                fill="none" stroke-linecap="round" />
         </svg>
     </div>
 </body>
