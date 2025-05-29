@@ -1,0 +1,14 @@
+# Robots.txt
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://mrpunyapal.dev/sitemap.xml
+
+# Crawl delay to be respectful
+Crawl-delay: 1
+
+# Block access to service worker and manifest files from crawlers
+Disallow: /sw.js
+Disallow: /manifest.json
