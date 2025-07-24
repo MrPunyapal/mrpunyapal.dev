@@ -1,14 +1,24 @@
-# Robots.txt
-# Allow all crawlers
+# Robots.txt for Punyapal Shah - Laravel Artisan
+# Allow all crawlers access to content
 User-agent: *
 Allow: /
 
 # Sitemap location
 Sitemap: https://mrpunyapal.dev/sitemap.xml
 
-# Crawl delay to be respectful
+# Crawl delay to be respectful to servers
 Crawl-delay: 1
 
-# Block access to service worker and manifest files from crawlers
+# Allow social media bots for better sharing
+User-agent: facebookexternalhit/*
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Block access to files that shouldn't be indexed
 Disallow: /sw.js
-Disallow: /manifest.json
+Disallow: /*.json
