@@ -1,20 +1,88 @@
-/* Enhanced Elephant Animation System with screen impact */
+/* Enhanced Interactive Elephant Animation System with screen impact */
 .elephant-container {
     position: fixed;
     width: 180px;
     height: 180px;
-    z-index: 10;
+    z-index: 9999;
     opacity: 0.9;
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
-            drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
-            drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
     pointer-events: none;
-    animation: runAroundScreen 35s cubic-bezier(0.4, 0.0, 0.6, 1) infinite,
-               dynamicGlow 3s ease-in-out infinite,
-               screenImpact 0.6s infinite ease-in-out;
+    animation: runAroundScreen 25s linear infinite;
     transform-origin: center center;
-    will-change: transform, filter;
-    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.elephant-container svg {
+    width: 100%;
+    height: 100%;
+}
+
+.elephant-container:hover {
+    animation-play-state: paused;
+    transform: scale(1.15) rotateY(15deg);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) 
+            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))
+            drop-shadow(0 0 30px rgba(138, 115, 162, 0.3))
+            brightness(1.1) saturate(1.2);
+    z-index: 15;
+}
+
+.elephant-container.clicked {
+    animation-direction: reverse;
+}
+
+.elephant-container.party-mode {
+    animation: runAroundScreen 15s linear infinite,
+               partyGlow 0.5s ease-in-out infinite alternate,
+               partyBounce 1s ease-in-out infinite;
+}
+
+.elephant-container.turbo-mode {
+    animation: runAroundScreen 8s linear infinite,
+               turboGlow 0.3s ease-in-out infinite,
+               turboShake 0.1s ease-in-out infinite;
+}
+
+.elephant-container.celebration-mode {
+    animation: runAroundScreen 20s ease-in-out infinite,
+               celebrationSpin 2s ease-in-out infinite,
+               celebrationGlow 1s ease-in-out infinite alternate;
+}
+
+/* Elephant trail effects for enhanced visual feedback */
+.elephant-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(138, 115, 162, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.elephant-container:active::after {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 1;
+}
+
+.elephant-container.party-mode::after {
+    animation: partyTrail 0.5s ease-in-out infinite;
+}
+
+.elephant-container.turbo-mode::after {
+    animation: turboTrail 0.2s ease-in-out infinite;
+    background: radial-gradient(circle, rgba(255, 165, 0, 0.4) 0%, transparent 70%);
+}
+
+.elephant-container.celebration-mode::after {
+    animation: celebrationTrail 1s ease-in-out infinite;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.5) 0%, transparent 70%);
 }
 
 @keyframes screenImpact {
@@ -854,5 +922,148 @@
     100% {
         opacity: 0;
         transform: translateX(-50%) scale(1.5);
+    }
+}
+
+/* New Party Mode Animations */
+@keyframes partyGlow {
+    0% { 
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+                drop-shadow(0 0 20px rgba(255, 0, 128, 0.4));
+    }
+    100% { 
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+                drop-shadow(0 0 30px rgba(0, 255, 255, 0.6));
+    }
+}
+
+@keyframes partyBounce {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    25% { 
+        transform: translateY(-10px) rotate(5deg); 
+    }
+    50% { 
+        transform: translateY(-20px) rotate(0deg); 
+    }
+    75% { 
+        transform: translateY(-10px) rotate(-5deg); 
+    }
+}
+
+@keyframes dynamicGlow {
+    0% { 
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+                drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
+    }
+    50% { 
+        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) 
+                drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))
+                drop-shadow(0 0 25px rgba(138, 115, 162, 0.3));
+    }
+    100% { 
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+                drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
+    }
+}
+
+/* Turbo Mode Animations */
+@keyframes turboGlow {
+    0% { 
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+                drop-shadow(0 0 30px rgba(255, 165, 0, 0.8));
+    }
+    100% { 
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+                drop-shadow(0 0 40px rgba(255, 69, 0, 0.9));
+    }
+}
+
+@keyframes turboShake {
+    0%, 100% { 
+        transform: translateX(0) translateY(0); 
+    }
+    25% { 
+        transform: translateX(-2px) translateY(1px); 
+    }
+    50% { 
+        transform: translateX(2px) translateY(-1px); 
+    }
+    75% { 
+        transform: translateX(-1px) translateY(2px); 
+    }
+}
+
+/* Celebration Mode Animations */
+@keyframes celebrationSpin {
+    0%, 100% { 
+        transform: rotateZ(0deg) scale(1); 
+    }
+    25% { 
+        transform: rotateZ(90deg) scale(1.1); 
+    }
+    50% { 
+        transform: rotateZ(180deg) scale(1.2); 
+    }
+    75% { 
+        transform: rotateZ(270deg) scale(1.1); 
+    }
+}
+
+@keyframes celebrationGlow {
+    0% { 
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+                drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+    }
+    100% { 
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+                drop-shadow(0 0 50px rgba(255, 20, 147, 0.9));
+    }
+}
+
+/* Trail Effect Animations */
+@keyframes partyTrail {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.6;
+    }
+}
+
+@keyframes turboTrail {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes celebrationTrail {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    33% { 
+        transform: translate(-50%, -50%) scale(1.8) rotate(120deg);
+        opacity: 0.7;
+    }
+    66% { 
+        transform: translate(-50%, -50%) scale(2.2) rotate(240deg);
+        opacity: 0.5;
     }
 }

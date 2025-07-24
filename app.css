@@ -31,6 +31,11 @@
     --animation-fast: 0.2s;
     --animation-normal: 0.3s;
     --animation-slow: 0.5s;
+    
+    /* Performance Optimizations */
+    --hardware-acceleration: translateZ(0);
+    --will-change-transform: transform, opacity;
+    --backface-visibility: hidden;
 }
 
 /* Modern CSS Reset */
@@ -764,6 +769,9 @@ button:focus-visible {
     overflow: hidden;
     text-transform: uppercase;
     letter-spacing: 0.3px;
+    cursor: pointer;
+    will-change: transform, background, box-shadow;
+    backface-visibility: hidden;
 }
 
 .skill-tag::before {
@@ -777,15 +785,38 @@ button:focus-visible {
     transition: left 0.5s ease;
 }
 
+.skill-tag::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.4s ease;
+}
+
 .skill-tag:hover {
     transform: translateY(-3px) scale(1.05);
     background: rgba(255, 255, 255, 0.25);
     border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .skill-tag:hover::before {
     left: 100%;
+}
+
+.skill-tag:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.skill-tag:active {
+    transform: translateY(-1px) scale(1.02);
+    transition-duration: 0.1s;
 }
 
 @keyframes slideInUp {
