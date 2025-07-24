@@ -64,11 +64,43 @@
 
     <!-- Preload critical resources -->
     <link rel="preload" href="/profile-image.jpg" as="image" type="image/jpeg">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-        as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com"> <!-- Stylesheets -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Resource Hints for better performance -->
+    <link rel="prefetch" href="/pinkary-icon.png">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Critical CSS inlined for better performance -->
+    <style>
+        /* Critical above-the-fold styles */
+        body{font-family:'Poppins',sans-serif;margin:0;padding:1rem;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);background-size:400% 400%;animation:gradient 15s ease infinite;color:#fff;line-height:1.6;position:relative;overflow-x:hidden}
+        @keyframes gradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        .container{text-align:center;padding:1.5rem;backdrop-filter:blur(20px);background:rgba(255,255,255,0.1);border-radius:24px;box-shadow:0 12px 40px 0 rgba(31,38,135,0.4);border:1px solid rgba(255,255,255,0.2);max-width:900px;width:100%}
+        .profile-intro{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap}
+        .profile-image{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid transparent;background:linear-gradient(45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);padding:3px;flex-shrink:0}
+        .profile-text{text-align:left;display:flex;flex-direction:column;gap:0.5rem}
+        @media (max-width:600px){.profile-intro{flex-direction:column}.profile-text{text-align:center;align-items:center}}
+    </style>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mrpunyapal.dev/">
+    
+    <!-- Enhanced meta tags for better SEO -->
+    <meta name="geo.region" content="IN">
+    <meta name="geo.placename" content="India">
+    <meta name="rating" content="general">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Language alternatives -->
+    <link rel="alternate" hreflang="en" href="https://mrpunyapal.dev/">
+    <link rel="alternate" hreflang="x-default" href="https://mrpunyapal.dev/">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -100,18 +132,41 @@
 
     <main class="container">
         <header class="profile-header">
-            <img src="profile-image.jpg" alt="Portrait of Punyapal Shah" class="profile-image">
-            <h1>Punyapal Shah</h1>
+            <div class="profile-intro">
+                <img src="profile-image.jpg" alt="Portrait of Punyapal Shah, Laravel Artisan and Open Source Contributor" class="profile-image" loading="eager" width="120" height="120">
+                <div class="profile-text">
+                    <h1>Punyapal Shah</h1>
+                    <div class="typing-animation">
+                        <span class="typing-text" id="typingText">Laravel Artisan</span>
+                        <span class="cursor">|</span>
+                    </div>
+                </div>
+            </div>
         </header>
+        
         <section class="about">
             <p>I'm a Laravel Artisan, dedicated Open Source Contributor, engaging Speaker, and creative Content Creator.
                 I'm
                 a core member of the <a href="https://pinkary.com" target="_blank" rel="noopener">Pinkary Project</a>
                 and the proud Founder
                 of the <a href="https://telegram.me/laravelartisans" target="_blank" rel="noopener">Laravel Artisans</a>
-                community. As a
-                full-time Freelancer, I collaborate with clients across the US, UK, and EU, bringing Laravel mastery to
-                diverse projects.</p>
+                community.</p>
+        </section>
+
+        <!-- Enhanced Skills Section -->
+        <section class="skills" aria-label="Technical Skills">
+            <h2 class="visually-hidden">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-tag">Laravel</div>
+                <div class="skill-tag">PHP</div>
+                <div class="skill-tag">JavaScript</div>
+                <div class="skill-tag">Livewire</div>
+                <div class="skill-tag">Alpine.js</div>
+                <div class="skill-tag">Filament</div>
+                <div class="skill-tag">PestPHP</div>
+                <div class="skill-tag">RectorPHP</div>
+                <div class="skill-tag">PHPStan</div>
+            </div>
         </section>
 
         <nav class="social-links" aria-label="Social media links">
@@ -252,6 +307,197 @@
                 fill="none" stroke-linecap="round" />
         </svg>
     </div>
+
+    <!-- Enhanced JavaScript for better interactivity -->
+    <script>
+        // Enhanced typing animation with multiple phrases
+        const phrases = [
+            "Laravel Artisan",
+            "Open Source Contributor", 
+            "Content Creator",
+            "Community Builder",
+            "Full Stack Developer"
+        ];
+        
+        let currentPhrase = 0;
+        let currentChar = 0;
+        let isDeleting = false;
+        let typingInterval;
+        
+        function typeAnimation() {
+            const typingText = document.getElementById('typingText');
+            if (!typingText) return;
+            
+            const fullText = phrases[currentPhrase];
+            
+            if (isDeleting) {
+                typingText.textContent = fullText.substring(0, currentChar - 1);
+                currentChar--;
+            } else {
+                typingText.textContent = fullText.substring(0, currentChar + 1);
+                currentChar++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && currentChar === fullText.length) {
+                typeSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && currentChar === 0) {
+                isDeleting = false;
+                currentPhrase = (currentPhrase + 1) % phrases.length;
+                typeSpeed = 500; // Pause before typing next phrase
+            }
+            
+            clearTimeout(typingInterval);
+            typingInterval = setTimeout(typeAnimation, typeSpeed);
+        }
+        
+        // Performance optimization: Use Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        // Smooth scrolling and performance optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize typing animation
+            const typingText = document.getElementById('typingText');
+            if (typingText) {
+                typingText.textContent = ''; // Clear initial content
+                setTimeout(typeAnimation, 500); // Start after a short delay
+            }
+            
+            // Observe animated elements
+            const animatedElements = document.querySelectorAll('.container, .profile-image, .skills-container');
+            animatedElements.forEach(el => observer.observe(el));
+            
+            // Optimize animations for reduced motion preference
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.style.setProperty('--animation-duration', '0.01s');
+            }
+            
+            // Enhanced error handling for images
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.style.opacity = '0.5';
+                    this.alt = 'Image could not be loaded';
+                });
+            });
+            
+            // Add hover effects for better interactivity
+            const socialLinks = document.querySelectorAll('.social-links a');
+            socialLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.1)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Enhance skill tags with staggered animation
+            const skillTags = document.querySelectorAll('.skill-tag');
+            skillTags.forEach((tag, index) => {
+                tag.style.animationDelay = `${0.8 + (index * 0.1)}s`;
+                tag.style.opacity = '0';
+                tag.style.animation = 'slideInUp 0.6s ease-out forwards';
+            });
+            
+            // Add keyboard navigation support
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+            
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('keyboard-navigation');
+            });
+            
+            // Performance: Debounce scroll events
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    // Add scroll-based effects here if needed
+                }, 10);
+            });
+            
+            // Add dynamic theme detection
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            function handleThemeChange(e) {
+                if (e.matches) {
+                    document.documentElement.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.05)');
+                } else {
+                    document.documentElement.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.1)');
+                }
+            }
+            mediaQuery.addListener(handleThemeChange);
+            handleThemeChange(mediaQuery);
+            
+            // Add simple analytics tracking
+            function trackEvent(event, details) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', event, details);
+                }
+                console.log('Event:', event, details);
+            }
+            
+            // Track social link clicks
+            document.querySelectorAll('.social-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    const platform = this.classList[0] || 'unknown';
+                    trackEvent('social_click', {
+                        platform: platform,
+                        url: this.href
+                    });
+                });
+            });
+            
+            // Track external link clicks
+            document.querySelectorAll('a[target="_blank"]').forEach(link => {
+                link.addEventListener('click', function() {
+                    trackEvent('external_link_click', {
+                        url: this.href,
+                        text: this.textContent.trim()
+                    });
+                });
+            });
+            
+            // Add smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Service Worker registration for better caching (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Uncomment if you want to add a service worker later
+                // navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
 </body>
 
 </html>
