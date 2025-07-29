@@ -74,16 +74,49 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     
-    <!-- Critical CSS inlined for better performance -->
+    <!-- Critical CSS for animations only -->
     <style>
-        /* Critical above-the-fold styles */
-        body{font-family:'Poppins',sans-serif;margin:0;padding:1rem;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);background-size:400% 400%;animation:gradient 15s ease infinite;color:#fff;line-height:1.6;position:relative;overflow-x:hidden}
-        @keyframes gradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-        .container{text-align:center;padding:1.5rem;backdrop-filter:blur(20px);background:rgba(255,255,255,0.1);border-radius:24px;box-shadow:0 12px 40px 0 rgba(31,38,135,0.4);border:1px solid rgba(255,255,255,0.2);max-width:900px;width:100%}
-        .profile-intro{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap}
-        .profile-image{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid transparent;background:linear-gradient(45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);padding:3px;flex-shrink:0}
-        .profile-text{text-align:left;display:flex;flex-direction:column;gap:0.5rem}
-        @media (max-width:600px){.profile-intro{flex-direction:column}.profile-text{text-align:center;align-items:center}}
+        /* Only keeping essential animations that work with Tailwind */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Typing animation styles - keeping custom JS dependent styles */
+        .typing-animation {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            margin: 0;
+            min-height: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 2px;
+        }
+        
+        @media (max-width: 600px) {
+            .typing-animation {
+                justify-content: center;
+            }
+        }
+        
+        .typing-text {
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        .cursor {
+            font-weight: 100;
+            color: rgba(255, 255, 255, 0.8);
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
     </style>
     
     <!-- Canonical URL -->
@@ -101,6 +134,35 @@
     <link rel="alternate" hreflang="x-default" href="https://mrpunyapal.dev/">
     
     <!-- Stylesheets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#23a6d5',
+                        'accent': '#e73c7e',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'gradient': 'gradient 15s ease infinite',
+                        'float1': 'float1 25s linear infinite',
+                        'float2': 'float2 18s linear infinite',
+                        'float3': 'float3 30s linear infinite',
+                        'float4': 'float4 22s linear infinite',
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    },
+                    backgroundImage: {
+                        'radial-gradient': 'radial-gradient(circle at 30% 30%, var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -112,41 +174,89 @@
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 </head>
 
-<body>
+<body class="font-poppins m-0 p-4 min-h-screen flex flex-col justify-center items-center 
+            bg-gradient-to-br from-purple-500 via-pink-600 via-blue-600 to-teal-500 
+            bg-[length:400%_400%] animate-gradient text-white leading-relaxed relative overflow-x-hidden
+            antialiased"
+            style="background: linear-gradient(45deg, #8b5cf6, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: gradient 15s ease infinite;">
     <!-- Background decorative elements -->
-    <div class="props-container" id="propsContainer" role="presentation" aria-hidden="true">
+    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden" role="presentation" aria-hidden="true">
         <!-- Circles -->
-        <div class="prop prop-circle float-1" style="width: 50px; height: 50px; top: 15%; left: 10%;"></div>
-        <div class="prop prop-circle float-2" style="width: 30px; height: 30px; top: 60%; left: 80%;"></div>
-        <div class="prop prop-circle float-3" style="width: 70px; height: 70px; top: 80%; left: 30%;"></div>
+        <div class="absolute w-12 h-12 top-[15%] left-[10%] rounded-full opacity-30 blur-[0.5px]
+                    bg-gradient-radial from-white/30 to-white/10 shadow-[0_0_20px_rgba(255,255,255,0.2)]
+                    animate-float1"></div>
+        <div class="absolute w-8 h-8 top-[60%] left-[80%] rounded-full opacity-30 blur-[0.5px]
+                    bg-gradient-radial from-white/30 to-white/10 shadow-[0_0_20px_rgba(255,255,255,0.2)]
+                    animate-float2"></div>
+        <div class="absolute w-16 h-16 top-[80%] left-[30%] rounded-full opacity-30 blur-[0.5px]
+                    bg-gradient-radial from-white/30 to-white/10 shadow-[0_0_20px_rgba(255,255,255,0.2)]
+                    animate-float3"></div>
 
         <!-- Squares -->
-        <div class="prop prop-square float-4" style="width: 40px; height: 40px; top: 25%; left: 85%;"></div>
-        <div class="prop prop-square float-1" style="width: 20px; height: 20px; top: 70%; left: 15%;"></div>
+        <div class="absolute w-10 h-10 top-[25%] left-[85%] rounded-lg opacity-30 blur-[0.5px] rotate-45
+                    bg-gradient-to-br from-white/20 to-white/10 shadow-[0_0_15px_rgba(255,255,255,0.15)]
+                    animate-float4"></div>
+        <div class="absolute w-5 h-5 top-[70%] left-[15%] rounded-lg opacity-30 blur-[0.5px] rotate-45
+                    bg-gradient-to-br from-white/20 to-white/10 shadow-[0_0_15px_rgba(255,255,255,0.15)]
+                    animate-float1"></div>
 
         <!-- Code symbols -->
-        <div class="prop prop-code float-3" style="top: 20%; left: 25%;">{ }</div>
-        <div class="prop prop-code float-2" style="top: 75%; left: 60%;">&lt;/&gt;</div>
-        <div class="prop prop-code float-4" style="top: 40%; left: 75%;">&lt;?&gt;</div>
+        <div class="absolute top-[20%] left-[25%] text-white/40 font-mono font-semibold opacity-30
+                    drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] animate-float3
+                    lg:text-xl md:text-lg sm:text-base">{ }</div>
+        <div class="absolute top-[75%] left-[60%] text-white/40 font-mono font-semibold opacity-30
+                    drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] animate-float2
+                    lg:text-xl md:text-lg sm:text-base">&lt;/&gt;</div>
+        <div class="absolute top-[40%] left-[75%] text-white/40 font-mono font-semibold opacity-30
+                    drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] animate-float4
+                    lg:text-xl md:text-lg sm:text-base">&lt;?&gt;</div>
     </div>
 
     <!-- Source Code Button -->
     <a href="https://github.com/MrPunyapal/mrpunyapal.dev" 
        target="_blank" 
        rel="noopener" 
-       class="edit-github-btn" 
+       class="fixed top-6 right-6 z-50 flex items-center gap-2 px-5 py-3 
+              text-white text-sm font-medium no-underline
+              bg-white/10 backdrop-blur-xl rounded-full border border-white/20
+              transition-all duration-300 ease-out
+              hover:bg-white/15 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:shadow-black/20
+              active:translate-y-0 active:scale-100
+              md:top-4 md:right-4 md:px-4 md:py-2 md:text-xs
+              sm:px-3 sm:py-2"
        aria-label="View source code on GitHub">
-        <i class="fab fa-github" aria-hidden="true"></i>
-        <span>Source</span>
-        <i class="fas fa-external-link-alt arrow-icon" aria-hidden="true"></i>
+        <i class="fab fa-github transition-transform duration-300 hover:rotate-[360deg] hover:scale-110" aria-hidden="true"></i>
+        <span class="font-poppins font-medium tracking-wide">Source</span>
+        <i class="fas fa-external-link-alt text-xs opacity-80 transition-all duration-300 
+                  hover:translate-x-1 hover:scale-110 hover:opacity-100" aria-hidden="true"></i>
     </a>
 
-    <main class="container">
-        <header class="profile-header">
-            <div class="profile-intro">
-                <img src="profile-image.jpg" alt="Portrait of Punyapal Shah, Laravel Artisan and Open Source Contributor" class="profile-image" loading="eager" width="120" height="120">
-                <div class="profile-text">
-                    <h1>Punyapal Shah</h1>
+    <main class="text-center p-6 backdrop-blur-xl bg-white/10 rounded-3xl 
+                  shadow-[0_12px_40px_0_rgba(31,38,135,0.4)] border border-white/20
+                  max-w-4xl w-full mx-auto transition-all duration-300 ease-out relative
+                  hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(31,38,135,0.5),0_0_0_1px_rgba(255,255,255,0.15)]
+                  lg:p-8 md:p-6 sm:p-4">
+        <header class="mb-6">
+            <div class="flex items-center justify-center gap-8 flex-wrap mb-4
+                        md:gap-6 sm:flex-col sm:gap-4">
+                <img src="profile-image.jpg" 
+                     alt="Portrait of Punyapal Shah, Laravel Artisan and Open Source Contributor" 
+                     class="w-30 h-30 rounded-full object-cover border-4 border-transparent
+                            bg-gradient-to-br from-purple-500 via-pink-500 via-blue-500 to-teal-400
+                            bg-[length:400%_400%] animate-gradient p-1 flex-shrink-0
+                            shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-500
+                            hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] hover:scale-105
+                            lg:w-28 lg:h-28 md:w-24 md:h-24 sm:w-20 sm:h-20" 
+                     loading="eager" width="120" height="120">
+                <div class="text-left flex flex-col gap-2 min-w-0 sm:text-center sm:items-center">
+                    <h1 class="text-4xl font-bold tracking-wide bg-gradient-to-r from-white to-gray-200 
+                              bg-clip-text text-transparent relative m-0
+                              after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-10 after:h-1 
+                              after:bg-gradient-to-r after:from-purple-500 after:via-pink-500 after:via-blue-500 after:to-teal-400 
+                              after:rounded-sm after:animate-pulse
+                              lg:text-3xl md:text-2xl sm:text-xl sm:after:left-1/2 sm:after:-translate-x-1/2">
+                        Punyapal Shah
+                    </h1>
                     <div class="typing-animation">
                         <span class="typing-text" id="typingText">Laravel Artisan</span>
                         <span class="cursor">|</span>
@@ -155,54 +265,138 @@
             </div>
         </header>
         
-        <section class="about">
-            <p>I'm a Laravel Artisan, dedicated Open Source Contributor, engaging Speaker, and creative Content Creator.
-                I'm
-                a core member of the <a href="https://pinkary.com" target="_blank" rel="noopener">Pinkary Project</a>
-                and the proud Founder
-                of the <a href="https://telegram.me/laravelartisans" target="_blank" rel="noopener">Laravel Artisans</a>
-                community.</p>
+        <section class="mb-4">
+            <p class="text-base leading-relaxed max-w-2xl mx-auto text-center font-light text-white/90
+                      lg:text-sm md:text-sm sm:text-xs">
+                I'm a Laravel Artisan, dedicated Open Source Contributor, engaging Speaker, and creative Content Creator.
+                I'm a core member of the 
+                <a href="https://pinkary.com" target="_blank" rel="noopener" 
+                   class="font-semibold relative transition-all duration-300 px-1 py-0.5 rounded
+                          bg-gradient-to-r from-transparent via-white/10 to-transparent bg-[length:200%_100%]
+                          hover:bg-[position:100%_0] hover:-translate-y-0.5
+                          after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 
+                          after:bg-gradient-to-r after:from-purple-500 after:via-pink-500 after:to-blue-500 
+                          after:scale-x-0 after:origin-right after:transition-transform after:duration-300
+                          hover:after:scale-x-100 hover:after:origin-left">Pinkary Project</a>
+                and the proud Founder of the 
+                <a href="https://telegram.me/laravelartisans" target="_blank" rel="noopener"
+                   class="font-semibold relative transition-all duration-300 px-1 py-0.5 rounded
+                          bg-gradient-to-r from-transparent via-white/10 to-transparent bg-[length:200%_100%]
+                          hover:bg-[position:100%_0] hover:-translate-y-0.5
+                          after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 
+                          after:bg-gradient-to-r after:from-purple-500 after:via-pink-500 after:to-blue-500 
+                          after:scale-x-0 after:origin-right after:transition-transform after:duration-300
+                          hover:after:scale-x-100 hover:after:origin-left">Laravel Artisans</a>
+                community.
+            </p>
         </section>
 
         <!-- Enhanced Skills Section -->
-        <section class="skills" aria-label="Technical Skills">
-            <h2 class="visually-hidden">Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill-tag">Laravel</div>
-                <div class="skill-tag">PHP</div>
-                <div class="skill-tag">Tailwind CSS</div>
-                <div class="skill-tag">Livewire</div>
-                <div class="skill-tag">Alpine.js</div>
-                <div class="skill-tag">Filament</div>
-                <div class="skill-tag">PestPHP</div>
-                <div class="skill-tag">RectorPHP</div>
-                <div class="skill-tag">PHPStan</div>
+        <section class="mb-6" aria-label="Technical Skills">
+            <h2 class="sr-only">Technical Skills</h2>
+            <div class="flex flex-wrap justify-center gap-3 mt-2">
+                <div class="px-4 py-2 text-xs font-medium text-white uppercase tracking-wider
+                           bg-white/20 backdrop-blur-sm rounded-full border border-white/25
+                           transition-all duration-300 ease-out cursor-pointer
+                           hover:bg-white/30 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15),0_0_20px_rgba(255,255,255,0.1)]
+                           active:translate-y-0 active:scale-100">Laravel</div>
+                <div class="px-4 py-2 text-xs font-medium text-white uppercase tracking-wider
+                           bg-white/20 backdrop-blur-sm rounded-full border border-white/25
+                           transition-all duration-300 ease-out cursor-pointer
+                           hover:bg-white/30 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15),0_0_20px_rgba(255,255,255,0.1)]
+                           active:translate-y-0 active:scale-100">PHP</div>
+                <div class="px-4 py-2 text-xs font-medium text-white uppercase tracking-wider
+                           bg-white/20 backdrop-blur-sm rounded-full border border-white/25
+                           transition-all duration-300 ease-out cursor-pointer
+                           hover:bg-white/30 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15),0_0_20px_rgba(255,255,255,0.1)]
+                           active:translate-y-0 active:scale-100">Tailwind CSS</div>
+                <div class="px-4 py-2 text-xs font-medium text-white uppercase tracking-wider
+                           bg-white/20 backdrop-blur-sm rounded-full border border-white/25
+                           transition-all duration-300 ease-out cursor-pointer
+                           hover:bg-white/30 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15),0_0_20px_rgba(255,255,255,0.1)]
+                           active:translate-y-0 active:scale-100">Livewire</div>
+                <div class="px-4 py-2 text-xs font-medium text-white uppercase tracking-wider
+                           bg-white/20 backdrop-blur-sm rounded-full border border-white/25
+                           transition-all duration-300 ease-out cursor-pointer
+                           hover:bg-white/30 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15),0_0_20px_rgba(255,255,255,0.1)]
+                           active:translate-y-0 active:scale-100">Alpine.js</div>
+                <div class="px-4 py-2 text-xs font-medium text-white uppercase tracking-wider
+                           bg-white/20 backdrop-blur-sm rounded-full border border-white/25
+                           transition-all duration-300 ease-out cursor-pointer
+                           hover:bg-white/30 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15),0_0_20px_rgba(255,255,255,0.1)]
+                           active:translate-y-0 active:scale-100">Filament</div>
+                <div class="px-4 py-2 text-xs font-medium text-white uppercase tracking-wider
+                           bg-white/20 backdrop-blur-sm rounded-full border border-white/25
+                           transition-all duration-300 ease-out cursor-pointer
+                           hover:bg-white/30 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15),0_0_20px_rgba(255,255,255,0.1)]
+                           active:translate-y-0 active:scale-100">PestPHP</div>
+                <div class="px-4 py-2 text-xs font-medium text-white uppercase tracking-wider
+                           bg-white/20 backdrop-blur-sm rounded-full border border-white/25
+                           transition-all duration-300 ease-out cursor-pointer
+                           hover:bg-white/25 hover:-translate-y-1 hover:scale-105 hover:shadow-lg hover:shadow-black/10
+                           active:translate-y-0 active:scale-100">RectorPHP</div>
+                <div class="px-4 py-2 text-xs font-medium text-white uppercase tracking-wider
+                           bg-white/15 backdrop-blur-sm rounded-full border border-white/20
+                           transition-all duration-300 ease-out cursor-pointer
+                           hover:bg-white/25 hover:-translate-y-1 hover:scale-105 hover:shadow-lg hover:shadow-black/10
+                           active:translate-y-0 active:scale-100">PHPStan</div>
             </div>
         </section>
 
-        <nav class="social-links" aria-label="Social media links">
-            <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener" class="twitter"
-                aria-label="Follow me on X (Twitter)">
-                <i class="fab fa-x-twitter" aria-hidden="true"></i>
+        <nav class="flex flex-wrap justify-center gap-3 mt-6" aria-label="Social media links">
+            <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener" 
+               class="flex items-center justify-center w-12 h-12 rounded-full text-white no-underline
+                      bg-white/10 backdrop-blur-sm border border-white/20
+                      transition-all duration-500 ease-out overflow-hidden relative
+                      hover:bg-gradient-to-br hover:from-black hover:to-gray-800 hover:-translate-y-3 hover:scale-110 hover:shadow-xl hover:shadow-black/30
+                      active:translate-y-1 active:scale-105"
+               aria-label="Follow me on X (Twitter)">
+                <i class="fab fa-x-twitter text-lg transition-all duration-300 relative z-10" aria-hidden="true"></i>
             </a>
-            <a href="https://github.com/MrPunyapal" target="_blank" rel="noopener" class="github"
-                aria-label="View my GitHub profile">
-                <i class="fab fa-github" aria-hidden="true"></i>
+            <a href="https://github.com/MrPunyapal" target="_blank" rel="noopener" 
+               class="flex items-center justify-center w-12 h-12 rounded-full text-white no-underline
+                      bg-white/15 backdrop-blur-sm border border-white/25
+                      transition-all duration-500 ease-out overflow-hidden relative
+                      hover:bg-gradient-to-br hover:from-gray-800 hover:to-gray-600 hover:-translate-y-3 hover:scale-110 hover:shadow-xl hover:shadow-black/30
+                      active:translate-y-1 active:scale-105"
+               aria-label="View my GitHub profile">
+                <i class="fab fa-github text-lg transition-all duration-300 relative z-10" aria-hidden="true"></i>
             </a>
-            <a href="https://linkedin.com/in/MrPunyapal" target="_blank" rel="noopener" class="linkedin"
-                aria-label="Connect with me on LinkedIn">
-                <i class="fab fa-linkedin" aria-hidden="true"></i>
+            <a href="https://linkedin.com/in/MrPunyapal" target="_blank" rel="noopener" 
+               class="flex items-center justify-center w-12 h-12 rounded-full text-white no-underline
+                      bg-white/10 backdrop-blur-sm border border-white/20
+                      transition-all duration-500 ease-out overflow-hidden relative
+                      hover:bg-gradient-to-br hover:from-blue-600 hover:to-blue-800 hover:-translate-y-3 hover:scale-110 hover:shadow-xl hover:shadow-blue-500/30
+                      active:translate-y-1 active:scale-105"
+               aria-label="Connect with me on LinkedIn">
+                <i class="fab fa-linkedin text-lg transition-all duration-300 relative z-10" aria-hidden="true"></i>
             </a>
-            <a href="https://youtube.com/@MrPunyapal" target="_blank" rel="noopener" class="youtube"
-                aria-label="Subscribe to my YouTube channel">
-                <i class="fab fa-youtube" aria-hidden="true"></i>
+            <a href="https://youtube.com/@MrPunyapal" target="_blank" rel="noopener" 
+               class="flex items-center justify-center w-12 h-12 rounded-full text-white no-underline
+                      bg-white/10 backdrop-blur-sm border border-white/20
+                      transition-all duration-500 ease-out overflow-hidden relative
+                      hover:bg-gradient-to-br hover:from-red-600 hover:to-red-800 hover:-translate-y-3 hover:scale-110 hover:shadow-xl hover:shadow-red-500/30
+                      active:translate-y-1 active:scale-105"
+               aria-label="Subscribe to my YouTube channel">
+                <i class="fab fa-youtube text-lg transition-all duration-300 relative z-10" aria-hidden="true"></i>
             </a>
-            <a href="https://pinkary.com/@MrPunyapal" target="_blank" rel="noopener" class="pinkary"
-                aria-label="Follow me on Pinkary">
-                <img src="pinkary-icon.png" alt="Pinkary" width="29" height="29">
+            <a href="https://pinkary.com/@MrPunyapal" target="_blank" rel="noopener" 
+               class="flex items-center justify-center w-12 h-12 rounded-full text-white no-underline
+                      bg-white/10 backdrop-blur-sm border border-white/20
+                      transition-all duration-500 ease-out overflow-hidden relative
+                      hover:bg-gradient-to-br hover:from-pink-500 hover:to-pink-700 hover:-translate-y-3 hover:scale-110 hover:shadow-xl hover:shadow-pink-500/30
+                      active:translate-y-1 active:scale-105"
+               aria-label="Follow me on Pinkary">
+                <img src="pinkary-icon.png" alt="Pinkary" width="20" height="20" class="transition-all duration-300 relative z-10">
             </a>
-            <a href="mailto:mrpunyapal@gmail.com" class="email" aria-label="Send me an email">
-                <i class="fas fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:mrpunyapal@gmail.com" 
+               class="flex items-center justify-center w-12 h-12 rounded-full text-white no-underline
+                      bg-white/10 backdrop-blur-sm border border-white/20
+                      transition-all duration-500 ease-out overflow-hidden relative
+                      hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-600 hover:-translate-y-3 hover:scale-110 hover:shadow-xl hover:shadow-purple-500/30
+                      active:translate-y-1 active:scale-105"
+               aria-label="Send me an email">
+                <i class="fas fa-envelope text-lg transition-all duration-300 relative z-10" aria-hidden="true"></i>
             </a>
         </nav>
     </main>
