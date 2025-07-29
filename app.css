@@ -842,3 +842,123 @@ button:focus-visible {
     white-space: nowrap !important;
     border: 0 !important;
 }
+
+/* Source Code Button - Elegant floating button */
+.edit-github-btn {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 50px;
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: fadeInDown 0.8s ease-out 0.5s both;
+    will-change: transform, box-shadow, background;
+}
+
+.edit-github-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.edit-github-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 15px 40px rgba(31, 38, 135, 0.5),
+        0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.edit-github-btn:hover::before {
+    opacity: 1;
+}
+
+.edit-github-btn:active {
+    transform: translateY(-1px) scale(1.02);
+    transition-duration: 0.1s;
+}
+
+.edit-github-btn i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.edit-github-btn .arrow-icon {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.edit-github-btn:hover i.fab {
+    transform: rotate(360deg) scale(1.1);
+}
+
+.edit-github-btn:hover .arrow-icon {
+    transform: translateX(3px) scale(1.1);
+    opacity: 1;
+}
+
+.edit-github-btn span {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design for edit button */
+@media (max-width: 768px) {
+    .edit-github-btn {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .edit-github-btn .arrow-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-github-btn {
+        top: 0.75rem;
+        right: 0.75rem;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .edit-github-btn i.fab {
+        font-size: 1rem;
+    }
+    
+    .edit-github-btn .arrow-icon {
+        display: none;
+    }
+}
