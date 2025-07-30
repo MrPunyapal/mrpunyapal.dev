@@ -2,6 +2,11 @@
 # Allow all crawlers access to content
 User-agent: *
 Allow: /
+Allow: /profile-image.jpg
+Allow: /og-image-mrpunyapal.png
+Allow: /favicon.png
+Allow: /*.css
+Allow: /*.js
 
 # Sitemap location
 Sitemap: https://mrpunyapal.dev/sitemap.xml
@@ -18,6 +23,21 @@ Allow: /
 
 User-agent: LinkedInBot
 Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Host directive
+Host: https://mrpunyapal.dev
 
 # Block access to files that shouldn't be indexed
 Disallow: /sw.js
