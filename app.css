@@ -1,31 +1,43 @@
-/* Essential keyframes and utilities for Tailwind-based design */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+/* Modern CSS for Professional Portfolio with Tailwind v4 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* Custom keyframes for animations used by Tailwind */
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Enhanced keyframes for modern animations */
+@keyframes gradient-x {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
 }
 
-@keyframes float1 {
-    0% { transform: translate(-10%, -10%) rotate(0deg); }
-    100% { transform: translate(110%, 110%) rotate(360deg); }
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(3deg); }
 }
 
-@keyframes float2 {
-    0% { transform: translate(110%, 10%) rotate(0deg); }
-    100% { transform: translate(-10%, 90%) rotate(-360deg); }
+@keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
+    100% { box-shadow: 0 0 30px rgba(14, 165, 233, 0.6); }
 }
 
-@keyframes float3 {
-    0% { transform: translate(50%, -10%) rotate(0deg); }
-    100% { transform: translate(50%, 110%) rotate(180deg); }
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@keyframes float4 {
-    0% { transform: translate(-10%, 50%) rotate(0deg); }
-    100% { transform: translate(110%, 50%) rotate(-180deg); }
+@keyframes scale-up {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Glass morphism utility */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Screen reader accessibility utility */

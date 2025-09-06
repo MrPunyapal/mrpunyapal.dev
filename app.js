@@ -11,6 +11,7 @@ const phrases = [
     "Community Builder",
     "Full Stack Developer",
     "Tall Stack Developer",
+    "Consultant",
 ];
 
 function typeAnimation() {
