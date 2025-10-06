@@ -5,9 +5,9 @@
     height: 220px;
     z-index: 9999;
     opacity: 0.95;
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(119, 123, 180, 0.3));
     pointer-events: none;
-    animation: runAroundScreen 25s linear infinite, elephantPulse 3s ease-in-out infinite;
+    animation: runAroundScreen 25s linear infinite;
     transform-origin: center center;
     will-change: transform;
 }
@@ -1086,8 +1086,8 @@
     }
 }
 
-/* Elephant pulsing glow animation */
-@keyframes elephantPulse {
+/* Elephant pulsing glow animation - only affects filter, not transform */
+@keyframes elephantGlow {
     0%, 100% { 
         filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 15px rgba(119, 123, 180, 0.2));
     }

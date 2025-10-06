@@ -182,10 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enhanced PHP Elephant Interactions
     const elephant = document.getElementById('runningElephant');
     if (elephant) {
-        let clickCount = 0;
         let isPartyMode = false;
-        let isTurboMode = false;
-        let isCelebrationMode = false;
         
         // Make elephant interactive
         elephant.style.pointerEvents = 'auto';
@@ -193,48 +190,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         elephant.addEventListener('click', function(e) {
             e.stopPropagation();
-            clickCount++;
             
-            // Remove all special modes first
-            elephant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode', 'clicked');
-            
-            // Cycle through different modes on each click
-            if (clickCount % 4 === 1) {
-                // Reverse direction
-                elephant.classList.add('clicked');
-                showElephantMessage('🔄 Reversed!');
-                trackEvent('elephant_interaction', {
-                    action: 'reverse',
-                    click_count: clickCount
-                });
-            } else if (clickCount % 4 === 2) {
-                // Party mode
+            // Toggle party mode
+            if (isPartyMode) {
+                // Turn off party mode - back to normal
+                elephant.classList.remove('party-mode');
+                isPartyMode = false;
+            } else {
+                // Turn on party mode
                 elephant.classList.add('party-mode');
                 isPartyMode = true;
-                showElephantMessage('🎉 Party Mode!');
                 createConfetti();
-                trackEvent('elephant_interaction', {
-                    action: 'party_mode',
-                    click_count: clickCount
-                });
-            } else if (clickCount % 4 === 3) {
-                // Turbo mode
-                elephant.classList.add('turbo-mode');
-                isTurboMode = true;
-                showElephantMessage('🚀 Turbo Mode!');
-                trackEvent('elephant_interaction', {
-                    action: 'turbo_mode',
-                    click_count: clickCount
-                });
-            } else {
-                // Celebration mode
-                elephant.classList.add('celebration-mode');
-                isCelebrationMode = true;
-                showElephantMessage('✨ Celebration!');
                 createFireworks();
+                playTrumpetSound();
                 trackEvent('elephant_interaction', {
-                    action: 'celebration',
-                    click_count: clickCount
+                    action: 'party_mode_enabled'
                 });
             }
             
@@ -244,49 +214,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 elephant.style.transform = '';
             }, 200);
         });
-        
-        // Double-click for special effect
-        elephant.addEventListener('dblclick', function(e) {
-            e.stopPropagation();
-            playTrumpetSound();
-            elephant.style.animation = 'none';
-            setTimeout(() => {
-                elephant.style.animation = '';
-            }, 10);
-            showElephantMessage('🎺 Trumpet!');
-            trackEvent('elephant_interaction', {
-                action: 'double_click_trumpet'
-            });
-        });
-        
-        // Helper function to show messages
-        function showElephantMessage(text) {
-            const message = document.createElement('div');
-            message.className = 'elephant-message';
-            message.textContent = text;
-            message.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(0);
-                background: linear-gradient(135deg, rgba(119, 123, 180, 0.95), rgba(138, 115, 162, 0.95));
-                color: white;
-                padding: 20px 40px;
-                border-radius: 16px;
-                font-size: 24px;
-                font-weight: bold;
-                z-index: 10001;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-                animation: messagePopIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-                pointer-events: none;
-            `;
-            document.body.appendChild(message);
-            
-            setTimeout(() => {
-                message.style.animation = 'messagePopOut 0.3s ease-in forwards';
-                setTimeout(() => message.remove(), 300);
-            }, 1500);
-        }
         
         // Confetti effect
         function createConfetti() {
