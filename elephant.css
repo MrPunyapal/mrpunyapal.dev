@@ -1,13 +1,13 @@
 /* Enhanced Interactive Elephant Animation System with screen impact */
 .elephant-container {
     position: fixed;
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
     z-index: 9999;
-    opacity: 0.9;
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+    opacity: 0.95;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
     pointer-events: none;
-    animation: runAroundScreen 25s linear infinite;
+    animation: runAroundScreen 25s linear infinite, elephantPulse 3s ease-in-out infinite;
     transform-origin: center center;
     will-change: transform;
 }
@@ -19,11 +19,11 @@
 
 .elephant-container:hover {
     animation-play-state: paused;
-    transform: scale(1.15) rotateY(15deg);
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) 
-            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))
-            drop-shadow(0 0 30px rgba(138, 115, 162, 0.3))
-            brightness(1.1) saturate(1.2);
+    transform: scale(1.2) rotateY(15deg);
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4)) 
+            drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2))
+            drop-shadow(0 0 40px rgba(119, 123, 180, 0.6))
+            brightness(1.15) saturate(1.3);
     z-index: 15;
 }
 
@@ -58,7 +58,7 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(138, 115, 162, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(119, 123, 180, 0.3) 0%, transparent 70%);
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     transition: all 0.3s ease;
@@ -722,7 +722,7 @@
     position: absolute;
     width: 8px;
     height: 8px;
-    background: radial-gradient(circle, rgba(138, 115, 162, 0.6), transparent);
+    background: radial-gradient(circle, rgba(119, 123, 180, 0.6), transparent);
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -737,7 +737,7 @@
     position: absolute;
     width: 6px;
     height: 6px;
-    background: radial-gradient(circle, rgba(196, 176, 214, 0.4), transparent);
+    background: radial-gradient(circle, rgba(180, 183, 212, 0.4), transparent);
     border-radius: 50%;
     top: 60%;
     left: 30%;
@@ -774,15 +774,15 @@
 
 @keyframes soundWave {
     0% {
-        box-shadow: 0 0 0 0 rgba(138, 115, 162, 0.3);
+        box-shadow: 0 0 0 0 rgba(119, 123, 180, 0.3);
         border-radius: 50%;
     }
     50% {
-        box-shadow: 0 0 0 20px rgba(138, 115, 162, 0.1);
+        box-shadow: 0 0 0 20px rgba(119, 123, 180, 0.1);
         border-radius: 50%;
     }
     100% {
-        box-shadow: 0 0 0 40px rgba(138, 115, 162, 0);
+        box-shadow: 0 0 0 40px rgba(119, 123, 180, 0);
         border-radius: 50%;
     }
 }
@@ -796,7 +796,7 @@
     opacity: 0.9;
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
             drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
-            drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
+            drop-shadow(0 0 20px rgba(119, 123, 180, 0.1));
     pointer-events: none;
     animation: runAroundScreen 35s cubic-bezier(0.4, 0.0, 0.6, 1) infinite,
                dynamicGlow 3s ease-in-out infinite;
@@ -809,12 +809,12 @@
     0%, 100% {
         filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
                 drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
-                drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
+                drop-shadow(0 0 20px rgba(119, 123, 180, 0.1));
     }
     50% {
         filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) 
                 drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))
-                drop-shadow(0 0 30px rgba(138, 115, 162, 0.2));
+                drop-shadow(0 0 30px rgba(119, 123, 180, 0.2));
     }
 }
 
@@ -823,7 +823,7 @@
     animation-play-state: paused;
     transform: scale(1.1) !important;
     filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4)) 
-            drop-shadow(0 0 40px rgba(138, 115, 162, 0.3)) !important;
+            drop-shadow(0 0 40px rgba(119, 123, 180, 0.3)) !important;
     transition: all 0.3s cubic-bezier(0.4, 0.0, 0.6, 1);
 }
 
@@ -889,7 +889,7 @@
     left: 50%;
     width: 80px;
     height: 8px;
-    background: radial-gradient(ellipse, rgba(138, 115, 162, 0.2) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(119, 123, 180, 0.2) 0%, transparent 70%);
     border-radius: 50%;
     transform: translateX(-50%);
     animation: dustCloud 1.8s infinite ease-out;
@@ -900,13 +900,13 @@
         filter: drop-shadow(0 0 0 transparent);
     }
     25% { 
-        filter: drop-shadow(0 1px 6px rgba(138, 115, 162, 0.2));
+        filter: drop-shadow(0 1px 6px rgba(119, 123, 180, 0.2));
     }
     50% { 
-        filter: drop-shadow(0 2px 8px rgba(138, 115, 162, 0.3));
+        filter: drop-shadow(0 2px 8px rgba(119, 123, 180, 0.3));
     }
     75% { 
-        filter: drop-shadow(0 1px 6px rgba(138, 115, 162, 0.2));
+        filter: drop-shadow(0 1px 6px rgba(119, 123, 180, 0.2));
     }
 }
 
@@ -958,17 +958,17 @@
     0% { 
         filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
                 drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
-                drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
+                drop-shadow(0 0 20px rgba(119, 123, 180, 0.1));
     }
     50% { 
         filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) 
                 drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))
-                drop-shadow(0 0 25px rgba(138, 115, 162, 0.3));
+                drop-shadow(0 0 25px rgba(119, 123, 180, 0.3));
     }
     100% { 
         filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) 
                 drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
-                drop-shadow(0 0 20px rgba(138, 115, 162, 0.1));
+                drop-shadow(0 0 20px rgba(119, 123, 180, 0.1));
     }
 }
 
@@ -1066,4 +1066,108 @@
         transform: translate(-50%, -50%) scale(2.2) rotate(240deg);
         opacity: 0.5;
     }
+}
+
+/* PHP Logo Glow Animation */
+.php-logo {
+    animation: phpLogoGlow 2.5s ease-in-out infinite;
+    transform-origin: center center;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes phpLogoGlow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 8px rgba(119, 123, 180, 0.7)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        transform: scale(1);
+    }
+    50% { 
+        filter: drop-shadow(0 0 20px rgba(119, 123, 180, 1)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.5)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        transform: scale(1.08);
+    }
+}
+
+/* Elephant pulsing glow animation */
+@keyframes elephantPulse {
+    0%, 100% { 
+        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 15px rgba(119, 123, 180, 0.2));
+    }
+    50% { 
+        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 30px rgba(119, 123, 180, 0.4));
+    }
+}
+
+/* Tooltip Animation */
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Message Pop Animations */
+@keyframes messagePopIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes messagePopOut {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+/* Confetti Animation */
+@keyframes confettiFall {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) rotate(var(--rz));
+        opacity: 0;
+    }
+}
+
+/* Firework Particle Animation */
+@keyframes fireworkParticle {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Enhanced click interaction */
+.elephant-container {
+    transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.elephant-container:active {
+    transform: scale(0.95) !important;
+}
+
+/* Cursor hint */
+.elephant-container:hover {
+    cursor: pointer;
 }

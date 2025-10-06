@@ -178,4 +178,202 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Enhanced PHP Elephant Interactions
+    const elephant = document.getElementById('runningElephant');
+    if (elephant) {
+        let clickCount = 0;
+        let isPartyMode = false;
+        let isTurboMode = false;
+        let isCelebrationMode = false;
+        
+        // Make elephant interactive
+        elephant.style.pointerEvents = 'auto';
+        elephant.style.cursor = 'pointer';
+        
+        elephant.addEventListener('click', function(e) {
+            e.stopPropagation();
+            clickCount++;
+            
+            // Remove all special modes first
+            elephant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode', 'clicked');
+            
+            // Cycle through different modes on each click
+            if (clickCount % 4 === 1) {
+                // Reverse direction
+                elephant.classList.add('clicked');
+                showElephantMessage('🔄 Reversed!');
+                trackEvent('elephant_interaction', {
+                    action: 'reverse',
+                    click_count: clickCount
+                });
+            } else if (clickCount % 4 === 2) {
+                // Party mode
+                elephant.classList.add('party-mode');
+                isPartyMode = true;
+                showElephantMessage('🎉 Party Mode!');
+                createConfetti();
+                trackEvent('elephant_interaction', {
+                    action: 'party_mode',
+                    click_count: clickCount
+                });
+            } else if (clickCount % 4 === 3) {
+                // Turbo mode
+                elephant.classList.add('turbo-mode');
+                isTurboMode = true;
+                showElephantMessage('🚀 Turbo Mode!');
+                trackEvent('elephant_interaction', {
+                    action: 'turbo_mode',
+                    click_count: clickCount
+                });
+            } else {
+                // Celebration mode
+                elephant.classList.add('celebration-mode');
+                isCelebrationMode = true;
+                showElephantMessage('✨ Celebration!');
+                createFireworks();
+                trackEvent('elephant_interaction', {
+                    action: 'celebration',
+                    click_count: clickCount
+                });
+            }
+            
+            // Add bounce effect on click
+            elephant.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                elephant.style.transform = '';
+            }, 200);
+        });
+        
+        // Double-click for special effect
+        elephant.addEventListener('dblclick', function(e) {
+            e.stopPropagation();
+            playTrumpetSound();
+            elephant.style.animation = 'none';
+            setTimeout(() => {
+                elephant.style.animation = '';
+            }, 10);
+            showElephantMessage('🎺 Trumpet!');
+            trackEvent('elephant_interaction', {
+                action: 'double_click_trumpet'
+            });
+        });
+        
+        // Helper function to show messages
+        function showElephantMessage(text) {
+            const message = document.createElement('div');
+            message.className = 'elephant-message';
+            message.textContent = text;
+            message.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                background: linear-gradient(135deg, rgba(119, 123, 180, 0.95), rgba(138, 115, 162, 0.95));
+                color: white;
+                padding: 20px 40px;
+                border-radius: 16px;
+                font-size: 24px;
+                font-weight: bold;
+                z-index: 10001;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+                animation: messagePopIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+                pointer-events: none;
+            `;
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.style.animation = 'messagePopOut 0.3s ease-in forwards';
+                setTimeout(() => message.remove(), 300);
+            }, 1500);
+        }
+        
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    top: 50%;
+                    left: 50%;
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9998;
+                    animation: confettiFall ${1 + Math.random() * 2}s linear forwards;
+                    transform: translate(-50%, -50%) rotate(${Math.random() * 360}deg);
+                `;
+                confetti.style.setProperty('--tx', (Math.random() - 0.5) * 1000 + 'px');
+                confetti.style.setProperty('--ty', Math.random() * 1000 + 'px');
+                confetti.style.setProperty('--rz', Math.random() * 720 + 'deg');
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+        
+        // Fireworks effect
+        function createFireworks() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7'];
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const x = 20 + Math.random() * 60;
+                    const y = 20 + Math.random() * 60;
+                    for (let j = 0; j < 30; j++) {
+                        const particle = document.createElement('div');
+                        particle.style.cssText = `
+                            position: fixed;
+                            width: 6px;
+                            height: 6px;
+                            background: ${colors[Math.floor(Math.random() * colors.length)]};
+                            top: ${y}%;
+                            left: ${x}%;
+                            border-radius: 50%;
+                            pointer-events: none;
+                            z-index: 9998;
+                            box-shadow: 0 0 10px currentColor;
+                        `;
+                        const angle = (j / 30) * Math.PI * 2;
+                        const velocity = 100 + Math.random() * 100;
+                        const tx = Math.cos(angle) * velocity;
+                        const ty = Math.sin(angle) * velocity;
+                        particle.style.animation = `fireworkParticle 1s ease-out forwards`;
+                        particle.style.setProperty('--tx', tx + 'px');
+                        particle.style.setProperty('--ty', ty + 'px');
+                        document.body.appendChild(particle);
+                        
+                        setTimeout(() => particle.remove(), 1000);
+                    }
+                }, i * 300);
+            }
+        }
+        
+        // Elephant trumpet sound (simple beep using Web Audio API)
+        function playTrumpetSound() {
+            if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioContext = new AudioContext();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+                oscillator.frequency.exponentialRampToValueAtTime(150, audioContext.currentTime + 0.3);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            }
+        }
+    }
 });

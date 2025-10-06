@@ -612,20 +612,20 @@
             <!-- Enhanced gradients and filters for more depth -->
             <defs>
                 <radialGradient id="elephantGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
-                    <stop offset="0%" style="stop-color:#c4b0d6" />
-                    <stop offset="60%" style="stop-color:#a58fc0" />
-                    <stop offset="90%" style="stop-color:#8a73a2" />
-                    <stop offset="100%" style="stop-color:#7a6691" />
+                    <stop offset="0%" style="stop-color:#b8b5cc" />
+                    <stop offset="60%" style="stop-color:#9691bb" />
+                    <stop offset="90%" style="stop-color:#777bb4" />
+                    <stop offset="100%" style="stop-color:#6c70a3" />
                 </radialGradient>
                 <linearGradient id="trunkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#a58fc0" />
-                    <stop offset="50%" style="stop-color:#9f85b8" />
-                    <stop offset="100%" style="stop-color:#8a73a2" />
+                    <stop offset="0%" style="stop-color:#9691bb" />
+                    <stop offset="50%" style="stop-color:#8186b8" />
+                    <stop offset="100%" style="stop-color:#777bb4" />
                 </linearGradient>
                 <radialGradient id="earGradient" cx="30%" cy="30%" r="80%">
-                    <stop offset="0%" style="stop-color:#d6c4e0" />
-                    <stop offset="70%" style="stop-color:#b299c4" />
-                    <stop offset="100%" style="stop-color:#9882b2" />
+                    <stop offset="0%" style="stop-color:#d3d1e3" />
+                    <stop offset="70%" style="stop-color:#a8a4c9" />
+                    <stop offset="100%" style="stop-color:#8e89b9" />
                 </radialGradient>
                 <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
                     <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
@@ -641,7 +641,7 @@
                 <filter id="innerShadow" x="-50%" y="-50%" width="200%" height="200%">
                     <feOffset dx="0" dy="2" />
                     <feGaussianBlur stdDeviation="2" result="offset-blur" />
-                    <feFlood flood-color="#7a6691" flood-opacity="0.3" />
+                    <feFlood flood-color="#6c70a3" flood-opacity="0.3" />
                     <feComposite in2="offset-blur" operator="in" />
                 </filter>
             </defs>
@@ -657,53 +657,53 @@
                      Q115,190 120,180" fill="url(#elephantGradient)" filter="url(#softShadow)" />
 
             <!-- Body texture and wrinkles for realism -->
-            <path class="body-detail" d="M140,170 Q190,150 240,170" stroke="#9882b2" stroke-width="1.5" fill="none"
+            <path class="body-detail" d="M140,170 Q190,150 240,170" stroke="#8e89b9" stroke-width="1.5" fill="none"
                 opacity="0.6" />
-            <path class="body-detail" d="M150,200 Q190,190 230,200" stroke="#9882b2" stroke-width="1.5" fill="none"
+            <path class="body-detail" d="M150,200 Q190,190 230,200" stroke="#8e89b9" stroke-width="1.5" fill="none"
                 opacity="0.6" />
-            <path class="body-detail" d="M160,230 Q190,220 220,230" stroke="#9882b2" stroke-width="1.5" fill="none"
+            <path class="body-detail" d="M160,230 Q190,220 220,230" stroke="#8e89b9" stroke-width="1.5" fill="none"
                 opacity="0.6" />
-            <path class="body-wrinkle" d="M130,185 Q160,183 190,185" stroke="#8a73a2" stroke-width="0.8" fill="none"
+            <path class="body-wrinkle" d="M130,185 Q160,183 190,185" stroke="#777bb4" stroke-width="0.8" fill="none"
                 opacity="0.4" />
-            <path class="body-wrinkle" d="M135,215 Q165,213 195,215" stroke="#8a73a2" stroke-width="0.8" fill="none"
+            <path class="body-wrinkle" d="M135,215 Q165,213 195,215" stroke="#777bb4" stroke-width="0.8" fill="none"
                 opacity="0.4" />
 
             <!-- Head with better shape and more details -->
             <ellipse class="elephant-head" cx="120" cy="140" rx="55" ry="50" fill="url(#elephantGradient)" />
             
             <!-- Forehead wrinkles for character -->
-            <path class="head-wrinkle" d="M90,115 Q120,113 150,115" stroke="#9882b2" stroke-width="1" fill="none"
+            <path class="head-wrinkle" d="M90,115 Q120,113 150,115" stroke="#8e89b9" stroke-width="1" fill="none"
                 opacity="0.5" />
-            <path class="head-wrinkle" d="M95,125 Q120,123 145,125" stroke="#9882b2" stroke-width="1" fill="none"
+            <path class="head-wrinkle" d="M95,125 Q120,123 145,125" stroke="#8e89b9" stroke-width="1" fill="none"
                 opacity="0.5" />
 
             <!-- Enhanced ears with more detail and animation -->
             <ellipse class="elephant-ear left-ear" cx="80" cy="120" rx="40" ry="50" fill="url(#earGradient)" />
-            <path class="ear-detail" d="M70,100 Q90,95 100,110" stroke="#9882b2" stroke-width="2" fill="none" />
-            <path class="ear-detail" d="M65,115 Q85,110 95,125" stroke="#9882b2" stroke-width="2" fill="none" />
-            <path class="ear-detail" d="M60,130 Q75,125 90,140" stroke="#9882b2" stroke-width="1.5" fill="none" />
-            <path class="ear-inner" d="M75,110 Q85,108 95,115" stroke="#b299c4" stroke-width="3" fill="none" opacity="0.7" />
+            <path class="ear-detail" d="M70,100 Q90,95 100,110" stroke="#8e89b9" stroke-width="2" fill="none" />
+            <path class="ear-detail" d="M65,115 Q85,110 95,125" stroke="#8e89b9" stroke-width="2" fill="none" />
+            <path class="ear-detail" d="M60,130 Q75,125 90,140" stroke="#8e89b9" stroke-width="1.5" fill="none" />
+            <path class="ear-inner" d="M75,110 Q85,108 95,115" stroke="#a8a4c9" stroke-width="3" fill="none" opacity="0.7" />
 
             <ellipse class="elephant-ear right-ear" cx="160" cy="120" rx="40" ry="50" fill="url(#earGradient)" />
-            <path class="ear-detail" d="M140,100 Q160,95 170,110" stroke="#9882b2" stroke-width="2" fill="none" />
-            <path class="ear-detail" d="M135,115 Q155,110 165,125" stroke="#9882b2" stroke-width="2" fill="none" />
-            <path class="ear-detail" d="M130,130 Q145,125 160,140" stroke="#9882b2" stroke-width="1.5" fill="none" />
-            <path class="ear-inner" d="M145,110 Q155,108 165,115" stroke="#b299c4" stroke-width="3" fill="none" opacity="0.7" />
+            <path class="ear-detail" d="M140,100 Q160,95 170,110" stroke="#8e89b9" stroke-width="2" fill="none" />
+            <path class="ear-detail" d="M135,115 Q155,110 165,125" stroke="#8e89b9" stroke-width="2" fill="none" />
+            <path class="ear-detail" d="M130,130 Q145,125 160,140" stroke="#8e89b9" stroke-width="1.5" fill="none" />
+            <path class="ear-inner" d="M145,110 Q155,108 165,115" stroke="#a8a4c9" stroke-width="3" fill="none" opacity="0.7" />
 
             <!-- Enhanced eyes with more expression and eyelashes -->
             <g class="eye-group left-eye-group">
                 <circle class="elephant-eye left-eye" cx="105" cy="130" r="10" fill="white" />
                 <circle class="elephant-eye-pupil left-pupil" cx="105" cy="130" r="5" fill="#222" />
                 <circle class="eye-highlight left-highlight" cx="103" cy="128" r="2" fill="white" />
-                <path class="eyelash" d="M98,122 Q100,120 102,122" stroke="#7a6691" stroke-width="1.5" fill="none" />
-                <path class="eyelash" d="M108,122 Q110,120 112,122" stroke="#7a6691" stroke-width="1.5" fill="none" />
+                <path class="eyelash" d="M98,122 Q100,120 102,122" stroke="#6c70a3" stroke-width="1.5" fill="none" />
+                <path class="eyelash" d="M108,122 Q110,120 112,122" stroke="#6c70a3" stroke-width="1.5" fill="none" />
             </g>
             <g class="eye-group right-eye-group">
                 <circle class="elephant-eye right-eye" cx="135" cy="130" r="10" fill="white" />
                 <circle class="elephant-eye-pupil right-pupil" cx="135" cy="130" r="5" fill="#222" />
                 <circle class="eye-highlight right-highlight" cx="133" cy="128" r="2" fill="white" />
-                <path class="eyelash" d="M128,122 Q130,120 132,122" stroke="#7a6691" stroke-width="1.5" fill="none" />
-                <path class="eyelash" d="M138,122 Q140,120 142,122" stroke="#7a6691" stroke-width="1.5" fill="none" />
+                <path class="eyelash" d="M128,122 Q130,120 132,122" stroke="#6c70a3" stroke-width="1.5" fill="none" />
+                <path class="eyelash" d="M138,122 Q140,120 142,122" stroke="#6c70a3" stroke-width="1.5" fill="none" />
             </g>
 
             <!-- Enhanced trunk with more detail and animation -->
@@ -711,17 +711,17 @@
                      C110,175 105,195 110,215 
                      Q115,235 125,245 
                      Q135,235 132,215 
-                     C132,195 128,175 120,155" fill="url(#trunkGradient)" stroke="#8a73a2" stroke-width="2" />
+                     C132,195 128,175 120,155" fill="url(#trunkGradient)" stroke="#777bb4" stroke-width="2" />
 
             <!-- Trunk details and segments -->
-            <path class="trunk-detail" d="M115,180 Q125,185 125,175" stroke="#8a73a2" stroke-width="1.5" fill="none" />
-            <path class="trunk-detail" d="M115,200 Q125,205 125,195" stroke="#8a73a2" stroke-width="1.5" fill="none" />
-            <path class="trunk-detail" d="M115,220 Q125,225 125,215" stroke="#8a73a2" stroke-width="1.5" fill="none" />
-            <path class="trunk-tip" d="M122,245 Q125,248 128,245" stroke="#7a6691" stroke-width="2" fill="none" />
+            <path class="trunk-detail" d="M115,180 Q125,185 125,175" stroke="#777bb4" stroke-width="1.5" fill="none" />
+            <path class="trunk-detail" d="M115,200 Q125,205 125,195" stroke="#777bb4" stroke-width="1.5" fill="none" />
+            <path class="trunk-detail" d="M115,220 Q125,225 125,215" stroke="#777bb4" stroke-width="1.5" fill="none" />
+            <path class="trunk-tip" d="M122,245 Q125,248 128,245" stroke="#6c70a3" stroke-width="2" fill="none" />
             
             <!-- Trunk nostrils -->
-            <ellipse class="nostril" cx="123" cy="243" rx="1.5" ry="2" fill="#7a6691" />
-            <ellipse class="nostril" cx="127" cy="243" rx="1.5" ry="2" fill="#7a6691" />
+            <ellipse class="nostril" cx="123" cy="243" rx="1.5" ry="2" fill="#6c70a3" />
+            <ellipse class="nostril" cx="127" cy="243" rx="1.5" ry="2" fill="#6c70a3" />
 
             <!-- Enhanced legs with more realistic shape and details -->
             <g class="elephant-legs">
@@ -735,22 +735,22 @@
                     fill="url(#elephantGradient)" />
                 
                 <!-- Leg wrinkles -->
-                <path class="leg-wrinkle" d="M152,250 L166,250" stroke="#8a73a2" stroke-width="0.8" opacity="0.5" />
-                <path class="leg-wrinkle" d="M177,250 L191,250" stroke="#8a73a2" stroke-width="0.8" opacity="0.5" />
-                <path class="leg-wrinkle" d="M202,250 L216,250" stroke="#8a73a2" stroke-width="0.8" opacity="0.5" />
-                <path class="leg-wrinkle" d="M227,250 L241,250" stroke="#8a73a2" stroke-width="0.8" opacity="0.5" />
+                <path class="leg-wrinkle" d="M152,250 L166,250" stroke="#777bb4" stroke-width="0.8" opacity="0.5" />
+                <path class="leg-wrinkle" d="M177,250 L191,250" stroke="#777bb4" stroke-width="0.8" opacity="0.5" />
+                <path class="leg-wrinkle" d="M202,250 L216,250" stroke="#777bb4" stroke-width="0.8" opacity="0.5" />
+                <path class="leg-wrinkle" d="M227,250 L241,250" stroke="#777bb4" stroke-width="0.8" opacity="0.5" />
                 
                 <!-- Toenails -->
-                <circle class="toenail" cx="156" cy="280" r="2" fill="#9882b2" />
-                <circle class="toenail" cx="181" cy="280" r="2" fill="#9882b2" />
-                <circle class="toenail" cx="206" cy="280" r="2" fill="#9882b2" />
-                <circle class="toenail" cx="231" cy="280" r="2" fill="#9882b2" />
+                <circle class="toenail" cx="156" cy="280" r="2" fill="#8e89b9" />
+                <circle class="toenail" cx="181" cy="280" r="2" fill="#8e89b9" />
+                <circle class="toenail" cx="206" cy="280" r="2" fill="#8e89b9" />
+                <circle class="toenail" cx="231" cy="280" r="2" fill="#8e89b9" />
             </g>
 
             <!-- Enhanced tail with more movement -->
-            <path class="elephant-tail-unified" d="M300,200 C310,210 330,220 325,230 S315,250 320,260" stroke="#8a73a2"
+            <path class="elephant-tail-unified" d="M300,200 C310,210 330,220 325,230 S315,250 320,260" stroke="#777bb4"
                 stroke-width="4" fill="none" stroke-linecap="round" />
-            <path class="tail-tuft" d="M318,258 Q320,262 322,258 Q320,260 318,258" fill="#9882b2" />
+            <path class="tail-tuft" d="M318,258 Q320,262 322,258 Q320,260 318,258" fill="#8e89b9" />
 
             <!-- Enhanced tusks -->
             <path class="elephant-tusk left-tusk" d="M110,160 Q100,170 105,180" stroke="#f5f5f5" stroke-width="5"
