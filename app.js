@@ -188,19 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
         elephant.style.pointerEvents = 'auto';
         elephant.style.cursor = 'pointer';
         
-        // Add no-hover class on touch devices to prevent hover state
-        elephant.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            elephant.classList.add('no-hover');
-        }, { passive: false });
-        
-        // Handle click/tap interaction
-        const handleInteraction = function(e) {
+        elephant.addEventListener('click', function(e) {
             e.stopPropagation();
-            e.preventDefault();
-            
-            // Remove hover effects that might pause animation
-            elephant.classList.add('no-hover');
             
             // Toggle party mode
             if (isPartyMode) {
@@ -218,17 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     action: 'party_mode_enabled'
                 });
             }
-            
-            // Add bounce effect on click
-            const originalTransform = elephant.style.transform;
-            elephant.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                elephant.style.transform = originalTransform;
-            }, 200);
-        };
-        
-        elephant.addEventListener('click', handleInteraction);
-        elephant.addEventListener('touchend', handleInteraction);
+        });
         
         // Confetti effect
         function createConfetti() {

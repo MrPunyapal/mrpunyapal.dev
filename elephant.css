@@ -10,6 +10,10 @@
     animation: runAroundScreen 25s linear infinite;
     transform-origin: center center;
     will-change: transform;
+    touch-action: manipulation; /* Prevents default touch behaviors */
+    -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
+    user-select: none; /* Prevents text selection */
+    -webkit-user-select: none;
 }
 
 .elephant-container svg {
@@ -17,9 +21,9 @@
     height: 100%;
 }
 
-/* Only apply hover effects on devices that support hover (not touch devices) */
+/* Only apply hover pause effect on devices that support hover (not touch devices) */
 @media (hover: hover) and (pointer: fine) {
-    .elephant-container:hover:not(.no-hover) {
+    .elephant-container:hover {
         animation-play-state: paused;
         transform: scale(1.2) rotateY(15deg);
         filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4)) 
@@ -30,8 +34,19 @@
     }
 }
 
-/* Prevent hover state on touch devices */
-.elephant-container.no-hover:hover {
+/* Ensure animation always runs on touch-only devices */
+@media (hover: none) {
+    .elephant-container,
+    .elephant-container:hover,
+    .elephant-container:active {
+        animation-play-state: running !important;
+    }
+}
+
+/* Ensure party mode and other modes always keep running */
+.elephant-container.party-mode,
+.elephant-container.turbo-mode,
+.elephant-container.celebration-mode {
     animation-play-state: running !important;
 }
 
