@@ -399,19 +399,33 @@
                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-500/10 before:to-purple-500/10 before:rounded-2xl before:blur before:opacity-0 before:transition-opacity before:duration-300
                     hover:before:opacity-100">
             
-            <!-- Floating Source Code Button -->
-            <a href="https://github.com/MrPunyapal/mrpunyapal.dev" 
-               target="_blank" 
-               rel="noopener" 
-               class="absolute top-4 right-4 group flex items-center gap-2 px-3 py-2 
-                      text-slate-600 text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
-                      transition-all duration-300 ease-out shadow-sm hover:bg-white hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300
-                      active:translate-y-0"
-               aria-label="View source code on GitHub">
-                <i class="fab fa-github transition-transform duration-300 group-hover:rotate-12" aria-hidden="true"></i>
-                <span class="hidden sm:inline">Source</span>
-                <i class="fas fa-external-link-alt text-xs opacity-60" aria-hidden="true"></i>
-            </a>
+            <!-- Floating Navigation Buttons -->
+            <div class="absolute top-4 right-4 flex items-center gap-2">
+                <!-- Talks Button -->
+                <a href="/talks.html" 
+                   class="group flex items-center gap-2 px-3 py-2 
+                          text-slate-600 text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
+                          transition-all duration-300 ease-out shadow-sm hover:bg-white hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300
+                          active:translate-y-0"
+                   aria-label="View my talks and speaking engagements">
+                    <i class="fas fa-microphone-alt transition-transform duration-300 group-hover:rotate-12" aria-hidden="true"></i>
+                    <span class="hidden sm:inline">Talks</span>
+                </a>
+
+                <!-- Source Code Button -->
+                <a href="https://github.com/MrPunyapal/mrpunyapal.dev" 
+                   target="_blank" 
+                   rel="noopener" 
+                   class="group flex items-center gap-2 px-3 py-2 
+                          text-slate-600 text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
+                          transition-all duration-300 ease-out shadow-sm hover:bg-white hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300
+                          active:translate-y-0"
+                   aria-label="View source code on GitHub">
+                    <i class="fab fa-github transition-transform duration-300 group-hover:rotate-12" aria-hidden="true"></i>
+                    <span class="hidden sm:inline">Source</span>
+                    <i class="fas fa-external-link-alt text-xs opacity-60" aria-hidden="true"></i>
+                </a>
+            </div>
             
             <!-- Profile Section - Compact -->
             <div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8">
@@ -530,6 +544,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- Social Links - Compact, icons only -->
             <section class="animate-fade-up" style="animation-delay: 0.4s;">
                 <h2 class="text-xl font-bold text-slate-900 mb-4 text-center md:text-left">Let's Connect</h2>

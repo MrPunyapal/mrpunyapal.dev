@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talks & Speaking Engagements | Punyapal Shah</title>
+
+    <!-- Performance and Security -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#23a6d5">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Talks & Speaking Engagements | Punyapal Shah">
+    <meta name="description"
+        content="Conference talks and speaking engagements by Punyapal Shah on Laravel, PHP, PHPStan, RectorPHP, and FilamentPHP at Laravel community events across India.">
+    <meta name="keywords" content="Laravel Talks, PHP Conference, Laravel Speaker, PHPStan, RectorPHP, FilamentPHP, Laravel Broadcasting, Laravel Meetups">
+    <meta name="author" content="Punyapal Shah">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mrpunyapal.dev/talks">
+    <meta property="og:title" content="Talks & Speaking Engagements | Punyapal Shah">
+    <meta property="og:description" content="Conference talks and speaking engagements by Punyapal Shah on Laravel, PHP, and modern development tools.">
+    <meta property="og:image" content="https://mrpunyapal.dev/og-image-mrpunyapal.jpeg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@MrPunyapal">
+    <meta name="twitter:creator" content="@MrPunyapal">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/talks">
+    <meta name="twitter:title" content="Talks & Speaking Engagements | Punyapal Shah">
+    <meta name="twitter:description" content="Conference talks and speaking engagements by Punyapal Shah on Laravel, PHP, and modern development tools.">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og-image-mrpunyapal.jpeg">
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <meta name="msapplication-TileColor" content="#23a6d5">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Critical CSS for animations -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        @keyframes fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scale-up {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #e0e7ff 100%);
+            color: #1e293b;
+        }
+        
+        .talk-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .talk-card:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-link {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .video-link {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .video-link:hover {
+            background: linear-gradient(135deg, #b91c1c, #991b1b);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+    </style>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mrpunyapal.dev/talks">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-up': 'fade-up 0.6s ease-out',
+                        'scale-up': 'scale-up 0.3s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/elephant.css">
+</head>
+
+<body class="font-sans m-0 p-0 min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 text-slate-800 leading-relaxed relative overflow-x-hidden antialiased">
+    
+    <!-- Subtle background pattern -->
+    <div class="fixed inset-0 opacity-[0.02] -z-10" 
+         style="background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,1) 1px, transparent 0); background-size: 20px 20px;"></div>
+    
+    <!-- Background decorative elements -->
+    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden" role="presentation" aria-hidden="true">
+        <div class="absolute w-96 h-96 top-10 -left-48 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute w-80 h-80 bottom-10 -right-40 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute w-64 h-64 top-1/3 right-10 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-2xl"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 max-w-5xl">
+        
+        <!-- Back to Home Link -->
+        <div class="mb-8 animate-fade-up">
+            <a href="/index.html" 
+               class="back-link inline-flex items-center gap-2 px-4 py-2 text-slate-700 font-medium
+                      hover:text-slate-900 transition-colors">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                <span>Back to Home</span>
+            </a>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-12 animate-fade-up" style="animation-delay: 0.1s;">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                Talks & Speaking Engagements
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                Sharing knowledge and experiences with the Laravel community across India
+            </p>
+        </div>
+
+        <!-- Talks Grid -->
+        <div class="space-y-6">
+            
+            <!-- Talk 1: Types in PHP -->
+            <div class="talk-card p-6 animate-fade-up" style="animation-delay: 0.2s;">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-3">
+                            Types in PHP at Glance with PHPStan
+                        </h2>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Laravel Ahmedabad
+                            </span>
+                            <span class="inline-flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Laravel Indore
+                            </span>
+                            <span class="inline-flex items-center gap-1 px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Laravel Kozhikode
+                            </span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            An exploration of PHP's type system and how PHPStan helps catch bugs before they reach production. 
+                            Covering static analysis, type declarations, and practical tips for improving code quality.
+                        </p>
+                        <a href="https://gist.github.com/MrPunyapal/139779b743eec108a292de95b3f958f8" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium
+                                  hover:bg-slate-200 transition-all duration-300 hover:shadow-md">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                            <span>View Gist</span>
+                            <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Talk 2: RectorPHP -->
+            <div class="talk-card p-6 animate-fade-up" style="animation-delay: 0.3s;">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-3">
+                            Refactor Laravel with RectorPHP
+                        </h2>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Laravel Bangalore
+                            </span>
+                            <span class="inline-flex items-center gap-1 px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Laravel Moris (Africa)
+                            </span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Learn how to leverage RectorPHP for automated refactoring in Laravel applications. 
+                            Discover how to upgrade your codebase, enforce coding standards, and improve code quality with minimal manual effort.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://youtube.com/live/N73Smm8ldCc" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="video-link">
+                                <i class="fab fa-youtube" aria-hidden="true"></i>
+                                <span>Watch on YouTube</span>
+                                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://github.com/MrPunyapal/laravel-rectorphp" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium
+                                      hover:bg-slate-200 transition-all duration-300 hover:shadow-md">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                                <span>View Repository</span>
+                                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Talk 3: FilamentPHP -->
+            <div class="talk-card p-6 animate-fade-up" style="animation-delay: 0.4s;">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-3">
+                            Spark Your Laravel Apps with FilamentPHP
+                        </h2>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Laravel Ahmedabad
+                            </span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            A comprehensive introduction to FilamentPHP, the elegant admin panel for Laravel. 
+                            Learn how to rapidly build beautiful, feature-rich admin interfaces with minimal code.
+                        </p>
+                        <a href="https://github.com/MrPunyapal/filament-demo" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium
+                                  hover:bg-slate-200 transition-all duration-300 hover:shadow-md">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                            <span>View Repository</span>
+                            <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Talk 4: Broadcasting -->
+            <div class="talk-card p-6 animate-fade-up" style="animation-delay: 0.5s;">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-3">
+                            Broadcasting in Laravel
+                        </h2>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Laravel Ahmedabad
+                            </span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Dive into real-time features with Laravel Broadcasting. Learn how to implement WebSockets, 
+                            build live notifications, and create engaging real-time user experiences.
+                        </p>
+                        <a href="https://github.com/MrPunyapal/broadcast-with-laravel" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium
+                                  hover:bg-slate-200 transition-all duration-300 hover:shadow-md">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                            <span>View Repository</span>
+                            <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Note -->
+        <div class="mt-12 text-center animate-fade-up" style="animation-delay: 0.6s;">
+            <p class="text-slate-600">
+                Interested in having me speak at your event? 
+                <a href="mailto:mrpunyapal@gmail.com" 
+                   class="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
+                    Get in touch!
+                </a>
+            </p>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
