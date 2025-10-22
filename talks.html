@@ -37,6 +37,68 @@
     <meta name="twitter:description" content="Conference talks and speaking engagements by Punyapal Shah on Laravel, PHP, and modern development tools.">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og-image-mrpunyapal.jpeg">
 
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Punyapal Shah",
+            "url": "https://mrpunyapal.dev",
+            "performerIn": [
+                {
+                    "@type": "Event",
+                    "name": "Types in PHP at Glance with PHPStan",
+                    "description": "An exploration of PHP's type system and how PHPStan helps catch bugs before they reach production.",
+                    "organizer": [
+                        {"@type": "Organization", "name": "Laravel Ahmedabad"},
+                        {"@type": "Organization", "name": "Laravel Indore"},
+                        {"@type": "Organization", "name": "Laravel Kozhikode"}
+                    ],
+                    "location": [
+                        {"@type": "Place", "name": "Ahmedabad, India"},
+                        {"@type": "Place", "name": "Indore, India"},
+                        {"@type": "Place", "name": "Kozhikode, India"}
+                    ]
+                },
+                {
+                    "@type": "Event",
+                    "name": "Refactor Laravel with RectorPHP",
+                    "description": "Learn how to leverage RectorPHP for automated refactoring in Laravel applications.",
+                    "organizer": [
+                        {"@type": "Organization", "name": "Laravel Bangalore"},
+                        {"@type": "Organization", "name": "Laravel Moris"}
+                    ],
+                    "location": [
+                        {"@type": "Place", "name": "Bangalore, India"},
+                        {"@type": "Place", "name": "Mauritius, Africa"}
+                    ],
+                    "recordedIn": {
+                        "@type": "VideoObject",
+                        "name": "Refactor Laravel with RectorPHP - Video Recording",
+                        "url": "https://youtube.com/live/N73Smm8ldCc"
+                    }
+                },
+                {
+                    "@type": "Event",
+                    "name": "Spark Your Laravel Apps with FilamentPHP",
+                    "description": "A comprehensive introduction to FilamentPHP, the elegant admin panel for Laravel.",
+                    "organizer": {"@type": "Organization", "name": "Laravel Ahmedabad"},
+                    "location": {"@type": "Place", "name": "Ahmedabad, India"}
+                },
+                {
+                    "@type": "Event",
+                    "name": "Broadcasting in Laravel",
+                    "description": "Dive into real-time features with Laravel Broadcasting and WebSockets.",
+                    "organizer": {"@type": "Organization", "name": "Laravel Ahmedabad"},
+                    "location": {"@type": "Place", "name": "Ahmedabad, India"}
+                }
+            ]
+        }
+    }
+    </script>
+
     <!-- Favicon and Icons -->
     <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="/favicon.png">
@@ -108,7 +170,7 @@
         .video-link {
             background: linear-gradient(135deg, #dc2626, #b91c1c);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem;
             border-radius: 0.5rem;
             text-decoration: none;
             display: inline-flex;
@@ -122,6 +184,17 @@
             background: linear-gradient(135deg, #b91c1c, #991b1b);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Improve mobile spacing */
+        @media (max-width: 640px) {
+            .talk-card {
+                padding: 1rem;
+            }
+            
+            .talk-card h2 {
+                font-size: 1.25rem;
+            }
         }
     </style>
     
@@ -231,7 +304,8 @@
                            rel="noopener noreferrer"
                            class="inline-flex items-center gap-2 px-3 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium
                                   hover:bg-slate-200 transition-all duration-300 hover:shadow-md"
-                           title="View Gist">
+                           title="View Gist"
+                           aria-label="View PHPStan talk gist on GitHub">
                             <i class="fab fa-github" aria-hidden="true"></i>
                             <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
                         </a>
@@ -265,7 +339,8 @@
                                target="_blank" 
                                rel="noopener noreferrer"
                                class="video-link"
-                               title="Watch on YouTube">
+                               title="Watch on YouTube"
+                               aria-label="Watch RectorPHP talk on YouTube">
                                 <i class="fab fa-youtube" aria-hidden="true"></i>
                                 <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
                             </a>
@@ -274,7 +349,8 @@
                                rel="noopener noreferrer"
                                class="inline-flex items-center gap-2 px-3 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium
                                       hover:bg-slate-200 transition-all duration-300 hover:shadow-md"
-                               title="View Repository">
+                               title="View Repository"
+                               aria-label="View RectorPHP repository on GitHub">
                                 <i class="fab fa-github" aria-hidden="true"></i>
                                 <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
                             </a>
@@ -305,7 +381,8 @@
                            rel="noopener noreferrer"
                            class="inline-flex items-center gap-2 px-3 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium
                                   hover:bg-slate-200 transition-all duration-300 hover:shadow-md"
-                           title="View Repository">
+                           title="View Repository"
+                           aria-label="View FilamentPHP demo repository on GitHub">
                             <i class="fab fa-github" aria-hidden="true"></i>
                             <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
                         </a>
@@ -335,7 +412,8 @@
                            rel="noopener noreferrer"
                            class="inline-flex items-center gap-2 px-3 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium
                                   hover:bg-slate-200 transition-all duration-300 hover:shadow-md"
-                           title="View Repository">
+                           title="View Repository"
+                           aria-label="View Laravel Broadcasting repository on GitHub">
                             <i class="fab fa-github" aria-hidden="true"></i>
                             <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
                         </a>
