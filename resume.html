@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | Punyapal Shah - Laravel Artisan & Full-Stack Developer</title>
+
+    <!-- Performance and Security -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#23a6d5">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Resume | Punyapal Shah - Laravel Artisan & Full-Stack Developer">
+    <meta name="description"
+        content="Professional resume of Punyapal Shah - Laravel Artisan, Open Source Contributor, and Full-Stack Developer with expertise in PHP, Laravel, Tailwind CSS, and modern web development.">
+    <meta name="keywords" content="Laravel Developer Resume, PHP Expert CV, Full-Stack Developer Portfolio, Laravel Artisan, Web Development Resume">
+    <meta name="author" content="Punyapal Shah">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://mrpunyapal.dev/resume">
+    <meta property="og:title" content="Resume | Punyapal Shah - Laravel Artisan & Full-Stack Developer">
+    <meta property="og:description" content="Professional resume of Punyapal Shah - Laravel Artisan, Open Source Contributor, and Full-Stack Developer.">
+    <meta property="og:image" content="https://mrpunyapal.dev/og-image-mrpunyapal.jpeg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@MrPunyapal">
+    <meta name="twitter:creator" content="@MrPunyapal">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/resume">
+    <meta name="twitter:title" content="Resume | Punyapal Shah - Laravel Artisan & Full-Stack Developer">
+    <meta name="twitter:description" content="Professional resume of Punyapal Shah - Laravel Artisan, Open Source Contributor, and Full-Stack Developer.">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og-image-mrpunyapal.jpeg">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Punyapal Shah",
+        "jobTitle": "Laravel Artisan & Full-Stack Developer",
+        "url": "https://mrpunyapal.dev",
+        "email": "mrpunyapal@gmail.com",
+        "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Full-Stack Developer",
+            "skills": "Laravel, PHP, JavaScript, Tailwind CSS, Livewire, Alpine.js, Filament, PestPHP"
+        }
+    }
+    </script>
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <meta name="msapplication-TileColor" content="#23a6d5">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Critical CSS for animations -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        @keyframes fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scale-up {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #e0e7ff 100%);
+            color: #1e293b;
+        }
+        
+        .section-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .section-card:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-link {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        }
+        
+        .download-btn:hover {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #0ea5e9, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .skill-badge {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0369a1;
+            padding: 0.375rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .skill-badge:hover {
+            background: rgba(14, 165, 233, 0.2);
+            transform: scale(1.05);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .back-link, .download-btn, .no-print {
+                display: none !important;
+            }
+            .section-card {
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mrpunyapal.dev/resume">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-up': 'fade-up 0.6s ease-out',
+                        'scale-up': 'scale-up 0.3s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/elephant.css">
+</head>
+
+<body class="font-sans m-0 p-0 min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 text-slate-800 leading-relaxed relative overflow-x-hidden antialiased">
+    
+    <!-- Subtle background pattern -->
+    <div class="fixed inset-0 opacity-[0.02] -z-10" 
+         style="background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,1) 1px, transparent 0); background-size: 20px 20px;"></div>
+    
+    <!-- Background decorative elements -->
+    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden" role="presentation" aria-hidden="true">
+        <div class="absolute w-96 h-96 top-10 -left-48 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute w-80 h-80 bottom-10 -right-40 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute w-64 h-64 top-1/3 right-10 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-2xl"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 max-w-5xl">
+        
+        <!-- Navigation -->
+        <div class="mb-8 flex items-center justify-between animate-fade-up no-print">
+            <a href="/index.html" 
+               class="back-link inline-flex items-center gap-2 px-4 py-2 text-slate-700 font-medium
+                      hover:text-slate-900 transition-colors">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                <span>Back to Home</span>
+            </a>
+        </div>
+
+        <!-- Header -->
+        <div class="section-card p-8 mb-8 animate-fade-up" style="animation-delay: 0.1s;">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                <div class="flex-shrink-0">
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full 
+                                    blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                        <img src="profile-image.jpg" 
+                             alt="Punyapal Shah" 
+                             class="relative w-32 h-32 rounded-full object-cover 
+                                    border-4 border-white shadow-lg"
+                             loading="eager" width="128" height="128">
+                    </div>
+                </div>
+                
+                <div class="flex-1 text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+                        Punyapal Shah
+                    </h1>
+                    <p class="text-xl text-blue-600 font-semibold mb-2">
+                       Laravel Artisan • TALL Stack & Filament Specialist
+                    </p>
+                    <p class="text-sm text-slate-600 mb-4 flex items-center gap-2 justify-center md:justify-start">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        Ahmedabad, India
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-slate-600">
+                        <a href="mailto:mrpunyapal@gmail.com" class="flex items-center gap-2 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            mrpunyapal@gmail.com
+                        </a>
+                        <a href="https://mrpunyapal.dev" class="flex items-center gap-2 hover:text-blue-600 transition-colors" target="_blank" rel="noopener">
+                            <i class="fas fa-globe" aria-hidden="true"></i>
+                            mrpunyapal.dev
+                        </a>
+                        <a href="https://github.com/MrPunyapal" class="flex items-center gap-2 hover:text-blue-600 transition-colors" target="_blank" rel="noopener">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                            MrPunyapal
+                        </a>
+                        <a href="https://linkedin.com/in/MrPunyapal" class="flex items-center gap-2 hover:text-blue-600 transition-colors" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                            MrPunyapal
+                        </a>
+                        <a href="https://x.com/MrPunyapal" class="flex items-center gap-2 hover:text-blue-600 transition-colors" target="_blank" rel="noopener">
+                            <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                            @MrPunyapal
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Summary -->
+        <div class="section-card p-6 mb-8 animate-fade-up" style="animation-delay: 0.2s;">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-user text-blue-600" aria-hidden="true"></i>
+                Professional Summary
+            </h2>
+            <p class="text-slate-700 leading-relaxed">
+                Full-stack engineer specializing in the TALL stack (TailwindCSS, Alpine.js, Laravel, Livewire) and Filament ecosystem. 
+                I build open-source packages, contribute to Laravel-based projects, and help developers improve their workflow and productivity. 
+                Core member of the <strong>Pinkary Project</strong>, founder of <strong>Laravel Artisans</strong> community (3,000+ developers), and contributor to <strong>Pest v4</strong>. 
+                Active community contributor, mentor, and speaker focused on clean architecture and sustainable open-source development. 
+                Exam Committee Member and Question Contributor for the <strong>Laravel Certification Program</strong>.
+            </p>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="section-card p-6 mb-8 animate-fade-up" style="animation-delay: 0.3s;">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-code text-blue-600" aria-hidden="true"></i>
+                Technical Skills
+            </h2>
+            
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Core Stack</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">TALL Stack</span>
+                        <span class="skill-badge">TailwindCSS</span>
+                        <span class="skill-badge">Alpine.js</span>
+                        <span class="skill-badge">Laravel</span>
+                        <span class="skill-badge">Livewire</span>
+                        <span class="skill-badge">Filament</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Frontend Technologies</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">Blade</span>
+                        <span class="skill-badge">TailwindCSS</span>
+                        <span class="skill-badge">Alpine.js</span>
+                        <span class="skill-badge">Vue.js</span>
+                        <span class="skill-badge">React</span>
+                        <span class="skill-badge">Angular</span>
+                        <span class="skill-badge">Inertia.js</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Backend & APIs</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">PHP</span>
+                        <span class="skill-badge">Laravel</span>
+                        <span class="skill-badge">REST APIs</span>
+                        <span class="skill-badge">Eloquent ORM</span>
+                        <span class="skill-badge">CodeIgniter</span>
+                        <span class="skill-badge">WordPress</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Database & Caching</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">PostgreSQL</span>
+                        <span class="skill-badge">SQLite</span>
+                        <span class="skill-badge">Redis</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Testing & Quality Tools</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">PestPHP</span>
+                        <span class="skill-badge">PHPUnit</span>
+                        <span class="skill-badge">PHPStan</span>
+                        <span class="skill-badge">RectorPHP</span>
+                        <span class="skill-badge">Laravel Pint</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">DevOps & Cloud</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">AWS EC2</span>
+                        <span class="skill-badge">Laravel Forge</span>
+                        <span class="skill-badge">GitHub Actions</span>
+                        <span class="skill-badge">WebSockets</span>
+                        <span class="skill-badge">Queues</span>
+                        <span class="skill-badge">Git</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="section-card p-6 mb-8 animate-fade-up" style="animation-delay: 0.4s;">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <i class="fas fa-briefcase text-blue-600" aria-hidden="true"></i>
+                Professional Experience
+            </h2>
+            
+            <div class="space-y-6">
+                <!-- Experience Item 1 -->
+                <div class="relative pl-6 timeline-item">
+                    <div class="mb-1">
+                        <h3 class="text-xl font-bold text-slate-900">Freelance Full Stack Engineer</h3>
+                        <p class="text-blue-600 font-semibold">Self-Employed</p>
+                        <p class="text-sm text-slate-500">July 2020 – Present</p>
+                    </div>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1 mt-3">
+                        <li>Delivered Laravel-based projects for international clients using the TALL stack</li>
+                        <li>Developed custom Filament plugins and Livewire components for dashboards, forms, and tables</li>
+                        <li>Built scalable backend systems, optimized database queries, and improved API performance</li>
+                        <li>Contributed to Laravel ecosystem through open-source tools and packages</li>
+                    </ul>
+                </div>
+
+                <!-- Experience Item 2 -->
+                <div class="relative pl-6 timeline-item">
+                    <div class="mb-1">
+                        <h3 class="text-xl font-bold text-slate-900">Lead Engineer</h3>
+                        <p class="text-blue-600 font-semibold">ShubhKey Infotech LLP</p>
+                        <p class="text-sm text-slate-500">February 2023 – September 2024</p>
+                    </div>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1 mt-3">
+                        <li>Led Laravel projects focusing on scalability and clean architecture</li>
+                        <li>Mentored junior developers and enforced best coding practices</li>
+                        <li>Migrated legacy systems to Laravel and maintained REST APIs</li>
+                        <li>Collaborated with frontend teams using React, Vue, and Angular for integrating modern UI workflows</li>
+                    </ul>
+                </div>
+
+                <!-- Experience Item 3 -->
+                <div class="relative pl-6 timeline-item">
+                    <div class="mb-1">
+                        <h3 class="text-xl font-bold text-slate-900">Sr. Full Stack Developer</h3>
+                        <p class="text-blue-600 font-semibold">Maven InfoTech</p>
+                        <p class="text-sm text-slate-500">February 2022 – August 2022</p>
+                    </div>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1 mt-3">
+                        <li>Integrated 3rd-party APIs (Transport, Pharmacy, Booking, Facebook Graph)</li>
+                        <li>Worked with Laravel, CodeIgniter, Core PHP, and WordPress</li>
+                        <li>Developed and maintained REST APIs for various client applications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Open Source Contributions & Community -->
+        <div class="section-card p-6 mb-8 animate-fade-up" style="animation-delay: 0.5s;">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-code-branch text-blue-600" aria-hidden="true"></i>
+                Open Source & Community
+            </h2>
+            
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Package Maintainer</h3>
+                    <ul class="space-y-2 text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>laravel-extended-relationships</strong> - Advanced relationship patterns for Laravel
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>livewire-chat-app</strong> - Real-time chat application built with Livewire
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>laravel-auth-jobs</strong> - Background job authentication utilities
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>laravel-extended-commands</strong> - Enhanced Artisan commands
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>basic-crud</strong> - CRUD boilerplate for rapid development
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Core Contributions</h3>
+                    <ul class="space-y-2 text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-star text-yellow-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>Pinkary Project</strong> - Core team member contributing to Laravel-based platform development
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-star text-yellow-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>Pest v4</strong> - Contributor to the popular PHP testing framework
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Community Leadership</h3>
+                    <ul class="space-y-2 text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-users text-blue-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>Laravel Artisans Founder</strong> - Growing community of 3,000+ developers
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-users text-blue-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>Laravel Ahmedabad</strong> - Volunteer & Host organizing meetups and mentoring developers
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-users text-blue-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>Laracon India 2025</strong> - Volunteer for event operations and community engagement
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-certificate text-purple-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>Laravel Certification Program</strong> - Exam Committee Member and Question Contributor
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-video text-red-600 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>Content Creator</strong> - Educational content about Laravel, Filament, and TALL stack on YouTube and social platforms
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Speaking Engagements -->
+        <div class="section-card p-6 mb-8 animate-fade-up" style="animation-delay: 0.6s;">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-microphone-alt text-blue-600" aria-hidden="true"></i>
+                Speaking Engagements
+            </h2>
+            
+            <ul class="space-y-3 text-slate-700">
+                <li class="flex items-start gap-3">
+                    <i class="fas fa-calendar text-blue-600 mt-1" aria-hidden="true"></i>
+                    <div>
+                        <strong class="text-slate-900">Types in PHP at Glance with PHPStan</strong>
+                        <p class="text-sm text-slate-600">Laravel Ahmedabad, Laravel Indore, Laravel Kozhikode</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <i class="fas fa-calendar text-blue-600 mt-1" aria-hidden="true"></i>
+                    <div>
+                        <strong class="text-slate-900">Refactor Laravel with RectorPHP</strong>
+                        <p class="text-sm text-slate-600">Laravel Bangalore, Laravel Moris (Africa)</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <i class="fas fa-calendar text-blue-600 mt-1" aria-hidden="true"></i>
+                    <div>
+                        <strong class="text-slate-900">Spark Your Laravel Apps with FilamentPHP</strong>
+                        <p class="text-sm text-slate-600">Laravel Ahmedabad</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <i class="fas fa-calendar text-blue-600 mt-1" aria-hidden="true"></i>
+                    <div>
+                        <strong class="text-slate-900">Broadcasting in Laravel</strong>
+                        <p class="text-sm text-slate-600">Laravel Ahmedabad</p>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="mt-4">
+                <a href="/talks.html" class="text-blue-600 font-semibold hover:text-blue-700 transition-colors inline-flex items-center gap-2">
+                    View all talks and details
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section-card p-6 mb-8 animate-fade-up" style="animation-delay: 0.7s;">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-graduation-cap text-blue-600" aria-hidden="true"></i>
+                Education
+            </h2>
+            
+            <div class="space-y-4 text-slate-700">
+                <div class="relative pl-6 timeline-item">
+                    <div class="mb-1">
+                        <h3 class="text-xl font-bold text-slate-900">Bachelor of Technology (B.Tech)</h3>
+                        <p class="text-blue-600 font-semibold">Ganpat University</p>
+                        <p class="text-sm text-slate-500">2016 – 2020</p>
+                    </div>
+                    <p class="text-slate-700 mt-2">Information Technology</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-12 animate-fade-up" style="animation-delay: 0.8s;">
+            <p class="text-slate-600 mb-4">
+                Interested in working together or have a project in mind?
+            </p>
+            <a href="mailto:mrpunyapal@gmail.com" 
+               class="download-btn">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                <span>Get in Touch</span>
+            </a>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
