@@ -170,7 +170,7 @@
         
         /* Typing animation styles */
         .typing-animation {
-            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-size: clamp(0.875rem, 2.5vw, 1.2rem);
             color: rgba(100, 116, 139, 0.8);
             font-weight: 500;
             margin: 0;
@@ -181,9 +181,10 @@
             gap: 2px;
         }
         
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .typing-animation {
                 justify-content: center;
+                font-size: clamp(0.75rem, 3vw, 1rem);
             }
         }
         
@@ -468,9 +469,9 @@
                 </div>
             </div>
             
-            <!-- About Section - Compact -->
-            <section class="mb-8 animate-fade-up" style="animation-delay: 0.2s;">
-                <p class="text-base leading-relaxed text-slate-600 max-w-3xl">
+            <!-- About Section - Enhanced Responsive -->
+            <section class="mb-6 sm:mb-8 animate-fade-up" style="animation-delay: 0.2s;">
+                <p class="text-sm sm:text-base leading-relaxed text-slate-600 max-w-4xl">
                     I'm a dedicated <strong class="text-slate-800">Laravel Artisan</strong> and <strong class="text-slate-800">Open Source Contributor</strong> 
                     passionate about building exceptional web experiences. As a core member of the 
                     <a href="https://pinkary.com" target="_blank" rel="noopener" 
@@ -502,68 +503,68 @@
                 </p>
             </section>
 
-            <!-- Skills Grid - Compact without icons -->
-            <section class="mb-8 animate-fade-up" style="animation-delay: 0.3s;" aria-label="Technical Skills">
-                <h2 class="text-xl font-bold text-slate-900 mb-4 text-center md:text-left">Technologies & Tools</h2>
-                <div class="grid grid-cols-3 md:grid-cols-9 gap-3">
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+            <!-- Skills Grid - Enhanced Responsive -->
+            <section class="mb-6 sm:mb-8 animate-fade-up" style="animation-delay: 0.3s;" aria-label="Technical Skills">
+                <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4 text-center md:text-left">Technologies & Tools</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 xl:grid-cols-10 gap-2 sm:gap-3">
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">PHP</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">PHP</div>
                     </div>
                     
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">Laravel</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Laravel</div>
                     </div>
                     
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">Tailwind</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Tailwind</div>
                     </div>
                     
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">Livewire</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Livewire</div>
                     </div>
                     
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">Alpine.js</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Alpine.js</div>
                     </div>
                     
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">Filament</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Filament</div>
                     </div>
                     
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">PestPHP</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">PestPHP</div>
                     </div>
                     
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">PHPStan</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">PHPStan</div>
                     </div>
                     
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">RectorPHP</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">RectorPHP</div>
                     </div>
                     
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-3 text-center
+                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
                                transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
                                hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-sm">JavaScript</div>
+                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">JavaScript</div>
                     </div>
                 </div>
             </section>
