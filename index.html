@@ -392,75 +392,77 @@
     </div>
 
     <!-- Main Content - Centered and Compact -->
-    <main class="flex items-center justify-center min-h-screen px-4 py-8">
+    <main class="flex items-center justify-center min-h-screen px-3 sm:px-4 lg:px-6 py-6 sm:py-8">
         <!-- Hero Card with border and shadow like other cards -->
-        <div class="bg-white/60 backdrop-blur-sm border border-white/40 rounded-2xl shadow-lg p-8 w-full max-w-5xl transform transition-all duration-300
+        <div class="bg-white/60 backdrop-blur-sm border border-white/40 rounded-2xl shadow-lg 
+                    p-4 sm:p-6 lg:p-8 w-full max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-5xl 
+                    transform transition-all duration-300
                     hover:shadow-xl hover:-translate-y-1 relative
                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-500/10 before:to-purple-500/10 before:rounded-2xl before:blur before:opacity-0 before:transition-opacity before:duration-300
                     hover:before:opacity-100">
             
             <!-- Floating Navigation Buttons -->
-            <div class="absolute top-4 right-4 left-4 sm:left-auto flex items-center gap-2 flex-wrap justify-end">
+            <div class="absolute top-3 right-3 left-3 sm:top-4 sm:right-4 sm:left-auto flex items-center gap-1.5 sm:gap-2 flex-wrap justify-end">
                 <!-- Resume Button -->
                 <a href="/resume" 
-                   class="group flex items-center gap-2 px-3 py-2 
-                          text-slate-600 text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
+                   class="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 
+                          text-slate-600 text-xs sm:text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
                           transition-all duration-300 ease-out shadow-sm hover:bg-white hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300
                           active:translate-y-0"
                    aria-label="View my resume">
-                    <i class="fas fa-file-alt transition-transform duration-300 group-hover:rotate-12" aria-hidden="true"></i>
-                    <span class="hidden sm:inline">Resume</span>
+                    <i class="fas fa-file-alt transition-transform duration-300 group-hover:rotate-12 text-xs sm:text-sm" aria-hidden="true"></i>
+                    <span class="hidden xs:inline sm:inline">Resume</span>
                 </a>
 
                 <!-- Talks Button -->
                 <a href="/talks" 
-                   class="group flex items-center gap-2 px-3 py-2 
-                          text-slate-600 text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
+                   class="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 
+                          text-slate-600 text-xs sm:text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
                           transition-all duration-300 ease-out shadow-sm hover:bg-white hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300
                           active:translate-y-0"
                    aria-label="View my talks and speaking engagements">
-                    <i class="fas fa-microphone-alt transition-transform duration-300 group-hover:rotate-12" aria-hidden="true"></i>
-                    <span class="hidden sm:inline">Talks</span>
+                    <i class="fas fa-microphone-alt transition-transform duration-300 group-hover:rotate-12 text-xs sm:text-sm" aria-hidden="true"></i>
+                    <span class="hidden xs:inline sm:inline">Talks</span>
                 </a>
 
                 <!-- Source Code Button -->
                 <a href="https://github.com/MrPunyapal/mrpunyapal.dev" 
                    target="_blank" 
                    rel="noopener" 
-                   class="group flex items-center gap-2 px-3 py-2 
-                          text-slate-600 text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
+                   class="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 
+                          text-slate-600 text-xs sm:text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
                           transition-all duration-300 ease-out shadow-sm hover:bg-white hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300
                           active:translate-y-0"
                    aria-label="View source code on GitHub">
-                    <i class="fab fa-github transition-transform duration-300 group-hover:rotate-12" aria-hidden="true"></i>
-                    <span class="hidden sm:inline">Source</span>
-                    <i class="fas fa-external-link-alt text-xs opacity-60" aria-hidden="true"></i>
+                    <i class="fab fa-github transition-transform duration-300 group-hover:rotate-12 text-xs sm:text-sm" aria-hidden="true"></i>
+                    <span class="hidden xs:inline sm:inline">Source</span>
+                    <i class="fas fa-external-link-alt text-xs opacity-60 hidden sm:inline" aria-hidden="true"></i>
                 </a>
             </div>
             
-            <!-- Profile Section - Compact -->
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8">
+            <!-- Profile Section - Enhanced Responsive -->
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-4 sm:gap-6 mb-6 sm:mb-8 mt-12 sm:mt-0">
                 <div class="flex-shrink-0 animate-fade-up">
                     <div class="relative group">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full 
                                     blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
                         <img src="profile-image.jpg" 
                              alt="Portrait of Punyapal Shah, Laravel Artisan and Open Source Contributor" 
-                             class="relative w-28 h-28 md:w-32 md:h-32 rounded-full object-cover 
+                             class="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full object-cover 
                                     border-4 border-white shadow-lg transition-all duration-300
                                     group-hover:scale-105"
                              loading="eager" fetchpriority="high" width="128" height="128">
                     </div>
                 </div>
                 
-                <div class="text-center md:text-left animate-fade-up" style="animation-delay: 0.1s;">
-                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3 
+                <div class="text-center md:text-left animate-fade-up flex-1" style="animation-delay: 0.1s;">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-2 sm:mb-3 
                               leading-tight tracking-tight">
                         Punyapal Shah
                     </h1>
                     
-                    <div class="typing-animation mt-3">
-                        <span class="typing-text" id="typingText">Full Stack Developer</span>
+                    <div class="typing-animation mt-2 sm:mt-3">
+                        <span class="typing-text text-sm sm:text-base" id="typingText">Full Stack Developer</span>
                         <span class="cursor">|</span>
                     </div>
                 </div>
