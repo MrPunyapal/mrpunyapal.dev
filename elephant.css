@@ -361,33 +361,32 @@
 
 /* Enhanced leg animations with more realistic running motion */
 .elephant-legs .elephant-leg {
-    animation: legRun 1.8s infinite cubic-bezier(0.4, 0.0, 0.6, 1);
-    transform-origin: center 25%;
+    animation: legRun 1.2s infinite cubic-bezier(0.4, 0.0, 0.6, 1);
+    transform-origin: top center;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
 }
 
-.elephant-legs .elephant-leg:nth-child(1) {
+/* Walk cycle: Back Left -> Front Left -> Back Right -> Front Right */
+/* Order in DOM: FL(1), FR(2), BL(3), BR(4) */
+.elephant-legs .elephant-leg:nth-child(3) { /* Back Left */
     animation-delay: 0s;
 }
-.elephant-legs .elephant-leg:nth-child(2) {
+.elephant-legs .elephant-leg:nth-child(1) { /* Front Left */
+    animation-delay: 0.3s;
+}
+.elephant-legs .elephant-leg:nth-child(4) { /* Back Right */
+    animation-delay: 0.6s;
+}
+.elephant-legs .elephant-leg:nth-child(2) { /* Front Right */
     animation-delay: 0.9s;
-}
-.elephant-legs .elephant-leg:nth-child(3) {
-    animation-delay: 0.45s;
-}
-.elephant-legs .elephant-leg:nth-child(4) {
-    animation-delay: 1.35s;
 }
 
 @keyframes legRun {
-    0% { transform: rotate(0deg) translateY(0) scaleY(1) translateX(0); }
-    15% { transform: rotate(14deg) translateY(-5px) scaleY(0.94) translateX(-2px); }
-    30% { transform: rotate(7deg) translateY(-2px) scaleY(0.98) translateX(-1px); }
-    45% { transform: rotate(-8deg) translateY(-3px) scaleY(0.96) translateX(1px); }
-    60% { transform: rotate(-16deg) translateY(-6px) scaleY(0.92) translateX(3px); }
-    75% { transform: rotate(-5deg) translateY(-2px) scaleY(0.98) translateX(1px); }
-    90% { transform: rotate(10deg) translateY(-4px) scaleY(0.95) translateX(-2px); }
-    100% { transform: rotate(0deg) translateY(0) scaleY(1) translateX(0); }
+    0% { transform: rotate(0deg) translateY(0); }
+    25% { transform: rotate(12deg) translateY(-4px); } /* Lift forward */
+    50% { transform: rotate(0deg) translateY(0); } /* Plant */
+    75% { transform: rotate(-8deg) translateY(0); } /* Push back */
+    100% { transform: rotate(0deg) translateY(0); }
 }
 
 /* Enhanced tail animation with more dynamic movement and inertia */
@@ -1119,43 +1118,7 @@
     }
 }
 
-/* Tooltip Animation */
-@keyframes tooltipFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-/* Message Pop Animations */
-@keyframes messagePopIn {
-    0% {
-        transform: translate(-50%, -50%) scale(0) rotate(-180deg);
-        opacity: 0;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-        opacity: 1;
-    }
-}
-
-@keyframes messagePopOut {
-    0% {
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(0) rotate(180deg);
-        opacity: 0;
-    }
-}
 
 /* Confetti Animation */
 @keyframes confettiFall {
