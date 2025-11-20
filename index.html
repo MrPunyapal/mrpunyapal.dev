@@ -404,7 +404,7 @@
                 <!-- Profile Photo (The Hub) -->
                 <div class="md:col-span-4 lg:col-span-3 p-8 border-b md:border-b-0 md:border-r border-slate-200 flex items-center justify-center relative overflow-hidden">
                     <!-- Ant Lines Originating from Photo -->
-                    <div class="absolute inset-0 z-0 opacity-80 pointer-events-none">
+                    <div class="absolute inset-0 z-0 opacity-100 pointer-events-none">
                         <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -414,19 +414,23 @@
                             <rect width="100%" height="100%" fill="url(#grid)" />
                             
                             <!-- Circuit lines radiating from center -->
-                            <g class="ant-circuit-lines" stroke="rgba(255, 45, 32, 0.6)" stroke-width="2" fill="none">
+                            <g class="ant-circuit-lines" stroke="rgba(100, 116, 139, 0.5)" stroke-width="1.5" fill="none">
                                 <!-- Top -->
-                                <path d="M 200 200 L 200 50 L 250 0" />
-                                <path d="M 200 200 L 150 100 L 150 0" />
+                                <path d="M 200 200 L 200 100 L 250 50 L 250 0" />
+                                <path d="M 200 200 L 150 150 L 150 0" />
+                                <path d="M 200 200 L 180 120 L 100 40" />
                                 <!-- Right -->
-                                <path d="M 200 200 L 350 200 L 400 150" />
-                                <path d="M 200 200 L 300 250 L 400 250" />
+                                <path d="M 200 200 L 300 200 L 350 150 L 400 150" />
+                                <path d="M 200 200 L 250 250 L 400 250" />
+                                <path d="M 200 200 L 280 220 L 350 280" />
                                 <!-- Bottom -->
-                                <path d="M 200 200 L 200 350 L 150 400" />
+                                <path d="M 200 200 L 200 300 L 150 350 L 150 400" />
                                 <path d="M 200 200 L 250 300 L 250 400" />
+                                <path d="M 200 200 L 220 280 L 300 360" />
                                 <!-- Left -->
-                                <path d="M 200 200 L 50 200 L 0 250" />
+                                <path d="M 200 200 L 100 200 L 50 250 L 0 250" />
                                 <path d="M 200 200 L 100 150 L 0 150" />
+                                <path d="M 200 200 L 120 180 L 50 120" />
                             </g>
                         </svg>
                     </div>
@@ -434,7 +438,7 @@
                     <div class="relative z-10 group">
                         <img src="profile-image.jpg" 
                              alt="Punyapal Shah" 
-                             class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-white shadow-sm z-10"
+                             class="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-white shadow-sm z-10"
                              loading="eager">
                     </div>
                 </div>
@@ -475,7 +479,8 @@
                     <a href="https://pinkary.com" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Pinkary Project</a>,
                     founder of the <a href="https://telegram.me/laravelartisans" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laravel Artisans</a>
                     community, and contributor to <a href="https://pestphp.com" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Pest v4</a>. 
-                    I volunteer at Laravel Ahmedabad and Laracon India. As a consultant, I help clients build robust, testable, and scalable web applications.
+                    I'm proud to volunteer at <a href="https://x.com/LaravelAhm" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laravel Ahmedabad</a> and <a href="https://laracon.in" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laracon India</a>. 
+                    As a consultant I help my clients build robust, testable, and scalable web applications using modern tools like Laravel, Tailwind, and PestPHP.
                 </p>
             </div>
 
