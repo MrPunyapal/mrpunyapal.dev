@@ -9,7 +9,7 @@
     <!-- Performance and Security -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#23a6d5">
+    <meta name="theme-color" content="#FF2D20">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
@@ -118,7 +118,7 @@
     <link rel="apple-touch-icon" href="/favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
-    <meta name="msapplication-TileColor" content="#23a6d5">
+    <meta name="msapplication-TileColor" content="#FF2D20">
 
     <!-- Preload critical resources -->
     <link rel="preload" href="/og-image-mrpunyapal.jpg" as="image" type="image/jpeg">
@@ -148,8 +148,8 @@
         }
         
         @keyframes glow {
-            0% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
-            100% { box-shadow: 0 0 30px rgba(14, 165, 233, 0.6); }
+            0% { box-shadow: 0 0 20px rgba(255, 45, 32, 0.3); }
+            100% { box-shadow: 0 0 30px rgba(255, 45, 32, 0.6); }
         }
         
         @keyframes fade-up {
@@ -195,7 +195,7 @@
         
         .cursor {
             font-weight: 300;
-            color: rgba(14, 165, 233, 0.8);
+            color: rgba(255, 45, 32, 0.8);
             animation: blink 1s infinite;
         }
         
@@ -219,7 +219,6 @@
         
         /* Ensure proper text colors */
         body {
-            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #e0e7ff 100%);
             color: #1e293b;
         }
         
@@ -293,6 +292,19 @@
             transform: translateY(-1px);
             border-color: #cbd5e1;
         }
+
+        /* Ant Circuit Lines Animation */
+        .ant-circuit-lines path {
+            stroke-dasharray: 10, 10;
+            animation: circuitDash 20s linear infinite;
+            vector-effect: non-scaling-stroke;
+        }
+
+        @keyframes circuitDash {
+            to {
+                stroke-dashoffset: -200;
+            }
+        }
     </style>
     
     <!-- Canonical URL -->
@@ -321,7 +333,7 @@
     <meta name="msapplication-tooltip" content="Laravel Artisan & Full-Stack Developer">
     <meta name="msapplication-starturl" content="https://mrpunyapal.dev/">
     <meta name="msapplication-window" content="width=1024;height=768">
-    <meta name="msapplication-navbutton-color" content="#23a6d5">
+    <meta name="msapplication-navbutton-color" content="#FF2D20">
     
     <!-- Language alternatives -->
     <link rel="alternate" hreflang="en" href="https://mrpunyapal.dev/">
@@ -335,12 +347,12 @@
                 extend: {
                     colors: {
                         'primary': {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            900: '#0c4a6e'
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#FF2D20',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            900: '#881337'
                         },
                         'accent': {
                             50: '#fdf2f8',
@@ -378,271 +390,166 @@
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 </head>
 
-<body class="font-sans m-0 p-0 min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 text-slate-800 leading-relaxed relative overflow-x-hidden antialiased">
+<body class="font-sans m-0 p-0 min-h-screen bg-white text-slate-800 leading-relaxed relative overflow-x-hidden antialiased">
     
-    <!-- Subtle background pattern -->
-    <div class="fixed inset-0 opacity-[0.02] -z-10" 
-         style="background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,1) 1px, transparent 0); background-size: 20px 20px;"></div>
-    
-    <!-- Background decorative elements -->
-    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden" role="presentation" aria-hidden="true">
-        <!-- Floating elements with modern styling -->
-        <div class="absolute w-96 h-96 top-10 -left-48 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute w-80 h-80 bottom-10 -right-40 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute w-64 h-64 top-1/3 right-10 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-2xl"></div>
-    </div>
+    <!-- Background removed in favor of local grid animation -->
 
-    <!-- Main Content - Centered and Compact -->
-    <main class="flex items-center justify-center min-h-screen px-3 sm:px-4 lg:px-6 py-6 sm:py-8">
-        <!-- Hero Card with border and shadow like other cards -->
-        <div class="bg-white/60 backdrop-blur-sm border border-white/40 rounded-2xl shadow-lg 
-                    p-4 sm:p-6 lg:p-8 w-full max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-5xl 
-                    transform transition-all duration-300
-                    hover:shadow-xl hover:-translate-y-1 relative
-                    before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-500/10 before:to-purple-500/10 before:rounded-2xl before:blur before:opacity-0 before:transition-opacity before:duration-300
-                    hover:before:opacity-100">
+    <!-- Main Content - Technical Grid Layout -->
+    <main class="min-h-screen flex items-center justify-center p-4 sm:p-8">
+        <div class="w-full max-w-6xl border border-slate-200 bg-white/80 backdrop-blur-md relative z-10">
             
-            <!-- Floating Navigation Buttons -->
-            <div class="absolute top-3 right-3 left-3 sm:top-4 sm:right-4 sm:left-auto flex items-center gap-1.5 sm:gap-2 flex-wrap justify-end">
-                <!-- Resume Button -->
-                <a href="/resume.html" 
-                   class="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 
-                          text-slate-600 text-xs sm:text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
-                          transition-all duration-300 ease-out shadow-sm hover:bg-white hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300
-                          active:translate-y-0"
-                   aria-label="View my resume">
-                    <i class="fas fa-file-alt transition-transform duration-300 group-hover:rotate-12 text-xs sm:text-sm" aria-hidden="true"></i>
-                    <span class="inline">Resume</span>
-                </a>
-
-                <!-- Talks Button -->
-                <a href="/talks.html" 
-                   class="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 
-                          text-slate-600 text-xs sm:text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
-                          transition-all duration-300 ease-out shadow-sm hover:bg-white hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300
-                          active:translate-y-0"
-                   aria-label="View my talks and speaking engagements">
-                    <i class="fas fa-microphone-alt transition-transform duration-300 group-hover:rotate-12 text-xs sm:text-sm" aria-hidden="true"></i>
-                    <span class="hidden xs:inline sm:inline">Talks</span>
-                </a>
-
-                <!-- Source Code Button -->
-                <a href="https://github.com/MrPunyapal/mrpunyapal.dev" 
-                   target="_blank" 
-                   rel="noopener" 
-                   class="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 
-                          text-slate-600 text-xs sm:text-sm font-medium bg-white/80 backdrop-blur-sm rounded-full border border-white/60
-                          transition-all duration-300 ease-out shadow-sm hover:bg-white hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300
-                          active:translate-y-0"
-                   aria-label="View source code on GitHub">
-                    <i class="fab fa-github transition-transform duration-300 group-hover:rotate-12 text-xs sm:text-sm" aria-hidden="true"></i>
-                    <span class="hidden xs:inline sm:inline">Source</span>
-                    <i class="fas fa-external-link-alt text-xs opacity-60 hidden sm:inline" aria-hidden="true"></i>
-                </a>
-            </div>
-            
-            <!-- Profile Section - Enhanced Responsive -->
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-4 sm:gap-6 mb-6 sm:mb-8 mt-12 sm:mt-0">
-                <div class="flex-shrink-0 animate-fade-up">
-                    <div class="relative group">
-                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full 
-                                    blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                        <img src="profile-image.jpg" 
-                             alt="Portrait of Punyapal Shah, Laravel Artisan and Open Source Contributor" 
-                             class="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full object-cover 
-                                    border-4 border-white shadow-lg transition-all duration-300
-                                    group-hover:scale-105"
-                             loading="eager" fetchpriority="high" width="128" height="128">
-                    </div>
-                </div>
+            <!-- Top Section: Profile & Header -->
+            <div class="grid grid-cols-1 md:grid-cols-12 border-b border-slate-200">
                 
-                <div class="text-center md:text-left animate-fade-up flex-1" style="animation-delay: 0.1s;">
-                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-2 sm:mb-3 
-                              leading-tight tracking-tight">
-                        Punyapal Shah
-                    </h1>
-                    
-                    <div class="typing-animation mt-2 sm:mt-3">
-                        <span class="typing-text text-sm sm:text-base" id="typingText">Full Stack Developer</span>
-                        <span class="cursor">|</span>
+                <!-- Profile Photo (The Hub) -->
+                <div class="md:col-span-4 lg:col-span-3 p-8 border-b md:border-b-0 md:border-r border-slate-200 flex items-center justify-center relative overflow-hidden">
+                    <!-- Ant Lines Originating from Photo -->
+                    <div class="absolute inset-0 z-0 opacity-80 pointer-events-none">
+                        <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid)" />
+                            
+                            <!-- Circuit lines radiating from center -->
+                            <g class="ant-circuit-lines" stroke="rgba(255, 45, 32, 0.6)" stroke-width="2" fill="none">
+                                <!-- Top -->
+                                <path d="M 200 200 L 200 50 L 250 0" />
+                                <path d="M 200 200 L 150 100 L 150 0" />
+                                <!-- Right -->
+                                <path d="M 200 200 L 350 200 L 400 150" />
+                                <path d="M 200 200 L 300 250 L 400 250" />
+                                <!-- Bottom -->
+                                <path d="M 200 200 L 200 350 L 150 400" />
+                                <path d="M 200 200 L 250 300 L 250 400" />
+                                <!-- Left -->
+                                <path d="M 200 200 L 50 200 L 0 250" />
+                                <path d="M 200 200 L 100 150 L 0 150" />
+                            </g>
+                        </svg>
+                    </div>
+
+                    <div class="relative z-10 group">
+                        <img src="profile-image.jpg" 
+                             alt="Punyapal Shah" 
+                             class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-white shadow-sm z-10"
+                             loading="eager">
+                    </div>
+                </div>
+
+                <!-- Header Info & Nav -->
+                <div class="md:col-span-8 lg:col-span-9 p-6 sm:p-8 flex flex-col justify-center relative">
+                    <div class="absolute top-0 right-0 p-4 flex gap-2">
+                        <a href="/resume.html" class="px-4 py-2 text-xs font-medium uppercase tracking-wider border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-600">
+                            Resume
+                        </a>
+                        <a href="/talks.html" class="px-4 py-2 text-xs font-medium uppercase tracking-wider border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-600">
+                            Talks
+                        </a>
+                        <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" class="px-4 py-2 text-xs font-medium uppercase tracking-wider border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-600">
+                            Source
+                        </a>
+                    </div>
+
+                    <div class="mt-8 md:mt-0">
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 tracking-tight">
+                            Punyapal Shah
+                        </h1>
+                        <div class="typing-animation mt-2 sm:mt-3">
+                            <span class="typing-text text-lg sm:text-xl text-red-600 font-medium" id="typingText">Full Stack Developer</span>
+                            <span class="cursor text-red-600">|</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- About Section - Enhanced Responsive -->
-            <section class="mb-6 sm:mb-8 animate-fade-up" style="animation-delay: 0.2s;">
-                <p class="text-sm sm:text-base leading-relaxed text-slate-600 max-w-4xl">
-                    I'm a dedicated <strong class="text-slate-800">Laravel Artisan</strong> and <strong class="text-slate-800">Open Source Contributor</strong> 
+
+            <!-- Middle Section: About -->
+            <div class="p-6 sm:p-8 border-b border-slate-200 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1 h-full bg-red-500/50"></div>
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">About_Me.md</h2>
+                <p class="text-slate-600 leading-relaxed max-w-4xl text-sm sm:text-base">
+                    I'm a dedicated <strong class="text-slate-900">Laravel Artisan</strong> and <strong class="text-slate-900">Open Source Contributor</strong> 
                     passionate about building exceptional web experiences. As a core member of the 
-                    <a href="https://pinkary.com" target="_blank" rel="noopener" 
-                       class="text-blue-600 font-semibold hover:text-blue-700 transition-colors
-                              relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
-                              after:bg-blue-600 after:transition-all after:duration-300
-                              hover:after:w-full">Pinkary Project</a>,
-                    founder of the 
-                    <a href="https://telegram.me/laravelartisans" target="_blank" rel="noopener"
-                       class="text-blue-600 font-semibold hover:text-blue-700 transition-colors
-                              relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
-                              after:bg-blue-600 after:transition-all after:duration-300
-                              hover:after:w-full">Laravel Artisans</a>
-                        community, and contributor to <a href="https://pestphp.com" target="_blank" rel="noopener" 
-                                  class="text-blue-600 font-semibold hover:text-blue-700 transition-colors
-                                            relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
-                                            after:bg-blue-600 after:transition-all after:duration-300
-                                            hover:after:w-full">Pest v4</a>. I'm proud to volunteer at 
-                    <a href="https://x.com/LaravelAhm" target="_blank" rel="noopener"
-                       class="text-blue-600 font-semibold hover:text-blue-700 transition-colors
-                              relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
-                              after:bg-blue-600 after:transition-all after:duration-300
-                              hover:after:w-full">Laravel Ahmedabad</a> and 
-                    <a href="https://laracon.in" target="_blank" rel="noopener"
-                       class="text-blue-600 font-semibold hover:text-blue-700 transition-colors
-                              relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
-                              after:bg-blue-600 after:transition-all after:duration-300
-                              hover:after:w-full">Laracon India</a>. As a consultant I help my clients build robust, testable, and scalable web applications using modern tools like Laravel, Tailwind, and PestPHP.
+                    <a href="https://pinkary.com" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Pinkary Project</a>,
+                    founder of the <a href="https://telegram.me/laravelartisans" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laravel Artisans</a>
+                    community, and contributor to <a href="https://pestphp.com" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Pest v4</a>. 
+                    I volunteer at Laravel Ahmedabad and Laracon India. As a consultant, I help clients build robust, testable, and scalable web applications.
                 </p>
-            </section>
+            </div>
 
-            <!-- Skills Grid - Enhanced Responsive -->
-            <section class="mb-6 sm:mb-8 animate-fade-up" style="animation-delay: 0.3s;" aria-label="Technical Skills">
-                <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4 text-center md:text-left">Technologies & Tools</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 xl:grid-cols-10 gap-2 sm:gap-3">
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">PHP</div>
-                    </div>
-                    
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Laravel</div>
-                    </div>
-                    
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Livewire</div>
-                    </div>
-                    
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Alpine.js</div>
-                    </div>
-                    
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Filament</div>
-                    </div>
-                    
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Pest</div>
-                    </div>
-                    
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">PHPStan</div>
-                    </div>
-                    
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Rector</div>
-                    </div>
-                    
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">Tailwind</div>
-                    </div>
-                    
-                    <div class="bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 p-2 sm:p-3 text-center
-                               transition-all duration-300 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1
-                               hover:border-blue-200 hover:shadow-blue-500/20">
-                        <div class="font-semibold text-slate-800 text-xs sm:text-sm">JS</div>
+            <!-- Bottom Section: Grid for Skills & Social -->
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                
+                <!-- Skills -->
+                <div class="p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-slate-200">
+                    <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Stack_Inventory</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">PHP</span>
+                        </div>
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">Laravel</span>
+                        </div>
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">Livewire</span>
+                        </div>
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">Alpine.js</span>
+                        </div>
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">Filament</span>
+                        </div>
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">Pest</span>
+                        </div>
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">PHPStan</span>
+                        </div>
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">Rector</span>
+                        </div>
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">Tailwind</span>
+                        </div>
+                        <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
+                            <span class="text-xs font-semibold text-slate-600">JavaScript</span>
+                        </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Social Links - Compact, icons only -->
-            <section class="animate-fade-up" style="animation-delay: 0.4s;">
-                <h2 class="text-xl font-bold text-slate-900 mb-4 text-center md:text-left">Let's Connect</h2>
-                <div class="flex justify-center md:justify-start gap-3 flex-wrap" aria-label="Social media links">
-                    <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener" 
-                       class="group flex items-center justify-center w-12 h-12 rounded-lg bg-white/60 backdrop-blur-sm 
-                              border border-white/40 transition-all duration-300
-                              hover:bg-black hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105"
-                       aria-label="Follow me on X (Twitter)">
-                        <i class="fab fa-x-twitter text-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true"></i>
-                    </a>
-                    
-                    <a href="https://github.com/MrPunyapal" target="_blank" rel="noopener" 
-                       class="group flex items-center justify-center w-12 h-12 rounded-lg bg-white/60 backdrop-blur-sm 
-                              border border-white/40 transition-all duration-300
-                              hover:bg-gray-900 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105"
-                       aria-label="View my GitHub profile">
-                        <i class="fab fa-github text-lg transition-transform duration-300 group-hover:rotate-12" aria-hidden="true"></i>
-                    </a>
-                    
-                    <a href="https://linkedin.com/in/MrPunyapal" target="_blank" rel="noopener" 
-                       class="group flex items-center justify-center w-12 h-12 rounded-lg bg-white/60 backdrop-blur-sm 
-                              border border-white/40 transition-all duration-300
-                              hover:bg-blue-600 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105"
-                       aria-label="Connect with me on LinkedIn">
-                        <i class="fab fa-linkedin text-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true"></i>
-                    </a>
-                    
-                    <a href="https://youtube.com/@MrPunyapal" target="_blank" rel="noopener" 
-                       class="group flex items-center justify-center w-12 h-12 rounded-lg bg-white/60 backdrop-blur-sm 
-                              border border-white/40 transition-all duration-300
-                              hover:bg-red-600 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105"
-                       aria-label="Subscribe to my YouTube channel">
-                        <i class="fab fa-youtube text-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true"></i>
-                    </a>
-                    
-                    <a href="https://pinkary.com/@MrPunyapal" target="_blank" rel="noopener" 
-                       class="group flex items-center justify-center w-12 h-12 rounded-lg bg-white/60 backdrop-blur-sm 
-                              border border-white/40 transition-all duration-300
-                              hover:bg-pink-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105"
-                       aria-label="Follow me on Pinkary">
-                        <svg width="20" height="20" viewBox="300 240 416 550" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="transition-transform duration-300 group-hover:scale-110">
-                          <path fill-rule="evenodd" clip-rule="evenodd" d="M375.022 782.938H385.585L388.504 772.787C398.2 739.062 408.734 701.557 420.107 660.277L420.117 660.242C430.551 621.984 441.163 583.726 451.952 545.468C459.439 545.219 468.939 544.603 480.341 543.653C496.01 542.347 513.484 539.967 532.73 536.546C552.862 533.044 572.949 527.799 592.987 520.829C613.395 513.731 632.329 504.389 649.748 492.785C668.139 480.818 683.061 465.944 694.293 448.16C706.045 429.552 711.61 407.7 711.61 383.228C711.61 360.057 705.43 339.287 692.671 321.539C680.899 304.178 665.246 290.011 646.011 278.988C627.549 267.755 607.365 259.479 585.534 254.119C563.876 248.384 542.511 245.479 521.468 245.479C501.989 245.479 482.531 247.471 463.109 251.444C444.074 255.338 426.237 260.117 409.618 265.802L409.563 265.821L409.509 265.84C393.722 271.387 379.742 276.759 367.603 281.962L359.101 285.605V294.855C359.101 302.344 362.725 308.746 366.475 313.567C370.135 318.273 374.328 322.466 379.035 326.127L379.314 326.344L379.603 326.546C382.092 328.289 384.664 329.879 387.238 331.08C389.608 332.186 393.095 333.5 397.115 333.5C401.138 333.5 405.052 332.434 408.337 331.251C411.797 330.005 415.532 328.268 419.459 326.189L419.737 326.042L420.008 325.883C426.54 322.04 435.277 317.652 446.368 312.723L446.563 312.636L446.756 312.544C449.831 311.063 453.133 309.652 456.668 308.316C445.353 334.018 434.841 358.926 425.133 383.039L425.104 383.112L425.075 383.185C412.412 415.687 400.171 448.189 388.351 480.694L388.333 480.742L388.316 480.791C376.911 512.894 365.511 546.462 354.116 581.491C342.751 616.005 330.546 653.252 317.501 693.23L317.464 693.343L317.429 693.456C315.782 698.808 313.922 704.595 311.847 710.82L311.712 711.227L311.601 711.642C309.662 718.912 308.603 726.031 308.603 732.931C308.603 749.453 317.664 762.126 331.69 770.758L331.79 770.819L331.891 770.879C345.313 778.833 359.763 782.938 375.022 782.938ZM615.889 423.985C605.825 438.893 592.099 451.594 574.375 462.004C556.626 472.253 536.548 480.43 514.052 486.456C498.109 490.726 482.19 493.892 466.291 495.961C477.084 459.602 488.321 424.611 500.001 390.987L500.016 390.944C512.485 354.67 525.4 323.063 538.731 296.052C553.277 297.171 567.056 300.298 580.123 305.398L580.176 305.418L580.229 305.438C595.921 311.416 608.16 319.997 617.399 331.012L617.483 331.112L617.569 331.211C626.251 341.179 631.163 354.709 631.163 373.128C631.163 392.812 626.014 409.517 616.024 423.788L615.955 423.886L615.889 423.985Z"/>
-                          <path d="M560.932 743.369C560.932 766.565 542.128 785.369 518.932 785.369C495.736 785.369 476.932 766.565 476.932 743.369C476.932 720.173 495.736 701.369 518.932 701.369C542.128 701.369 560.932 720.173 560.932 743.369Z"/>
-                        </svg>
-                    </a>
-                    
-                    <a href="https://bsky.app/profile/mrpunyapal.dev" target="_blank" rel="noopener" 
-                       class="group flex items-center justify-center w-12 h-12 rounded-lg bg-white/60 backdrop-blur-sm 
-                              border border-white/40 transition-all duration-300
-                              hover:bg-sky-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105"
-                       aria-label="Follow me on Bluesky">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-4 h-4 fill-current transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
-                            <path d="M439.8 358.7C436.5 358.3 433.1 357.9 429.8 357.4C433.2 357.8 436.5 358.3 439.8 358.7zM320 291.1C293.9 240.4 222.9 145.9 156.9 99.3C93.6 54.6 69.5 62.3 53.6 69.5C35.3 77.8 32 105.9 32 122.4C32 138.9 41.1 258 47 277.9C66.5 343.6 136.1 365.8 200.2 358.6C203.5 358.1 206.8 357.7 210.2 357.2C206.9 357.7 203.6 358.2 200.2 358.6C106.3 372.6 22.9 406.8 132.3 528.5C252.6 653.1 297.1 501.8 320 425.1C342.9 501.8 369.2 647.6 505.6 528.5C608 425.1 533.7 372.5 439.8 358.6C436.5 358.2 433.1 357.8 429.8 357.3C433.2 357.7 436.5 358.2 439.8 358.6C503.9 365.7 573.4 343.5 593 277.9C598.9 258 608 139 608 122.4C608 105.8 604.7 77.7 586.4 69.5C570.6 62.4 546.4 54.6 483.2 99.3C417.1 145.9 346.1 240.4 320 291.1z"/>
-                        </svg>
-                    </a>
-                    
-                    <a href="https://www.facebook.com/MrPunyapal/" target="_blank" rel="noopener" 
-                        class="group flex items-center justify-center w-12 h-12 rounded-lg bg-white/60 backdrop-blur-sm 
-                                border border-white/40 transition-all duration-300
-                                hover:bg-blue-600 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105"
-                        aria-label="Follow me on Facebook">
-                        <i class="fab fa-facebook-f text-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true"></i>
-                    </a>
-
-                    <a href="mailto:mrpunyapal@gmail.com" 
-                       class="group flex items-center justify-center w-12 h-12 rounded-lg bg-white/60 backdrop-blur-sm 
-                              border border-white/40 transition-all duration-300
-                              hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105"
-                       aria-label="Send me an email">
-                        <i class="fas fa-envelope text-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true"></i>
-                    </a>
+                <!-- Social -->
+                <div class="p-6 sm:p-8">
+                    <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Connect_Nodes</h2>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://x.com/MrPunyapal" target="_blank" class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded hover:bg-black hover:text-white hover:border-black transition-all" aria-label="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="https://github.com/MrPunyapal" target="_blank" class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded hover:bg-slate-800 hover:text-white hover:border-slate-800 transition-all" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/MrPunyapal" target="_blank" class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://youtube.com/@MrPunyapal" target="_blank" class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded hover:bg-red-600 hover:text-white hover:border-red-600 transition-all" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://pinkary.com/@MrPunyapal" target="_blank" class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded hover:bg-pink-500 hover:text-white hover:border-pink-500 transition-all" aria-label="Pinkary">
+                            <svg width="16" height="16" viewBox="300 240 416 550" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M375.022 782.938H385.585L388.504 772.787C398.2 739.062 408.734 701.557 420.107 660.277L420.117 660.242C430.551 621.984 441.163 583.726 451.952 545.468C459.439 545.219 468.939 544.603 480.341 543.653C496.01 542.347 513.484 539.967 532.73 536.546C552.862 533.044 572.949 527.799 592.987 520.829C613.395 513.731 632.329 504.389 649.748 492.785C668.139 480.818 683.061 465.944 694.293 448.16C706.045 429.552 711.61 407.7 711.61 383.228C711.61 360.057 705.43 339.287 692.671 321.539C680.899 304.178 665.246 290.011 646.011 278.988C627.549 267.755 607.365 259.479 585.534 254.119C563.876 248.384 542.511 245.479 521.468 245.479C501.989 245.479 482.531 247.471 463.109 251.444C444.074 255.338 426.237 260.117 409.618 265.802L409.563 265.821L409.509 265.84C393.722 271.387 379.742 276.759 367.603 281.962L359.101 285.605V294.855C359.101 302.344 362.725 308.746 366.475 313.567C370.135 318.273 374.328 322.466 379.035 326.127L379.314 326.344L379.603 326.546C382.092 328.289 384.664 329.879 387.238 331.08C389.608 332.186 393.095 333.5 397.115 333.5C401.138 333.5 405.052 332.434 408.337 331.251C411.797 330.005 415.532 328.268 419.459 326.189L419.737 326.042L420.008 325.883C426.54 322.04 435.277 317.652 446.368 312.723L446.563 312.636L446.756 312.544C449.831 311.063 453.133 309.652 456.668 308.316C445.353 334.018 434.841 358.926 425.133 383.039L425.104 383.112L425.075 383.185C412.412 415.687 400.171 448.189 388.351 480.694L388.333 480.742L388.316 480.791C376.911 512.894 365.511 546.462 354.116 581.491C342.751 616.005 330.546 653.252 317.501 693.23L317.464 693.343L317.429 693.456C315.782 698.808 313.922 704.595 311.847 710.82L311.712 711.227L311.601 711.642C309.662 718.912 308.603 726.031 308.603 732.931C308.603 749.453 317.664 762.126 331.69 770.758L331.79 770.819L331.891 770.879C345.313 778.833 359.763 782.938 375.022 782.938ZM615.889 423.985C605.825 438.893 592.099 451.594 574.375 462.004C556.626 472.253 536.548 480.43 514.052 486.456C498.109 490.726 482.19 493.892 466.291 495.961C477.084 459.602 488.321 424.611 500.001 390.987L500.016 390.944C512.485 354.67 525.4 323.063 538.731 296.052C553.277 297.171 567.056 300.298 580.123 305.398L580.176 305.418L580.229 305.438C595.921 311.416 608.16 319.997 617.399 331.012L617.483 331.112L617.569 331.211C626.251 341.179 631.163 354.709 631.163 373.128C631.163 392.812 626.014 409.517 616.024 423.788L615.955 423.886L615.889 423.985Z"/><path d="M560.932 743.369C560.932 766.565 542.128 785.369 518.932 785.369C495.736 785.369 476.932 766.565 476.932 743.369C476.932 720.173 495.736 701.369 518.932 701.369C542.128 701.369 560.932 720.173 560.932 743.369Z"/></svg>
+                        </a>
+                        <a href="https://bsky.app/profile/mrpunyapal.dev" target="_blank" class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-all" aria-label="Bluesky">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-4 h-4 fill-current" aria-hidden="true"><path d="M439.8 358.7C436.5 358.3 433.1 357.9 429.8 357.4C433.2 357.8 436.5 358.3 439.8 358.7zM320 291.1C293.9 240.4 222.9 145.9 156.9 99.3C93.6 54.6 69.5 62.3 53.6 69.5C35.3 77.8 32 105.9 32 122.4C32 138.9 41.1 258 47 277.9C66.5 343.6 136.1 365.8 200.2 358.6C203.5 358.1 206.8 357.7 210.2 357.2C206.9 357.7 203.6 358.2 200.2 358.6C106.3 372.6 22.9 406.8 132.3 528.5C252.6 653.1 297.1 501.8 320 425.1C342.9 501.8 369.2 647.6 505.6 528.5C608 425.1 533.7 372.5 439.8 358.6C436.5 358.2 433.1 357.8 429.8 357.3C433.2 357.7 436.5 358.2 439.8 358.6C503.9 365.7 573.4 343.5 593 277.9C598.9 258 608 139 608 122.4C608 105.8 604.7 77.7 586.4 69.5C570.6 62.4 546.4 54.6 483.2 99.3C417.1 145.9 346.1 240.4 320 291.1z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/MrPunyapal/" target="_blank" class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="mailto:mrpunyapal@gmail.com" class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded hover:bg-red-500 hover:text-white hover:border-red-500 transition-all" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                 </div>
-            </section>
+            </div>
         </div>
     </main>
 
