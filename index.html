@@ -296,7 +296,7 @@
         /* Ant Circuit Lines Animation */
         .ant-circuit-lines path {
             stroke-dasharray: 10, 10;
-            animation: circuitDash 20s linear infinite;
+            animation: circuitDash 15s linear infinite;
             vector-effect: non-scaling-stroke;
         }
 
@@ -410,27 +410,42 @@
                                 <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
                                     <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
                                 </pattern>
+                                <linearGradient id="ant-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#94a3b8" />
+                                    <stop offset="100%" stop-color="#ef4444" />
+                                </linearGradient>
                             </defs>
                             <rect width="100%" height="100%" fill="url(#grid)" />
                             
-                            <!-- Circuit lines radiating from center -->
-                            <g class="ant-circuit-lines" stroke="rgba(100, 116, 139, 0.5)" stroke-width="1.5" fill="none">
-                                <!-- Top -->
-                                <path d="M 200 200 L 200 100 L 250 50 L 250 0" />
-                                <path d="M 200 200 L 150 150 L 150 0" />
-                                <path d="M 200 200 L 180 120 L 100 40" />
+                            <!-- Circuit lines radiating from image edge to box edges -->
+                            <g class="ant-circuit-lines" stroke="url(#ant-gradient)" stroke-width="1.5" fill="none" stroke-linecap="round">
+                                <!-- Top Left -->
+                                <path d="M 170 110 L 110 80 L 80 60 L -200 60" />
+                                
+                                <!-- Top Center -->
+                                <path d="M 190 140 L 190 100 L 150 60 L 150 -20" />
+                                <path d="M 210 140 L 210 100 L 250 60 L 250 -20" />
+
+                                <!-- Top Right -->
+                                <path d="M 230 110 L 290 80 L 320 60 L 500 60" />
+                                
                                 <!-- Right -->
-                                <path d="M 200 200 L 300 200 L 350 150 L 400 150" />
-                                <path d="M 200 200 L 250 250 L 400 250" />
-                                <path d="M 200 200 L 280 220 L 350 280" />
-                                <!-- Bottom -->
-                                <path d="M 200 200 L 200 300 L 150 350 L 150 400" />
-                                <path d="M 200 200 L 250 300 L 250 400" />
-                                <path d="M 200 200 L 220 280 L 300 360" />
+                                <path d="M 260 180 L 320 180 L 360 140 L 500 140" />
+                                <path d="M 260 220 L 320 220 L 360 260 L 500 260" />
+                                
+                                <!-- Bottom Right -->
+                                <path d="M 230 290 L 290 320 L 320 340 L 500 340" />
+
+                                <!-- Bottom Center -->
+                                <path d="M 190 260 L 190 300 L 150 340 L 150 420" />
+                                <path d="M 210 260 L 210 300 L 250 340 L 250 420" />
+                                
+                                <!-- Bottom Left -->
+                                <path d="M 170 290 L 110 320 L 80 340 L -200 340" />
+
                                 <!-- Left -->
-                                <path d="M 200 200 L 100 200 L 50 250 L 0 250" />
-                                <path d="M 200 200 L 100 150 L 0 150" />
-                                <path d="M 200 200 L 120 180 L 50 120" />
+                                <path d="M 140 180 L 80 180 L 40 140 L -200 140" />
+                                <path d="M 140 220 L 80 220 L 40 260 L -200 260" />
                             </g>
                         </svg>
                     </div>
