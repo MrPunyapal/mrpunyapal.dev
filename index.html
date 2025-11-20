@@ -296,18 +296,44 @@
         /* Technical Grid Markers */
         .tech-marker {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             background-color: white;
             border: 1px solid #cbd5e1;
             border-radius: 50%;
             z-index: 50;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
         }
-        .tech-line-ext {
+        
+        /* Infinite Grid Lines */
+        .tech-line-h {
             position: absolute;
+            height: 1px;
             background-color: #e2e8f0;
             z-index: 0;
             pointer-events: none;
+            left: -100vw;
+            right: -100vw;
+        }
+        
+        .tech-line-v-top {
+            position: absolute;
+            width: 1px;
+            background-color: #e2e8f0;
+            z-index: 0;
+            pointer-events: none;
+            bottom: 100%;
+            height: 100vh;
+        }
+
+        .tech-line-v-bottom {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(to bottom, #e2e8f0, transparent);
+            z-index: 0;
+            pointer-events: none;
+            top: 100%;
+            height: 120px;
         }
 
         /* Ant Circuit Lines Animation */
@@ -416,24 +442,40 @@
         <div class="w-full max-w-6xl border border-slate-200 bg-white/80 backdrop-blur-md relative z-10">
             
             <!-- Tech Markers: Corners -->
-            <div class="tech-marker -top-[3px] -left-[3px]"></div>
-            <div class="tech-marker -top-[3px] -right-[3px]"></div>
-            <div class="tech-marker -bottom-[3px] -left-[3px]"></div>
-            <div class="tech-marker -bottom-[3px] -right-[3px]"></div>
+            <div class="tech-marker -top-[4px] -left-[4px]"></div>
+            <div class="tech-marker -top-[4px] -right-[4px]"></div>
+            <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+            <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+            
+            <!-- Global Extensions -->
+            <div class="tech-line-h top-[-1px]"></div>
+            <div class="tech-line-h bottom-[-1px]"></div>
+            
+            <div class="tech-line-v-top left-[-1px]"></div>
+            <div class="tech-line-v-top right-[-1px]"></div>
+            
+            <div class="tech-line-v-bottom left-[-1px]"></div>
+            <div class="tech-line-v-bottom right-[-1px]"></div>
             
             <!-- Top Section: Profile & Header -->
             <div class="grid grid-cols-1 md:grid-cols-12 border-b border-slate-200 relative">
+                <!-- Horizontal Line Extension -->
+                <div class="tech-line-h bottom-[-1px]"></div>
+                
                 <!-- Intersections with outer border -->
-                <div class="tech-marker -bottom-[3px] -left-[3px]"></div>
-                <div class="tech-marker -bottom-[3px] -right-[3px]"></div>
+                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
                 
                 <!-- Profile Photo (The Hub) -->
                 <div class="md:col-span-4 lg:col-span-3 p-8 border-b md:border-b-0 md:border-r border-slate-200 flex items-center justify-center relative">
+                    <!-- Vertical Line Extensions (Up) -->
+                    <div class="tech-line-v-top -right-[1px] hidden md:block"></div>
+                    
                     <!-- Intersections -->
-                    <div class="tech-marker -top-[3px] -right-[3px] hidden md:block"></div>
-                    <div class="tech-marker -bottom-[3px] -right-[3px] hidden md:block"></div>
+                    <div class="tech-marker -top-[4px] -right-[4px] hidden md:block"></div>
+                    <div class="tech-marker -bottom-[4px] -right-[4px] hidden md:block"></div>
                     <!-- Ant Lines Originating from Photo -->
-                    <div class="absolute inset-0 z-0 opacity-100 pointer-events-none">
+                    <div class="absolute inset-0 z-0 opacity-100 pointer-events-none overflow-hidden">
                         <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -515,9 +557,12 @@
 
             <!-- Middle Section: About -->
             <div class="p-6 sm:p-8 border-b border-slate-200 relative">
+                <!-- Horizontal Line Extension -->
+                <div class="tech-line-h bottom-[-1px]"></div>
+                
                 <!-- Intersections -->
-                <div class="tech-marker -bottom-[3px] -left-[3px]"></div>
-                <div class="tech-marker -bottom-[3px] -right-[3px]"></div>
+                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
                 <div class="absolute top-0 left-0 w-1 h-full bg-red-500/50"></div>
                 <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">About_Me.md</h2>
@@ -537,13 +582,16 @@
                 
                 <!-- Skills -->
                 <div class="p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-slate-200 relative">
+                    <!-- Vertical Line Extensions (Down) -->
+                    <div class="tech-line-v-bottom -right-[1px] hidden lg:block"></div>
+                    
                     <!-- Intersections -->
-                    <div class="tech-marker -top-[3px] -right-[3px] hidden lg:block"></div>
-                    <div class="tech-marker -bottom-[3px] -right-[3px] hidden lg:block"></div>
+                    <div class="tech-marker -top-[4px] -right-[4px] hidden lg:block"></div>
+                    <div class="tech-marker -bottom-[4px] -right-[4px] hidden lg:block"></div>
                     
                     <!-- Intersections for small screen border-b -->
-                    <div class="tech-marker -bottom-[3px] -left-[3px] lg:hidden"></div>
-                    <div class="tech-marker -bottom-[3px] -right-[3px] lg:hidden"></div>
+                    <div class="tech-marker -bottom-[4px] -left-[4px] lg:hidden"></div>
+                    <div class="tech-marker -bottom-[4px] -right-[4px] lg:hidden"></div>
                     <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Stack_Inventory</h2>
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
                         <div class="p-3 border border-slate-100 bg-slate-50/50 text-center hover:border-slate-300 transition-colors">
