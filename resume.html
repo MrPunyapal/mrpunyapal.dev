@@ -358,7 +358,6 @@
 
                 <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6 sm:gap-8 animate-fade-up" style="animation-delay: 0.1s;">
                     <div class="flex-shrink-0 relative group">
-                        <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full opacity-75 group-hover:opacity-100 transition duration-200 blur"></div>
                         <img src="profile-image.jpg" 
                              alt="Punyapal Shah" 
                              class="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-2 border-white shadow-sm"
@@ -369,7 +368,7 @@
                         <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2 tracking-tight">
                             Punyapal Shah
                         </h1>
-                        <p class="text-lg text-blue-600 font-medium mb-4 font-mono">
+                        <p class="text-lg text-red-600 font-medium mb-4 font-mono">
                             // Laravel Artisan & Full-Stack Developer
                         </p>
                         
@@ -403,23 +402,34 @@
             <div class="bg-slate-50/30">
                 
                 <!-- Professional Summary -->
-                <section class="border-b border-slate-200">
+                <section class="border-b border-slate-200 relative">
+                    <!-- Horizontal Line Extension -->
+                    <div class="tech-line-h bottom-[-1px]"></div>
+                    <!-- Intersections -->
+                    <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                    <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
                     <div class="p-6 sm:p-12">
                         <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Professional_Summary.md</h2>
                         <div class="prose prose-slate max-w-none text-slate-600 leading-relaxed">
                             <p>
                                 Laravel Artisan focused on building clean, maintainable applications using the TALL stack. Core team 
-                                member at <strong class="text-slate-900 font-semibold"><a href="https://pinkary.com" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors">Pinkary</a></strong> and <strong class="text-slate-900 font-semibold"><a href="https://pestphp.com/docs/pest-v4-is-here-now-with-browser-testing" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors">Pest v4</a></strong>, experienced in creating custom Filament admin panels, Livewire 
+                                member at <strong class="text-slate-900 font-semibold"><a href="https://pinkary.com" target="_blank" rel="noopener" class="hover:text-red-600 transition-colors">Pinkary</a></strong> and <strong class="text-slate-900 font-semibold"><a href="https://pestphp.com/docs/pest-v4-is-here-now-with-browser-testing" target="_blank" rel="noopener" class="hover:text-red-600 transition-colors">Pest v4</a></strong>, experienced in creating custom Filament admin panels, Livewire 
                                 components, and modular Laravel architectures. I enjoy turning complex ideas into simple, scalable, 
-                                developer-friendly solutions. Interested in building modern eCommerce and CMS systems using Filament 
-                                and Laravel.
+                                developer-friendly solutions. Interested in building modern, scalable web applications and contributing to the open source ecosystem.
                             </p>
                         </div>
                     </div>
                 </section>
 
                 <!-- Technical Skills -->
-                <section class="border-b border-slate-200">
+                <section class="border-b border-slate-200 relative">
+                    <!-- Horizontal Line Extension -->
+                    <div class="tech-line-h bottom-[-1px]"></div>
+                    <!-- Intersections -->
+                    <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                    <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
                     <div class="p-6 sm:p-12">
                         <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Technical_Skills.json</h2>
                         
@@ -427,6 +437,15 @@
                             <!-- Frontend -->
                             <div class="group relative p-6 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors">
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
                                 <div class="flex items-center gap-3 mb-3">
@@ -445,6 +464,15 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
                                 <div class="flex items-center gap-3 mb-3">
                                     <div class="w-8 h-8 rounded bg-green-50 flex items-center justify-center text-green-600">
                                         <i class="fas fa-server"></i>
@@ -459,6 +487,15 @@
                             <!-- Database -->
                             <div class="group relative p-6 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors">
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
                                 <div class="flex items-center gap-3 mb-3">
@@ -477,6 +514,15 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
                                 <div class="flex items-center gap-3 mb-3">
                                     <div class="w-8 h-8 rounded bg-orange-50 flex items-center justify-center text-orange-600">
                                         <i class="fas fa-cloud"></i>
@@ -491,6 +537,15 @@
                             <!-- Other -->
                             <div class="group relative p-6 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors sm:col-span-2">
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
                                 <div class="flex items-center gap-3 mb-3">
@@ -508,7 +563,13 @@
                 </section>
 
                 <!-- Experience -->
-                <section class="border-b border-slate-200">
+                <section class="border-b border-slate-200 relative">
+                    <!-- Horizontal Line Extension -->
+                    <div class="tech-line-h bottom-[-1px]"></div>
+                    <!-- Intersections -->
+                    <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                    <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
                     <div class="p-6 sm:p-12">
                         <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Experience_Log.json</h2>
                         
@@ -518,7 +579,7 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 w-3 h-3 bg-white border border-slate-200 rounded-full"></div>
                                 <div class="mb-2">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-1">
-                                        <h3 class="text-lg font-bold text-slate-900">Freelance — Full Stack Engineer</h3>
+                                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors">Freelance — Full Stack Engineer</h3>
                                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-50 text-green-700 border border-green-100">
                                             Current Role
                                         </span>
@@ -542,7 +603,7 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 w-3 h-3 bg-white border border-slate-200 rounded-full"></div>
                                 <div class="mb-2">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-1">
-                                        <h3 class="text-lg font-bold text-slate-900">ShubhKey Infotech LLP — Lead Engineer</h3>
+                                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors">ShubhKey Infotech LLP — Lead Engineer</h3>
                                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
                                             2 years
                                         </span>
@@ -567,7 +628,7 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 w-3 h-3 bg-white border border-slate-200 rounded-full"></div>
                                 <div class="mb-2">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-1">
-                                        <h3 class="text-lg font-bold text-slate-900">Maven InfoTech — Sr. Full Stack Developer</h3>
+                                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors">Maven InfoTech — Sr. Full Stack Developer</h3>
                                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
                                             6 months
                                         </span>
@@ -588,7 +649,13 @@
                 </section>
 
                 <!-- Open Source Contributions & Community -->
-                <section class="border-b border-slate-200">
+                <section class="border-b border-slate-200 relative">
+                    <!-- Horizontal Line Extension -->
+                    <div class="tech-line-h bottom-[-1px]"></div>
+                    <!-- Intersections -->
+                    <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                    <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
                     <div class="p-6 sm:p-12">
                         <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Open_Source.json</h2>
                         
@@ -598,30 +665,39 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
                                 <div class="flex items-center gap-3 mb-4">
                                     <i class="fas fa-code-branch text-blue-600"></i>
-                                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">Maintainer</h3>
+                                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide group-hover:text-red-600 transition-colors">Maintainer</h3>
                                 </div>
                                 <ul class="space-y-3 text-sm text-slate-600">
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
-                                        <span><strong><a href="https://github.com/MrPunyapal/laravel-extended-relationships" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors">laravel-extended-relationships</a></strong></span>
+                                        <span><strong><a href="https://github.com/MrPunyapal/laravel-extended-relationships" target="_blank" rel="noopener" class="hover:text-red-600 transition-colors">laravel-extended-relationships</a></strong></span>
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
-                                        <span><strong><a href="https://github.com/MrPunyapal/livewire-chat-app" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors">livewire-chat-app</a></strong></span>
+                                        <span><strong><a href="https://github.com/MrPunyapal/livewire-chat-app" target="_blank" rel="noopener" class="hover:text-red-600 transition-colors">livewire-chat-app</a></strong></span>
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
-                                        <span><strong><a href="https://github.com/MrPunyapal/laravel-auth-jobs" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors">laravel-auth-jobs</a></strong></span>
+                                        <span><strong><a href="https://github.com/MrPunyapal/laravel-auth-jobs" target="_blank" rel="noopener" class="hover:text-red-600 transition-colors">laravel-auth-jobs</a></strong></span>
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
-                                        <span><strong><a href="https://github.com/MrPunyapal/laravel-extended-commands" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors">laravel-extended-commands</a></strong></span>
+                                        <span><strong><a href="https://github.com/MrPunyapal/laravel-extended-commands" target="_blank" rel="noopener" class="hover:text-red-600 transition-colors">laravel-extended-commands</a></strong></span>
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
-                                        <span><strong><a href="https://github.com/MrPunyapal/basic-crud" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors">basic-crud</a></strong></span>
+                                        <span><strong><a href="https://github.com/MrPunyapal/basic-crud" target="_blank" rel="noopener" class="hover:text-red-600 transition-colors">basic-crud</a></strong></span>
                                     </li>
                                 </ul>
                             </div>
@@ -631,18 +707,27 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
                                 <div class="flex items-center gap-3 mb-4">
                                     <i class="fas fa-heart text-green-600"></i>
-                                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">Core Team</h3>
+                                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide group-hover:text-red-600 transition-colors">Core Team</h3>
                                 </div>
                                 <ul class="space-y-3 text-sm text-slate-600">
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
-                                        <span><strong><a href="https://pinkary.com" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors">Pinkary Project</a></strong> - Core team member</span>
+                                        <span><strong><a href="https://pinkary.com" target="_blank" rel="noopener" class="hover:text-red-600 transition-colors">Pinkary Project</a></strong> - Core team member</span>
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
-                                        <span><strong><a href="https://pestphp.com/docs/pest-v4-is-here-now-with-browser-testing" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors">Pest v4</a></strong> - Contributor to browser testing features</span>
+                                        <span><strong><a href="https://pestphp.com/docs/pest-v4-is-here-now-with-browser-testing" target="_blank" rel="noopener" class="hover:text-red-600 transition-colors">Pest v4</a></strong> - Contributor to browser testing features</span>
                                     </li>
                                 </ul>
                             </div>
@@ -652,9 +737,18 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
                                 <div class="flex items-center gap-3 mb-4">
                                     <i class="fas fa-users text-purple-600"></i>
-                                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">Community</h3>
+                                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide group-hover:text-red-600 transition-colors">Community</h3>
                                 </div>
                                 <ul class="space-y-3 text-sm text-slate-600">
                                     <li class="flex items-start gap-2">
@@ -684,7 +778,13 @@
                 </section>
 
                 <!-- Speaking Engagements -->
-                <section class="border-b border-slate-200">
+                <section class="border-b border-slate-200 relative">
+                    <!-- Horizontal Line Extension -->
+                    <div class="tech-line-h bottom-[-1px]"></div>
+                    <!-- Intersections -->
+                    <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                    <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
                     <div class="p-6 sm:p-12">
                         <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Speaking_Engagements.json</h2>
                         
@@ -694,10 +794,19 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
                                 <div class="flex items-start gap-3 mb-2">
                                     <div class="w-2 h-2 bg-orange-500 rounded-full mt-1.5"></div>
                                     <div>
-                                        <h3 class="text-sm font-bold text-slate-900">Types in PHP at Glance with PHPStan</h3>
+                                        <h3 class="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors">Types in PHP at Glance with PHPStan</h3>
                                         <p class="text-xs text-slate-500 mt-1">Laravel Ahmedabad, Laravel Indore, Laravel Kozhikode</p>
                                     </div>
                                 </div>
@@ -708,10 +817,19 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
                                 <div class="flex items-start gap-3 mb-2">
                                     <div class="w-2 h-2 bg-orange-500 rounded-full mt-1.5"></div>
                                     <div>
-                                        <h3 class="text-sm font-bold text-slate-900">Refactor Laravel with RectorPHP</h3>
+                                        <h3 class="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors">Refactor Laravel with RectorPHP</h3>
                                         <p class="text-xs text-slate-500 mt-1">Laravel Bangalore, Laravel Moris (Africa)</p>
                                     </div>
                                 </div>
@@ -722,10 +840,19 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
                                 <div class="flex items-start gap-3 mb-2">
                                     <div class="w-2 h-2 bg-orange-500 rounded-full mt-1.5"></div>
                                     <div>
-                                        <h3 class="text-sm font-bold text-slate-900">Spark Your Laravel Apps with FilamentPHP</h3>
+                                        <h3 class="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors">Spark Your Laravel Apps with FilamentPHP</h3>
                                         <p class="text-xs text-slate-500 mt-1">Laravel Ahmedabad</p>
                                     </div>
                                 </div>
@@ -736,10 +863,19 @@
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
                                 <div class="flex items-start gap-3 mb-2">
                                     <div class="w-2 h-2 bg-orange-500 rounded-full mt-1.5"></div>
                                     <div>
-                                        <h3 class="text-sm font-bold text-slate-900">Broadcasting in Laravel</h3>
+                                        <h3 class="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors">Broadcasting in Laravel</h3>
                                         <p class="text-xs text-slate-500 mt-1">Laravel Ahmedabad</p>
                                     </div>
                                 </div>
@@ -747,7 +883,7 @@
                         </div>
                         
                         <div class="mt-6 text-right">
-                            <a href="/talks.html" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition-colors">
+                            <a href="/talks.html" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-red-600 transition-colors">
                                 <span>View all talks</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
@@ -756,7 +892,13 @@
                 </section>
 
                 <!-- Education -->
-                <section class="border-b border-slate-200">
+                <section class="border-b border-slate-200 relative">
+                    <!-- Horizontal Line Extension -->
+                    <div class="tech-line-h bottom-[-1px]"></div>
+                    <!-- Intersections -->
+                    <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                    <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
                     <div class="p-6 sm:p-12">
                         <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Education_History.json</h2>
                         
@@ -764,6 +906,15 @@
                             <!-- Education Item 1 -->
                             <div class="group relative p-6 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors">
                                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
+                                    <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 text-slate-200 bg-white z-10">
                                     <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/></svg>
                                 </div>
                                 <div class="flex flex-col sm:flex-row sm:items-start gap-6">
@@ -775,7 +926,7 @@
                                     
                                     <div class="flex-1">
                                         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-                                            <h3 class="text-lg font-bold text-slate-900">
+                                            <h3 class="text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors">
                                                 Bachelor of Technology (B.Tech) - Information Technology
                                             </h3>
                                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
@@ -813,8 +964,11 @@
                 <span>//</span>
                 <span>END_OF_FILE</span>
             </div>
-            <p class="text-sm text-slate-500">
-                &copy; <script>document.write(new Date().getFullYear())</script> Punyapal Shah. All rights reserved.
+            <p class="text-sm text-slate-500 font-mono">
+                // Ready to build something amazing? 
+                <a href="mailto:mrpunyapal@gmail.com" class="text-slate-900 hover:text-blue-600 font-bold transition-colors ml-1">
+                    $this->hire()
+                </a>
             </p>
         </footer>
 
