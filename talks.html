@@ -336,11 +336,13 @@
                     
                     <!-- Talk 1: Types in PHP -->
                     <div class="group relative p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up" style="animation-delay: 0.2s;">
-                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-300">
+                        <!-- TL Marker (Gray) -->
+                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
                             <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/>
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
                             </svg>
                         </div>
+                        
                         <div class="flex flex-col h-full">
                             <div class="mb-4">
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -377,11 +379,25 @@
 
                     <!-- Talk 2: RectorPHP -->
                     <div class="group relative p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up" style="animation-delay: 0.3s;">
-                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-300">
+                        <!-- TL Marker (Gray) -->
+                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
                             <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/>
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
                             </svg>
                         </div>
+                        <!-- TR Marker (Gray) -->
+                        <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <!-- BR Marker (Gray) -->
+                        <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+
                         <div class="flex flex-col h-full">
                             <div class="mb-4">
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -422,11 +438,25 @@
 
                     <!-- Talk 3: FilamentPHP -->
                     <div class="group relative p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up" style="animation-delay: 0.4s;">
-                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-300">
+                        <!-- TL Marker (Gray) -->
+                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
                             <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/>
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
                             </svg>
                         </div>
+                        <!-- BL Marker (Gray) -->
+                        <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <!-- BR Marker (Gray) -->
+                        <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+
                         <div class="flex flex-col h-full">
                             <div class="mb-4">
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -435,7 +465,7 @@
                                         Ahmedabad
                                     </a>
                                 </div>
-                                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
+                                <h3 class="text-xl font-bold text-red-600 mb-2 transition-colors">
                                     Spark Your Laravel Apps with FilamentPHP
                                 </h3>
                                 <p class="text-sm text-slate-600 leading-relaxed">
@@ -455,11 +485,19 @@
 
                     <!-- Talk 4: Broadcasting -->
                     <div class="group relative p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up" style="animation-delay: 0.5s;">
-                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-slate-300">
+                        <!-- TL Marker (Gray) -->
+                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
                             <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1"/>
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
                             </svg>
                         </div>
+                        <!-- BR Marker (Gray) -->
+                        <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+
                         <div class="flex flex-col h-full">
                             <div class="mb-4">
                                 <div class="flex flex-wrap gap-2 mb-4">
