@@ -55,20 +55,29 @@
 }
 
 .elephant-container.party-mode {
-    animation: runAroundScreen 15s linear infinite,
-               partyGlow 0.5s ease-in-out infinite alternate,
+    animation: runAroundScreen 15s linear infinite;
+}
+
+.elephant-container.party-mode svg {
+    animation: partyGlow 0.5s ease-in-out infinite alternate,
                partyBounce 1s ease-in-out infinite;
 }
 
 .elephant-container.turbo-mode {
-    animation: runAroundScreen 8s linear infinite,
-               turboGlow 0.3s ease-in-out infinite,
+    animation: runAroundScreen 8s linear infinite;
+}
+
+.elephant-container.turbo-mode svg {
+    animation: turboGlow 0.3s ease-in-out infinite,
                turboShake 0.1s ease-in-out infinite;
 }
 
 .elephant-container.celebration-mode {
-    animation: runAroundScreen 20s ease-in-out infinite,
-               celebrationSpin 2s ease-in-out infinite,
+    animation: runAroundScreen 20s ease-in-out infinite;
+}
+
+.elephant-container.celebration-mode svg {
+    animation: celebrationSpin 2s ease-in-out infinite,
                celebrationGlow 1s ease-in-out infinite alternate;
 }
 
