@@ -384,7 +384,7 @@
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
                 <!-- Navigation Links -->
-                <div class="col-span-1 md:absolute md:top-0 md:right-0 md:z-20 p-4 flex justify-center md:justify-end gap-2 w-full md:w-auto border-b md:border-none border-slate-200 bg-slate-50/50 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
+                <div class="col-span-1 md:absolute md:top-0 md:right-0 md:z-20 p-4 flex justify-center md:justify-end gap-2 w-full md:w-auto border-b md:border-none border-slate-200 bg-slate-50/50 md:bg-transparent hover:md:bg-slate-50 backdrop-blur-sm md:backdrop-blur-none">
                     <a href="/resume.html" class="px-4 py-2 text-xs font-medium uppercase tracking-wider border border-slate-200 bg-white md:bg-transparent hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-600">
                         Resume
                     </a>
@@ -482,16 +482,52 @@
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
-                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">About Me</h2>
-                <p class="text-slate-600 leading-relaxed max-w-4xl text-sm sm:text-base">
-                    I'm a dedicated <strong class="text-slate-900">Laravel Artisan</strong> and <strong class="text-slate-900">Open Source Contributor</strong> 
-                    passionate about building exceptional web experiences. As a core member of the 
-                    <a href="https://pinkary.com" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Pinkary Project</a>,
-                    founder of the <a href="https://telegram.me/laravelartisans" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laravel Artisans</a>
-                    community, and contributor to <a href="https://pestphp.com" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Pest v4</a>. 
-                    I'm proud to volunteer at <a href="https://x.com/LaravelAhm" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laravel Ahmedabad</a> and <a href="https://laracon.in" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laracon India</a>. 
-                    As a consultant I help my clients build robust, testable, and scalable web applications using modern tools like Laravel, Tailwind, and PestPHP.
-                </p>
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">About Me</h2>
+                        <p class="text-slate-600 leading-relaxed max-w-4xl text-sm sm:text-base">
+                            I'm a dedicated <strong class="text-slate-900">Laravel Artisan</strong> and <strong class="text-slate-900">Open Source Contributor</strong> 
+                            passionate about building exceptional web experiences. As a core member of the 
+                            <a href="https://pinkary.com" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Pinkary Project</a>,
+                            founder of the <a href="https://telegram.me/laravelartisans" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laravel Artisans</a>
+                            community, and contributor to <a href="https://pestphp.com" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Pest v4</a>. 
+                            I'm proud to volunteer at <a href="https://x.com/LaravelAhm" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laravel Ahmedabad</a> and <a href="https://laracon.in" target="_blank" class="text-red-600 hover:underline decoration-red-300 underline-offset-2">Laracon India</a>. 
+                            As a consultant I help my clients build robust, testable, and scalable web applications using modern tools like Laravel, Tailwind, and PestPHP.
+                        </p>
+                    </div>
+                    
+                    <!-- Door Container -->
+                    <div id="desktop-door-placeholder" class="relative shrink-0">
+                        <div id="door-container" class="door-container">
+                            <div class="door-frame-outer">
+                                <div class="door-lintel"></div>
+                                <div class="door-panel left-panel">
+                                    <div class="panel-inner">
+                                        <svg class="door-carving" viewBox="0 0 50 100" preserveAspectRatio="none">
+                                            <!-- Left half of elephant face -->
+                                            <path d="M50,15 C30,10 2,20 2,45 C2,70 25,70 35,60 Q35,80 30,95 L42,100 L50,100 L50,15 Z" class="carving-shape" />
+                                            <circle cx="32" cy="40" r="3" class="carving-eye" />
+                                            <path d="M38,65 Q25,80 35,90" class="carving-tusk" />
+                                        </svg>
+                                    </div>
+                                    <div class="door-handle"></div>
+                                </div>
+                                <div class="door-panel right-panel">
+                                    <div class="panel-inner">
+                                        <svg class="door-carving" viewBox="0 0 50 100" preserveAspectRatio="none">
+                                            <!-- Right half of elephant face -->
+                                            <path d="M0,15 C20,10 48,20 48,45 C48,70 25,70 15,60 Q15,80 20,95 L8,100 L0,100 L0,15 Z" class="carving-shape" />
+                                            <circle cx="18" cy="40" r="3" class="carving-eye" />
+                                            <path d="M12,65 Q25,80 15,90" class="carving-tusk" />
+                                        </svg>
+                                    </div>
+                                    <div class="door-handle"></div>
+                                </div>
+                                <div class="door-message" id="doorMessage">Knock to see me</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Bottom Section: Grid for Skills & Social -->
@@ -574,6 +610,11 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Mobile Door Placeholder -->
+            <div id="mobile-door-placeholder" class="md:hidden w-full flex justify-center p-4 border-t border-slate-200 min-h-[150px]">
+                <!-- Door will be moved here on mobile -->
             </div>
         </div>
     </main>
@@ -723,6 +764,8 @@
                 fill="none" stroke-linecap="round" />
         </svg>
     </div>
+
+    <!-- Door Container moved to About section -->
 
     <!-- Enhanced JavaScript for better interactivity -->
     <script src="/app.js" defer></script>

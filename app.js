@@ -195,5 +195,162 @@ document.addEventListener('DOMContentLoaded', function() {
                 oscillator.stop(audioContext.currentTime + 0.5);
             }
         }
+
+        // Door Interaction Logic
+        const doorContainer = document.getElementById('door-container');
+        const doorMessage = document.getElementById('doorMessage');
+        let isElephantHome = false;
+
+        // Responsive Door Positioning
+        function positionDoor() {
+            const desktopPlaceholder = document.getElementById('desktop-door-placeholder');
+            const mobilePlaceholder = document.getElementById('mobile-door-placeholder');
+            
+            if (!desktopPlaceholder || !mobilePlaceholder || !doorContainer) return;
+
+            if (window.innerWidth < 768) {
+                // Mobile: Move to bottom placeholder
+                if (doorContainer.parentElement !== mobilePlaceholder) {
+                    mobilePlaceholder.appendChild(doorContainer);
+                }
+            } else {
+                // Desktop: Move to about section placeholder
+                if (doorContainer.parentElement !== desktopPlaceholder) {
+                    desktopPlaceholder.appendChild(doorContainer);
+                }
+            }
+        }
+
+        // Initial position and resize listener
+        positionDoor();
+        window.addEventListener('resize', positionDoor);
+
+        function sendElephantHome() {
+            if (isElephantHome) return;
+            
+            // Get current position to animate from there
+            const rect = elephant.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
+            
+            // Calculate current bottom/right relative to viewport
+            const currentBottom = windowHeight - rect.bottom;
+            const currentRight = windowWidth - rect.right;
+            
+            // Stop current animation and set explicit position
+            elephant.style.animation = 'none';
+            elephant.style.bottom = `${currentBottom}px`;
+            elephant.style.right = `${currentRight}px`;
+            elephant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode');
+            
+            // Force reflow
+            void elephant.offsetWidth;
+            
+            // Open door
+            doorContainer.classList.add('open');
+            
+            // Calculate target position (Door)
+            const doorRect = doorContainer.getBoundingClientRect();
+            
+            // Dynamic offset calculation based on current elephant size
+            const elephantSize = elephant.offsetWidth; // 220 on desktop, 120 on mobile
+            const scaledSize = elephantSize * 0.5; // Scale is 0.5
+            const offset = (elephantSize - scaledSize) / 2;
+            
+            // We want visual bottom to match door bottom
+            // doorBottomSpace = windowHeight - doorRect.bottom
+            // targetBottom = doorBottomSpace - offset
+            const targetBottom = (windowHeight - doorRect.bottom) - offset;
+            
+            // We want visual center to match door center
+            // doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2)
+            // elephantCenterFromRight = targetRight + (elephantSize / 2)
+            // targetRight = doorCenterFromRight - (elephantSize / 2)
+            const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
+            const targetRight = doorCenterFromRight - (elephantSize / 2);
+
+            // Animate home
+            elephant.classList.add('returning-home');
+            elephant.style.bottom = `${targetBottom}px`;
+            elephant.style.right = `${targetRight}px`;
+            
+            // Wait for arrival
+            setTimeout(() => {
+                elephant.classList.add('hidden-behind-door');
+                doorContainer.classList.remove('open');
+                doorMessage.textContent = "Knock to see me";
+                isElephantHome = true;
+            }, 1500);
+        }
+
+        function releaseElephant() {
+            if (!isElephantHome) return;
+            
+            // Open door
+            doorContainer.classList.add('open');
+            elephant.classList.remove('hidden-behind-door');
+            
+            // Recalculate position in case window resized
+            const doorRect = doorContainer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
+            
+            const elephantSize = elephant.offsetWidth;
+            const scaledSize = elephantSize * 0.5;
+            const offset = (elephantSize - scaledSize) / 2;
+            
+            const targetBottom = (windowHeight - doorRect.bottom) - offset;
+            const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
+            const startRight = doorCenterFromRight - (elephantSize / 2);
+            
+            // Set start position
+            elephant.style.bottom = `${targetBottom}px`;
+            elephant.style.right = `${startRight}px`;
+            
+            // Force reflow
+            void elephant.offsetWidth;
+
+            // Animate out
+            elephant.classList.remove('returning-home');
+            elephant.classList.add('exiting-door');
+            
+            // Move out to the left (increase right value)
+            elephant.style.right = `${startRight + 200}px`;
+            
+            setTimeout(() => {
+                // Start running
+                elephant.classList.remove('exiting-door');
+                elephant.style.animation = ''; // Reset to CSS defined animation
+                elephant.style.bottom = '';
+                elephant.style.right = '';
+                
+                doorContainer.classList.remove('open');
+                doorMessage.textContent = "Knock to hide me";
+                isElephantHome = false;
+            }, 1000);
+        }
+
+        // Initial Sequence
+        setTimeout(() => {
+            // Speed up initially
+            elephant.classList.add('turbo-mode');
+            
+            // Go home after a few seconds
+            setTimeout(() => {
+                sendElephantHome();
+            }, 3000);
+        }, 1000);
+
+        // Door Click Event
+        if (doorContainer) {
+            doorContainer.addEventListener('click', () => {
+                if (isElephantHome) {
+                    releaseElephant();
+                    playTrumpetSound();
+                } else {
+                    sendElephantHome();
+                }
+            });
+        }
     }
 });

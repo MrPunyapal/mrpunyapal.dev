@@ -1166,3 +1166,193 @@
 .elephant-container:hover {
     cursor: pointer;
 }
+
+/* Door Styles */
+.door-container {
+    position: relative;
+    width: 120px;
+    height: 150px;
+    z-index: 50;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.door-container:hover {
+    transform: scale(1.02);
+}
+
+.door-frame-outer {
+    width: 100%;
+    height: 100%;
+    background: #5D4037; /* Dark wood */
+    border: 10px solid #3E2723;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    display: flex;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,0,0,0.2);
+    /* Wood texture */
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px);
+}
+
+.door-lintel {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    height: 20px;
+    background: #3E2723;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 2;
+    /* Carving detail */
+    background-image: radial-gradient(circle at 50% 50%, #5D4037 2px, transparent 3px);
+    background-size: 10px 10px;
+}
+
+.door-panel {
+    width: 50%;
+    height: 100%;
+    background: #8D6E63;
+    position: relative;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border: 1px solid #4E342E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+    transform-style: preserve-3d;
+    /* Wood grain */
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.15));
+}
+
+.left-panel {
+    transform-origin: left;
+    border-right: 1px solid #3E2723;
+}
+
+.right-panel {
+    transform-origin: right;
+    border-left: 1px solid #3E2723;
+}
+
+.door-container.open .left-panel {
+    transform: rotateY(-110deg);
+}
+
+.door-container.open .right-panel {
+    transform: rotateY(110deg);
+}
+
+.panel-inner {
+    width: 85%;
+    height: 90%;
+    border: 2px inset #6D4C41;
+    background: #795548;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-shadow: inset 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+.door-carving {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(1px 1px 0px rgba(255,255,255,0.1)) drop-shadow(-1px -1px 1px rgba(0,0,0,0.5));
+}
+
+.carving-shape {
+    fill: #5D4037;
+    stroke: #4E342E;
+    stroke-width: 0.5;
+}
+
+.carving-eye {
+    fill: #3E2723;
+}
+
+.carving-tusk {
+    fill: none;
+    stroke: #D7CCC8;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.door-handle {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 24px;
+    z-index: 5;
+}
+
+.left-panel .door-handle {
+    right: 4px;
+    width: 14px;
+    height: 14px;
+    border: 3px solid #FFD700;
+    border-radius: 50%;
+    border-right: 1px solid transparent; /* Open ring look */
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.right-panel .door-handle {
+    left: 4px;
+    width: 14px;
+    height: 14px;
+    border: 3px solid #FFD700;
+    border-radius: 50%;
+    border-left: 1px solid transparent;
+    box-shadow: -1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.door-message {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    text-align: center;
+    padding: 4px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    pointer-events: none;
+    background: rgba(0,0,0,0.6);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+
+.door-container.open .door-message {
+    opacity: 0;
+}
+
+/* Elephant Transition Classes */
+.elephant-container.returning-home {
+    animation: none !important;
+    transition: all 1.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform: scale(0.5) !important; /* Face right and shrink */
+    filter: brightness(0.8);
+    pointer-events: none !important;
+}
+
+.elephant-container.hidden-behind-door {
+    animation: none !important;
+    opacity: 0;
+    pointer-events: none !important;
+    transition: opacity 0.5s ease;
+}
+
+.elephant-container.exiting-door {
+    animation: none !important;
+    transition: all 1s cubic-bezier(0.0, 0.0, 0.2, 1);
+    opacity: 1;
+    transform: scaleX(-1) !important; /* Face left */
+}
