@@ -295,46 +295,50 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Open door
             doorContainer.classList.add('open');
-            elephant.classList.remove('hidden-behind-door');
             
-            // Recalculate position in case window resized
-            const doorRect = doorContainer.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const windowWidth = window.innerWidth;
-            
-            const elephantSize = elephant.offsetWidth;
-            const scaledSize = elephantSize * 0.5;
-            const offset = (elephantSize - scaledSize) / 2;
-            
-            const targetBottom = (windowHeight - doorRect.bottom) - offset;
-            const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
-            const startRight = doorCenterFromRight - (elephantSize / 2);
-            
-            // Set start position
-            elephant.style.bottom = `${targetBottom}px`;
-            elephant.style.right = `${startRight}px`;
-            
-            // Force reflow
-            void elephant.offsetWidth;
-
-            // Animate out
-            elephant.classList.remove('returning-home');
-            elephant.classList.add('exiting-door');
-            
-            // Move out to the left (increase right value)
-            elephant.style.right = `${startRight + 200}px`;
-            
+            // Wait for door to open partially
             setTimeout(() => {
-                // Start running
-                elephant.classList.remove('exiting-door');
-                elephant.style.animation = ''; // Reset to CSS defined animation
-                elephant.style.bottom = '';
-                elephant.style.right = '';
+                elephant.classList.remove('hidden-behind-door');
                 
-                doorContainer.classList.remove('open');
-                doorMessage.textContent = "Knock to hide me";
-                isElephantHome = false;
-            }, 1000);
+                // Recalculate position in case window resized
+                const doorRect = doorContainer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const windowWidth = window.innerWidth;
+                
+                const elephantSize = elephant.offsetWidth;
+                const scaledSize = elephantSize * 0.5;
+                const offset = (elephantSize - scaledSize) / 2;
+                
+                const targetBottom = (windowHeight - doorRect.bottom) - offset;
+                const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
+                const startRight = doorCenterFromRight - (elephantSize / 2);
+                
+                // Set start position
+                elephant.style.bottom = `${targetBottom}px`;
+                elephant.style.right = `${startRight}px`;
+                
+                // Force reflow
+                void elephant.offsetWidth;
+
+                // Animate out
+                elephant.classList.remove('returning-home');
+                elephant.classList.add('exiting-door');
+                
+                // Move out to the left (increase right value)
+                elephant.style.right = `${startRight + 200}px`;
+                
+                setTimeout(() => {
+                    // Start running
+                    elephant.classList.remove('exiting-door');
+                    elephant.style.animation = ''; // Reset to CSS defined animation
+                    elephant.style.bottom = '';
+                    elephant.style.right = '';
+                    
+                    doorContainer.classList.remove('open');
+                    doorMessage.textContent = "Knock to hide me";
+                    isElephantHome = false;
+                }, 1000);
+            }, 400);
         }
 
         // Initial Sequence
