@@ -67,11 +67,6 @@
     animation: runAroundScreen 8s linear infinite;
 }
 
-.elephant-container.turbo-mode svg {
-    animation: turboGlow 0.3s ease-in-out infinite,
-               turboShake 0.1s ease-in-out infinite;
-}
-
 .elephant-container.celebration-mode {
     animation: runAroundScreen 20s ease-in-out infinite;
 }
@@ -105,11 +100,6 @@
 
 .elephant-container.party-mode::after {
     animation: partyTrail 0.5s ease-in-out infinite;
-}
-
-.elephant-container.turbo-mode::after {
-    animation: turboTrail 0.2s ease-in-out infinite;
-    background: radial-gradient(circle, rgba(255, 165, 0, 0.4) 0%, transparent 70%);
 }
 
 .elephant-container.celebration-mode::after {
@@ -1337,7 +1327,7 @@
 /* Elephant Transition Classes */
 .elephant-container.returning-home {
     animation: none !important;
-    transition: all 1.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: bottom 1.5s cubic-bezier(0.4, 0.0, 0.2, 1), right 1.5s cubic-bezier(0.4, 0.0, 0.2, 1), transform 1.5s cubic-bezier(0.4, 0.0, 0.2, 1);
     transform: scale(0.5) !important; /* Face right and shrink */
     filter: brightness(0.8);
     pointer-events: none !important;
