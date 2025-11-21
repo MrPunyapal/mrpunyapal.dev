@@ -20,12 +20,19 @@ function typeAnimation() {
     
     const fullText = phrases[currentPhrase];
     
+    let newText = "";
     if (isDeleting) {
-        typingText.textContent = fullText.substring(0, currentChar - 1);
+        newText = fullText.substring(0, currentChar - 1);
         currentChar--;
     } else {
-        typingText.textContent = fullText.substring(0, currentChar + 1);
+        newText = fullText.substring(0, currentChar + 1);
         currentChar++;
+    }
+
+    if (newText === "") {
+        typingText.innerHTML = "&nbsp;";
+    } else {
+        typingText.textContent = newText;
     }
     
     let typeSpeed = isDeleting ? 50 : 100;
