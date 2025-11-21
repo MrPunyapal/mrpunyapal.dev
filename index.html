@@ -355,7 +355,7 @@
     <!-- Background removed in favor of local grid animation -->
 
     <!-- Main Content - Technical Grid Layout -->
-    <main class="min-h-screen flex items-center justify-center p-4 sm:p-8">
+    <main class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 gap-8">
         <div class="w-full max-w-6xl border border-slate-200 bg-white/80 backdrop-blur-md relative z-10">
             
             <!-- Tech Markers: Corners -->
@@ -637,11 +637,11 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Mobile Door Placeholder -->
-            <div id="mobile-door-placeholder" class="md:hidden w-full flex justify-center p-4 border-t border-slate-200 min-h-[150px]">
-                <!-- Door will be moved here on mobile -->
-            </div>
+        <!-- Mobile Door Placeholder -->
+        <div id="mobile-door-placeholder" class="md:hidden w-full flex justify-center min-h-[150px]">
+            <!-- Door will be moved here on mobile -->
         </div>
     </main>
 
