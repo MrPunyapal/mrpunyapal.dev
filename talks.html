@@ -18,14 +18,16 @@
     <meta name="title" content="Talks & Speaking Engagements | Punyapal Shah">
     <meta name="description"
         content="Conference talks and speaking engagements by Punyapal Shah on Laravel, PHP, PHPStan, RectorPHP, and FilamentPHP at Laravel community events across India.">
-    <meta name="keywords" content="Laravel Talks, PHP Conference, Laravel Speaker, PHPStan, RectorPHP, FilamentPHP, Laravel Broadcasting, Laravel Meetups">
+    <meta name="keywords"
+        content="Laravel Talks, PHP Conference, Laravel Speaker, PHPStan, RectorPHP, FilamentPHP, Laravel Broadcasting, Laravel Meetups">
     <meta name="author" content="Punyapal Shah">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mrpunyapal.dev/talks">
     <meta property="og:title" content="Talks & Speaking Engagements | Punyapal Shah">
-    <meta property="og:description" content="Conference talks and speaking engagements by Punyapal Shah on Laravel, PHP, and modern development tools.">
+    <meta property="og:description"
+        content="Conference talks and speaking engagements by Punyapal Shah on Laravel, PHP, and modern development tools.">
     <meta property="og:image" content="https://mrpunyapal.dev/og-image-mrpunyapal-talks.jpg">
 
     <!-- Twitter -->
@@ -34,7 +36,8 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/talks">
     <meta name="twitter:title" content="Talks & Speaking Engagements | Punyapal Shah">
-    <meta name="twitter:description" content="Conference talks and speaking engagements by Punyapal Shah on Laravel, PHP, and modern development tools.">
+    <meta name="twitter:description"
+        content="Conference talks and speaking engagements by Punyapal Shah on Laravel, PHP, and modern development tools.">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og-image-mrpunyapal-talks.jpg">
 
     <!-- Structured Data for SEO -->
@@ -110,32 +113,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
+
     <!-- Critical CSS for animations -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
+
         @keyframes fade-up {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes scale-up {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
-        
+
         body {
             background: #f8fafc;
             color: #1e293b;
         }
-        
+
         .talk-card {
             background: white;
             border: 1px solid #e2e8f0;
@@ -143,13 +154,13 @@
             transition: all 0.3s ease;
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
         }
-        
+
         .talk-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
             border-color: #cbd5e1;
         }
-        
+
         .back-link {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(8px);
@@ -159,13 +170,13 @@
             transition: all 0.3s ease;
             text-decoration: none;
         }
-        
+
         .back-link:hover {
             background: white;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             transform: translateY(-1px);
         }
-        
+
         .video-link {
             background: linear-gradient(135deg, #dc2626, #b91c1c);
             color: white;
@@ -178,7 +189,7 @@
             transition: all 0.3s ease;
             font-weight: 600;
         }
-        
+
         .video-link:hover {
             background: linear-gradient(135deg, #b91c1c, #991b1b);
             transform: translateY(-2px);
@@ -190,7 +201,7 @@
             .talk-card {
                 padding: 1rem;
             }
-            
+
             .talk-card h2 {
                 font-size: 1.25rem;
             }
@@ -205,9 +216,9 @@
             border: 1px solid #cbd5e1;
             border-radius: 50%;
             z-index: 50;
-            box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
         }
-        
+
         /* Infinite Grid Lines */
         .tech-line-h {
             position: absolute;
@@ -219,7 +230,7 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        
+
         .tech-line-v-top {
             position: absolute;
             width: 1px;
@@ -240,10 +251,10 @@
             height: 120px;
         }
     </style>
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://mrpunyapal.dev/talks">
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -277,25 +288,26 @@
     <link rel="stylesheet" href="/app.css">
 </head>
 
-<body class="font-sans m-0 p-0 min-h-screen bg-slate-50 text-slate-800 leading-relaxed relative overflow-x-hidden antialiased">
-    
+<body
+    class="font-sans m-0 p-0 min-h-screen bg-slate-50 text-slate-800 leading-relaxed relative overflow-x-hidden antialiased">
+
     <!-- Main Content -->
     <main class="min-h-screen flex flex-col items-center justify-center p-2 sm:p-8">
         <div class="w-full max-w-5xl border border-slate-200 bg-white/80 backdrop-blur-md relative z-10">
-        
+
             <!-- Tech Markers: Corners -->
             <div class="tech-marker -top-[4px] -left-[4px]"></div>
             <div class="tech-marker -top-[4px] -right-[4px]"></div>
             <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
             <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
-            
+
             <!-- Global Extensions -->
             <div class="tech-line-h top-[-1px]"></div>
             <div class="tech-line-h bottom-[-1px]"></div>
-            
+
             <div class="tech-line-v-top left-[-1px]"></div>
             <div class="tech-line-v-top right-[-1px]"></div>
-            
+
             <div class="tech-line-v-bottom left-[-1px]"></div>
             <div class="tech-line-v-bottom right-[-1px]"></div>
 
@@ -303,14 +315,14 @@
             <div class="p-4 sm:p-12 border-b border-slate-200 relative">
                 <!-- Horizontal Line Extension -->
                 <div class="tech-line-h bottom-[-1px]"></div>
-                
+
                 <!-- Intersections -->
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
                 <!-- Back to Home Link -->
-                <a href="/index.html" 
-                   class="print:hidden absolute top-4 right-4 sm:top-8 sm:right-8 inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-600 rounded z-20 animate-fade-up">
+                <a href="/index.html"
+                    class="print:hidden absolute top-4 right-4 sm:top-8 sm:right-8 inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-600 rounded z-20 animate-fade-up">
                     <i class="fas fa-arrow-left" aria-hidden="true"></i>
                     <span class="hidden sm:inline">Back to Home</span>
                     <span class="sm:hidden">Back</span>
@@ -329,46 +341,101 @@
             <!-- Talks Grid Section -->
             <div class="p-4 sm:p-12 relative">
                 <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Speaking Log</h2>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200">
-                    
-                    <!-- Talk 1: Types in PHP -->
-                    <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up" style="animation-delay: 0.2s;">
+
+                    <!-- Talk: PestPHP (Featured) -->
+                    <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up md:col-span-2"
+                        style="animation-delay: 0.1s;">
                         <!-- TL Marker (Gray) -->
-                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
-                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                        <div
+                            class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                             </svg>
                         </div>
-                        
+                        <!-- TR Marker (Gray) -->
+                        <div
+                            class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
+                            </svg>
+                        </div>
+
                         <div class="flex flex-col h-full">
                             <div class="mb-4">
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    <a href="https://x.com/LaravelAhm" target="_blank" class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
+                                    <a href="https://x.com/LaravelAhm" target="_blank"
+                                        class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
                                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                         Ahmedabad
                                     </a>
-                                    <a href="https://x.com/LaravelIndore" target="_blank" class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
+                                </div>
+                                <h3
+                                    class="text-xl md:text-2xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
+                                    From Zero to Tested: Laravel + PestPHP 🐛✅
+                                </h3>
+                                <p class="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                                    An exploration of PHP's type system and how PHPStan helps catch bugs before they
+                                    reach production.
+                                </p>
+                            </div>
+                            <div class="mt-auto pt-4 flex items-center justify-end">
+                                <a href="https://github.com/MrPunyapal/pest-talk" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-slate-400 hover:text-slate-900 transition-colors">
+                                    <i class="fab fa-github text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Talk 1: Types in PHP -->
+                    <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        style="animation-delay: 0.2s;">
+                        <!-- TL Marker (Gray) -->
+                        <div
+                            class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
+                            </svg>
+                        </div>
+
+                        <div class="flex flex-col h-full">
+                            <div class="mb-4">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <a href="https://x.com/LaravelAhm" target="_blank"
+                                        class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        Ahmedabad
+                                    </a>
+                                    <a href="https://x.com/LaravelIndore" target="_blank"
+                                        class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
                                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                         Indore
                                     </a>
-                                    <a href="https://x.com/laravel_kkd" target="_blank" class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
+                                    <a href="https://x.com/laravel_kkd" target="_blank"
+                                        class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
                                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                         Kozhikode
                                     </a>
                                 </div>
-                                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
+                                <h3
+                                    class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
                                     Types in PHP at Glance with PHPStan
                                 </h3>
                                 <p class="text-sm text-slate-600 leading-relaxed">
-                                    An exploration of PHP's type system and how PHPStan helps catch bugs before they reach production.
+                                    An exploration of PHP's type system and how PHPStan helps catch bugs before they
+                                    reach production.
                                 </p>
                             </div>
                             <div class="mt-auto pt-4 flex items-center justify-end">
-                                <a href="https://gist.github.com/MrPunyapal/139779b743eec108a292de95b3f958f8" 
-                                   target="_blank" 
-                                   rel="noopener noreferrer"
-                                   class="text-slate-400 hover:text-slate-900 transition-colors">
+                                <a href="https://gist.github.com/MrPunyapal/139779b743eec108a292de95b3f958f8"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="text-slate-400 hover:text-slate-900 transition-colors">
                                     <i class="fab fa-github text-lg"></i>
                                 </a>
                             </div>
@@ -376,39 +443,49 @@
                     </div>
 
                     <!-- Talk 2: RectorPHP -->
-                    <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up" style="animation-delay: 0.3s;">
+                    <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        style="animation-delay: 0.3s;">
                         <!-- TL Marker (Gray) -->
-                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
-                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                        <div
+                            class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                             </svg>
                         </div>
                         <!-- TR Marker (Gray) -->
-                        <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
-                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                        <div
+                            class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                             </svg>
                         </div>
                         <!-- BR Marker (Gray) -->
-                        <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
-                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                        <div
+                            class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                             </svg>
                         </div>
 
                         <div class="flex flex-col h-full">
                             <div class="mb-4">
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    <a href="https://x.com/LaravelBLR" target="_blank" class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
+                                    <a href="https://x.com/LaravelBLR" target="_blank"
+                                        class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
                                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                         Bangalore
                                     </a>
-                                    <a href="https://x.com/laravelphpmoris" target="_blank" class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
+                                    <a href="https://x.com/laravelphpmoris" target="_blank"
+                                        class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
                                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                         Mauritius
                                     </a>
                                 </div>
-                                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
+                                <h3
+                                    class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
                                     Refactor Laravel with RectorPHP
                                 </h3>
                                 <p class="text-sm text-slate-600 leading-relaxed">
@@ -417,16 +494,14 @@
                             </div>
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <div class="flex gap-3">
-                                    <a href="https://youtube.com/live/N73Smm8ldCc" 
-                                       target="_blank" 
-                                       rel="noopener noreferrer"
-                                       class="text-slate-400 hover:text-red-600 transition-colors">
+                                    <a href="https://youtube.com/live/N73Smm8ldCc" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-slate-400 hover:text-red-600 transition-colors">
                                         <i class="fab fa-youtube text-lg"></i>
                                     </a>
-                                    <a href="https://github.com/MrPunyapal/laravel-rectorphp" 
-                                       target="_blank" 
-                                       rel="noopener noreferrer"
-                                       class="text-slate-400 hover:text-slate-900 transition-colors">
+                                    <a href="https://github.com/MrPunyapal/laravel-rectorphp" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-slate-400 hover:text-slate-900 transition-colors">
                                         <i class="fab fa-github text-lg"></i>
                                     </a>
                                 </div>
@@ -435,35 +510,44 @@
                     </div>
 
                     <!-- Talk 3: FilamentPHP -->
-                    <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up" style="animation-delay: 0.4s;">
+                    <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        style="animation-delay: 0.4s;">
                         <!-- TL Marker (Gray) -->
-                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
-                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                        <div
+                            class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                             </svg>
                         </div>
                         <!-- BL Marker (Gray) -->
-                        <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
-                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                        <div
+                            class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                             </svg>
                         </div>
                         <!-- BR Marker (Gray) -->
-                        <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
-                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                        <div
+                            class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                             </svg>
                         </div>
 
                         <div class="flex flex-col h-full">
                             <div class="mb-4">
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    <a href="https://x.com/LaravelAhm" target="_blank" class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
+                                    <a href="https://x.com/LaravelAhm" target="_blank"
+                                        class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
                                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                         Ahmedabad
                                     </a>
                                 </div>
-                                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
+                                <h3
+                                    class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
                                     Spark Your Laravel Apps with FilamentPHP
                                 </h3>
                                 <p class="text-sm text-slate-600 leading-relaxed">
@@ -471,10 +555,9 @@
                                 </p>
                             </div>
                             <div class="mt-auto pt-4 flex items-center justify-end">
-                                <a href="https://github.com/MrPunyapal/filament-demo" 
-                                   target="_blank" 
-                                   rel="noopener noreferrer"
-                                   class="text-slate-400 hover:text-slate-900 transition-colors">
+                                <a href="https://github.com/MrPunyapal/filament-demo" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-slate-400 hover:text-slate-900 transition-colors">
                                     <i class="fab fa-github text-lg"></i>
                                 </a>
                             </div>
@@ -482,29 +565,36 @@
                     </div>
 
                     <!-- Talk 4: Broadcasting -->
-                    <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up" style="animation-delay: 0.5s;">
+                    <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        style="animation-delay: 0.5s;">
                         <!-- TL Marker (Gray) -->
-                        <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
-                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                        <div
+                            class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                             </svg>
                         </div>
                         <!-- BR Marker (Gray) -->
-                        <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
-                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+                        <div
+                            class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                             </svg>
                         </div>
 
                         <div class="flex flex-col h-full">
                             <div class="mb-4">
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    <a href="https://x.com/LaravelAhm" target="_blank" class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
+                                    <a href="https://x.com/LaravelAhm" target="_blank"
+                                        class="inline-flex items-center gap-1 px-2 py-1 bg-white text-slate-600 hover:text-red-600 hover:border-red-200 rounded text-xs font-medium border border-slate-200 transition-colors">
                                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                         Ahmedabad
                                     </a>
                                 </div>
-                                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
+                                <h3
+                                    class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
                                     Broadcasting in Laravel
                                 </h3>
                                 <p class="text-sm text-slate-600 leading-relaxed">
@@ -512,10 +602,9 @@
                                 </p>
                             </div>
                             <div class="mt-auto pt-4 flex items-center justify-end">
-                                <a href="https://github.com/MrPunyapal/broadcast-with-laravel" 
-                                   target="_blank" 
-                                   rel="noopener noreferrer"
-                                   class="text-slate-400 hover:text-slate-900 transition-colors">
+                                <a href="https://github.com/MrPunyapal/broadcast-with-laravel" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-slate-400 hover:text-slate-900 transition-colors">
                                     <i class="fab fa-github text-lg"></i>
                                 </a>
                             </div>
@@ -531,8 +620,9 @@
         <!-- Footer -->
         <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10">
             <p class="text-xs text-slate-500 font-mono">
-                // Interested in having me speak at your event? 
-                <a href="mailto:mrpunyapal@gmail.com" class="text-slate-700 hover:text-red-600 transition-colors font-bold ml-1">
+                // Interested in having me speak at your event?
+                <a href="mailto:mrpunyapal@gmail.com"
+                    class="text-slate-700 hover:text-red-600 transition-colors font-bold ml-1">
                     Initialize_Contact()
                 </a>
             </p>
