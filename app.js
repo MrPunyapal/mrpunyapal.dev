@@ -6,11 +6,11 @@ let typingInterval;
 const phrases = [
     "Laravel Engineer",
     "Open Source Maintainer",
-    "Content Creator",
-    "Community Builder",
-    "Speaker",
     "Core Team @ Pinkary",
     "Core Team @ Pest",
+    "Community Builder",
+    "Speaker",
+    "Content Creator",
 ];
 
 function typeAnimation() {
