@@ -4,14 +4,13 @@ let isDeleting = false;
 let typingInterval;
 
 const phrases = [
-    "PHP Developer",
-    "Laravel Artisan",
-    "Open Source Contributor", 
+    "Laravel Engineer",
+    "Open Source Maintainer",
     "Content Creator",
     "Community Builder",
-    "Full Stack Developer",
-    "Tall Stack Developer",
-    "Consultant",
+    "Speaker",
+    "Core Team @ Pinkary",
+    "Core Team @ Pest",
 ];
 
 function typeAnimation() {
