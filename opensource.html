@@ -228,8 +228,7 @@
                     <a href="/index.html"
                         class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-600 rounded">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                        <span class="hidden sm:inline">Home</span>
-                        <span class="sm:hidden">Back</span>
+                        <span>Back</span>
                     </a>
                 </div>
 
@@ -249,22 +248,93 @@
                 </div>
 
                 <!-- Credibility Strip -->
-                <div class="grid grid-cols-2 md:grid-cols-4 border-t border-slate-200 mt-6">
-                    <div class="p-4 sm:p-5 text-center border-r border-slate-200">
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Core Team</p>
-                        <p class="text-sm text-slate-700 mt-1">Pinkary &amp; Pest</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                    <!-- Core Team -->
+                    <div class="relative p-5 sm:p-6 bg-white border border-slate-200 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 hover:bg-slate-50/50 transition-all duration-300">
+                        <svg class="absolute top-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute top-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <p class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Pinkary &amp; Pest</p>
+                        <p class="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1.5">Core Team</p>
                     </div>
-                    <div class="p-4 sm:p-5 text-center border-r border-slate-200 md:border-r-0">
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Founder</p>
-                        <p class="text-sm text-slate-700 mt-1">Laravel Artisans</p>
+
+                    <!-- Founder -->
+                    <div class="relative p-5 sm:p-6 bg-white border border-slate-200 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 hover:bg-slate-50/50 transition-all duration-300">
+                        <svg class="absolute top-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute top-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <p class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Laravel Artisans</p>
+                        <p class="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1.5">Founder</p>
                     </div>
-                    <div class="p-4 sm:p-5 text-center border-r border-slate-200">
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Contributor</p>
-                        <p class="text-sm text-slate-700 mt-1">100+ Open Source Repositories</p>
+
+                    <!-- Contributor -->
+                    <div class="relative p-5 sm:p-6 bg-white border border-slate-200 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 hover:bg-slate-50/50 transition-all duration-300">
+                        <svg class="absolute top-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute top-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <p class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">100+ Repositories</p>
+                        <p class="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1.5">Contributor</p>
                     </div>
-                    <div class="p-4 sm:p-5 text-center">
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Focus</p>
-                        <p class="text-sm text-slate-700 mt-1">Developer Experience</p>
+
+                    <!-- Focus -->
+                    <div class="relative p-5 sm:p-6 bg-white border border-slate-200 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 hover:bg-slate-50/50 transition-all duration-300">
+                        <svg class="absolute top-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute top-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
+                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+                        </svg>
+                        <p class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Developer Experience</p>
+                        <p class="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1.5">Focus</p>
                     </div>
                 </div>
             </div>
