@@ -1,0 +1,25 @@
+{
+  "name": "mrpunyapal.dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "tailwindcss --input ./src/tailwind.css --output ./dist/tailwind.css --minify",
+    "dev": "tailwindcss --input ./src/tailwind.css --output ./dist/tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrPunyapal/mrpunyapal.dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrPunyapal/mrpunyapal.dev/issues"
+  },
+  "homepage": "https://github.com/MrPunyapal/mrpunyapal.dev#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
