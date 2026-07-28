@@ -128,16 +128,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
     <meta name="msapplication-TileColor" content="#FF2D20">
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/profile-image.jpg" as="image" type="image/jpeg" fetchpriority="high">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    <!-- Preload and load critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="/profile-image.jpg" as="image" type="image/jpeg" fetchpriority="high">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     
-
-    
-    <!-- Critical CSS for animations only -->
+    <!-- Critical CSS for animations and layout markers -->
     <style>
         /* Custom keyframes for enhanced animations */
         @keyframes gradient-x {
@@ -273,37 +271,14 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://mrpunyapal.dev/">
     
-    <!-- Enhanced meta tags for better SEO -->
-    <meta name="geo.region" content="IN">
-    <meta name="geo.placename" content="India">
-    <meta name="referrer" content="no-referrer-when-downgrade">
-    <meta name="format-detection" content="telephone=no">
-
-    
-    <!-- Additional SEO Meta Tags -->
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="MrPunyapal">
-    <meta name="application-name" content="Punyapal Shah">
-    <meta name="msapplication-tooltip" content="Laravel Engineer & Open Source Maintainer">
-    <meta name="msapplication-starturl" content="https://mrpunyapal.dev/">
-    <meta name="msapplication-window" content="width=1024;height=768">
-    <meta name="msapplication-navbutton-color" content="#FF2D20">
-    
-    <!-- Language alternatives -->
-    <link rel="alternate" hreflang="en" href="https://mrpunyapal.dev/">
-    <link rel="alternate" hreflang="x-default" href="https://mrpunyapal.dev/">
-    
     <link rel="stylesheet" href="/dist/tailwind.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
+        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
     <link rel="stylesheet" href="/app.css">
     <link rel="stylesheet" href="/elephant.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/elephant.css"></noscript>
-
 </head>
 
 <body class="font-sans m-0 p-0 min-h-screen bg-white text-slate-800 leading-relaxed relative overflow-x-hidden antialiased">
