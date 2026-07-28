@@ -58,8 +58,9 @@ function trackEvent(event, details) {
 document.addEventListener('DOMContentLoaded', function() {
     const typingText = document.getElementById('typingText');
     if (typingText) {
-        typingText.textContent = '';
-        setTimeout(typeAnimation, 500);
+        currentChar = phrases[0].length;
+        isDeleting = true;
+        setTimeout(typeAnimation, 3000);
     }
     
     document.querySelectorAll('a[target="_blank"]').forEach(link => {
