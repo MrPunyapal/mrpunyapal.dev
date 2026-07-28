@@ -120,8 +120,6 @@
     <meta name="msapplication-TileColor" content="#23a6d5">
 
     <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <!-- Critical CSS for animations -->
@@ -362,9 +360,12 @@
                 <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6 sm:gap-8 animate-fade-up"
                     style="animation-delay: 0.1s;">
                     <div class="flex-shrink-0 relative group">
-                        <img src="profile-image.jpg" alt="Punyapal Shah, Laravel Engineer and Open Source Maintainer"
-                            class="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-2 border-white shadow-sm"
-                            loading="eager" width="128" height="128" fetchpriority="high">
+                        <picture>
+                            <source srcset="/profile-image-160.webp" type="image/webp">
+                            <img src="/profile-image.jpg" alt="Punyapal Shah, Laravel Engineer and Open Source Maintainer"
+                                class="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-2 border-white shadow-sm"
+                                loading="eager" width="128" height="128" fetchpriority="high">
+                        </picture>
                     </div>
 
                     <div class="flex-1 text-center lg:text-left">
