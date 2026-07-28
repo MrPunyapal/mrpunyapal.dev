@@ -1,6 +1,3 @@
 import './main.js';
+import './elephant.css';
 import '../app.js';
-
-window.addEventListener('load', () => {
-  import('./elephant.css');
-});
