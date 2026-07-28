@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "tailwindcss --input ./src/tailwind.css --output ./dist/tailwind.css --minify",
-    "dev": "tailwindcss --input ./src/tailwind.css --output ./dist/tailwind.css --watch"
+    "build": "vite build",
+    "dev": "vite"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/MrPunyapal/mrpunyapal.dev#readme",
   "devDependencies": {
-    "@tailwindcss/cli": "^4.3.3",
-    "tailwindcss": "^4.3.3"
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.1.5"
   }
 }
