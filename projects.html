@@ -49,21 +49,160 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "mainEntity": {
-            "@type": "Person",
-            "name": "Punyapal Shah",
-            "alternateName": ["Punyapal", "MrPunyapal"],
-            "description": "Laravel engineer building production applications, enterprise systems, SaaS platforms, and API integrations.",
-            "url": "https://mrpunyapal.dev"
-        },
-        "about": {
-            "@type": "Thing",
-            "name": "Software Engineering Projects",
-            "description": "Production Laravel applications, API integrations, and enterprise software"
-        }
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "@id": "https://mrpunyapal.dev/projects#webpage",
+                "url": "https://mrpunyapal.dev/projects",
+                "name": "Projects | Punyapal Shah",
+                "description": "Punyapal Shah's production work: Laravel & PHP applications shipped across healthcare, SaaS, AI, logistics, HR, and enterprise software.",
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@id": "https://mrpunyapal.dev/#website"
+                },
+                "about": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "mainEntity": {
+                    "@id": "https://mrpunyapal.dev/projects#collection"
+                }
+            },
+            {
+                "@type": "ItemList",
+                "@id": "https://mrpunyapal.dev/projects#collection",
+                "name": "Production engineering and client work",
+                "itemListElement": [
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Multi-Tenant Cloud Services Platform",
+                        "description": "Developed and shipped features for a production multi-tenant cloud platform, including automated DNS discovery for domains, mailstores, and Microsoft tenants. Built asynchronous processing pipelines, real-time WebSocket communication, complex Livewire and Filament interfaces, comprehensive Pest test coverage, and PHPStan Level 8 static analysis."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Enterprise Laravel Application Modernization",
+                        "description": "Upgraded legacy Laravel codebases from versions 5.x and 7.x up to 11.x and 12.x across client projects, including Livewire, Filament, and PHP version upgrades without downtime."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Automated Code Quality & Test Engineering",
+                        "description": "Test architecture and code quality engineering across Laravel codebases, including project-specific Pest conventions, Pest 5 upgrades, PHPStan up to Level Max, custom Rector rules, and AI agent skills that encode application architecture and testing patterns."
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "name": "TRX Mall POS Sales Reporting Package",
+                        "description": "Open-source Laravel package for integrating with the TRX Mall POS sales reporting API, with Artisan commands, schedulable jobs, and extensible service stubs for custom sales payload transformation.",
+                        "codeRepository": "https://github.com/Retail-Cosmos/trx-mall-upload-sales-data-api"
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Logistics & Shipping Integration Platform",
+                        "description": "Barcode scanning that pulls customer data from third-party APIs, US zip code to delivery zone mapping, dynamic evaluation of four shipping providers, deliverability verification, and shipping label PDF generation with fallback routing."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Traffic Control Equipment Booking Platform",
+                        "description": "Enterprise equipment booking platform with a complex multi-asset booking model, Dialpad API integration, and Laravel Prism for automated call summarization and structured booking-data extraction."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Healthcare Patient Survey & Clinical Form Builder",
+                        "description": "Dynamic clinical form builder for oncology patient visits using Filament and Livewire, allowing healthcare professionals to design custom patient forms, calculate scores from historical visit data, and configure dynamic field visibility rules."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Multi-Vendor CMS & Ecommerce Platform",
+                        "description": "Multi-vendor CMS and e-commerce application running across multiple databases and domains from a single codebase, with Excel bulk product imports, a spreadsheet-like bulk editing interface, and a drag-and-drop menu builder."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Digital Signature & Document Processing Service",
+                        "description": "DocuSign API integration for document management systems, including file upload handling, signature request triggers, webhook status handlers, and administrative document workflows."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Bulk WhatsApp Messaging Platform",
+                        "description": "Bulk messaging platform using WhatsApp Business APIs with message template management, CSV contact list parsing, media attachment handling, and scheduled broadcast queues."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "European Enterprise HR & Onboarding System",
+                        "description": "Employee management system handling multi-step onboarding and offboarding workflows for European companies, with tracking for leave requests, holiday calendars, bonuses, cost centers, and collective labor agreements."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Freelance Marketplace Platform",
+                        "description": "End-to-end freelance marketplace covering consultant discovery, proposals, agency and client teams, hourly and fixed-price contracts, real-time communication, activity monitoring, automated billing, wallets, tax workflows, notifications, and administration."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Yacht Charter Booking Platform",
+                        "description": "Yacht charter platform supporting multi-lingual date-range filtering, real-time availability checks, and dynamic pricing via API. Migrated from Drupal to Laravel, improving performance by 80-90%."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Car Booking & Rental Platform",
+                        "description": "Vehicle rental platform with real-time search and availability, a multi-step Livewire booking flow, Filament admin panel, and Razorpay payment integration."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Direct-to-Consumer E-Commerce Store",
+                        "description": "E-commerce store for specialty coffee roasters with product catalog navigation, Stripe payment gateway integration, and a Filament administration dashboard for order processing."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Audio & Digital Book Streaming Platform",
+                        "description": "Audio and music streaming application built with Laravel and Angular, with custom UI components that render uploaded book covers as 3D hardcover previews alongside streaming audio content."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Video Caption & Subtitle Generation API",
+                        "description": "Custom CorePHP API service for automated video captioning with a segment-based URL router, webhook integration with media processing backends, and SRT and VTT subtitle generation."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Power BI Analytics & Dashboard Integration",
+                        "description": "Embedded Power BI analytics dashboards into a CorePHP project with custom OAuth2 authentication pipelines interacting with Azure APIs, 2FA support, and user permission management."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "School Session & Attendance Management System",
+                        "description": "School management system for parents, schools, and admins built in CorePHP, where parents book activities and pay via Stripe or internal wallet and automated cron jobs handle attendance tracking and late fee calculations."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Event Management Messaging Integration",
+                        "description": "Integrated WhatsApp messaging into an existing CodeIgniter event management platform using Facebook Graph API templates alongside email notifications."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Digital Publishing Portal & CMS",
+                        "description": "Publishing content management system built with WordPress and CorePHP, including legacy code refactoring and custom editorial publishing tools."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "WordPress Subdomain Content Integration",
+                        "description": "Migrated a decoupled WordPress blog from a separate subdomain server onto the main server with custom CorePHP data-fetching scripts that render WordPress posts within the primary site domain."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "News Portal & Native Android Application",
+                        "description": "News media platform built on CodeIgniter with MySQL query optimizations and a companion Android native app in Java using WebView with offline detection, pull-to-refresh, and smooth scrolling."
+                    },
+                    {
+                        "@type": "CreativeWork",
+                        "name": "Fashion E-Commerce Platform",
+                        "description": "E-commerce platform for fashion apparel built in PHP with product catalog management, order processing, and payment integrations for PayPal, credit cards, and Venmo."
+                    }
+                ]
+            }
+        ]
     }
     </script>
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="128x128">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <meta name="msapplication-TileColor" content="#23a6d5">
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">

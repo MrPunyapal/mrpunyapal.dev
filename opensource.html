@@ -21,7 +21,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mrpunyapal.dev/opensource">
-    <meta property="og:title" content="Open Source | Punyapal Shah - Laravel Open Source Maintainer">
+    <meta property="og:title" content="Open Source | Punyapal Shah">
     <meta property="og:description"
         content="Punyapal Shah's open source work: Core Team at Pest and Pinkary, collaborator at panphp, founder of Laravel Artisans, and contributor to 100+ repositories across the Laravel and PHP ecosystem.">
     <meta property="og:image" content="https://mrpunyapal.dev/master-og-image.png">
@@ -38,7 +38,7 @@
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/opensource">
-    <meta name="twitter:title" content="Open Source | Punyapal Shah - Laravel Open Source Maintainer">
+    <meta name="twitter:title" content="Open Source | Punyapal Shah">
     <meta name="twitter:description"
         content="Punyapal Shah's open source work: Core Team at Pest and Pinkary, collaborator at panphp, founder of Laravel Artisans, and contributor to 100+ repositories across the Laravel and PHP ecosystem.">
     <meta name="twitter:image" content="https://mrpunyapal.dev/master-og-image.png">
@@ -49,21 +49,200 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "mainEntity": {
-            "@type": "Person",
-            "name": "Punyapal Shah",
-            "alternateName": ["Punyapal", "MrPunyapal"],
-            "description": "Laravel open source maintainer, Core Team at Pinkary and Pest, building developer tools and packages for the Laravel ecosystem.",
-            "url": "https://mrpunyapal.dev"
-        },
-        "about": {
-            "@type": "Thing",
-            "name": "Open Source Software",
-            "description": "Laravel packages, developer tools, and ecosystem contributions"
-        }
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "@id": "https://mrpunyapal.dev/opensource#webpage",
+                "url": "https://mrpunyapal.dev/opensource",
+                "name": "Open Source | Punyapal Shah",
+                "description": "Punyapal Shah's open source work: Core Team at Pest and Pinkary, collaborator at panphp, founder of Laravel Artisans, and contributor to 100+ repositories across the Laravel and PHP ecosystem.",
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@id": "https://mrpunyapal.dev/#website"
+                },
+                "about": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "mainEntity": {
+                    "@id": "https://mrpunyapal.dev/opensource#collection"
+                }
+            },
+            {
+                "@type": "ItemList",
+                "@id": "https://mrpunyapal.dev/opensource#collection",
+                "name": "Open source contributions and projects",
+                "itemListElement": [
+                    {
+                        "@type": "Organization",
+                        "@id": "https://pestphp.com",
+                        "name": "Pest",
+                        "url": "https://pestphp.com",
+                        "member": {
+                            "@type": "OrganizationRole",
+                            "roleName": "Core Team",
+                            "member": {
+                                "@id": "https://mrpunyapal.dev/#person"
+                            }
+                        }
+                    },
+                    {
+                        "@type": "Organization",
+                        "@id": "https://pinkary.com",
+                        "name": "Pinkary",
+                        "url": "https://pinkary.com",
+                        "member": {
+                            "@type": "OrganizationRole",
+                            "roleName": "Core Team",
+                            "member": {
+                                "@id": "https://mrpunyapal.dev/#person"
+                            }
+                        }
+                    },
+                    {
+                        "@type": "Organization",
+                        "@id": "https://github.com/panphp/pan",
+                        "name": "panphp/pan",
+                        "url": "https://github.com/panphp/pan",
+                        "member": {
+                            "@type": "OrganizationRole",
+                            "roleName": "Collaborator",
+                            "member": {
+                                "@id": "https://mrpunyapal.dev/#person"
+                            }
+                        }
+                    },
+                    {
+                        "@type": "Organization",
+                        "@id": "https://github.com/supo-dev/app",
+                        "name": "supo-dev",
+                        "url": "https://github.com/supo-dev/app",
+                        "member": {
+                            "@type": "OrganizationRole",
+                            "roleName": "Collaborator",
+                            "member": {
+                                "@id": "https://mrpunyapal.dev/#person"
+                            }
+                        }
+                    },
+                    {
+                        "@type": "Organization",
+                        "@id": "https://telegram.me/laravelartisans",
+                        "name": "Laravel Artisans",
+                        "url": "https://telegram.me/laravelartisans",
+                        "founder": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "@id": "https://github.com/MrPunyapal/basic-crud#software",
+                        "name": "basic-crud",
+                        "description": "Educational Laravel project teaching production-ready architecture, best practices, testing, and maintainable application structure.",
+                        "codeRepository": "https://github.com/MrPunyapal/basic-crud",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "@id": "https://github.com/MrPunyapal/laravel-extended-relationships#software",
+                        "name": "laravel-extended-relationships",
+                        "description": "Advanced Eloquent relationship patterns for Laravel, providing BelongsToManyMerged, HasManyMerged, and other custom relationships for complex data queries.",
+                        "codeRepository": "https://github.com/MrPunyapal/laravel-extended-relationships",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "@id": "https://github.com/pestphp/pest-plugin-phpstan#software",
+                        "name": "pest-plugin-phpstan",
+                        "description": "Author of PestStan, which became Pest's official PHPStan plugin. Extends PHPStan to understand Pest test closures with type-safe expectations and dedicated static analysis rules.",
+                        "codeRepository": "https://github.com/pestphp/pest-plugin-phpstan",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "@id": "https://github.com/pestphp/pest-plugin-rector#software",
+                        "name": "pest-plugin-rector",
+                        "description": "Author of rector-pest, which became Pest's official Rector plugin. Automates PHPUnit to Pest migration and enforces Pest-native code quality with Rector rules.",
+                        "codeRepository": "https://github.com/pestphp/pest-plugin-rector",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "WebSite",
+                        "@id": "https://laravel-attributes.mrpunyapal.dev",
+                        "name": "Laravel Attributes List",
+                        "description": "A searchable reference for Laravel's PHP attributes, complete with explanations, examples, and version compatibility.",
+                        "url": "https://laravel-attributes.mrpunyapal.dev",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "@id": "https://github.com/MrPunyapal/docsmith#software",
+                        "name": "DocSmith",
+                        "description": "Static documentation generator that transforms Markdown into fast, searchable documentation websites.",
+                        "codeRepository": "https://github.com/MrPunyapal/docsmith",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "@id": "https://github.com/MrPunyapal/livewire-chat-app#software",
+                        "name": "livewire-chat-app",
+                        "description": "Real-time chat application built with Laravel Livewire, demonstrating live messaging, presence detection, and reactive UI patterns.",
+                        "codeRepository": "https://github.com/MrPunyapal/livewire-chat-app",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "@id": "https://github.com/MrPunyapal/laravel-extended-commands#software",
+                        "name": "laravel-extended-commands",
+                        "description": "Enhanced Artisan commands for Laravel, adding commonly needed generators and utilities.",
+                        "codeRepository": "https://github.com/MrPunyapal/laravel-extended-commands",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "@id": "https://github.com/MrPunyapal/laravel-auth-jobs#software",
+                        "name": "laravel-auth-jobs",
+                        "description": "Background job authentication utilities for Laravel, ensuring queued jobs retain user context and authentication state during execution.",
+                        "codeRepository": "https://github.com/MrPunyapal/laravel-auth-jobs",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "@id": "https://github.com/Retail-Cosmos/trx-mall-upload-sales-data-api#software",
+                        "name": "trx-mall-upload-sales-data-api",
+                        "description": "Laravel package for the TRX Mall sales data API, including Artisan commands, scheduled jobs, and extensible service stubs for custom sales payload transformation.",
+                        "codeRepository": "https://github.com/Retail-Cosmos/trx-mall-upload-sales-data-api",
+                        "author": {
+                            "@id": "https://mrpunyapal.dev/#person"
+                        }
+                    }
+                ]
+            }
+        ]
     }
     </script>
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="128x128">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <meta name="msapplication-TileColor" content="#23a6d5">
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">

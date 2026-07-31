@@ -51,66 +51,108 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Punyapal Shah",
-        "jobTitle": "Laravel Engineer",
-        "description": "Laravel Engineer, Open Source Maintainer, Core Team member at Pinkary and Pest, founder of Laravel Artisans, speaker, and technical content creator.",
-        "url": "https://mrpunyapal.dev",
-        "image": "https://mrpunyapal.dev/profile-image.jpg",
-        "alternateName": ["Punyapal", "MrPunyapal"],
-        "email": "mrpunyapal@gmail.com",
-        "sameAs": [
-            "https://x.com/MrPunyapal",
-            "https://github.com/MrPunyapal",
-            "https://linkedin.com/in/MrPunyapal",
-            "https://youtube.com/@MrPunyapal",
-            "https://pinkary.com/@MrPunyapal",
-            "https://bsky.app/profile/mrpunyapal.dev",
-            "https://www.facebook.com/MrPunyapal/",
-            "https://www.threads.net/@MrPunyapal",
-            "https://instagram.com/MrPunyapal",
-            "https://github.com/sponsors/MrPunyapal"
-        ],
-        "hasOccupation": {
-            "@type": "Occupation",
-            "name": "Laravel Engineer",
-            "description": "Laravel Engineer specializing in developer experience, open source software, modern PHP applications, and the Laravel ecosystem.",
-            "skills": "Laravel, PHP, JavaScript, Tailwind CSS, Livewire, Alpine.js, Filament, PestPHP, Vue.js, MySQL, PostgreSQL",
-            "occupationLocation": {
-                "@type": "Place",
-                "name": "Ahmedabad, Gujarat, India"
-            }
-        },
-        "knowsAbout": [
-            "Laravel Framework",
-            "PHP Development",
-            "TALL Stack",
-            "Filament Admin Panels",
-            "Livewire Components",
-            "Tailwind CSS",
-            "Alpine.js",
-            "Pest PHP Testing",
-            "Vue.js",
-            "MySQL",
-            "PostgreSQL",
-            "Open Source Development"
-        ],
-        "memberOf": [
+        "@graph": [
             {
-                "@type": "Organization",
-                "name": "Pinkary",
-                "description": "Core team member"
+                "@type": "WebPage",
+                "@id": "https://mrpunyapal.dev/resume#webpage",
+                "url": "https://mrpunyapal.dev/resume",
+                "name": "Resume | Punyapal Shah",
+                "description": "Punyapal Shah's resume: Laravel Engineer, Open Source Maintainer, Core Team at Pinkary and Pest, founder of Laravel Artisans, speaker, and content creator.",
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@id": "https://mrpunyapal.dev/#website"
+                },
+                "about": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "mainEntity": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                }
             },
             {
-                "@type": "Organization", 
-                "name": "Pest PHP",
-                "description": "Core team member"
+                "@type": "Person",
+                "@id": "https://mrpunyapal.dev/#person",
+                "name": "Punyapal Shah",
+                "alternateName": ["Punyapal", "MrPunyapal"],
+                "url": "https://mrpunyapal.dev",
+                "image": "https://mrpunyapal.dev/profile-image.jpg",
+                "email": "mrpunyapal@gmail.com",
+                "jobTitle": "Laravel Engineer",
+                "description": "Laravel Engineer, Open Source Maintainer, Core Team member at Pinkary and Pest, founder of Laravel Artisans, speaker, and technical content creator.",
+                "hasOccupation": {
+                    "@type": "Occupation",
+                    "name": "Laravel Engineer",
+                    "description": "Laravel Engineer specializing in developer experience, open source software, modern PHP applications, and the Laravel ecosystem.",
+                    "skills": "Laravel, PHP, JavaScript, Tailwind CSS, Livewire, Alpine.js, Filament, PestPHP, Vue.js, MySQL, PostgreSQL",
+                    "occupationLocation": {
+                        "@type": "Place",
+                        "name": "Ahmedabad, Gujarat, India"
+                    }
+                },
+                "knowsAbout": [
+                    "Laravel Framework",
+                    "PHP Development",
+                    "TALL Stack",
+                    "Filament Admin Panels",
+                    "Livewire Components",
+                    "Tailwind CSS",
+                    "Alpine.js",
+                    "Pest PHP Testing",
+                    "Vue.js",
+                    "MySQL",
+                    "PostgreSQL",
+                    "Open Source Development"
+                ],
+                "sameAs": [
+                    "https://x.com/MrPunyapal",
+                    "https://github.com/MrPunyapal",
+                    "https://linkedin.com/in/MrPunyapal",
+                    "https://youtube.com/@MrPunyapal",
+                    "https://pinkary.com/@MrPunyapal",
+                    "https://bsky.app/profile/mrpunyapal.dev",
+                    "https://www.facebook.com/MrPunyapal/",
+                    "https://www.threads.net/@MrPunyapal",
+                    "https://instagram.com/MrPunyapal"
+                ],
+                "memberOf": [
+                    {
+                        "@type": "Organization",
+                        "@id": "https://pinkary.com",
+                        "name": "Pinkary",
+                        "url": "https://pinkary.com"
+                    },
+                    {
+                        "@type": "Organization",
+                        "@id": "https://pestphp.com",
+                        "name": "Pest",
+                        "url": "https://pestphp.com"
+                    }
+                ],
+                "founder": {
+                    "@type": "Organization",
+                    "@id": "https://telegram.me/laravelartisans",
+                    "name": "Laravel Artisans",
+                    "url": "https://telegram.me/laravelartisans"
+                },
+                "alumniOf": {
+                    "@type": "CollegeOrUniversity",
+                    "name": "U.V. Patel College of Engineering, Ganpat University"
+                },
+                "hasCredential": {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "Bachelor of Technology (B.Tech) in Information Technology"
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "IN"
+                },
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "mrpunyapal@gmail.com",
+                    "contactType": "professional"
+                }
             }
-        ],
-        "founder": {
-            "@type": "Organization",
-            "name": "Laravel Artisans"
-        }
+        ]
     }
     </script>
 

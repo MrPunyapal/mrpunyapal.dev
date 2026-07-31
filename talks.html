@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conference Talks & Speaking | Punyapal Shah</title>
+    <title>Talks | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +21,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mrpunyapal.dev/talks">
-    <meta property="og:title" content="Conference Talks & Speaking | Punyapal Shah">
+    <meta property="og:title" content="Talks | Punyapal Shah">
     <meta property="og:description"
         content="Punyapal Shah's conference talks covering Laravel, PHP, open source, testing, developer tools, and software engineering.">
     <meta property="og:image" content="https://mrpunyapal.dev/master-og-image.png">
@@ -38,7 +38,7 @@
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/talks">
-    <meta name="twitter:title" content="Conference Talks & Speaking | Punyapal Shah">
+    <meta name="twitter:title" content="Talks | Punyapal Shah">
     <meta name="twitter:description"
         content="Punyapal Shah's conference talks covering Laravel, PHP, open source, testing, developer tools, and software engineering.">
     <meta name="twitter:image" content="https://mrpunyapal.dev/master-og-image.png">
@@ -49,320 +49,364 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        "mainEntity": {
-            "@type": "Person",
-            "@id": "https://mrpunyapal.dev/#person",
-            "name": "Punyapal Shah",
-            "alternateName": ["Punyapal", "MrPunyapal"],
-            "url": "https://mrpunyapal.dev",
-            "performerIn": [
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#write-code-that-can-fix-itself",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Write code that can fix itself",
+        "@graph": [
+            {
+                "@type": "ProfilePage",
+                "@id": "https://mrpunyapal.dev/talks#webpage",
+                "url": "https://mrpunyapal.dev/talks",
+                "name": "Talks | Punyapal Shah",
+                "description": "Punyapal Shah's conference talks on Laravel, PHP, open source, testing, developer tools, and software engineering at Laravel community events.",
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@id": "https://mrpunyapal.dev/#website"
+                },
+                "about": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "mainEntity": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#write-code-that-can-fix-itself",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Write code that can fix itself",
+                "description": "Discover how RectorPHP can automate repetitive refactoring, modernize legacy Laravel applications, and enforce coding standards through custom rules that keep large codebases maintainable.",
+                "startDate": "2026-01-31",
+                "endDate": "2026-02-01",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Gujarat University Convention and Exhibition Centre, Ahmedabad, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Ahmedabad",
+                        "addressCountry": "IN"
+                    }
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laracon India",
+                    "url": "https://laracon.in"
+                },
+                "workFeatured": {
+                    "@type": "VideoObject",
+                    "@id": "https://mrpunyapal.dev/talks#write-code-that-can-fix-itself-video",
+                    "name": "Write code that can fix itself - Laracon India 2026",
                     "description": "Discover how RectorPHP can automate repetitive refactoring, modernize legacy Laravel applications, and enforce coding standards through custom rules that keep large codebases maintainable.",
-                    "startDate": "2026-01-31",
-                    "endDate": "2026-02-01",
-                    "location": {
-                        "@type": "Place",
-                        "name": "Gujarat University Convention and Exhibition Centre, Ahmedabad, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Ahmedabad",
-                            "addressCountry": "IN"
-                        }
-                    },
-                    "organizer": {
+                    "url": "https://www.youtube.com/watch?v=3_rWWGSpgyw",
+                    "embedUrl": "https://www.youtube.com/embed/3_rWWGSpgyw",
+                    "uploadDate": "2026-04-05T21:18:07-07:00",
+                    "thumbnailUrl": "https://i.ytimg.com/vi/3_rWWGSpgyw/maxresdefault.jpg",
+                    "publisher": {
                         "@type": "Organization",
-                        "name": "Laracon India",
-                        "url": "https://laracon.in"
-                    },
-                    "workFeatured": {
-                        "@type": "VideoObject",
-                        "@id": "https://mrpunyapal.dev/talks#write-code-that-can-fix-itself-video",
-                        "name": "Write code that can fix itself - Laracon India 2026",
-                        "description": "Discover how RectorPHP can automate repetitive refactoring, modernize legacy Laravel applications, and enforce coding standards through custom rules that keep large codebases maintainable.",
-                        "url": "https://www.youtube.com/watch?v=3_rWWGSpgyw",
-                        "embedUrl": "https://www.youtube.com/embed/3_rWWGSpgyw",
-                        "uploadDate": "2026-04-05T21:18:07-07:00",
-                        "thumbnailUrl": "https://i.ytimg.com/vi/3_rWWGSpgyw/maxresdefault.jpg",
-                        "publisher": {
-                            "@type": "Organization",
-                            "name": "Laracon India"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#open-source-panel-discussion",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Open Source Contribution Panel Discussion",
-                    "description": "Panel discussion on the shift from code to value, covering open source contribution alongside project-to-product mindset, engineering culture, ecosystem growth, and the ROI of Laracon India.",
-                    "startDate": "2026-01-11",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Ahmedabad",
-                        "url": "https://x.com/LaravelAhm"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Ahmedabad, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Ahmedabad",
-                            "addressCountry": "IN"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#open-source-pr-to-package",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Open-Source: PR to package",
-                    "description": "Everything you need to know to start contributing to open source, the why, what, and how, what to take care of, and how to get started.",
-                    "startDate": "2026-03-29",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Ahmedabad",
-                        "url": "https://x.com/LaravelAhm"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Ahmedabad, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Ahmedabad",
-                            "addressCountry": "IN"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#from-zero-to-tested",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "From Zero to Tested: Laravel + PestPHP",
-                    "description": "Learn how PestPHP makes testing enjoyable in Laravel by writing expressive, maintainable tests that improve confidence and reduce regressions.",
-                    "startDate": "2025-11-30",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Ahmedabad",
-                        "url": "https://x.com/LaravelAhm"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Ahmedabad, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Ahmedabad",
-                            "addressCountry": "IN"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#types-in-php-at-glance-ahmedabad",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Types in PHP at Glance with PHPStan",
-                    "description": "An exploration of PHP's type system and how PHPStan helps catch bugs before they reach production.",
-                    "startDate": "2024-10-20",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Ahmedabad",
-                        "url": "https://x.com/LaravelAhm"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Ahmedabad, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Ahmedabad",
-                            "addressCountry": "IN"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#types-in-php-at-glance-indore",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Types in PHP at Glance with PHPStan",
-                    "description": "An exploration of PHP's type system and how PHPStan helps catch bugs before they reach production.",
-                    "startDate": "2024-08-24",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Indore",
-                        "url": "https://x.com/LaravelIndore"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Indore, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Indore",
-                            "addressCountry": "IN"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#types-in-php-at-glance-kozhikode",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Types in PHP at Glance with PHPStan",
-                    "description": "An exploration of PHP's type system and how PHPStan helps catch bugs before they reach production.",
-                    "startDate": "2024-07-27",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Kozhikode",
-                        "url": "https://x.com/laravel_kkd"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Kozhikode, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Kozhikode",
-                            "addressCountry": "IN"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#php-future-panel-kozhikode",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "PHP Future & What To Do Next in Tech Panel",
-                    "description": "Panel discussion on the future of PHP, career growth in tech, and why PHP remains a relevant choice for modern web development.",
-                    "startDate": "2024-07-27",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Kozhikode",
-                        "url": "https://x.com/laravel_kkd"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Kozhikode, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Kozhikode",
-                            "addressCountry": "IN"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#refactor-laravel-with-rectorphp-bangalore",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Refactor Laravel with RectorPHP",
-                    "description": "Using RectorPHP to automate refactoring in Laravel projects.",
-                    "startDate": "2025-02-15",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Bangalore",
-                        "url": "https://x.com/LaravelBLR"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Bangalore, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Bangalore",
-                            "addressCountry": "IN"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#refactor-laravel-with-rectorphp-moris",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Refactor Laravel with RectorPHP",
-                    "description": "Using RectorPHP to automate refactoring in Laravel projects.",
-                    "startDate": "2025-08-23",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Moris",
-                        "url": "https://x.com/laravelphpmoris"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Mauritius",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressCountry": "MU"
-                        }
-                    },
-                    "workFeatured": {
-                        "@type": "VideoObject",
-                        "@id": "https://mrpunyapal.dev/talks#refactor-laravel-with-rectorphp-video",
-                        "name": "Refactor Laravel with RectorPHP - Video Recording",
-                        "description": "Using RectorPHP to automate refactoring in Laravel projects.",
-                        "url": "https://www.youtube.com/watch?v=N73Smm8ldCc",
-                        "embedUrl": "https://www.youtube.com/embed/N73Smm8ldCc",
-                        "uploadDate": "2025-08-23",
-                        "thumbnailUrl": "https://i.ytimg.com/vi/N73Smm8ldCc/maxresdefault.jpg",
-                        "publisher": {
-                            "@type": "Person",
-                            "name": "Punyapal Shah"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#spark-your-laravel-apps-with-filamentphp",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Spark Your Laravel Apps with FilamentPHP",
-                    "description": "Getting started with FilamentPHP, the admin panel for Laravel.",
-                    "startDate": "2023-04-30",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Ahmedabad",
-                        "url": "https://x.com/LaravelAhm"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Ahmedabad, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Ahmedabad",
-                            "addressCountry": "IN"
-                        }
-                    }
-                },
-                {
-                    "@type": "Event",
-                    "@id": "https://mrpunyapal.dev/talks#broadcasting-in-laravel",
-                    "eventStatus": "https://schema.org/EventCompleted",
-                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                    "name": "Broadcasting in Laravel",
-                    "description": "Dive into real-time features with Laravel Broadcasting and WebSockets.",
-                    "startDate": "2024-02-25",
-                    "organizer": {
-                        "@type": "Organization",
-                        "name": "Laravel Ahmedabad",
-                        "url": "https://x.com/LaravelAhm"
-                    },
-                    "location": {
-                        "@type": "Place",
-                        "name": "Ahmedabad, India",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Ahmedabad",
-                            "addressCountry": "IN"
-                        }
+                        "name": "Laracon India"
                     }
                 }
-            ]
-        }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#open-source-panel-discussion",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Open Source Contribution Panel Discussion",
+                "description": "Panel discussion on the shift from code to value, covering open source contribution alongside project-to-product mindset, engineering culture, ecosystem growth, and the ROI of Laracon India.",
+                "startDate": "2026-01-11",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Ahmedabad",
+                    "url": "https://x.com/LaravelAhm"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Ahmedabad, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Ahmedabad",
+                        "addressCountry": "IN"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#open-source-pr-to-package",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Open-Source: PR to package",
+                "description": "Everything you need to know to start contributing to open source, the why, what, and how, what to take care of, and how to get started.",
+                "startDate": "2026-03-29",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Ahmedabad",
+                    "url": "https://x.com/LaravelAhm"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Ahmedabad, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Ahmedabad",
+                        "addressCountry": "IN"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#from-zero-to-tested",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "From Zero to Tested: Laravel + PestPHP",
+                "description": "Learn how PestPHP makes testing enjoyable in Laravel by writing expressive, maintainable tests that improve confidence and reduce regressions.",
+                "startDate": "2025-11-30",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Ahmedabad",
+                    "url": "https://x.com/LaravelAhm"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Ahmedabad, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Ahmedabad",
+                        "addressCountry": "IN"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#types-in-php-at-glance-ahmedabad",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Types in PHP at Glance with PHPStan",
+                "description": "An exploration of PHP's type system and how PHPStan helps catch bugs before they reach production.",
+                "startDate": "2024-10-20",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Ahmedabad",
+                    "url": "https://x.com/LaravelAhm"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Ahmedabad, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Ahmedabad",
+                        "addressCountry": "IN"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#types-in-php-at-glance-indore",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Types in PHP at Glance with PHPStan",
+                "description": "An exploration of PHP's type system and how PHPStan helps catch bugs before they reach production.",
+                "startDate": "2024-08-24",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Indore",
+                    "url": "https://x.com/LaravelIndore"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Indore, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Indore",
+                        "addressCountry": "IN"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#types-in-php-at-glance-kozhikode",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Types in PHP at Glance with PHPStan",
+                "description": "An exploration of PHP's type system and how PHPStan helps catch bugs before they reach production.",
+                "startDate": "2024-07-27",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Kozhikode",
+                    "url": "https://x.com/laravel_kkd"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Kozhikode, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Kozhikode",
+                        "addressCountry": "IN"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#php-future-panel-kozhikode",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "PHP Future & What To Do Next in Tech Panel",
+                "description": "Panel discussion on the future of PHP, career growth in tech, and why PHP remains a relevant choice for modern web development.",
+                "startDate": "2024-07-27",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Kozhikode",
+                    "url": "https://x.com/laravel_kkd"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Kozhikode, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Kozhikode",
+                        "addressCountry": "IN"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#refactor-laravel-with-rectorphp-bangalore",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Refactor Laravel with RectorPHP",
+                "description": "Using RectorPHP to automate refactoring in Laravel projects.",
+                "startDate": "2025-02-15",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Bangalore",
+                    "url": "https://x.com/LaravelBLR"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Bangalore, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Bangalore",
+                        "addressCountry": "IN"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#refactor-laravel-with-rectorphp-moris",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Refactor Laravel with RectorPHP",
+                "description": "Using RectorPHP to automate refactoring in Laravel projects.",
+                "startDate": "2025-08-23",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Moris",
+                    "url": "https://x.com/laravelphpmoris"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Mauritius",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressCountry": "MU"
+                    }
+                },
+                "workFeatured": {
+                    "@type": "VideoObject",
+                    "@id": "https://mrpunyapal.dev/talks#refactor-laravel-with-rectorphp-video",
+                    "name": "Refactor Laravel with RectorPHP - Video Recording",
+                    "description": "Using RectorPHP to automate refactoring in Laravel projects.",
+                    "url": "https://www.youtube.com/watch?v=N73Smm8ldCc",
+                    "embedUrl": "https://www.youtube.com/embed/N73Smm8ldCc",
+                    "uploadDate": "2025-08-23",
+                    "thumbnailUrl": "https://i.ytimg.com/vi/N73Smm8ldCc/maxresdefault.jpg",
+                    "publisher": {
+                        "@id": "https://mrpunyapal.dev/#person"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#spark-your-laravel-apps-with-filamentphp",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Spark Your Laravel Apps with FilamentPHP",
+                "description": "Getting started with FilamentPHP, the admin panel for Laravel.",
+                "startDate": "2023-04-30",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Ahmedabad",
+                    "url": "https://x.com/LaravelAhm"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Ahmedabad, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Ahmedabad",
+                        "addressCountry": "IN"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "@id": "https://mrpunyapal.dev/talks#broadcasting-in-laravel",
+                "eventStatus": "https://schema.org/EventCompleted",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "name": "Broadcasting in Laravel",
+                "description": "Dive into real-time features with Laravel Broadcasting and WebSockets.",
+                "startDate": "2024-02-25",
+                "performer": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "organizer": {
+                    "@type": "Organization",
+                    "name": "Laravel Ahmedabad",
+                    "url": "https://x.com/LaravelAhm"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": "Ahmedabad, India",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Ahmedabad",
+                        "addressCountry": "IN"
+                    }
+                }
+            }
+        ]
     }
     </script>
 
