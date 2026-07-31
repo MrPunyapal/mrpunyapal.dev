@@ -1,44 +1,8 @@
-# Robots.txt for Punyapal Shah - Laravel Artisan
-# Allow all crawlers access to content
+# robots.txt for mrpunyapal.dev
+# Allow all crawlers to access the site
+
 User-agent: *
 Allow: /
-Allow: /profile-image.jpg
-Allow: /master-og-image.jpg
-Allow: /favicon.png
-Allow: /*.css
-Allow: /*.js
 
 # Sitemap location
 Sitemap: https://mrpunyapal.dev/sitemap.xml
-
-# Crawl delay to be respectful to servers
-Crawl-delay: 1
-
-# Allow social media bots for better sharing
-User-agent: facebookexternalhit/*
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-User-agent: WhatsApp
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-# Host directive
-Host: https://mrpunyapal.dev
-
-# Block access to files that shouldn't be indexed
-Disallow: /sw.js
-Disallow: /*.json
