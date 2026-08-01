@@ -39,6 +39,127 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.dark .glass {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Theme Toggle Button Icon Rules (Prevents dual-icon rendering) */
+.theme-sun-icon {
+    display: none !important;
+}
+.theme-moon-icon {
+    display: inline-block !important;
+}
+
+.dark .theme-sun-icon {
+    display: inline-block !important;
+}
+.dark .theme-moon-icon {
+    display: none !important;
+}
+
+/* Dark mode body & text readability overrides */
+.dark body {
+    background-color: #020617 !important;
+    color: #e2e8f0 !important;
+}
+
+.dark .text-slate-900 { color: #f8fafc !important; }
+.dark .text-slate-800 { color: #f1f5f9 !important; }
+.dark .text-slate-700 { color: #e2e8f0 !important; }
+.dark .text-slate-600 { color: #cbd5e1 !important; }
+.dark .text-slate-500 { color: #94a3b8 !important; }
+
+/* Dark mode overrides for technical markers and lines */
+.dark .tech-marker {
+    background-color: #0f172a !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.8) !important;
+}
+
+.dark .tech-line-h,
+.dark .tech-line-v-top {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .tech-line-v-bottom {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent) !important;
+}
+
+/* SVG grid lines for dark mode */
+.dark svg pattern#grid path {
+    stroke: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Door message box in dark mode */
+.dark #doorMessage {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark #doorMessage p.text-slate-800 {
+    color: #f8fafc !important;
+}
+
+.dark #doorMessage p.text-slate-500 {
+    color: #94a3b8 !important;
+}
+
+.dark .door-nav-btn {
+    background-color: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9 !important;
+}
+
+.dark .door-nav-btn:hover {
+    background-color: #475569 !important;
+    color: #ffffff !important;
+    border-color: #64748b !important;
+}
+
+/* Typing text contrast in dark mode */
+.dark .typing-animation {
+    color: rgba(203, 213, 225, 0.85);
+}
+
+/* Colored Pill Badges in Dark Mode */
+.dark .bg-slate-100 { background-color: #1e293b !important; color: #cbd5e1 !important; border-color: #334155 !important; }
+.dark .bg-slate-50 { background-color: #0f172a !important; color: #cbd5e1 !important; border-color: #1e293b !important; }
+
+.dark .bg-red-50 { background-color: rgba(153, 27, 27, 0.25) !important; border-color: rgba(153, 27, 27, 0.5) !important; color: #f87171 !important; }
+.dark .bg-pink-50 { background-color: rgba(157, 23, 77, 0.25) !important; border-color: rgba(157, 23, 77, 0.5) !important; color: #f472b6 !important; }
+.dark .bg-orange-50 { background-color: rgba(154, 52, 18, 0.25) !important; border-color: rgba(154, 52, 18, 0.5) !important; color: #fb923c !important; }
+.dark .bg-yellow-50 { background-color: rgba(161, 98, 7, 0.25) !important; border-color: rgba(161, 98, 7, 0.5) !important; color: #facc15 !important; }
+.dark .bg-green-50 { background-color: rgba(20, 83, 45, 0.25) !important; border-color: rgba(20, 83, 45, 0.5) !important; color: #4ade80 !important; }
+.dark .bg-blue-50 { background-color: rgba(30, 58, 138, 0.25) !important; border-color: rgba(30, 58, 138, 0.5) !important; color: #60a5fa !important; }
+.dark .bg-purple-50 { background-color: rgba(88, 28, 135, 0.25) !important; border-color: rgba(88, 28, 135, 0.5) !important; color: #c084fc !important; }
+.dark .bg-indigo-50 { background-color: rgba(49, 46, 129, 0.25) !important; border-color: rgba(49, 46, 129, 0.5) !important; color: #818cf8 !important; }
+.dark .bg-amber-50 { background-color: rgba(120, 53, 15, 0.25) !important; border-color: rgba(120, 53, 15, 0.5) !important; color: #fbbf24 !important; }
+.dark .bg-emerald-50 { background-color: rgba(6, 78, 59, 0.25) !important; border-color: rgba(6, 78, 59, 0.5) !important; color: #34d399 !important; }
+.dark .bg-cyan-50 { background-color: rgba(22, 78, 99, 0.25) !important; border-color: rgba(22, 78, 99, 0.5) !important; color: #22d3ee !important; }
+
+/* Theme toggle button transitions */
+.theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.95);
+}
+
 /* Screen reader accessibility utility */
 .sr-only {
     position: absolute !important;
@@ -63,3 +184,5 @@
         scroll-behavior: auto !important;
     }
 }
+
+

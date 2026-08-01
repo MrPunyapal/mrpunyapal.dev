@@ -338,14 +338,25 @@
     <link rel="stylesheet" href="/src/tailwind.css">
     <link rel="stylesheet" href="/src/app.css">
     <script type="module" src="/src/main.js"></script>
+    <script>
+        (function() {
+            const saved = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && systemDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
 </head>
 
 <body
-    class="font-sans m-0 p-0 min-h-screen bg-slate-50 text-slate-800 leading-relaxed relative overflow-x-clip antialiased">
+    class="font-sans m-0 p-0 min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-clip antialiased transition-colors duration-200">
 
     <!-- Main Content -->
     <main class="min-h-screen flex flex-col items-center justify-center p-2 sm:p-8">
-        <div class="w-full max-w-5xl border border-slate-200 bg-white/80 backdrop-blur-md relative z-10">
+        <div class="w-full max-w-5xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
 
             <!-- Tech Markers: Corners -->
             <div class="tech-marker -top-[4px] -left-[4px]"></div>
@@ -364,113 +375,118 @@
             <div class="tech-line-v-bottom right-[-1px]"></div>
 
             <!-- Header Section -->
-            <div class="p-4 sm:p-12 border-b border-slate-200 relative">
+            <div class="p-4 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative">
                 <div class="tech-line-h bottom-[-1px]"></div>
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
-                <nav aria-label="Page Navigation" class="absolute top-4 right-4 sm:top-8 sm:right-8 flex gap-2 z-20 animate-fade-up">
+                <nav aria-label="Page Navigation" class="absolute top-4 right-4 sm:top-8 sm:right-8 flex items-center gap-2 z-20 animate-fade-up">
                     <a href="/projects"
-                        class="px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-600 rounded">
+                        class="px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 rounded">
                         Projects
                     </a>
                     <a href="/"
-                        class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors text-slate-600 rounded">
+                        class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 rounded">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
                         <span>Back</span>
                     </a>
+                    <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn px-2.5 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 flex items-center justify-center rounded">
+                        <i class="fas fa-sun text-amber-500 text-xs theme-sun-icon hidden" aria-hidden="true"></i>
+                        <i class="fas fa-moon text-slate-600 dark:text-slate-300 text-xs theme-moon-icon" aria-hidden="true"></i>
+                    </button>
                 </nav>
 
                 <div class="animate-fade-up" style="animation-delay: 0.1s;">
-                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
                         Open Source
                     </h1>
-                    <p class="text-lg text-red-600 max-w-2xl font-mono">
+                    <p class="text-lg text-red-600 dark:text-red-400 max-w-2xl font-mono">
                         Building developer tools, contributing to the Laravel ecosystem, and improving developer experience.
                     </p>
-                    <p class="text-sm text-slate-600 leading-relaxed max-w-3xl mt-4">
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mt-4">
                         I contribute to open source because I want to help developers build better software. From joining the core team at Pinkary and Pest to authoring PestStan and rector-pest, which became Pest's official PHPStan and Rector plugins, my work spans the Laravel and PHP ecosystems.
                     </p>
-                    <p class="text-sm text-slate-600 leading-relaxed max-w-3xl mt-2">
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mt-2">
                         I focus on developer experience - tools, testing, static analysis, and reusable patterns that make everyday development faster and more enjoyable. Every project I maintain is born from a real problem I wanted to solve.
                     </p>
                 </div>
 
+
                 <!-- Credibility Strip -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
                     <!-- Core Team -->
-                    <div class="relative p-5 sm:p-6 bg-white border border-slate-200 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 hover:bg-slate-50/50 transition-all duration-300">
-                        <svg class="absolute top-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="relative p-5 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+                        <svg class="absolute top-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute top-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute top-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <p class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Pinkary &amp; Pest</p>
-                        <p class="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1.5">Core Team</p>
+                        <p class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">Pinkary &amp; Pest</p>
+                        <p class="text-xs font-mono text-slate-400 dark:text-slate-400 uppercase tracking-widest mt-1.5">Core Team</p>
                     </div>
 
                     <!-- Founder -->
-                    <div class="relative p-5 sm:p-6 bg-white border border-slate-200 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 hover:bg-slate-50/50 transition-all duration-300">
-                        <svg class="absolute top-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="relative p-5 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+                        <svg class="absolute top-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute top-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute top-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <p class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Laravel Artisans</p>
-                        <p class="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1.5">Founder</p>
+                        <p class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">Laravel Artisans</p>
+                        <p class="text-xs font-mono text-slate-400 dark:text-slate-400 uppercase tracking-widest mt-1.5">Founder</p>
                     </div>
 
                     <!-- Repositories Contributed -->
-                    <div class="relative p-5 sm:p-6 bg-white border border-slate-200 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 hover:bg-slate-50/50 transition-all duration-300">
-                        <svg class="absolute top-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="relative p-5 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+                        <svg class="absolute top-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute top-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute top-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute bottom-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute bottom-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <p class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">100+</p>
-                        <p class="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1.5">Repositories Contributed</p>
+                        <p class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">100+</p>
+                        <p class="text-xs font-mono text-slate-400 dark:text-slate-400 uppercase tracking-widest mt-1.5">Repositories Contributed</p>
                     </div>
 
                     <!-- Focus -->
-                    <div class="relative p-5 sm:p-6 bg-white border border-slate-200 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 hover:bg-slate-50/50 transition-all duration-300">
-                        <svg class="absolute top-2.5 left-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="relative p-5 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+                        <svg class="absolute top-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <svg class="absolute top-2.5 right-2.5 text-slate-300" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute top-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
@@ -482,7 +498,7 @@
                             <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
                             <circle cx="6" cy="6" r="1.2" fill="currentColor" />
                         </svg>
-                        <p class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Developer Experience</p>
+                        <p class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">Developer Experience</p>
                         <p class="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1.5">Focus</p>
                     </div>
                 </div>
@@ -497,7 +513,7 @@
             </div>
 
             <!-- Core Team & Major Contributions -->
-            <section class="border-b border-slate-200 relative">
+            <section class="border-b border-slate-200 dark:border-slate-800 relative">
                 <div class="tech-line-h bottom-[-1px]"></div>
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
@@ -508,34 +524,34 @@
                         Projects where I've made long-term contributions as a Core Team member or collaborator.
                     </p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
 
                         <!-- Pinkary -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.1s;">
                             <div
-                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
@@ -545,13 +561,13 @@
                                 <div class="flex items-center gap-3 mb-3">
                                     <div>
                                         <h3
-                                            class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                                            class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                             Pinkary
                                         </h3>
                                         <span class="text-xs text-green-600 font-medium">Core Team</span>
                                     </div>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Core Team member contributing across Pinkary's Laravel stack by designing and shipping production features, reviewing community contributions, improving architecture, and maintaining code quality. Migrated production infrastructure from Laravel Forge to Laravel Cloud, SQLite to MySQL, and local storage to Amazon S3 while maintaining application availability and deployment reliability.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -561,7 +577,7 @@
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://pinkary.com" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                                         <span>Visit Pinkary</span>
                                     </a>
@@ -570,31 +586,31 @@
                         </div>
 
                         <!-- Pest v4 -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.15s;">
                             <div
-                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
@@ -604,13 +620,13 @@
                                 <div class="flex items-center gap-3 mb-3">
                                     <div>
                                         <h3
-                                            class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                                            class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                             Pest
                                         </h3>
                                         <span class="text-xs text-green-600 font-medium">Core Team</span>
                                     </div>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Core Team member contributing across the Pest core framework and plugin ecosystem, with significant work on Browser, PHPStan, and Rector tooling. Author of PestStan and rector-pest, which became Pest's official PHPStan and Rector plugins.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -621,13 +637,13 @@
                                 <div class="mt-auto pt-2 flex gap-4">
                                     <a href="https://github.com/pestphp/pest-plugin-browser" target="_blank"
                                         rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>Plugin Repo</span>
                                     </a>
                                     <a href="https://pestphp.com/docs/pest-v4-is-here-now-with-browser-testing"
                                         target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fas fa-book" aria-hidden="true"></i>
                                         <span>Docs</span>
                                     </a>
@@ -636,28 +652,28 @@
                         </div>
 
                         <!-- panphp/pan -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.2s;">
-                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
                                     <div>
-                                        <h3 class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">panphp/pan</h3>
+                                        <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">panphp/pan</h3>
                                         <span class="text-xs text-green-600 font-medium">Collaborator</span>
                                     </div>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Collaborator helping build a lightweight privacy-first PHP analytics library designed for modern applications.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -667,7 +683,7 @@
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/panphp/pan" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -676,28 +692,28 @@
                         </div>
 
                         <!-- supo-dev -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.25s;">
-                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
                                     <div>
-                                        <h3 class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">supo-dev</h3>
+                                        <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">supo-dev</h3>
                                         <span class="text-xs text-green-600 font-medium">Collaborator</span>
                                     </div>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Open source social network for the terminal. A raw, unfiltered space for hackers with no algorithms and no distractions. Collaborator.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -707,7 +723,7 @@
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/supo-dev/app" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -719,7 +735,7 @@
             </section>
 
             <!-- Open Source Projects -->
-            <section class="border-b border-slate-200 relative">
+            <section class="border-b border-slate-200 dark:border-slate-800 relative">
                 <div class="tech-line-h bottom-[-1px]"></div>
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
@@ -730,34 +746,34 @@
                         Developer tools, packages, educational projects, and community resources that I authored and actively maintain.
                     </p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
 
                         <!-- basic-crud -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.1s;">
                             <div
-                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
@@ -766,12 +782,12 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
                                     <h3
-                                        class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                                        class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                         basic-crud
                                     </h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Educational Project</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Educational Laravel project teaching production-ready architecture, best practices, testing, and maintainable application structure.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -781,7 +797,7 @@
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/MrPunyapal/basic-crud" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -790,31 +806,31 @@
                         </div>
 
                         <!-- laravel-extended-relationships -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.15s;">
                             <div
-                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
@@ -823,24 +839,24 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
                                     <h3
-                                        class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                                        class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                         laravel-extended-relationships
                                     </h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Package</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Advanced Eloquent relationship patterns for Laravel. Provides BelongsToManyMerged,
                                     HasManyMerged, and other custom relationships for complex data queries.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-600 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200 rounded">PHP</span>
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">PHP</span>
                                     <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-600 border border-blue-100 rounded">Eloquent</span>
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/MrPunyapal/laravel-extended-relationships"
                                         target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -849,26 +865,26 @@
                         </div>
 
                         <!-- pest-plugin-phpstan -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.2s;">
-                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
-                                    <h3 class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">pest-plugin-phpstan</h3>
+                                    <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">pest-plugin-phpstan</h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Official Pest Plugin</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Author of PestStan, which became Pest's official PHPStan plugin. Extends PHPStan to understand Pest test closures, providing type-safe expectations, $this binding, and dedicated static analysis rules.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -878,7 +894,7 @@
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/pestphp/pest-plugin-phpstan" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -887,36 +903,36 @@
                         </div>
 
                         <!-- pest-plugin-rector -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.25s;">
-                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
-                                    <h3 class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">pest-plugin-rector</h3>
+                                    <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">pest-plugin-rector</h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Official Pest Plugin</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Author of rector-pest, which became Pest's official Rector plugin. Automates PHPUnit to Pest migration and enforces Pest-native code quality with Rector rules.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-600 border border-purple-100 rounded">Pest</span>
                                     <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-600 border border-green-100 rounded">Rector</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200 rounded">PHP</span>
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">PHP</span>
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/pestphp/pest-plugin-rector" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -925,26 +941,26 @@
                         </div>
 
                         <!-- Laravel Attributes List -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.3s;">
-                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
-                                    <h3 class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">Laravel Attributes List</h3>
+                                    <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Laravel Attributes List</h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Community Resource</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     A searchable reference for Laravel's PHP attributes, complete with explanations, examples, and version compatibility.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -954,12 +970,12 @@
                                 </div>
                                 <div class="mt-auto pt-2 flex gap-4">
                                     <a href="https://laravel-attributes.mrpunyapal.dev" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                                         <span>Website</span>
                                     </a>
                                     <a href="https://github.com/MrPunyapal/laravel-attributes-list" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -968,26 +984,26 @@
                         </div>
 
                         <!-- DocSmith -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.35s;">
-                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
-                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
-                                    <h3 class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">DocSmith</h3>
+                                    <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">DocSmith</h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Developer Tool</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Static documentation generator that transforms Markdown into fast, searchable documentation websites. Designed to help developers publish clean documentation with minimal setup.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -997,7 +1013,7 @@
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/MrPunyapal/docsmith" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -1006,31 +1022,31 @@
                         </div>
 
                         <!-- livewire-chat-app -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.4s;">
                             <div
-                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
@@ -1039,12 +1055,12 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
                                     <h3
-                                        class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                                        class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                         livewire-chat-app
                                     </h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Application</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Real-time chat application built with Laravel Livewire. Demonstrates
                                     live messaging, presence detection, and reactive UI patterns.
                                 </p>
@@ -1056,7 +1072,7 @@
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/MrPunyapal/livewire-chat-app" target="_blank"
                                         rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -1065,31 +1081,31 @@
                         </div>
 
                         <!-- laravel-extended-commands -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.45s;">
                             <div
-                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
@@ -1098,12 +1114,12 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
                                     <h3
-                                        class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                                        class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                         laravel-extended-commands
                                     </h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Developer Tool</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                      Enhanced Artisan commands for Laravel. Adds commonly needed
                                      generators and utilities that should have been there by default.
                                 </p>
@@ -1115,7 +1131,7 @@
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/MrPunyapal/laravel-extended-commands" target="_blank"
                                         rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -1124,31 +1140,31 @@
                         </div>
 
                         <!-- laravel-auth-jobs -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.5s;">
                             <div
-                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
@@ -1157,12 +1173,12 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
                                     <h3
-                                        class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                                        class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                         laravel-auth-jobs
                                     </h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Package</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Background job authentication utilities for Laravel. Ensures queued jobs
                                     retain user context and authentication state during execution.
                                 </p>
@@ -1174,7 +1190,7 @@
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/MrPunyapal/laravel-auth-jobs" target="_blank"
                                         rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -1183,31 +1199,31 @@
                         </div>
 
                         <!-- trx-mall-upload-sales-data-api -->
-                        <div class="group relative p-4 sm:p-8 bg-white border-r border-b border-slate-200 hover:bg-slate-50 transition-colors duration-300 animate-fade-up"
+                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
                             style="animation-delay: 0.55s;">
                             <div
-                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10">
+                                class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                             </div>
                             <div
-                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 bg-white z-10 hidden md:block">
+                                class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
                                 <svg class="w-full h-full" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" />
@@ -1216,12 +1232,12 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-3 mb-3">
                                     <h3
-                                        class="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                                        class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                         trx-mall-upload-sales-data-api
                                     </h3>
                                     <span class="text-xs text-slate-400 font-medium ml-auto">Package</span>
                                 </div>
-                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                                     Laravel package for the TRX Mall sales data API. Includes Artisan commands, scheduled jobs, and extensible service stubs for custom sales payload transformation.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -1231,7 +1247,7 @@
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/Retail-Cosmos/trx-mall-upload-sales-data-api" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                                         <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>View on GitHub</span>
                                     </a>
@@ -1268,10 +1284,10 @@
 
         <!-- Footer -->
         <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10">
-            <p class="text-xs text-slate-500 font-mono">
-                // Want to collaborate on a project?
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                // Want to collaborate on open source?
                 <a href="mailto:mrpunyapal@gmail.com"
-                    class="text-slate-700 hover:text-red-600 transition-colors font-bold ml-1">
+                    class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold ml-1">
                     $this->collaborate()
                 </a>
             </p>
