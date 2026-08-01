@@ -83,9 +83,9 @@
 .dark .dark\:hover\:bg-slate-800\/50:hover,
 .dark .dark\:hover\:bg-slate-800\/40:hover,
 .dark .dark\:hover\:bg-slate-800:hover {
-    background-color: rgba(22, 33, 56, 0.65) !important;
-    border-color: rgba(244, 63, 94, 0.35) !important;
-    box-shadow: 0 0 24px rgba(244, 63, 94, 0.12) !important;
+    background-color: rgba(22, 33, 56, 0.75) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
 }
 
 .dark .text-slate-900 { color: #f8fafc !important; }
@@ -97,8 +97,8 @@
 /* Dark mode overrides for technical markers and lines */
 .dark .tech-marker {
     background-color: #0b0f19 !important;
-    border-color: rgba(244, 63, 94, 0.5) !important;
-    box-shadow: 0 0 10px rgba(244, 63, 94, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.1) !important;
 }
 
 .dark .tech-line-h,
@@ -113,6 +113,15 @@
 /* SVG grid lines for dark mode */
 .dark svg pattern#grid path {
     stroke: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Fix grid intersection '+' SVG corner cutout on card hover */
+.absolute.w-4.h-4.bg-white,
+.absolute.w-3.h-3.bg-white,
+.dark .absolute.w-4.h-4.dark\:bg-slate-900,
+.dark .absolute.w-3.h-3.dark\:bg-slate-900 {
+    background-color: transparent !important;
+    pointer-events: none !important;
 }
 
 /* Door message box in dark mode (Nightwatch Glassmorphism) */
@@ -140,7 +149,7 @@
 .dark .door-nav-btn:hover {
     background-color: rgba(51, 65, 85, 0.9) !important;
     color: #ffffff !important;
-    border-color: rgba(244, 63, 94, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 /* Typing text contrast in dark mode */
