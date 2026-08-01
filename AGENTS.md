@@ -8,7 +8,7 @@ When making changes, prioritize consistency, maintainability, and factual accura
 
 ## Core File Mapping
 
-- **Website Pages**: `index.html`, `projects.html`, `opensource.html`, `speaking.html`, `resume.html`
+- **Website Pages**: `index.html`, `projects.html`, `opensource.html`, `talks.html`, `resume.html`
 - **Printable Resume Template**: `scripts/resume-print.html`
 - **PDF Generation Script**: `scripts/generate-pdf.js`
 - **Generated Assets**: `public/resume.pdf`
@@ -24,6 +24,18 @@ When making changes, prioritize consistency, maintainability, and factual accura
 - Avoid unnecessary JavaScript and CSS complexity.
 - Follow the existing project structure and coding style.
 - Do not introduce new libraries unless they provide clear long-term value.
+
+---
+
+## Accessibility & HTML5 Semantics
+
+When creating or modifying HTML markup across pages:
+
+- **Dates & Date Ranges**: Use standard HTML5 `<time datetime="...">` tags for all dates, years, and date ranges.
+- **Interactive Elements**: All interactive controls (links, buttons, icon-only actions, or repeated call-to-action text) must include explicit, contextually unique `aria-label` attributes that describe their specific target or action for assistive technologies.
+- **Decorative Elements**: Apply `aria-hidden="true"` to all non-semantic visual decor, decorative SVGs, layout crosshairs/grid markers, and visual cursors so screen readers ignore them.
+- **Color Contrast**: Ensure all text, headings, and interactive states maintain WCAG AA compliant contrast ratios (at least 4.5:1 ratio against backgrounds).
+- **Semantic Structure**: Prefer standard HTML5 structural elements (`<time>`, `<header>`, `<footer>`, `<main>`, `<nav>`, `<article>`, `<section>`) and maintain a logical, sequential heading hierarchy (`<h1>` through `<h3>`).
 
 ---
 
@@ -124,7 +136,7 @@ Common locations include:
 - Home (`index.html`)
 - Projects (`projects.html`)
 - Open Source (`opensource.html`)
-- Talks (`speaking.html`)
+- Talks (`talks.html`)
 - Resume (`resume.html`)
 - Printable Resume (`scripts/resume-print.html`)
 - Downloadable PDF (`public/resume.pdf`)
@@ -143,6 +155,8 @@ Before marking a task as complete, verify:
 - Terminology remains consistent.
 - Related pages have been updated where necessary.
 - Internal links still work.
+- HTML5 semantic elements (`<time>`, etc.) are correctly used.
+- Accessibility standards (ARIA labels, `aria-hidden` on visual decor, WCAG AA contrast) are maintained.
 - Structured data remains valid (if modified).
 - Metadata remains consistent (if modified).
 - Responsive layout has not regressed (if modified).
