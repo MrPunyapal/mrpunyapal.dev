@@ -60,10 +60,32 @@
     display: none !important;
 }
 
-/* Dark mode body & text readability overrides */
+/* Nightwatch-Inspired Dark Mode Body & Text Readability Overrides */
 .dark body {
-    background-color: #020617 !important;
-    color: #e2e8f0 !important;
+    background-color: #080c14 !important;
+    color: #f1f5f9 !important;
+}
+
+/* Nightwatch Surface Layers & Glass Borders */
+.dark .dark\:bg-slate-950 { background-color: #080c14 !important; }
+.dark .dark\:bg-slate-900 { background-color: #0d121f !important; }
+.dark .dark\:bg-slate-900\/80 { background-color: rgba(13, 18, 31, 0.85) !important; }
+.dark .dark\:bg-slate-900\/60 { background-color: rgba(13, 18, 31, 0.65) !important; }
+.dark .dark\:bg-slate-900\/50 { background-color: rgba(13, 18, 31, 0.55) !important; }
+
+.dark .dark\:bg-slate-800 { background-color: #141c2e !important; }
+.dark .dark\:bg-slate-800\/50 { background-color: rgba(20, 28, 46, 0.5) !important; }
+.dark .dark\:bg-slate-800\/40 { background-color: rgba(20, 28, 46, 0.4) !important; }
+
+.dark .dark\:border-slate-800 { border-color: rgba(255, 255, 255, 0.08) !important; }
+.dark .dark\:border-slate-700 { border-color: rgba(255, 255, 255, 0.12) !important; }
+
+.dark .dark\:hover\:bg-slate-800\/50:hover,
+.dark .dark\:hover\:bg-slate-800\/40:hover,
+.dark .dark\:hover\:bg-slate-800:hover {
+    background-color: rgba(24, 34, 56, 0.7) !important;
+    border-color: rgba(244, 63, 94, 0.3) !important;
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.1) !important;
 }
 
 .dark .text-slate-900 { color: #f8fafc !important; }
@@ -74,31 +96,31 @@
 
 /* Dark mode overrides for technical markers and lines */
 .dark .tech-marker {
-    background-color: #0f172a !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.8) !important;
+    background-color: #0b0f19 !important;
+    border-color: rgba(244, 63, 94, 0.5) !important;
+    box-shadow: 0 0 10px rgba(244, 63, 94, 0.3) !important;
 }
 
 .dark .tech-line-h,
 .dark .tech-line-v-top {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .dark .tech-line-v-bottom {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent) !important;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), transparent) !important;
 }
 
 /* SVG grid lines for dark mode */
 .dark svg pattern#grid path {
-    stroke: rgba(255, 255, 255, 0.08) !important;
+    stroke: rgba(255, 255, 255, 0.06) !important;
 }
 
-/* Door message box in dark mode */
+/* Door message box in dark mode (Nightwatch Glassmorphism) */
 .dark #doorMessage {
-    background-color: #1e293b !important;
+    background-color: #0d1322 !important;
     color: #f1f5f9 !important;
-    border-color: #334155 !important;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(244, 63, 94, 0.15) !important;
 }
 
 .dark #doorMessage p.text-slate-800 {
@@ -110,37 +132,37 @@
 }
 
 .dark .door-nav-btn {
-    background-color: #334155 !important;
-    border-color: #475569 !important;
+    background-color: rgba(30, 41, 59, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
     color: #f1f5f9 !important;
 }
 
 .dark .door-nav-btn:hover {
-    background-color: #475569 !important;
+    background-color: rgba(51, 65, 85, 0.9) !important;
     color: #ffffff !important;
-    border-color: #64748b !important;
+    border-color: rgba(244, 63, 94, 0.4) !important;
 }
 
 /* Typing text contrast in dark mode */
 .dark .typing-animation {
-    color: rgba(203, 213, 225, 0.85);
+    color: rgba(203, 213, 225, 0.9);
 }
 
-/* Colored Pill Badges in Dark Mode */
-.dark .bg-slate-100 { background-color: #1e293b !important; color: #cbd5e1 !important; border-color: #334155 !important; }
-.dark .bg-slate-50 { background-color: #0f172a !important; color: #cbd5e1 !important; border-color: #1e293b !important; }
+/* Nightwatch Telemetry Pill Badges in Dark Mode */
+.dark .bg-slate-100 { background-color: rgba(30, 41, 59, 0.7) !important; color: #cbd5e1 !important; border-color: rgba(255, 255, 255, 0.08) !important; }
+.dark .bg-slate-50 { background-color: rgba(15, 23, 42, 0.8) !important; color: #cbd5e1 !important; border-color: rgba(255, 255, 255, 0.08) !important; }
 
-.dark .bg-red-50 { background-color: rgba(153, 27, 27, 0.25) !important; border-color: rgba(153, 27, 27, 0.5) !important; color: #f87171 !important; }
-.dark .bg-pink-50 { background-color: rgba(157, 23, 77, 0.25) !important; border-color: rgba(157, 23, 77, 0.5) !important; color: #f472b6 !important; }
-.dark .bg-orange-50 { background-color: rgba(154, 52, 18, 0.25) !important; border-color: rgba(154, 52, 18, 0.5) !important; color: #fb923c !important; }
-.dark .bg-yellow-50 { background-color: rgba(161, 98, 7, 0.25) !important; border-color: rgba(161, 98, 7, 0.5) !important; color: #facc15 !important; }
-.dark .bg-green-50 { background-color: rgba(20, 83, 45, 0.25) !important; border-color: rgba(20, 83, 45, 0.5) !important; color: #4ade80 !important; }
-.dark .bg-blue-50 { background-color: rgba(30, 58, 138, 0.25) !important; border-color: rgba(30, 58, 138, 0.5) !important; color: #60a5fa !important; }
-.dark .bg-purple-50 { background-color: rgba(88, 28, 135, 0.25) !important; border-color: rgba(88, 28, 135, 0.5) !important; color: #c084fc !important; }
-.dark .bg-indigo-50 { background-color: rgba(49, 46, 129, 0.25) !important; border-color: rgba(49, 46, 129, 0.5) !important; color: #818cf8 !important; }
-.dark .bg-amber-50 { background-color: rgba(120, 53, 15, 0.25) !important; border-color: rgba(120, 53, 15, 0.5) !important; color: #fbbf24 !important; }
-.dark .bg-emerald-50 { background-color: rgba(6, 78, 59, 0.25) !important; border-color: rgba(6, 78, 59, 0.5) !important; color: #34d399 !important; }
-.dark .bg-cyan-50 { background-color: rgba(22, 78, 99, 0.25) !important; border-color: rgba(22, 78, 99, 0.5) !important; color: #22d3ee !important; }
+.dark .bg-red-50 { background-color: rgba(225, 29, 72, 0.15) !important; border-color: rgba(225, 29, 72, 0.35) !important; color: #fb7185 !important; box-shadow: 0 0 10px rgba(225, 29, 72, 0.12) !important; }
+.dark .bg-pink-50 { background-color: rgba(219, 39, 119, 0.15) !important; border-color: rgba(219, 39, 119, 0.35) !important; color: #f472b6 !important; box-shadow: 0 0 10px rgba(219, 39, 119, 0.12) !important; }
+.dark .bg-orange-50 { background-color: rgba(234, 88, 12, 0.15) !important; border-color: rgba(234, 88, 12, 0.35) !important; color: #fb923c !important; }
+.dark .bg-yellow-50 { background-color: rgba(202, 138, 4, 0.15) !important; border-color: rgba(202, 138, 4, 0.35) !important; color: #facc15 !important; }
+.dark .bg-green-50 { background-color: rgba(22, 163, 74, 0.15) !important; border-color: rgba(22, 163, 74, 0.35) !important; color: #4ade80 !important; box-shadow: 0 0 10px rgba(22, 163, 74, 0.12) !important; }
+.dark .bg-blue-50 { background-color: rgba(37, 99, 235, 0.15) !important; border-color: rgba(37, 99, 235, 0.35) !important; color: #60a5fa !important; }
+.dark .bg-purple-50 { background-color: rgba(147, 51, 234, 0.15) !important; border-color: rgba(147, 51, 234, 0.35) !important; color: #c084fc !important; }
+.dark .bg-indigo-50 { background-color: rgba(79, 70, 229, 0.15) !important; border-color: rgba(79, 70, 229, 0.35) !important; color: #818cf8 !important; }
+.dark .bg-amber-50 { background-color: rgba(217, 119, 6, 0.15) !important; border-color: rgba(217, 119, 6, 0.35) !important; color: #fbbf24 !important; }
+.dark .bg-emerald-50 { background-color: rgba(5, 150, 105, 0.15) !important; border-color: rgba(5, 150, 105, 0.35) !important; color: #34d399 !important; box-shadow: 0 0 10px rgba(5, 150, 105, 0.12) !important; }
+.dark .bg-cyan-50 { background-color: rgba(8, 145, 178, 0.15) !important; border-color: rgba(8, 145, 178, 0.35) !important; color: #22d3ee !important; }
 
 /* Theme toggle button transitions */
 .theme-toggle-btn {
