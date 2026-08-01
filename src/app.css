@@ -162,7 +162,22 @@
 .dark .bg-indigo-50 { background-color: rgba(79, 70, 229, 0.15) !important; border-color: rgba(79, 70, 229, 0.35) !important; color: #818cf8 !important; }
 .dark .bg-amber-50 { background-color: rgba(217, 119, 6, 0.15) !important; border-color: rgba(217, 119, 6, 0.35) !important; color: #fbbf24 !important; }
 .dark .bg-emerald-50 { background-color: rgba(5, 150, 105, 0.15) !important; border-color: rgba(5, 150, 105, 0.35) !important; color: #34d399 !important; box-shadow: 0 0 10px rgba(5, 150, 105, 0.12) !important; }
-.dark .bg-cyan-50 { background-color: rgba(8, 145, 178, 0.15) !important; border-color: rgba(8, 145, 178, 0.35) !important; color: #22d3ee !important; }
+.dark .bg-amber-100 { background-color: rgba(217, 119, 6, 0.2) !important; color: #fbbf24 !important; }
+
+/* Print Layout Optimization */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    .tech-marker, .tech-line-h, .tech-line-v-top, .tech-line-v-bottom {
+        display: none !important;
+    }
+    .timeline-item, section, .talk-card, .project-card {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+}
 
 /* Theme toggle button transitions */
 .theme-toggle-btn {
