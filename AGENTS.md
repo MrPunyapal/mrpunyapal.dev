@@ -33,8 +33,8 @@ When creating or modifying HTML markup across pages:
 
 - **Dates & Date Ranges**: Use standard HTML5 `<time datetime="...">` tags for all dates, years, and date ranges.
 - **Interactive Elements**: All interactive controls (links, buttons, icon-only actions, or repeated call-to-action text) must include explicit, contextually unique `aria-label` attributes that describe their specific target or action for assistive technologies.
-- **Decorative Elements**: Apply `aria-hidden="true"` to all non-semantic visual decor, decorative SVGs, layout crosshairs/grid markers, and visual cursors so screen readers ignore them.
-- **Color Contrast**: Ensure all text, headings, and interactive states maintain WCAG AA compliant contrast ratios (at least 4.5:1 ratio against backgrounds).
+- **Decorative Elements**: Apply `aria-hidden="true"` to all non-semantic visual decor, decorative SVGs (including layout crosshairs, corner markers, card dot patterns, decorative icons), and visual cursors so assistive technologies ignore them and automated audit tools (Lighthouse/PageSpeed) do not flag them for text contrast.
+- **Color Contrast**: Ensure all text, headings, and interactive states maintain WCAG AA compliant contrast ratios (at least 4.5:1 ratio against backgrounds). Prefer `text-slate-500` or darker over `text-slate-400` for light-mode text and headings to ensure compliance.
 - **Semantic Structure**: Prefer standard HTML5 structural elements (`<time>`, `<header>`, `<footer>`, `<main>`, `<nav>`, `<article>`, `<section>`) and maintain a logical, sequential heading hierarchy (`<h1>` through `<h3>`).
 
 ---
