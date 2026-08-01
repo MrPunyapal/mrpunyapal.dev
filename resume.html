@@ -414,6 +414,10 @@
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
                         <span class="hidden sm:inline">Back</span>
                     </a>
+                    <a href="/resume.pdf" download title="Download PDF Resume" aria-label="Download PDF Resume"
+                        class="px-2.5 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 flex items-center justify-center rounded">
+                        <i class="fas fa-download text-xs" aria-hidden="true"></i>
+                    </a>
                     <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn px-2.5 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 flex items-center justify-center rounded">
                         <i class="fas fa-sun text-amber-500 text-xs theme-sun-icon hidden" aria-hidden="true"></i>
                         <i class="fas fa-moon text-slate-600 dark:text-slate-300 text-xs theme-moon-icon" aria-hidden="true"></i>
@@ -436,7 +440,7 @@
                             Punyapal Shah
                         </h1>
                         <p class="text-lg text-red-600 dark:text-red-400 font-medium mb-4 font-mono">
-                            // Laravel Engineer &bull; Open Source Maintainer &bull; Community Builder
+                            // Laravel Engineer &bull; Open Source Maintainer &bull; Technical Content Creator
                         </p>
 
                         <div class="flex flex-wrap justify-center lg:justify-start gap-3 text-sm text-slate-600 dark:text-slate-300">
@@ -450,13 +454,18 @@
                                 <i class="fas fa-globe text-slate-400" aria-hidden="true"></i>
                                 mrpunyapal.dev
                             </a>
-                            <a href="https://github.com/MrPunyapal" target="_blank" rel="me noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded hover:border-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                            <a href="https://github.com/MrPunyapal" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded hover:border-slate-400 dark:hover:border-slate-600 hover:text-slate-900 dark:hover:text-white transition-colors">
                                 <i class="fab fa-github text-slate-400" aria-hidden="true"></i>
                                 GitHub
                             </a>
-                            <a href="https://x.com/MrPunyapal" target="_blank" rel="me noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded hover:border-blue-300 dark:hover:border-blue-700 hover:text-blue-400 transition-colors">
+                            <a href="https://linkedin.com/in/mrpunyapal" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded hover:border-blue-400 dark:hover:border-blue-600 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                                <i class="fab fa-linkedin text-slate-400" aria-hidden="true"></i>
+                                LinkedIn
+                            </a>
+                            <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded hover:border-slate-400 dark:hover:border-slate-600 hover:text-slate-900 dark:hover:text-white transition-colors">
                                 <i class="fab fa-x-twitter text-slate-400" aria-hidden="true"></i>
                                 Twitter
                             </a>
@@ -473,24 +482,21 @@
 
             <!-- Content Sections -->
             <div class="bg-slate-50/30 dark:bg-slate-950/30">
-
-                <!-- Professional Summary -->
-                <section class="border-b border-slate-200 dark:border-slate-800 relative">
-                    <!-- Horizontal Line Extension -->
-                    <div class="tech-line-h bottom-[-1px]"></div>
+                <!-- Summary -->
+                <section class="p-4 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative">
                     <!-- Intersections -->
                     <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                     <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
-                    <div class="p-4 sm:p-12">
-                        <h2 class="text-xs font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest mb-6">Professional Summary
-                        </h2>
-                        <div class="prose prose-slate max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <h2 class="section-header">Professional Summary</h2>
+
+                    <div class="flex items-start gap-4 animate-fade-up" style="animation-delay: 0.2s;">
+                        <div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300">
                             <p>
                                 Laravel Engineer building products, developer tooling, and open source software for the Laravel ecosystem.
                             </p>
                             <p>
-                                Core Team member at <strong class="text-slate-900 dark:text-white font-semibold"><a href="https://pinkary.com" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors">Pinkary</a></strong> and <strong class="text-slate-900 dark:text-white font-semibold"><a href="https://pestphp.com" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors">Pest</a></strong>, collaborator at <strong class="text-slate-900 dark:text-white font-semibold"><a href="https://github.com/panphp/pan" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors">panphp</a></strong>, founder of Laravel Artisans, author of PestStan and rector-pest, which became Pest's official PHPStan and Rector plugins, and maintainer of <strong class="text-slate-900 dark:text-white font-semibold"><a href="https://github.com/MrPunyapal/laravel-extended-relationships" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors">laravel-extended-relationships</a></strong> and other open source tools used by Laravel developers.
+                                Core Team member at <strong class="text-slate-900 dark:text-white font-semibold"><a href="https://pinkary.com" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors">Pinkary</a></strong> and <strong class="text-slate-900 dark:text-white font-semibold"><a href="https://pestphp.com" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors">Pest</a></strong>, collaborator at <strong class="text-slate-900 dark:text-white font-semibold"><a href="https://github.com/panphp/pan" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors">panphp</a></strong>, founder of Laravel Artisans, author and maintainer of Pest's official PHPStan and Rector plugins, and maintainer of <strong class="text-slate-900 dark:text-white font-semibold"><a href="https://github.com/MrPunyapal/laravel-extended-relationships" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors">laravel-extended-relationships</a></strong> and other open source tools used by Laravel developers.
                             </p>
                         </div>
                     </div>
@@ -835,8 +841,10 @@
                                 </div>
                                 <ul
                                     class="list-disc list-outside text-slate-600 dark:text-slate-300 space-y-2 text-sm pl-4 marker:text-slate-300 dark:marker:text-slate-600">
-                                    <li>Migrated ecommerce data from multiple CMS platforms into one system using custom CSV schemas and automated migrations.</li>
-                                    <li>Integrated Transport, Pharmacy, Booking, and Facebook Graph APIs to handle logistics, delivery, and messaging.</li>
+                                    <li>Engineered a multi-carrier shipping and logistics platform featuring automated ZIP code zone mapping, carrier selection algorithms, deliverability validation, and real-time shipping label PDF generation.</li>
+                                    <li>Migrated legacy Drupal and CorePHP applications to modern Laravel architecture for a yacht charter booking platform, introducing multi-lingual date-range booking and dynamic pricing while boosting performance by 80%+.</li>
+                                    <li>Integrated third-party APIs including DocuSign (webhooks & signature request workflows), Stripe & digital wallet payments, WhatsApp Business queued messaging broadcasts, and Facebook Graph API.</li>
+                                    <li>Built background queue processing and cron automation for late-fee calculations, attendance tracking, bulk communications, and editorial workflow tooling across client systems.</li>
                                 </ul>
                             </div>
 
@@ -1159,14 +1167,14 @@
                                         <span><strong><a href="https://github.com/pestphp/pest-plugin-rector" target="_blank"
                                                     rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">pest-plugin-rector</a></strong>
-                                            : Author of rector-pest, which became Pest's official Rector plugin. Automates PHPUnit-to-Pest migration and enforces Pest-native code quality with Rector rules</span>
+                                            : Author and maintainer of Pest's official Rector plugin (pest-plugin-rector). Automates PHPUnit-to-Pest migration and enforces Pest-native code quality with Rector rules</span>
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
                                         <span><strong><a href="https://github.com/pestphp/pest-plugin-phpstan" target="_blank"
                                                     rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">pest-plugin-phpstan</a></strong>
-                                            : Author of PestStan, which became Pest's official PHPStan plugin. Extends PHPStan to understand Pest test closures, providing type-safe expectations, <code>$this</code> binding, and dedicated static analysis rules</span>
+                                            : Author and maintainer of Pest's official PHPStan plugin (pest-plugin-phpstan). Extends PHPStan to understand Pest test closures, providing type-safe expectations, <code>$this</code> binding, and dedicated static analysis rules</span>
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
@@ -1257,7 +1265,7 @@
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
-                                        <span><strong>Laracon India 2025</strong>: Helped organize and run Laracon India 2025</span>
+                                        <span><strong>Laracon India 2025</strong>: Volunteer supporting conference operations</span>
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-slate-400 mt-1">›</span>
@@ -1548,7 +1556,7 @@
         <!-- Footer -->
         <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 print:hidden">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
-                // Looking for printable PDF format? Use your browser's print feature.
+                // Need a printable version? <a href="/resume.pdf" download class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold">Download PDF</a>
             </p>
         </div>
         <footer class="max-w-5xl mx-auto mt-12 mb-12 px-4 text-center">

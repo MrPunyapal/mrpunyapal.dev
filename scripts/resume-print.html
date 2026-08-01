@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punyapal Shah - Resume</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.45;
+            color: #334155;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 24px;
+            orphans: 3;
+            widows: 3;
+        }
+
+        @page {
+            size: A4;
+            margin: 8mm 10mm 8mm 10mm;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.88em;
+            background-color: #f1f5f9;
+            color: #334155;
+            padding: 1px 5px;
+            border-radius: 3px;
+            border: 1px solid #e2e8f0;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 4px 0;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        h2 {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #1e293b;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 3px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            break-after: avoid;
+            page-break-after: avoid;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 10px;
+            margin-bottom: 3px;
+            break-after: avoid;
+            page-break-after: avoid;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #475569;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .contact {
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 18px;
+        }
+        .contact a {
+            color: #334155;
+            font-weight: 500;
+        }
+        .contact a:hover {
+            color: #2563eb;
+        }
+        .section-link {
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        .section-link a {
+            color: #64748b;
+        }
+        .section-link a:hover {
+            color: #2563eb;
+        }
+        p {
+            font-size: 12px;
+            margin: 4px 0;
+            color: #334155;
+            orphans: 3;
+            widows: 3;
+        }
+        ul {
+            font-size: 12px;
+            margin-top: 3px;
+            margin-bottom: 6px;
+            padding-left: 16px;
+        }
+        li {
+            margin-bottom: 3px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            orphans: 3;
+            widows: 3;
+        }
+        .date {
+            float: right;
+            font-weight: normal;
+            color: #64748b;
+            font-size: 11.5px;
+        }
+        
+        /* Modern Semantic Container Print Rules */
+        .resume-header {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        .resume-section {
+            margin-bottom: 4px;
+        }
+        .open-source-section {
+            break-before: page;
+            page-break-before: always;
+        }
+        .resume-section h2 + .entry-block,
+        .resume-section h2 + .skills-grid,
+        .resume-section h2 + p {
+            break-before: avoid;
+            page-break-before: avoid;
+        }
+        .entry-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        /* Skills Grid Layout */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 20px;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        .skills-col strong {
+            display: block;
+            font-size: 11.5px;
+            color: #0f172a;
+            margin-bottom: 1px;
+        }
+        .skills-col p {
+            margin: 0;
+            font-size: 11.5px;
+            color: #475569;
+            line-height: 1.35;
+        }
+        .speaking-list li strong {
+            color: #0f172a;
+        }
+        .footer-note {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #f1f5f9;
+            text-align: center;
+            font-size: 10.5px;
+            color: #64748b;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        .footer-note a {
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        @page {
+            size: A4;
+            margin: 12mm 15mm 12mm 15mm;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
+                font-size: 11px;
+            }
+            h1 { font-size: 19px; margin-bottom: 3px; }
+            h2 { font-size: 12.5px; margin-top: 14px; margin-bottom: 6px; }
+            h3 { font-size: 12px; margin-top: 8px; }
+            p, ul, li { font-size: 10.5px; }
+            .skills-col strong { font-size: 10.5px; }
+            .skills-col p { font-size: 10.5px; }
+            .subtitle { font-size: 11.5px; margin-bottom: 6px; }
+            .contact { font-size: 10px; margin-bottom: 14px; }
+            .section-link { font-size: 9.5px; }
+            .footer-note { font-size: 9.5px; margin-top: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="resume-header">
+        <h1>PUNYAPAL SHAH</h1>
+        <div class="subtitle">Laravel Engineer • Open Source Maintainer • Technical Content Creator</div>
+        <div class="contact">
+            Email: <a href="{{SITE_URLS.email}}">mrpunyapal@gmail.com</a> &bull;
+            Web: <a href="{{SITE_URLS.home}}" target="_blank">mrpunyapal.dev</a> &bull;
+            GitHub: <a href="{{SITE_URLS.github}}" target="_blank">github.com/MrPunyapal</a> &bull;
+            LinkedIn: <a href="{{SITE_URLS.linkedin}}" target="_blank">linkedin.com/in/mrpunyapal</a> &bull;
+            Twitter: <a href="{{SITE_URLS.twitter}}" target="_blank">x.com/MrPunyapal</a> &bull;
+            Location: Ahmedabad, India
+        </div>
+    </header>
+
+    <section class="resume-section">
+        <h2>PROFESSIONAL SUMMARY</h2>
+        <p>Laravel Engineer building production applications, developer tooling, and open-source software for the PHP and Laravel ecosystems. Core team member at Pest and Pinkary, collaborator on panphp, and founder of Laravel Artisans.</p>
+        <p>Author and maintainer of Pest's official PHPStan and Rector plugins. Maintainer of <code>laravel-extended-relationships</code> and contributor to 100+ open-source repositories.</p>
+    </section>
+
+    <section class="resume-section">
+        <h2>ENGINEERING EXPERTISE</h2>
+        <div class="skills-grid">
+            <div class="skills-col">
+                <strong>Laravel Ecosystem</strong>
+                <p>Laravel, PHP, Livewire, Filament, Blade, Inertia.js, Alpine.js, Tailwind CSS</p>
+            </div>
+            <div class="skills-col">
+                <strong>Testing & Developer Tooling</strong>
+                <p>Pest, PHPUnit, PHPStan, Rector, Laravel Pint, Static Analysis, Automated Refactoring, AI Workflows</p>
+            </div>
+            <div class="skills-col">
+                <strong>Architecture & Data</strong>
+                <p>Multi-tenancy, Queues, Task Scheduling, Caching, WebSockets, MySQL, PostgreSQL, SQLite, Eloquent ORM</p>
+            </div>
+            <div class="skills-col">
+                <strong>Cloud, AI & Integrations</strong>
+                <p>Laravel Cloud, Laravel Forge, AWS, Cloudflare, OpenAI, Stripe, Razorpay, PayPal, Twilio</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume-section">
+        <h2>
+            <span>PROFESSIONAL EXPERIENCE</span>
+            <span class="section-link"><a href="{{SITE_URLS.projects}}" target="_blank">More projects &rarr;</a></span>
+        </h2>
+
+        <article class="entry-block">
+            <h3>Freelance, Senior Laravel Engineer <span class="date">July 2020 – Present</span></h3>
+            <ul>
+                <li>Engineered and shipped features for production multi-tenant SaaS platforms, ecommerce applications, and booking engines using the TALL stack and Filament, integrating payment gateways (Stripe, PayPal, Razorpay) and communication services (Twilio, Dialpad).</li>
+                <li>Upgraded legacy Laravel applications from 5.x and 7.x up to 11.x and 12.x, modernizing dependencies, Livewire, Filament, and PHP versions while maintaining continuous application stability.</li>
+                <li>Designed and implemented testing architectures around existing client applications using Pest and PHPUnit, expanding test coverage from 0% to 100% on mission-critical workflows.</li>
+                <li>Audited domain-driven Laravel codebases and established static analysis (PHPStan), automated refactoring (Rector), and coding standards to improve code maintainability.</li>
+                <li>Optimized application performance and database responsiveness by diagnosing N+1 queries, optimizing database indexes, and implementing query caching strategies.</li>
+                <li>Built custom AI data extraction tooling leveraging LLM workflows to convert unstructured input into structured records, eliminating manual data entry processes.</li>
+            </ul>
+        </article>
+
+        <article class="entry-block">
+            <h3>ShubhKey Infotech LLP, Lead Engineer <span class="date">Aug 2022 – Sep 2024</span></h3>
+            <ul>
+                <li>Led engineering and developed a full-scale freelance marketplace end to end, building real-time messaging, contract management, billing, and activity monitoring using WebSockets and the TALL stack.</li>
+                <li>Migrated legacy codebases to modern Laravel architecture, refactored REST APIs, and established standardized engineering practices across the development team.</li>
+                <li>Built a dynamic survey platform for medical patients using Filament, featuring custom question logic that adapts based on conditional patient responses.</li>
+                <li>Mentored junior engineers on Laravel design patterns, code review standards, static analysis, and automated testing best practices.</li>
+            </ul>
+        </article>
+
+        <article class="entry-block">
+            <h3>Maven InfoTech, Sr. Full Stack Developer <span class="date">Feb 2022 – Aug 2022</span></h3>
+            <ul>
+                <li>Engineered a multi-carrier shipping and logistics platform featuring automated ZIP code zone mapping, carrier selection algorithms, deliverability validation, and real-time shipping label PDF generation.</li>
+                <li>Migrated legacy Drupal and CorePHP applications to modern Laravel architecture for a yacht charter booking platform, introducing multi-lingual date-range booking and dynamic pricing while boosting performance by 80%+.</li>
+                <li>Integrated third-party APIs including DocuSign (webhooks & signature request workflows), Stripe & digital wallet payments, WhatsApp Business queued messaging broadcasts, and Facebook Graph API.</li>
+                <li>Built background queue processing and cron automation for late-fee calculations, attendance tracking, bulk communications, and editorial workflow tooling across client systems.</li>
+            </ul>
+        </article>
+    </section>
+
+    <section class="resume-section open-source-section">
+        <h2>
+            <span>OPEN SOURCE & COMMUNITY</span>
+            <span class="section-link"><a href="{{SITE_URLS.opensource}}" target="_blank">View more &rarr;</a></span>
+        </h2>
+
+        <article class="entry-block">
+            <h3>Core Team</h3>
+            <ul>
+                <li><strong>Pest:</strong> Core Team member contributing across the core testing framework and plugin ecosystem.</li>
+                <li><strong>Pinkary:</strong> Core team member contributing to an open-source Laravel social platform.</li>
+                <li><strong>panphp/pan:</strong> Collaborator on a lightweight PHP product analytics library.</li>
+            </ul>
+        </article>
+
+        <article class="entry-block">
+            <h3>Featured Projects</h3>
+            <ul>
+                <li><strong>pest-plugin-rector:</strong> Author and maintainer of Pest's official Rector plugin (pest-plugin-rector) for automated test refactoring.</li>
+                <li><strong>pest-plugin-phpstan:</strong> Author and maintainer of Pest's official PHPStan plugin (pest-plugin-phpstan) for static analysis.</li>
+                <li><strong>laravel-extended-relationships:</strong> Maintainer of Eloquent relationship extensions for complex domain models.</li>
+                <li><strong>Open Source Utilities:</strong> Author and maintainer of <code>livewire-chat-app</code>, <code>laravel-auth-jobs</code>, and <code>laravel-extended-commands</code>.</li>
+            </ul>
+        </article>
+
+        <article class="entry-block">
+            <h3>Community Leadership</h3>
+            <ul>
+                <li><strong>Laravel Artisans:</strong> Founder of a 5,000+ developer community across multiple developer platforms.</li>
+                <li><strong>Laravel Ahmedabad:</strong> Organizer running local Laravel engineering meetups in Ahmedabad.</li>
+                <li><strong>Laracon India 2025:</strong> Volunteer supporting conference operations.</li>
+            </ul>
+        </article>
+
+        <article class="entry-block">
+            <h3>Speaking Engagements</h3>
+            <ul class="speaking-list">
+                <li><strong>"Write code that can fix itself"</strong> &ndash; Laracon India, Laravel Bangalore, Laravel Moris (Remote)</li>
+                <li><strong>"Types in PHP at a Glance with PHPStan"</strong> &ndash; Laravel Ahmedabad, Laravel Indore, Laravel Kozhikode</li>
+                <li><strong>"From Zero to Tested: Laravel + PestPHP"</strong> &ndash; Laravel Ahmedabad</li>
+                <li><strong>"Broadcasting in Laravel"</strong> &ndash; Laravel Ahmedabad</li>
+            </ul>
+        </article>
+    </section>
+
+    <section class="resume-section">
+        <h2>EDUCATION</h2>
+        <article class="entry-block">
+            <h3>Bachelor of Technology (B.Tech) - Information Technology <span class="date">2016 – 2020</span></h3>
+            <p>U.V. Patel College of Engineering, Ganpat University</p>
+        </article>
+    </section>
+
+    <footer class="footer-note">
+        Complete portfolio, projects, talks and open source &bull; <a href="{{SITE_URLS.home}}" target="_blank">mrpunyapal.dev</a>
+    </footer>
+</body>
+</html>

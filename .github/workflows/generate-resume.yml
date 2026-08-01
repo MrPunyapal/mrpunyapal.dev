@@ -1,0 +1,37 @@
+name: Generate Resume PDF
+
+on:
+  push:
+    paths:
+      - 'scripts/resume-print.html'
+      - 'scripts/generate-pdf.js'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate PDF Resume
+        run: npm run build:pdf
+
+      - name: Commit and push generated PDF if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/resume.pdf
+          git diff --quiet && git diff --staged --quiet || (git commit -m "build(resume): auto-generate public/resume.pdf" && git push)

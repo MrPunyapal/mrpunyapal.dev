@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "build:pdf": "node scripts/generate-pdf.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/MrPunyapal/mrpunyapal.dev#readme",
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "html-pdf-node": "^1.0.8",
     "tailwindcss": "^4.3.3",
     "vite": "^8.1.5"
   }
