@@ -40,9 +40,13 @@
 
   /* Scale the artwork, never the container. The container's transform carries
      the elephant's position, so any rule that replaces it snaps the elephant
-     back to its anchor corner. */
+     back to its anchor corner.
+     Scale only, deliberately: a rotateY here puts the artwork in a 3D context
+     under the container's perspective, and the drop-shadow filter then traces
+     the layer's rectangle instead of the elephant's outline, drawing a hard
+     box behind it on hover. */
   .elephant-container:hover svg {
-    transform: scale(1.2) rotateY(15deg);
+    transform: scale(1.2);
   }
 }
 
