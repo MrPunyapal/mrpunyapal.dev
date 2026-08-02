@@ -91,6 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let isElephantHome = false;
     let elephantInitialized = false;
 
+    // The door's visible text changes as the elephant comes and goes, so set the
+    // accessible name from it. WCAG 2.5.3 requires the accessible name to contain
+    // the visible label, and the two drift apart if they are updated separately.
+    function setDoorMessage(text, hint) {
+        if (doorMessage) doorMessage.textContent = text;
+        if (doorContainer) doorContainer.setAttribute('aria-label', `${text}: ${hint}`);
+    }
+
     // Confetti effect
     function createConfetti() {
         const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
@@ -255,6 +263,23 @@ document.addEventListener('DOMContentLoaded', function() {
         return elephant;
     }
 
+    // The elephant is pinned to a fixed bottom/right corner and every move it
+    // makes is a transform away from that corner, so nothing it does can shift
+    // the page layout. These two turn a "distance from the viewport edges"
+    // target into the matching translation.
+    function getElephantAnchor(elephant) {
+        const style = window.getComputedStyle(elephant);
+        return {
+            bottom: parseFloat(style.bottom) || 0,
+            right: parseFloat(style.right) || 0,
+        };
+    }
+
+    function translateFrom(anchor, bottom, right) {
+        // A larger bottom sits higher up and a larger right sits further left.
+        return `translate3d(${anchor.right - right}px, ${anchor.bottom - bottom}px, 0)`;
+    }
+
     function sendElephantHome() {
         const elephant = getElephant();
         if (!elephant || isElephantHome) return;
@@ -265,10 +290,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const currentBottom = windowHeight - rect.bottom;
         const currentRight = windowWidth - rect.right;
-        
+        const anchor = getElephantAnchor(elephant);
+
         elephant.style.animation = 'none';
-        elephant.style.bottom = `${currentBottom}px`;
-        elephant.style.right = `${currentRight}px`;
+        // Hold the spot the run stopped at, expressed as an offset from the anchor.
+        elephant.style.transform = translateFrom(anchor, currentBottom, currentRight);
         elephant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode');
         
         void elephant.offsetWidth;
@@ -285,13 +311,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const targetRight = doorCenterFromRight - (elephantSize / 2);
 
         elephant.classList.add('returning-home');
-        elephant.style.bottom = `${targetBottom}px`;
-        elephant.style.right = `${targetRight}px`;
+        elephant.style.transform = `${translateFrom(anchor, targetBottom, targetRight)} scale(0.5)`;
         
         setTimeout(() => {
             elephant.classList.add('hidden-behind-door');
             if (doorContainer) doorContainer.classList.remove('open');
-            if (doorMessage) doorMessage.textContent = "Knock to see me";
+            setDoorMessage("Knock to see me", "reveals the elephant easter egg");
             isElephantHome = true;
         }, 1500);
     }
@@ -317,24 +342,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
             const startRight = doorCenterFromRight - (elephantSize / 2);
             
-            elephant.style.bottom = `${targetBottom}px`;
-            elephant.style.right = `${startRight}px`;
-            
+            const anchor = getElephantAnchor(elephant);
+            elephant.style.transform = `${translateFrom(anchor, targetBottom, startRight)} scale(0.5)`;
+
             void elephant.offsetWidth;
 
             elephant.classList.remove('returning-home');
             elephant.classList.add('exiting-door');
-            
-            elephant.style.right = `${startRight + 200}px`;
-            
+
+            // Step out from the door, back to full size and facing left.
+            elephant.style.transform = `${translateFrom(anchor, targetBottom, startRight + 200)} scaleX(-1)`;
+
             setTimeout(() => {
                 elephant.classList.remove('exiting-door');
                 elephant.style.animation = '';
-                elephant.style.bottom = '';
-                elephant.style.right = '';
+                elephant.style.transform = '';
                 
                 if (doorContainer) doorContainer.classList.remove('open');
-                if (doorMessage) doorMessage.textContent = "Knock to hide me";
+                setDoorMessage("Knock to hide me", "hides the elephant easter egg");
                 isElephantHome = false;
             }, 1000);
         }, 400);
