@@ -359,6 +359,8 @@
 
 <body
     class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Icon sprite: Font Awesome Free 6.4.2 icons, CC BY 4.0 (https://fontawesome.com/license/free) -->
     <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
         <defs>
@@ -423,7 +425,7 @@
                     </button>
                 </nav>
 
-                <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6 sm:gap-8 animate-fade-up"
+                <div id="main-content" tabindex="-1" class="flex flex-col lg:flex-row items-center lg:items-start gap-6 sm:gap-8 animate-fade-up"
                     style="animation-delay: 0.1s;">
                     <div class="flex-shrink-0 relative group">
                         <picture>
@@ -1041,7 +1043,7 @@
 
                         <div class="mt-6 text-right">
                             <a href="/projects"
-                                class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-red-600 transition-colors">
+                                class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 hover:text-red-600 transition-colors">
                                 <span>View all projects</span>
                                 <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-right"/></svg>
                             </a>
@@ -1101,20 +1103,20 @@
                                     </div>
                                     <ul class="space-y-3 text-sm text-slate-600 flex-1">
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a href="https://pinkary.com" target="_blank" rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">Pinkary</a></strong>
                                             : Core team member contributing to an open-source Laravel social platform</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a
                                                     href="https://pestphp.com"
                                                     target="_blank" rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">Pest</a></strong>: Core Team member contributing across the core framework and plugin ecosystem, with significant work on Browser, PHPStan, Rector, and other Pest plugins</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a href="https://github.com/panphp/pan" target="_blank" rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">panphp/pan</a></strong>: Collaborator on a lightweight PHP analytics library that tracks page impressions, clicks, and interactions without any third-party service</span>
                                     </li>
@@ -1155,28 +1157,28 @@
                                 </div>
                                 <div class="flex flex-col items-start gap-4 sm:gap-6">
                                     <div class="flex items-center gap-3 w-full">
-                                        <svg class="icon text-blue-600" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-code-branch"/></svg>
+                                        <svg class="icon text-blue-600 dark:text-blue-400" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-code-branch"/></svg>
                                         <h3
                                             class="text-sm font-bold text-slate-900 uppercase tracking-wide group-hover:text-red-600 transition-colors">
                                             Maintainer</h3>
                                     </div>
                                     <ul class="space-y-3 text-sm text-slate-600 flex-1">
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a href="https://github.com/pestphp/pest-plugin-rector" target="_blank"
                                                     rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">pest-plugin-rector</a></strong>
                                             : Author and maintainer of Pest's official Rector plugin (pest-plugin-rector). Automates PHPUnit-to-Pest migration and enforces Pest-native code quality with Rector rules</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a href="https://github.com/pestphp/pest-plugin-phpstan" target="_blank"
                                                     rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">pest-plugin-phpstan</a></strong>
                                             : Author and maintainer of Pest's official PHPStan plugin (pest-plugin-phpstan). Extends PHPStan to understand Pest test closures, providing type-safe expectations, <code>$this</code> binding, and dedicated static analysis rules</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a
                                                     href="https://github.com/MrPunyapal/laravel-extended-relationships"
                                                     target="_blank" rel="noopener noreferrer"
@@ -1184,28 +1186,28 @@
                                             : Adds Eloquent relationship patterns that Laravel doesn't support out of the box</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a href="https://github.com/MrPunyapal/livewire-chat-app"
                                                     target="_blank" rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">livewire-chat-app</a></strong>
                                             : A working real-time chat app built with Livewire 3 and Laravel Reverb</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a href="https://github.com/MrPunyapal/laravel-auth-jobs"
                                                     target="_blank" rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">laravel-auth-jobs</a></strong>
                                             : Passes the authenticated user into queued Jobs automatically, without manual plumbing</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a href="https://github.com/MrPunyapal/laravel-extended-commands"
                                                     target="_blank" rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">laravel-extended-commands</a></strong>
                                             : Fills gaps in Laravel's Artisan command set for everyday development tasks</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong><a href="https://github.com/MrPunyapal/basic-crud" target="_blank"
                                                     rel="noopener noreferrer"
                                                     class="hover:text-red-600 transition-colors">basic-crud</a></strong>
@@ -1255,19 +1257,19 @@
                                     </div>
                                     <ul class="space-y-3 text-sm text-slate-600 flex-1">
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong>Laravel Artisans Founder</strong>: Started Laravel Artisans, a community of more than 5,000 developers across multiple platforms.</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong>Laravel Ahmedabad</strong>: Runs local Laravel meetups in Ahmedabad and helps developers get started with the framework</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong>Laracon India 2025</strong>: Volunteer supporting conference operations</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-slate-400 mt-1">›</span>
+                                        <span class="text-slate-500 dark:text-slate-400 mt-1" aria-hidden="true">›</span>
                                         <span><strong>Content Creator</strong>: Shares Laravel tips, open source updates, and educational content across YouTube and social platforms, helping developers stay up to date with the Laravel ecosystem.</span>
                                     </li>
                                 </ul>
@@ -1467,7 +1469,7 @@
 
                         <div class="mt-6 text-right">
                             <a href="/talks"
-                                class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-red-600 transition-colors">
+                                class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 hover:text-red-600 transition-colors">
                                 <span>View all talks</span>
                                 <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-right"/></svg>
                             </a>
@@ -1539,7 +1541,7 @@
                                                 <time datetime="2016">2016</time> – <time datetime="2020">2020</time>
                                             </span>
                                         </div>
-                                        <p class="text-blue-600 font-medium text-sm">
+                                        <p class="text-blue-600 dark:text-blue-400 font-medium text-sm">
                                             U.V. Patel College of Engineering, Ganpat University
                                         </p>
                                     </div>

@@ -353,6 +353,8 @@
 
 <body
     class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Icon sprite: Font Awesome Free 6.4.2 icons, CC BY 4.0 (https://fontawesome.com/license/free) -->
     <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
         <defs>
@@ -405,7 +407,7 @@
                     </button>
                 </nav>
 
-                <div class="animate-fade-up" style="animation-delay: 0.1s;">
+                <div id="main-content" tabindex="-1" class="animate-fade-up" style="animation-delay: 0.1s;">
                     <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
                         Open Source
                     </h1>
@@ -573,7 +575,7 @@
                                             class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                             Pinkary
                                         </h3>
-                                        <span class="text-xs text-green-600 font-medium">Core Team</span>
+                                        <span class="text-xs text-green-700 dark:text-green-400 font-medium">Core Team</span>
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
@@ -632,7 +634,7 @@
                                             class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                             Pest
                                         </h3>
-                                        <span class="text-xs text-green-600 font-medium">Core Team</span>
+                                        <span class="text-xs text-green-700 dark:text-green-400 font-medium">Core Team</span>
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
@@ -679,7 +681,7 @@
                                 <div class="flex items-center gap-3 mb-3">
                                     <div>
                                         <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">panphp/pan</h3>
-                                        <span class="text-xs text-green-600 font-medium">Collaborator</span>
+                                        <span class="text-xs text-green-700 dark:text-green-400 font-medium">Collaborator</span>
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
@@ -719,7 +721,7 @@
                                 <div class="flex items-center gap-3 mb-3">
                                     <div>
                                         <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">supo-dev</h3>
-                                        <span class="text-xs text-green-600 font-medium">Collaborator</span>
+                                        <span class="text-xs text-green-700 dark:text-green-400 font-medium">Collaborator</span>
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
@@ -1134,7 +1136,7 @@
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-600 border border-orange-100 rounded">Artisan</span>
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-700 border border-orange-100 rounded">Artisan</span>
                                     <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">CLI</span>
                                 </div>
                                 <div class="mt-auto pt-2">
@@ -1194,7 +1196,7 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
                                     <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Queues</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-50 text-yellow-600 border border-yellow-100 rounded">Authentication</span>
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-50 text-yellow-700 border border-yellow-100 rounded">Authentication</span>
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/MrPunyapal/laravel-auth-jobs" aria-label="View on GitHub: laravel-auth-jobs" target="_blank"
@@ -1281,7 +1283,7 @@
                             I contribute to open source because I enjoy building tools that help other developers. If my work has saved you time or improved your workflow, sponsoring allows me to spend more time maintaining packages, contributing to community projects, building developer tools, and creating educational resources for the Laravel ecosystem.
                         </p>
                         <a href="https://github.com/sponsors/MrPunyapal" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium border border-pink-200 dark:border-pink-900/60 text-pink-600 dark:text-pink-400 rounded hover:bg-pink-600 hover:text-white hover:border-pink-600 transition-all">
+                            class="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium border border-pink-200 dark:border-pink-900/60 text-pink-700 dark:text-pink-400 rounded hover:bg-pink-600 hover:text-white hover:border-pink-600 transition-all">
                             <svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-heart"/></svg>
                             Sponsor on GitHub
                         </a>

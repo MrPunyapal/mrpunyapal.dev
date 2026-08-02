@@ -58,9 +58,17 @@ function trackEvent(event, details) {
 document.addEventListener('DOMContentLoaded', function() {
     const typingText = document.getElementById('typingText');
     if (typingText) {
-        currentChar = phrases[0].length;
-        isDeleting = true;
-        setTimeout(typeAnimation, 3000);
+        // The CSS animations honour prefers-reduced-motion, but this one is
+        // driven from JS and would otherwise keep typing regardless. Leave the
+        // first phrase in place as static text instead.
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reducedMotion.matches) {
+            typingText.textContent = phrases[0];
+        } else {
+            currentChar = phrases[0].length;
+            isDeleting = true;
+            setTimeout(typeAnimation, 3000);
+        }
     }
     
     document.querySelectorAll('a[target="_blank"]').forEach(link => {
@@ -81,6 +89,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth',
                     block: 'start'
                 });
+
+                // Move the keyboard along with the scroll. preventDefault above
+                // stops the browser's own focus handling, so without this a skip
+                // link scrolls the page while focus stays in the nav, which is
+                // the one thing a skip link exists to avoid.
+                if (!target.hasAttribute('tabindex')) {
+                    target.setAttribute('tabindex', '-1');
+                }
+                target.focus({ preventScroll: true });
             }
         });
     });
