@@ -305,40 +305,22 @@ export function toggleTheme(eventOrElement) {
             const sway = (i % 2 === 0 ? 2 : -2);
 
             if (isMobile) {
-                // Mobile Physical 2-Stage Walk:
-                // Stage 1 (0.0 to 0.4): Walk horizontally along dropTargetY from button X to center X facing travel direction
-                // Stage 2 (0.4 to 1.0): Walk vertically from dropTargetY to curtainStartY (top 40px or bottom height-40px) at center X, then 180deg U-turn at edge
-                let currentX, currentY, currentAngle;
+                // Mobile Diagonal Cross Walk:
+                // Walk diagonally in cross from (dropX, dropTargetY) to (mobileTargetX, curtainStartY) facing travel vector angle, then U-turn at edge
+                const currentX = dropX + (mobileTargetX - dropX) * progress;
+                const currentY = dropTargetY + (curtainStartY - dropTargetY) * progress;
 
-                if (progress <= 0.4) {
-                    // Stage 1: Walk horizontally along dropTargetY to center X
-                    const p1 = progress / 0.4;
-                    currentX = dropX + (mobileTargetX - dropX) * p1;
-                    currentY = dropTargetY;
-                    currentAngle = (dropX > mobileTargetX) ? 180 : 0;
+                const dx = mobileTargetX - dropX;
+                const dy = curtainStartY - dropTargetY;
+                const travelAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+                let currentAngle;
+                if (progress < 0.7) {
+                    currentAngle = travelAngle;
                 } else {
-                    // Stage 2: Walk vertically from dropTargetY to curtainStartY at center X
-                    const p2 = (progress - 0.4) / 0.6;
-                    currentX = mobileTargetX;
-                    currentY = dropTargetY + (curtainStartY - dropTargetY) * p2;
-
-                    if (isDarkNext) {
-                        // Dark Mode: Walk UP to top edge (40px) facing UP (-90deg), then perform 180deg U-turn to face DOWN (90deg)
-                        if (p2 < 0.7) {
-                            currentAngle = -90;
-                        } else {
-                            const turnP = (p2 - 0.7) / 0.3;
-                            currentAngle = -90 + 180 * turnP; // -90deg -> 90deg (facing down)
-                        }
-                    } else {
-                        // Light Mode: Walk DOWN to bottom edge facing DOWN (90deg), then perform 180deg U-turn to face UP (-90deg)
-                        if (p2 < 0.7) {
-                            currentAngle = 90;
-                        } else {
-                            const turnP = (p2 - 0.7) / 0.3;
-                            currentAngle = 90 + 180 * turnP; // 90deg -> 270deg / -90deg (facing up)
-                        }
-                    }
+                    const turnP = (progress - 0.7) / 0.3;
+                    const targetAngle = isDarkNext ? 90 : -90;
+                    currentAngle = travelAngle + (targetAngle - travelAngle) * turnP;
                 }
 
                 prepKeyframes.push({
