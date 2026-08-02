@@ -188,22 +188,176 @@
     }
 }
 
-/* Theme toggle button transitions */
+/* Theme toggle button & icon spring animations */
 .theme-toggle-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     user-select: none;
-    transition: all 0.2s ease-in-out;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .theme-toggle-btn:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .theme-toggle-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.92);
+}
+
+.theme-sun-icon,
+.theme-moon-icon {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+}
+
+.theme-toggle-btn:hover .theme-sun-icon {
+    transform: rotate(20deg) scale(1.12);
+}
+
+.theme-toggle-btn:hover .theme-moon-icon {
+    transform: rotate(-20deg) scale(1.12);
+}
+
+/* Elegant Sunrise / Nightfall Icon Transitions */
+@keyframes sun-rise {
+    0% { transform: translateY(8px) scale(0.6) rotate(-45deg); opacity: 0; }
+    100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes moon-rise {
+    0% { transform: translateY(-8px) scale(0.6) rotate(45deg); opacity: 0; }
+    100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+}
+
+.dark .theme-sun-icon {
+    animation: sun-rise 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html:not(.dark) .theme-moon-icon {
+    animation: moon-rise 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Ultra-Smooth View Transitions API Layering */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+    z-index: 1;
+}
+
+::view-transition-new(root) {
+    z-index: 9999;
+}
+
+::view-transition-group(spider-crawler) {
+    z-index: 2147483647 !important;
+}
+
+::view-transition-old(spider-crawler),
+::view-transition-new(spider-crawler) {
+    animation: none !important;
+    mix-blend-mode: normal !important;
+}
+
+/* Spider Crawler Theme Curtain Transition */
+.theme-spider-crawler {
+    view-transition-name: spider-crawler;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2147483647 !important;
+    pointer-events: none;
+    line-height: 1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 105px;
+    height: 70px;
+    margin-top: -35px;
+    margin-left: -52px;
+}
+
+.theme-spider-crawler.active-spider {
+    display: flex !important;
+}
+
+/* Spider Crawler Colors: Pitch Black for Dark Mode sweep, Pure White for Light Mode sweep */
+.theme-spider-crawler.dark-spider {
+    color: #09090b; /* Pitch Black spider bringing dark mode */
+    filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.95)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.theme-spider-crawler.light-spider {
+    color: #ffffff; /* Pure White spider bringing light mode */
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.95)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.real-spider-svg {
+    display: block;
+    width: 105px;
+    height: 70px;
+    overflow: visible;
+}
+
+.spider-silk-fiber-group {
+    animation: silk-pulse 0.3s infinite alternate ease-in-out;
+}
+
+.spider-silk-fiber-line {
+    opacity: 0.9;
+    stroke-dasharray: 1 7;
+}
+
+.silk-bead {
+    opacity: 0.95;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bead-shimmer 0.4s infinite alternate ease-in-out;
+}
+
+@keyframes silk-pulse {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+@keyframes bead-shimmer {
+    0% { transform: scale(0.9); }
+    100% { transform: scale(1.15); }
+}
+
+/* Realistic 8-Legged Spider Scuttling Gait */
+.spider-legs-group-a {
+    transform-origin: 65px 50px;
+    animation: spider-scuttle-a 0.16s infinite alternate ease-in-out;
+}
+
+.spider-legs-group-b {
+    transform-origin: 65px 50px;
+    animation: spider-scuttle-b 0.16s infinite alternate ease-in-out;
+}
+
+@keyframes spider-scuttle-a {
+    0% { transform: rotate(-6deg) translateY(-1.5px); }
+    100% { transform: rotate(6deg) translateY(1.5px); }
+}
+
+@keyframes spider-scuttle-b {
+    0% { transform: rotate(6deg) translateY(1.5px); }
+    100% { transform: rotate(-6deg) translateY(-1.5px); }
+}
+
+.spider-abdomen {
+    transform-origin: 54px 50px;
+    animation: spider-abdomen-twitch 0.28s infinite alternate ease-in-out;
+}
+
+@keyframes spider-abdomen-twitch {
+    0% { transform: scale(1) rotate(-2deg); }
+    100% { transform: scale(1.04) rotate(2deg); }
 }
 
 /* Screen reader accessibility utility */
