@@ -1208,27 +1208,7 @@
   }
 }
 
-/* PHP Logo Glow Animation */
-.php-logo {
-  animation: phpLogoGlow 2.5s ease-in-out infinite;
-  transform-origin: center center;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
 
-@keyframes phpLogoGlow {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 8px rgba(119, 123, 180, 0.7))
-      drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    transform: scale(1);
-  }
-  50% {
-    filter: drop-shadow(0 0 20px rgba(119, 123, 180, 1))
-      drop-shadow(0 0 30px rgba(255, 255, 255, 0.5))
-      drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    transform: scale(1.08);
-  }
-}
 
 /* Elephpant pulsing glow animation - only affects filter, not transform */
 @keyframes elephpantGlow {
