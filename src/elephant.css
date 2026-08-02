@@ -5,7 +5,8 @@
      animating bottom/right, which would make every frame a layout shift. */
   bottom: 20px;
   right: 20px;
-  contain: layout paint style;
+  contain: layout style;
+  overflow: visible !important;
   width: 220px;
   height: 220px;
   z-index: 9999;
@@ -25,12 +26,17 @@
 .elephant-container svg {
   width: 100%;
   height: 100%;
+  overflow: visible !important;
 }
 
 /* Only apply hover pause effect on devices that support hover (not touch devices) */
 @media (hover: hover) and (pointer: fine) {
+  .elephant-container:hover,
+  .elephant-container:hover svg {
+    animation-play-state: paused !important;
+  }
+
   .elephant-container:hover {
-    animation-play-state: paused;
     filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4))
       drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2))
       drop-shadow(0 0 40px rgba(119, 123, 180, 0.6)) brightness(1.15)
@@ -55,11 +61,11 @@
   }
 }
 
-/* Ensure party mode and other modes always keep running */
+/* Ensure party mode and other modes keep running when not hovered */
 .elephant-container.party-mode,
 .elephant-container.turbo-mode,
 .elephant-container.celebration-mode {
-  animation-play-state: running !important;
+  animation-play-state: running;
 }
 
 .elephant-container.clicked {
@@ -778,7 +784,8 @@
 
 /* Performance optimizations for all screen sizes */
 .elephant-container {
-  contain: layout style paint;
+  contain: layout style;
+  overflow: visible !important;
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
