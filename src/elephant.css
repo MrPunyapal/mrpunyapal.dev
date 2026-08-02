@@ -1,6 +1,10 @@
 /* Enhanced Interactive Elephant Animation System with screen impact */
 .elephant-container {
   position: fixed;
+  /* Fixed anchor. runAroundScreen translates away from this corner instead of
+     animating bottom/right, which would make every frame a layout shift. */
+  bottom: 20px;
+  right: 20px;
   contain: layout paint style;
   width: 220px;
   height: 220px;
@@ -27,12 +31,18 @@
 @media (hover: hover) and (pointer: fine) {
   .elephant-container:hover {
     animation-play-state: paused;
-    transform: scale(1.2) rotateY(15deg);
     filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4))
       drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2))
       drop-shadow(0 0 40px rgba(119, 123, 180, 0.6)) brightness(1.15)
       saturate(1.3);
     z-index: 15;
+  }
+
+  /* Scale the artwork, never the container. The container's transform carries
+     the elephant's position, so any rule that replaces it snaps the elephant
+     back to its anchor corner. */
+  .elephant-container:hover svg {
+    transform: scale(1.2) rotateY(15deg);
   }
 }
 
@@ -136,238 +146,154 @@
 @keyframes runAroundScreen {
   /* Start at bottom right with subtle bounce preparation */
   0% {
-    bottom: 20px;
-    right: 20px;
-    transform: scaleX(1) translateY(0) rotate(0deg);
+    transform: translate3d(0px, 0px, 0) scaleX(1) translateY(0) rotate(0deg);
     filter: brightness(1) saturate(1);
   }
 
   /* Acceleration phase with dynamic bouncing */
   2% {
-    bottom: 18px;
-    right: calc(95% - 140px);
-    transform: scaleX(1) translateY(-2px) rotate(-1deg);
+    transform: translate3d(calc(160px - 95vw), 2px, 0) scaleX(1) translateY(-2px) rotate(-1deg);
   }
   5% {
-    bottom: 28px;
-    right: calc(85% - 140px);
-    transform: scaleX(1) translateY(-8px) rotate(2deg);
+    transform: translate3d(calc(160px - 85vw), -8px, 0) scaleX(1) translateY(-8px) rotate(2deg);
     filter: brightness(1.1) saturate(1.1);
   }
   8% {
-    bottom: 12px;
-    right: calc(70% - 100px);
-    transform: scaleX(1) translateY(8px) rotate(-1deg);
+    transform: translate3d(calc(120px - 70vw), 8px, 0) scaleX(1) translateY(8px) rotate(-1deg);
   }
   12% {
-    bottom: 30px;
-    right: calc(55% - 80px);
-    transform: scaleX(1) translateY(-10px) rotate(1deg);
+    transform: translate3d(calc(100px - 55vw), -10px, 0) scaleX(1) translateY(-10px) rotate(1deg);
   }
   15% {
-    bottom: 10px;
-    right: calc(40% - 60px);
-    transform: scaleX(1) translateY(10px) rotate(-2deg);
+    transform: translate3d(calc(80px - 40vw), 10px, 0) scaleX(1) translateY(10px) rotate(-2deg);
   }
   18% {
-    bottom: 32px;
-    right: calc(25% - 40px);
-    transform: scaleX(1) translateY(-12px) rotate(1deg);
+    transform: translate3d(calc(60px - 25vw), -12px, 0) scaleX(1) translateY(-12px) rotate(1deg);
   }
   21% {
-    bottom: 8px;
-    right: calc(10% - 20px);
-    transform: scaleX(1) translateY(12px) rotate(-1deg);
+    transform: translate3d(calc(40px - 10vw), 12px, 0) scaleX(1) translateY(12px) rotate(-1deg);
   }
 
   /* Deceleration and turn preparation at bottom left */
   23% {
-    bottom: 22px;
-    right: calc(100% - 200px);
-    transform: scaleX(1) translateY(-2px) rotate(0deg);
+    transform: translate3d(calc(220px - 100vw), -2px, 0) scaleX(1) translateY(-2px) rotate(0deg);
     filter: brightness(1) saturate(1);
   }
   24% {
-    bottom: 20px;
-    right: calc(100% - 200px);
-    transform: scaleX(0.9) translateY(0) rotate(0deg);
+    transform: translate3d(calc(220px - 100vw), 0px, 0) scaleX(0.9) translateY(0) rotate(0deg);
   }
   25% {
-    bottom: 20px;
-    right: calc(100% - 200px);
-    transform: scaleX(-1) translateY(0) rotate(0deg);
+    transform: translate3d(calc(220px - 100vw), 0px, 0) scaleX(-1) translateY(0) rotate(0deg);
   }
   26% {
-    bottom: 18px;
-    right: calc(100% - 195px);
-    transform: scaleX(-1) translateY(-2px) rotate(1deg);
+    transform: translate3d(calc(215px - 100vw), 2px, 0) scaleX(-1) translateY(-2px) rotate(1deg);
   }
 
   /* Running up left side with enhanced physics */
   28% {
-    bottom: calc(15% + 20px);
-    right: calc(100% - 190px);
-    transform: scaleX(-1) translateX(-8px) translateY(-4px) rotate(-1deg);
+    transform: translate3d(calc(210px - 100vw), -15vh, 0) scaleX(-1) translateX(-8px) translateY(-4px) rotate(-1deg);
   }
   32% {
-    bottom: calc(30% + 20px);
-    right: calc(100% - 208px);
-    transform: scaleX(-1) translateX(8px) translateY(-6px) rotate(2deg);
+    transform: translate3d(calc(228px - 100vw), -30vh, 0) scaleX(-1) translateX(8px) translateY(-6px) rotate(2deg);
     filter: brightness(1.05) saturate(1.05);
   }
   36% {
-    bottom: calc(45% + 20px);
-    right: calc(100% - 192px);
-    transform: scaleX(-1) translateX(-10px) translateY(-8px) rotate(-1deg);
+    transform: translate3d(calc(212px - 100vw), -45vh, 0) scaleX(-1) translateX(-10px) translateY(-8px) rotate(-1deg);
   }
   40% {
-    bottom: calc(60% + 20px);
-    right: calc(100% - 210px);
-    transform: scaleX(-1) translateX(10px) translateY(-10px) rotate(2deg);
+    transform: translate3d(calc(230px - 100vw), -60vh, 0) scaleX(-1) translateX(10px) translateY(-10px) rotate(2deg);
   }
   44% {
-    bottom: calc(75% + 20px);
-    right: calc(100% - 195px);
-    transform: scaleX(-1) translateX(-8px) translateY(-6px) rotate(-1deg);
+    transform: translate3d(calc(215px - 100vw), -75vh, 0) scaleX(-1) translateX(-8px) translateY(-6px) rotate(-1deg);
   }
   47% {
-    bottom: calc(90% + 20px);
-    right: calc(100% - 205px);
-    transform: scaleX(-1) translateX(6px) translateY(-4px) rotate(1deg);
+    transform: translate3d(calc(225px - 100vw), -90vh, 0) scaleX(-1) translateX(6px) translateY(-4px) rotate(1deg);
   }
 
   /* Enhanced turn at top left with momentum */
   48% {
-    bottom: calc(100% - 200px);
-    right: calc(100% - 200px);
-    transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
+    transform: translate3d(calc(220px - 100vw), calc(220px - 100vh), 0) scaleX(-1) translateX(0) translateY(0) rotate(0deg);
     filter: brightness(1) saturate(1);
   }
   49% {
-    bottom: calc(100% - 195px);
-    right: calc(100% - 195px);
-    transform: scaleX(-1) translateX(2px) translateY(-5px) rotate(-2deg);
+    transform: translate3d(calc(215px - 100vw), calc(215px - 100vh), 0) scaleX(-1) translateX(2px) translateY(-5px) rotate(-2deg);
   }
   50% {
-    bottom: calc(100% - 200px);
-    right: calc(100% - 200px);
-    transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
+    transform: translate3d(calc(220px - 100vw), calc(220px - 100vh), 0) scaleX(-1) translateX(0) translateY(0) rotate(0deg);
   }
   51% {
-    bottom: calc(100% - 195px);
-    right: calc(100% - 195px);
-    transform: scaleX(-1) translateX(-2px) translateY(-5px) rotate(2deg);
+    transform: translate3d(calc(215px - 100vw), calc(215px - 100vh), 0) scaleX(-1) translateX(-2px) translateY(-5px) rotate(2deg);
   }
 
   /* Running across top with enhanced bouncing physics */
   54% {
-    bottom: calc(100% - 185px);
-    right: calc(85% - 160px);
-    transform: scaleX(-1) translateY(15px) rotate(-2deg);
+    transform: translate3d(calc(180px - 85vw), calc(205px - 100vh), 0) scaleX(-1) translateY(15px) rotate(-2deg);
     filter: brightness(1.1) saturate(1.1);
   }
   57% {
-    bottom: calc(100% - 215px);
-    right: calc(70% - 140px);
-    transform: scaleX(-1) translateY(-15px) rotate(1deg);
+    transform: translate3d(calc(160px - 70vw), calc(235px - 100vh), 0) scaleX(-1) translateY(-15px) rotate(1deg);
   }
   60% {
-    bottom: calc(100% - 180px);
-    right: calc(55% - 120px);
-    transform: scaleX(-1) translateY(20px) rotate(-2deg);
+    transform: translate3d(calc(140px - 55vw), calc(200px - 100vh), 0) scaleX(-1) translateY(20px) rotate(-2deg);
   }
   63% {
-    bottom: calc(100% - 220px);
-    right: calc(40% - 100px);
-    transform: scaleX(-1) translateY(-20px) rotate(1deg);
+    transform: translate3d(calc(120px - 40vw), calc(240px - 100vh), 0) scaleX(-1) translateY(-20px) rotate(1deg);
   }
   66% {
-    bottom: calc(100% - 175px);
-    right: calc(25% - 80px);
-    transform: scaleX(-1) translateY(25px) rotate(-2deg);
+    transform: translate3d(calc(100px - 25vw), calc(195px - 100vh), 0) scaleX(-1) translateY(25px) rotate(-2deg);
   }
   69% {
-    bottom: calc(100% - 225px);
-    right: calc(10% - 60px);
-    transform: scaleX(-1) translateY(-25px) rotate(1deg);
+    transform: translate3d(calc(80px - 10vw), calc(245px - 100vh), 0) scaleX(-1) translateY(-25px) rotate(1deg);
   }
 
   /* Enhanced turn at top right */
   72% {
-    bottom: calc(100% - 195px);
-    right: 25px;
-    transform: scaleX(-1) translateX(0) translateY(5px) rotate(0deg);
+    transform: translate3d(-5px, calc(215px - 100vh), 0) scaleX(-1) translateX(0) translateY(5px) rotate(0deg);
     filter: brightness(1) saturate(1);
   }
   73% {
-    bottom: calc(100% - 200px);
-    right: 20px;
-    transform: scaleX(-0.9) translateX(0) translateY(0) rotate(0deg);
+    transform: translate3d(0px, calc(220px - 100vh), 0) scaleX(-0.9) translateX(0) translateY(0) rotate(0deg);
   }
   74% {
-    bottom: calc(100% - 200px);
-    right: 20px;
-    transform: scaleX(-0.1) translateX(0) translateY(0) rotate(0deg);
+    transform: translate3d(0px, calc(220px - 100vh), 0) scaleX(-0.1) translateX(0) translateY(0) rotate(0deg);
   }
   75% {
-    bottom: calc(100% - 200px);
-    right: 20px;
-    transform: scaleX(1) translateX(0) translateY(0) rotate(0deg);
+    transform: translate3d(0px, calc(220px - 100vh), 0) scaleX(1) translateX(0) translateY(0) rotate(0deg);
   }
   76% {
-    bottom: calc(100% - 195px);
-    right: 25px;
-    transform: scaleX(1) translateX(2px) translateY(-5px) rotate(-1deg);
+    transform: translate3d(-5px, calc(215px - 100vh), 0) scaleX(1) translateX(2px) translateY(-5px) rotate(-1deg);
   }
 
   /* Enhanced descent on right side with realistic gravity */
   78% {
-    bottom: calc(85% - 140px);
-    right: 30px;
-    transform: scaleX(1) translateX(8px) translateY(0) rotate(1deg);
+    transform: translate3d(-10px, calc(160px - 85vh), 0) scaleX(1) translateX(8px) translateY(0) rotate(1deg);
   }
   81% {
-    bottom: calc(70% - 120px);
-    right: 10px;
-    transform: scaleX(1) translateX(-10px) translateY(5px) rotate(-2deg);
+    transform: translate3d(10px, calc(140px - 70vh), 0) scaleX(1) translateX(-10px) translateY(5px) rotate(-2deg);
     filter: brightness(1.05) saturate(1.05);
   }
   84% {
-    bottom: calc(55% - 100px);
-    right: 35px;
-    transform: scaleX(1) translateX(12px) translateY(10px) rotate(1deg);
+    transform: translate3d(-15px, calc(120px - 55vh), 0) scaleX(1) translateX(12px) translateY(10px) rotate(1deg);
   }
   87% {
-    bottom: calc(40% - 80px);
-    right: 5px;
-    transform: scaleX(1) translateX(-12px) translateY(15px) rotate(-2deg);
+    transform: translate3d(15px, calc(100px - 40vh), 0) scaleX(1) translateX(-12px) translateY(15px) rotate(-2deg);
   }
   90% {
-    bottom: calc(25% - 60px);
-    right: 30px;
-    transform: scaleX(1) translateX(10px) translateY(20px) rotate(1deg);
+    transform: translate3d(-10px, calc(80px - 25vh), 0) scaleX(1) translateX(10px) translateY(20px) rotate(1deg);
   }
   93% {
-    bottom: calc(10% - 40px);
-    right: 10px;
-    transform: scaleX(1) translateX(-8px) translateY(25px) rotate(-1deg);
+    transform: translate3d(10px, calc(60px - 10vh), 0) scaleX(1) translateX(-8px) translateY(25px) rotate(-1deg);
   }
   96% {
-    bottom: calc(5% - 20px);
-    right: 25px;
-    transform: scaleX(1) translateX(6px) translateY(15px) rotate(1deg);
+    transform: translate3d(-5px, calc(40px - 5vh), 0) scaleX(1) translateX(6px) translateY(15px) rotate(1deg);
   }
   98% {
-    bottom: 22px;
-    right: 18px;
-    transform: scaleX(1) translateX(-2px) translateY(2px) rotate(0deg);
+    transform: translate3d(2px, -2px, 0) scaleX(1) translateX(-2px) translateY(2px) rotate(0deg);
   }
 
   /* Complete cycle with gentle landing */
   100% {
-    bottom: 20px;
-    right: 20px;
-    transform: scaleX(1) translateY(0) rotate(0deg);
+    transform: translate3d(0px, 0px, 0) scaleX(1) translateY(0) rotate(0deg);
     filter: brightness(1) saturate(1);
   }
 }
@@ -768,108 +694,74 @@
   .elephant-container {
     width: 120px;
     height: 120px;
+    bottom: 15px;
+    right: 15px;
     animation-duration: 40s; /* Slightly slower on mobile for better visibility */
   }
 
   @keyframes runAroundScreen {
     /* Enhanced mobile keyframes with adjusted positions and smoother motion */
     0% {
-      bottom: 15px;
-      right: 15px;
-      transform: scaleX(1) translateY(0) rotate(0deg);
+      transform: translate3d(0px, 0px, 0) scaleX(1) translateY(0) rotate(0deg);
       filter: brightness(1) saturate(1);
     }
     3% {
-      bottom: 22px;
-      right: calc(85% - 90px);
-      transform: scaleX(1) translateY(-7px) rotate(1deg);
+      transform: translate3d(calc(105px - 85vw), -7px, 0) scaleX(1) translateY(-7px) rotate(1deg);
     }
     8% {
-      bottom: 8px;
-      right: calc(65% - 70px);
-      transform: scaleX(1) translateY(7px) rotate(-1deg);
+      transform: translate3d(calc(85px - 65vw), 7px, 0) scaleX(1) translateY(7px) rotate(-1deg);
       filter: brightness(1.1) saturate(1.1);
     }
     15% {
-      bottom: 25px;
-      right: calc(45% - 50px);
-      transform: scaleX(1) translateY(-10px) rotate(1deg);
+      transform: translate3d(calc(65px - 45vw), -10px, 0) scaleX(1) translateY(-10px) rotate(1deg);
     }
     22% {
-      bottom: 5px;
-      right: calc(25% - 30px);
-      transform: scaleX(1) translateY(10px) rotate(-1deg);
+      transform: translate3d(calc(45px - 25vw), 10px, 0) scaleX(1) translateY(10px) rotate(-1deg);
     }
     25% {
-      bottom: 15px;
-      right: calc(100% - 140px);
-      transform: scaleX(-1) translateY(0) rotate(0deg);
+      transform: translate3d(calc(155px - 100vw), 0px, 0) scaleX(-1) translateY(0) rotate(0deg);
       filter: brightness(1) saturate(1);
     }
     30% {
-      bottom: calc(20% + 10px);
-      right: calc(100% - 135px);
-      transform: scaleX(-1) translateX(-6px) translateY(-3px) rotate(-1deg);
+      transform: translate3d(calc(150px - 100vw), calc(5px - 20vh), 0) scaleX(-1) translateX(-6px) translateY(-3px) rotate(-1deg);
     }
     40% {
-      bottom: calc(50% + 10px);
-      right: calc(100% - 145px);
-      transform: scaleX(-1) translateX(6px) translateY(-6px) rotate(1deg);
+      transform: translate3d(calc(160px - 100vw), calc(5px - 50vh), 0) scaleX(-1) translateX(6px) translateY(-6px) rotate(1deg);
       filter: brightness(1.05) saturate(1.05);
     }
     48% {
-      bottom: calc(100% - 140px);
-      right: calc(100% - 140px);
-      transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
+      transform: translate3d(calc(155px - 100vw), calc(155px - 100vh), 0) scaleX(-1) translateX(0) translateY(0) rotate(0deg);
     }
     50% {
-      bottom: calc(100% - 140px);
-      right: calc(100% - 140px);
-      transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
+      transform: translate3d(calc(155px - 100vw), calc(155px - 100vh), 0) scaleX(-1) translateX(0) translateY(0) rotate(0deg);
       filter: brightness(1) saturate(1);
     }
     58% {
-      bottom: calc(100% - 125px);
-      right: calc(70% - 100px);
-      transform: scaleX(-1) translateY(15px) rotate(-1deg);
+      transform: translate3d(calc(115px - 70vw), calc(140px - 100vh), 0) scaleX(-1) translateY(15px) rotate(-1deg);
       filter: brightness(1.1) saturate(1.1);
     }
     66% {
-      bottom: calc(100% - 155px);
-      right: calc(40% - 70px);
-      transform: scaleX(-1) translateY(-15px) rotate(1deg);
+      transform: translate3d(calc(85px - 40vw), calc(170px - 100vh), 0) scaleX(-1) translateY(-15px) rotate(1deg);
     }
     73% {
-      bottom: calc(100% - 140px);
-      right: 15px;
-      transform: scaleX(-1) translateX(0) translateY(0) rotate(0deg);
+      transform: translate3d(0px, calc(155px - 100vh), 0) scaleX(-1) translateX(0) translateY(0) rotate(0deg);
     }
     75% {
-      bottom: calc(100% - 140px);
-      right: 15px;
-      transform: scaleX(1) translateX(0) translateY(0) rotate(0deg);
+      transform: translate3d(0px, calc(155px - 100vh), 0) scaleX(1) translateX(0) translateY(0) rotate(0deg);
       filter: brightness(1) saturate(1);
     }
     82% {
-      bottom: calc(70% - 100px);
-      right: 20px;
-      transform: scaleX(1) translateX(6px) translateY(8px) rotate(1deg);
+      transform: translate3d(-5px, calc(115px - 70vh), 0) scaleX(1) translateX(6px) translateY(8px) rotate(1deg);
       filter: brightness(1.05) saturate(1.05);
     }
     90% {
-      bottom: calc(40% - 70px);
-      right: 10px;
-      transform: scaleX(1) translateX(-6px) translateY(15px) rotate(-1deg);
+      transform: translate3d(5px, calc(85px - 40vh), 0) scaleX(1) translateX(-6px) translateY(15px) rotate(-1deg);
     }
     97% {
-      bottom: calc(10% - 30px);
-      right: 20px;
-      transform: scaleX(1) translateX(4px) translateY(8px) rotate(1deg);
+      transform: translate3d(-5px, calc(45px - 10vh), 0) scaleX(1) translateX(4px) translateY(8px) rotate(1deg);
     }
     100% {
-      bottom: 15px;
-      right: 15px;
-      transform: scaleX(1) translateY(0) rotate(0deg);
+      transform: translate3d(0px, 0px, 0) scaleX(1) translateY(0) rotate(0deg);
       filter: brightness(1) saturate(1);
     }
   }
@@ -1021,10 +913,15 @@
 /* Add subtle hover interaction when user gets close */
 .elephant-container:hover {
   animation-play-state: paused;
-  transform: scale(1.1) !important;
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4))
     drop-shadow(0 0 40px rgba(119, 123, 180, 0.3)) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: filter 0.3s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Again on the artwork, not the container: see the note by the other
+   :hover rule above. */
+.elephant-container:hover svg {
+  transform: scale(1.1);
 }
 
 /* Enhanced body texture with breathing effect */
@@ -1363,13 +1260,14 @@
   }
 }
 
-/* Enhanced click interaction */
-.elephant-container {
+/* Enhanced click interaction. The squash rides on the artwork so it composes
+   with the positional transform on the container rather than replacing it. */
+.elephant-container svg {
   transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.elephant-container:active {
-  transform: scale(0.95) !important;
+.elephant-container:active svg {
+  transform: scale(0.95);
 }
 
 /* Cursor hint */
@@ -1561,11 +1459,10 @@
 /* Elephant Transition Classes */
 .elephant-container.returning-home {
   animation: none !important;
-  transition:
-    bottom 1.5s cubic-bezier(0.4, 0, 0.2, 1),
-    right 1.5s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: scale(0.5) !important; /* Face right and shrink */
+  /* Walk to the door on transform only. Transitioning bottom/right here would
+     shift layout for the whole 1.5s. The script supplies the translate and the
+     scale(0.5) together, so no transform is declared here. */
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
   filter: brightness(0.8);
   pointer-events: none !important;
 }
@@ -1579,7 +1476,10 @@
 
 .elephant-container.exiting-door {
   animation: none !important;
-  transition: all 1s cubic-bezier(0, 0, 0.2, 1);
+  transition:
+    transform 1s cubic-bezier(0, 0, 0.2, 1),
+    opacity 1s cubic-bezier(0, 0, 0.2, 1);
   opacity: 1;
-  transform: scaleX(-1) !important; /* Face left */
+  /* The script supplies the transform: it walks the elephant out of the hut to
+     the exact spot runAroundScreen starts from, so the hand-off is seamless. */
 }

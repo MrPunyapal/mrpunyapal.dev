@@ -416,7 +416,6 @@
     <meta name="msapplication-TileColor" content="#23a6d5">
 
     <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <!-- Critical CSS for animations -->
     <style>
@@ -561,10 +560,6 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://mrpunyapal.dev/talks">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="/src/tailwind.css">
     <link rel="stylesheet" href="/src/app.css">
     <script type="module" src="/src/main.js"></script>
@@ -583,6 +578,20 @@
 
 <body
     class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    <!-- Icon sprite: Font Awesome Free 6.4.2 icons, CC BY 4.0 (https://fontawesome.com/license/free) -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+        <defs>
+            <symbol id="i-arrow-left" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></symbol>
+            <symbol id="i-calendar" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></symbol>
+            <symbol id="i-envelope" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></symbol>
+            <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
+            <symbol id="i-globe" viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"/></symbol>
+            <symbol id="i-location" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></symbol>
+            <symbol id="i-users" viewBox="0 0 640 512"><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z"/></symbol>
+            <symbol id="i-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol>
+        </defs>
+    </svg>
+
 
     <!-- Main Content -->
     <main class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 gap-8">
@@ -617,7 +626,7 @@
                 <nav aria-label="Page Navigation" class="print:hidden absolute top-4 right-4 sm:top-8 sm:right-8 flex items-center gap-2 z-20 animate-fade-up">
                     <a href="/" aria-label="Back to home page"
                         class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 rounded">
-                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-left"/></svg>
                         <span class="hidden sm:inline">Back</span>
                     </a>
                     <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn px-2.5 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 flex items-center justify-center rounded">
@@ -668,7 +677,7 @@
 
                     <div class="flex flex-wrap items-center gap-4">
                         <a href="mailto:mrpunyapal@gmail.com" class="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 rounded hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all shrink-0">
-                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-envelope"/></svg>
                             Invite me to speak
                         </a>
                         <a href="#talk-archive" class="text-sm text-slate-500 hover:text-red-600 transition-colors">
@@ -709,12 +718,12 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <a href="https://laracon.in" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-globe" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-globe"/></svg>
                                         Laracon India
                                     </a>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                         <time datetime="2026-01">Jan 2026</time>
                                     </span>
                                 </div>
@@ -730,12 +739,12 @@
                                     <a href="https://youtu.be/3_rWWGSpgyw?si=xwhC_SvNwoD9qD85" target="_blank"
                                         rel="noopener noreferrer" aria-label="Watch 'Write code that can fix itself' on YouTube"
                                         class="text-slate-500 dark:text-slate-400 hover:text-red-600 transition-colors">
-                                        <i class="fab fa-youtube text-lg" aria-hidden="true"></i>
+                                        <svg class="icon text-lg" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-youtube"/></svg>
                                     </a>
                                     <a href="https://github.com/MrPunyapal/laracon-in-2026" target="_blank"
                                         rel="noopener noreferrer" aria-label="View 'Write code that can fix itself' repository on GitHub"
                                         class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                        <i class="fab fa-github text-lg" aria-hidden="true"></i>
+                                        <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                     </a>
                                 </div>
                             </div>
@@ -759,17 +768,17 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <a href="https://x.com/LaravelAhm" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Ahmedabad
                                     </a>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-users" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 640 512" aria-hidden="true"><use href="#i-users"/></svg>
                                         Panel
                                     </span>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                         <time datetime="2026-01">Jan 2026</time>
                                     </span>
                                 </div>
@@ -808,12 +817,12 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <a href="https://x.com/LaravelAhm" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Ahmedabad
                                     </a>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                         <time datetime="2026-03">Mar 2026</time>
                                     </span>
                                 </div>
@@ -828,7 +837,7 @@
                                 <a href="https://github.com/OSSforAll/I-AM-CONTRIBUTOR" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'Open-Source: PR to package' repository on GitHub"
                                     class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <i class="fab fa-github text-lg" aria-hidden="true"></i>
+                                    <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>
@@ -859,12 +868,12 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <a href="https://x.com/LaravelAhm" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Ahmedabad
                                     </a>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                         <time datetime="2025-11">Nov 2025</time>
                                     </span>
                                 </div>
@@ -879,7 +888,7 @@
                                 <a href="https://github.com/MrPunyapal/pest-talk" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'From Zero to Tested: Laravel + PestPHP' repository on GitHub"
                                     class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <i class="fab fa-github text-lg" aria-hidden="true"></i>
+                                    <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>
@@ -902,22 +911,22 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <a href="https://x.com/LaravelAhm" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Ahmedabad
                                     </a>
                                     <a href="https://x.com/LaravelIndore" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Indore
                                     </a>
                                     <a href="https://x.com/laravel_kkd" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Kozhikode
                                     </a>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                         <time datetime="2024">2024</time>
                                     </span>
                                 </div>
@@ -933,7 +942,7 @@
                                 <a href="https://gist.github.com/MrPunyapal/139779b743eec108a292de95b3f958f8"
                                     target="_blank" rel="noopener noreferrer" aria-label="View 'Types in PHP at Glance with PHPStan' repository on GitHub"
                                     class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <i class="fab fa-github text-lg" aria-hidden="true"></i>
+                                    <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>
@@ -964,17 +973,17 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <a href="https://x.com/laravel_kkd" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Kozhikode
                                     </a>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-users" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 640 512" aria-hidden="true"><use href="#i-users"/></svg>
                                         Panel
                                     </span>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                         <time datetime="2024-07">Jul 2024</time>
                                     </span>
                                 </div>
@@ -1022,17 +1031,17 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <a href="https://x.com/LaravelBLR" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Bangalore
                                     </a>
                                     <a href="https://x.com/laravelphpmoris" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Mauritius
                                     </a>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                         <time datetime="2025">2025</time>
                                     </span>
                                 </div>
@@ -1049,12 +1058,12 @@
                                     <a href="https://youtube.com/live/N73Smm8ldCc" target="_blank"
                                         rel="noopener noreferrer" aria-label="Watch 'Refactor Laravel with RectorPHP' on YouTube"
                                         class="text-slate-500 dark:text-slate-400 hover:text-red-600 transition-colors">
-                                        <i class="fab fa-youtube text-lg" aria-hidden="true"></i>
+                                        <svg class="icon text-lg" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-youtube"/></svg>
                                     </a>
                                     <a href="https://github.com/MrPunyapal/laravel-rectorphp" target="_blank"
                                         rel="noopener noreferrer" aria-label="View 'Refactor Laravel with RectorPHP' repository on GitHub"
                                         class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                        <i class="fab fa-github text-lg" aria-hidden="true"></i>
+                                        <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                     </a>
                                 </div>
                             </div>
@@ -1094,12 +1103,12 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <a href="https://x.com/LaravelAhm" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Ahmedabad
                                     </a>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                         <time datetime="2023-04">Apr 2023</time>
                                     </span>
                                 </div>
@@ -1115,7 +1124,7 @@
                                 <a href="https://github.com/MrPunyapal/filament-demo" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'Spark Your Laravel Apps with FilamentPHP' repository on GitHub"
                                     class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <i class="fab fa-github text-lg" aria-hidden="true"></i>
+                                    <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>
@@ -1146,12 +1155,12 @@
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <a href="https://x.com/LaravelAhm" target="_blank" rel="noopener noreferrer"
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/60 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
                                         Ahmedabad
                                     </a>
                                     <span
                                         class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded text-xs font-medium border border-slate-200 dark:border-slate-800">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                         <time datetime="2024-02">Feb 2024</time>
                                     </span>
                                 </div>
@@ -1167,7 +1176,7 @@
                                 <a href="https://github.com/MrPunyapal/broadcast-with-laravel" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'Broadcasting in Laravel' repository on GitHub"
                                     class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <i class="fab fa-github text-lg" aria-hidden="true"></i>
+                                    <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>

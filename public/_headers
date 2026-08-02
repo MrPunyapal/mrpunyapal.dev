@@ -1,0 +1,15 @@
+# Cloudflare Pages response headers.
+# Note: if the zone's Browser Cache TTL is set to a fixed value it will win over
+# these; it needs to be "Respect Existing Headers" for them to take effect.
+
+# Vite fingerprints these filenames, so a change always ships a new URL.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fixed filenames: cached for a month rather than the default four hours.
+/*.png
+  Cache-Control: public, max-age=2592000
+/*.jpg
+  Cache-Control: public, max-age=2592000
+/*.webp
+  Cache-Control: public, max-age=2592000

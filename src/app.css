@@ -1,5 +1,19 @@
 /* Modern CSS for Professional Portfolio with Tailwind v4 */
 
+/*
+ * Inline SVG icons, referenced from the per-page <symbol> sprite.
+ * Sized and coloured from the surrounding text, so Tailwind's text-* and
+ * colour utilities keep working exactly as they did on the old <i> tags.
+ * `display` is deliberately not set here: it would override Tailwind's
+ * `hidden` utility, which the theme toggle relies on to swap sun and moon.
+ */
+.icon {
+    height: 1em;
+    width: auto;
+    fill: currentColor;
+    vertical-align: -0.125em;
+}
+
 /* Enhanced keyframes for modern animations */
 @keyframes gradient-x {
     0%, 100% { transform: translateX(-100%); }
