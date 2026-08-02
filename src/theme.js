@@ -195,18 +195,18 @@ export function toggleTheme(eventOrElement) {
         toggleBtn = document.querySelector('[data-theme-toggle]');
     }
 
-    // Temporarily hide elephant easter egg during spider theme animation
-    const runningElephant = document.getElementById('runningElephant');
-    if (runningElephant) {
-        runningElephant.style.transition = 'opacity 0.25s ease';
-        runningElephant.style.opacity = '0';
-        runningElephant.style.pointerEvents = 'none';
+    // Temporarily hide elephpant easter egg during spider theme animation
+    const runningElephpant = document.getElementById('runningElephpant');
+    if (runningElephpant) {
+        runningElephpant.style.transition = 'opacity 0.25s ease';
+        runningElephpant.style.opacity = '0';
+        runningElephpant.style.pointerEvents = 'none';
     }
 
-    const restoreElephant = () => {
-        if (runningElephant) {
-            runningElephant.style.opacity = '1';
-            runningElephant.style.pointerEvents = 'auto';
+    const restoreElephpant = () => {
+        if (runningElephpant) {
+            runningElephpant.style.opacity = '1';
+            runningElephpant.style.pointerEvents = 'auto';
         }
     };
 
@@ -245,7 +245,7 @@ export function toggleTheme(eventOrElement) {
     // Switch the theme outright when there is no crawl to show.
     if (!document.startViewTransition || prefersReducedMotion) {
         setTheme(nextTheme);
-        restoreElephant();
+        restoreElephpant();
         return;
     }
 
@@ -401,7 +401,7 @@ export function toggleTheme(eventOrElement) {
 
                 spiderAnim.onfinish = () => {
                     crawler.classList.remove('active-spider');
-                    restoreElephant();
+                    restoreElephpant();
                 };
             });
         };

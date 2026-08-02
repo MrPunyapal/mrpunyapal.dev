@@ -1,5 +1,5 @@
-/* Enhanced Interactive Elephant Animation System with screen impact */
-.elephant-container {
+/* Enhanced Interactive Elephpant Animation System with screen impact */
+.elephpant-container {
   position: fixed;
   /* Fixed anchor. runAroundScreen translates away from this corner instead of
      animating bottom/right, which would make every frame a layout shift. */
@@ -23,7 +23,7 @@
   -webkit-user-select: none;
 }
 
-.elephant-container svg {
+.elephpant-container svg {
   width: 100%;
   height: 100%;
   overflow: visible !important;
@@ -31,12 +31,12 @@
 
 /* Only apply hover pause effect on devices that support hover (not touch devices) */
 @media (hover: hover) and (pointer: fine) {
-  .elephant-container:hover,
-  .elephant-container:hover svg {
+  .elephpant-container:hover,
+  .elephpant-container:hover svg {
     animation-play-state: paused !important;
   }
 
-  .elephant-container:hover {
+  .elephpant-container:hover {
     filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4))
       drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2))
       drop-shadow(0 0 40px rgba(119, 123, 180, 0.6)) brightness(1.15)
@@ -45,59 +45,59 @@
   }
 
   /* Scale the artwork, never the container. The container's transform carries
-     the elephant's position, so any rule that replaces it snaps the elephant
+     the elephpant's position, so any rule that replaces it snaps the elephpant
      back to its anchor corner. */
-  .elephant-container:hover svg {
+  .elephpant-container:hover svg {
     transform: scale(1.2) rotateY(15deg);
   }
 }
 
 /* Ensure animation always runs on touch-only devices */
 @media (hover: none) {
-  .elephant-container,
-  .elephant-container:hover,
-  .elephant-container:active {
+  .elephpant-container,
+  .elephpant-container:hover,
+  .elephpant-container:active {
     animation-play-state: running !important;
   }
 }
 
 /* Ensure party mode and other modes keep running when not hovered */
-.elephant-container.party-mode,
-.elephant-container.turbo-mode,
-.elephant-container.celebration-mode {
+.elephpant-container.party-mode,
+.elephpant-container.turbo-mode,
+.elephpant-container.celebration-mode {
   animation-play-state: running;
 }
 
-.elephant-container.clicked {
+.elephpant-container.clicked {
   animation-direction: reverse;
 }
 
-.elephant-container.party-mode {
+.elephpant-container.party-mode {
   animation: runAroundScreen 15s linear infinite;
 }
 
-.elephant-container.party-mode svg {
+.elephpant-container.party-mode svg {
   animation:
     partyGlow 0.5s ease-in-out infinite alternate,
     partyBounce 1s ease-in-out infinite;
 }
 
-.elephant-container.turbo-mode {
+.elephpant-container.turbo-mode {
   animation: runAroundScreen 8s linear infinite;
 }
 
-.elephant-container.celebration-mode {
+.elephpant-container.celebration-mode {
   animation: runAroundScreen 20s ease-in-out infinite;
 }
 
-.elephant-container.celebration-mode svg {
+.elephpant-container.celebration-mode svg {
   animation:
     celebrationSpin 2s ease-in-out infinite,
     celebrationGlow 1s ease-in-out infinite alternate;
 }
 
-/* Elephant trail effects for enhanced visual feedback */
-.elephant-container::after {
+/* Elephpant trail effects for enhanced visual feedback */
+.elephpant-container::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -117,16 +117,16 @@
   z-index: -1;
 }
 
-.elephant-container:active::after {
+.elephpant-container:active::after {
   transform: translate(-50%, -50%) scale(2);
   opacity: 1;
 }
 
-.elephant-container.party-mode::after {
+.elephpant-container.party-mode::after {
   animation: partyTrail 0.5s ease-in-out infinite;
 }
 
-.elephant-container.celebration-mode::after {
+.elephpant-container.celebration-mode::after {
   animation: celebrationTrail 1s ease-in-out infinite;
   background: radial-gradient(
     circle,
@@ -305,7 +305,7 @@
 }
 
 /* Enhanced leg animations with more realistic running motion */
-.elephant-legs .elephant-leg {
+.elephpant-legs .elephpant-leg {
   animation: legRun 1.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
   transform-origin: top center;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
@@ -313,19 +313,19 @@
 
 /* Walk cycle: Back Left -> Front Left -> Back Right -> Front Right */
 /* Order in DOM: FL(1), FR(2), BL(3), BR(4) */
-.elephant-legs .elephant-leg:nth-child(3) {
+.elephpant-legs .elephpant-leg:nth-child(3) {
   /* Back Left */
   animation-delay: 0s;
 }
-.elephant-legs .elephant-leg:nth-child(1) {
+.elephpant-legs .elephpant-leg:nth-child(1) {
   /* Front Left */
   animation-delay: 0.3s;
 }
-.elephant-legs .elephant-leg:nth-child(4) {
+.elephpant-legs .elephpant-leg:nth-child(4) {
   /* Back Right */
   animation-delay: 0.6s;
 }
-.elephant-legs .elephant-leg:nth-child(2) {
+.elephpant-legs .elephpant-leg:nth-child(2) {
   /* Front Right */
   animation-delay: 0.9s;
 }
@@ -349,7 +349,7 @@
 }
 
 /* Enhanced tail animation with more dynamic movement and inertia */
-.elephant-tail-unified {
+.elephpant-tail-unified {
   animation:
     tailSway 2.7s infinite cubic-bezier(0.4, 0, 0.6, 1),
     tailInertia 0.9s infinite ease-in-out;
@@ -394,7 +394,7 @@
 }
 
 /* Enhanced body bounce with more realistic physics */
-.elephant-body {
+.elephpant-body {
   animation:
     bodyBounce 0.9s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94),
     bodyTexture 8s infinite ease-in-out,
@@ -464,7 +464,7 @@
 }
 
 /* Enhanced trunk movement with more natural sway and running response */
-.elephant-trunk {
+.elephpant-trunk {
   animation:
     runningTrunkMove 0.45s infinite cubic-bezier(0.4, 0, 0.6, 1),
     trunkInertia 0.9s infinite ease-in-out;
@@ -509,7 +509,7 @@
 }
 
 /* Enhanced ear flapping with wind resistance effect and directional awareness */
-.elephant-ear {
+.elephpant-ear {
   animation:
     runningEarFlap 1s infinite cubic-bezier(0.4, 0, 0.6, 1),
     earWindResistance 3s infinite ease-in-out;
@@ -605,7 +605,7 @@
 }
 
 /* Add pupil tracking animation for more liveliness */
-.elephant-eye-pupil {
+.elephpant-eye-pupil {
   animation: pupilLook 12s infinite ease-in-out;
   transform-origin: center center;
 }
@@ -638,7 +638,7 @@
 }
 
 /* Add breathing effect to the head with running momentum */
-.elephant-head {
+.elephpant-head {
   animation:
     headBreathe 4s infinite ease-in-out,
     headMomentum 0.9s infinite ease-in-out;
@@ -671,7 +671,7 @@
 }
 
 /* Add subtle tusk movement */
-.elephant-tusk {
+.elephpant-tusk {
   animation: tuskGleam 6s infinite ease-in-out;
 }
 
@@ -697,7 +697,7 @@
 
 /* Enhanced responsive design for mobile devices */
 @media (max-width: 768px) {
-  .elephant-container {
+  .elephpant-container {
     width: 120px;
     height: 120px;
     bottom: 15px;
@@ -775,7 +775,7 @@
 
 /* Ultra-mobile optimization for very small screens */
 @media (max-width: 480px) {
-  .elephant-container {
+  .elephpant-container {
     width: 100px;
     height: 100px;
     opacity: 0.8;
@@ -783,7 +783,7 @@
 }
 
 /* Performance optimizations for all screen sizes */
-.elephant-container {
+.elephpant-container {
   contain: layout style;
   overflow: visible !important;
   transform: translateZ(0);
@@ -791,15 +791,15 @@
   perspective: 1000px;
 }
 
-.elephant-container * {
+.elephpant-container * {
   will-change: transform;
   backface-visibility: hidden;
 }
 
 /* Pause animations when not visible (Intersection Observer support) */
 @media (prefers-reduced-motion: reduce) {
-  .elephant-container,
-  .elephant-container * {
+  .elephpant-container,
+  .elephpant-container * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -808,13 +808,13 @@
 
 /* High contrast mode adjustments */
 @media (prefers-contrast: high) {
-  .elephant-container {
+  .elephpant-container {
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.8)) contrast(1.2);
   }
 }
 
 /* Enhanced particle trail effects with sound waves */
-.elephant-container::before {
+.elephpant-container::before {
   content: "";
   position: absolute;
   width: 8px;
@@ -829,7 +829,7 @@
   z-index: -1;
 }
 
-.elephant-container::after {
+.elephpant-container::after {
   content: "";
   position: absolute;
   width: 6px;
@@ -845,12 +845,12 @@
 }
 
 /* Add sound wave effect for footsteps */
-.elephant-container {
+.elephpant-container {
   position: relative;
 }
 
-.elephant-container:before,
-.elephant-container:after {
+.elephpant-container:before,
+.elephpant-container:after {
   animation-name: trailParticle, soundWave;
   animation-duration: 0.5s, 1.2s;
   animation-timing-function: ease-out, ease-out;
@@ -885,7 +885,7 @@
 }
 
 /* Add dynamic shadow that responds to movement */
-.elephant-container {
+.elephpant-container {
   position: fixed;
   width: 180px;
   height: 180px;
@@ -918,7 +918,7 @@
 }
 
 /* Add subtle hover interaction when user gets close */
-.elephant-container:hover {
+.elephpant-container:hover {
   animation-play-state: paused;
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4))
     drop-shadow(0 0 40px rgba(119, 123, 180, 0.3)) !important;
@@ -927,12 +927,12 @@
 
 /* Again on the artwork, not the container: see the note by the other
    :hover rule above. */
-.elephant-container:hover svg {
+.elephpant-container:hover svg {
   transform: scale(1.1);
 }
 
 /* Enhanced body texture with breathing effect */
-.elephant-body {
+.elephpant-body {
   animation:
     bodyBounce 0.3s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94),
     bodyTexture 8s infinite ease-in-out !important;
@@ -1001,17 +1001,17 @@
 }
 
 /* Enhanced leg shadows for depth */
-.elephant-leg {
+.elephpant-leg {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 /* Add subtle ground impact effect during running with dust particles */
-.elephant-legs {
+.elephpant-legs {
   animation: groundImpact 1.8s infinite ease-in-out;
   position: relative;
 }
 
-.elephant-legs::before {
+.elephpant-legs::before {
   content: "";
   position: absolute;
   bottom: -15px;
@@ -1230,8 +1230,8 @@
   }
 }
 
-/* Elephant pulsing glow animation - only affects filter, not transform */
-@keyframes elephantGlow {
+/* Elephpant pulsing glow animation - only affects filter, not transform */
+@keyframes elephpantGlow {
   0%,
   100% {
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
@@ -1269,16 +1269,16 @@
 
 /* Enhanced click interaction. The squash rides on the artwork so it composes
    with the positional transform on the container rather than replacing it. */
-.elephant-container svg {
+.elephpant-container svg {
   transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.elephant-container:active svg {
+.elephpant-container:active svg {
   transform: scale(0.95);
 }
 
 /* Cursor hint */
-.elephant-container:hover {
+.elephpant-container:hover {
   cursor: pointer;
 }
 
@@ -1463,8 +1463,8 @@
   opacity: 0;
 }
 
-/* Elephant Transition Classes */
-.elephant-container.returning-home {
+/* Elephpant Transition Classes */
+.elephpant-container.returning-home {
   animation: none !important;
   /* Walk to the door on transform only. Transitioning bottom/right here would
      shift layout for the whole 1.5s. The script supplies the translate and the
@@ -1474,19 +1474,19 @@
   pointer-events: none !important;
 }
 
-.elephant-container.hidden-behind-door {
+.elephpant-container.hidden-behind-door {
   animation: none !important;
   opacity: 0;
   pointer-events: none !important;
   transition: opacity 0.5s ease;
 }
 
-.elephant-container.exiting-door {
+.elephpant-container.exiting-door {
   animation: none !important;
   transition:
     transform 1s cubic-bezier(0, 0, 0.2, 1),
     opacity 1s cubic-bezier(0, 0, 0.2, 1);
   opacity: 1;
-  /* The script supplies the transform: it walks the elephant out of the hut to
+  /* The script supplies the transform: it walks the elephpant out of the hut to
      the exact spot runAroundScreen starts from, so the hand-off is seamless. */
 }

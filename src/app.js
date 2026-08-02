@@ -85,13 +85,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Door & Lazy Loaded PHP Elephant Interaction System
+    // Door & Lazy Loaded PHP Elephpant Interaction System
     const doorContainer = document.getElementById('door-container');
     const doorMessage = document.getElementById('doorMessage');
-    let isElephantHome = false;
-    let elephantInitialized = false;
+    let isElephpantHome = false;
+    let elephpantInitialized = false;
 
-    // The door's visible text changes as the elephant comes and goes, so set the
+    // The door's visible text changes as the elephpant comes and goes, so set the
     // accessible name from it. WCAG 2.5.3 requires the accessible name to contain
     // the visible label, and the two drift apart if they are updated separately.
     function setDoorMessage(text, hint) {
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Elephant trumpet sound (simple beep using Web Audio API)
+    // Elephpant trumpet sound (simple beep using Web Audio API)
     function playTrumpetSound() {
         if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -210,43 +210,43 @@ document.addEventListener('DOMContentLoaded', function() {
     positionDoor();
     window.addEventListener('resize', positionDoor);
 
-    function getElephant() {
-        return document.getElementById('runningElephant');
+    function getElephpant() {
+        return document.getElementById('runningElephpant');
     }
 
-    function initElephant() {
-        let elephant = getElephant();
-        if (elephant) return elephant;
+    function initElephpant() {
+        let elephpant = getElephpant();
+        if (elephpant) return elephpant;
 
-        const template = document.getElementById('elephantTemplate');
+        const template = document.getElementById('elephpantTemplate');
         if (template) {
             const clone = template.content.cloneNode(true);
             document.body.appendChild(clone);
-            elephant = getElephant();
+            elephpant = getElephpant();
         }
 
-        if (!elephant) return null;
-        if (elephantInitialized) return elephant;
-        elephantInitialized = true;
+        if (!elephpant) return null;
+        if (elephpantInitialized) return elephpant;
+        elephpantInitialized = true;
 
         let isPartyMode = false;
 
-        elephant.style.pointerEvents = 'auto';
-        elephant.style.cursor = 'pointer';
+        elephpant.style.pointerEvents = 'auto';
+        elephpant.style.cursor = 'pointer';
 
-        elephant.addEventListener('click', function(e) {
+        elephpant.addEventListener('click', function(e) {
             e.stopPropagation();
             
             if (isPartyMode) {
-                elephant.classList.remove('party-mode');
+                elephpant.classList.remove('party-mode');
                 isPartyMode = false;
             } else {
-                elephant.classList.add('party-mode');
+                elephpant.classList.add('party-mode');
                 isPartyMode = true;
                 createConfetti();
                 createFireworks();
                 playTrumpetSound();
-                trackEvent('elephant_interaction', {
+                trackEvent('elephpant_interaction', {
                     action: 'party_mode_enabled'
                 });
             }
@@ -254,21 +254,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initial Sequence: Speed up initially, then go home after a few seconds
         setTimeout(() => {
-            elephant.classList.add('turbo-mode');
+            elephpant.classList.add('turbo-mode');
             setTimeout(() => {
-                sendElephantHome();
+                sendElephpantHome();
             }, 3000);
         }, 1000);
 
-        return elephant;
+        return elephpant;
     }
 
-    // The elephant is pinned to a fixed bottom/right corner and every move it
+    // The elephpant is pinned to a fixed bottom/right corner and every move it
     // makes is a transform away from that corner, so nothing it does can shift
     // the page layout. These two turn a "distance from the viewport edges"
     // target into the matching translation.
-    function getElephantAnchor(elephant) {
-        const style = window.getComputedStyle(elephant);
+    function getElephpantAnchor(elephpant) {
+        const style = window.getComputedStyle(elephpant);
         return {
             bottom: parseFloat(style.bottom) || 0,
             right: parseFloat(style.right) || 0,
@@ -280,89 +280,89 @@ document.addEventListener('DOMContentLoaded', function() {
         return `translate3d(${anchor.right - right}px, ${anchor.bottom - bottom}px, 0)`;
     }
 
-    function sendElephantHome() {
-        const elephant = getElephant();
-        if (!elephant || isElephantHome) return;
+    function sendElephpantHome() {
+        const elephpant = getElephpant();
+        if (!elephpant || isElephpantHome) return;
         
-        const rect = elephant.getBoundingClientRect();
+        const rect = elephpant.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         const windowWidth = window.innerWidth;
         
         const currentBottom = windowHeight - rect.bottom;
         const currentRight = windowWidth - rect.right;
-        const anchor = getElephantAnchor(elephant);
+        const anchor = getElephpantAnchor(elephpant);
 
-        elephant.style.animation = 'none';
+        elephpant.style.animation = 'none';
         // Hold the spot the run stopped at, expressed as an offset from the anchor.
-        elephant.style.transform = translateFrom(anchor, currentBottom, currentRight);
-        elephant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode');
+        elephpant.style.transform = translateFrom(anchor, currentBottom, currentRight);
+        elephpant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode');
         
-        void elephant.offsetWidth;
+        void elephpant.offsetWidth;
         
         if (doorContainer) doorContainer.classList.add('open');
         
         const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
-        const elephantSize = elephant.offsetWidth;
-        const scaledSize = elephantSize * 0.5;
-        const offset = (elephantSize - scaledSize) / 2;
+        const elephpantSize = elephpant.offsetWidth;
+        const scaledSize = elephpantSize * 0.5;
+        const offset = (elephpantSize - scaledSize) / 2;
         
         const targetBottom = (windowHeight - doorRect.bottom) - offset;
         const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
-        const targetRight = doorCenterFromRight - (elephantSize / 2);
+        const targetRight = doorCenterFromRight - (elephpantSize / 2);
 
-        elephant.classList.add('returning-home');
-        elephant.style.transform = `${translateFrom(anchor, targetBottom, targetRight)} scale(0.5)`;
+        elephpant.classList.add('returning-home');
+        elephpant.style.transform = `${translateFrom(anchor, targetBottom, targetRight)} scale(0.5)`;
         
         setTimeout(() => {
-            elephant.classList.add('hidden-behind-door');
+            elephpant.classList.add('hidden-behind-door');
             if (doorContainer) doorContainer.classList.remove('open');
-            setDoorMessage("Knock to see me", "reveals the elephant easter egg");
-            isElephantHome = true;
+            setDoorMessage("Knock to see me", "reveals the elephpant easter egg");
+            isElephpantHome = true;
         }, 1500);
     }
 
-    function releaseElephant() {
-        const elephant = getElephant();
-        if (!elephant || !isElephantHome) return;
+    function releaseElephpant() {
+        const elephpant = getElephpant();
+        if (!elephpant || !isElephpantHome) return;
         
         if (doorContainer) doorContainer.classList.add('open');
         
         setTimeout(() => {
-            elephant.classList.remove('hidden-behind-door');
+            elephpant.classList.remove('hidden-behind-door');
             
             const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
             const windowHeight = window.innerHeight;
             const windowWidth = window.innerWidth;
             
-            const elephantSize = elephant.offsetWidth;
-            const scaledSize = elephantSize * 0.5;
-            const offset = (elephantSize - scaledSize) / 2;
+            const elephpantSize = elephpant.offsetWidth;
+            const scaledSize = elephpantSize * 0.5;
+            const offset = (elephpantSize - scaledSize) / 2;
             
             const targetBottom = (windowHeight - doorRect.bottom) - offset;
             const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
-            const startRight = doorCenterFromRight - (elephantSize / 2);
+            const startRight = doorCenterFromRight - (elephpantSize / 2);
             
-            const anchor = getElephantAnchor(elephant);
-            elephant.style.transform = `${translateFrom(anchor, targetBottom, startRight)} scale(0.5)`;
+            const anchor = getElephpantAnchor(elephpant);
+            elephpant.style.transform = `${translateFrom(anchor, targetBottom, startRight)} scale(0.5)`;
 
-            void elephant.offsetWidth;
+            void elephpant.offsetWidth;
 
-            elephant.classList.remove('returning-home');
-            elephant.classList.add('exiting-door');
+            elephpant.classList.remove('returning-home');
+            elephpant.classList.add('exiting-door');
 
             // Walk out of the hut and straight to where runAroundScreen begins,
             // at full size. That is the animation's own 0% transform, so when the
             // inline styles come off below there is nothing left to jump over.
-            elephant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
+            elephpant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
 
             setTimeout(() => {
-                elephant.classList.remove('exiting-door');
-                elephant.style.animation = '';
-                elephant.style.transform = '';
+                elephpant.classList.remove('exiting-door');
+                elephpant.style.animation = '';
+                elephpant.style.transform = '';
                 
                 if (doorContainer) doorContainer.classList.remove('open');
-                setDoorMessage("Knock to hide me", "hides the elephant easter egg");
-                isElephantHome = false;
+                setDoorMessage("Knock to hide me", "hides the elephpant easter egg");
+                isElephpantHome = false;
             }, 1000);
         }, 400);
     }
@@ -370,28 +370,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Door Click Event
     if (doorContainer) {
         doorContainer.addEventListener('click', () => {
-            initElephant();
-            if (isElephantHome) {
-                releaseElephant();
+            initElephpant();
+            if (isElephpantHome) {
+                releaseElephpant();
                 playTrumpetSound();
             } else {
-                sendElephantHome();
+                sendElephpantHome();
             }
         });
     }
 
-    // Lazy load elephant when browser is idle after load
-    function scheduleLazyElephant() {
+    // Lazy load elephpant when browser is idle after load
+    function scheduleLazyElephpant() {
         if ('requestIdleCallback' in window) {
-            requestIdleCallback(() => initElephant(), { timeout: 2500 });
+            requestIdleCallback(() => initElephpant(), { timeout: 2500 });
         } else {
-            setTimeout(initElephant, 2000);
+            setTimeout(initElephpant, 2000);
         }
     }
 
     if (document.readyState === 'complete') {
-        scheduleLazyElephant();
+        scheduleLazyElephpant();
     } else {
-        window.addEventListener('load', scheduleLazyElephant);
+        window.addEventListener('load', scheduleLazyElephpant);
     }
 });
