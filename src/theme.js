@@ -195,6 +195,21 @@ export function toggleTheme(eventOrElement) {
         toggleBtn = document.querySelector('[data-theme-toggle]');
     }
 
+    // Temporarily hide elephant easter egg during spider theme animation
+    const runningElephant = document.getElementById('runningElephant');
+    if (runningElephant) {
+        runningElephant.style.transition = 'opacity 0.25s ease';
+        runningElephant.style.opacity = '0';
+        runningElephant.style.pointerEvents = 'none';
+    }
+
+    const restoreElephant = () => {
+        if (runningElephant) {
+            runningElephant.style.opacity = '1';
+            runningElephant.style.pointerEvents = 'auto';
+        }
+    };
+
     let btnX = window.innerWidth * 0.85;
     let btnY = 20;
     if (toggleBtn && typeof toggleBtn.getBoundingClientRect === 'function') {
@@ -203,29 +218,34 @@ export function toggleTheme(eventOrElement) {
         btnY = btnRect.top + btnRect.height * 0.5;
     }
 
+    // Mobile dropTargetY is identical for both dark and light modes: after button, before center, closer to center (35% of height)
     const verticalY = window.innerHeight * 0.5;
+    const curtainStartY = isDarkNext ? 40 : (window.innerHeight - 40);
+    const dropTargetY = isMobile ? window.innerHeight * 0.35 : verticalY;
     const dropX = btnX;
     const dropStartY = btnY;
-    // Curtain starting point: left edge (40px) for Dark Mode sweep, right edge (window.innerWidth - 40px) for Light Mode sweep
+
+    // Desktop: Horizontal curtain sweep across X. Mobile: Vertical curtain sweep across Y.
     const curtainStartX = isDarkNext ? 40 : (window.innerWidth - 40);
     const endX = isDarkNext ? (window.innerWidth + 95) : -95;
-    const baseAngle = isDarkNext ? 0 : 180;
-    const clipPath = isDarkNext
-        ? [
-            'polygon(0 0, 0 0, 0 100%, 0 100%)',
-            'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
-          ]
-        : [
-            'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
-            'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
-          ];
+    const endY = isDarkNext ? (window.innerHeight + 95) : -95;
 
-    // Switch the theme outright when there is no crawl to show. This has to come
-    // before the spider is built: `active-spider` is what makes it visible, and
-    // only the animation's onfinish takes it off again, so showing it on a path
-    // with no animation strands it on screen until the next reload.
+    const baseAngle = isMobile 
+        ? (isDarkNext ? 90 : -90)
+        : (isDarkNext ? 0 : 180);
+
+    const clipPath = isMobile
+        ? (isDarkNext
+            ? ['polygon(0 0, 100% 0, 100% 0, 0 0)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']
+            : ['polygon(0 100%, 100% 100%, 100% 100%, 0 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'])
+        : (isDarkNext
+            ? ['polygon(0 0, 0 0, 0 100%, 0 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']
+            : ['polygon(100% 0, 100% 0, 100% 100%, 100% 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']);
+
+    // Switch the theme outright when there is no crawl to show.
     if (!document.startViewTransition || prefersReducedMotion) {
         setTheme(nextTheme);
+        restoreElephant();
         return;
     }
 
@@ -254,10 +274,10 @@ export function toggleTheme(eventOrElement) {
     silkLine.style.display = 'block';
 
     // Step 1: Drop down directly from clicked Theme Button on a silk thread
-    const dropDuration = 320;
+    const dropDuration = 580;
     const dropAnim = crawler.animate([
         { transform: `translate(${dropX}px, ${dropStartY}px) rotate(90deg)`, opacity: 1 },
-        { transform: `translate(${dropX}px, ${verticalY}px) rotate(90deg)`, opacity: 1 }
+        { transform: `translate(${dropX}px, ${dropTargetY}px) rotate(90deg)`, opacity: 1 }
     ], {
         duration: dropDuration,
         easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -265,7 +285,7 @@ export function toggleTheme(eventOrElement) {
 
     silkLine.animate([
         { height: '0px', opacity: 1 },
-        { height: `${Math.max(0, verticalY - dropStartY)}px`, opacity: 1 }
+        { height: `${Math.max(0, dropTargetY - dropStartY)}px`, opacity: 1 }
     ], {
         duration: dropDuration,
         easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -274,39 +294,71 @@ export function toggleTheme(eventOrElement) {
     dropAnim.onfinish = () => {
         silkLine.style.display = 'none';
 
-        // Step 2: Walk to curtain start line & perform a U-Turn
-        const prepDuration = 480;
+        // Step 2: Walk to start edge (top for Dark Mode, bottom for Light Mode) & perform 180deg U-turn
+        const prepDuration = 1000;
         const prepKeyframes = [];
         const prepSteps = 10;
+        const mobileTargetX = window.innerWidth * 0.5;
 
         for (let i = 0; i <= prepSteps; i++) {
             const progress = i / prepSteps;
-            const currentX = dropX + (curtainStartX - dropX) * progress;
-
-            let currentAngle;
-            if (isDarkNext) {
-                // Dark Mode: Walk Left from button to left edge (40px) facing 180deg, then smooth U-turn to 0deg
-                if (progress < 0.7) {
-                    currentAngle = 180;
-                } else {
-                    const turnP = (progress - 0.7) / 0.3;
-                    currentAngle = 180 - 180 * turnP; // 180deg -> 0deg
-                }
-            } else {
-                // Light Mode: Walk Right from button to right edge facing 0deg, then smooth U-turn to 180deg
-                if (progress < 0.7) {
-                    currentAngle = 0;
-                } else {
-                    const turnP = (progress - 0.7) / 0.3;
-                    currentAngle = 0 + 180 * turnP; // 0deg -> 180deg
-                }
-            }
-
             const sway = (i % 2 === 0 ? 2 : -2);
-            prepKeyframes.push({
-                transform: `translate(${currentX}px, ${verticalY}px) rotate(${currentAngle + sway}deg)`,
-                opacity: 1
-            });
+
+            if (isMobile) {
+                // Mobile Physical 2-Stage Walk:
+                // Stage 1 (0.0 to 0.4): Walk horizontally along dropTargetY from button X to center X facing travel direction
+                // Stage 2 (0.4 to 1.0): Walk vertically from dropTargetY to curtainStartY (top 40px or bottom height-40px) at center X, then 180deg U-turn at edge
+                let currentX, currentY, currentAngle;
+
+                if (progress <= 0.4) {
+                    // Stage 1: Walk horizontally along dropTargetY to center X
+                    const p1 = progress / 0.4;
+                    currentX = dropX + (mobileTargetX - dropX) * p1;
+                    currentY = dropTargetY;
+                    currentAngle = (dropX > mobileTargetX) ? 180 : 0;
+                } else {
+                    // Stage 2: Walk vertically from dropTargetY to curtainStartY at center X
+                    const p2 = (progress - 0.4) / 0.6;
+                    currentX = mobileTargetX;
+                    currentY = dropTargetY + (curtainStartY - dropTargetY) * p2;
+
+                    if (isDarkNext) {
+                        // Dark Mode: Walk UP to top edge (40px) facing UP (-90deg), then perform 180deg U-turn to face DOWN (90deg)
+                        if (p2 < 0.7) {
+                            currentAngle = -90;
+                        } else {
+                            const turnP = (p2 - 0.7) / 0.3;
+                            currentAngle = -90 + 180 * turnP; // -90deg -> 90deg (facing down)
+                        }
+                    } else {
+                        // Light Mode: Walk DOWN to bottom edge facing DOWN (90deg), then perform 180deg U-turn to face UP (-90deg)
+                        if (p2 < 0.7) {
+                            currentAngle = 90;
+                        } else {
+                            const turnP = (p2 - 0.7) / 0.3;
+                            currentAngle = 90 + 180 * turnP; // 90deg -> 270deg / -90deg (facing up)
+                        }
+                    }
+                }
+
+                prepKeyframes.push({
+                    transform: `translate(${currentX}px, ${currentY}px) rotate(${currentAngle + sway}deg)`,
+                    opacity: 1
+                });
+            } else {
+                // Desktop: Walk to left/right edge and perform 180deg U-Turn
+                const currentX = dropX + (curtainStartX - dropX) * progress;
+                let currentAngle;
+                if (isDarkNext) {
+                    currentAngle = progress < 0.7 ? 180 : (180 - 180 * ((progress - 0.7) / 0.3));
+                } else {
+                    currentAngle = progress < 0.7 ? 0 : (0 + 180 * ((progress - 0.7) / 0.3));
+                }
+                prepKeyframes.push({
+                    transform: `translate(${currentX}px, ${verticalY}px) rotate(${currentAngle + sway}deg)`,
+                    opacity: 1
+                });
+            }
         }
 
         const prepAnim = crawler.animate(prepKeyframes, {
@@ -315,19 +367,30 @@ export function toggleTheme(eventOrElement) {
         });
 
         prepAnim.onfinish = () => {
-            // Step 3: Perform View Transition curtain sweep across the page
-            const sweepDuration = 1800;
+            // Step 3: Perform View Transition curtain sweep across the page (Horizontal for Desktop, Vertical for Mobile)
+            const sweepDuration = 2500;
             const sweepKeyframes = [];
             const sweepSteps = 20;
 
             for (let i = 0; i <= sweepSteps; i++) {
                 const progress = i / sweepSteps;
-                const currentX = curtainStartX + (endX - curtainStartX) * progress;
                 const sway = (i % 2 === 0 ? 2.5 : -2.5);
-                sweepKeyframes.push({
-                    transform: `translate(${currentX}px, ${verticalY}px) rotate(${baseAngle + sway}deg)`,
-                    opacity: 1
-                });
+
+                if (isMobile) {
+                    // Mobile Vertical Crawl: Starts seamlessly at curtainStartY (top 40px or bottom height-40px) and scuttles full-screen to endY
+                    const currentY = curtainStartY + (endY - curtainStartY) * progress;
+                    sweepKeyframes.push({
+                        transform: `translate(${mobileTargetX}px, ${currentY}px) rotate(${baseAngle + sway}deg)`,
+                        opacity: 1
+                    });
+                } else {
+                    // Desktop Horizontal Crawl across X axis
+                    const currentX = curtainStartX + (endX - curtainStartX) * progress;
+                    sweepKeyframes.push({
+                        transform: `translate(${currentX}px, ${verticalY}px) rotate(${baseAngle + sway}deg)`,
+                        opacity: 1
+                    });
+                }
             }
 
             const transition = document.startViewTransition(() => {
@@ -356,6 +419,7 @@ export function toggleTheme(eventOrElement) {
 
                 spiderAnim.onfinish = () => {
                     crawler.classList.remove('active-spider');
+                    restoreElephant();
                 };
             });
         };
