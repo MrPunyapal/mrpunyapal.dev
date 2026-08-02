@@ -257,10 +257,12 @@ html:not(.dark) .theme-moon-icon {
     z-index: 2147483647 !important;
 }
 
+::view-transition-group(spider-crawler),
 ::view-transition-old(spider-crawler),
 ::view-transition-new(spider-crawler) {
     animation: none !important;
     mix-blend-mode: normal !important;
+    z-index: 2147483647 !important;
 }
 
 /* Spider Crawler Theme Curtain Transition */
@@ -275,83 +277,69 @@ html:not(.dark) .theme-moon-icon {
     display: none;
     align-items: center;
     justify-content: center;
-    width: 105px;
-    height: 70px;
-    margin-top: -35px;
-    margin-left: -52px;
+    width: 84px;
+    height: 49px;
+    margin-top: -24px;
+    margin-left: -42px;
+    transform: translate(-200px, -200px);
 }
 
 .theme-spider-crawler.active-spider {
     display: flex !important;
 }
 
-/* Spider Crawler Colors: Pitch Black for Dark Mode sweep, Pure White for Light Mode sweep */
+/* Spider Crawler Colors: Sleek Charcoal Slate for Dark Mode sweep, Pure Slate White for Light Mode sweep */
 .theme-spider-crawler.dark-spider {
-    color: #09090b; /* Pitch Black spider bringing dark mode */
-    filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.95)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    color: #0f172a; /* Sleek obsidian/slate spider bringing dark mode */
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
 }
 
 .theme-spider-crawler.light-spider {
-    color: #ffffff; /* Pure White spider bringing light mode */
-    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.95)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    color: #f8fafc; /* Sleek slate white spider bringing light mode */
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
 }
 
 .real-spider-svg {
     display: block;
-    width: 105px;
-    height: 70px;
+    width: 84px;
+    height: 49px;
     overflow: visible;
 }
 
-.spider-silk-fiber-group {
-    animation: silk-pulse 0.3s infinite alternate ease-in-out;
+/* Vertical Silk Drop Line from Theme Toggle Button */
+.spider-drop-silk-line {
+    position: fixed;
+    z-index: 2147483646 !important;
+    width: 1.5px;
+    background-color: rgba(148, 163, 184, 0.85);
+    pointer-events: none;
+    display: none;
+    transform: translateX(-50%);
 }
 
-.spider-silk-fiber-line {
-    opacity: 0.9;
-    stroke-dasharray: 1 7;
+/* 3D Stereoscopic 8-Legged Spider Scuttling Gait */
+.spider-legs-far {
+    transform-origin: 60px 35px;
+    animation: spider-scuttle-far 0.16s infinite alternate ease-in-out;
 }
 
-.silk-bead {
-    opacity: 0.95;
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: bead-shimmer 0.4s infinite alternate ease-in-out;
+.spider-legs-near {
+    transform-origin: 60px 35px;
+    animation: spider-scuttle-near 0.16s infinite alternate ease-in-out;
 }
 
-@keyframes silk-pulse {
-    0% { opacity: 0.8; }
-    100% { opacity: 1; }
+@keyframes spider-scuttle-far {
+    0% { transform: rotate(-5deg) translateY(-1px) scale(0.95); }
+    100% { transform: rotate(5deg) translateY(1px) scale(0.95); }
 }
 
-@keyframes bead-shimmer {
-    0% { transform: scale(0.9); }
-    100% { transform: scale(1.15); }
-}
-
-/* Realistic 8-Legged Spider Scuttling Gait */
-.spider-legs-group-a {
-    transform-origin: 65px 50px;
-    animation: spider-scuttle-a 0.16s infinite alternate ease-in-out;
-}
-
-.spider-legs-group-b {
-    transform-origin: 65px 50px;
-    animation: spider-scuttle-b 0.16s infinite alternate ease-in-out;
-}
-
-@keyframes spider-scuttle-a {
-    0% { transform: rotate(-6deg) translateY(-1.5px); }
-    100% { transform: rotate(6deg) translateY(1.5px); }
-}
-
-@keyframes spider-scuttle-b {
-    0% { transform: rotate(6deg) translateY(1.5px); }
-    100% { transform: rotate(-6deg) translateY(-1.5px); }
+@keyframes spider-scuttle-near {
+    0% { transform: rotate(5deg) translateY(1px); }
+    100% { transform: rotate(-5deg) translateY(-1px); }
 }
 
 .spider-abdomen {
-    transform-origin: 54px 50px;
+    transform-origin: 42px 35px;
     animation: spider-abdomen-twitch 0.28s infinite alternate ease-in-out;
 }
 
