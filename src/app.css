@@ -1,6 +1,40 @@
 /* Modern CSS for Professional Portfolio with Tailwind v4 */
 
 /*
+ * Skip link. Off-screen until focused, so keyboard users can jump past the
+ * header nav instead of tabbing through every item on every page.
+ */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 2147483647;
+    padding: 0.625rem 1rem;
+    background: #ffffff;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    border-radius: 0 0 4px 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
+.dark .skip-link {
+    background: #020617;
+    color: #e2e8f0;
+    border-color: #334155;
+}
+
+/* The skip target should not draw a focus ring when jumped to. */
+#main-content:focus {
+    outline: none;
+}
+
+/*
  * Inline SVG icons, referenced from the per-page <symbol> sprite.
  * Sized and coloured from the surrounding text, so Tailwind's text-* and
  * colour utilities keep working exactly as they did on the old <i> tags.

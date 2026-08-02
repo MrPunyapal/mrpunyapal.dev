@@ -578,6 +578,8 @@
 
 <body
     class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Icon sprite: Font Awesome Free 6.4.2 icons, CC BY 4.0 (https://fontawesome.com/license/free) -->
     <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
         <defs>
@@ -633,7 +635,7 @@
                     </button>
                 </nav>
 
-                <div class="animate-fade-up" style="animation-delay: 0.1s;">
+                <div id="main-content" tabindex="-1" class="animate-fade-up" style="animation-delay: 0.1s;">
                     <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
                         Talks & Speaking
                     </h1>
@@ -680,7 +682,7 @@
                             <svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-envelope"/></svg>
                             Invite me to speak
                         </a>
-                        <a href="#talk-archive" class="text-sm text-slate-500 hover:text-red-600 transition-colors">
+                        <a href="#talk-archive" class="inline-block py-0.5 text-sm text-slate-500 hover:text-red-600 transition-colors">
                             Browse past talks &rarr;
                         </a>
                     </div>
@@ -738,12 +740,12 @@
                                 <div class="flex gap-3">
                                     <a href="https://youtu.be/3_rWWGSpgyw?si=xwhC_SvNwoD9qD85" target="_blank"
                                         rel="noopener noreferrer" aria-label="Watch 'Write code that can fix itself' on YouTube"
-                                        class="text-slate-500 dark:text-slate-400 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center justify-center min-w-6 min-h-6 text-slate-500 dark:text-slate-400 hover:text-red-600 transition-colors">
                                         <svg class="icon text-lg" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-youtube"/></svg>
                                     </a>
                                     <a href="https://github.com/MrPunyapal/laracon-in-2026" target="_blank"
                                         rel="noopener noreferrer" aria-label="View 'Write code that can fix itself' repository on GitHub"
-                                        class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                        class="inline-flex items-center justify-center min-w-6 min-h-6 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                                         <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                     </a>
                                 </div>
@@ -836,7 +838,7 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://github.com/OSSforAll/I-AM-CONTRIBUTOR" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'Open-Source: PR to package' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    class="inline-flex items-center justify-center min-w-6 min-h-6 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                                     <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
@@ -887,7 +889,7 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://github.com/MrPunyapal/pest-talk" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'From Zero to Tested: Laravel + PestPHP' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    class="inline-flex items-center justify-center min-w-6 min-h-6 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                                     <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
@@ -941,7 +943,7 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://gist.github.com/MrPunyapal/139779b743eec108a292de95b3f958f8"
                                     target="_blank" rel="noopener noreferrer" aria-label="View 'Types in PHP at Glance with PHPStan' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    class="inline-flex items-center justify-center min-w-6 min-h-6 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                                     <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
@@ -1057,12 +1059,12 @@
                                 <div class="flex gap-3">
                                     <a href="https://youtube.com/live/N73Smm8ldCc" target="_blank"
                                         rel="noopener noreferrer" aria-label="Watch 'Refactor Laravel with RectorPHP' on YouTube"
-                                        class="text-slate-500 dark:text-slate-400 hover:text-red-600 transition-colors">
+                                        class="inline-flex items-center justify-center min-w-6 min-h-6 text-slate-500 dark:text-slate-400 hover:text-red-600 transition-colors">
                                         <svg class="icon text-lg" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-youtube"/></svg>
                                     </a>
                                     <a href="https://github.com/MrPunyapal/laravel-rectorphp" target="_blank"
                                         rel="noopener noreferrer" aria-label="View 'Refactor Laravel with RectorPHP' repository on GitHub"
-                                        class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                        class="inline-flex items-center justify-center min-w-6 min-h-6 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                                         <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                     </a>
                                 </div>
@@ -1123,7 +1125,7 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://github.com/MrPunyapal/filament-demo" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'Spark Your Laravel Apps with FilamentPHP' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    class="inline-flex items-center justify-center min-w-6 min-h-6 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                                     <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
@@ -1175,7 +1177,7 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://github.com/MrPunyapal/broadcast-with-laravel" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'Broadcasting in Laravel' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    class="inline-flex items-center justify-center min-w-6 min-h-6 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                                     <svg class="icon text-lg" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
