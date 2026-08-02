@@ -16,16 +16,71 @@ export function updateToggleButtons(theme) {
         btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
         btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
         
+        if (!btn.classList.contains('relative')) {
+            btn.classList.add('relative');
+        }
+
+        // Completely remove legacy sun and moon icons if present
         const sunIcon = btn.querySelector('.theme-sun-icon');
         const moonIcon = btn.querySelector('.theme-moon-icon');
-        if (sunIcon && moonIcon) {
-            if (isDark) {
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-            } else {
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-            }
+        if (sunIcon) sunIcon.remove();
+        if (moonIcon) moonIcon.remove();
+
+        let spiderIcon = btn.querySelector('.theme-spider-btn-icon');
+        if (!spiderIcon) {
+            spiderIcon = document.createElement('span');
+            spiderIcon.className = 'theme-spider-btn-icon flex items-center justify-center transition-colors duration-200';
+            spiderIcon.setAttribute('aria-hidden', 'true');
+            spiderIcon.innerHTML = `<svg viewBox="0 0 100 100" width="16" height="16" fill="currentColor" aria-hidden="true" style="display:block;">
+                <g stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M 44 60 Q 28 80 16 78" />
+                    <path d="M 56 60 Q 72 80 84 78" />
+                    <path d="M 42 53 Q 20 63 10 53" />
+                    <path d="M 58 53 Q 80 63 90 53" />
+                    <path d="M 42 45 Q 18 36 12 24" />
+                    <path d="M 58 45 Q 82 36 88 24" />
+                    <path d="M 44 38 Q 30 18 20 10" />
+                    <path d="M 56 38 Q 70 18 80 10" />
+                </g>
+                <ellipse cx="50" cy="35" rx="14" ry="17" />
+                <circle cx="50" cy="57" r="10" />
+                <path d="M 44 65 Q 47 73 47 77" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" />
+                <path d="M 56 65 Q 53 73 53 77" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" />
+            </svg>`;
+            
+            btn.appendChild(spiderIcon);
+        }
+        
+        // Pure White spider icon in Dark Mode, Obsidian Charcoal Black spider icon in Light Mode
+        spiderIcon.style.color = isDark ? '#ffffff' : '#0f172a';
+
+        // Top-Right Sun / Moon Indicator Badge
+        let badge = btn.querySelector('.theme-mode-badge');
+        if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'theme-mode-badge absolute -top-1 -right-1 pointer-events-none flex items-center justify-center z-10';
+            badge.setAttribute('aria-hidden', 'true');
+            btn.appendChild(badge);
+        }
+
+        if (isDark) {
+            // In Dark Mode: Show Amber Sun badge indicating click switches to Light Mode
+            badge.innerHTML = `<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5" fill="#f59e0b"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>`;
+        } else {
+            // In Light Mode: Show Indigo Crescent Moon badge indicating click switches to Dark Mode
+            badge.innerHTML = `<svg viewBox="0 0 24 24" width="10" height="10" fill="#6366f1" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>`;
         }
     });
 }
