@@ -1089,23 +1089,7 @@
   }
 }
 
-@keyframes dynamicGlow {
-  0% {
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25))
-      drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
-      drop-shadow(0 0 20px rgba(119, 123, 180, 0.1));
-  }
-  50% {
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
-      drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))
-      drop-shadow(0 0 25px rgba(119, 123, 180, 0.3));
-  }
-  100% {
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25))
-      drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
-      drop-shadow(0 0 20px rgba(119, 123, 180, 0.1));
-  }
-}
+
 
 /* Turbo Mode Animations */
 @keyframes turboGlow {
