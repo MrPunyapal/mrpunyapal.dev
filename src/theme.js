@@ -165,6 +165,15 @@ export function toggleTheme(eventOrElement) {
             'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
           ];
 
+    // Switch the theme outright when there is no crawl to show. This has to come
+    // before the spider is built: `active-spider` is what makes it visible, and
+    // only the animation's onfinish takes it off again, so showing it on a path
+    // with no animation strands it on screen until the next reload.
+    if (!document.startViewTransition || prefersReducedMotion) {
+        setTheme(nextTheme);
+        return;
+    }
+
     // Get or create permanent spider element before startViewTransition runs
     let crawler = document.querySelector('.theme-spider-crawler');
     if (!crawler) {
@@ -175,11 +184,6 @@ export function toggleTheme(eventOrElement) {
     crawler.innerHTML = getRealisticSpiderHTML();
     crawler.className = `theme-spider-crawler ${isDarkNext ? 'dark-spider' : 'light-spider'} active-spider`;
     crawler.style.transform = `translate(${dropX}px, ${dropStartY}px) rotate(90deg)`;
-
-    if (!document.startViewTransition || prefersReducedMotion) {
-        setTheme(nextTheme);
-        return;
-    }
 
     // Create vertical drop-down silk thread element
     let silkLine = document.querySelector('.spider-drop-silk-line');
