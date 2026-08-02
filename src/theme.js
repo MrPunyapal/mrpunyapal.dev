@@ -253,10 +253,16 @@ export function toggleTheme(eventOrElement) {
     silkLine.style.height = '0px';
     silkLine.style.display = 'block';
 
-    // Step 1: Drop down directly from clicked Theme Button on a silk thread
+    // Step 1: Drop down directly from clicked Theme Button on a silk thread.
+    // The spider fades in over the first stretch of the drop: at full opacity
+    // from frame one it lands squarely on top of the button it just came from
+    // and covers it, which reads as a glitch rather than as the spider
+    // emerging from behind it.
     const dropDuration = 320;
+    const dropClearY = dropStartY + (verticalY - dropStartY) * 0.35;
     const dropAnim = crawler.animate([
-        { transform: `translate(${dropX}px, ${dropStartY}px) rotate(90deg)`, opacity: 1 },
+        { transform: `translate(${dropX}px, ${dropStartY}px) rotate(90deg)`, opacity: 0 },
+        { transform: `translate(${dropX}px, ${dropClearY}px) rotate(90deg)`, opacity: 1, offset: 0.35 },
         { transform: `translate(${dropX}px, ${verticalY}px) rotate(90deg)`, opacity: 1 }
     ], {
         duration: dropDuration,
