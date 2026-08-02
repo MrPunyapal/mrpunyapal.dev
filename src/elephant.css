@@ -1468,5 +1468,6 @@
     transform 1s cubic-bezier(0, 0, 0.2, 1),
     opacity 1s cubic-bezier(0, 0, 0.2, 1);
   opacity: 1;
-  /* The script supplies the translate plus scaleX(-1) to face left. */
+  /* The script supplies the transform: it walks the elephant out of the hut to
+     the exact spot runAroundScreen starts from, so the hand-off is seamless. */
 }

@@ -350,8 +350,10 @@ document.addEventListener('DOMContentLoaded', function() {
             elephant.classList.remove('returning-home');
             elephant.classList.add('exiting-door');
 
-            // Step out from the door, back to full size and facing left.
-            elephant.style.transform = `${translateFrom(anchor, targetBottom, startRight + 200)} scaleX(-1)`;
+            // Walk out of the hut and straight to where runAroundScreen begins,
+            // at full size. That is the animation's own 0% transform, so when the
+            // inline styles come off below there is nothing left to jump over.
+            elephant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
 
             setTimeout(() => {
                 elephant.classList.remove('exiting-door');
