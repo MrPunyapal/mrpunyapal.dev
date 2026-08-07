@@ -1,26 +1,39 @@
 {
   "name": "mrpunyapal.dev",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/app.js",
+  "description": "Source code for mrpunyapal.dev - Punyapal Shah's personal website, projects, open source work, talks, and resume.",
   "scripts": {
-    "build": "vite build",
     "dev": "vite",
-    "build:pdf": "node scripts/generate-pdf.js"
+    "build": "vite build",
+    "build:pdf": "node scripts/generate-pdf.js",
+    "generate:og": "capturist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MrPunyapal/mrpunyapal.dev.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "portfolio",
+    "laravel",
+    "php",
+    "open-source",
+    "resume",
+    "talks",
+    "developer",
+    "pest",
+    "pinkary",
+    "mrpunyapal",
+    "Punyapal Shah"
+  ],
+  "author": "Punyapal Shah <mrpunyapal@gmail.com> (https://mrpunyapal.dev)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/MrPunyapal/mrpunyapal.dev/issues"
   },
-  "homepage": "https://github.com/MrPunyapal/mrpunyapal.dev#readme",
+  "homepage": "https://mrpunyapal.dev",
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "capturist": "^0.1.0",
     "html-pdf-node": "^1.0.8",
     "tailwindcss": "^4.3.3",
     "vite": "^8.1.5"
