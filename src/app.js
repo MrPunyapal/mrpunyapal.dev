@@ -315,6 +315,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         setTimeout(() => {
             elephpant.classList.add('hidden-behind-door');
+            elephpant.style.opacity = '0';
+            elephpant.style.pointerEvents = 'none';
             if (doorContainer) doorContainer.classList.remove('open');
             setDoorMessage("Knock to see me", "reveals the elephpant easter egg");
             isElephpantHome = true;
@@ -329,6 +331,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         setTimeout(() => {
             elephpant.classList.remove('hidden-behind-door');
+            elephpant.style.opacity = '1';
+            elephpant.style.pointerEvents = 'auto';
             
             const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
             const windowHeight = window.innerHeight;

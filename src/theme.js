@@ -195,18 +195,27 @@ export function toggleTheme(eventOrElement) {
         toggleBtn = document.querySelector('[data-theme-toggle]');
     }
 
-    // Temporarily hide elephpant easter egg during spider theme animation
+    // Temporarily hide elephpant easter egg during spider theme animation if currently visible
     const runningElephpant = document.getElementById('runningElephpant');
-    if (runningElephpant) {
+    const isElephpantVisible = runningElephpant && 
+        !runningElephpant.classList.contains('hidden-behind-door') && 
+        !runningElephpant.classList.contains('returning-home') && 
+        runningElephpant.style.opacity !== '0' && 
+        getComputedStyle(runningElephpant).opacity !== '0';
+
+    if (runningElephpant && isElephpantVisible) {
         runningElephpant.style.transition = 'opacity 0.25s ease';
         runningElephpant.style.opacity = '0';
         runningElephpant.style.pointerEvents = 'none';
     }
 
     const restoreElephpant = () => {
-        if (runningElephpant) {
-            runningElephpant.style.opacity = '1';
-            runningElephpant.style.pointerEvents = 'auto';
+        if (runningElephpant && isElephpantVisible) {
+            // Only restore if the elephpant is NOT parked behind the door
+            if (!runningElephpant.classList.contains('hidden-behind-door') && !runningElephpant.classList.contains('returning-home')) {
+                runningElephpant.style.opacity = '1';
+                runningElephpant.style.pointerEvents = 'auto';
+            }
         }
     };
 
