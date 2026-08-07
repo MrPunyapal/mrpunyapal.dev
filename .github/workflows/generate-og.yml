@@ -1,0 +1,50 @@
+name: Generate Open Graph Images
+
+on:
+  push:
+    paths:
+      - 'index.html'
+      - 'projects.html'
+      - 'talks.html'
+      - 'opensource.html'
+      - 'resume.html'
+      - 'src/**'
+      - 'capturist.config.mjs'
+      - 'vite.config.js'
+      - 'package.json'
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-og:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Generate Open Graph Screenshots
+        run: npm run generate:og
+
+      - name: Commit and push generated screenshots if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/*-og-image.png
+          git diff --quiet && git diff --staged --quiet || (git commit -m "build(og): auto-generate open graph screenshots via capturist [skip ci]" && git push)
