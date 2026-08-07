@@ -7,12 +7,8 @@ export default defineConfig({
     buildCommand: "npm run build",
   },
 
-  // High-DPI viewport (1200x630) for crisp Open Graph social sharing cards
-  viewport: {
-    width: 1200,
-    height: 630,
-    deviceScaleFactor: 1,
-  },
+  // 2x Retina high-resolution presets with font smoothing
+  retina: true,
 
   // Save generated screenshots directly to the public/ directory
   outputDir: "public",
