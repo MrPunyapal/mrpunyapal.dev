@@ -28,11 +28,7 @@ function typeAnimation() {
         currentChar++;
     }
 
-    if (newText === "") {
-        typingText.innerHTML = "&nbsp;";
-    } else {
-        typingText.textContent = newText;
-    }
+    typingText.textContent = newText;
     
     let typeSpeed = isDeleting ? 50 : 100;
     
