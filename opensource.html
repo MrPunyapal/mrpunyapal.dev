@@ -387,27 +387,55 @@
             <div class="tech-line-v-bottom left-[-1px]"></div>
             <div class="tech-line-v-bottom right-[-1px]"></div>
 
-            <!-- Header Section -->
-            <div class="p-4 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative">
+            <!-- Card Header: Top Nav Bar -->
+            <header class="px-4 sm:px-6 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-end gap-1 sm:gap-2 relative z-20">
+                <!-- Horizontal Line Extension -->
                 <div class="tech-line-h bottom-[-1px]"></div>
+                
+                <!-- Intersections with outer border -->
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
-                <nav aria-label="Page Navigation" class="absolute top-4 right-4 sm:top-8 sm:right-8 flex items-center gap-2 z-20 animate-fade-up">
-                    <a href="/projects"
-                        class="hidden sm:inline-block px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 rounded">
+                <!-- Navigation Tabs -->
+                <nav aria-label="Main Navigation" class="flex flex-wrap items-center -mb-[1px]">
+                    <a href="/" class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b-[2.5px] dark:border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors inline-flex items-center">
+                        Home
+                    </a>
+                    <a href="/projects" class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b-[2.5px] dark:border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors inline-flex items-center">
                         Projects
                     </a>
-                    <a href="/" aria-label="Back to home page"
-                        class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 rounded">
-                        <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-left"/></svg>
-                        <span class="hidden sm:inline">Back</span>
+                    <a href="/opensource" aria-current="page" class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900 dark:text-white border-b-[2.5px] dark:border-b-2 border-red-500 transition-colors inline-flex items-center gap-1.5">
+                        <span>Open Source</span>
+                        <svg class="icon text-red-500 text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-heart"/></svg>
                     </a>
-                    <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn px-2.5 py-1.5 text-xs font-medium uppercase tracking-wider border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-slate-600 dark:text-slate-300 flex items-center justify-center rounded">
-                    </button>
+                    <a href="/resume" class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b-[2.5px] dark:border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors inline-flex items-center">
+                        Resume
+                    </a>
+                    <a href="/talks" class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b-[2.5px] dark:border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors inline-flex items-center">
+                        Talks
+                    </a>
                 </nav>
 
-                <div class="animate-fade-up" style="animation-delay: 0.1s;">
+                <!-- Utility Buttons -->
+                <div class="flex items-center gap-1 sm:gap-1.5 py-2 pl-2 sm:pl-3 border-l border-slate-200 dark:border-slate-800">
+                    <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                        <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                    </a>
+                    <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                    </button>
+                </div>
+            </header>
+
+            <!-- Header Section -->
+            <div class="p-6 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative">
+                <!-- Horizontal Line Extension -->
+                <div class="tech-line-h bottom-[-1px]"></div>
+
+                <!-- Intersections -->
+                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+                <div class="animate-fade-up">
                     <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
                         Open Source
                     </h1>

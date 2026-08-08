@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (doorContainer) doorContainer.classList.add('open');
         
         const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
-        const elephpantSize = elephpant.offsetWidth;
+        const elephpantSize = elephpant.offsetWidth || 220;
         const scaledSize = elephpantSize * 0.5;
         const offset = (elephpantSize - scaledSize) / 2;
         
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function releaseElephpant() {
-        const elephpant = getElephpant();
+        const elephpant = initElephpant();
         if (!elephpant || !isElephpantHome) return;
         
         if (doorContainer) doorContainer.classList.add('open');
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const windowHeight = window.innerHeight;
             const windowWidth = window.innerWidth;
             
-            const elephpantSize = elephpant.offsetWidth;
+            const elephpantSize = elephpant.offsetWidth || 220;
             const scaledSize = elephpantSize * 0.5;
             const offset = (elephpantSize - scaledSize) / 2;
             
@@ -343,6 +343,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const startRight = doorCenterFromRight - (elephpantSize / 2);
             
             const anchor = getElephpantAnchor(elephpant);
+
+            // Step 1: Emerge directly from the hut door at half scale
+            elephpant.style.transition = 'none';
             elephpant.style.transform = `${translateFrom(anchor, targetBottom, startRight)} scale(0.5)`;
 
             void elephpant.offsetWidth;
@@ -350,15 +353,15 @@ document.addEventListener('DOMContentLoaded', function() {
             elephpant.classList.remove('returning-home');
             elephpant.classList.add('exiting-door');
 
-            // Walk out of the hut and straight to where runAroundScreen begins,
-            // at full size. That is the animation's own 0% transform, so when the
-            // inline styles come off below there is nothing left to jump over.
+            // Step 2: Step out of the hut and transition down to screen perimeter run
+            elephpant.style.transition = 'transform 1s cubic-bezier(0.2, 0.8, 0.2, 1)';
             elephpant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
 
             setTimeout(() => {
                 elephpant.classList.remove('exiting-door');
                 elephpant.style.animation = '';
                 elephpant.style.transform = '';
+                elephpant.style.transition = '';
                 
                 if (doorContainer) doorContainer.classList.remove('open');
                 setDoorMessage("Knock to hide me", "hides the elephpant easter egg");
