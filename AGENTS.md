@@ -57,8 +57,8 @@ The website is the canonical source of information.
 Whenever experience, projects, talks, open source contributions, or community involvement change:
 
 - Update the website.
-- Update the printable resume (`scripts/resume-print.html`).
-- Re-generate the downloadable PDF (`public/resume.pdf`).
+- Update the printable resume (`scripts/resume-print.html`) if resume content is affected.
+- Re-generate the downloadable PDF (`public/resume.pdf`) ONLY when resume files or printable templates change.
 - Keep wording consistent across all versions.
 
 Avoid duplicating large amounts of website content inside the resume.
@@ -72,7 +72,8 @@ The website should provide the details.
 ## Build & Verification Commands
 
 - **PDF Generation**: `npm run build:pdf` (runs `node scripts/generate-pdf.js` to compile `scripts/resume-print.html` into `public/resume.pdf`).
-- **Build Verification**: Ensure `npm run build:pdf` completes with exit code 0 whenever resume HTML templates or CSS styles are modified.
+- **Generation Condition**: Run `npm run build:pdf` ONLY when resume-related files (`scripts/resume-print.html`, `scripts/generate-pdf.js`, or resume-specific styles/content) are modified. Do not generate or rebuild the PDF for unrelated website changes (such as homepage tweaks, navigation, talks, or styling changes on other pages).
+- **Build Verification**: Ensure `npm run build:pdf` completes with exit code 0 whenever resume HTML templates or resume print CSS styles are modified.
 
 ---
 
@@ -161,7 +162,7 @@ Before marking a task as complete, verify:
 - Metadata remains consistent (if modified).
 - Responsive layout has not regressed (if modified).
 - Print layout remains correct (if modified).
-- Resume generation (`npm run build:pdf`) still works (if modified).
+- Resume generation (`npm run build:pdf`) completed with exit code 0 (ONLY when resume templates or styles were modified).
 - No unnecessary dependencies were introduced.
 - Existing coding style and project conventions were followed.
 
