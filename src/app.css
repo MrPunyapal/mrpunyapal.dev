@@ -14,6 +14,76 @@
     vertical-align: -0.125em;
 }
 
+/* Responsive header navigation.
+ * The desktop header keeps its right-aligned, utility-oriented layout. On
+ * narrow cards the tabs share the available width instead of creating a
+ * horizontal scrollbar or pushing the controls outside the viewport.
+ */
+@media (max-width: 640px) {
+    .site-nav-row {
+        overflow: hidden !important;
+        padding-inline: 0.5rem !important;
+    }
+
+    .site-nav-spacer {
+        display: none;
+    }
+
+    .site-nav-tabs {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .site-nav-tabs > a {
+        flex: 1 1 0;
+        justify-content: center;
+        padding-inline: 0.4rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    .site-nav-tabs > a:first-child {
+        flex: 0 0 2.75rem;
+        padding-inline: 0.5rem !important;
+    }
+
+    .site-nav-utilities {
+        padding-left: 0.375rem !important;
+        gap: 0 !important;
+    }
+
+    .site-nav-source {
+        display: none !important;
+    }
+}
+
+/* The header should never expose a browser scrollbar. Its contents are
+ * sized responsively below, so a native scrollbar only adds visual noise and
+ * can appear beside the theme control on compact desktop viewports. */
+.site-nav-row {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.site-nav-row::-webkit-scrollbar {
+    display: none;
+}
+
+.site-nav-home-icon {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .site-nav-home-label {
+        display: none;
+    }
+
+    .site-nav-home-icon {
+        display: inline-block;
+    }
+}
+
 /* Enhanced keyframes for modern animations */
 @keyframes gradient-x {
     0%, 100% { transform: translateX(-100%); }
