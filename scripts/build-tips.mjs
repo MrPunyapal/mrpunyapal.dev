@@ -136,22 +136,22 @@ renderer.code = function({ text, lang }) {
     }
 
     return `
-<div class="code-block-wrapper my-6 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 text-slate-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-2 bg-slate-900/90 border-b border-slate-800 text-slate-400 text-xs select-none">
+<div class="code-block-wrapper my-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-2.5 bg-slate-100/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs select-none">
         <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" aria-hidden="true"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" aria-hidden="true"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" aria-hidden="true"></span>
-            <span class="font-semibold uppercase tracking-wider text-[11px] text-slate-400 ml-2">${escapeHtml(language)}</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
+            <span class="font-semibold uppercase tracking-wider text-[11px] text-slate-500 dark:text-slate-400 ml-2">${escapeHtml(language)}</span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors text-[11px] cursor-pointer" data-code="${escapeHtml(text)}" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors text-[11px] font-medium cursor-pointer" data-code="${escapeHtml(text)}" aria-label="Copy code to clipboard">
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-4 sm:p-5 overflow-x-auto leading-relaxed"><code class="hljs language-${escapeHtml(language)}">${highlightedCode}</code></pre>
+    <pre class="p-4 sm:p-5 overflow-x-auto leading-relaxed bg-slate-50 dark:bg-slate-950"><code class="hljs language-${escapeHtml(language)}">${highlightedCode}</code></pre>
 </div>`;
 };
 
@@ -301,20 +301,20 @@ const criticalGridStyles = `
             background: linear-gradient(to bottom, #1e293b, transparent);
         }
 
-        /* Highlight.js Syntax Theme (Atom One Dark & Tokyo Night Hybrid) */
+        /* Syntax Highlighting: Light Mode (GitHub / Atom Light) */
         .hljs {
-            color: #abb2bf;
+            color: #24292e;
             background: transparent;
         }
         .hljs-comment,
         .hljs-quote {
-            color: #5c6370;
+            color: #6a737d;
             font-style: italic;
         }
         .hljs-doctag,
         .hljs-keyword,
         .hljs-formula {
-            color: #f43f5e;
+            color: #d73a49;
             font-weight: 600;
         }
         .hljs-section,
@@ -322,17 +322,17 @@ const criticalGridStyles = `
         .hljs-selector-tag,
         .hljs-deletion,
         .hljs-subst {
-            color: #e06c75;
+            color: #b31d28;
         }
         .hljs-literal {
-            color: #56b6c2;
+            color: #005cc5;
         }
         .hljs-string,
         .hljs-regexp,
         .hljs-addition,
         .hljs-attribute,
         .hljs-meta .hljs-string {
-            color: #98c379;
+            color: #032f62;
         }
         .hljs-attr,
         .hljs-variable,
@@ -342,7 +342,7 @@ const criticalGridStyles = `
         .hljs-selector-attr,
         .hljs-selector-pseudo,
         .hljs-number {
-            color: #d19a66;
+            color: #005cc5;
         }
         .hljs-symbol,
         .hljs-bullet,
@@ -350,13 +350,14 @@ const criticalGridStyles = `
         .hljs-meta,
         .hljs-selector-id,
         .hljs-title {
-            color: #61afef;
+            color: #6f42c1;
         }
         .hljs-built_in,
         .hljs-title.class_,
         .hljs-class .hljs-title,
         .hljs-function .hljs-title {
-            color: #e5c07b;
+            color: #6f42c1;
+            font-weight: 600;
         }
         .hljs-emphasis {
             font-style: italic;
@@ -366,6 +367,64 @@ const criticalGridStyles = `
         }
         .hljs-link {
             text-decoration: underline;
+        }
+
+        /* Syntax Highlighting: Dark Mode (Atom One Dark / Tokyo Night) */
+        .dark .hljs {
+            color: #abb2bf;
+            background: transparent;
+        }
+        .dark .hljs-comment,
+        .dark .hljs-quote {
+            color: #5c6370;
+            font-style: italic;
+        }
+        .dark .hljs-doctag,
+        .dark .hljs-keyword,
+        .dark .hljs-formula {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        .dark .hljs-section,
+        .dark .hljs-name,
+        .dark .hljs-selector-tag,
+        .dark .hljs-deletion,
+        .dark .hljs-subst {
+            color: #e06c75;
+        }
+        .dark .hljs-literal {
+            color: #56b6c2;
+        }
+        .dark .hljs-string,
+        .dark .hljs-regexp,
+        .dark .hljs-addition,
+        .dark .hljs-attribute,
+        .dark .hljs-meta .hljs-string {
+            color: #98c379;
+        }
+        .dark .hljs-attr,
+        .dark .hljs-variable,
+        .dark .hljs-template-variable,
+        .dark .hljs-type,
+        .dark .hljs-selector-class,
+        .dark .hljs-selector-attr,
+        .dark .hljs-selector-pseudo,
+        .dark .hljs-number {
+            color: #d19a66;
+        }
+        .dark .hljs-symbol,
+        .dark .hljs-bullet,
+        .dark .hljs-link,
+        .dark .hljs-meta,
+        .dark .hljs-selector-id,
+        .dark .hljs-title {
+            color: #61afef;
+        }
+        .dark .hljs-built_in,
+        .dark .hljs-title.class_,
+        .dark .hljs-class .hljs-title,
+        .dark .hljs-function .hljs-title {
+            color: #e5c07b;
         }
     </style>`;
 
