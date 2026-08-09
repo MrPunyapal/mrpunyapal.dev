@@ -74,6 +74,13 @@ function getCategoryBadge(category) {
                 text: 'text-indigo-700 dark:text-indigo-300',
                 border: 'border-indigo-100 dark:border-indigo-900/60',
             };
+        case 'Filament':
+        case 'FilamentPHP':
+            return {
+                bg: 'bg-amber-50 dark:bg-amber-950/50',
+                text: 'text-amber-700 dark:text-amber-300',
+                border: 'border-amber-100 dark:border-amber-900/60',
+            };
         case 'JavaScript':
         case 'JS':
             return {
