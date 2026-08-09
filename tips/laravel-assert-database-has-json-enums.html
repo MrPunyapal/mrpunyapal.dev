@@ -438,17 +438,17 @@
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
                     <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">In Laravel and Pest tests, `assertDatabaseHas()` natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When testing database records containing JSON attributes or PHP backed enums, there is no need to manually cast enums to strings or encode JSON blobs.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel's `assertDatabaseHas()` natively supports arrow syntax `->` for nested JSON keys and serializes backed enums automatically.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Example in Pest PHP:</h4>
-<div class="code-block-wrapper my-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+<div class="code-block-wrapper my-6 rounded-2xl border border-slate-200 dark:border-neutral-800 bg-slate-50 dark:bg-[#0a0a0a] text-slate-800 dark:text-neutral-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-5 pt-4 pb-2 bg-transparent select-none">
         <div class="flex items-center gap-3">
             <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             </div>
-            <span class="font-bold uppercase tracking-wider text-[11px] text-slate-400 dark:text-slate-500 ml-1">php</span>
+            <span class="font-bold uppercase tracking-wider text-[11px] text-slate-400 dark:text-neutral-500 ml-1">php</span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-medium cursor-pointer" data-code="use App\Enums\UserRole;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 dark:border-neutral-800 bg-white/80 dark:bg-[#171717] hover:bg-slate-50 dark:hover:bg-[#262626] text-slate-600 dark:text-neutral-300 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-medium cursor-pointer" data-code="use App\Enums\UserRole;
 use App\Enums\SubscriptionStatus;
 
 it(&#039;stores user preferences and subscription role correctly&#039;, function () {

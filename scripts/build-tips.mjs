@@ -136,17 +136,17 @@ renderer.code = function({ text, lang }) {
     }
 
     return `
-<div class="code-block-wrapper my-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+<div class="code-block-wrapper my-6 rounded-2xl border border-slate-200 dark:border-neutral-800 bg-slate-50 dark:bg-[#0a0a0a] text-slate-800 dark:text-neutral-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-5 pt-4 pb-2 bg-transparent select-none">
         <div class="flex items-center gap-3">
             <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             </div>
-            <span class="font-bold uppercase tracking-wider text-[11px] text-slate-400 dark:text-slate-500 ml-1">${escapeHtml(language)}</span>
+            <span class="font-bold uppercase tracking-wider text-[11px] text-slate-400 dark:text-neutral-500 ml-1">${escapeHtml(language)}</span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-medium cursor-pointer" data-code="${escapeHtml(text)}" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 dark:border-neutral-800 bg-white/80 dark:bg-[#171717] hover:bg-slate-50 dark:hover:bg-[#262626] text-slate-600 dark:text-neutral-300 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-medium cursor-pointer" data-code="${escapeHtml(text)}" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
