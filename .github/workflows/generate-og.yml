@@ -8,6 +8,10 @@ on:
       - 'talks.html'
       - 'opensource.html'
       - 'resume.html'
+      - 'tips.html'
+      - 'tips/**'
+      - 'content/tips/**'
+      - 'scripts/**'
       - 'src/**'
       - 'capturist.config.mjs'
       - 'vite.config.js'
@@ -46,5 +50,5 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/*-og-image.png
+          git add public/og/
           git diff --quiet && git diff --staged --quiet || (git commit -m "build(og): auto-generate open graph screenshots via capturist" && git push)
