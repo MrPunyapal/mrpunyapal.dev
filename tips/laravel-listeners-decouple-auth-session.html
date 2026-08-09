@@ -661,7 +661,7 @@ class UserRegistered
     <span class="hljs-comment">// Pass user model explicitly in event constructor</span>
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> User <span class="hljs-variable">$user</span></span>) </span>{}
 }</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Queued event listeners execute outside HTTP request cycles with no session context</span></li><li class="leading-relaxed"><span class="align-middle">Pass authenticated user models and contextual data inside Event constructors</span></li><li class="leading-relaxed"><span class="align-middle">Ensures event listeners are decoupled and safely queueable</span></li></ul>
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Queued event listeners execute outside HTTP request cycles with no session context</span></li><li class="leading-relaxed"><span class="align-middle">Pass authenticated user models and contextual data inside Event constructors</span></li><li class="leading-relaxed"><span class="align-middle">makes sure event listeners are decoupled and safely queueable</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->

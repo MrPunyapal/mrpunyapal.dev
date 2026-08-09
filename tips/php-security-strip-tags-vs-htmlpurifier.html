@@ -651,7 +651,7 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
 
 <span class="hljs-variable">$purifier</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HTMLPurifier</span>();
 <span class="hljs-variable">$cleanHtml</span> = <span class="hljs-variable">$purifier</span>-&gt;<span class="hljs-title function_ invoke__">purify</span>(<span class="hljs-variable">$input</span>);</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">strip_tags() does not validate tag attributes or execution vectors</span></li><li class="leading-relaxed"><span class="align-middle">Always escape plain text with e() or Blade&#39;s {{ $var }}</span></li><li class="leading-relaxed"><span class="align-middle">For user-submitted rich text, use robust HTML sanitizers like HTMLPurifier</span></li></ul>
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">strip_tags() does not validate tag attributes or execution vectors</span></li><li class="leading-relaxed"><span class="align-middle">Always escape plain text with e() or Blade&#39;s {{ $var }}</span></li><li class="leading-relaxed"><span class="align-middle">For user-submitted rich text, use reliable HTML sanitizers like HTMLPurifier</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->

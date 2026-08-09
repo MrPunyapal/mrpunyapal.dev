@@ -669,7 +669,7 @@ Route::get(&#039;/posts/{post:slug}&#039;, [PostController::class, &#039;show&#0
         <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">redirect</span>()-&gt;<span class="hljs-title function_ invoke__">route</span>(<span class="hljs-string">&#x27;posts.index&#x27;</span>)
             -&gt;<span class="hljs-title function_ invoke__">with</span>(<span class="hljs-string">&#x27;warning&#x27;</span>, <span class="hljs-string">&#x27;Requested post was not found.&#x27;</span>);
     });</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Customizes 404 fallback logic per individual route or resource</span></li><li class="leading-relaxed"><span class="align-middle">Prevents raw 404 exception screens for friendly user redirects</span></li><li class="leading-relaxed"><span class="align-middle">Works seamlessly with custom route binding columns like <code>{post:slug}</code></span></li></ul>
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Customizes 404 fallback logic per individual route or resource</span></li><li class="leading-relaxed"><span class="align-middle">Prevents raw 404 exception screens for friendly user redirects</span></li><li class="leading-relaxed"><span class="align-middle">Works directly with custom route binding columns like <code>{post:slug}</code></span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
