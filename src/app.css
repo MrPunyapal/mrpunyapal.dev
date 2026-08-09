@@ -164,12 +164,21 @@
 .dark .dark\:border-slate-800 { border-color: rgba(255, 255, 255, 0.07) !important; }
 .dark .dark\:border-slate-700 { border-color: rgba(255, 255, 255, 0.12) !important; }
 
+.dark .dark\:hover\:bg-slate-800\/80:hover {
+    background-color: rgba(22, 33, 56, 0.85) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
 .dark .dark\:hover\:bg-slate-800\/50:hover,
 .dark .dark\:hover\:bg-slate-800\/40:hover,
 .dark .dark\:hover\:bg-slate-800:hover {
     background-color: rgba(22, 33, 56, 0.75) !important;
     border-color: rgba(255, 255, 255, 0.15) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+.dark .dark\:hover\:bg-red-950\/40:hover {
+    background-color: rgba(69, 10, 10, 0.45) !important;
 }
 
 .dark .text-slate-900 { color: #f8fafc !important; }
@@ -284,6 +293,16 @@
 
 .theme-toggle-btn:hover {
     transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.site-nav-source:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark .theme-toggle-btn:hover,
+.dark .site-nav-source:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .theme-toggle-btn:active {
