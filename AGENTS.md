@@ -162,7 +162,6 @@ Before marking a task as complete, verify:
 - Metadata remains consistent (if modified).
 - Responsive layout has not regressed (if modified).
 - Print layout remains correct (if modified).
-- Resume generation (`npm run build:pdf`) completed with exit code 0 (ONLY when resume templates or styles were modified).
 - No unnecessary dependencies were introduced.
 - Existing coding style and project conventions were followed.
 
