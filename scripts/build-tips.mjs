@@ -136,22 +136,24 @@ renderer.code = function({ text, lang }) {
     }
 
     return `
-<div class="code-block-wrapper my-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-2.5 bg-slate-100/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 inline-block" aria-hidden="true"></span>
-            <span class="font-semibold uppercase tracking-wider text-[11px] text-slate-500 dark:text-slate-400 ml-2">${escapeHtml(language)}</span>
+<div class="code-block-wrapper my-6 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-[#070b14] text-slate-800 dark:text-slate-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-5 pt-4 pb-2 bg-transparent select-none">
+        <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#1e293b] inline-block" aria-hidden="true"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#1e293b] inline-block" aria-hidden="true"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#1e293b] inline-block" aria-hidden="true"></span>
+            </div>
+            <span class="font-bold uppercase tracking-wider text-[11px] text-slate-400 dark:text-slate-500 ml-1">${escapeHtml(language)}</span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors text-[11px] font-medium cursor-pointer" data-code="${escapeHtml(text)}" aria-label="Copy code to clipboard">
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0f172a]/70 hover:bg-slate-50 dark:hover:bg-[#1e293b] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-medium cursor-pointer" data-code="${escapeHtml(text)}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-4 sm:p-5 overflow-x-auto leading-relaxed bg-slate-50 dark:bg-slate-950"><code class="hljs language-${escapeHtml(language)}">${highlightedCode}</code></pre>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-transparent"><code class="hljs language-${escapeHtml(language)}">${highlightedCode}</code></pre>
 </div>`;
 };
 
@@ -369,20 +371,20 @@ const criticalGridStyles = `
             text-decoration: underline;
         }
 
-        /* Syntax Highlighting: Dark Mode (Vibrant GitHub Dark & JetBrains Theme) */
+        /* Syntax Highlighting: Dark Mode (Exact Reference Match) */
         .dark .hljs {
-            color: #e2e8f0;
+            color: #f8fafc;
             background: transparent;
         }
         .dark .hljs-comment,
         .dark .hljs-quote {
-            color: #8b949e;
+            color: #64748b;
             font-style: italic;
         }
         .dark .hljs-doctag,
         .dark .hljs-keyword,
         .dark .hljs-formula {
-            color: #ff7b72;
+            color: #f87171;
             font-weight: 600;
         }
         .dark .hljs-section,
@@ -390,17 +392,17 @@ const criticalGridStyles = `
         .dark .hljs-selector-tag,
         .dark .hljs-deletion,
         .dark .hljs-subst {
-            color: #ffa657;
+            color: #fb923c;
         }
         .dark .hljs-literal {
-            color: #79c0ff;
+            color: #38bdf8;
         }
         .dark .hljs-string,
         .dark .hljs-regexp,
         .dark .hljs-addition,
         .dark .hljs-attribute,
         .dark .hljs-meta .hljs-string {
-            color: #a5d6ff;
+            color: #38bdf8;
         }
         .dark .hljs-attr,
         .dark .hljs-template-variable,
@@ -409,10 +411,11 @@ const criticalGridStyles = `
         .dark .hljs-selector-attr,
         .dark .hljs-selector-pseudo,
         .dark .hljs-number {
-            color: #79c0ff;
+            color: #38bdf8;
         }
         .dark .hljs-variable {
-            color: #f1f5f9;
+            color: #f8fafc;
+            font-weight: 600;
         }
         .dark .hljs-symbol,
         .dark .hljs-bullet,
@@ -420,18 +423,23 @@ const criticalGridStyles = `
         .dark .hljs-meta,
         .dark .hljs-selector-id,
         .dark .hljs-title {
-            color: #79c0ff;
+            color: #38bdf8;
         }
         .dark .hljs-title.class_,
         .dark .hljs-class .hljs-title {
-            color: #7ee787;
+            color: #4ade80;
+            font-weight: 600;
         }
         .dark .hljs-title.function_,
         .dark .hljs-title.function_.invoke__,
         .dark .hljs-function .hljs-title,
         .dark .hljs-built_in {
-            color: #d2a8ff;
+            color: #c084fc;
             font-weight: 500;
+        }
+        .dark .hljs-punctuation,
+        .dark .hljs-operator {
+            color: #94a3b8;
         }
     </style>`;
 
