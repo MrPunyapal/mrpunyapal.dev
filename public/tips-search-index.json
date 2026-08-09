@@ -1,5 +1,19 @@
 [
   {
+    "slug": "php-never-return-in-finally-block",
+    "title": "Never Return Statements inside Finally Blocks in PHP",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Exceptions",
+      "Best Practices"
+    ],
+    "date": "2026-08-06",
+    "summary": "Placing a return statement inside a try-catch finally block silently overrides exceptions and previous return statements. A return statement inside a finally...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-array-keys-validation",
     "title": "Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24",
     "category": "Laravel",
@@ -37,6 +51,48 @@
     ],
     "date": "2026-08-05",
     "summary": "Laravel 13.24 adds modelKeys() directly to the Eloquent query builder, replacing hardcoded pluck('id') calls with a method that uses the model primary key. I...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "filament-laracon-us-tips-povilas-korop",
+    "title": "Optimize Filament Admin Panels with Best Practices",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Filament",
+      "TALL Stack"
+    ],
+    "date": "2026-07-29",
+    "summary": "Key insights for building high-performance admin dashboards using Filament v3 and Livewire components. Filament powers fast admin panel creation in Laravel....",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "pest-enable-tia-plugin-by-default",
+    "title": "Enable Test Impact Analysis (TIA) by Default in pest.php",
+    "category": "Pest PHP",
+    "tags": [
+      "Pest",
+      "Testing",
+      "DX"
+    ],
+    "date": "2026-07-29",
+    "summary": "Configure Pest to run Test Impact Analysis by default in pest.php so only tests covering modified files execute. Running full test suites on every minor edit...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-rector-automate-readonly-classes",
+    "title": "Automate PHP Readonly Class Refactoring with Rector",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Rector",
+      "Refactoring"
+    ],
+    "date": "2026-07-29",
+    "summary": "Use Rector rules to automatically convert immutable DTOs and value objects into native PHP 8.2 readonly classes. Manually adding readonly keywords across doz...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -121,6 +177,174 @@
     ],
     "date": "2026-07-15",
     "summary": "Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI agents are part of moder...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-gate-define-authorize-pattern",
+    "title": "Avoid Duplicating Authorization Logic with Gate::define() and Gate::authorize()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Authorization",
+      "Security"
+    ],
+    "date": "2026-07-12",
+    "summary": "Centralize authorization checks in Gate::define() and call Gate::authorize() in controllers instead of repeating manual if checks. Scattering authorization c...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-cursor-vs-lazy-collections",
+    "title": "Stream Large Datasets: cursor() vs lazy() in Eloquent",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Performance"
+    ],
+    "date": "2026-07-03",
+    "summary": "cursor() hydrates single model instances sequentially using database cursors; lazy() streams records in chunks backed by LazyCollection. When iterating milli...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-chunk-vs-lazy-by-id",
+    "title": "Choose the Right Processing Method: chunk(), lazy(), chunkById(), lazyById()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Performance"
+    ],
+    "date": "2026-07-02",
+    "summary": "Understand offset vs keyset pagination when processing large datasets to avoid missing records during updates. Updating records inside chunk() modifies the r...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-collection-each-vs-map",
+    "title": "Avoid map() When Not Transforming: Use each()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Best Practices"
+    ],
+    "date": "2026-07-02",
+    "summary": "Use each() for iteration side effects like sending emails; use map() exclusively when returning a transformed collection. Using map() purely for side effects...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-lazy-collection-streaming",
+    "title": "Stop Using get() Before Collection Chains: Use lazy()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Performance"
+    ],
+    "date": "2026-07-01",
+    "summary": "Calling get() loads all matching rows into memory before filtering. Use lazy() to process database records lazily. Chaining collection methods like filter()...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-security-ui-vs-policy-enforcement",
+    "title": "UI Controls Are Not Security Layers: Always Enforce Policies",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Security",
+      "Policies"
+    ],
+    "date": "2026-06-30",
+    "summary": "Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers. Hiding an edit button using @...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-select-columns-relationship-foreign-keys",
+    "title": "Selecting Specific Columns Can Break Eloquent Relationships",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Bug Prevention"
+    ],
+    "date": "2026-06-30",
+    "summary": "Always include foreign key and primary key columns when using select() alongside eager loaded relationships. Using select('name') on a query with eager loade...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-pluck-value-over-full-models",
+    "title": "Don't Load Full Models for Single Columns: Use pluck() or value()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Performance"
+    ],
+    "date": "2026-06-29",
+    "summary": "Use value() for single scalar values and pluck() for single-column arrays instead of instantiating full Eloquent models. Querying full Eloquent model instanc...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-db-after-commit-transaction-jobs",
+    "title": "Dispatch Jobs After Transaction Commit with DB::afterCommit()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Database",
+      "Queue"
+    ],
+    "date": "2026-06-28",
+    "summary": "Use DB::afterCommit() to defer job dispatching until surrounding database transactions complete successfully. Dispatching queue jobs inside active DB transac...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-withwherehas-relationship-query",
+    "title": "Combine Filter and Eager Loading with withWhereHas()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Performance"
+    ],
+    "date": "2026-06-27",
+    "summary": "Use withWhereHas() to filter records based on relationship conditions and eager load the filtered relationship in a single method. Filtering models by relati...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-updating-chunk-by-id-prevention",
+    "title": "Prevent Skipped Records When Updating Chunks: Use chunkById()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Bug Prevention"
+    ],
+    "date": "2026-06-22",
+    "summary": "Always use chunkById() instead of chunk() when modifying columns present in your query filters to avoid offset pagination shifts. Updating records inside sta...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-request-validated-over-all",
+    "title": "Never Save $request->all(): Use $request->validated()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Security",
+      "Validation"
+    ],
+    "date": "2026-06-21",
+    "summary": "Always pass $request-validated() or $request-safe() into model creation methods to prevent mass-assignment vulnerabilities. Passing $request-all() directly i...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -210,6 +434,20 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-carbon-diffforhumans-syntax-options",
+    "title": "Customize Relative Timestamps with diffForHumans() Options",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Carbon",
+      "Helpers"
+    ],
+    "date": "2026-05-01",
+    "summary": "Pass Carbon options to diffForHumans() to control syntax flags, short units, and multi-part granularity. Carbon's diffForHumans() displays human-readable dat...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "php-security-strip-tags-vs-htmlpurifier",
     "title": "Why strip_tags() Is Not Enough for XSS Protection",
     "category": "PHP",
@@ -220,6 +458,20 @@
     ],
     "date": "2026-04-18",
     "summary": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-higher-order-collection-messages",
+    "title": "Clean Up Collections with Higher-Order Collection Messages",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Syntax"
+    ],
+    "date": "2026-04-15",
+    "summary": "Use higher-order collection proxies like $users-each-archive() or $orders-sum-total to replace verbose closure callbacks. Writing closures for single method...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -238,6 +490,20 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-custom-responsable-classes",
+    "title": "Extract Complex Controller Responses into Responsable Classes",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Architecture",
+      "HTTP"
+    ],
+    "date": "2026-03-31",
+    "summary": "Implement the Responsable interface to create dedicated response objects that handle headers, view data, and formatting outside controllers. When controller...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-wheredate-index-performance",
     "title": "Avoid whereDate() on Large Tables: Use Range Queries Instead",
     "category": "Laravel",
@@ -248,6 +514,20 @@
     ],
     "date": "2026-03-12",
     "summary": "whereDate() wraps the column in a DATE() function, preventing the database from using indexes. Use whereBetween() with full timestamps for index-friendly fil...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-without-relation-eloquent-builder",
+    "title": "Remove Global Eager Loading with withoutRelation()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Relationships"
+    ],
+    "date": "2026-03-12",
+    "summary": "Use withoutRelation() or unsetRelation() to remove eager loaded relationships on specific Eloquent queries or model instances. Models with $with properties e...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -263,6 +543,622 @@
     ],
     "date": "2026-02-20",
     "summary": "PHP's empty() treats 0, '0', and false as empty. Laravel's blank() and filled() helpers handle these values intuitively without silent bugs. PHP's empty() is...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-match-arm-multiple-values",
+    "title": "Match Multiple Values in a Single Match Arm in PHP",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Control Flow",
+      "Syntax"
+    ],
+    "date": "2026-02-16",
+    "summary": "Separate multiple comma-delimited values within a single match expression arm to group identical execution branches. When multiple inputs share the exact sam...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-squash-migrations-workflow",
+    "title": "Squash Legacy Database Migrations Carefully",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Migrations",
+      "DevOps"
+    ],
+    "date": "2026-01-17",
+    "summary": "Use php artisan schema:dump to collapse hundreds of old migration files into a single SQL schema file while preserving new migrations. As applications age, r...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-schema-state-load-seeding",
+    "title": "Seed Large Database Dumps with SchemaState::load()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Database",
+      "Testing"
+    ],
+    "date": "2026-01-07",
+    "summary": "Use SchemaState::load() to load large raw SQL dump files directly through database CLI tools instead of slow DB::unprepared() execution. Executing massive ra...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-constructor-property-promotion",
+    "title": "Simplify Class Instantiation with Constructor Property Promotion",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "OOP",
+      "Syntax"
+    ],
+    "date": "2025-12-31",
+    "summary": "Combine property declarations and constructor parameter assignments in PHP 8 for concise class definitions. Declaring class properties, parameter signatures,...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "pest-compact-printer-output",
+    "title": "Enable Compact Test Output Printer in Pest",
+    "category": "Pest PHP",
+    "tags": [
+      "Pest",
+      "Testing",
+      "DX"
+    ],
+    "date": "2025-12-28",
+    "summary": "Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators. When running large test suites with hun...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-queue-job-model-relationships",
+    "title": "Handle Model Relationships Explicitly in Queue Jobs",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Queue",
+      "Best Practices"
+    ],
+    "date": "2025-12-14",
+    "summary": "Re-load or pass model primary keys into queued jobs instead of relying on stale serialized relationship collections. When Eloquent models are serialized for...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "pest-clean-test-setup-configuration",
+    "title": "Clean Up Pest Test Configuration in tests/Pest.php",
+    "category": "Pest PHP",
+    "tags": [
+      "Pest",
+      "Testing",
+      "Setup"
+    ],
+    "date": "2025-12-07",
+    "summary": "Organize base test case bindings, helper functions, and global traits cleanly inside tests/Pest.php. Duplicate uses() declarations across every test file clu...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-queue-worker-polling-optimization",
+    "title": "Optimize Queue Worker Polling Overheads in Production",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Queue",
+      "DevOps"
+    ],
+    "date": "2025-12-05",
+    "summary": "Use queue:work with appropriate sleep configuration or Redis blocking pops to reduce database CPU polling overheads. Queue workers set to poll databases with...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-array-unpacking-square-brackets",
+    "title": "Unpack Arrays with Spread Syntax in PHP 8.1",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Arrays",
+      "Syntax"
+    ],
+    "date": "2025-12-01",
+    "summary": "Use array unpacking (...) inside square bracket array literals for string-keyed and indexed array merging. PHP 8.1 expanded array unpacking to support string...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-pint-use-arrow-functions-rule",
+    "title": "Automate Short Closure Conversions with Laravel Pint",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Pint",
+      "Code Quality"
+    ],
+    "date": "2025-08-11",
+    "summary": "Enable the usearrowfunctions rule in pint.json to automatically refactor single-line closures into arrow functions. Manually converting single-line function...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "alpinejs-multiple-data-objects-xdata",
+    "title": "Combine Multiple Alpine.data Objects Inside a Single x-data",
+    "category": "JavaScript",
+    "tags": [
+      "Alpine.js",
+      "JavaScript",
+      "Frontend"
+    ],
+    "date": "2025-07-27",
+    "summary": "Spread multiple Alpine.data component factories into a single x-data directive to compose modular frontend state. When a single UI element requires state fro...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-real-time-facades",
+    "title": "Use Real-Time Facades with the Facades Prefix",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Facades",
+      "Testing"
+    ],
+    "date": "2025-07-12",
+    "summary": "Prefix any application class import with Facades\\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal services...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "pest-only-method-test-focus",
+    "title": "Focus Test Runs Instantly with Pest ->only() Method",
+    "category": "Pest PHP",
+    "tags": [
+      "Pest",
+      "Testing",
+      "DX"
+    ],
+    "date": "2025-06-21",
+    "summary": "Append -only() to any Pest test declaration to execute only that specific test without writing long CLI filter strings. Filtering specific test names via CLI...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-model-touch-timestamp-update",
+    "title": "Use $model->touch() Instead of Manual Timestamp Updates",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database"
+    ],
+    "date": "2025-06-20",
+    "summary": "Use the built-in touch() method to update updatedat timestamps on Eloquent records cleanly. Manually assigning $model-updatedat = now(); $model-save(); is re...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-early-returns-guard-clauses",
+    "title": "Reduce Indentation with Early Returns and Guard Clauses",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Refactoring",
+      "Clean Code"
+    ],
+    "date": "2025-06-16",
+    "summary": "Replace deeply nested if statements with guard clauses that exit functions early when preconditions fail. Deeply nested if-else blocks make code hard to read...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-job-dispatch-new-instance",
+    "title": "Prefer dispatch(new Job(...)) Over Static Job::dispatch()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Queue",
+      "Type Safety"
+    ],
+    "date": "2024-12-23",
+    "summary": "Use dispatch(new ProcessReport($data)) for superior IDE constructor auto-completion and static analysis type checking. Static Job::dispatch(...) relies on ma...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "tall-stack-filament-admin-panel",
+    "title": "Accelerate TALL Stack Development with FilamentPHP",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Filament",
+      "TALL Stack"
+    ],
+    "date": "2024-11-13",
+    "summary": "Use FilamentPHP to build full-featured administrative panels, forms, and tables using Livewire and Alpine.js. Building custom admin dashboards from scratch r...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-test-time-travel-freeze",
+    "title": "Ditch sleep() in Tests: Use Laravel Time Travel Helpers",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Time"
+    ],
+    "date": "2024-09-12",
+    "summary": "Use $this-travelTo() or freezeTime() in test suites to test date-sensitive logic without slowing down test execution with sleep(). Using sleep() in tests slo...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-backed-integer-enums-indexing",
+    "title": "Integer Enums: Start Indexing from 1, Avoid 0",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Enums",
+      "Best Practices"
+    ],
+    "date": "2024-08-31",
+    "summary": "When creating integer-backed PHP Enums, index starting from 1 to avoid false-y evaluation bugs in loose comparisons. In PHP, 0 evaluates as false-y in loose...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-config-helper-get-set",
+    "title": "Retrieve and Override Configurations with the config() Helper",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Configuration",
+      "Helpers"
+    ],
+    "date": "2024-08-21",
+    "summary": "Use config('app.name') to retrieve settings and config(['app.debug' =true]) to set runtime overrides. The config() helper accesses application configuration...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-strict-types-property-declarations",
+    "title": "Enforce Strict Typing Across PHP Classes and Methods",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Type Safety",
+      "Best Practices"
+    ],
+    "date": "2024-05-26",
+    "summary": "Declare declare(stricttypes=1); at the top of PHP files to prevent unexpected scalar type coercions. By default, PHP coerces types scalar values (e.g. string...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-artisan-stubs-custom-namespaces",
+    "title": "Customize Artisan Code Generators with stub:publish",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Artisan",
+      "DX"
+    ],
+    "date": "2024-03-24",
+    "summary": "Publish and customize Artisan generator stubs using php artisan stub:publish to enforce custom code conventions across your team. Standard php artisan make:c...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-model-attribute-backed-enums",
+    "title": "Cast Model Attributes to Backed Enums in Eloquent",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Enums"
+    ],
+    "date": "2024-03-16",
+    "summary": "Define PHP Backed Enums on model $casts to automatically hydrate strings and integers into typed Enums. Storing status strings like 'active' or 'pending' as...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-reorder-query-builder",
+    "title": "Clear Query Order Constraints with reorder()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database"
+    ],
+    "date": "2024-03-07",
+    "summary": "Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-when-and-unless-conditional-queries",
+    "title": "Build Conditional Queries Cleanly with when() and unless()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Query Builder"
+    ],
+    "date": "2024-02-01",
+    "summary": "Use when() and unless() on query builders to apply conditional clauses without breaking method chains with if statements. Building dynamic search queries oft...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-custom-casts-enum-json",
+    "title": "Combine Custom Casts and Enums for Complex Attributes",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Casts"
+    ],
+    "date": "2024-01-30",
+    "summary": "Use Eloquent custom casts (CastsAttributes) to handle complex JSON serialization and Backed Enum arrays cleanly. When model attributes contain complex JSON s...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-artisan-queue-background-commands",
+    "title": "Queue Heavy Artisan Commands with Artisan::queue()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Artisan",
+      "Queue"
+    ],
+    "date": "2024-01-29",
+    "summary": "Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands like databa...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-wherejsonlength-eloquent",
+    "title": "Filter Records by JSON Array Size with whereJsonLength()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database"
+    ],
+    "date": "2024-01-20",
+    "summary": "Use whereJsonLength() to query database records based on the number of elements in a JSON array attribute. Filtering records by the number of elements stored...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-query-insertusing-table-copy",
+    "title": "Copy Datasets Between Tables Instantly with insertUsing()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Database",
+      "Performance"
+    ],
+    "date": "2024-01-19",
+    "summary": "Use insertUsing() to execute INSERT INTO ... SELECT queries for copying data between database tables in SQL. Fetching records into PHP memory and re-insertin...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-avoid-env-outside-config-pest-arch",
+    "title": "Never Use env() Outside Config Files + Enforce with Pest Arch",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Architecture",
+      "Pest"
+    ],
+    "date": "2023-11-30",
+    "summary": "env() returns null when config is cached in production. Always use config() and enforce this with Pest architecture tests. In production environments running...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-production-deployment-commands",
+    "title": "Essential Laravel Production Deployment Command Sequence",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Deployment",
+      "DevOps"
+    ],
+    "date": "2023-11-09",
+    "summary": "Execute standard caching and optimization Artisan commands during production CI/CD deployment scripts. Deploying Laravel applications without caching routes,...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-listeners-decouple-auth-session",
+    "title": "Avoid auth() and session() Inside Event Listeners",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Events",
+      "Architecture"
+    ],
+    "date": "2023-09-28",
+    "summary": "Pass authenticated user objects or session data explicitly inside Event payloads instead of relying on global session helpers in listeners. Accessing global...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "mysql-subquery-same-table-update-restriction",
+    "title": "Work Around MySQL Subquery Restrictions on Target Tables",
+    "category": "MySQL",
+    "tags": [
+      "MySQL",
+      "Database",
+      "SQL"
+    ],
+    "date": "2023-09-22",
+    "summary": "MySQL prevents updating a table while selecting from it in a subquery. Wrap subqueries in an intermediate alias table. Executing UPDATE table WHERE id IN (SE...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-mailable-browser-preview",
+    "title": "Preview Mailables Instantly in Browser Routes",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Mail",
+      "DX"
+    ],
+    "date": "2023-09-07",
+    "summary": "Return Mailable instances directly from route callbacks to preview compiled HTML emails in your browser without sending test emails. Testing email layouts by...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-tailwind-utility-css-workflow",
+    "title": "Adopt Tailwind CSS for Utility-First Component Styling",
+    "category": "Tailwind CSS",
+    "tags": [
+      "Tailwind",
+      "CSS",
+      "Frontend"
+    ],
+    "date": "2023-09-03",
+    "summary": "Leverage Tailwind CSS utility classes to compose custom responsive designs directly in HTML without CSS stylesheet bloat. Writing custom CSS classes for ever...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-trim-strings-convert-empty-strings-middleware",
+    "title": "Understand Input Trimming & Empty String Normalization",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Middleware",
+      "Validation"
+    ],
+    "date": "2023-06-26",
+    "summary": "Laravel automatically trims request strings and converts empty string inputs to null via default global middleware. Laravel includes TrimStrings and ConvertE...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-collection-flatmap-transformation",
+    "title": "Flatten Transformed Collections with flatMap()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Syntax"
+    ],
+    "date": "2023-06-25",
+    "summary": "Use flatMap() to map over a collection and collapse the nested array result into a flat collection in a single operation. Mapping over a collection where cal...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-numeric-literal-separators",
+    "title": "Improve Large Number Readability with Numeric Literal Separators",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Syntax",
+      "Readability"
+    ],
+    "date": "2023-06-23",
+    "summary": "Use underscores () as visual numeric literal separators in PHP code to improve number readability. Reading large numbers like 1000000000 requires counting ze...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eager-load-nested-dot-notation",
+    "title": "Eager Load Nested Relationships with Dot Notation",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Relationships"
+    ],
+    "date": "2023-06-22",
+    "summary": "Use dot-notation strings inside with() to eager load deeply nested relationships in single database query chains. When fetching models that require multi-lev...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-merge-casts-dynamic",
+    "title": "Dynamically Append Model Casts with mergeCasts()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Casts"
+    ],
+    "date": "2023-06-21",
+    "summary": "Use mergeCasts() to dynamically append attribute casting rules to Eloquent model instances at runtime. When working with dynamic attributes or traits on mode...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-arr-query-build-url-params",
+    "title": "Convert Nested Arrays to URL Query Strings with Arr::query()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Arr",
+      "Helpers"
+    ],
+    "date": "2023-06-18",
+    "summary": "Use Arr::query() to build properly encoded URL query strings directly from nested associative arrays. Building complex query parameters manually using httpbu...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-localization-json-translation-keys",
+    "title": "Simplify App Translations with JSON Translation Files",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Localization",
+      "i18n"
+    ],
+    "date": "2023-06-17",
+    "summary": "Use JSON files in lang/ for localization to write default language strings directly as translation keys. Managing translation key strings like messages.welco...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-pagination-oneachside-links",
+    "title": "Control Pagination Link Density with onEachSide()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Pagination",
+      "UI"
+    ],
+    "date": "2023-06-14",
+    "summary": "Use onEachSide() on paginated Eloquent queries to adjust the number of page links shown beside the current page. Default pagination controls can show too man...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "css-container-queries-responsive-components",
+    "title": "Use CSS Container Queries for Modular Component Layouts",
+    "category": "CSS",
+    "tags": [
+      "CSS",
+      "Responsive",
+      "Frontend"
+    ],
+    "date": "2023-02-24",
+    "summary": "Use CSS Container Queries (@container) to adjust component layouts based on parent container width rather than viewport size. Media queries (@media) check to...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   }
