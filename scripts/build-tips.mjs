@@ -1206,7 +1206,7 @@ function generateSingleTipPage(tip, allTips) {
 
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
-                    <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
                         ${escapeHtml(tip.title)}
                     </h1>
 
