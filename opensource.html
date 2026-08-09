@@ -1306,21 +1306,215 @@
             </section>
 
             <!-- Support My Work -->
-            <section class="border-b border-slate-200 dark:border-slate-800 relative">
+            <section class="border-b border-slate-200 dark:border-slate-800 relative overflow-hidden">
                 <div class="tech-line-h bottom-[-1px]"></div>
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
-                <div class="p-4 sm:p-12">
-                    <div class="animate-fade-up">
+                <div class="relative flex w-full items-center justify-center overflow-hidden py-16 sm:py-24 px-4 bg-slate-50/40 dark:bg-[#0c0d10]">
+                    <!-- Perspective Tunnel Matrix Background -->
+                    <div class="absolute inset-0 h-full w-full overflow-hidden pointer-events-none" aria-hidden="true">
+                        <svg class="h-full w-full object-cover" viewBox="0 0 1512 870" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <!-- Light Mode Ambient Glow (Clean, Soft Rose Luminous Center) -->
+                            <rect width="1512" height="100%" fill="url(#support-light-glow)" class="support-light-glow-rect"></rect>
+
+                            <!-- Dark Mode Atmospheric Glows -->
+                            <rect width="1512" height="100%" fill="url(#support-top-glow)" class="support-dark-glow-rect"></rect>
+                            <rect width="1512" height="100%" fill="url(#support-bottom-glow)" class="support-dark-glow-rect"></rect>
+                            
+                            <!-- Horizon Blueprint Reticle & Guide Axes -->
+                            <g opacity="0.35" class="text-slate-400 dark:text-red-500/40">
+                                <line x1="756" y1="415" x2="756" y2="455" stroke="currentColor" stroke-width="1.5"></line>
+                                <line x1="736" y1="435" x2="776" y2="435" stroke="currentColor" stroke-width="1.5"></line>
+                                <circle cx="756" cy="435" r="14" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3"></circle>
+                            </g>
+
+                            <!-- Perspective Rays & Blueprint Grid Lines (Full 360-degree 4-Wall Grid) -->
+                            <g class="opacity-30 dark:opacity-25">
+                                <!-- Bottom Floor Rays -->
+                                <path d="M756 435L-497 870" stroke="currentColor" class="text-red-500 dark:text-red-500/70"></path>
+                                <path d="M756 435L-305 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L-138 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L9 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L143 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L266 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L382 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L492 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L599 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L703 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L808 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L912 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1019 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1129 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1245 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1368 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1502 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L1650 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1817 870" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L2009 870" stroke="currentColor" class="text-red-500 dark:text-red-500/70"></path>
+
+                                <!-- Top Ceiling Rays -->
+                                <path d="M756 435L-497 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-305 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L-138 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L9 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L143 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L266 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L382 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L492 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L599 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L703 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L808 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L912 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1019 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1129 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1245 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1368 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1502 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L1650 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L1817 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L2009 0" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+
+                                <!-- Left Wall Rays -->
+                                <path d="M756 435L-497 66.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L-497 124" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 175.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L-497 222" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 265" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 305" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 343.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 380.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 416.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 452.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 489" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 526" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 564" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 604" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 647" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 693.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L-497 745" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L-497 803" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+
+                                <!-- Right Wall Rays -->
+                                <path d="M756 435L2009 66.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L2009 124" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 175.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L2009 222" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 265" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 305" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 343.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 380.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 416.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 452.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 489" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 526" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 564" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 604" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 647" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 693.5" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                                <path d="M756 435L2009 745" stroke="currentColor" class="text-slate-300 dark:text-slate-400"></path>
+                                <path d="M756 435L2009 803" stroke="currentColor" class="text-slate-300 dark:text-slate-400" stroke-dasharray="4 6"></path>
+                            </g>
+
+                            <!-- Pre-seeded Instant Continuous Expanding Rounded Tunnel Wave -->
+                            <g class="opacity-40 dark:opacity-35">
+                                <rect stroke="currentColor" class="text-red-500/70 dark:text-red-400/80" fill="none" stroke-width="1.2">
+                                    <animate attributeName="width" values="0;1512" dur="8s" repeatCount="indefinite" begin="-7s"></animate>
+                                    <animate attributeName="height" values="0;615" dur="8s" repeatCount="indefinite" begin="-7s"></animate>
+                                    <animate attributeName="x" values="756;0" dur="8s" repeatCount="indefinite" begin="-7s"></animate>
+                                    <animate attributeName="y" values="435;127.5" dur="8s" repeatCount="indefinite" begin="-7s"></animate>
+                                    <animate attributeName="rx" values="0;24" dur="8s" repeatCount="indefinite" begin="-7s"></animate>
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="8s" repeatCount="indefinite" begin="-7s"></animate>
+                                </rect>
+                                <rect stroke="currentColor" class="text-slate-300 dark:text-slate-300" fill="none" stroke-width="1">
+                                    <animate attributeName="width" values="0;1512" dur="8s" repeatCount="indefinite" begin="-6s"></animate>
+                                    <animate attributeName="height" values="0;615" dur="8s" repeatCount="indefinite" begin="-6s"></animate>
+                                    <animate attributeName="x" values="756;0" dur="8s" repeatCount="indefinite" begin="-6s"></animate>
+                                    <animate attributeName="y" values="435;127.5" dur="8s" repeatCount="indefinite" begin="-6s"></animate>
+                                    <animate attributeName="rx" values="0;24" dur="8s" repeatCount="indefinite" begin="-6s"></animate>
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="8s" repeatCount="indefinite" begin="-6s"></animate>
+                                </rect>
+                                <rect stroke="currentColor" class="text-rose-400/70 dark:text-rose-300/80" fill="none" stroke-width="1.2">
+                                    <animate attributeName="width" values="0;1512" dur="8s" repeatCount="indefinite" begin="-5s"></animate>
+                                    <animate attributeName="height" values="0;615" dur="8s" repeatCount="indefinite" begin="-5s"></animate>
+                                    <animate attributeName="x" values="756;0" dur="8s" repeatCount="indefinite" begin="-5s"></animate>
+                                    <animate attributeName="y" values="435;127.5" dur="8s" repeatCount="indefinite" begin="-5s"></animate>
+                                    <animate attributeName="rx" values="0;24" dur="8s" repeatCount="indefinite" begin="-5s"></animate>
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="8s" repeatCount="indefinite" begin="-5s"></animate>
+                                </rect>
+                                <rect stroke="currentColor" class="text-slate-300 dark:text-slate-300" fill="none" stroke-width="1">
+                                    <animate attributeName="width" values="0;1512" dur="8s" repeatCount="indefinite" begin="-4s"></animate>
+                                    <animate attributeName="height" values="0;615" dur="8s" repeatCount="indefinite" begin="-4s"></animate>
+                                    <animate attributeName="x" values="756;0" dur="8s" repeatCount="indefinite" begin="-4s"></animate>
+                                    <animate attributeName="y" values="435;127.5" dur="8s" repeatCount="indefinite" begin="-4s"></animate>
+                                    <animate attributeName="rx" values="0;24" dur="8s" repeatCount="indefinite" begin="-4s"></animate>
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="8s" repeatCount="indefinite" begin="-4s"></animate>
+                                </rect>
+                                <rect stroke="currentColor" class="text-red-500/70 dark:text-red-400/80" fill="none" stroke-width="1.2">
+                                    <animate attributeName="width" values="0;1512" dur="8s" repeatCount="indefinite" begin="-3s"></animate>
+                                    <animate attributeName="height" values="0;615" dur="8s" repeatCount="indefinite" begin="-3s"></animate>
+                                    <animate attributeName="x" values="756;0" dur="8s" repeatCount="indefinite" begin="-3s"></animate>
+                                    <animate attributeName="y" values="435;127.5" dur="8s" repeatCount="indefinite" begin="-3s"></animate>
+                                    <animate attributeName="rx" values="0;24" dur="8s" repeatCount="indefinite" begin="-3s"></animate>
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="8s" repeatCount="indefinite" begin="-3s"></animate>
+                                </rect>
+                                <rect stroke="currentColor" class="text-slate-300 dark:text-slate-300" fill="none" stroke-width="1">
+                                    <animate attributeName="width" values="0;1512" dur="8s" repeatCount="indefinite" begin="-2s"></animate>
+                                    <animate attributeName="height" values="0;615" dur="8s" repeatCount="indefinite" begin="-2s"></animate>
+                                    <animate attributeName="x" values="756;0" dur="8s" repeatCount="indefinite" begin="-2s"></animate>
+                                    <animate attributeName="y" values="435;127.5" dur="8s" repeatCount="indefinite" begin="-2s"></animate>
+                                    <animate attributeName="rx" values="0;24" dur="8s" repeatCount="indefinite" begin="-2s"></animate>
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="8s" repeatCount="indefinite" begin="-2s"></animate>
+                                </rect>
+                                <rect stroke="currentColor" class="text-rose-400/70 dark:text-rose-300/80" fill="none" stroke-width="1.2">
+                                    <animate attributeName="width" values="0;1512" dur="8s" repeatCount="indefinite" begin="-1s"></animate>
+                                    <animate attributeName="height" values="0;615" dur="8s" repeatCount="indefinite" begin="-1s"></animate>
+                                    <animate attributeName="x" values="756;0" dur="8s" repeatCount="indefinite" begin="-1s"></animate>
+                                    <animate attributeName="y" values="435;127.5" dur="8s" repeatCount="indefinite" begin="-1s"></animate>
+                                    <animate attributeName="rx" values="0;24" dur="8s" repeatCount="indefinite" begin="-1s"></animate>
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="8s" repeatCount="indefinite" begin="-1s"></animate>
+                                </rect>
+                                <rect stroke="currentColor" class="text-slate-300 dark:text-slate-300" fill="none" stroke-width="1">
+                                    <animate attributeName="width" values="0;1512" dur="8s" repeatCount="indefinite" begin="0s"></animate>
+                                    <animate attributeName="height" values="0;615" dur="8s" repeatCount="indefinite" begin="0s"></animate>
+                                    <animate attributeName="x" values="756;0" dur="8s" repeatCount="indefinite" begin="0s"></animate>
+                                    <animate attributeName="y" values="435;127.5" dur="8s" repeatCount="indefinite" begin="0s"></animate>
+                                    <animate attributeName="rx" values="0;24" dur="8s" repeatCount="indefinite" begin="0s"></animate>
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="8s" repeatCount="indefinite" begin="0s"></animate>
+                                </rect>
+                            </g>
+
+                            <!-- Ambient Color Gradients -->
+                            <defs>
+                                <!-- Light Mode Clean Radial Glow -->
+                                <radialGradient id="support-light-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(756 435) rotate(90) scale(320 800)">
+                                    <stop stop-color="#fee2e2" stop-opacity="0.45"></stop>
+                                    <stop offset="1" stop-color="#ffffff" stop-opacity="0"></stop>
+                                </radialGradient>
+
+                                <!-- Dark Mode Gradients -->
+                                <radialGradient id="support-top-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(756 450) rotate(90) scale(280 1200)">
+                                    <stop stop-color="#ef4444" stop-opacity="0.14"></stop>
+                                    <stop offset="1" stop-color="#0c0d10" stop-opacity="0"></stop>
+                                </radialGradient>
+                                <linearGradient id="support-bottom-glow" x1="756" y1="870" x2="756" y2="0" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#0c0d10" stop-opacity="0"></stop>
+                                    <stop offset="1" stop-color="#991b1b" stop-opacity="0.1"></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <!-- Support My Work Card Container -->
+                    <div class="relative z-10 w-full max-w-3xl border border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-[#121318]/95 backdrop-blur-md rounded-lg p-6 sm:p-10 shadow-lg shadow-slate-200/60 dark:shadow-none transition-all duration-300">
                         <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Support My Work</h2>
-                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-6">
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
                             I contribute to open source because I enjoy building tools that help other developers. If my work has saved you time or improved your workflow, sponsoring allows me to spend more time maintaining packages, contributing to community projects, building developer tools, and creating educational resources for the Laravel ecosystem.
                         </p>
-                        <a href="https://github.com/sponsors/MrPunyapal" target="_blank" rel="noopener noreferrer"
+                        <a href="https://github.com/sponsors/MrPunyapal" target="_blank" rel="noopener noreferrer" aria-label="Sponsor on GitHub to support my open source work"
                             class="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium border border-pink-200 dark:border-pink-900/60 text-pink-600 dark:text-pink-400 rounded hover:bg-pink-600 hover:text-white hover:border-pink-600 transition-all">
                             <svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-heart"/></svg>
-                            Sponsor on GitHub
+                            <span>Sponsor on GitHub</span>
                         </a>
                     </div>
                 </div>

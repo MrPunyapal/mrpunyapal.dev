@@ -146,39 +146,204 @@
 
 /* Nightwatch-Inspired Dark Mode Body & Text Readability Overrides */
 .dark body {
-    background-color: #080c14 !important;
+    background-color: #0c0d10 !important;
     color: #f1f5f9 !important;
 }
 
 /* Nightwatch Surface Layers & Glass Borders */
-.dark .dark\:bg-slate-950 { background-color: #080c14 !important; }
-.dark .dark\:bg-slate-900 { background-color: rgba(13, 19, 32, 0.75) !important; }
-.dark .dark\:bg-slate-900\/80 { background-color: rgba(11, 16, 28, 0.7) !important; backdrop-filter: blur(12px) !important; }
-.dark .dark\:bg-slate-900\/60 { background-color: rgba(14, 21, 36, 0.45) !important; }
-.dark .dark\:bg-slate-900\/50 { background-color: rgba(14, 21, 36, 0.35) !important; }
+.dark .dark\:bg-slate-950 { background-color: #0c0d10 !important; }
+.dark .dark\:bg-slate-900 { background-color: rgba(18, 19, 24, 0.85) !important; }
+.dark .dark\:bg-slate-900\/80 { background-color: rgba(18, 19, 24, 0.8) !important; backdrop-filter: blur(14px) !important; }
+.dark .dark\:bg-slate-900\/60 { background-color: rgba(22, 23, 29, 0.6) !important; }
+.dark .dark\:bg-slate-900\/50 { background-color: rgba(22, 23, 29, 0.5) !important; }
 
-.dark .dark\:bg-slate-800 { background-color: rgba(18, 27, 46, 0.5) !important; }
-.dark .dark\:bg-slate-800\/50 { background-color: rgba(18, 27, 46, 0.35) !important; }
-.dark .dark\:bg-slate-800\/40 { background-color: rgba(18, 27, 46, 0.25) !important; }
+.dark .dark\:bg-slate-800 { background-color: rgba(26, 28, 35, 0.6) !important; }
+.dark .dark\:bg-slate-800\/50 { background-color: rgba(26, 28, 35, 0.5) !important; }
+.dark .dark\:bg-slate-800\/40 { background-color: rgba(22, 23, 29, 0.4) !important; }
 
-.dark .dark\:border-slate-800 { border-color: rgba(255, 255, 255, 0.07) !important; }
-.dark .dark\:border-slate-700 { border-color: rgba(255, 255, 255, 0.12) !important; }
+.dark .dark\:border-slate-800 { border-color: rgba(255, 255, 255, 0.08) !important; }
+.dark .dark\:border-slate-700 { border-color: rgba(255, 255, 255, 0.14) !important; }
 
+/* Nightwatch Card Hover State (Pure Carbon Slate Surface Lift) */
 .dark .dark\:hover\:bg-slate-800\/80:hover {
-    background-color: rgba(22, 33, 56, 0.85) !important;
-    border-color: rgba(255, 255, 255, 0.18) !important;
+    background-color: rgba(34, 36, 45, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .dark .dark\:hover\:bg-slate-800\/50:hover,
 .dark .dark\:hover\:bg-slate-800\/40:hover,
 .dark .dark\:hover\:bg-slate-800:hover {
-    background-color: rgba(22, 33, 56, 0.75) !important;
-    border-color: rgba(255, 255, 255, 0.15) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+    background-color: rgba(32, 34, 42, 0.85) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.09) !important;
 }
 
 .dark .dark\:hover\:bg-red-950\/40:hover {
     background-color: rgba(69, 10, 10, 0.45) !important;
+}
+
+/* Stack Inventory Interactive Brand System */
+.stack-item {
+    background-color: rgba(248, 250, 252, 0.6);
+    border: 1px solid #e2e8f0;
+    border-radius: 0.25rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    cursor: default;
+}
+
+.dark .stack-item {
+    background-color: rgba(22, 23, 29, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Light Mode Stack Brand Hovers (Clean, Normal Hover) */
+.stack-item[data-tech="php"]:hover,
+.stack-item[data-tech="phpstan"]:hover {
+    border-color: #777BB4 !important;
+    background-color: rgba(119, 123, 180, 0.08) !important;
+}
+.stack-item[data-tech="php"]:hover span,
+.stack-item[data-tech="phpstan"]:hover span {
+    color: #777BB4 !important;
+}
+
+.stack-item[data-tech="laravel"]:hover {
+    border-color: #FF2D20 !important;
+    background-color: rgba(255, 45, 32, 0.08) !important;
+}
+.stack-item[data-tech="laravel"]:hover span {
+    color: #FF2D20 !important;
+}
+
+.stack-item[data-tech="livewire"]:hover {
+    border-color: #FB70A9 !important;
+    background-color: rgba(251, 112, 169, 0.08) !important;
+}
+.stack-item[data-tech="livewire"]:hover span {
+    color: #FB70A9 !important;
+}
+
+.stack-item[data-tech="alpine"]:hover {
+    border-color: #8BC0D0 !important;
+    background-color: rgba(139, 192, 208, 0.08) !important;
+}
+.stack-item[data-tech="alpine"]:hover span {
+    color: #0284c7 !important;
+}
+
+.stack-item[data-tech="filament"]:hover {
+    border-color: #F2C14E !important;
+    background-color: rgba(242, 193, 78, 0.08) !important;
+}
+.stack-item[data-tech="filament"]:hover span {
+    color: #d97706 !important;
+}
+
+.stack-item[data-tech="pest"]:hover {
+    border-color: #A855F7 !important;
+    background-color: rgba(168, 85, 247, 0.08) !important;
+}
+.stack-item[data-tech="pest"]:hover span {
+    color: #A855F7 !important;
+}
+
+.stack-item[data-tech="rector"]:hover {
+    border-color: #10B981 !important;
+    background-color: rgba(16, 185, 129, 0.08) !important;
+}
+.stack-item[data-tech="rector"]:hover span {
+    color: #10B981 !important;
+}
+
+.stack-item[data-tech="tailwind"]:hover {
+    border-color: #06B6D4 !important;
+    background-color: rgba(6, 182, 212, 0.08) !important;
+}
+.stack-item[data-tech="tailwind"]:hover span {
+    color: #06B6D4 !important;
+}
+
+.stack-item[data-tech="javascript"]:hover {
+    border-color: #EAB308 !important;
+    background-color: rgba(234, 179, 8, 0.08) !important;
+}
+.stack-item[data-tech="javascript"]:hover span {
+    color: #ca8a04 !important;
+}
+
+/* Dark Mode Stack Brand Hovers (Normal Clean Hover, No Neon Glow) */
+.dark .stack-item[data-tech="php"]:hover,
+.dark .stack-item[data-tech="phpstan"]:hover {
+    border-color: #777BB4 !important;
+    background-color: rgba(119, 123, 180, 0.12) !important;
+}
+.dark .stack-item[data-tech="php"]:hover span,
+.dark .stack-item[data-tech="phpstan"]:hover span {
+    color: #9aa0eb !important;
+}
+
+.dark .stack-item[data-tech="laravel"]:hover {
+    border-color: #FF2D20 !important;
+    background-color: rgba(255, 45, 32, 0.12) !important;
+}
+.dark .stack-item[data-tech="laravel"]:hover span {
+    color: #ff6b61 !important;
+}
+
+.dark .stack-item[data-tech="livewire"]:hover {
+    border-color: #FB70A9 !important;
+    background-color: rgba(251, 112, 169, 0.12) !important;
+}
+.dark .stack-item[data-tech="livewire"]:hover span {
+    color: #fb8dbb !important;
+}
+
+.dark .stack-item[data-tech="alpine"]:hover {
+    border-color: #8BC0D0 !important;
+    background-color: rgba(139, 192, 208, 0.12) !important;
+}
+.dark .stack-item[data-tech="alpine"]:hover span {
+    color: #a8d5e2 !important;
+}
+
+.dark .stack-item[data-tech="filament"]:hover {
+    border-color: #F2C14E !important;
+    background-color: rgba(242, 193, 78, 0.12) !important;
+}
+.dark .stack-item[data-tech="filament"]:hover span {
+    color: #f7d37d !important;
+}
+
+.dark .stack-item[data-tech="pest"]:hover {
+    border-color: #D8B3FF !important;
+    background-color: rgba(216, 179, 255, 0.12) !important;
+}
+.dark .stack-item[data-tech="pest"]:hover span {
+    color: #d8b3ff !important;
+}
+
+.dark .stack-item[data-tech="rector"]:hover {
+    border-color: #10B981 !important;
+    background-color: rgba(16, 185, 129, 0.12) !important;
+}
+.dark .stack-item[data-tech="rector"]:hover span {
+    color: #34d399 !important;
+}
+
+.dark .stack-item[data-tech="tailwind"]:hover {
+    border-color: #06B6D4 !important;
+    background-color: rgba(6, 182, 212, 0.12) !important;
+}
+.dark .stack-item[data-tech="tailwind"]:hover span {
+    color: #38bdf8 !important;
+}
+
+.dark .stack-item[data-tech="javascript"]:hover {
+    border-color: #F7DF1E !important;
+    background-color: rgba(247, 223, 30, 0.12) !important;
+}
+.dark .stack-item[data-tech="javascript"]:hover span {
+    color: #fde047 !important;
 }
 
 .dark .text-slate-900 { color: #f8fafc !important; }
@@ -189,7 +354,7 @@
 
 /* Dark mode overrides for technical markers and lines */
 .dark .tech-marker {
-    background-color: #0b0f19 !important;
+    background-color: #0c0d10 !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.1) !important;
 }
@@ -219,10 +384,10 @@
 
 /* Door message box in dark mode (Nightwatch Glassmorphism) */
 .dark #doorMessage {
-    background-color: #0d1322 !important;
+    background-color: #121318 !important;
     color: #f1f5f9 !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(244, 63, 94, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(244, 63, 94, 0.15) !important;
 }
 
 .dark #doorMessage p.text-slate-800 {
@@ -234,15 +399,15 @@
 }
 
 .dark .door-nav-btn {
-    background-color: rgba(30, 41, 59, 0.8) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
     color: #f1f5f9 !important;
 }
 
 .dark .door-nav-btn:hover {
-    background-color: rgba(51, 65, 85, 0.9) !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
     color: #ffffff !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Typing text contrast in dark mode */
@@ -476,4 +641,13 @@ html:not(.dark) .theme-moon-icon {
     }
 }
 
-
+/* Support perspective tunnel light/dark mode isolation */
+.support-dark-glow-rect {
+    display: none;
+}
+.dark .support-dark-glow-rect {
+    display: block;
+}
+.dark .support-light-glow-rect {
+    display: none;
+}
