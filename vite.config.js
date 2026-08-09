@@ -3,6 +3,19 @@ import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'node:path';
 import fs from 'node:fs';
 import { buildTips } from './scripts/build-tips.mjs';
+import { renderSiteHeader } from './scripts/site-header.mjs';
+
+function siteComponentsPlugin() {
+  return {
+    name: 'vite-plugin-site-components',
+    transformIndexHtml(html) {
+      // Replaces <site-header active="xxx"></site-header> or <site-header active="xxx"/> or <site-header></site-header>
+      return html.replace(/<site-header(?:\s+active="([^"]*)")?\s*(?:\/>|><\/site-header>)/gi, (match, active) => {
+        return renderSiteHeader(active || 'home');
+      });
+    },
+  };
+}
 
 function tipsAutoGeneratorPlugin() {
   return {
@@ -11,8 +24,8 @@ function tipsAutoGeneratorPlugin() {
       await buildTips();
     },
     async handleHotUpdate({ file, server }) {
-      if (file.includes('content') && file.endsWith('.md')) {
-        console.log(`📝 Tip Markdown file modified: ${file}`);
+      if ((file.includes('content') && file.endsWith('.md')) || file.endsWith('site-header.mjs')) {
+        console.log(`📝 File modified: ${file}`);
         await buildTips();
         server.ws.send({ type: 'full-reload' });
       }
@@ -36,6 +49,7 @@ function getTipInputs() {
 export default defineConfig({
   plugins: [
     tipsAutoGeneratorPlugin(),
+    siteComponentsPlugin(),
     tailwindcss(),
   ],
   publicDir: 'public',
