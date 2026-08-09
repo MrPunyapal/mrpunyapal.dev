@@ -1,5 +1,90 @@
 [
   {
+    "slug": "laravel-array-keys-validation",
+    "title": "Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Validation"
+    ],
+    "date": "2026-08-05",
+    "summary": "Laravel 13.24 adds the arraykeys validation rule to reject any unexpected keys in an array input, keeping input strictly limited to allowed keys. When buildi...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-dominant-color-heic-avif",
+    "title": "Extract Dominant Colors and Handle HEIC/AVIF Images in Laravel 13.24",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Image",
+      "Media"
+    ],
+    "date": "2026-08-05",
+    "summary": "Laravel 13.24 adds dominantColor() to the Image API for extracting the primary color of an image, plus native support for HEIC and AVIF formats. Extracting a...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-model-keys-eloquent-builder",
+    "title": "Use modelKeys() on the Eloquent Builder in Laravel 13.24",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database"
+    ],
+    "date": "2026-08-05",
+    "summary": "Laravel 13.24 adds modelKeys() directly to the Eloquent query builder, replacing hardcoded pluck('id') calls with a method that automatically uses the model'...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-bindwhen-conditional-binding",
+    "title": "Conditional Dependency Binding with #[BindWhen] in Laravel 13.22",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Service Container",
+      "Attributes",
+      "PHP 8.5"
+    ],
+    "date": "2026-07-28",
+    "summary": "Laravel 13.22 introduces the #[BindWhen] attribute for declarative, conditional service container bindings. The closure receives the container, multiple attr...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-pint-blade-formatter",
+    "title": "Format Blade Templates with Laravel Pint v1.30.0",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Pint",
+      "Blade",
+      "Tooling"
+    ],
+    "date": "2026-07-25",
+    "summary": "Laravel Pint v1.30.0 adds native Blade template formatting via the Pint/laravelblade rule, using Prettier and the Blade plugin under the hood. Blade finally...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-monthly-log-channel",
+    "title": "Monthly Log Rotation with Laravel 13.23",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Logging",
+      "Configuration"
+    ],
+    "date": "2026-07-22",
+    "summary": "Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily, reducing log directory clutter for stable applic...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-sole-vs-firstorfail",
     "title": "Use sole() Instead of firstOrFail() for Single Record Guarantees",
     "category": "Laravel",
@@ -10,6 +95,51 @@
     ],
     "date": "2026-07-20",
     "summary": "When you expect exactly one matching record, use sole() instead of firstOrFail(). It guards against multiple records by throwing MultipleRecordsFoundExceptio...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-prohibitable-custom-commands-agents",
+    "title": "Protect Custom Artisan Commands from AI Agents with Prohibitable",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Artisan",
+      "AI",
+      "Security"
+    ],
+    "date": "2026-07-16",
+    "summary": "Use Laravel's Prohibitable trait on custom Artisan commands to selectively block AI agents from running destructive application-specific operations. While DB...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-agent-detector-pao",
+    "title": "Detect AI Agents in Laravel with AgentDetector and PAO",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "AI",
+      "DevOps",
+      "Security"
+    ],
+    "date": "2026-07-15",
+    "summary": "Laravel's AgentDetector detects whether an AI coding agent (Cursor, Claude Code, Devin) is interacting with your app, and PAO optimizes CLI output for agents...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-withaggregate-subquery-optimization",
+    "title": "Fetch Specific Related Attributes with withAggregate()",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Performance",
+      "Database"
+    ],
+    "date": "2026-06-20",
+    "summary": "Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances into memory. When you nee...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -25,6 +155,36 @@
     ],
     "date": "2026-06-15",
     "summary": "In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. When te...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-extended-commands-scaffold-patterns",
+    "title": "Scaffold Actions, Builders, and Collections with Artisan",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Artisan",
+      "DX",
+      "Architecture"
+    ],
+    "date": "2026-06-10",
+    "summary": "Default Artisan stubs don't cover common domain patterns like Actions, Custom Query Builders, or Collections. Extend your generator commands to keep app stru...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-custom-wherelike-macro",
+    "title": "Add a Reusable whereLike Macro for Eloquent Searching",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Macros"
+    ],
+    "date": "2026-05-25",
+    "summary": "Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -55,6 +215,63 @@
     ],
     "date": "2026-05-02",
     "summary": "Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel's Prohibitable trait and DB::prohibitDestructiveCommands(). Accident...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-security-strip-tags-vs-htmlpurifier",
+    "title": "Why strip_tags() Is Not Enough for XSS Protection",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Security",
+      "XSS"
+    ],
+    "date": "2026-04-18",
+    "summary": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input sanitizatio...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-pipeline-pattern-complex-workflows",
+    "title": "Clean Up Complex Multi-Step Operations with Illuminate Pipeline",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Architecture",
+      "Design Patterns"
+    ],
+    "date": "2026-04-05",
+    "summary": "Process complex data sequences or multi-stage order checks through Laravel's built-in Pipeline facade to replace massive controller methods with testable ste...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-wheredate-index-performance",
+    "title": "Avoid whereDate() on Large Tables: Use Range Queries Instead",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Performance",
+      "Database"
+    ],
+    "date": "2026-03-12",
+    "summary": "whereDate() wraps the column in a DATE() function, preventing the database from using indexes. Use whereBetween() with full timestamps for index-friendly dat...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-blank-filled-over-empty",
+    "title": "Use blank() and filled() Instead of empty() in Laravel",
+    "category": "PHP",
+    "tags": [
+      "PHP",
+      "Laravel",
+      "Best Practices"
+    ],
+    "date": "2026-02-20",
+    "summary": "PHP's empty() treats 0, \"0\", and false as empty. Laravel's blank() and filled() helpers handle these values more intuitively and avoid silent logic bugs. The...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   }
