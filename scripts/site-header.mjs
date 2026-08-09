@@ -5,15 +5,16 @@
 
 export function renderSiteHeader(activePage = 'home') {
     const navItems = [
-        { id: 'home', href: '/', label: 'Home', isHome: true },
-        { id: 'projects', href: '/projects', label: 'Projects' },
-        { id: 'oss', href: '/opensource', label: 'Open Source', shortLabel: 'OSS', hasHeart: true },
-        { id: 'tips', href: '/tips', label: 'Tips' },
-        { id: 'resume', href: '/resume', label: 'Resume' },
-        { id: 'talks', href: '/talks', label: 'Talks' },
+        { id: 'home', href: '/', label: 'Home', isHome: true, icon: '<svg class="w-4 h-4" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true"><path d="M280.37 148.26 96 300.4V464c0 26.5 21.5 48 48 48h96V368c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v144h96c26.5 0 48-21.5 48-48V300.3L295.67 148.26c-4.42-3.65-10.88-3.65-15.3 0zM571.6 251.47 488 182.34V44c0-6.63-5.37-12-12-12h-56c-6.63 0-12 5.37-12 12v74.12L318.4 37.6c-17.69-14.61-43.11-14.61-60.8 0L4.4 251.47c-5.1 4.21-5.82 11.77-1.61 16.87l25.6 30.98c4.21 5.1 11.77 5.82 16.87 1.61L280.37 82.26c4.42-3.65 10.88-3.65 15.3 0l235.11 218.67c5.1 4.21 12.66 3.49 16.87-1.61l25.6-30.98c4.21-5.1 3.49-12.66-1.65-16.87z"/></svg>' },
+        { id: 'projects', href: '/projects', label: 'Projects', icon: '<svg class="w-4 h-4" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M464 128H352V80c0-26.5-21.5-48-48-48H208c-26.5 0-48 21.5-48 48v48H48c-26.5 0-48 21.5-48 48v256c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V176c0-26.5-21.5-48-48-48zM208 80h96v48h-96V80z"/></svg>' },
+        { id: 'oss', href: '/opensource', label: 'Open Source', shortLabel: 'OSS', hasHeart: true, icon: '<svg class="w-4 h-4 text-red-500" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>' },
+        { id: 'tips', href: '/tips', label: 'Tips', icon: '<svg class="w-4 h-4" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M192 0C86 0 0 86 0 192c0 77.4 46.2 144.1 112 174.1V416c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32v-49.9c65.8-30 112-96.7 112-174.1C384 86 298 0 192 0zm-32 464c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16v-16z"/></svg>' },
+        { id: 'resume', href: '/resume', label: 'Resume', icon: '<svg class="w-4 h-4" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"/></svg>' },
+        { id: 'talks', href: '/talks', label: 'Talks', icon: '<svg class="w-4 h-4" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M384 192c0-88.4-71.6-160-160-160S64 103.6 64 192c0 34.4 10.9 66.3 29.5 92.6L48 448l163.4-45.4C217 403 221.5 403.4 224 403.4c88.4 0 160-71.6 160-160z"/></svg>' },
     ];
 
-    const navLinksHtml = navItems.map(item => {
+    // Desktop Nav Items
+    const desktopNavLinksHtml = navItems.map(item => {
         const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource');
         const activeClasses = 'text-slate-900 dark:text-white border-b-[2.5px] dark:border-b-2 border-red-500';
         const inactiveClasses = 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b-[2.5px] dark:border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700';
@@ -36,6 +37,18 @@ export function renderSiteHeader(activePage = 'home') {
                     </a>`;
     }).join('\n');
 
+    // Mobile Drawer Items
+    const mobileNavLinksHtml = navItems.map(item => {
+        const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource');
+        const activeClasses = 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 font-semibold border-l-2 border-red-500';
+        const inactiveClasses = 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white border-l-2 border-transparent';
+
+        return `        <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="flex items-center gap-3 px-3 py-2.5 rounded-r-md text-sm transition-colors ${isActive ? activeClasses : inactiveClasses}">
+            <span class="shrink-0 text-slate-400 dark:text-slate-500 ${isActive ? 'text-red-500 dark:text-red-400' : ''}">${item.icon}</span>
+            <span>${item.label}</span>
+        </a>`;
+    }).join('\n');
+
     const isResume = activePage === 'resume';
     const isTips = activePage === 'tips';
     const githubRepo = isTips ? 'https://github.com/MrPunyapal/tips' : 'https://github.com/MrPunyapal/mrpunyapal.dev';
@@ -47,7 +60,7 @@ export function renderSiteHeader(activePage = 'home') {
                     </a>` : '';
 
     const headerClasses = isResume 
-        ? 'print:hidden border-b border-slate-200 dark:border-slate-800 flex items-center relative z-20'
+        ? 'print:hidden border-b border-slate-200 dark:border-slate-800 relative z-20'
         : 'border-b border-slate-200 dark:border-slate-800 relative z-20';
 
     return `<header class="${headerClasses}">
@@ -58,25 +71,49 @@ export function renderSiteHeader(activePage = 'home') {
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
-                <!-- Inner scrollable row -->
-                <div class="site-nav-row flex items-center overflow-x-auto px-4 sm:px-6 w-full">
+                <!-- Desktop Nav Row (Visible on sm: and larger) -->
+                <div class="hidden sm:flex site-nav-row items-center overflow-x-auto px-4 sm:px-6 w-full">
+                    <!-- Spacer pushes nav to the right -->
+                    <div class="site-nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
 
-                <!-- Spacer pushes nav to the right; shrinks to 0 before nav ever wraps -->
-                <div class="site-nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
+                    <!-- Navigation Tabs -->
+                    <nav aria-label="Main Navigation" class="site-nav-tabs flex items-center -mb-[1px] shrink-0">
+${desktopNavLinksHtml}
+                    </nav>
 
-                <!-- Navigation Tabs -->
-                <nav aria-label="Main Navigation" class="site-nav-tabs flex items-center -mb-[1px] shrink-0">
-${navLinksHtml}
-                </nav>
-
-                <!-- Utility Buttons -->
-                <div class="site-nav-utilities flex items-center gap-1 sm:gap-1.5 py-2 pl-2 sm:pl-3 border-l border-slate-200 dark:border-slate-800 shrink-0">${resumeDownloadBtn}
-                    <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="site-nav-source p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
-                        <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
-                    </a>
-                    <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
-                    </button>
+                    <!-- Utility Buttons -->
+                    <div class="site-nav-utilities flex items-center gap-1 sm:gap-1.5 py-2 pl-2 sm:pl-3 border-l border-slate-200 dark:border-slate-800 shrink-0">${resumeDownloadBtn}
+                        <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="site-nav-source p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
+                            <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                        </a>
+                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                        </button>
+                    </div>
                 </div>
+
+                <!-- Mobile Header Bar (Visible on mobile < sm) -->
+                <div class="flex sm:hidden items-center justify-between px-4 py-2.5 w-full">
+                    <a href="/" class="flex items-center gap-2 font-bold text-sm text-slate-900 dark:text-white tracking-tight" aria-label="Home - Punyapal Shah">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse" aria-hidden="true"></span>
+                        <span>mrpunyapal.dev</span>
+                    </a>
+
+                    <div class="flex items-center gap-1">${resumeDownloadBtn}
+                        <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
+                            <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                        </a>
+                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                        </button>
+                        <button type="button" data-mobile-menu-toggle aria-expanded="false" aria-controls="mobile-menu-drawer" aria-label="Toggle navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded ml-1 border border-slate-200 dark:border-slate-800">
+                            <svg class="w-4 h-4 icon-menu-open" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M16 132h416c8.83 0 16-7.17 16-16V84c0-8.83-7.17-16-16-16H16C7.17 68 0 75.17 0 84v32c0 8.83 7.17 16 16 16zm0 160h416c8.83 0 16-7.17 16-16v-32c0-8.83-7.17-16-16-16H16c-8.83 0-16 7.17-16 16v32c0 8.83 7.17 16 16 16zm0 160h416c8.83 0 16-7.17 16-16v-32c0-8.83-7.17-16-16-16H16c-8.83 0-16 7.17-16 16v32c0 8.83 7.17 16 16 16z"/></svg>
+                            <svg class="w-4 h-4 icon-menu-close hidden" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Navigation Drawer -->
+                <div id="mobile-menu-drawer" class="hidden sm:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur px-4 py-3 space-y-1">
+${mobileNavLinksHtml}
                 </div>
             </header>`;
 }
