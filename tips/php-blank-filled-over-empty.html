@@ -16,7 +16,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="PHP&#039;s empty() treats 0, &quot;0&quot;, and false as empty. Laravel&#039;s blank() and filled() helpers handle these values more intuitively and avoid silent logic bugs. The...">
+    <meta name="description" content="PHP&#039;s empty() treats 0, &#039;0&#039;, and false as empty. Laravel&#039;s blank() and filled() helpers handle these values intuitively without silent bugs. PHP&#039;s empty() is...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/php-blank-filled-over-empty">
 
@@ -24,7 +24,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/php-blank-filled-over-empty">
     <meta property="og:title" content="Use blank() and filled() Instead of empty() in Laravel | Punyapal Shah">
-    <meta property="og:description" content="PHP&#039;s empty() treats 0, &quot;0&quot;, and false as empty. Laravel&#039;s blank() and filled() helpers handle these values more intuitively and avoid silent logic bugs. The...">
+    <meta property="og:description" content="PHP&#039;s empty() treats 0, &#039;0&#039;, and false as empty. Laravel&#039;s blank() and filled() helpers handle these values intuitively without silent bugs. PHP&#039;s empty() is...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/php-blank-filled-over-empty.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/php-blank-filled-over-empty.png">
     <meta property="og:image:type" content="image/png">
@@ -43,7 +43,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/php-blank-filled-over-empty">
     <meta name="twitter:title" content="Use blank() and filled() Instead of empty() in Laravel | Punyapal Shah">
-    <meta name="twitter:description" content="PHP&#039;s empty() treats 0, &quot;0&quot;, and false as empty. Laravel&#039;s blank() and filled() helpers handle these values more intuitively and avoid silent logic bugs. The...">
+    <meta name="twitter:description" content="PHP&#039;s empty() treats 0, &#039;0&#039;, and false as empty. Laravel&#039;s blank() and filled() helpers handle these values intuitively without silent bugs. PHP&#039;s empty() is...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/php-blank-filled-over-empty.png">
     <meta name="twitter:image:alt" content="Use blank() and filled() Instead of empty() in Laravel - Punyapal Shah">
 
@@ -56,7 +56,7 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/php-blank-filled-over-empty#article",
                 "headline": "Use blank() and filled() Instead of empty() in Laravel",
-                "description": "PHP&#039;s empty() treats 0, &quot;0&quot;, and false as empty. Laravel&#039;s blank() and filled() helpers handle these values more intuitively and avoid silent logic bugs. The...",
+                "description": "PHP&#039;s empty() treats 0, &#039;0&#039;, and false as empty. Laravel&#039;s blank() and filled() helpers handle these values intuitively without silent bugs. PHP&#039;s empty() is...",
                 "datePublished": "2026-02-20",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/php-blank-filled-over-empty",
@@ -629,7 +629,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">PHP's `empty()` treats `0`, `"0"`, and `false` as empty. Laravel's `blank()` and `filled()` helpers handle these values more intuitively and avoid silent logic bugs.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The `empty()` function in PHP is notoriously loose: it considers `0`, `"0"`, `false`, and even an empty array as "empty." This leads to subtle bugs when checking user input or configuration values.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel provides `blank()` and `filled()` as safer, more expressive alternatives.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Comparison table:</h4>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">PHP's empty() treats 0, '0', and false as empty. Laravel's blank() and filled() helpers handle these values intuitively without silent bugs.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHP's empty() is notoriously loose: it considers 0 and '0' empty. Laravel provides blank() and filled() as safer alternatives.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -637,67 +637,19 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Value       | empty() | blank() | filled()
-// 0           | true    | false   | true
-// &#039;0&#039;         | true    | false   | true
-// &#039;&#039;          | true    | true    | false
-// &#039; &#039;         | false   | true    | false  ← whitespace-only
-// null        | true    | true    | false
-// false       | true    | false   | true
-// []          | true    | true    | false" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="if (blank($request-&gt;input(&#039;quantity&#039;))) {
+    return &#039;Quantity is required&#039;;
+}" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-comment">// Value       | empty() | blank() | filled()</span>
-<span class="hljs-comment">// 0           | true    | false   | true</span>
-<span class="hljs-comment">// &#x27;0&#x27;         | true    | false   | true</span>
-<span class="hljs-comment">// &#x27;&#x27;          | true    | true    | false</span>
-<span class="hljs-comment">// &#x27; &#x27;         | false   | true    | false  ← whitespace-only</span>
-<span class="hljs-comment">// null        | true    | true    | false</span>
-<span class="hljs-comment">// false       | true    | false   | true</span>
-<span class="hljs-comment">// []          | true    | true    | false</span></code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Practical usage:</h4>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// ❌ Bug: rejects valid quantity of 0
-if (empty($request-&gt;input(&#039;quantity&#039;))) {
-    return &#039;Quantity is required&#039;;
-}
-
-// ✅ Correct: 0 is a valid, non-blank value
-if (blank($request-&gt;input(&#039;quantity&#039;))) {
-    return &#039;Quantity is required&#039;;
-}
-
-// Filter out blank values from a collection
-$filtered = collect($data)-&gt;filter(fn ($v) =&gt; filled($v));" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-comment">// ❌ Bug: rejects valid quantity of 0</span>
-<span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>(<span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">input</span>(<span class="hljs-string">&#x27;quantity&#x27;</span>))) {
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">blank</span>(<span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">input</span>(<span class="hljs-string">&#x27;quantity&#x27;</span>))) {
     <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Quantity is required&#x27;</span>;
-}
-
-<span class="hljs-comment">// ✅ Correct: 0 is a valid, non-blank value</span>
-<span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">blank</span>(<span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">input</span>(<span class="hljs-string">&#x27;quantity&#x27;</span>))) {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Quantity is required&#x27;</span>;
-}
-
-<span class="hljs-comment">// Filter out blank values from a collection</span>
-<span class="hljs-variable">$filtered</span> = <span class="hljs-title function_ invoke__">collect</span>(<span class="hljs-variable">$data</span>)-&gt;<span class="hljs-title function_ invoke__">filter</span>(fn (<span class="hljs-variable">$v</span>) =&gt; <span class="hljs-title function_ invoke__">filled</span>(<span class="hljs-variable">$v</span>));</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><code>blank()</code> returns <code>true</code> for <code>null</code>, empty strings, and whitespace-only strings</span></li><li class="leading-relaxed"><span class="align-middle"><code>filled()</code> is the inverse of <code>blank()</code></span></li><li class="leading-relaxed"><span class="align-middle">Both handle <code>0</code>, <code>false</code>, and <code>&quot;0&quot;</code> correctly: they are considered filled, not blank</span></li></ul>
+}</code></pre>
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">blank() treats 0 and &#39;0&#39; as filled values, not blank</span></li><li class="leading-relaxed"><span class="align-middle">filled() is the exact inverse of blank()</span></li><li class="leading-relaxed"><span class="align-middle">Handles whitespace-only strings correctly</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->

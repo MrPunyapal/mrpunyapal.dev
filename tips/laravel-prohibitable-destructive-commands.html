@@ -629,7 +629,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Prevent catastrophic accidents like `db:wipe` or `migrate:fresh` in production using Laravel's `Prohibitable` trait and `DB::prohibitDestructiveCommands()`.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Accidentally running `php artisan migrate:fresh` or `db:wipe` on a production database is every team's worst nightmare.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel provides `DB::prohibitDestructiveCommands()` and the `Prohibitable` trait to completely disallow destructive commands in production.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Guard standard destructive commands in `AppServiceProvider`:</h4>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel's Prohibitable trait and DB::prohibitDestructiveCommands().</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Accidentally running migrate:fresh on production is every team's nightmare. Laravel provides DB::prohibitDestructiveCommands() to disallow destructive commands in production.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -637,21 +637,9 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Providers;
-
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\ServiceProvider;
-
-class AppServiceProvider extends ServiceProvider
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="public function boot(): void
 {
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        // Prohibits migrate:fresh, migrate:refresh, migrate:reset, and db:wipe in production
-        DB::prohibitDestructiveCommands($this-&gt;app-&gt;isProduction());
-    }
+    DB::prohibitDestructiveCommands($this-&gt;app-&gt;isProduction());
 }" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -659,81 +647,11 @@ class AppServiceProvider extends ServiceProvider
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Providers</span>;
-
-<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">DB</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppServiceProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boot</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
 </span>{
-    <span class="hljs-comment">/**
-     * Bootstrap any application services.
-     */</span>
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boot</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
-    </span>{
-        <span class="hljs-comment">// Prohibits migrate:fresh, migrate:refresh, migrate:reset, and db:wipe in production</span>
-        DB::<span class="hljs-title function_ invoke__">prohibitDestructiveCommands</span>(<span class="hljs-variable">$this</span>-&gt;app-&gt;<span class="hljs-title function_ invoke__">isProduction</span>());
-    }
+    DB::<span class="hljs-title function_ invoke__">prohibitDestructiveCommands</span>(<span class="hljs-variable">$this</span>-&gt;app-&gt;<span class="hljs-title function_ invoke__">isProduction</span>());
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Make custom Artisan commands prohibitable:</h4>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Console\Commands;
-
-use Illuminate\Console\Command;
-use Illuminate\Console\Prohibitable;
-
-class PurgeUserDataCommand extends Command
-{
-    use Prohibitable;
-
-    protected $signature = &#039;users:purge-inactive&#039;;
-    protected $description = &#039;Purge all unverified users older than 90 days&#039;;
-
-    public function handle(): int
-    {
-        if ($this-&gt;isProhibited()) {
-            return Command::FAILURE;
-        }
-
-        // Safe purge logic...
-        return Command::SUCCESS;
-    }
-}" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Console</span>\<span class="hljs-title class_">Commands</span>;
-
-<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Console</span>\<span class="hljs-title">Command</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Console</span>\<span class="hljs-title">Prohibitable</span>;
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PurgeUserDataCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span>
-</span>{
-    <span class="hljs-keyword">use</span> <span class="hljs-title">Prohibitable</span>;
-
-    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$signature</span> = <span class="hljs-string">&#x27;users:purge-inactive&#x27;</span>;
-    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$description</span> = <span class="hljs-string">&#x27;Purge all unverified users older than 90 days&#x27;</span>;
-
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span>(<span class="hljs-params"></span>): <span class="hljs-title">int</span>
-    </span>{
-        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">isProhibited</span>()) {
-            <span class="hljs-keyword">return</span> <span class="hljs-title class_">Command</span>::<span class="hljs-variable constant_">FAILURE</span>;
-        }
-
-        <span class="hljs-comment">// Safe purge logic...</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Command</span>::<span class="hljs-variable constant_">SUCCESS</span>;
-    }
-}</code></pre>
-</div>
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Guards migrate:fresh, migrate:refresh, migrate:reset, and db:wipe</span></li><li class="leading-relaxed"><span class="align-middle">Configured once in AppServiceProvider::boot()</span></li><li class="leading-relaxed"><span class="align-middle">Throws command failure exit code if executed in production</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -743,7 +661,7 @@ class PurgeUserDataCommand extends Command
                             <svg class="icon text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Database</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Security</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Artisan</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Database</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Security</span>
                     </div>
 
                     <div class="flex items-center gap-2">

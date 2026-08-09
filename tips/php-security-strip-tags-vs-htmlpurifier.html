@@ -16,7 +16,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input sanitizatio...">
+    <meta name="description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier">
 
@@ -24,7 +24,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier">
     <meta property="og:title" content="Why strip_tags() Is Not Enough for XSS Protection | Punyapal Shah">
-    <meta property="og:description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input sanitizatio...">
+    <meta property="og:description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/php-security-strip-tags-vs-htmlpurifier.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/php-security-strip-tags-vs-htmlpurifier.png">
     <meta property="og:image:type" content="image/png">
@@ -43,7 +43,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier">
     <meta name="twitter:title" content="Why strip_tags() Is Not Enough for XSS Protection | Punyapal Shah">
-    <meta name="twitter:description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input sanitizatio...">
+    <meta name="twitter:description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/php-security-strip-tags-vs-htmlpurifier.png">
     <meta name="twitter:image:alt" content="Why strip_tags() Is Not Enough for XSS Protection - Punyapal Shah">
 
@@ -56,7 +56,7 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier#article",
                 "headline": "Why strip_tags() Is Not Enough for XSS Protection",
-                "description": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input sanitizatio...",
+                "description": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...",
                 "datePublished": "2026-04-18",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier",
@@ -629,33 +629,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">`strip_tags()` removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input sanitization.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A common security misconception in PHP is relying on `strip_tags()` to sanitize user-submitted rich text or HTML.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">While `strip_tags()` strips XML/HTML tags, it allows attribute payloads like `onload=`, `onerror=`, or `javascript:` URIs through if allowed tags are specified.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">❌ Insecure: strip_tags with allowed tags bypass</h4>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// User inputs malicious attribute inside allowed tag
-$input = &#039;&lt;img src=&quot;invalid&quot; onerror=&quot;alert(document.cookie)&quot;&gt;&#039;;
-
-// strip_tags allows &lt;img&gt; but retains the malicious onerror payload!
-$sanitized = strip_tags($input, &#039;&lt;img&gt;&#039;);
-// Output: &lt;img src=&quot;invalid&quot; onerror=&quot;alert(document.cookie)&quot;&gt;" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-comment">// User inputs malicious attribute inside allowed tag</span>
-<span class="hljs-variable">$input</span> = <span class="hljs-string">&#x27;&lt;img src=&quot;invalid&quot; onerror=&quot;alert(document.cookie)&quot;&gt;&#x27;</span>;
-
-<span class="hljs-comment">// strip_tags allows &lt;img&gt; but retains the malicious onerror payload!</span>
-<span class="hljs-variable">$sanitized</span> = <span class="hljs-title function_ invoke__">strip_tags</span>(<span class="hljs-variable">$input</span>, <span class="hljs-string">&#x27;&lt;img&gt;&#x27;</span>);
-<span class="hljs-comment">// Output: &lt;img src=&quot;invalid&quot; onerror=&quot;alert(document.cookie)&quot;&gt;</span></code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">✅ Secure: HTMLPurifier cleans attributes and malformed markup</h4>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A common security misconception in PHP is relying on strip_tags() to sanitize user-submitted rich text. It allows attribute payloads like onload= or javascript: URIs through if allowed tags are specified.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -664,12 +638,8 @@ $sanitized = strip_tags($input, &#039;&lt;img&gt;&#039;);
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
         <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use HTMLPurifier;
-use HTMLPurifier_Config;
 
-$config = HTMLPurifier_Config::createDefault();
-$purifier = new HTMLPurifier($config);
-
-// Safely strips malicious attributes while preserving allowed HTML
+$purifier = new HTMLPurifier();
 $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -678,14 +648,10 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">HTMLPurifier</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">HTMLPurifier_Config</span>;
 
-<span class="hljs-variable">$config</span> = <span class="hljs-title class_">HTMLPurifier_Config</span>::<span class="hljs-title function_ invoke__">createDefault</span>();
-<span class="hljs-variable">$purifier</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HTMLPurifier</span>(<span class="hljs-variable">$config</span>);
-
-<span class="hljs-comment">// Safely strips malicious attributes while preserving allowed HTML</span>
+<span class="hljs-variable">$purifier</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HTMLPurifier</span>();
 <span class="hljs-variable">$cleanHtml</span> = <span class="hljs-variable">$purifier</span>-&gt;<span class="hljs-title function_ invoke__">purify</span>(<span class="hljs-variable">$input</span>);</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><code>strip_tags()</code> does not validate tag attributes or prevent JavaScript execution vectors</span></li><li class="leading-relaxed"><span class="align-middle">Always escape plain text with <code>e()</code> or Blade&#39;s <code>{{ $var }}</code></span></li><li class="leading-relaxed"><span class="align-middle">For user-submitted rich text, use robust HTML sanitizers like HTMLPurifier</span></li></ul>
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">strip_tags() does not validate tag attributes or execution vectors</span></li><li class="leading-relaxed"><span class="align-middle">Always escape plain text with e() or Blade&#39;s {{ $var }}</span></li><li class="leading-relaxed"><span class="align-middle">For user-submitted rich text, use robust HTML sanitizers like HTMLPurifier</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -716,7 +682,7 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-prohibitable-custom-commands-agents" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-eloquent-prevent-silently-discarded-attributes" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -732,13 +698,13 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Protect Custom Artisan Commands from AI Agents with Prohibitable
+                        Catch Unfillable Assignments with preventSilentlyDiscardedAttributes()
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </span>
                 </a>
-                <a href="/tips/laravel-agent-detector-pao" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-prohibitable-destructive-commands" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -754,7 +720,7 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Detect AI Agents in Laravel with AgentDetector and PAO
+                        Protect Production with Laravel Prohibitable Commands
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>

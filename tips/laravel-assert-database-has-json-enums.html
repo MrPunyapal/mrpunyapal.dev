@@ -16,7 +16,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. When te...">
+    <meta name="description" content="In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums">
 
@@ -24,7 +24,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums">
     <meta property="og:title" content="Assert JSON Columns and Backed Enums with assertDatabaseHas | Punyapal Shah">
-    <meta property="og:description" content="In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. When te...">
+    <meta property="og:description" content="In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-assert-database-has-json-enums.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-assert-database-has-json-enums.png">
     <meta property="og:image:type" content="image/png">
@@ -43,7 +43,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums">
     <meta name="twitter:title" content="Assert JSON Columns and Backed Enums with assertDatabaseHas | Punyapal Shah">
-    <meta name="twitter:description" content="In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. When te...">
+    <meta name="twitter:description" content="In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-assert-database-has-json-enums.png">
     <meta name="twitter:image:alt" content="Assert JSON Columns and Backed Enums with assertDatabaseHas - Punyapal Shah">
 
@@ -56,7 +56,7 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums#article",
                 "headline": "Assert JSON Columns and Backed Enums with assertDatabaseHas",
-                "description": "In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. When te...",
+                "description": "In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...",
                 "datePublished": "2026-06-15",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums",
@@ -629,7 +629,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">In Laravel and Pest tests, `assertDatabaseHas()` natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When testing database records containing JSON attributes or PHP backed enums, there is no need to manually cast enums to strings or encode JSON blobs.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel's `assertDatabaseHas()` natively supports arrow syntax `->` for nested JSON keys and serializes backed enums automatically.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Example in Pest PHP:</h4>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Testing JSON attributes or PHP backed enums requires no manual casting or encoding. assertDatabaseHas() supports arrow syntax and serializes enums automatically.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -637,55 +637,21 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Enums\UserRole;
-use App\Enums\SubscriptionStatus;
-
-it(&#039;stores user preferences and subscription role correctly&#039;, function () {
-    $this-&gt;postJson(&#039;/api/register&#039;, [
-        &#039;name&#039; =&gt; &#039;Punyapal Shah&#039;,
-        &#039;role&#039; =&gt; UserRole::Maintainer,
-        &#039;settings&#039; =&gt; [
-            &#039;theme&#039; =&gt; &#039;dark&#039;,
-            &#039;notifications&#039; =&gt; [&#039;email&#039; =&gt; true],
-        ],
-    ])-&gt;assertCreated();
-
-    // Query JSON attributes &amp; Enums directly:
-    $this-&gt;assertDatabaseHas(&#039;users&#039;, [
-        &#039;name&#039; =&gt; &#039;Punyapal Shah&#039;,
-        &#039;role&#039; =&gt; UserRole::Maintainer, // Enum backed value handled automatically
-        &#039;settings-&gt;theme&#039; =&gt; &#039;dark&#039;,     // Query nested JSON property
-        &#039;settings-&gt;notifications-&gt;email&#039; =&gt; true,
-    ]);
-});" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$this-&gt;assertDatabaseHas(&#039;users&#039;, [
+    &#039;role&#039; =&gt; UserRole::Maintainer,
+    &#039;settings-&gt;theme&#039; =&gt; &#039;dark&#039;,
+]);" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Enums</span>\<span class="hljs-title">UserRole</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Enums</span>\<span class="hljs-title">SubscriptionStatus</span>;
-
-<span class="hljs-title function_ invoke__">it</span>(<span class="hljs-string">&#x27;stores user preferences and subscription role correctly&#x27;</span>, function () {
-    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">postJson</span>(<span class="hljs-string">&#x27;/api/register&#x27;</span>, [
-        <span class="hljs-string">&#x27;name&#x27;</span> =&gt; <span class="hljs-string">&#x27;Punyapal Shah&#x27;</span>,
-        <span class="hljs-string">&#x27;role&#x27;</span> =&gt; <span class="hljs-title class_">UserRole</span>::<span class="hljs-variable constant_">Maintainer</span>,
-        <span class="hljs-string">&#x27;settings&#x27;</span> =&gt; [
-            <span class="hljs-string">&#x27;theme&#x27;</span> =&gt; <span class="hljs-string">&#x27;dark&#x27;</span>,
-            <span class="hljs-string">&#x27;notifications&#x27;</span> =&gt; [<span class="hljs-string">&#x27;email&#x27;</span> =&gt; <span class="hljs-literal">true</span>],
-        ],
-    ])-&gt;<span class="hljs-title function_ invoke__">assertCreated</span>();
-
-    <span class="hljs-comment">// Query JSON attributes &amp; Enums directly:</span>
-    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">assertDatabaseHas</span>(<span class="hljs-string">&#x27;users&#x27;</span>, [
-        <span class="hljs-string">&#x27;name&#x27;</span> =&gt; <span class="hljs-string">&#x27;Punyapal Shah&#x27;</span>,
-        <span class="hljs-string">&#x27;role&#x27;</span> =&gt; <span class="hljs-title class_">UserRole</span>::<span class="hljs-variable constant_">Maintainer</span>, // Enum backed value handled automatically
-        <span class="hljs-string">&#x27;settings-&gt;theme&#x27;</span> =&gt; <span class="hljs-string">&#x27;dark&#x27;</span>,     // Query nested JSON property
-        <span class="hljs-string">&#x27;settings-&gt;notifications-&gt;email&#x27;</span> =&gt; <span class="hljs-literal">true</span>,
-    ]);
-});</code></pre>
-</div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">assertDatabaseHas</span>(<span class="hljs-string">&#x27;users&#x27;</span>, [
+    <span class="hljs-string">&#x27;role&#x27;</span> =&gt; <span class="hljs-title class_">UserRole</span>::<span class="hljs-variable constant_">Maintainer</span>,
+    <span class="hljs-string">&#x27;settings-&gt;theme&#x27;</span> =&gt; <span class="hljs-string">&#x27;dark&#x27;</span>,
+]);</code></pre>
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Handles Backed Enums directly without -&gt;value casting</span></li><li class="leading-relaxed"><span class="align-middle">Queries nested JSON keys using arrow notation</span></li><li class="leading-relaxed"><span class="align-middle">Works out of the box with Pest and PHPUnit assertions</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->

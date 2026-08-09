@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24 | Tips | Punyapal Shah</title>
+    <title>Enforce Clean Architecture Rules with Pest Arch Testing | Tips | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,36 +16,36 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Laravel 13.24 adds the arraykeys validation rule to reject any unexpected keys in an array input, keeping input strictly limited to allowed keys. When buildi...">
+    <meta name="description" content="Use Pest&#039;s arch() testing preset to enforce namespace dependencies, strict types, and prohibited function calls across your project. Architecture drift happe...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-array-keys-validation">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/pest-architecture-testing-rules">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-array-keys-validation">
-    <meta property="og:title" content="Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24 | Punyapal Shah">
-    <meta property="og:description" content="Laravel 13.24 adds the arraykeys validation rule to reject any unexpected keys in an array input, keeping input strictly limited to allowed keys. When buildi...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-array-keys-validation.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-array-keys-validation.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/pest-architecture-testing-rules">
+    <meta property="og:title" content="Enforce Clean Architecture Rules with Pest Arch Testing | Punyapal Shah">
+    <meta property="og:description" content="Use Pest&#039;s arch() testing preset to enforce namespace dependencies, strict types, and prohibited function calls across your project. Architecture drift happe...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/pest-architecture-testing-rules.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/pest-architecture-testing-rules.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24 - Punyapal Shah">
+    <meta property="og:image:alt" content="Enforce Clean Architecture Rules with Pest Arch Testing - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-08-05">
+    <meta property="article:published_time" content="2026-04-12">
     <meta property="article:author" content="https://x.com/MrPunyapal">
-    <meta property="article:section" content="Laravel">
+    <meta property="article:section" content="Pest PHP">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-array-keys-validation">
-    <meta name="twitter:title" content="Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24 | Punyapal Shah">
-    <meta name="twitter:description" content="Laravel 13.24 adds the arraykeys validation rule to reject any unexpected keys in an array input, keeping input strictly limited to allowed keys. When buildi...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-array-keys-validation.png">
-    <meta name="twitter:image:alt" content="Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24 - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/pest-architecture-testing-rules">
+    <meta name="twitter:title" content="Enforce Clean Architecture Rules with Pest Arch Testing | Punyapal Shah">
+    <meta name="twitter:description" content="Use Pest&#039;s arch() testing preset to enforce namespace dependencies, strict types, and prohibited function calls across your project. Architecture drift happe...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/pest-architecture-testing-rules.png">
+    <meta name="twitter:image:alt" content="Enforce Clean Architecture Rules with Pest Arch Testing - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -54,12 +54,12 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-array-keys-validation#article",
-                "headline": "Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24",
-                "description": "Laravel 13.24 adds the arraykeys validation rule to reject any unexpected keys in an array input, keeping input strictly limited to allowed keys. When buildi...",
-                "datePublished": "2026-08-05",
+                "@id": "https://mrpunyapal.dev/tips/pest-architecture-testing-rules#article",
+                "headline": "Enforce Clean Architecture Rules with Pest Arch Testing",
+                "description": "Use Pest&#039;s arch() testing preset to enforce namespace dependencies, strict types, and prohibited function calls across your project. Architecture drift happe...",
+                "datePublished": "2026-04-12",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-array-keys-validation",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/pest-architecture-testing-rules",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -68,7 +68,7 @@
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "articleSection": "Laravel"
+                "articleSection": "Pest PHP"
             },
             {
                 "@type": "BreadcrumbList",
@@ -88,8 +88,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24",
-                        "item": "https://mrpunyapal.dev/tips/laravel-array-keys-validation"
+                        "name": "Enforce Clean Architecture Rules with Pest Arch Testing",
+                        "item": "https://mrpunyapal.dev/tips/pest-architecture-testing-rules"
                     }
                 ]
             }
@@ -596,15 +596,15 @@
                         <span>Back to All Tips</span>
                     </a>
 
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border-red-100 dark:border-red-900/60">
-                        Laravel
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border-purple-100 dark:border-purple-900/60">
+                        Pest PHP
                     </span>
                 </div>
 
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Restrict Array Keys with the array_keys Validation Rule in Laravel 13.24
+                        Enforce Clean Architecture Rules with Pest Arch Testing
                     </h1>
 
                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -613,9 +613,9 @@
                             <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2026-08-05" class="inline-flex items-center gap-1.5">
+                        <time datetime="2026-04-12" class="inline-flex items-center gap-1.5">
                             <svg class="icon text-xs opacity-70" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Aug 5, 2026
+                            Apr 12, 2026
                         </time>
                     </div>
                 </div>
@@ -629,7 +629,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.24 adds the array_keys validation rule to reject any unexpected keys in an array input, keeping input strictly limited to allowed keys.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When building API endpoints that receive settings or configuration objects, unexpected extra keys could indicate tampering or version mismatches. The array_keys rule restricts input to allowed keys only.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use Pest's arch() testing preset to enforce namespace dependencies, strict types, and prohibited function calls across your project.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Architecture drift happens as teams grow. Pest's built-in architecture testing lets you write automated assertions verifying that models don't call HTTP facades or controllers remain thin.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -637,25 +637,27 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Validator;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="arch(&#039;models do not use http facades&#039;)
+    -&gt;expect(&#039;App\Models&#039;)
+    -&gt;not-&gt;toUse(&#039;Illuminate\Support\Facades\Http&#039;);
 
-$validator = Validator::make($request-&gt;all(), [
-    &#039;settings&#039;   =&gt; &#039;required|array|array_keys:theme,language,timezone&#039;,
-    &#039;settings.*&#039; =&gt; &#039;string&#039;,
-]);" aria-label="Copy code to clipboard">
+arch(&#039;globals&#039;)
+    -&gt;expect([&#039;dd&#039;, &#039;dump&#039;, &#039;ray&#039;])
+    -&gt;not-&gt;toBeUsed();" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Validator</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-title function_ invoke__">arch</span>(<span class="hljs-string">&#x27;models do not use http facades&#x27;</span>)
+    -&gt;<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">&#x27;App\Models&#x27;</span>)
+    -&gt;not-&gt;<span class="hljs-title function_ invoke__">toUse</span>(<span class="hljs-string">&#x27;Illuminate\Support\Facades\Http&#x27;</span>);
 
-<span class="hljs-variable">$validator</span> = <span class="hljs-title class_">Validator</span>::<span class="hljs-title function_ invoke__">make</span>(<span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">all</span>(), [
-    <span class="hljs-string">&#x27;settings&#x27;</span>   =&gt; <span class="hljs-string">&#x27;required|array|array_keys:theme,language,timezone&#x27;</span>,
-    <span class="hljs-string">&#x27;settings.*&#x27;</span> =&gt; <span class="hljs-string">&#x27;string&#x27;</span>,
-]);</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">array_keys: rejects keys NOT in your list (whitelist)</span></li><li class="leading-relaxed"><span class="align-middle">required_array_keys: checks that specific keys ARE present (required check)</span></li><li class="leading-relaxed"><span class="align-middle">Rejects payloads containing unlisted keys</span></li></ul>
+<span class="hljs-title function_ invoke__">arch</span>(<span class="hljs-string">&#x27;globals&#x27;</span>)
+    -&gt;<span class="hljs-title function_ invoke__">expect</span>([<span class="hljs-string">&#x27;dd&#x27;</span>, <span class="hljs-string">&#x27;dump&#x27;</span>, <span class="hljs-string">&#x27;ray&#x27;</span>])
+    -&gt;not-&gt;<span class="hljs-title function_ invoke__">toBeUsed</span>();</code></pre>
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Prevents architecture anti-patterns directly in automated test runs</span></li><li class="leading-relaxed"><span class="align-middle">Enforces strict type declarations, trait usage, and class inheritance</span></li><li class="leading-relaxed"><span class="align-middle">Flags leftover debugging statements like dd() or dump() before deployment</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -665,11 +667,11 @@ $validator = Validator::make($request-&gt;all(), [
                             <svg class="icon text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Validation</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-100 dark:border-purple-900/60">#Pest</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-100 dark:border-purple-900/60">#Architecture</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-100 dark:border-purple-900/60">#Testing</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Restrict%20Array%20Keys%20with%20the%20array_keys%20Validation%20Rule%20in%20Laravel%2013.24%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-array-keys-validation" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Enforce%20Clean%20Architecture%20Rules%20with%20Pest%20Arch%20Testing%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Fpest-architecture-testing-rules" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -686,7 +688,7 @@ $validator = Validator::make($request-&gt;all(), [
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-dominant-color-heic-avif" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-assert-database-has-json-enums" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -702,13 +704,13 @@ $validator = Validator::make($request-&gt;all(), [
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Extract Dominant Colors and Handle HEIC/AVIF Images in Laravel 13.24
+                        Assert JSON Columns and Backed Enums with assertDatabaseHas
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </span>
                 </a>
-                <a href="/tips/laravel-eloquent-to-raw-sql" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/pest-tia-plugin-workflow" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -724,7 +726,7 @@ $validator = Validator::make($request-&gt;all(), [
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Inspect Executable SQL Queries with toRawSql()
+                        Streamline Testing with Pest Test Impact Analysis (TIA)
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>

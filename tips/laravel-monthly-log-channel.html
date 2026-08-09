@@ -16,7 +16,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily, reducing log directory clutter for stable applic...">
+    <meta name="description" content="Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily. Daily log rotation creates hundreds of log files...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-monthly-log-channel">
 
@@ -24,7 +24,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-monthly-log-channel">
     <meta property="og:title" content="Monthly Log Rotation with Laravel 13.23 | Punyapal Shah">
-    <meta property="og:description" content="Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily, reducing log directory clutter for stable applic...">
+    <meta property="og:description" content="Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily. Daily log rotation creates hundreds of log files...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-monthly-log-channel.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-monthly-log-channel.png">
     <meta property="og:image:type" content="image/png">
@@ -43,7 +43,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-monthly-log-channel">
     <meta name="twitter:title" content="Monthly Log Rotation with Laravel 13.23 | Punyapal Shah">
-    <meta name="twitter:description" content="Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily, reducing log directory clutter for stable applic...">
+    <meta name="twitter:description" content="Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily. Daily log rotation creates hundreds of log files...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-monthly-log-channel.png">
     <meta name="twitter:image:alt" content="Monthly Log Rotation with Laravel 13.23 - Punyapal Shah">
 
@@ -56,7 +56,7 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/laravel-monthly-log-channel#article",
                 "headline": "Monthly Log Rotation with Laravel 13.23",
-                "description": "Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily, reducing log directory clutter for stable applic...",
+                "description": "Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily. Daily log rotation creates hundreds of log files...",
                 "datePublished": "2026-07-22",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-monthly-log-channel",
@@ -629,7 +629,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.23 adds a built-in `monthly` logging driver that rotates log files once per month instead of daily, reducing log directory clutter for stable applications.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Daily log rotation creates hundreds of log files over time. If your application has moderate log volume, the `monthly` driver keeps logs organized into one file per month (e.g. `laravel-2026-08.log`).</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Configuration</h4>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Daily log rotation creates hundreds of log files over time. If your application has moderate log volume, the monthly driver keeps logs organized into one file per month (e.g. laravel-2026-08.log).</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -642,7 +642,6 @@
     &#039;monthly&#039; =&gt; [
         &#039;driver&#039; =&gt; &#039;monthly&#039;,
         &#039;path&#039;   =&gt; storage_path(&#039;logs/laravel.log&#039;),
-        &#039;level&#039;  =&gt; env(&#039;LOG_LEVEL&#039;, &#039;debug&#039;),
         &#039;days&#039;   =&gt; 12, // Retain 12 months of logs
     ],
 ]," aria-label="Copy code to clipboard">
@@ -657,27 +656,10 @@
     <span class="hljs-string">&#x27;monthly&#x27;</span> =&gt; [
         <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;monthly&#x27;</span>,
         <span class="hljs-string">&#x27;path&#x27;</span>   =&gt; <span class="hljs-title function_ invoke__">storage_path</span>(<span class="hljs-string">&#x27;logs/laravel.log&#x27;</span>),
-        <span class="hljs-string">&#x27;level&#x27;</span>  =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;LOG_LEVEL&#x27;</span>, <span class="hljs-string">&#x27;debug&#x27;</span>),
         <span class="hljs-string">&#x27;days&#x27;</span>   =&gt; <span class="hljs-number">12</span>, <span class="hljs-comment">// Retain 12 months of logs</span>
     ],
 ],</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Environment Setup</h4>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="LOG_CHANNEL=monthly" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-bash">LOG_CHANNEL=monthly</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">One log file per month (e.g. <code>laravel-2026-08.log</code>)</span></li><li class="leading-relaxed"><span class="align-middle"><code>days</code> parameter controls how many months of logs to retain</span></li><li class="leading-relaxed"><span class="align-middle">Ideal for production apps with moderate log volume</span></li></ul>
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">One log file per month (e.g. laravel-2026-08.log)</span></li><li class="leading-relaxed"><span class="align-middle">days parameter controls how many months of logs to retain</span></li><li class="leading-relaxed"><span class="align-middle">Ideal for production apps with moderate log volume</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
