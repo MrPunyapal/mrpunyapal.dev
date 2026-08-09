@@ -1,0 +1,61 @@
+[
+  {
+    "slug": "laravel-sole-vs-firstorfail",
+    "title": "Use sole() Instead of firstOrFail() for Single Record Guarantees",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database"
+    ],
+    "date": "2026-07-20",
+    "summary": "When you expect exactly one matching record, use sole() instead of firstOrFail(). It guards against multiple records by throwing MultipleRecordsFoundExceptio...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-assert-database-has-json-enums",
+    "title": "Assert JSON Columns and Backed Enums with assertDatabaseHas",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Pest",
+      "Enums"
+    ],
+    "date": "2026-06-15",
+    "summary": "In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. When te...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "pest-tia-plugin-workflow",
+    "title": "Streamline Testing with Pest Test Impact Analysis (TIA)",
+    "category": "Pest PHP",
+    "tags": [
+      "Pest",
+      "Testing",
+      "DX",
+      "PHPStan"
+    ],
+    "date": "2026-05-18",
+    "summary": "Enable Test Impact Analysis (TIA) in Pest 5 to only run tests directly covering code that changed since the last commit, slashing feedback cycles. As your te...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-prohibitable-destructive-commands",
+    "title": "Protect Production with Laravel Prohibitable Commands",
+    "category": "Laravel",
+    "tags": [
+      "Laravel",
+      "Database",
+      "Security",
+      "Artisan"
+    ],
+    "date": "2026-05-02",
+    "summary": "Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel's Prohibitable trait and DB::prohibitDestructiveCommands(). Accident...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  }
+]

@@ -4,6 +4,7 @@
   "description": "Source code for mrpunyapal.dev - Punyapal Shah's personal website, projects, open source work, talks, and resume.",
   "scripts": {
     "dev": "vite",
+    "build:tips": "node scripts/build-tips.mjs",
     "build": "vite build",
     "build:pdf": "node scripts/generate-pdf.js",
     "generate:og": "capturist"
@@ -34,7 +35,10 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "capturist": "^0.1.1",
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.11.1",
     "html-pdf-node": "^1.0.8",
+    "marked": "^18.0.9",
     "tailwindcss": "^4.3.3",
     "vite": "^8.1.5"
   }
