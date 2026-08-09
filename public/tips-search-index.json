@@ -27,20 +27,6 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "laravel-eloquent-to-raw-sql",
-    "title": "Inspect Executable SQL Queries with toRawSql()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Debugging"
-    ],
-    "date": "2026-08-05",
-    "summary": "Use toRawSql() on Eloquent queries to retrieve the final SQL string with bound parameters inserted, making query debugging instant. When debugging complex El...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
     "slug": "laravel-model-keys-eloquent-builder",
     "title": "Use modelKeys() on the Eloquent Builder in Laravel 13.24",
     "category": "Laravel",
@@ -51,48 +37,6 @@
     ],
     "date": "2026-08-05",
     "summary": "Laravel 13.24 adds modelKeys() directly to the Eloquent query builder, replacing hardcoded pluck('id') calls with a method that uses the model primary key. I...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-dump-raw-sql",
-    "title": "Inline Query Inspection with dumpRawSql() and ddRawSql()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Debugging"
-    ],
-    "date": "2026-08-04",
-    "summary": "Chain dumpRawSql() or ddRawSql() directly onto an Eloquent query builder to print executable SQL statements without interrupting method chains. Stopping exec...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-touch-quietly",
-    "title": "Update Model Timestamps Quietly with touchQuietly()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-08-02",
-    "summary": "Use touchQuietly() to update updatedat timestamps on Eloquent models without firing model events or touching parent relations. Standard touch() triggers savi...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-dispatches-events",
-    "title": "Map Model Lifecycle Events to Event Classes with dispatchesEvents",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Events"
-    ],
-    "date": "2026-07-30",
-    "summary": "Use the $dispatchesEvents property on Eloquent models to map lifecycle states directly to dedicated Event classes instead of closure listeners. Writing inlin...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -111,34 +55,6 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "laravel-eloquent-without-events",
-    "title": "Execute Operations Without Triggers Using withoutEvents()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Events"
-    ],
-    "date": "2026-07-28",
-    "summary": "Wrap model operations inside Model::withoutEvents() to temporarily disable all Eloquent model event listeners during bulk operations or migrations. When runn...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-save-quietly",
-    "title": "Save Model Changes Silently Using saveQuietly()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-07-26",
-    "summary": "Use saveQuietly() to persist model modifications without executing model observers or event listeners. Updating an internal flag or counter inside a backgrou...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
     "slug": "laravel-pint-blade-formatter",
     "title": "Format Blade Templates with Laravel Pint v1.30.0",
     "category": "Laravel",
@@ -149,34 +65,6 @@
     ],
     "date": "2026-07-25",
     "summary": "Laravel Pint v1.30.0 adds native Blade template formatting via the Pint/laravelblade rule, using Prettier under the hood. Blade gets opinionated formatting i...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-increment-quietly",
-    "title": "Increment Counters Quietly Using incrementQuietly()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-07-24",
-    "summary": "Use incrementQuietly() and decrementQuietly() to adjust numeric columns without modifying updatedat or firing events. Incrementing view counts or download st...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-replicate",
-    "title": "Clone Model Records Cleanly Using replicate()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-07-22",
-    "summary": "Use replicate() to create a fresh, unsaved copy of an existing Eloquent model while excluding specific attributes. Duplicating complex records (like template...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -195,20 +83,6 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "laravel-eloquent-is-and-is-not",
-    "title": "Compare Model Identity with is() and isNot()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Best Practices"
-    ],
-    "date": "2026-07-20",
-    "summary": "Use is() and isNot() to determine whether two Eloquent instances share the same primary key, table, and database connection. Comparing model instances with $...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
     "slug": "laravel-sole-vs-firstorfail",
     "title": "Use sole() Instead of firstOrFail() for Single Record Guarantees",
     "category": "Laravel",
@@ -219,34 +93,6 @@
     ],
     "date": "2026-07-20",
     "summary": "When you expect exactly one matching record, use sole() instead of firstOrFail(). It guards against multiple records by throwing MultipleRecordsFoundExceptio...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-was-changed-is-dirty",
-    "title": "Inspect Attribute Mutation State with isDirty() and wasChanged()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-07-18",
-    "summary": "Use isDirty() before saving to check pending attribute changes, and wasChanged() after saving to verify persisted mutations. Determining whether specific fie...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-fresh-vs-refresh",
-    "title": "Reload Model Data: fresh() vs refresh()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-07-16",
-    "summary": "Use fresh() to re-query the database into a new model instance, or refresh() to update the current model instance in place. Reloading models after background...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -275,188 +121,6 @@
     ],
     "date": "2026-07-15",
     "summary": "Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI agents are part of moder...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-find-or-first-or",
-    "title": "Provide Fallback Closures with findOr() and firstOr()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-07-14",
-    "summary": "Use findOr() and firstOr() to execute a closure fallback when a record is not found instead of throwing an exception. Handling missing records often involves...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-where-belongs-to",
-    "title": "Filter by Relationship Models with whereBelongsTo()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Relationships"
-    ],
-    "date": "2026-07-12",
-    "summary": "Use whereBelongsTo() to filter queries using a parent model instance without manually writing foreign key column names. Filtering child records by parent ID...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-where-morphed-to",
-    "title": "Filter Polymorphic Queries Cleanly with whereMorphedTo()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Relationships"
-    ],
-    "date": "2026-07-10",
-    "summary": "Use whereMorphedTo() to filter records belonging to a polymorphic relation using a model instance. Filtering polymorphic relationships manually requires chec...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-qualify-column",
-    "title": "Prevent Ambiguous Join Columns with qualifyColumn()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-07-08",
-    "summary": "Use qualifyColumn() inside scopes or query builders to automatically prefix column names with the model's table name. Joining tables in Eloquent often trigge...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-latest-of-many",
-    "title": "Fetch Single Relational Sub-Records with latestOfMany()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Relationships"
-    ],
-    "date": "2026-07-06",
-    "summary": "Define HasOne relationships representing the latest or oldest child record using latestOfMany() and oldestOfMany(). Fetching the latest status update or most...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-has-one-of-many-min-max",
-    "title": "Query Extremum Child Records with ofMany()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Relationships"
-    ],
-    "date": "2026-07-04",
-    "summary": "Use ofMany() to define HasOne relationships based on minimum or maximum column values, such as highest price or lowest rank. When latestOfMany() by timestamp...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-prune-mass-prune",
-    "title": "Automate Stale Record Deletion with Prunable Traits",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Maintenance"
-    ],
-    "date": "2026-07-02",
-    "summary": "Use the Prunable or MassPrunable trait on models to establish automated query-based background database pruning. Accumulating old logs, inactive session toke...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-prevent-lazy-loading",
-    "title": "Enforce Strict Eager Loading with preventLazyLoading()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Performance"
-    ],
-    "date": "2026-06-30",
-    "summary": "Disable lazy loading during development by calling Model::preventLazyLoading() to eliminate N+1 query bottlenecks before production. Accidentally accessing u...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-prevent-silently-discarded-attributes",
-    "title": "Catch Unfillable Assignments with preventSilentlyDiscardedAttributes()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Security"
-    ],
-    "date": "2026-06-28",
-    "summary": "Enable Model::preventSilentlyDiscardedAttributes() to throw exceptions when attempting to fill unfillable attributes. When assigning attributes not listed in...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-should-be-strict",
-    "title": "Enable All Eloquent Safety Guards with Model::shouldBeStrict()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Best Practices"
-    ],
-    "date": "2026-06-26",
-    "summary": "Call Model::shouldBeStrict() in your AppServiceProvider to enable lazy loading prevention, discarded attribute checks, and missing attribute guards at once....",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-without-touching",
-    "title": "Update Related Models Without Touching Parents",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-06-24",
-    "summary": "Use Model::withoutTouching() to disable parent model timestamp updates when updating child records. Child updates often touch parent model timestamps via $to...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-where-relation",
-    "title": "Filter Models Based on Relationship Attributes with whereRelation()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Database"
-    ],
-    "date": "2026-06-22",
-    "summary": "Use whereRelation() to query models by nested relationship attributes directly without writing verbose closures. Filtering records by relationship attributes...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-eloquent-with-count-conditional",
-    "title": "Count Related Records Conditionally with withCount()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Performance"
-    ],
-    "date": "2026-06-20",
-    "summary": "Pass custom query closures to withCount() to compute filtered aggregate counts directly in SQL. Counting subset relationships in PHP requires loading full co...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -490,20 +154,6 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "laravel-db-after-commit-hook",
-    "title": "Defer Actions Until Database Transactions Commit with DB::afterCommit()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Database",
-      "Transactions"
-    ],
-    "date": "2026-06-12",
-    "summary": "Use DB::afterCommit() to queue jobs, send webhooks, or fire notifications only after surrounding database transactions commit successfully. Dispatching event...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
     "slug": "laravel-extended-commands-scaffold-patterns",
     "title": "Scaffold Actions, Builders, and Collections with Artisan",
     "category": "Laravel",
@@ -514,34 +164,6 @@
     ],
     "date": "2026-06-10",
     "summary": "Extend your generator commands to scaffold common domain patterns like Actions, Custom Query Builders, or Collections. Pushing business logic into Action cla...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-queue-without-overlapping-middleware",
-    "title": "Prevent Concurrent Job Processing with WithoutOverlapping Middleware",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Queue",
-      "Concurrency"
-    ],
-    "date": "2026-06-05",
-    "summary": "Attach the WithoutOverlapping middleware to queue jobs to prevent simultaneous execution of the same job across worker processes. When multiple queue workers...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-routing-stream-download-response",
-    "title": "Stream Large Files and CSV Exports with response()->streamDownload()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Routing",
-      "HTTP"
-    ],
-    "date": "2026-05-30",
-    "summary": "Use response()-streamDownload() to generate and stream large CSVs or files directly to the browser without creating temporary server disk files. Generating l...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -560,20 +182,6 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "laravel-validation-request-collect",
-    "title": "Transform Request Input into Collections with $request->collect()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Validation",
-      "Collections"
-    ],
-    "date": "2026-05-22",
-    "summary": "Use $request-collect() to retrieve validated or raw request input directly as a fluent Laravel Collection instance. Working with array inputs often requires...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
     "slug": "pest-tia-plugin-workflow",
     "title": "Streamline Testing with Pest Test Impact Analysis (TIA)",
     "category": "Pest PHP",
@@ -584,34 +192,6 @@
     ],
     "date": "2026-05-18",
     "summary": "Enable Test Impact Analysis (TIA) in Pest to only run tests directly covering code that changed since the last commit. Running full test suites on every tiny...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-validation-request-type-helpers",
-    "title": "Retrieve Typed Inputs with $request->boolean(), integer(), and date()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Validation",
-      "HTTP"
-    ],
-    "date": "2026-05-15",
-    "summary": "Use typed input accessors on the Request object to cast input parameters directly to booleans, integers, or Carbon instances. Manual type casting of request...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-validation-enum-input",
-    "title": "Cast Request Inputs Directly to Enums with $request->enum()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Validation",
-      "Enums"
-    ],
-    "date": "2026-05-10",
-    "summary": "Use $request-enum() to resolve and cast HTTP request parameters directly into typed PHP Backed Enum instances. Validating and instantiating Backed Enums manu...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -630,34 +210,6 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "laravel-routing-fallback-route",
-    "title": "Customize 404 Exceptions with Route::fallback()",
-    "category": "Laravel",
-    "tags": [
-      "Laravel",
-      "Routing",
-      "HTTP"
-    ],
-    "date": "2026-05-01",
-    "summary": "Define custom application-wide 404 landing pages or API response structures using Route::fallback(). Unmatched routes default to standard 404 responses. Regi...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "pest-expectations-sequence-assertions",
-    "title": "Assert Collection Order and Sequence with Pest toSequence()",
-    "category": "Pest PHP",
-    "tags": [
-      "Pest",
-      "Testing",
-      "Expectations"
-    ],
-    "date": "2026-04-25",
-    "summary": "Use Pest's toSequence() expectation helper to test individual items in a collection or array against sequential assertion callbacks. Testing list contents us...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
     "slug": "php-security-strip-tags-vs-htmlpurifier",
     "title": "Why strip_tags() Is Not Enough for XSS Protection",
     "category": "PHP",
@@ -668,20 +220,6 @@
     ],
     "date": "2026-04-18",
     "summary": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "pest-architecture-testing-rules",
-    "title": "Enforce Clean Architecture Rules with Pest Arch Testing",
-    "category": "Pest PHP",
-    "tags": [
-      "Pest",
-      "Architecture",
-      "Testing"
-    ],
-    "date": "2026-04-12",
-    "summary": "Use Pest's arch() testing preset to enforce namespace dependencies, strict types, and prohibited function calls across your project. Architecture drift happe...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -700,48 +238,6 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "php-first-class-callable-syntax",
-    "title": "Clean Up Callbacks with PHP 8.1 First-Class Callable Syntax",
-    "category": "PHP",
-    "tags": [
-      "PHP",
-      "Callable",
-      "Syntax"
-    ],
-    "date": "2026-04-02",
-    "summary": "Use PHP 8.1 first-class callable syntax ($this-method(...)) to create clean Closure references without array syntax strings. Passing class methods to array f...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "php-match-expression-over-switch",
-    "title": "Replace Verbose Switch Statements with PHP Match Expressions",
-    "category": "PHP",
-    "tags": [
-      "PHP",
-      "Match",
-      "Control Flow"
-    ],
-    "date": "2026-03-25",
-    "summary": "Use PHP match expressions for strict comparison, value returning conditional logic that eliminates break statements and loose equality bugs. PHP switch state...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "git-workflow-interactive-rebase",
-    "title": "Clean Up Local Commit History with Git Interactive Rebase",
-    "category": "Git",
-    "tags": [
-      "Git",
-      "Workflow",
-      "CLI"
-    ],
-    "date": "2026-03-15",
-    "summary": "Use git rebase -i to squash fixup commits, reword commit messages, and clean up branch history prior to opening pull requests. Committing WIP or fixup commit...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
     "slug": "laravel-wheredate-index-performance",
     "title": "Avoid whereDate() on Large Tables: Use Range Queries Instead",
     "category": "Laravel",
@@ -752,20 +248,6 @@
     ],
     "date": "2026-03-12",
     "summary": "whereDate() wraps the column in a DATE() function, preventing the database from using indexes. Use whereBetween() with full timestamps for index-friendly fil...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "git-workflow-bisect-bug-finding",
-    "title": "Isolate Breaking Regressions Automatically with Git Bisect",
-    "category": "Git",
-    "tags": [
-      "Git",
-      "Debugging",
-      "CLI"
-    ],
-    "date": "2026-03-05",
-    "summary": "Use git bisect to perform a binary search across commit history to pinpoint the exact commit that introduced a bug. When a regression appears in production a...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
