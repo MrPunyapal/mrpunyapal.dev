@@ -37,16 +37,16 @@ export function renderSiteHeader(activePage = 'home') {
                     </a>`;
     }).join('\n');
 
-    // Mobile Drawer Items
-    const mobileNavLinksHtml = navItems.map(item => {
+    // Mobile Sidebar Items
+    const mobileSidebarNavLinksHtml = navItems.map(item => {
         const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource');
         const activeClasses = 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 font-semibold border-l-2 border-red-500';
         const inactiveClasses = 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white border-l-2 border-transparent';
 
-        return `        <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="flex items-center gap-3 px-3 py-2.5 rounded-r-md text-sm transition-colors ${isActive ? activeClasses : inactiveClasses}">
-            <span class="shrink-0 text-slate-400 dark:text-slate-500 ${isActive ? 'text-red-500 dark:text-red-400' : ''}">${item.icon}</span>
-            <span>${item.label}</span>
-        </a>`;
+        return `                <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="flex items-center gap-3.5 px-3.5 py-3 rounded-r-lg text-sm transition-all ${isActive ? activeClasses : inactiveClasses}">
+                    <span class="shrink-0 text-slate-400 dark:text-slate-500 ${isActive ? 'text-red-500 dark:text-red-400' : ''}">${item.icon}</span>
+                    <span class="font-medium">${item.label}</span>
+                </a>`;
     }).join('\n');
 
     const isResume = activePage === 'resume';
@@ -93,50 +93,125 @@ ${desktopNavLinksHtml}
 
                 <!-- Mobile Header Bar (Visible on mobile < sm) -->
                 <div class="flex sm:hidden items-center justify-between px-4 py-2.5 w-full">
-                    <a href="/" aria-label="Home - Punyapal Shah" class="p-1 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
-                        <svg class="w-4 h-4" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true"><path d="M280.37 148.26 96 300.4V464c0 26.5 21.5 48 48 48h96V368c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v144h96c26.5 0 48-21.5 48-48V300.3L295.67 148.26c-4.42-3.65-10.88-3.65-15.3 0zM571.6 251.47 488 182.34V44c0-6.63-5.37-12-12-12h-56c-6.63 0-12 5.37-12 12v74.12L318.4 37.6c-17.69-14.61-43.11-14.61-60.8 0L4.4 251.47c-5.1 4.21-5.82 11.77-1.61 16.87l25.6 30.98c4.21 5.1 11.77 5.82 16.87 1.61L280.37 82.26c4.42-3.65 10.88-3.65 15.3 0l235.11 218.67c5.1 4.21 12.66 3.49 16.87-1.61l25.6-30.98c4.21-5.1 3.49-12.66-1.65-16.87z"/></svg>
+                    <a href="/" aria-label="Home - Punyapal Shah" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                        <svg class="w-4.5 h-4.5" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true"><path d="M280.37 148.26 96 300.4V464c0 26.5 21.5 48 48 48h96V368c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v144h96c26.5 0 48-21.5 48-48V300.3L295.67 148.26c-4.42-3.65-10.88-3.65-15.3 0zM571.6 251.47 488 182.34V44c0-6.63-5.37-12-12-12h-56c-6.63 0-12 5.37-12 12v74.12L318.4 37.6c-17.69-14.61-43.11-14.61-60.8 0L4.4 251.47c-5.1 4.21-5.82 11.77-1.61 16.87l25.6 30.98c4.21 5.1 11.77 5.82 16.87 1.61L280.37 82.26c4.42-3.65 10.88-3.65 15.3 0l235.11 218.67c5.1 4.21 12.66 3.49 16.87-1.61l25.6-30.98c4.21-5.1 3.49-12.66-1.65-16.87z"/></svg>
                     </a>
 
-                    <div class="flex items-center gap-1">${resumeDownloadBtn}
+                    <div class="flex items-center gap-1.5">${resumeDownloadBtn}
                         <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
                             <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                         </a>
                         <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
                         </button>
-                        <button type="button" data-mobile-menu-toggle aria-expanded="false" aria-controls="mobile-menu-drawer" aria-label="Toggle navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded ml-1 border border-slate-200 dark:border-slate-800">
-                            <svg class="w-4 h-4 icon-menu-open" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M16 132h416c8.83 0 16-7.17 16-16V84c0-8.83-7.17-16-16-16H16C7.17 68 0 75.17 0 84v32c0 8.83 7.17 16 16 16zm0 160h416c8.83 0 16-7.17 16-16v-32c0-8.83-7.17-16-16-16H16c-8.83 0-16 7.17-16 16v32c0 8.83 7.17 16 16 16zm0 160h416c8.83 0 16-7.17 16-16v-32c0-8.83-7.17-16-16-16H16c-8.83 0-16 7.17-16 16v32c0 8.83 7.17 16 16 16z"/></svg>
-                            <svg class="w-4 h-4 icon-menu-close hidden" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                        <button type="button" data-mobile-menu-toggle aria-expanded="false" aria-controls="mobile-sidebar" aria-label="Open sidebar navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded ml-1 border border-slate-200 dark:border-slate-800">
+                            <svg class="w-4 h-4" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M16 132h416c8.83 0 16-7.17 16-16V84c0-8.83-7.17-16-16-16H16C7.17 68 0 75.17 0 84v32c0 8.83 7.17 16 16 16zm0 160h416c8.83 0 16-7.17 16-16v-32c0-8.83-7.17-16-16-16H16c-8.83 0-16 7.17-16 16v32c0 8.83 7.17 16 16 16zm0 160h416c8.83 0 16-7.17 16-16v-32c0-8.83-7.17-16-16-16H16c-8.83 0-16 7.17-16 16v32c0 8.83 7.17 16 16 16z"/></svg>
                         </button>
                     </div>
                 </div>
 
-                <!-- Mobile Navigation Drawer -->
-                <div id="mobile-menu-drawer" class="hidden sm:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur px-4 py-3 space-y-1">
-${mobileNavLinksHtml}
+                <!-- Off-Canvas Mobile Sidebar Drawer -->
+                <div id="mobile-sidebar" class="hidden sm:hidden fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="sidebar-nav-title">
+                    <!-- Semi-transparent Blur Backdrop -->
+                    <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity duration-300 ease-in-out opacity-0" aria-hidden="true"></div>
+
+                    <!-- Slide-Over Panel Container -->
+                    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+                        <div id="mobile-sidebar-panel" class="w-72 sm:w-80 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
+                            
+                            <!-- Sidebar Header Bar -->
+                            <div class="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-800">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse" aria-hidden="true"></span>
+                                    <h2 id="sidebar-nav-title" class="font-bold text-sm text-slate-900 dark:text-white tracking-tight">Navigation</h2>
+                                </div>
+                                <button type="button" data-mobile-sidebar-close aria-label="Close navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+                                    <svg class="w-4 h-4" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                                </button>
+                            </div>
+
+                            <!-- Sidebar Content Links -->
+                            <div class="flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
+${mobileSidebarNavLinksHtml}
+                            </div>
+
+                            <!-- Sidebar Footer -->
+                            <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                                <span class="font-medium">Punyapal Shah</span>
+                                <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white transition-colors font-mono">GitHub ↗</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Smooth Interactivity Script for Off-Canvas Sidebar -->
                 <script>
-                if (!window.__mobileNavInit) {
-                    window.__mobileNavInit = true;
+                if (!window.__sidebarNavInit) {
+                    window.__sidebarNavInit = true;
+
+                    function openSidebar() {
+                        var sidebar = document.getElementById('mobile-sidebar');
+                        var backdrop = document.getElementById('mobile-sidebar-backdrop');
+                        var panel = document.getElementById('mobile-sidebar-panel');
+                        var toggleBtn = document.querySelector('[data-mobile-menu-toggle]');
+                        if (!sidebar || !backdrop || !panel) return;
+
+                        sidebar.classList.remove('hidden');
+                        document.body.style.overflow = 'hidden';
+
+                        requestAnimationFrame(function() {
+                            backdrop.classList.remove('opacity-0');
+                            backdrop.classList.add('opacity-100');
+                            panel.classList.remove('translate-x-full');
+                            panel.classList.add('translate-x-0');
+                        });
+
+                        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+                    }
+
+                    function closeSidebar() {
+                        var sidebar = document.getElementById('mobile-sidebar');
+                        var backdrop = document.getElementById('mobile-sidebar-backdrop');
+                        var panel = document.getElementById('mobile-sidebar-panel');
+                        var toggleBtn = document.querySelector('[data-mobile-menu-toggle]');
+                        if (!sidebar || !backdrop || !panel) return;
+
+                        backdrop.classList.remove('opacity-100');
+                        backdrop.classList.add('opacity-0');
+                        panel.classList.remove('translate-x-0');
+                        panel.classList.add('translate-x-full');
+
+                        document.body.style.overflow = '';
+
+                        setTimeout(function() {
+                            sidebar.classList.add('hidden');
+                        }, 300);
+
+                        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                    }
+
                     document.addEventListener('click', function(e) {
-                        var btn = e.target.closest('[data-mobile-menu-toggle]');
-                        if (!btn) return;
-                        e.preventDefault();
-                        var header = btn.closest('header') || btn.closest('site-header') || document;
-                        var drawer = header.querySelector('#mobile-menu-drawer');
-                        if (!drawer) return;
-                        var openIcon = btn.querySelector('.icon-menu-open');
-                        var closeIcon = btn.querySelector('.icon-menu-close');
-                        var isHidden = drawer.classList.contains('hidden');
-                        if (isHidden) {
-                            drawer.classList.remove('hidden');
-                            btn.setAttribute('aria-expanded', 'true');
-                            if (openIcon) openIcon.classList.add('hidden');
-                            if (closeIcon) closeIcon.classList.remove('hidden');
-                        } else {
-                            drawer.classList.add('hidden');
-                            btn.setAttribute('aria-expanded', 'false');
-                            if (openIcon) openIcon.classList.remove('hidden');
-                            if (closeIcon) closeIcon.classList.add('hidden');
+                        var openBtn = e.target.closest('[data-mobile-menu-toggle]');
+                        if (openBtn) {
+                            e.preventDefault();
+                            openSidebar();
+                            return;
+                        }
+
+                        var closeBtn = e.target.closest('[data-mobile-sidebar-close]');
+                        var backdrop = e.target.closest('#mobile-sidebar-backdrop');
+                        if (closeBtn || backdrop) {
+                            e.preventDefault();
+                            closeSidebar();
+                            return;
+                        }
+                    });
+
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape') {
+                            var sidebar = document.getElementById('mobile-sidebar');
+                            if (sidebar && !sidebar.classList.contains('hidden')) {
+                                closeSidebar();
+                            }
                         }
                     });
                 }
