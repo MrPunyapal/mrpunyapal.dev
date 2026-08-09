@@ -713,48 +713,51 @@ html:not(.dark) .theme-moon-icon {
     background: linear-gradient(to bottom, #1e293b, transparent);
 }
 
-/* Syntax Highlighting: Light Mode (GitHub / Atom Light) */
+/* Syntax Highlighting: Light Mode (Exact Match to Reference Image) */
 .hljs {
-    color: #24292e;
+    color: #0f172a;
     background: transparent;
 }
 .hljs-comment,
 .hljs-quote {
-    color: #6a737d;
+    color: #94a3b8;
     font-style: italic;
 }
 .hljs-doctag,
 .hljs-keyword,
 .hljs-formula {
-    color: #d73a49;
-    font-weight: 600;
+    color: #2563eb;
+    font-weight: 500;
 }
 .hljs-section,
 .hljs-name,
 .hljs-selector-tag,
 .hljs-deletion,
 .hljs-subst {
-    color: #b31d28;
+    color: #dc2626;
 }
 .hljs-literal {
-    color: #005cc5;
+    color: #0284c7;
 }
 .hljs-string,
 .hljs-regexp,
 .hljs-addition,
 .hljs-attribute,
 .hljs-meta .hljs-string {
-    color: #032f62;
+    color: #0284c7;
 }
 .hljs-attr,
-.hljs-variable,
 .hljs-template-variable,
 .hljs-type,
 .hljs-selector-class,
 .hljs-selector-attr,
 .hljs-selector-pseudo,
 .hljs-number {
-    color: #005cc5;
+    color: #0284c7;
+}
+.hljs-variable {
+    color: #0f172a;
+    font-weight: 600;
 }
 .hljs-symbol,
 .hljs-bullet,
@@ -762,14 +765,23 @@ html:not(.dark) .theme-moon-icon {
 .hljs-meta,
 .hljs-selector-id,
 .hljs-title {
-    color: #6f42c1;
+    color: #0f172a;
 }
-.hljs-built_in,
 .hljs-title.class_,
-.hljs-class .hljs-title,
-.hljs-function .hljs-title {
-    color: #6f42c1;
-    font-weight: 600;
+.hljs-class .hljs-title {
+    color: #0284c7;
+    font-weight: 500;
+}
+.hljs-title.function_,
+.hljs-title.function_.invoke__,
+.hljs-function .hljs-title,
+.hljs-built_in {
+    color: #7c3aed;
+    font-weight: 500;
+}
+.hljs-punctuation,
+.hljs-operator {
+    color: #64748b;
 }
 .hljs-emphasis {
     font-style: italic;

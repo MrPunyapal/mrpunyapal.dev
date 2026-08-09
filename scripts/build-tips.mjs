@@ -136,24 +136,21 @@ renderer.code = function({ text, lang }) {
     }
 
     return `
-<div class="code-block-wrapper my-6 rounded-2xl border border-slate-200 dark:border-neutral-800 bg-slate-50 dark:bg-[#0a0a0a] text-slate-800 dark:text-neutral-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-5 pt-4 pb-2 bg-transparent select-none">
-        <div class="flex items-center gap-3">
-            <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            </div>
-            <span class="font-bold uppercase tracking-wider text-[11px] text-slate-400 dark:text-neutral-500 ml-1">${escapeHtml(language)}</span>
+<div class="code-block-wrapper my-6 rounded-2xl border border-slate-200 dark:border-neutral-800 bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-neutral-100 overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-slate-100/90 dark:bg-[#141414] border-b border-slate-200 dark:border-neutral-800 select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-slate-300 dark:bg-[#2e2e2e] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-300 dark:bg-[#2e2e2e] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-300 dark:bg-[#2e2e2e] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 dark:border-neutral-800 bg-white/80 dark:bg-[#171717] hover:bg-slate-50 dark:hover:bg-[#262626] text-slate-600 dark:text-neutral-300 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-medium cursor-pointer" data-code="${escapeHtml(text)}" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 dark:border-neutral-800 bg-white dark:bg-[#1f1f1f] hover:bg-slate-50 dark:hover:bg-[#2a2a2a] text-slate-600 dark:text-neutral-300 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-medium cursor-pointer" data-code="${escapeHtml(text)}" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-transparent"><code class="hljs language-${escapeHtml(language)}">${highlightedCode}</code></pre>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0a0a0a]"><code class="hljs language-${escapeHtml(language)}">${highlightedCode}</code></pre>
 </div>`;
 };
 
@@ -303,48 +300,51 @@ const criticalGridStyles = `
             background: linear-gradient(to bottom, #1e293b, transparent);
         }
 
-        /* Syntax Highlighting: Light Mode (GitHub / Atom Light) */
+        /* Syntax Highlighting: Light Mode (Exact Match to Reference Image) */
         .hljs {
-            color: #24292e;
+            color: #0f172a;
             background: transparent;
         }
         .hljs-comment,
         .hljs-quote {
-            color: #6a737d;
+            color: #94a3b8;
             font-style: italic;
         }
         .hljs-doctag,
         .hljs-keyword,
         .hljs-formula {
-            color: #d73a49;
-            font-weight: 600;
+            color: #2563eb;
+            font-weight: 500;
         }
         .hljs-section,
         .hljs-name,
         .hljs-selector-tag,
         .hljs-deletion,
         .hljs-subst {
-            color: #b31d28;
+            color: #dc2626;
         }
         .hljs-literal {
-            color: #005cc5;
+            color: #0284c7;
         }
         .hljs-string,
         .hljs-regexp,
         .hljs-addition,
         .hljs-attribute,
         .hljs-meta .hljs-string {
-            color: #032f62;
+            color: #0284c7;
         }
         .hljs-attr,
-        .hljs-variable,
         .hljs-template-variable,
         .hljs-type,
         .hljs-selector-class,
         .hljs-selector-attr,
         .hljs-selector-pseudo,
         .hljs-number {
-            color: #005cc5;
+            color: #0284c7;
+        }
+        .hljs-variable {
+            color: #0f172a;
+            font-weight: 600;
         }
         .hljs-symbol,
         .hljs-bullet,
@@ -352,14 +352,23 @@ const criticalGridStyles = `
         .hljs-meta,
         .hljs-selector-id,
         .hljs-title {
-            color: #6f42c1;
+            color: #0f172a;
         }
-        .hljs-built_in,
         .hljs-title.class_,
-        .hljs-class .hljs-title,
-        .hljs-function .hljs-title {
-            color: #6f42c1;
-            font-weight: 600;
+        .hljs-class .hljs-title {
+            color: #0284c7;
+            font-weight: 500;
+        }
+        .hljs-title.function_,
+        .hljs-title.function_.invoke__,
+        .hljs-function .hljs-title,
+        .hljs-built_in {
+            color: #7c3aed;
+            font-weight: 500;
+        }
+        .hljs-punctuation,
+        .hljs-operator {
+            color: #64748b;
         }
         .hljs-emphasis {
             font-style: italic;
