@@ -637,19 +637,22 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// BAD: Silently swallows the exception and returns false
-function processOrder(): bool {
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// What does guess() return? It returns &#039;finally&#039;!
+function guess(): string
+{
     try {
-        throw new Exception(&#039;Payment failed&#039;);
+        throw new Exception(&#039;Something went wrong&#039;);
+    } catch (Exception $e) {
+        return &#039;catch&#039;;
     } finally {
-        return false; // Exception is completely lost!
+        return &#039;finally&#039;; // Silently overrides the catch return!
     }
 }
 
-// GOOD: Clean up resources in finally, return outside or rethrow
-function processOrderClean(): bool {
+// GOOD: Use finally strictly for resource cleanup
+function processOrderClean(): bool
+{
     try {
-        // Payment logic
         return true;
     } finally {
         $this-&gt;cleanupLocks();
@@ -661,19 +664,22 @@ function processOrderClean(): bool {
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-comment">// BAD: Silently swallows the exception and returns false</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processOrder</span>(<span class="hljs-params"></span>): <span class="hljs-title">bool</span> </span>{
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-comment">// What does guess() return? It returns &#x27;finally&#x27;!</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">guess</span>(<span class="hljs-params"></span>): <span class="hljs-title">string</span>
+</span>{
     <span class="hljs-keyword">try</span> {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">&#x27;Payment failed&#x27;</span>);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">&#x27;Something went wrong&#x27;</span>);
+    } <span class="hljs-keyword">catch</span> (<span class="hljs-built_in">Exception</span> <span class="hljs-variable">$e</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;catch&#x27;</span>;
     } <span class="hljs-keyword">finally</span> {
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// Exception is completely lost!</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;finally&#x27;</span>; <span class="hljs-comment">// Silently overrides the catch return!</span>
     }
 }
 
-<span class="hljs-comment">// GOOD: Clean up resources in finally, return outside or rethrow</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processOrderClean</span>(<span class="hljs-params"></span>): <span class="hljs-title">bool</span> </span>{
+<span class="hljs-comment">// GOOD: Use finally strictly for resource cleanup</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processOrderClean</span>(<span class="hljs-params"></span>): <span class="hljs-title">bool</span>
+</span>{
     <span class="hljs-keyword">try</span> {
-        <span class="hljs-comment">// Payment logic</span>
         <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
     } <span class="hljs-keyword">finally</span> {
         <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">cleanupLocks</span>();
