@@ -490,7 +490,7 @@ export async function buildTips() {
         const tweet_url = data.tweet_url || null;
         const author = data.author || 'Punyapal Shah';
         const author_url = data.author_url || (author === 'Punyapal Shah' ? 'https://x.com/MrPunyapal' : null);
-        const og_image = data.og_image || data.image || `https://mrpunyapal.dev/tips/${slug}-og.png`;
+        const og_image = data.og_image || data.image || `https://mrpunyapal.dev/og/tips/${slug}.png`;
 
         const htmlContent = marked.parse(cleanBody);
 
@@ -667,8 +667,8 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
     <meta property="og:title" content="Tips | Punyapal Shah">
     <meta property="og:description"
         content="Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.">
-    <meta property="og:image" content="https://mrpunyapal.dev/tips-og-image.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/tips-og-image.png">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -684,8 +684,8 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
     <meta name="twitter:title" content="Tips | Punyapal Shah">
     <meta name="twitter:description"
         content="Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/tips-og-image.png">
-    <meta name="twitter:image:src" content="https://mrpunyapal.dev/tips-og-image.png">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips.png">
+    <meta name="twitter:image:src" content="https://mrpunyapal.dev/og/tips.png">
     <meta name="twitter:image:alt" content="Punyapal Shah - Tips">
 
     <!-- Structured Data (JSON-LD) -->

@@ -11,7 +11,7 @@ function getTipPages() {
       const slug = file.replace(/\.html$/, '');
       tipPages.push({
         route: `/tips/${slug}`,
-        output: `tips/${slug}-og.png`,
+        output: `og/tips/${slug}.png`,
       });
     }
   }
@@ -35,27 +35,27 @@ export default defineConfig({
   pages: [
     {
       route: "/",
-      output: "master-og-image.png",
+      output: "og/master.png",
     },
     {
       route: "/projects",
-      output: "projects-og-image.png",
+      output: "og/projects.png",
     },
     {
       route: "/talks",
-      output: "talks-og-image.png",
+      output: "og/talks.png",
     },
     {
       route: "/opensource",
-      output: "opensource-og-image.png",
+      output: "og/opensource.png",
     },
     {
       route: "/resume",
-      output: "resume-og-image.png",
+      output: "og/resume.png",
     },
     {
       route: "/tips",
-      output: "tips-og-image.png",
+      output: "og/tips.png",
     },
     ...getTipPages(),
   ],
