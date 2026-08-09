@@ -493,6 +493,11 @@
                 if (!window.__sidebarNavInit) {
                     window.__sidebarNavInit = true;
 
+                    function preventTouchMove(e) {
+                        if (e.target.closest('#mobile-sidebar-panel')) return;
+                        e.preventDefault();
+                    }
+
                     function openSidebar() {
                         var sidebar = document.getElementById('mobile-sidebar');
                         var backdrop = document.getElementById('mobile-sidebar-backdrop');
@@ -501,7 +506,14 @@
                         if (!sidebar || !backdrop || !panel) return;
 
                         sidebar.classList.remove('hidden');
+
+                        // Lock scrolling on both html and body
+                        document.documentElement.style.overflow = 'hidden';
                         document.body.style.overflow = 'hidden';
+                        document.documentElement.style.touchAction = 'none';
+                        document.body.style.touchAction = 'none';
+
+                        document.addEventListener('touchmove', preventTouchMove, { passive: false });
 
                         requestAnimationFrame(function() {
                             backdrop.classList.remove('opacity-0');
@@ -525,7 +537,13 @@
                         panel.classList.remove('translate-x-0');
                         panel.classList.add('translate-x-full');
 
+                        // Unlock scrolling
+                        document.documentElement.style.overflow = '';
                         document.body.style.overflow = '';
+                        document.documentElement.style.touchAction = '';
+                        document.body.style.touchAction = '';
+
+                        document.removeEventListener('touchmove', preventTouchMove);
 
                         setTimeout(function() {
                             sidebar.classList.add('hidden');
