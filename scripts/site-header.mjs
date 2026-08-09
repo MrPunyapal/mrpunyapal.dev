@@ -5,12 +5,12 @@
 
 export function renderSiteHeader(activePage = 'home') {
     const navItems = [
-        { id: 'home', href: '/', label: 'Home', isHome: true, icon: '<svg class="w-4 h-4" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true"><path d="M280.37 148.26 96 300.4V464c0 26.5 21.5 48 48 48h96V368c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v144h96c26.5 0 48-21.5 48-48V300.3L295.67 148.26c-4.42-3.65-10.88-3.65-15.3 0zM571.6 251.47 488 182.34V44c0-6.63-5.37-12-12-12h-56c-6.63 0-12 5.37-12 12v74.12L318.4 37.6c-17.69-14.61-43.11-14.61-60.8 0L4.4 251.47c-5.1 4.21-5.82 11.77-1.61 16.87l25.6 30.98c4.21 5.1 11.77 5.82 16.87 1.61L280.37 82.26c4.42-3.65 10.88-3.65 15.3 0l235.11 218.67c5.1 4.21 12.66 3.49 16.87-1.61l25.6-30.98c4.21-5.1 3.49-12.66-1.65-16.87z"/></svg>' },
-        { id: 'projects', href: '/projects', label: 'Projects', icon: '<svg class="w-4 h-4" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M464 128H352V80c0-26.5-21.5-48-48-48H208c-26.5 0-48 21.5-48 48v48H48c-26.5 0-48 21.5-48 48v256c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V176c0-26.5-21.5-48-48-48zM208 80h96v48h-96V80z"/></svg>' },
-        { id: 'oss', href: '/opensource', label: 'Open Source', shortLabel: 'OSS', hasHeart: true, icon: '<svg class="w-4 h-4 text-red-500" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>' },
-        { id: 'tips', href: '/tips', label: 'Tips', icon: '<svg class="w-4 h-4" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M192 0C86 0 0 86 0 192c0 77.4 46.2 144.1 112 174.1V416c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32v-49.9c65.8-30 112-96.7 112-174.1C384 86 298 0 192 0zm-32 464c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16v-16z"/></svg>' },
-        { id: 'resume', href: '/resume', label: 'Resume', icon: '<svg class="w-4 h-4" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"/></svg>' },
-        { id: 'talks', href: '/talks', label: 'Talks', icon: '<svg class="w-4 h-4" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M384 192c0-88.4-71.6-160-160-160S64 103.6 64 192c0 34.4 10.9 66.3 29.5 92.6L48 448l163.4-45.4C217 403 221.5 403.4 224 403.4c88.4 0 160-71.6 160-160z"/></svg>' },
+        { id: 'home', href: '/', label: 'Home' },
+        { id: 'projects', href: '/projects', label: 'Projects' },
+        { id: 'oss', href: '/opensource', label: 'Open Source', shortLabel: 'OSS', hasHeart: true },
+        { id: 'tips', href: '/tips', label: 'Tips' },
+        { id: 'resume', href: '/resume', label: 'Resume' },
+        { id: 'talks', href: '/talks', label: 'Talks' },
     ];
 
     // Desktop Nav Items
@@ -18,12 +18,6 @@ export function renderSiteHeader(activePage = 'home') {
         const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource');
         const activeClasses = 'text-slate-900 dark:text-white border-b-[2.5px] dark:border-b-2 border-red-500';
         const inactiveClasses = 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b-[2.5px] dark:border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700';
-
-        if (item.isHome) {
-            return `                    <a href="${item.href}" aria-label="Home"${isActive ? ' aria-current="page"' : ''} class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium ${isActive ? activeClasses : inactiveClasses} transition-colors inline-flex items-center whitespace-nowrap">
-                        <span class="site-nav-home-label">Home</span><svg class="site-nav-home-icon icon text-sm" viewBox="0 0 576 512" aria-hidden="true"><path d="M280.37 148.26 96 300.4V464c0 26.5 21.5 48 48 48h96V368c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v144h96c26.5 0 48-21.5 48-48V300.3L295.67 148.26c-4.42-3.65-10.88-3.65-15.3 0zM571.6 251.47 488 182.34V44c0-6.63-5.37-12-12-12h-56c-6.63 0-12 5.37-12 12v74.12L318.4 37.6c-17.69-14.61-43.11-14.61-60.8 0L4.4 251.47c-5.1 4.21-5.82 11.77-1.61 16.87l25.6 30.98c4.21 5.1 11.77 5.82 16.87 1.61L280.37 82.26c4.42-3.65 10.88-3.65 15.3 0l235.11 218.67c5.1 4.21 12.66 3.49 16.87-1.61l25.6-30.98c4.21-5.1 3.49-12.66-1.65-16.87z"/></svg>
-                    </a>`;
-        }
 
         if (item.hasHeart) {
             return `                    <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium ${isActive ? activeClasses : inactiveClasses} transition-colors inline-flex items-center gap-1.5 whitespace-nowrap">
@@ -37,14 +31,13 @@ export function renderSiteHeader(activePage = 'home') {
                     </a>`;
     }).join('\n');
 
-    // Mobile Sidebar Items
+    // Mobile Sidebar Items (Clean text links, NO icons)
     const mobileSidebarNavLinksHtml = navItems.map(item => {
         const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource');
         const activeClasses = 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 font-semibold border-l-2 border-red-500';
         const inactiveClasses = 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white border-l-2 border-transparent';
 
-        return `                <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="flex items-center gap-3.5 px-3.5 py-3 rounded-r-lg text-sm transition-all ${isActive ? activeClasses : inactiveClasses}">
-                    <span class="shrink-0 text-slate-400 dark:text-slate-500 ${isActive ? 'text-red-500 dark:text-red-400' : ''}">${item.icon}</span>
+        return `                <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="flex items-center px-4 py-3 rounded-r-lg text-base transition-all ${isActive ? activeClasses : inactiveClasses}">
                     <span class="font-medium">${item.label}</span>
                 </a>`;
     }).join('\n');
@@ -93,9 +86,7 @@ ${desktopNavLinksHtml}
 
                 <!-- Mobile Header Bar (Visible on mobile < sm) -->
                 <div class="flex sm:hidden items-center justify-between px-4 py-2.5 w-full">
-                    <a href="/" aria-label="Home - Punyapal Shah" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
-                        <svg class="w-4.5 h-4.5" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true"><path d="M280.37 148.26 96 300.4V464c0 26.5 21.5 48 48 48h96V368c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v144h96c26.5 0 48-21.5 48-48V300.3L295.67 148.26c-4.42-3.65-10.88-3.65-15.3 0zM571.6 251.47 488 182.34V44c0-6.63-5.37-12-12-12h-56c-6.63 0-12 5.37-12 12v74.12L318.4 37.6c-17.69-14.61-43.11-14.61-60.8 0L4.4 251.47c-5.1 4.21-5.82 11.77-1.61 16.87l25.6 30.98c4.21 5.1 11.77 5.82 16.87 1.61L280.37 82.26c4.42-3.65 10.88-3.65 15.3 0l235.11 218.67c5.1 4.21 12.66 3.49 16.87-1.61l25.6-30.98c4.21-5.1 3.49-12.66-1.65-16.87z"/></svg>
-                    </a>
+                    <div></div>
 
                     <div class="flex items-center gap-1.5">${resumeDownloadBtn}
                         <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
@@ -110,20 +101,16 @@ ${desktopNavLinksHtml}
                 </div>
 
                 <!-- Off-Canvas Mobile Sidebar Drawer -->
-                <div id="mobile-sidebar" class="hidden sm:hidden fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="sidebar-nav-title">
+                <div id="mobile-sidebar" class="hidden sm:hidden fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation sidebar">
                     <!-- Semi-transparent Blur Backdrop -->
                     <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity duration-300 ease-in-out opacity-0" aria-hidden="true"></div>
 
                     <!-- Slide-Over Panel Container -->
                     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
-                        <div id="mobile-sidebar-panel" class="w-72 sm:w-80 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
+                        <div id="mobile-sidebar-panel" class="w-64 sm:w-72 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
                             
-                            <!-- Sidebar Header Bar -->
-                            <div class="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-800">
-                                <div class="flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse" aria-hidden="true"></span>
-                                    <h2 id="sidebar-nav-title" class="font-bold text-sm text-slate-900 dark:text-white tracking-tight">Navigation</h2>
-                                </div>
+                            <!-- Sidebar Header Bar (Clean Close Button Only) -->
+                            <div class="flex items-center justify-end px-5 py-4 border-b border-slate-200 dark:border-slate-800">
                                 <button type="button" data-mobile-sidebar-close aria-label="Close navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded hover:bg-slate-100 dark:hover:bg-slate-800">
                                     <svg class="w-4 h-4" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
                                 </button>
