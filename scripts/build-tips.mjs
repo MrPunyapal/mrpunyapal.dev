@@ -490,6 +490,7 @@ export async function buildTips() {
         const tweet_url = data.tweet_url || null;
         const author = data.author || 'Punyapal Shah';
         const author_url = data.author_url || (author === 'Punyapal Shah' ? 'https://x.com/MrPunyapal' : null);
+        const og_image = data.og_image || data.image || `https://mrpunyapal.dev/tips/${slug}-og.png`;
 
         const htmlContent = marked.parse(cleanBody);
 
@@ -503,6 +504,7 @@ export async function buildTips() {
             tweet_url,
             author,
             author_url,
+            og_image,
             rawMarkdown: cleanBody,
             htmlContent,
         });
@@ -665,8 +667,8 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
     <meta property="og:title" content="Tips | Punyapal Shah">
     <meta property="og:description"
         content="Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.">
-    <meta property="og:image" content="https://mrpunyapal.dev/master-og-image.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/master-og-image.png">
+    <meta property="og:image" content="https://mrpunyapal.dev/tips-og-image.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/tips-og-image.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -682,8 +684,8 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
     <meta name="twitter:title" content="Tips | Punyapal Shah">
     <meta name="twitter:description"
         content="Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/master-og-image.png">
-    <meta name="twitter:image:src" content="https://mrpunyapal.dev/master-og-image.png">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/tips-og-image.png">
+    <meta name="twitter:image:src" content="https://mrpunyapal.dev/tips-og-image.png">
     <meta name="twitter:image:alt" content="Punyapal Shah - Tips">
 
     <!-- Structured Data (JSON-LD) -->
@@ -1023,11 +1025,12 @@ function generateSingleTipPage(tip, allTips) {
     <meta property="og:url" content="https://mrpunyapal.dev/tips/${tip.slug}">
     <meta property="og:title" content="${escapeHtml(tip.title)} | Punyapal Shah">
     <meta property="og:description" content="${escapeHtml(tip.summary)}">
-    <meta property="og:image" content="https://mrpunyapal.dev/master-og-image.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/master-og-image.png">
+    <meta property="og:image" content="${escapeHtml(tip.og_image)}">
+    <meta property="og:image:secure_url" content="${escapeHtml(tip.og_image)}">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="${escapeHtml(tip.title)} - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
     <meta property="article:published_time" content="${escapeHtml(tip.date)}">
@@ -1041,7 +1044,8 @@ function generateSingleTipPage(tip, allTips) {
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/${tip.slug}">
     <meta name="twitter:title" content="${escapeHtml(tip.title)} | Punyapal Shah">
     <meta name="twitter:description" content="${escapeHtml(tip.summary)}">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/master-og-image.png">
+    <meta name="twitter:image" content="${escapeHtml(tip.og_image)}">
+    <meta name="twitter:image:alt" content="${escapeHtml(tip.title)} - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
