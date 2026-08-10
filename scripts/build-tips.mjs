@@ -886,7 +886,7 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
                         <h3 class="text-xs font-bold font-mono text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3">Subcategory</h3>
                         <div class="flex flex-wrap gap-1.5" id="sidebar-subcategory-filters">
                             <button type="button" class="subcat-filter-btn px-2.5 py-1 rounded text-[11px] font-mono font-medium border transition-all cursor-pointer active-subcat bg-red-600 text-white border-red-600 shadow-xs" data-subcat="All">
-                                All Subcategories
+                                All
                             </button>
                             ${(() => {
                                 const subcatMap = {};
