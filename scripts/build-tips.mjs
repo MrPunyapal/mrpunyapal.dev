@@ -45,7 +45,7 @@ function extractSummary(markdownContent, manualSummary) {
         .replace(/>\s*/g, '')            // remove blockquotes
         .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // remove links, keep text
         .replace(/[*_`]/g, '')           // remove formatting
-        .replace(/\n+/g, ' ')
+        .replace(/\s+/g, ' ')
         .trim();
 
     if (cleanText.length <= 160) return cleanText;
@@ -1194,7 +1194,7 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
 </body>
 </html>`;
 
-    fs.writeFileSync(path.join(rootDir, 'tips.html'), hubHtml, 'utf-8');
+    fs.writeFileSync(path.join(rootDir, 'tips.html'), hubHtml.replace(/\r\n/g, '\n'), 'utf-8');
 }
 
 function generateSingleTipPage(tip, allTips) {
@@ -1521,7 +1521,7 @@ function generateSingleTipPage(tip, allTips) {
 </body>
 </html>`;
 
-    fs.writeFileSync(path.join(tipsOutDir, `${tip.slug}.html`), singleTipHtml, 'utf-8');
+    fs.writeFileSync(path.join(tipsOutDir, `${tip.slug}.html`), singleTipHtml.replace(/\r\n/g, '\n'), 'utf-8');
 }
 
 // Run when executed directly
