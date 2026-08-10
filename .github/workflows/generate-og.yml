@@ -1,6 +1,14 @@
 name: Generate Open Graph Images
 
 on:
+  # Chain after Tips workflow so tip pages exist before screenshots
+  workflow_run:
+    workflows: ['Auto Generate Tips HTML from Markdown']
+    types: [completed]
+    branches:
+      - main
+
+  # Also trigger on direct page/style changes (narrowed — no scripts/** or content/**)
   push:
     paths:
       - 'index.html'
@@ -10,15 +18,18 @@ on:
       - 'resume.html'
       - 'tips.html'
       - 'tips/**'
-      - 'content/tips/**'
-      - 'scripts/**'
       - 'src/**'
       - 'capturist.config.mjs'
       - 'vite.config.js'
       - 'package.json'
     branches:
       - main
+
   workflow_dispatch:
+
+concurrency:
+  group: generate-og-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -26,6 +37,8 @@ permissions:
 jobs:
   build-og:
     runs-on: ubuntu-latest
+    # Skip if triggered by a failed Tips workflow run
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: Checkout repository
@@ -42,8 +55,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            playwright-chromium-${{ runner.os }}-
+
       - name: Install Playwright Chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install chromium --with-deps
+
+      - name: Install Playwright system deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Generate Open Graph Screenshots
         run: npm run generate:og
@@ -53,4 +80,4 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add public/og/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "build(og): auto-generate open graph screenshots via capturist" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "build(og): auto-generate open graph screenshots via capturist" && git pull --rebase && git push)
