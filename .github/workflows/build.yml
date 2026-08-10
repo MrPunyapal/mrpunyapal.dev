@@ -68,6 +68,8 @@ jobs:
           git add tips.html tips/ public/tips-search-index.json public/sitemap.xml public/resume.pdf public/og/
           if ! git diff --staged --quiet; then
             git commit -m "build: auto-generate site assets (tips, resume PDF, OG screenshots)"
-            git pull --rebase origin main
+            git checkout -- .
+            git clean -fd
+            git pull --rebase --autostash origin main
             git push origin main
           fi
