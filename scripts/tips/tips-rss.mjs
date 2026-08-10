@@ -38,7 +38,7 @@ export function generateRssFeed(tips, publicDir, tipsOutDir) {
       <link>${canonicalUrl}</link>
       <guid isPermaLink="true">${canonicalUrl}</guid>
       <description>${wrapCdata(tip.summary)}</description>
-      <content:encoded>${wrapCdata(tip.htmlContent)}</content:encoded>
+      <content:encoded>${wrapCdata(tip.rssContent || tip.htmlContent)}</content:encoded>
       <pubDate>${toRfc822Date(tip.date)}</pubDate>${updatedXml}
       <dc:creator>${wrapCdata(tip.author)}</dc:creator>
 ${categoriesXml}

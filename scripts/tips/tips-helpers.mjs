@@ -1,4 +1,4 @@
-import { marked } from 'marked';
+import { marked, Marked } from 'marked';
 import hljs from 'highlight.js';
 
 // Format date helper: "2026-07-20" -> "Jul 20, 2026"
@@ -212,6 +212,54 @@ renderer.link = function({ href, text }) {
 
 marked.use({ renderer });
 export { marked };
+
+// Clean semantic HTML renderer for RSS feed (no Tailwind classes, no copy buttons, no hljs span tags)
+const rssMarked = new Marked();
+const rssRenderer = new rssMarked.Renderer();
+
+rssRenderer.code = function({ text, lang }) {
+    const language = lang || '';
+    const langClass = language ? ` class="language-${escapeHtml(language)}"` : '';
+    return `<pre><code${langClass}>${escapeHtml(text)}</code></pre>\n`;
+};
+
+rssRenderer.heading = function({ text, depth }) {
+    const level = Math.min(depth + 1, 6);
+    return `<h${level}>${text}</h${level}>\n`;
+};
+
+rssRenderer.blockquote = function({ text }) {
+    return `<blockquote>${text}</blockquote>\n`;
+};
+
+rssRenderer.paragraph = function({ text }) {
+    return `<p>${text}</p>\n`;
+};
+
+rssRenderer.list = function(token) {
+    const tag = token.ordered ? 'ol' : 'ul';
+    const body = token.items
+        ? token.items.map(item => this.listitem(item)).join('')
+        : (token.body || '');
+    return `<${tag}>\n${body}</${tag}>\n`;
+};
+
+rssRenderer.listitem = function(item) {
+    const raw = typeof item === 'object' ? (item.text || item.raw || '') : item;
+    const content = rssMarked.parseInline(raw);
+    return `  <li>${content}</li>\n`;
+};
+
+rssRenderer.link = function({ href, text }) {
+    return `<a href="${escapeHtml(href)}">${text}</a>`;
+};
+
+rssMarked.use({ renderer: rssRenderer });
+
+export function renderRssHtml(markdownContent) {
+    if (!markdownContent) return '';
+    return rssMarked.parse(markdownContent);
+}
 
 // Critical Grid & Marker Styles exactly matching index.html
 export const criticalGridStyles = `

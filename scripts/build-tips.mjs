@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 
-import { slugify, extractSummary, marked } from './tips/tips-helpers.mjs';
+import { slugify, extractSummary, marked, renderRssHtml } from './tips/tips-helpers.mjs';
 import { generateTipsHubPage } from './tips/tips-hub.mjs';
 import { generateSingleTipPage } from './tips/tips-single.mjs';
 import { generateRssFeed } from './tips/tips-rss.mjs';
@@ -88,6 +88,7 @@ export async function buildTips() {
         const og_image = data.og_image || data.image || `https://mrpunyapal.dev/og/tips/${slug}.png`;
 
         const htmlContent = marked.parse(cleanBody);
+        const rssContent = renderRssHtml(cleanBody);
 
         tips.push({
             slug,
@@ -104,6 +105,7 @@ export async function buildTips() {
             og_image,
             rawMarkdown: cleanBody,
             htmlContent,
+            rssContent,
         });
     }
 
