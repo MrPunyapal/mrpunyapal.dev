@@ -462,13 +462,29 @@ export async function buildTips() {
         fs.mkdirSync(tipsOutDir, { recursive: true });
     }
 
-    const files = fs.readdirSync(tipsContentDir).filter(f => f.endsWith('.md') && f.toLowerCase() !== 'readme.md');
+    function getTipFilesRecursively(dir) {
+        let results = [];
+        if (!fs.existsSync(dir)) return results;
+        const list = fs.readdirSync(dir);
+        list.forEach(file => {
+            const fullPath = path.join(dir, file);
+            const stat = fs.statSync(fullPath);
+            if (stat && stat.isDirectory()) {
+                results = results.concat(getTipFilesRecursively(fullPath));
+            } else if (file.endsWith('.md') && file.toLowerCase() !== 'readme.md') {
+                results.push(fullPath);
+            }
+        });
+        return results;
+    }
+
+    const files = getTipFilesRecursively(tipsContentDir);
     console.log(`📖 Found ${files.length} tip markdown files.`);
 
     const tips = [];
 
-    for (const file of files) {
-        const filePath = path.join(tipsContentDir, file);
+    for (const filePath of files) {
+        const file = path.basename(filePath);
         const rawContent = fs.readFileSync(filePath, 'utf-8');
         const { data, content } = matter(rawContent);
 
@@ -492,6 +508,7 @@ export async function buildTips() {
         const summary = extractSummary(cleanBody, data.summary);
 
         const category = data.category || 'Laravel';
+        const subcategory = data.subcategory || null;
         const tags = Array.isArray(data.tags) ? data.tags : (data.tags ? String(data.tags).split(',').map(s => s.trim()) : [category]);
         const date = data.date || '2026-07-01';
         const tweet_url = data.tweet_url || null;
@@ -505,6 +522,7 @@ export async function buildTips() {
             slug,
             title,
             category,
+            subcategory,
             tags,
             date,
             summary,
@@ -541,6 +559,7 @@ export async function buildTips() {
         slug: t.slug,
         title: t.title,
         category: t.category,
+        subcategory: t.subcategory,
         tags: t.tags,
         date: t.date,
         summary: t.summary,
