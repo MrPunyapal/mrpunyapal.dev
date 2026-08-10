@@ -1,44 +1,23 @@
-name: Generate Open Graph Images
+name: Build & Auto-Generate Assets
 
 on:
-  # Chain after Tips workflow so tip pages exist before screenshots
-  workflow_run:
-    workflows: ['Auto Generate Tips HTML from Markdown']
-    types: [completed]
-    branches:
-      - main
-
-  # Also trigger on direct page/style changes (narrowed — no scripts/** or content/**)
   push:
-    paths:
-      - 'index.html'
-      - 'projects.html'
-      - 'talks.html'
-      - 'opensource.html'
-      - 'resume.html'
-      - 'tips.html'
-      - 'tips/**'
-      - 'src/**'
-      - 'capturist.config.mjs'
-      - 'vite.config.js'
-      - 'package.json'
     branches:
       - main
-
+  repository_dispatch:
+    types: [tips-updated]
   workflow_dispatch:
 
 concurrency:
-  group: generate-og-${{ github.ref }}
+  group: site-build-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
   contents: write
 
 jobs:
-  build-og:
+  build-and-commit:
     runs-on: ubuntu-latest
-    # Skip if triggered by a failed Tips workflow run
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: Checkout repository
@@ -50,7 +29,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -73,12 +52,22 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
 
-      - name: Generate Open Graph Screenshots
+      - name: 1. Compile Tips HTML & Sitemap
+        run: npm run build:tips
+
+      - name: 2. Generate PDF Resume
+        run: npm run build:pdf
+
+      - name: 3. Generate OG Screenshots
         run: npm run generate:og
 
-      - name: Commit and push generated screenshots if changed
+      - name: Commit and push all generated assets if changed
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/og/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "build(og): auto-generate open graph screenshots via capturist" && git pull --rebase origin main && git push origin main)
+          git add tips.html tips/ public/tips-search-index.json public/sitemap.xml public/resume.pdf public/og/
+          if ! git diff --staged --quiet; then
+            git commit -m "build: auto-generate site assets (tips, resume PDF, OG screenshots)"
+            git pull --rebase origin main
+            git push origin main
+          fi
