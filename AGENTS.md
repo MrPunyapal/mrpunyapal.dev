@@ -10,8 +10,9 @@ When making changes, prioritize consistency, maintainability, and factual accura
 
 - **Website Pages**: `index.html`, `projects.html`, `opensource.html`, `tips.html`, `tips/<slug>.html`, `talks.html`, `resume.html`
 - **Tips Content Submodule**: `content/tips/` (Tracked submodule repository `MrPunyapal/tips` containing Markdown files)
-- **Tips Static Generator**: `scripts/build-tips.mjs` (Compiles Markdown to static HTML, search index, and updates sitemap)
+- **Tips Static Generator**: `scripts/build-tips.mjs` (Compiles Markdown to static HTML, search index, RSS 2.0 feed, and updates sitemap)
 - **Search Index**: `public/tips-search-index.json`
+- **Tips RSS 2.0 Feed**: `public/tips/feed.xml` & `tips/feed.xml`
 - **Printable Resume Template**: `scripts/resume-print.html`
 - **PDF Generation Script**: `scripts/generate-pdf.js`
 - **Generated Assets**: `public/resume.pdf`
@@ -68,7 +69,7 @@ The developer tips platform (`tips.html` and `tips/<slug>.html`) is statically g
   author_url: "https://x.com/MrPunyapal"
   ---
   ```
-- **Build-Time Generation**: `scripts/build-tips.mjs` parses markdown, pre-renders syntax highlighting via `highlight.js` (using official GitHub Light / GitHub Dark themes), generates search index `public/tips-search-index.json`, and automatically synchronizes `public/sitemap.xml`.
+- **Build-Time Generation**: `scripts/build-tips.mjs` parses markdown, pre-renders syntax highlighting via `highlight.js` (using official GitHub Light / GitHub Dark themes), generates search index `public/tips-search-index.json`, generates RSS 2.0 feed `public/tips/feed.xml` & `tips/feed.xml`, and automatically synchronizes `public/sitemap.xml`.
 - **Zero Client-Side Overhead**: Code syntax highlighting is pre-rendered at build time, ensuring 0 KB client JS overhead and instant first paint.
 - **Submodule Workflow**: When modifying tip markdown files or adding new tips, commit changes inside the `content/tips/` repository, then update the submodule pointer in the main repository.
 

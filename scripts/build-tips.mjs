@@ -24,6 +24,25 @@ function formatDate(dateStr) {
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
+// Format RFC 822 / RFC 1123 date helper for RSS feed
+function toRfc822Date(dateStr) {
+    if (!dateStr) return new Date().toUTCString();
+    const str = String(dateStr).trim();
+    const isoStr = str.includes('T') ? str : `${str}T00:00:00Z`;
+    const date = new Date(isoStr);
+    if (isNaN(date.getTime())) {
+        const fallbackDate = new Date(str);
+        return isNaN(fallbackDate.getTime()) ? new Date().toUTCString() : fallbackDate.toUTCString();
+    }
+    return date.toUTCString();
+}
+
+// Safely wrap text in XML CDATA block
+function wrapCdata(text) {
+    if (text === null || text === undefined) return '<![CDATA[]]>';
+    return `<![CDATA[${String(text).replace(/\]\]>/g, ']]>]]&gt;<![CDATA[')}]]>`;
+}
+
 // Slugify helper
 function slugify(text) {
     return text
@@ -511,6 +530,7 @@ export async function buildTips() {
         const subcategory = data.subcategory || null;
         const tags = Array.isArray(data.tags) ? data.tags : (data.tags ? String(data.tags).split(',').map(s => s.trim()) : [category]);
         const date = data.date || '2026-07-01';
+        const updated = data.updated || data.last_updated || data.updated_at || null;
         const tweet_url = data.tweet_url || null;
         const author = data.author || 'Punyapal Shah';
         const author_url = data.author_url || (author === 'Punyapal Shah' ? 'https://x.com/MrPunyapal' : null);
@@ -525,6 +545,7 @@ export async function buildTips() {
             subcategory,
             tags,
             date,
+            updated,
             summary,
             tweet_url,
             author,
@@ -571,7 +592,10 @@ export async function buildTips() {
     // 4. Automatically generate/synchronize public/sitemap.xml
     generateSitemap(tips);
 
-    console.log(`✅ Tips build complete: generated tips.html, ${tips.length} individual pages, search index, and sitemap.xml.`);
+    // 5. Generate RSS 2.0 Feed at public/tips/feed.xml and tips/feed.xml
+    generateRssFeed(tips);
+
+    console.log(`✅ Tips build complete: generated tips.html, ${tips.length} individual pages, search index, RSS feed (tips/feed.xml), and sitemap.xml.`);
 }
 
 function generateSitemap(tips) {
@@ -597,6 +621,73 @@ ${tips.map(tip => `    <url>
 `;
 
     fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemapXml.trim() + '\n', 'utf8');
+}
+
+function generateRssFeed(tips) {
+    const publicTipsDir = path.join(publicDir, 'tips');
+    if (!fs.existsSync(publicTipsDir)) {
+        fs.mkdirSync(publicTipsDir, { recursive: true });
+    }
+    if (!fs.existsSync(tipsOutDir)) {
+        fs.mkdirSync(tipsOutDir, { recursive: true });
+    }
+
+    const latestTipDate = tips.length > 0 ? tips[0].date : new Date().toISOString();
+    const lastBuildDate = new Date().toUTCString();
+    const feedPubDate = toRfc822Date(latestTipDate);
+
+    const itemsXml = tips.map(tip => {
+        const canonicalUrl = `https://mrpunyapal.dev/tips/${tip.slug}`;
+
+        // Deduplicate categories, subcategory, and tags
+        const categorySet = new Set();
+        if (tip.category) categorySet.add(tip.category);
+        if (tip.subcategory) categorySet.add(tip.subcategory);
+        if (Array.isArray(tip.tags)) {
+            tip.tags.forEach(t => categorySet.add(t));
+        }
+        const categoriesXml = Array.from(categorySet)
+            .map(cat => `      <category>${wrapCdata(cat)}</category>`)
+            .join('\n');
+
+        const updatedXml = tip.updated
+            ? `\n      <atom:updated>${toRfc822Date(tip.updated)}</atom:updated>`
+            : '';
+
+        return `    <item>
+      <title>${wrapCdata(tip.title)}</title>
+      <link>${canonicalUrl}</link>
+      <guid isPermaLink="true">${canonicalUrl}</guid>
+      <description>${wrapCdata(tip.summary)}</description>
+      <content:encoded>${wrapCdata(tip.htmlContent)}</content:encoded>
+      <pubDate>${toRfc822Date(tip.date)}</pubDate>${updatedXml}
+      <dc:creator>${wrapCdata(tip.author)}</dc:creator>
+${categoriesXml}
+    </item>`;
+    }).join('\n');
+
+    const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" 
+     xmlns:atom="http://www.w3.org/2005/Atom" 
+     xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Punyapal Shah's Tips</title>
+    <link>https://mrpunyapal.dev/tips</link>
+    <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
+    <language>en-us</language>
+    <copyright>Copyright (c) Punyapal Shah</copyright>
+    <pubDate>${feedPubDate}</pubDate>
+    <lastBuildDate>${lastBuildDate}</lastBuildDate>
+    <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+${itemsXml}
+  </channel>
+</rss>
+`;
+
+    const cleanXml = rssXml.replace(/\r\n/g, '\n');
+    fs.writeFileSync(path.join(publicTipsDir, 'feed.xml'), cleanXml, 'utf-8');
+    fs.writeFileSync(path.join(tipsOutDir, 'feed.xml'), cleanXml, 'utf-8');
 }
 
 function generateTipsHubPage(tips, categoryList, categoriesMap) {
@@ -694,6 +785,7 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
         content="Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips">
+    <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -817,9 +909,17 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
                 <div class="animate-fade-up">
-                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
-                        Tips
-                    </h1>
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+                            Tips
+                        </h1>
+                        <a href="/tips/feed.xml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group" aria-label="RSS Feed for Punyapal Shah's Tips">
+                            <svg class="w-3.5 h-3.5 text-amber-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18zM4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+                            </svg>
+                            <span>RSS Feed</span>
+                        </a>
+                    </div>
                     <p class="text-lg text-red-600 dark:text-red-400 max-w-2xl font-mono">
                         Bite-sized engineering patterns, performance techniques, and idiomatic snippets.
                     </p>
@@ -1259,6 +1359,7 @@ function generateSingleTipPage(tip, allTips) {
     <meta name="description" content="${escapeHtml(tip.summary)}">
     <meta name="author" content="${escapeHtml(tip.author)}">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/${tip.slug}">
+    <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
