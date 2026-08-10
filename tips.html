@@ -20,6 +20,7 @@
         content="Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips">
+    <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -1192,9 +1193,17 @@
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
                 <div class="animate-fade-up">
-                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
-                        Tips
-                    </h1>
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+                            Tips
+                        </h1>
+                        <a href="/tips/feed.xml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group" aria-label="RSS Feed for Punyapal Shah's Tips">
+                            <svg class="w-3.5 h-3.5 text-amber-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18zM4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+                            </svg>
+                            <span>RSS Feed</span>
+                        </a>
+                    </div>
                     <p class="text-lg text-red-600 dark:text-red-400 max-w-2xl font-mono">
                         Bite-sized engineering patterns, performance techniques, and idiomatic snippets.
                     </p>
