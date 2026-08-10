@@ -606,6 +606,7 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
         return `
             <div class="tip-card group relative p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
                 data-category="${escapeHtml(tip.category)}"
+                data-subcategory="${escapeHtml((tip.subcategory || '').toLowerCase())}"
                 data-tags="${escapeHtml(tip.tags.join(' ').toLowerCase())}"
                 data-title="${escapeHtml(tip.title.toLowerCase())}"
                 data-summary="${escapeHtml(tip.summary.toLowerCase())}">
@@ -625,9 +626,17 @@ function generateTipsHubPage(tips, categoryList, categoriesMap) {
                 </div>
 
                 <div>
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${badge.bg} ${badge.text} ${badge.border} mb-2.5">
-                        ${escapeHtml(tip.category)}
-                    </span>
+                    <div class="flex items-center gap-1.5 mb-2.5 flex-wrap">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${badge.bg} ${badge.text} ${badge.border}">
+                            ${escapeHtml(tip.category)}
+                        </span>
+                        ${tip.subcategory ? `
+                            <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
+                                ${escapeHtml(tip.subcategory)}
+                            </span>
+                        ` : ''}
+                    </div>
                     <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">
                         <a href="/tips/${tip.slug}">
                             ${escapeHtml(tip.title)}
@@ -1184,9 +1193,17 @@ function generateSingleTipPage(tip, allTips) {
                         <span>Back to All Tips</span>
                     </a>
 
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border ${badge.bg} ${badge.text} ${badge.border}">
-                        ${escapeHtml(tip.category)}
-                    </span>
+                    <div class="inline-flex items-center gap-1.5 flex-wrap">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border ${badge.bg} ${badge.text} ${badge.border}">
+                            ${escapeHtml(tip.category)}
+                        </span>
+                        ${tip.subcategory ? `
+                            <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
+                                ${escapeHtml(tip.subcategory)}
+                            </span>
+                        ` : ''}
+                    </div>
                 </div>
 
                 <!-- Title & Meta -->
