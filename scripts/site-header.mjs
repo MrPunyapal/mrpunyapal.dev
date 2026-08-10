@@ -31,14 +31,14 @@ export function renderSiteHeader(activePage = 'home') {
                     </a>`;
     }).join('\n');
 
-    // Mobile Sidebar Items (Clean text links, NO icons)
+    // Mobile Sidebar Items (Clean left red border quote style)
     const mobileSidebarNavLinksHtml = navItems.map(item => {
         const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource');
-        const activeClasses = 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 font-semibold border-l-2 border-red-500';
-        const inactiveClasses = 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white border-l-2 border-transparent';
+        const activeClasses = 'bg-slate-100 dark:bg-slate-800/60 text-slate-900 dark:text-white font-medium border-l-4 border-red-500';
+        const inactiveClasses = 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent';
 
-        return `                <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="flex items-center px-4 py-3 rounded-r-lg text-base transition-all ${isActive ? activeClasses : inactiveClasses}">
-                    <span class="font-medium">${item.label}</span>
+        return `                <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="flex items-center px-4 py-3 text-base transition-all ${isActive ? activeClasses : inactiveClasses}">
+                    <span>${item.label}</span>
                 </a>`;
     }).join('\n');
 
@@ -111,10 +111,10 @@ ${desktopNavLinksHtml}
 
                     <!-- Slide-Over Panel Container -->
                     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
-                        <div id="mobile-sidebar-panel" class="w-64 sm:w-72 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
+                        <div id="mobile-sidebar-panel" class="w-64 sm:w-72 h-screen min-h-screen bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
                             
                             <!-- Sidebar Header Bar (Clean Close Button Only) -->
-                            <div class="flex items-center justify-end px-5 py-4 border-b border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-end px-4 py-3.5 border-b border-slate-200 dark:border-slate-800">
                                 <button type="button" data-mobile-sidebar-close aria-label="Close navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded hover:bg-slate-100 dark:hover:bg-slate-800">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                         <path d="M18 6 6 18M6 6l12 12"/>
@@ -123,13 +123,13 @@ ${desktopNavLinksHtml}
                             </div>
 
                             <!-- Sidebar Content Links -->
-                            <div class="flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
+                            <div class="flex-1 overflow-y-auto px-3 py-4 space-y-1.5">
 ${mobileSidebarNavLinksHtml}
                             </div>
 
                             <!-- Sidebar Footer -->
                             <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                                <span class="font-medium">Punyapal Shah</span>
+                                <span class="font-medium text-slate-700 dark:text-slate-300">Punyapal Shah</span>
                                 <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white transition-colors font-mono">GitHub ↗</a>
                             </div>
                         </div>
