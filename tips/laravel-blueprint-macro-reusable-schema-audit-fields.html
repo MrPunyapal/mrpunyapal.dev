@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a Reusable whereLike Macro for Eloquent Searching | Tips | Punyapal Shah</title>
+    <title>Reusable Migration Fields with Custom Blueprint Macros | Tips | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,25 +16,25 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...">
+    <meta name="description" content="Extend Laravel&#039;s Blueprint class with custom macros to standardize and reuse common schema columns across database migrations. Database migrations often requ...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields">
     <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro">
-    <meta property="og:title" content="Add a Reusable whereLike Macro for Eloquent Searching | Punyapal Shah">
-    <meta property="og:description" content="Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-custom-wherelike-macro.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-custom-wherelike-macro.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields">
+    <meta property="og:title" content="Reusable Migration Fields with Custom Blueprint Macros | Punyapal Shah">
+    <meta property="og:description" content="Extend Laravel&#039;s Blueprint class with custom macros to standardize and reuse common schema columns across database migrations. Database migrations often requ...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-blueprint-macro-reusable-schema-audit-fields.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-blueprint-macro-reusable-schema-audit-fields.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Add a Reusable whereLike Macro for Eloquent Searching - Punyapal Shah">
+    <meta property="og:image:alt" content="Reusable Migration Fields with Custom Blueprint Macros - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-05-25">
+    <meta property="article:published_time" content="2026-08-11">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="Laravel">
 
@@ -42,11 +42,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro">
-    <meta name="twitter:title" content="Add a Reusable whereLike Macro for Eloquent Searching | Punyapal Shah">
-    <meta name="twitter:description" content="Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-custom-wherelike-macro.png">
-    <meta name="twitter:image:alt" content="Add a Reusable whereLike Macro for Eloquent Searching - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields">
+    <meta name="twitter:title" content="Reusable Migration Fields with Custom Blueprint Macros | Punyapal Shah">
+    <meta name="twitter:description" content="Extend Laravel&#039;s Blueprint class with custom macros to standardize and reuse common schema columns across database migrations. Database migrations often requ...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-blueprint-macro-reusable-schema-audit-fields.png">
+    <meta name="twitter:image:alt" content="Reusable Migration Fields with Custom Blueprint Macros - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -55,12 +55,12 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro#article",
-                "headline": "Add a Reusable whereLike Macro for Eloquent Searching",
-                "description": "Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...",
-                "datePublished": "2026-05-25",
+                "@id": "https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields#article",
+                "headline": "Reusable Migration Fields with Custom Blueprint Macros",
+                "description": "Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations. Database migrations often requ...",
+                "datePublished": "2026-08-11",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -89,8 +89,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Add a Reusable whereLike Macro for Eloquent Searching",
-                        "item": "https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro"
+                        "name": "Reusable Migration Fields with Custom Blueprint Macros",
+                        "item": "https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields"
                     }
                 ]
             }
@@ -673,7 +673,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Add a Reusable whereLike Macro for Eloquent Searching
+                        Reusable Migration Fields with Custom Blueprint Macros
                     </h1>
 
                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -682,9 +682,9 @@
                             <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2026-05-25" class="inline-flex items-center gap-1.5">
+                        <time datetime="2026-08-11" class="inline-flex items-center gap-1.5">
                             <svg class="icon text-xs opacity-70" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            May 25, 2026
+                            Aug 11, 2026
                         </time>
                     </div>
                 </div>
@@ -698,7 +698,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Searching across multiple string columns usually requires repetitive orWhere chains. Registering a macro in AppServiceProvider provides a clean API for wildcard matching.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Database migrations often require repeating the same group of audit columns across multiple tables. Repeating these field definitions across dozens of migrations creates maintenance overhead and inconsistencies.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Problem: Repetitive Schema Definitions</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When multiple tables require tracking creation, updates, soft deletions, and restoration details, a standard migration file quickly becomes verbose:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -706,21 +706,195 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\User;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="Schema::create(&#039;posts&#039;, function (Blueprint $table) {
+    $table-&gt;id();
+    $table-&gt;string(&#039;title&#039;);
+    $table-&gt;text(&#039;content&#039;);
 
-// Search across name, email, and bio in a single call
-$users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;], $search)-&gt;get();" aria-label="Copy code to clipboard">
+    // Repeated audit columns
+    $table-&gt;timestamps();
+    $table-&gt;softDeletes();
+    $table-&gt;timestamp(&#039;restored_at&#039;)-&gt;nullable();
+    $table-&gt;unsignedBigInteger(&#039;created_by&#039;)-&gt;nullable();
+    $table-&gt;unsignedBigInteger(&#039;updated_by&#039;)-&gt;nullable();
+    $table-&gt;unsignedBigInteger(&#039;deleted_by&#039;)-&gt;nullable();
+    $table-&gt;unsignedBigInteger(&#039;restored_by&#039;)-&gt;nullable();
+});" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-title class_">Schema</span>::<span class="hljs-title function_ invoke__">create</span>(<span class="hljs-string">&#x27;posts&#x27;</span>, function (Blueprint <span class="hljs-variable">$table</span>) {
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">id</span>();
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-keyword">string</span>(<span class="hljs-string">&#x27;title&#x27;</span>);
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">text</span>(<span class="hljs-string">&#x27;content&#x27;</span>);
 
-<span class="hljs-comment">// Search across name, email, and bio in a single call</span>
-<span class="hljs-variable">$users</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">whereLike</span>([<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;email&#x27;</span>, <span class="hljs-string">&#x27;bio&#x27;</span>], <span class="hljs-variable">$search</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Wraps multiple orWhere calls inside a grouped subquery clause</span></li><li class="leading-relaxed"><span class="align-middle">Works with single column strings or arrays of columns</span></li><li class="leading-relaxed"><span class="align-middle">Keeps controller search logic minimal and readable</span></li></ul>
+    <span class="hljs-comment">// Repeated audit columns</span>
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">timestamps</span>();
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">softDeletes</span>();
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">timestamp</span>(<span class="hljs-string">&#x27;restored_at&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">unsignedBigInteger</span>(<span class="hljs-string">&#x27;created_by&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">unsignedBigInteger</span>(<span class="hljs-string">&#x27;updated_by&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">unsignedBigInteger</span>(<span class="hljs-string">&#x27;deleted_by&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">unsignedBigInteger</span>(<span class="hljs-string">&#x27;restored_by&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+});</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Duplicating these 8 lines across every new table definition increases boilerplate code and makes project-wide schema changes tedious.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Registering a Custom Blueprint Macro</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel's `Illuminate\Database\Schema\Blueprint` class can be extended using macros. Registering a custom macro allows you to bundle related column definitions into a single helper method inside `AppServiceProvider`:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Providers;
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Blueprint::macro(&#039;auditFields&#039;, function () {
+            $this-&gt;timestamps();
+            $this-&gt;softDeletes();
+
+            $this-&gt;timestamp(&#039;restored_at&#039;)-&gt;nullable();
+
+            $this-&gt;unsignedBigInteger(&#039;created_by&#039;)-&gt;nullable();
+            $this-&gt;unsignedBigInteger(&#039;updated_by&#039;)-&gt;nullable();
+            $this-&gt;unsignedBigInteger(&#039;deleted_by&#039;)-&gt;nullable();
+            $this-&gt;unsignedBigInteger(&#039;restored_by&#039;)-&gt;nullable();
+        });
+    }
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Providers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Schema</span>\<span class="hljs-title">Blueprint</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppServiceProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boot</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
+    </span>{
+        <span class="hljs-title class_">Blueprint</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;auditFields&#x27;</span>, function () {
+            <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">timestamps</span>();
+            <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">softDeletes</span>();
+
+            <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">timestamp</span>(<span class="hljs-string">&#x27;restored_at&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+
+            <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">unsignedBigInteger</span>(<span class="hljs-string">&#x27;created_by&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+            <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">unsignedBigInteger</span>(<span class="hljs-string">&#x27;updated_by&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+            <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">unsignedBigInteger</span>(<span class="hljs-string">&#x27;deleted_by&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+            <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">unsignedBigInteger</span>(<span class="hljs-string">&#x27;restored_by&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nullable</span>();
+        });
+    }
+}</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">What These Fields Represent</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><code>timestamps()</code>: Adds standard <code>created_at</code> and <code>updated_at</code> timestamps.</span></li><li class="leading-relaxed"><span class="align-middle"><code>softDeletes()</code>: Adds a nullable <code>deleted_at</code> timestamp for soft deletion.</span></li><li class="leading-relaxed"><span class="align-middle"><code>restored_at</code>: Tracks the precise timestamp when a soft-deleted record is restored.</span></li><li class="leading-relaxed"><span class="align-middle"><code>created_by</code>, <code>updated_by</code>, <code>deleted_by</code>, <code>restored_by</code>: Store the user IDs of the accounts responsible for each state change.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Reusing the Macro Across Migrations</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Once registered, the `auditFields()` macro is available on `$table` instances in any migration file.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Users Migration</h4>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create(&#039;users&#039;, function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string(&#039;name&#039;);
+            $table-&gt;string(&#039;email&#039;)-&gt;unique();
+
+            $table-&gt;auditFields();
+        });
+    }
+};" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Migrations</span>\<span class="hljs-title">Migration</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Schema</span>\<span class="hljs-title">Blueprint</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Schema</span>;
+
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Migration</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
+    </span>{
+        <span class="hljs-title class_">Schema</span>::<span class="hljs-title function_ invoke__">create</span>(<span class="hljs-string">&#x27;users&#x27;</span>, function (Blueprint <span class="hljs-variable">$table</span>) {
+            <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">id</span>();
+            <span class="hljs-variable">$table</span>-&gt;<span class="hljs-keyword">string</span>(<span class="hljs-string">&#x27;name&#x27;</span>);
+            <span class="hljs-variable">$table</span>-&gt;<span class="hljs-keyword">string</span>(<span class="hljs-string">&#x27;email&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">unique</span>();
+
+            <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">auditFields</span>();
+        });
+    }
+};</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Posts Migration</h4>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create(&#039;posts&#039;, function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string(&#039;title&#039;);
+            $table-&gt;text(&#039;content&#039;);
+
+            $table-&gt;auditFields();
+        });
+    }
+};" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Migrations</span>\<span class="hljs-title">Migration</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Schema</span>\<span class="hljs-title">Blueprint</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Schema</span>;
+
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Migration</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
+    </span>{
+        <span class="hljs-title class_">Schema</span>::<span class="hljs-title function_ invoke__">create</span>(<span class="hljs-string">&#x27;posts&#x27;</span>, function (Blueprint <span class="hljs-variable">$table</span>) {
+            <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">id</span>();
+            <span class="hljs-variable">$table</span>-&gt;<span class="hljs-keyword">string</span>(<span class="hljs-string">&#x27;title&#x27;</span>);
+            <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">text</span>(<span class="hljs-string">&#x27;content&#x27;</span>);
+
+            <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">auditFields</span>();
+        });
+    }
+};</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Both tables receive identical audit field structures while keeping migration files concise.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Customizing Project Conventions</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Macros can be tailored to fit your application's specific conventions. If a project requires additional metadata columns, tenant identifiers, or custom status attributes across multiple tables, they can be defined within the macro body.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Why This Is Useful</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Defining schema macros centralizes multi-column definitions into a single location in your codebase. If your application conventions expand to include additional columns, updating the macro definition ensures future migrations include the new standard structure.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Note that registering or modifying a macro does not alter existing database tables or retroactively update past migrations. Macros expand to standard column definitions only when executed during active migration runs.</p>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -730,11 +904,11 @@ $users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;],
                             <svg class="icon text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Macros</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Database</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Migrations</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Macros</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Add%20a%20Reusable%20whereLike%20Macro%20for%20Eloquent%20Searching%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-custom-wherelike-macro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Reusable%20Migration%20Fields%20with%20Custom%20Blueprint%20Macros%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-blueprint-macro-reusable-schema-audit-fields" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -751,28 +925,6 @@ $users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;],
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-blueprint-macro-reusable-schema-audit-fields" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
-                    <!-- Corner Crosshairs -->
-                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Reusable Migration Fields with Custom Blueprint Macros
-                    </h3>
-                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </span>
-                </a>
                 <a href="/tips/laravel-livewire-flux-error-handling" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -790,6 +942,28 @@ $users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;],
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
                         Render Multiple Field Validation Errors with Flux UI and Blade
+                    </h3>
+                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                <a href="/tips/laravel-validation-wildcard-array-performance" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                    <!-- Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
+                        Optimize Large Wildcard Array Validation in Laravel 13.24
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
