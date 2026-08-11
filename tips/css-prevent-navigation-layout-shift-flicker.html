@@ -698,11 +698,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-<<<<<<< HEAD
                     <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Navigation bars often suffer from subtle layout shifts during page reloads, theme toggles, and tab switches. Combining a few CSS and HTML techniques eliminates these visual jumps entirely.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">1. Lock Root Scrollbar Space</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Navigating between long pages with scrollbars and short pages without scrollbars causes horizontal layout jumps. Use `scrollbar-gutter: stable` on `html` with `overflow-y: auto`.</p>
-=======
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Navigation bars often suffer from subtle layout shifts during page reloads, theme toggles, and tab switches. Combining a few CSS and HTML techniques eliminates these visual jumps entirely.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">1. Lock Root Scrollbar Space</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Navigating between long pages with scrollbars and short pages without scrollbars causes horizontal layout jumps. Use `scrollbar-gutter` on `html` and place horizontal overflow control on `body`.</p>
->>>>>>> 3af3336398f5a4e689670260c000851f1913bf2c
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -710,17 +706,10 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
-<<<<<<< HEAD
         <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="/* Reserve scrollbar width globally without forcing a scrollbar track on short pages */
 html {
   scrollbar-gutter: stable;
   overflow-y: auto;
-=======
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="/* Reserve scrollbar width globally on the root element */
-html {
-  scrollbar-gutter: stable;
-  overflow-y: scroll;
->>>>>>> 3af3336398f5a4e689670260c000851f1913bf2c
 }
 
 /* Prevent horizontal overflow without breaking root scrollbar gutter */
@@ -733,28 +722,17 @@ body {
             <span class="copy-label">Copy</span>
         </button>
     </div>
-<<<<<<< HEAD
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-css"><span class="hljs-comment">/* Reserve scrollbar width globally without forcing a scrollbar track on short pages */</span>
 <span class="hljs-selector-tag">html</span> {
   <span class="hljs-attribute">scrollbar-gutter</span>: stable;
   <span class="hljs-attribute">overflow-y</span>: auto;
-=======
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-css"><span class="hljs-comment">/* Reserve scrollbar width globally on the root element */</span>
-<span class="hljs-selector-tag">html</span> {
-  <span class="hljs-attribute">scrollbar-gutter</span>: stable;
-  <span class="hljs-attribute">overflow-y</span>: scroll;
->>>>>>> 3af3336398f5a4e689670260c000851f1913bf2c
 }
 
 <span class="hljs-comment">/* Prevent horizontal overflow without breaking root scrollbar gutter */</span>
 <span class="hljs-selector-tag">body</span> {
   <span class="hljs-attribute">overflow-x</span>: hidden;
 }</code></pre>
-<<<<<<< HEAD
 </div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">`scrollbar-gutter: stable` reserves the scrollbar space on short pages so layout width remains constant, while `overflow-y: auto` prevents rendering an empty scrollbar track when scrolling is not needed.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Do not place `overflow-x: hidden` directly on `html`, as browsers will ignore root `scrollbar-gutter` calculations when overflow is clipped at the html element level.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">2. Lock Navigation Tab Widths with CSS Grid</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Active or hovered navigation tabs often expand in width when text becomes bold or changes color contrast, pushing adjacent tabs left or right. Use CSS Grid overlay with an invisible pseudo-element to reserve bold text dimensions upfront.</p>
-=======
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Do not place `overflow-x: hidden` directly on `html`, as browsers will ignore root `scrollbar-gutter` calculations when overflow is clipped at the html element level.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">2. Lock Navigation Tab Widths with CSS Grid</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Active or hovered navigation tabs often expand in width when text becomes bold or changes color contrast, pushing adjacent tabs left or right. Use CSS Grid overlay with an invisible pseudo-element to reserve bold text dimensions upfront.</p>
->>>>>>> 3af3336398f5a4e689670260c000851f1913bf2c
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -928,11 +906,7 @@ body {
 <span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:not</span>(<span class="hljs-selector-class">.active</span>) {
   <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">15</span>, <span class="hljs-number">23</span>, <span class="hljs-number">42</span>, <span class="hljs-number">0.6</span>);
 }</code></pre>
-<<<<<<< HEAD
 </div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Key Takeaways</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Reserve scrollbar width on <code>html</code> with <code>scrollbar-gutter: stable</code> and <code>overflow-y: auto</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Reserve space for bold tab labels using <code>display: inline-grid</code> and <code>content: attr(data-text)</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Pre-render all theme toggle states in static HTML to eliminate DOM injection flicker.</span></li><li class="leading-relaxed"><span class="align-middle">Adjust text opacity rather than hex colors to preserve font glyph vector calculations.</span></li></ul>
-=======
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Key Takeaways</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Reserve scrollbar width on <code>html</code> with <code>scrollbar-gutter: stable</code> and handle clipping on <code>body</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Reserve space for bold tab labels using <code>display: inline-grid</code> and <code>content: attr(data-text)</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Pre-render all theme toggle states in static HTML to eliminate DOM injection flicker.</span></li><li class="leading-relaxed"><span class="align-middle">Adjust text opacity rather than hex colors to preserve font glyph vector calculations.</span></li></ul>
->>>>>>> 3af3336398f5a4e689670260c000851f1913bf2c
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
