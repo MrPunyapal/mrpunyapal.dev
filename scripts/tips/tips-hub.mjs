@@ -226,12 +226,20 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                         <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
                             Tips
                         </h1>
-                        <a href="/tips/feed.xml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group" aria-label="RSS Feed for Punyapal Shah's Tips">
-                            <svg class="w-3.5 h-3.5 text-amber-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18zM4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
-                            </svg>
-                            <span>RSS Feed</span>
-                        </a>
+                        <div class="flex items-center gap-2">
+                            <button id="random-tip-btn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group cursor-pointer" aria-label="Open a random developer tip">
+                                <svg class="w-3.5 h-3.5 text-red-500 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h7l-4 4m0 0l4 4M7 8h13M20 20h-7l4-4m0 0l-4-4m4 4H4" />
+                                </svg>
+                                <span>Random Tip</span>
+                            </button>
+                            <a href="/tips/feed.xml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group" aria-label="RSS Feed for Punyapal Shah's Tips">
+                                <svg class="w-3.5 h-3.5 text-amber-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18zM4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+                                </svg>
+                                <span>RSS Feed</span>
+                            </a>
+                        </div>
                     </div>
                     <p class="text-lg text-red-600 dark:text-red-400 max-w-2xl font-mono">
                         Bite-sized engineering patterns, performance techniques, and idiomatic snippets.
@@ -372,7 +380,16 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
 
     <!-- Client-side Interactive Filter & Search Script -->
     <script>
+        const ALL_TIP_SLUGS = ${JSON.stringify(tips.map(t => t.slug))};
         document.addEventListener('DOMContentLoaded', () => {
+            const randomTipBtn = document.getElementById('random-tip-btn');
+            if (randomTipBtn && ALL_TIP_SLUGS.length > 0) {
+                randomTipBtn.addEventListener('click', () => {
+                    const randomIndex = Math.floor(Math.random() * ALL_TIP_SLUGS.length);
+                    const randomSlug = ALL_TIP_SLUGS[randomIndex];
+                    window.location.href = '/tips/' + randomSlug;
+                });
+            }
             const searchInput = document.getElementById('tip-search');
             const categoryFilterBtns = document.querySelectorAll('.filter-btn');
             const subcategoryFilterBtns = document.querySelectorAll('.subcat-filter-btn');
