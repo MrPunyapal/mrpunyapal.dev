@@ -514,12 +514,6 @@
 
                         sidebar.classList.remove('hidden');
 
-                        // Lock scrolling on both html and body
-                        document.documentElement.style.overflow = 'hidden';
-                        document.body.style.overflow = 'hidden';
-                        document.documentElement.style.touchAction = 'none';
-                        document.body.style.touchAction = 'none';
-
                         document.addEventListener('touchmove', preventTouchMove, { passive: false });
 
                         requestAnimationFrame(function() {
@@ -543,12 +537,6 @@
                         backdrop.classList.add('opacity-0');
                         panel.classList.remove('translate-x-0');
                         panel.classList.add('translate-x-full');
-
-                        // Unlock scrolling
-                        document.documentElement.style.overflow = '';
-                        document.body.style.overflow = '';
-                        document.documentElement.style.touchAction = '';
-                        document.body.style.touchAction = '';
 
                         document.removeEventListener('touchmove', preventTouchMove);
 
