@@ -16,18 +16,18 @@ export function renderSiteHeader(activePage = 'home') {
     // Desktop Nav Items
     const desktopNavLinksHtml = navItems.map(item => {
         const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource');
-        const activeClasses = 'text-slate-900 dark:text-white border-b-[2.5px] dark:border-b-2 border-red-500';
-        const inactiveClasses = 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b-[2.5px] dark:border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700';
+        const activeClasses = 'text-slate-900 dark:text-white border-b-2 border-red-500';
+        const inactiveClasses = 'text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors';
 
         if (item.hasHeart) {
-            return `                    <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium ${isActive ? activeClasses : inactiveClasses} transition-colors inline-flex items-center gap-1.5 whitespace-nowrap">
-                        <span class="sm:hidden">${item.shortLabel}</span><span class="hidden sm:inline">${item.label}</span>
+            return `                    <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium ${isActive ? activeClasses : inactiveClasses} inline-flex items-center gap-1.5 whitespace-nowrap">
+                        <span class="nav-label" data-text="${item.label}"><span class="sm:hidden">${item.shortLabel}</span><span class="hidden sm:inline">${item.label}</span></span>
                         <svg class="icon text-red-500 text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-heart"/></svg>
                     </a>`;
         }
 
-        return `                    <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium ${isActive ? activeClasses : inactiveClasses} transition-colors inline-flex items-center whitespace-nowrap">
-                        ${item.label}
+        return `                    <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="px-2.5 sm:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium ${isActive ? activeClasses : inactiveClasses} inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="${item.label}"><span>${item.label}</span></span>
                     </a>`;
     }).join('\n');
 

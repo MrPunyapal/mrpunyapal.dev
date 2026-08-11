@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 /* Prevent horizontal layout shifts on page reload / navigation by reserving scrollbar space */
 html {
     scrollbar-gutter: stable;
@@ -5,12 +7,44 @@ html {
 }
 
 body {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     overflow-x: hidden;
 }
 
 site-header {
     display: block;
     width: 100%;
+}
+
+.site-nav-tabs a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.site-nav-tabs a > .nav-label {
+    display: inline-grid;
+    grid-template-areas: "label";
+    align-items: center;
+    justify-items: center;
+}
+
+.site-nav-tabs a > .nav-label::before,
+.site-nav-tabs a > .nav-label::after,
+.site-nav-tabs a > .nav-label > span {
+    grid-area: label;
+}
+
+/* Tab Width Locking: Reserves space for bold text without breaking horizontal flex alignment */
+.site-nav-tabs a > .nav-label::after {
+    content: attr(data-text);
+    font-weight: 700;
+    visibility: hidden;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
 }
 
 /*
