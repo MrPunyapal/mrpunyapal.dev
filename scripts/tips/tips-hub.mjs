@@ -189,7 +189,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
     </script>
 </head>
 
-<body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+<body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative antialiased transition-colors duration-200">
     ${iconSprite}
 
     <!-- Main Content Frame -->

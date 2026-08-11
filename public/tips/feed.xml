@@ -10,7 +10,7 @@
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
     <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Tue, 11 Aug 2026 12:24:37 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 18:07:56 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title><![CDATA[Prevent Navigation Layout Shifts and Flickering in Web Applications]]></title>
@@ -33,7 +33,17 @@ body {
 }</code></pre>
 <p>`scrollbar-gutter: stable` reserves the scrollbar space on short pages so layout width remains constant, while `overflow-y: auto` prevents rendering an empty scrollbar track when scrolling is not needed.</p>
 <p>Do not place `overflow-x: hidden` directly on `html`, as browsers will ignore root `scrollbar-gutter` calculations when overflow is clipped at the html element level.</p>
-<h4>2. Lock Navigation Tab Widths with CSS Grid</h4>
+<h4>2. Prevent View Transition Scrollbar Flicker</h4>
+<p>When using native cross-document View Transitions (`@view-transition { navigation: auto; }`), browsers render outgoing and incoming page snapshots simultaneously. For a single frame during the transition, the viewport height expands, triggering a temporary scrollbar track.</p>
+<pre><code class="language-css">/* Prevent temporary scrollbar flicker during cross-document view transitions */
+::view-transition-group(root),
+::view-transition-image-pair(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+  overflow: hidden !important;
+}</code></pre>
+<p>Setting `overflow: hidden` on the root view transition pseudo-elements clips snapshot layers to viewport bounds, preventing split-second scrollbar popping during page navigations.</p>
+<h4>3. Lock Navigation Tab Widths with CSS Grid</h4>
 <p>Active or hovered navigation tabs often expand in width when text becomes bold or changes color contrast, pushing adjacent tabs left or right. Use CSS Grid overlay with an invisible pseudo-element to reserve bold text dimensions upfront.</p>
 <pre><code class="language-html">&lt;nav class=&quot;nav-tabs&quot;&gt;
   &lt;a href=&quot;/dashboard&quot; class=&quot;nav-link active&quot;&gt;
@@ -74,7 +84,7 @@ body {
   user-select: none;
   pointer-events: none;
 }</code></pre>
-<h4>3. Pre-render Theme Toggle Icons in HTML</h4>
+<h4>4. Pre-render Theme Toggle Icons in HTML</h4>
 <p>Swapping sun and moon icons via JavaScript after page load causes visual button flickering. Pre-render both icons directly in static HTML and toggle visibility using CSS theme classes.</p>
 <pre><code class="language-html">&lt;button type=&quot;button&quot; class=&quot;theme-toggle&quot; aria-label=&quot;Toggle theme&quot;&gt;
   &lt;!-- Sun icon visible in dark mode --&gt;
@@ -87,7 +97,7 @@ body {
     &lt;path d=&quot;M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z&quot; fill=&quot;currentColor&quot;/&gt;
   &lt;/svg&gt;
 &lt;/button&gt;</code></pre>
-<h4>4. Use Opacity for Text Contrast Changes</h4>
+<h4>5. Use Opacity for Text Contrast Changes</h4>
 <p>Changing text color from gray to solid black or white triggers font stem-darkening in browser rendering engines, altering glyph widths by fractions of a pixel. Use constant base colors and toggle opacity instead.</p>
 <pre><code class="language-css">/* Active tab */
 .nav-link.active {
@@ -101,6 +111,7 @@ body {
 <h4>Key Takeaways</h4>
 <ul>
   <li>Reserve scrollbar width on <code>html</code> with <code>scrollbar-gutter: stable</code> and <code>overflow-y: auto</code>.</li>
+  <li>Clip View Transition root pseudo-elements with <code>overflow: hidden</code> to prevent split-second scrollbar popping.</li>
   <li>Reserve space for bold tab labels using <code>display: inline-grid</code> and <code>content: attr(data-text)</code>.</li>
   <li>Pre-render all theme toggle states in static HTML to eliminate DOM injection flicker.</li>
   <li>Adjust text opacity rather than hex colors to preserve font glyph vector calculations.</li>
@@ -187,6 +198,114 @@ jobs:
       <category><![CDATA[GitHub Actions]]></category>
       <category><![CDATA[CI/CD]]></category>
       <category><![CDATA[DevOps]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Reusable Migration Fields with Custom Blueprint Macros]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields</guid>
+      <description><![CDATA[Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations. Database migrations often requ...]]></description>
+      <content:encoded><![CDATA[<blockquote>Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations.</blockquote>
+<p>Database migrations often require repeating the same group of audit columns across multiple tables. Repeating these field definitions across dozens of migrations creates maintenance overhead and inconsistencies.</p>
+<h3>The Problem: Repetitive Schema Definitions</h3>
+<p>When multiple tables require tracking creation, updates, soft deletions, and restoration details, a standard migration file quickly becomes verbose:</p>
+<pre><code class="language-php">Schema::create(&#039;posts&#039;, function (Blueprint $table) {
+    $table-&gt;id();
+    $table-&gt;string(&#039;title&#039;);
+    $table-&gt;text(&#039;content&#039;);
+
+    // Repeated audit columns
+    $table-&gt;timestamps();
+    $table-&gt;softDeletes();
+    $table-&gt;timestamp(&#039;restored_at&#039;)-&gt;nullable();
+    $table-&gt;unsignedBigInteger(&#039;created_by&#039;)-&gt;nullable();
+    $table-&gt;unsignedBigInteger(&#039;updated_by&#039;)-&gt;nullable();
+    $table-&gt;unsignedBigInteger(&#039;deleted_by&#039;)-&gt;nullable();
+    $table-&gt;unsignedBigInteger(&#039;restored_by&#039;)-&gt;nullable();
+});</code></pre>
+<p>Duplicating these 8 lines across every new table definition increases boilerplate code and makes project-wide schema changes tedious.</p>
+<h3>Registering a Custom Blueprint Macro</h3>
+<p>Laravel's `Illuminate\Database\Schema\Blueprint` class can be extended using macros. Registering a custom macro allows you to bundle related column definitions into a single helper method inside `AppServiceProvider`:</p>
+<pre><code class="language-php">namespace App\Providers;
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Blueprint::macro(&#039;auditFields&#039;, function () {
+            $this-&gt;timestamps();
+            $this-&gt;softDeletes();
+
+            $this-&gt;timestamp(&#039;restored_at&#039;)-&gt;nullable();
+
+            $this-&gt;unsignedBigInteger(&#039;created_by&#039;)-&gt;nullable();
+            $this-&gt;unsignedBigInteger(&#039;updated_by&#039;)-&gt;nullable();
+            $this-&gt;unsignedBigInteger(&#039;deleted_by&#039;)-&gt;nullable();
+            $this-&gt;unsignedBigInteger(&#039;restored_by&#039;)-&gt;nullable();
+        });
+    }
+}</code></pre>
+<h4>What These Fields Represent</h4>
+<ul>
+  <li><code>timestamps()</code>: Adds standard <code>created_at</code> and <code>updated_at</code> timestamps.</li>
+  <li><code>softDeletes()</code>: Adds a nullable <code>deleted_at</code> timestamp for soft deletion.</li>
+  <li><code>restored_at</code>: Tracks the precise timestamp when a soft-deleted record is restored.</li>
+  <li><code>created_by</code>, <code>updated_by</code>, <code>deleted_by</code>, <code>restored_by</code>: Store the user IDs of the accounts responsible for each state change.</li>
+</ul>
+<h3>Reusing the Macro Across Migrations</h3>
+<p>Once registered, the `auditFields()` macro is available on `$table` instances in any migration file.</p>
+<h4>Users Migration</h4>
+<pre><code class="language-php">use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create(&#039;users&#039;, function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string(&#039;name&#039;);
+            $table-&gt;string(&#039;email&#039;)-&gt;unique();
+
+            $table-&gt;auditFields();
+        });
+    }
+};</code></pre>
+<h4>Posts Migration</h4>
+<pre><code class="language-php">use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create(&#039;posts&#039;, function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string(&#039;title&#039;);
+            $table-&gt;text(&#039;content&#039;);
+
+            $table-&gt;auditFields();
+        });
+    }
+};</code></pre>
+<p>Both tables receive identical audit field structures while keeping migration files concise.</p>
+<h3>Customizing Project Conventions</h3>
+<p>Macros can be tailored to fit your application's specific conventions. If a project requires additional metadata columns, tenant identifiers, or custom status attributes across multiple tables, they can be defined within the macro body.</p>
+<h3>Why This Is Useful</h3>
+<p>Defining schema macros centralizes multi-column definitions into a single location in your codebase. If your application conventions expand to include additional columns, updating the macro definition ensures future migrations include the new standard structure.</p>
+<p>Note that registering or modifying a macro does not alter existing database tables or retroactively update past migrations. Macros expand to standard column definitions only when executed during active migration runs.</p>
+]]></content:encoded>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Database]]></category>
+      <category><![CDATA[Migrations]]></category>
+      <category><![CDATA[Macros]]></category>
     </item>
     <item>
       <title><![CDATA[Render Multiple Field Validation Errors with Flux UI and Blade]]></title>
