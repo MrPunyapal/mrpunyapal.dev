@@ -12,7 +12,7 @@ When making changes, prioritize consistency, maintainability, and factual accura
 - **Tips Content Submodule**: `content/tips/` (Tracked submodule repository `MrPunyapal/tips` containing Markdown files)
 - **Tips Static Generator**: `scripts/build-tips.mjs` (Main orchestrator importing modular submodules from `scripts/tips/` for static HTML, search index, RSS 2.0 feed, and sitemap)
 - **Search Index**: `public/tips-search-index.json`
-- **Tips RSS 2.0 Feed**: `public/tips/feed.xml` & `tips/feed.xml`
+- **Tips RSS 2.0 Feed**: `public/tips/feed.xml`
 - **Printable Resume Template**: `scripts/resume-print.html`
 - **PDF Generation Script**: `scripts/generate-pdf.js`
 - **Generated Assets**: `public/resume.pdf`
@@ -73,7 +73,7 @@ The developer tips platform (`tips.html` and `tips/<slug>.html`) is statically g
   - `scripts/tips/tips-helpers.mjs`: Formatting helpers (`formatDate`, `toRfc822Date`, `wrapCdata`, `slugify`, `extractSummary`, `escapeHtml`), `marked` renderer config with `highlight.js`, CSS grid styles, and icon SVG sprite.
   - `scripts/tips/tips-hub.mjs`: Generates main archive page `tips.html`.
   - `scripts/tips/tips-single.mjs`: Generates individual tip pages `tips/<slug>.html`.
-  - `scripts/tips/tips-rss.mjs`: Generates RSS 2.0 feed `public/tips/feed.xml` & `tips/feed.xml`.
+  - `scripts/tips/tips-rss.mjs`: Generates RSS 2.0 feed `public/tips/feed.xml`.
   - `scripts/tips/tips-sitemap.mjs`: Generates `public/sitemap.xml`.
 - **Zero Client-Side Overhead**: Code syntax highlighting is pre-rendered at build time, ensuring 0 KB client JS overhead and instant first paint.
 - **Submodule Workflow**: When modifying tip markdown files or adding new tips, commit changes inside the `content/tips/` repository, then update the submodule pointer in the main repository.

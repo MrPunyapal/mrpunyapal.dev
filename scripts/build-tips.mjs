@@ -145,10 +145,10 @@ export async function buildTips() {
     // 4. Automatically generate/synchronize public/sitemap.xml
     generateSitemap(tips, publicDir);
 
-    // 5. Generate RSS 2.0 Feed at public/tips/feed.xml and tips/feed.xml
-    generateRssFeed(tips, publicDir, tipsOutDir);
+    // 5. Generate RSS 2.0 Feed at public/tips/feed.xml
+    generateRssFeed(tips, publicDir);
 
-    console.log(`✅ Tips build complete: generated tips.html, ${tips.length} individual pages, search index, RSS feed (tips/feed.xml), and sitemap.xml.`);
+    console.log(`✅ Tips build complete: generated tips.html, ${tips.length} individual pages, search index, RSS feed (public/tips/feed.xml), and sitemap.xml.`);
 }
 
 // Run when executed directly

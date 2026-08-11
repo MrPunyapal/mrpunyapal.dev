@@ -2,16 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { toRfc822Date, wrapCdata } from './tips-helpers.mjs';
 
-export function generateRssFeed(tips, publicDir, tipsOutDir) {
+export function generateRssFeed(tips, publicDir) {
     const publicTipsDir = path.join(publicDir, 'tips');
     if (!fs.existsSync(publicTipsDir)) {
         fs.mkdirSync(publicTipsDir, { recursive: true });
     }
-    if (!fs.existsSync(tipsOutDir)) {
-        fs.mkdirSync(tipsOutDir, { recursive: true });
-    }
 
-    const feedPathInTips = path.join(tipsOutDir, 'feed.xml');
     const feedPathInPublic = path.join(publicTipsDir, 'feed.xml');
 
     const itemsXml = tips.map(tip => {
@@ -48,18 +44,14 @@ ${categoriesXml}
     const latestTip = tips.length > 0 ? tips[0] : null;
     const feedPubDate = latestTip ? toRfc822Date(latestTip.updated || latestTip.date) : lastBuildDate;
 
-    // Check if feed already exists and if items are unchanged to prevent lastBuildDate churn on redeploys
-    const existingFeedPath = fs.existsSync(feedPathInTips)
-        ? feedPathInTips
-        : (fs.existsSync(feedPathInPublic) ? feedPathInPublic : null);
-
-    if (existingFeedPath) {
+    // Check if feed already exists in public/tips/feed.xml and if items are unchanged to prevent lastBuildDate churn on redeploys
+    if (fs.existsSync(feedPathInPublic)) {
         try {
-            const existingXml = fs.readFileSync(existingFeedPath, 'utf-8');
+            const existingXml = fs.readFileSync(feedPathInPublic, 'utf-8');
             const existingItemsMatch = existingXml.match(/<atom:link[^>]*\/>\s*([\s\S]*?)\s*<\/channel>/);
             const existingItems = existingItemsMatch ? existingItemsMatch[1].trim() : '';
 
-            if (existingItems && existingItems.trim().replace(/\r\n/g, '\n') === itemsXml.trim().replace(/\r\n/g, '\n')) {
+            if (existingItems && existingItems.replace(/\r\n/g, '\n').trim() === itemsXml.replace(/\r\n/g, '\n').trim()) {
                 const dateMatch = existingXml.match(/<lastBuildDate>([^<]+)<\/lastBuildDate>/);
                 if (dateMatch) {
                     lastBuildDate = dateMatch[1];
@@ -91,5 +83,4 @@ ${itemsXml}
 
     const cleanXml = rssXml.replace(/\r\n/g, '\n');
     fs.writeFileSync(feedPathInPublic, cleanXml, 'utf-8');
-    fs.writeFileSync(feedPathInTips, cleanXml, 'utf-8');
 }
