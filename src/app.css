@@ -451,6 +451,11 @@ html:not(.dark) .theme-moon-icon {
     animation: moon-rise 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
+/* Native Cross-Document View Transitions for Page Navigations */
+@view-transition {
+    navigation: auto;
+}
+
 /* Ultra-Smooth View Transitions API Layering */
 ::view-transition-old(root),
 ::view-transition-new(root) {

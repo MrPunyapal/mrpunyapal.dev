@@ -47,11 +47,6 @@ export function renderSiteHeader(activePage = 'home') {
     const githubRepo = isTips ? 'https://github.com/MrPunyapal/tips' : 'https://github.com/MrPunyapal/mrpunyapal.dev';
     const githubLabel = isTips ? 'View Tips repository on GitHub' : 'View source code on GitHub';
 
-    const resumeDownloadBtn = isResume ? `
-                    <a href="/resume.pdf" download="Punyapal Shah" title="Download PDF Resume" aria-label="Download PDF Resume" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
-                        <svg class="icon text-sm" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-download"/></svg>
-                    </a>` : '';
-
     const headerClasses = isResume 
         ? 'print:hidden border-b border-slate-200 dark:border-slate-800 relative z-20'
         : 'border-b border-slate-200 dark:border-slate-800 relative z-20';
@@ -75,7 +70,7 @@ ${desktopNavLinksHtml}
                     </nav>
 
                     <!-- Utility Buttons -->
-                    <div class="site-nav-utilities flex items-center gap-1 sm:gap-1.5 py-2 pl-2 sm:pl-3 border-l border-slate-200 dark:border-slate-800 shrink-0">${resumeDownloadBtn}
+                    <div class="site-nav-utilities flex items-center gap-1 sm:gap-1.5 py-2 pl-2 sm:pl-3 border-l border-slate-200 dark:border-slate-800 shrink-0">
                         <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="site-nav-source p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
                             <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                         </a>
@@ -90,7 +85,7 @@ ${desktopNavLinksHtml}
                         Home
                     </a>
 
-                    <div class="flex items-center gap-1.5">${resumeDownloadBtn}
+                    <div class="flex items-center gap-1.5">
                         <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
                             <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                         </a>
@@ -155,12 +150,6 @@ ${mobileSidebarNavLinksHtml}
 
                         sidebar.classList.remove('hidden');
 
-                        // Lock scrolling on both html and body
-                        document.documentElement.style.overflow = 'hidden';
-                        document.body.style.overflow = 'hidden';
-                        document.documentElement.style.touchAction = 'none';
-                        document.body.style.touchAction = 'none';
-
                         document.addEventListener('touchmove', preventTouchMove, { passive: false });
 
                         requestAnimationFrame(function() {
@@ -184,12 +173,6 @@ ${mobileSidebarNavLinksHtml}
                         backdrop.classList.add('opacity-0');
                         panel.classList.remove('translate-x-0');
                         panel.classList.add('translate-x-full');
-
-                        // Unlock scrolling
-                        document.documentElement.style.overflow = '';
-                        document.body.style.overflow = '';
-                        document.documentElement.style.touchAction = '';
-                        document.body.style.touchAction = '';
 
                         document.removeEventListener('touchmove', preventTouchMove);
 

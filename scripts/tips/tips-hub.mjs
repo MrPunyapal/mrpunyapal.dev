@@ -8,7 +8,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
         const badge = getCategoryBadge(tip.category);
 
         return `
-            <div class="tip-card group relative p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+            <div class="tip-card group relative p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between cursor-pointer"
                 data-category="${escapeHtml(tip.category)}"
                 data-subcategory="${escapeHtml((tip.subcategory || '').toLowerCase())}"
                 data-tags="${escapeHtml(tip.tags.join(' ').toLowerCase())}"
@@ -30,7 +30,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                 </div>
 
                 <div>
-                    <div class="flex items-center gap-1.5 mb-2.5 flex-wrap">
+                    <div class="flex items-center gap-1.5 mb-2.5 flex-wrap relative z-10">
                         <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${badge.bg} ${badge.text} ${badge.border}">
                             ${escapeHtml(tip.category)}
                         </span>
@@ -41,7 +41,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                         ` : ''}
                     </div>
                     <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">
-                        <a href="/tips/${tip.slug}">
+                        <a href="/tips/${tip.slug}" class="after:absolute after:inset-0 focus:outline-none">
                             ${escapeHtml(tip.title)}
                         </a>
                     </h3>
@@ -54,10 +54,10 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                     <time datetime="${escapeHtml(tip.date)}" class="text-xs font-mono text-slate-500 dark:text-slate-400 inline-flex items-center gap-1">
                         ${formatDate(tip.date)}
                     </time>
-                    <a href="/tips/${tip.slug}" class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 hover:text-red-700 transition-colors inline-flex items-center gap-1" aria-label="Read tip: ${escapeHtml(tip.title)}">
+                    <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
+                        <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
                 </div>
             </div>`;
     }).join('\n');
@@ -231,7 +231,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                                 <svg class="w-3.5 h-3.5 text-red-500 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h7l-4 4m0 0l4 4M7 8h13M20 20h-7l4-4m0 0l-4-4m4 4H4" />
                                 </svg>
-                                <span>Random Tip</span>
+                                <span>Random</span>
                             </button>
                             <a href="/tips/feed.xml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group" aria-label="RSS Feed for Punyapal Shah's Tips">
                                 <svg class="w-3.5 h-3.5 text-amber-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
