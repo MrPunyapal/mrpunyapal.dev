@@ -11,9 +11,8 @@ export function generateRssFeed(tips, publicDir, tipsOutDir) {
         fs.mkdirSync(tipsOutDir, { recursive: true });
     }
 
-    const latestTipDate = tips.length > 0 ? tips[0].date : new Date().toISOString();
-    const lastBuildDate = new Date().toUTCString();
-    const feedPubDate = toRfc822Date(latestTipDate);
+    const feedPathInTips = path.join(tipsOutDir, 'feed.xml');
+    const feedPathInPublic = path.join(publicTipsDir, 'feed.xml');
 
     const itemsXml = tips.map(tip => {
         const canonicalUrl = `https://mrpunyapal.dev/tips/${tip.slug}`;
@@ -45,6 +44,32 @@ ${categoriesXml}
     </item>`;
     }).join('\n');
 
+    let lastBuildDate = new Date().toUTCString();
+    const latestTip = tips.length > 0 ? tips[0] : null;
+    const feedPubDate = latestTip ? toRfc822Date(latestTip.updated || latestTip.date) : lastBuildDate;
+
+    // Check if feed already exists and if items are unchanged to prevent lastBuildDate churn on redeploys
+    const existingFeedPath = fs.existsSync(feedPathInTips)
+        ? feedPathInTips
+        : (fs.existsSync(feedPathInPublic) ? feedPathInPublic : null);
+
+    if (existingFeedPath) {
+        try {
+            const existingXml = fs.readFileSync(existingFeedPath, 'utf-8');
+            const existingItemsMatch = existingXml.match(/<atom:link[^>]*\/>\s*([\s\S]*?)\s*<\/channel>/);
+            const existingItems = existingItemsMatch ? existingItemsMatch[1].trim() : '';
+
+            if (existingItems && existingItems.trim().replace(/\r\n/g, '\n') === itemsXml.trim().replace(/\r\n/g, '\n')) {
+                const dateMatch = existingXml.match(/<lastBuildDate>([^<]+)<\/lastBuildDate>/);
+                if (dateMatch) {
+                    lastBuildDate = dateMatch[1];
+                }
+            }
+        } catch (e) {
+            // Fallback to current date on parse error
+        }
+    }
+
     const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" 
      xmlns:atom="http://www.w3.org/2005/Atom" 
@@ -65,6 +90,6 @@ ${itemsXml}
 `;
 
     const cleanXml = rssXml.replace(/\r\n/g, '\n');
-    fs.writeFileSync(path.join(publicTipsDir, 'feed.xml'), cleanXml, 'utf-8');
-    fs.writeFileSync(path.join(tipsOutDir, 'feed.xml'), cleanXml, 'utf-8');
+    fs.writeFileSync(feedPathInPublic, cleanXml, 'utf-8');
+    fs.writeFileSync(feedPathInTips, cleanXml, 'utf-8');
 }
