@@ -3,6 +3,38 @@ import path from 'node:path';
 import { renderSiteHeader } from '../site-header.mjs';
 import { getCategoryBadge, escapeHtml, escapeJsonStr, criticalGridStyles, iconSprite, formatDate } from './tips-helpers.mjs';
 
+function getShareByline(author, authorUrl) {
+    if (!author) return 'by @MrPunyapal';
+
+    const normalizedAuthor = author.trim().toLowerCase();
+    const isPunyapal = normalizedAuthor.includes('punyapal') || 
+                       (authorUrl && authorUrl.toLowerCase().includes('mrpunyapal'));
+
+    if (isPunyapal) {
+        return 'by @MrPunyapal';
+    }
+
+    if (authorUrl) {
+        try {
+            const url = new URL(authorUrl);
+            const host = url.hostname.toLowerCase();
+            if (host === 'x.com' || host === 'www.x.com' || host === 'twitter.com' || host === 'www.twitter.com') {
+                const pathSegments = url.pathname.split('/').filter(Boolean);
+                if (pathSegments.length > 0) {
+                    const handle = pathSegments[0].replace(/^@/, '');
+                    if (handle) {
+                        return `by @${handle}`;
+                    }
+                }
+            }
+        } catch (e) {
+            // Fallback to author name if URL parsing fails
+        }
+    }
+
+    return `by ${author.trim()}`;
+}
+
 export function generateSingleTipPage(tip, allTips, tipsOutDir) {
     const badge = getCategoryBadge(tip.category);
     const relatedTips = allTips
@@ -43,6 +75,9 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
     const authorHtml = tip.author_url
         ? `<a href="${escapeHtml(tip.author_url)}" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">${escapeHtml(tip.author)}</a>`
         : `<span class="font-semibold">${escapeHtml(tip.author)}</span>`;
+
+    const shareByline = getShareByline(tip.author, tip.author_url);
+    const tweetText = `${tip.title} ${shareByline}`;
 
     const singleTipHtml = `<!DOCTYPE html>
 <html lang="en">
@@ -260,7 +295,7 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(tip.title + ' by @MrPunyapal')}&url=${encodeURIComponent('https://mrpunyapal.dev/tips/' + tip.slug)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent('https://mrpunyapal.dev/tips/' + tip.slug)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
