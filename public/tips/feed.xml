@@ -10,7 +10,7 @@
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
     <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Tue, 11 Aug 2026 18:07:56 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 18:41:48 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title><![CDATA[Prevent Navigation Layout Shifts and Flickering in Web Applications]]></title>
@@ -19,20 +19,20 @@
       <description><![CDATA[Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns. Navigation bars...]]></description>
       <content:encoded><![CDATA[<blockquote>Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.</blockquote>
 <p>Navigation bars often suffer from subtle layout shifts during page reloads, theme toggles, and tab switches. Combining a few CSS and HTML techniques eliminates these visual jumps entirely.</p>
-<h4>1. Lock Root Scrollbar Space</h4>
-<p>Navigating between long pages with scrollbars and short pages without scrollbars causes horizontal layout jumps. Use `scrollbar-gutter: stable` on `html` with `overflow-y: auto`.</p>
+<h4>1. Lock Root Scrollbar Space and Clip Horizontal Overflow</h4>
+<p>Navigating between long pages with scrollbars and short pages without scrollbars causes horizontal layout jumps. Use `scrollbar-gutter: stable` on `html` with `overflow-y: auto`, and clip horizontal overflow on `body` with `overflow-x: clip`.</p>
 <pre><code class="language-css">/* Reserve scrollbar width globally without forcing a scrollbar track on short pages */
 html {
   scrollbar-gutter: stable;
   overflow-y: auto;
 }
 
-/* Prevent horizontal overflow without breaking root scrollbar gutter */
+/* Clip wide horizontal overflow without creating a second scroll container */
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }</code></pre>
-<p>`scrollbar-gutter: stable` reserves the scrollbar space on short pages so layout width remains constant, while `overflow-y: auto` prevents rendering an empty scrollbar track when scrolling is not needed.</p>
-<p>Do not place `overflow-x: hidden` directly on `html`, as browsers will ignore root `scrollbar-gutter` calculations when overflow is clipped at the html element level.</p>
+<p>`scrollbar-gutter: stable` reserves scrollbar space on short pages so layout width remains constant across navigations, while `overflow-y: auto` avoids rendering an empty scrollbar track when scrolling is not needed.</p>
+<p>Use `overflow-x: clip` instead of `overflow-x: hidden` on `body`. Traditional `overflow-x: hidden` forces browsers to evaluate `overflow-y` as `auto`, creating a secondary scroll container on `body` that causes double vertical scrollbars. `overflow-x: clip` clips horizontal overflow cleanly without creating a scrolling context.</p>
 <h4>2. Prevent View Transition Scrollbar Flicker</h4>
 <p>When using native cross-document View Transitions (`@view-transition { navigation: auto; }`), browsers render outgoing and incoming page snapshots simultaneously. For a single frame during the transition, the viewport height expands, triggering a temporary scrollbar track.</p>
 <pre><code class="language-css">/* Prevent temporary scrollbar flicker during cross-document view transitions */
@@ -110,7 +110,7 @@ body {
 }</code></pre>
 <h4>Key Takeaways</h4>
 <ul>
-  <li>Reserve scrollbar width on <code>html</code> with <code>scrollbar-gutter: stable</code> and <code>overflow-y: auto</code>.</li>
+  <li>Reserve scrollbar width on <code>html</code> with <code>scrollbar-gutter: stable</code> and clip horizontal overflow on <code>body</code> with <code>overflow-x: clip</code>.</li>
   <li>Clip View Transition root pseudo-elements with <code>overflow: hidden</code> to prevent split-second scrollbar popping.</li>
   <li>Reserve space for bold tab labels using <code>display: inline-grid</code> and <code>content: attr(data-text)</code>.</li>
   <li>Pre-render all theme toggle states in static HTML to eliminate DOM injection flicker.</li>
@@ -305,6 +305,40 @@ return new class extends Migration
       <category><![CDATA[Eloquent]]></category>
       <category><![CDATA[Database]]></category>
       <category><![CDATA[Migrations]]></category>
+      <category><![CDATA[Macros]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Define Custom Macros on the Eloquent Builder]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-builder-macro-registration</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-builder-macro-registration</guid>
+      <description><![CDATA[Register reusable query methods directly on the Builder so every model gains access without repeating logic. Laravel's Macroable trait lets you add methods t...]]></description>
+      <content:encoded><![CDATA[<blockquote>Register reusable query methods directly on the Builder so every model gains access without repeating logic.</blockquote>
+<p>Laravel's `Macroable` trait lets you add methods to the Builder at runtime. Register them in a service provider's `boot()` method and they become available on any query.</p>
+<pre><code class="language-php">use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
+
+// In AppServiceProvider::boot()
+Builder::macro(&#039;useIndex&#039;, function (string $table, string $index) {
+    return $this-&gt;from(DB::raw(&quot;{$table} WITH (INDEX({$index}))&quot;));
+});</code></pre>
+<p>Now any model can hint a specific index:</p>
+<pre><code class="language-php">use App\Models\Order;
+
+$orders = Order::query()
+    -&gt;useIndex(&#039;orders&#039;, &#039;orders_status_created_index&#039;)
+    -&gt;where(&#039;status&#039;, &#039;pending&#039;)
+    -&gt;get();</code></pre>
+<ul>
+  <li>Register on <code>Illuminate\Database\Eloquent\Builder</code> for Eloquent-level macros</li>
+  <li>The closure receives <code>$this</code> bound to the current builder instance</li>
+  <li>Useful for performance hints that aren&#39;t covered by the default query builder API</li>
+  <li><strong>Note:</strong> The <code>WITH (INDEX(...))</code> syntax used above is specific to <strong>Microsoft SQL Server (T-SQL)</strong>. MySQL uses <code>FORCE INDEX(...)</code> and PostgreSQL relies on the query planner (no direct index hints). Adjust the macro body to match your database engine.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Vasile Papuc]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
       <category><![CDATA[Macros]]></category>
     </item>
     <item>
