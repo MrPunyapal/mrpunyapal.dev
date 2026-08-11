@@ -9,9 +9,83 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Tue, 11 Aug 2026 09:42:44 GMT</lastBuildDate>
+    <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Tue, 11 Aug 2026 10:17:16 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Trigger a GitHub Actions Workflow Across Repositories]]></title>
+      <link>https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</guid>
+      <description><![CDATA[Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository. GitHub Actions workflows are scoped to a...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use `repository_dispatch` to trigger a workflow in a target repository when commits or PRs land in a source repository.</blockquote>
+<p>GitHub Actions workflows are scoped to a single repository by default. To run a workflow in another repository after merging a PR or pushing a commit, use GitHub's `repository_dispatch` API endpoint.</p>
+<h3>1. Configure the Target Repository Listener</h3>
+<p>Add `repository_dispatch` to the `on` block in the target repository workflow file:</p>
+<pre><code class="language-yaml"># .github/workflows/build.yml (target repo)
+name: Build Site
+
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+    types: [content-updated]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo &quot;Build triggered&quot;</code></pre>
+<h3>2. Configure the Source Repository Dispatcher</h3>
+<p>In the source repository, add a workflow step that sends a POST request to GitHub's dispatches endpoint:</p>
+<pre><code class="language-yaml"># .github/workflows/notify.yml (source repo)
+name: Notify Target Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger target build
+        env:
+          TOKEN: ${{ secrets.WEBSITE_DISPATCH_TOKEN }}
+        run: |
+          if [ -z &quot;$TOKEN&quot; ]; then
+            echo &quot;WEBSITE_DISPATCH_TOKEN is not set&quot;
+            exit 1
+          fi
+          curl --fail --show-error -X POST \
+            -H &quot;Authorization: Bearer $TOKEN&quot; \
+            -H &quot;Accept: application/vnd.github.v3+json&quot; \
+            https://api.github.com/repos/OWNER/TARGET-REPO/dispatches \
+            -d &#039;{&quot;event_type&quot;: &quot;content-updated&quot;}&#039;</code></pre>
+<h3>3. Create and Assign the Access Token</h3>
+<ol>
+  <li>Create a Fine-Grained Personal Access Token under GitHub Developer Settings.</li>
+  <li>Select the target repository under <strong>Repository Access</strong>.</li>
+  <li>Set <strong>Contents</strong> permission to <strong>Read and write</strong>.</li>
+  <li>Save the token as <code>WEBSITE_DISPATCH_TOKEN</code> in the source repository&#39;s Actions Secrets.</li>
+</ol>
+<h3>Key Considerations</h3>
+<ul>
+  <li>The <code>event_type</code> string in the payload must match the array value under <code>types: [...]</code>.</li>
+  <li>Always pass <code>--fail --show-error</code> to <code>curl</code> so HTTP errors exit with code 1 instead of failing silently.</li>
+  <li>Fine-grained tokens limit dispatch access strictly to the targeted repository.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub Actions]]></category>
+      <category><![CDATA[CI/CD]]></category>
+      <category><![CDATA[DevOps]]></category>
+    </item>
     <item>
       <title><![CDATA[Render Multiple Field Validation Errors with Flux UI and Blade]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-livewire-flux-error-handling</link>
