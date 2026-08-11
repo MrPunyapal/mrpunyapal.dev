@@ -523,6 +523,14 @@ html:not(.dark) .theme-moon-icon {
     navigation: auto;
 }
 
+/* Prevent temporary scrollbar flicker during cross-document view transitions */
+::view-transition-group(root),
+::view-transition-image-pair(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+    overflow: hidden !important;
+}
+
 /* Ultra-Smooth View Transitions API Layering */
 ::view-transition-old(root),
 ::view-transition-new(root) {
