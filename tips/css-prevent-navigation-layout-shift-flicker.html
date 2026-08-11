@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Don&#039;t Load Full Models for Single Columns: Use pluck() or value() | Tips | Punyapal Shah</title>
+    <title>Prevent Navigation Layout Shifts and Flickering in Web Applications | Tips | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,37 +16,37 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Use value() for single scalar values and pluck() for single-column arrays instead of instantiating full Eloquent models. Querying full Eloquent model instanc...">
+    <meta name="description" content="Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns. Navigation bars...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-pluck-value-over-full-models">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker">
     <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-pluck-value-over-full-models">
-    <meta property="og:title" content="Don&#039;t Load Full Models for Single Columns: Use pluck() or value() | Punyapal Shah">
-    <meta property="og:description" content="Use value() for single scalar values and pluck() for single-column arrays instead of instantiating full Eloquent models. Querying full Eloquent model instanc...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-pluck-value-over-full-models.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-pluck-value-over-full-models.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker">
+    <meta property="og:title" content="Prevent Navigation Layout Shifts and Flickering in Web Applications | Punyapal Shah">
+    <meta property="og:description" content="Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns. Navigation bars...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/css-prevent-navigation-layout-shift-flicker.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/css-prevent-navigation-layout-shift-flicker.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Don&#039;t Load Full Models for Single Columns: Use pluck() or value() - Punyapal Shah">
+    <meta property="og:image:alt" content="Prevent Navigation Layout Shifts and Flickering in Web Applications - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-06-29">
+    <meta property="article:published_time" content="2026-08-11">
     <meta property="article:author" content="https://x.com/MrPunyapal">
-    <meta property="article:section" content="Laravel">
+    <meta property="article:section" content="CSS">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-pluck-value-over-full-models">
-    <meta name="twitter:title" content="Don&#039;t Load Full Models for Single Columns: Use pluck() or value() | Punyapal Shah">
-    <meta name="twitter:description" content="Use value() for single scalar values and pluck() for single-column arrays instead of instantiating full Eloquent models. Querying full Eloquent model instanc...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-pluck-value-over-full-models.png">
-    <meta name="twitter:image:alt" content="Don&#039;t Load Full Models for Single Columns: Use pluck() or value() - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker">
+    <meta name="twitter:title" content="Prevent Navigation Layout Shifts and Flickering in Web Applications | Punyapal Shah">
+    <meta name="twitter:description" content="Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns. Navigation bars...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/css-prevent-navigation-layout-shift-flicker.png">
+    <meta name="twitter:image:alt" content="Prevent Navigation Layout Shifts and Flickering in Web Applications - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -55,12 +55,12 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-pluck-value-over-full-models#article",
-                "headline": "Don't Load Full Models for Single Columns: Use pluck() or value()",
-                "description": "Use value() for single scalar values and pluck() for single-column arrays instead of instantiating full Eloquent models. Querying full Eloquent model instanc...",
-                "datePublished": "2026-06-29",
+                "@id": "https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker#article",
+                "headline": "Prevent Navigation Layout Shifts and Flickering in Web Applications",
+                "description": "Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns. Navigation bars...",
+                "datePublished": "2026-08-11",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-pluck-value-over-full-models",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -69,7 +69,7 @@
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "articleSection": "Laravel"
+                "articleSection": "CSS"
             },
             {
                 "@type": "BreadcrumbList",
@@ -89,8 +89,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Don't Load Full Models for Single Columns: Use pluck() or value()",
-                        "item": "https://mrpunyapal.dev/tips/laravel-pluck-value-over-full-models"
+                        "name": "Prevent Navigation Layout Shifts and Flickering in Web Applications",
+                        "item": "https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker"
                     }
                 ]
             }
@@ -658,13 +658,13 @@
                     </a>
 
                     <div class="inline-flex items-center gap-1.5 flex-wrap">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border-red-100 dark:border-red-900/60">
-                            Laravel
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
+                            CSS
                         </span>
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Eloquent
+                                Styling
                             </span>
                         
                     </div>
@@ -673,7 +673,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Don&#039;t Load Full Models for Single Columns: Use pluck() or value()
+                        Prevent Navigation Layout Shifts and Flickering in Web Applications
                     </h1>
 
                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -682,9 +682,9 @@
                             <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2026-06-29" class="inline-flex items-center gap-1.5">
+                        <time datetime="2026-08-11" class="inline-flex items-center gap-1.5">
                             <svg class="icon text-xs opacity-70" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Jun 29, 2026
+                            Aug 11, 2026
                         </time>
                     </div>
                 </div>
@@ -698,7 +698,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use value() for single scalar values and pluck() for single-column arrays instead of instantiating full Eloquent models.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Querying full Eloquent model instances just to read a single attribute like an email or name wastes CPU and memory. Use value() or pluck() to execute optimized database queries.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Navigation bars often suffer from subtle layout shifts during page reloads, theme toggles, and tab switches. Combining a few CSS and HTML techniques eliminates these visual jumps entirely.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">1. Lock Root Scrollbar Space</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Navigating between long pages with scrollbars and short pages without scrollbars causes horizontal layout jumps. Use `scrollbar-gutter: stable` on `html` with `overflow-y: auto`.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -706,33 +706,207 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\User;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="/* Reserve scrollbar width globally without forcing a scrollbar track on short pages */
+html {
+  scrollbar-gutter: stable;
+  overflow-y: auto;
+}
 
-// BAD: Instantiates entire User Eloquent model into RAM
-$email = User::where(&#039;id&#039;, $id)-&gt;first()?-&gt;email;
-
-// GOOD: Executes SELECT email LIMIT 1 and returns scalar string
-$email = User::where(&#039;id&#039;, $id)-&gt;value(&#039;email&#039;);
-
-// GOOD: Returns flat array of emails directly from database
-$emails = User::where(&#039;active&#039;, true)-&gt;pluck(&#039;email&#039;);" aria-label="Copy code to clipboard">
+/* Prevent horizontal overflow without breaking root scrollbar gutter */
+body {
+  overflow-x: hidden;
+}" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-css"><span class="hljs-comment">/* Reserve scrollbar width globally without forcing a scrollbar track on short pages */</span>
+<span class="hljs-selector-tag">html</span> {
+  <span class="hljs-attribute">scrollbar-gutter</span>: stable;
+  <span class="hljs-attribute">overflow-y</span>: auto;
+}
 
-<span class="hljs-comment">// BAD: Instantiates entire User Eloquent model into RAM</span>
-<span class="hljs-variable">$email</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-variable">$id</span>)-&gt;<span class="hljs-title function_ invoke__">first</span>()?-&gt;email;
+<span class="hljs-comment">/* Prevent horizontal overflow without breaking root scrollbar gutter */</span>
+<span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">overflow-x</span>: hidden;
+}</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">`scrollbar-gutter: stable` reserves the scrollbar space on short pages so layout width remains constant, while `overflow-y: auto` prevents rendering an empty scrollbar track when scrolling is not needed.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Do not place `overflow-x: hidden` directly on `html`, as browsers will ignore root `scrollbar-gutter` calculations when overflow is clipped at the html element level.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">2. Lock Navigation Tab Widths with CSS Grid</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Active or hovered navigation tabs often expand in width when text becomes bold or changes color contrast, pushing adjacent tabs left or right. Use CSS Grid overlay with an invisible pseudo-element to reserve bold text dimensions upfront.</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="&lt;nav class=&quot;nav-tabs&quot;&gt;
+  &lt;a href=&quot;/dashboard&quot; class=&quot;nav-link active&quot;&gt;
+    &lt;span class=&quot;nav-label&quot; data-text=&quot;Dashboard&quot;&gt;
+      &lt;span&gt;Dashboard&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a href=&quot;/settings&quot; class=&quot;nav-link&quot;&gt;
+    &lt;span class=&quot;nav-label&quot; data-text=&quot;Settings&quot;&gt;
+      &lt;span&gt;Settings&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/a&gt;
+&lt;/nav&gt;" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-tabs&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/dashboard&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-link active&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-label&quot;</span> <span class="hljs-attr">data-text</span>=<span class="hljs-string">&quot;Dashboard&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Dashboard<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/settings&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-link&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-label&quot;</span> <span class="hljs-attr">data-text</span>=<span class="hljs-string">&quot;Settings&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Settings<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></code></pre>
+</div>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code=".nav-tabs a {
+  display: inline-flex;
+  align-items: center;
+}
 
-<span class="hljs-comment">// GOOD: Executes SELECT email LIMIT 1 and returns scalar string</span>
-<span class="hljs-variable">$email</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-variable">$id</span>)-&gt;<span class="hljs-title function_ invoke__">value</span>(<span class="hljs-string">&#x27;email&#x27;</span>);
+/* Grid overlay sizes container to the widest content layer */
+.nav-tabs .nav-label {
+  display: inline-grid;
+  grid-template-areas: &quot;label&quot;;
+  align-items: center;
+  justify-items: center;
+}
 
-<span class="hljs-comment">// GOOD: Returns flat array of emails directly from database</span>
-<span class="hljs-variable">$emails</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;active&#x27;</span>, <span class="hljs-literal">true</span>)-&gt;<span class="hljs-title function_ invoke__">pluck</span>(<span class="hljs-string">&#x27;email&#x27;</span>);</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">value(&#39;column&#39;) returns a single scalar value directly from database</span></li><li class="leading-relaxed"><span class="align-middle">pluck(&#39;column&#39;) returns a flat array or collection of values</span></li><li class="leading-relaxed"><span class="align-middle">Avoids model hydration overhead and reduces database payload transfer</span></li></ul>
+.nav-tabs .nav-label::after,
+.nav-tabs .nav-label &gt; span {
+  grid-area: label;
+}
+
+/* Invisible bold pseudo-element reserves max text width */
+.nav-tabs .nav-label::after {
+  content: attr(data-text);
+  font-weight: 700;
+  visibility: hidden;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-css"><span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-tag">a</span> {
+  <span class="hljs-attribute">display</span>: inline-flex;
+  <span class="hljs-attribute">align-items</span>: center;
+}
+
+<span class="hljs-comment">/* Grid overlay sizes container to the widest content layer */</span>
+<span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-class">.nav-label</span> {
+  <span class="hljs-attribute">display</span>: inline-grid;
+  <span class="hljs-attribute">grid-template-areas</span>: <span class="hljs-string">&quot;label&quot;</span>;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">justify-items</span>: center;
+}
+
+<span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-class">.nav-label</span><span class="hljs-selector-pseudo">::after</span>,
+<span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-class">.nav-label</span> &gt; <span class="hljs-selector-tag">span</span> {
+  <span class="hljs-attribute">grid-area</span>: label;
+}
+
+<span class="hljs-comment">/* Invisible bold pseudo-element reserves max text width */</span>
+<span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-class">.nav-label</span><span class="hljs-selector-pseudo">::after</span> {
+  <span class="hljs-attribute">content</span>: <span class="hljs-built_in">attr</span>(data-text);
+  <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">700</span>;
+  <span class="hljs-attribute">visibility</span>: hidden;
+  <span class="hljs-attribute">overflow</span>: hidden;
+  <span class="hljs-attribute">user-select</span>: none;
+  <span class="hljs-attribute">pointer-events</span>: none;
+}</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">3. Pre-render Theme Toggle Icons in HTML</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Swapping sun and moon icons via JavaScript after page load causes visual button flickering. Pre-render both icons directly in static HTML and toggle visibility using CSS theme classes.</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="&lt;button type=&quot;button&quot; class=&quot;theme-toggle&quot; aria-label=&quot;Toggle theme&quot;&gt;
+  &lt;!-- Sun icon visible in dark mode --&gt;
+  &lt;svg class=&quot;hidden dark:block&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;16&quot; height=&quot;16&quot;&gt;
+    &lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;5&quot; fill=&quot;currentColor&quot;/&gt;
+  &lt;/svg&gt;
+
+  &lt;!-- Moon icon visible in light mode --&gt;
+  &lt;svg class=&quot;block dark:hidden&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;16&quot; height=&quot;16&quot;&gt;
+    &lt;path d=&quot;M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z&quot; fill=&quot;currentColor&quot;/&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;theme-toggle&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Toggle theme&quot;</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Sun icon visible in dark mode --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hidden dark:block&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;16&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;16&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&quot;12&quot;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&quot;12&quot;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&quot;5&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;currentColor&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Moon icon visible in light mode --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;block dark:hidden&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;16&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;16&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;currentColor&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">4. Use Opacity for Text Contrast Changes</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Changing text color from gray to solid black or white triggers font stem-darkening in browser rendering engines, altering glyph widths by fractions of a pixel. Use constant base colors and toggle opacity instead.</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="/* Active tab */
+.nav-link.active {
+  color: #0f172a; /* 100% opacity */
+}
+
+/* Inactive tab uses same base color with lower opacity */
+.nav-link:not(.active) {
+  color: rgba(15, 23, 42, 0.6);
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-css"><span class="hljs-comment">/* Active tab */</span>
+<span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-class">.active</span> {
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#0f172a</span>; <span class="hljs-comment">/* 100% opacity */</span>
+}
+
+<span class="hljs-comment">/* Inactive tab uses same base color with lower opacity */</span>
+<span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:not</span>(<span class="hljs-selector-class">.active</span>) {
+  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">15</span>, <span class="hljs-number">23</span>, <span class="hljs-number">42</span>, <span class="hljs-number">0.6</span>);
+}</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Key Takeaways</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Reserve scrollbar width on <code>html</code> with <code>scrollbar-gutter: stable</code> and <code>overflow-y: auto</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Reserve space for bold tab labels using <code>display: inline-grid</code> and <code>content: attr(data-text)</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Pre-render all theme toggle states in static HTML to eliminate DOM injection flicker.</span></li><li class="leading-relaxed"><span class="align-middle">Adjust text opacity rather than hex colors to preserve font glyph vector calculations.</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -742,11 +916,11 @@ $emails = User::where(&#039;active&#039;, true)-&gt;pluck(&#039;email&#039;);" a
                             <svg class="icon text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Performance</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">#CSS</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">#Layout Shift</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">#Frontend</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">#Performance</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Don't%20Load%20Full%20Models%20for%20Single%20Columns%3A%20Use%20pluck()%20or%20value()%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-pluck-value-over-full-models" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Prevent%20Navigation%20Layout%20Shifts%20and%20Flickering%20in%20Web%20Applications%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Fcss-prevent-navigation-layout-shift-flicker" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -763,7 +937,7 @@ $emails = User::where(&#039;active&#039;, true)-&gt;pluck(&#039;email&#039;);" a
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/css-prevent-navigation-layout-shift-flicker" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-validation-wildcard-array-performance" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -779,13 +953,13 @@ $emails = User::where(&#039;active&#039;, true)-&gt;pluck(&#039;email&#039;);" a
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Prevent Navigation Layout Shifts and Flickering in Web Applications
+                        Optimize Large Wildcard Array Validation in Laravel 13.24
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </span>
                 </a>
-                <a href="/tips/laravel-livewire-flux-error-handling" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-cursor-vs-lazy-collections" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -801,7 +975,7 @@ $emails = User::where(&#039;active&#039;, true)-&gt;pluck(&#039;email&#039;);" a
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Render Multiple Field Validation Errors with Flux UI and Blade
+                        Stream Large Datasets: cursor() vs lazy() in Eloquent
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>

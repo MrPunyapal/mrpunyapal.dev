@@ -10,8 +10,110 @@
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
     <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Tue, 11 Aug 2026 10:32:03 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 12:24:37 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Prevent Navigation Layout Shifts and Flickering in Web Applications]]></title>
+      <link>https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker</guid>
+      <description><![CDATA[Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns. Navigation bars...]]></description>
+      <content:encoded><![CDATA[<blockquote>Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.</blockquote>
+<p>Navigation bars often suffer from subtle layout shifts during page reloads, theme toggles, and tab switches. Combining a few CSS and HTML techniques eliminates these visual jumps entirely.</p>
+<h4>1. Lock Root Scrollbar Space</h4>
+<p>Navigating between long pages with scrollbars and short pages without scrollbars causes horizontal layout jumps. Use `scrollbar-gutter: stable` on `html` with `overflow-y: auto`.</p>
+<pre><code class="language-css">/* Reserve scrollbar width globally without forcing a scrollbar track on short pages */
+html {
+  scrollbar-gutter: stable;
+  overflow-y: auto;
+}
+
+/* Prevent horizontal overflow without breaking root scrollbar gutter */
+body {
+  overflow-x: hidden;
+}</code></pre>
+<p>`scrollbar-gutter: stable` reserves the scrollbar space on short pages so layout width remains constant, while `overflow-y: auto` prevents rendering an empty scrollbar track when scrolling is not needed.</p>
+<p>Do not place `overflow-x: hidden` directly on `html`, as browsers will ignore root `scrollbar-gutter` calculations when overflow is clipped at the html element level.</p>
+<h4>2. Lock Navigation Tab Widths with CSS Grid</h4>
+<p>Active or hovered navigation tabs often expand in width when text becomes bold or changes color contrast, pushing adjacent tabs left or right. Use CSS Grid overlay with an invisible pseudo-element to reserve bold text dimensions upfront.</p>
+<pre><code class="language-html">&lt;nav class=&quot;nav-tabs&quot;&gt;
+  &lt;a href=&quot;/dashboard&quot; class=&quot;nav-link active&quot;&gt;
+    &lt;span class=&quot;nav-label&quot; data-text=&quot;Dashboard&quot;&gt;
+      &lt;span&gt;Dashboard&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a href=&quot;/settings&quot; class=&quot;nav-link&quot;&gt;
+    &lt;span class=&quot;nav-label&quot; data-text=&quot;Settings&quot;&gt;
+      &lt;span&gt;Settings&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+<pre><code class="language-css">.nav-tabs a {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Grid overlay sizes container to the widest content layer */
+.nav-tabs .nav-label {
+  display: inline-grid;
+  grid-template-areas: &quot;label&quot;;
+  align-items: center;
+  justify-items: center;
+}
+
+.nav-tabs .nav-label::after,
+.nav-tabs .nav-label &gt; span {
+  grid-area: label;
+}
+
+/* Invisible bold pseudo-element reserves max text width */
+.nav-tabs .nav-label::after {
+  content: attr(data-text);
+  font-weight: 700;
+  visibility: hidden;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+}</code></pre>
+<h4>3. Pre-render Theme Toggle Icons in HTML</h4>
+<p>Swapping sun and moon icons via JavaScript after page load causes visual button flickering. Pre-render both icons directly in static HTML and toggle visibility using CSS theme classes.</p>
+<pre><code class="language-html">&lt;button type=&quot;button&quot; class=&quot;theme-toggle&quot; aria-label=&quot;Toggle theme&quot;&gt;
+  &lt;!-- Sun icon visible in dark mode --&gt;
+  &lt;svg class=&quot;hidden dark:block&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;16&quot; height=&quot;16&quot;&gt;
+    &lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;5&quot; fill=&quot;currentColor&quot;/&gt;
+  &lt;/svg&gt;
+
+  &lt;!-- Moon icon visible in light mode --&gt;
+  &lt;svg class=&quot;block dark:hidden&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;16&quot; height=&quot;16&quot;&gt;
+    &lt;path d=&quot;M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z&quot; fill=&quot;currentColor&quot;/&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;</code></pre>
+<h4>4. Use Opacity for Text Contrast Changes</h4>
+<p>Changing text color from gray to solid black or white triggers font stem-darkening in browser rendering engines, altering glyph widths by fractions of a pixel. Use constant base colors and toggle opacity instead.</p>
+<pre><code class="language-css">/* Active tab */
+.nav-link.active {
+  color: #0f172a; /* 100% opacity */
+}
+
+/* Inactive tab uses same base color with lower opacity */
+.nav-link:not(.active) {
+  color: rgba(15, 23, 42, 0.6);
+}</code></pre>
+<h4>Key Takeaways</h4>
+<ul>
+  <li>Reserve scrollbar width on <code>html</code> with <code>scrollbar-gutter: stable</code> and <code>overflow-y: auto</code>.</li>
+  <li>Reserve space for bold tab labels using <code>display: inline-grid</code> and <code>content: attr(data-text)</code>.</li>
+  <li>Pre-render all theme toggle states in static HTML to eliminate DOM injection flicker.</li>
+  <li>Adjust text opacity rather than hex colors to preserve font glyph vector calculations.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[CSS]]></category>
+      <category><![CDATA[Styling]]></category>
+      <category><![CDATA[Layout Shift]]></category>
+      <category><![CDATA[Frontend]]></category>
+      <category><![CDATA[Performance]]></category>
+    </item>
     <item>
       <title><![CDATA[Trigger a GitHub Actions Workflow Across Repositories]]></title>
       <link>https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</link>
