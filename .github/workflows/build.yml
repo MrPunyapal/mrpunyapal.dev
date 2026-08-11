@@ -52,6 +52,13 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
 
+      - name: Update submodules to latest main HEAD
+        run: |
+          git submodule sync --recursive
+          git -C content/tips fetch origin main
+          git -C content/tips checkout main
+          git -C content/tips pull origin main
+
       - name: 1. Compile Tips HTML & Sitemap
         run: npm run build:tips
 
@@ -65,9 +72,9 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add tips.html tips/ public/tips-search-index.json public/sitemap.xml public/resume.pdf public/og/
+          git add content/tips tips.html tips/ public/tips-search-index.json public/sitemap.xml public/resume.pdf public/og/
           if ! git diff --staged --quiet; then
-            git commit -m "build: auto-generate site assets (tips, resume PDF, OG screenshots)"
+            git commit -m "build: auto-generate site assets and update tips submodule"
             git checkout -- .
             git clean -fd
             git pull --rebase --autostash origin main
