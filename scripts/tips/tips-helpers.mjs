@@ -126,6 +126,13 @@ export function escapeHtml(text) {
         .replace(/'/g, '&#039;');
 }
 
+// Safely escape strings for JSON-LD embedded script tags (proper JSON string escaping without HTML entities)
+export function escapeJsonStr(text) {
+    if (text === null || text === undefined) return '';
+    return JSON.stringify(String(text)).slice(1, -1);
+}
+
+
 // Custom renderer for marked
 const renderer = new marked.Renderer();
 

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { renderSiteHeader } from '../site-header.mjs';
-import { getCategoryBadge, escapeHtml, criticalGridStyles, iconSprite, formatDate } from './tips-helpers.mjs';
+import { getCategoryBadge, escapeHtml, escapeJsonStr, criticalGridStyles, iconSprite, formatDate } from './tips-helpers.mjs';
 
 export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) {
     const tipsCardsHtml = tips.map((tip, idx) => {
@@ -158,7 +158,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                         "@type": "ListItem",
                         "position": ${idx + 1},
                         "url": "https://mrpunyapal.dev/tips/${t.slug}",
-                        "name": "${escapeHtml(t.title)}"
+                        "name": "${escapeJsonStr(t.title)}"
                     }`).join(',\n                    ')}
                 ]
             }

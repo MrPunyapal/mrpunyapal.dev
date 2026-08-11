@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { renderSiteHeader } from '../site-header.mjs';
-import { getCategoryBadge, escapeHtml, criticalGridStyles, iconSprite, formatDate } from './tips-helpers.mjs';
+import { getCategoryBadge, escapeHtml, escapeJsonStr, criticalGridStyles, iconSprite, formatDate } from './tips-helpers.mjs';
 
 export function generateSingleTipPage(tip, allTips, tipsOutDir) {
     const badge = getCategoryBadge(tip.category);
@@ -102,19 +102,19 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
             {
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/${tip.slug}#article",
-                "headline": "${escapeHtml(tip.title)}",
-                "description": "${escapeHtml(tip.summary)}",
-                "datePublished": "${escapeHtml(tip.date)}",
+                "headline": "${escapeJsonStr(tip.title)}",
+                "description": "${escapeJsonStr(tip.summary)}",
+                "datePublished": "${escapeJsonStr(tip.date)}",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/${tip.slug}",
                 "author": {
                     "@type": "Person",
-                    "name": "${escapeHtml(tip.author)}"${tip.author_url ? `,\n                    "url": "${escapeHtml(tip.author_url)}"` : ''}
+                    "name": "${escapeJsonStr(tip.author)}"${tip.author_url ? `,\n                    "url": "${escapeJsonStr(tip.author_url)}"` : ''}
                 },
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "articleSection": "${escapeHtml(tip.category)}"
+                "articleSection": "${escapeJsonStr(tip.category)}"
             },
             {
                 "@type": "BreadcrumbList",
@@ -134,7 +134,7 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "${escapeHtml(tip.title)}",
+                        "name": "${escapeJsonStr(tip.title)}",
                         "item": "https://mrpunyapal.dev/tips/${tip.slug}"
                     }
                 ]
