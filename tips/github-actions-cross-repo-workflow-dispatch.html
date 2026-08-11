@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto-Scale Queue Workers with --stop-when-empty-for in Laravel | Tips | Punyapal Shah</title>
+    <title>Trigger a GitHub Actions Workflow in Another Repository | Tips | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,37 +16,37 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty...">
+    <meta name="description" content="Use repositorydispatch to trigger a workflow in a different repository when a PR is merged or code is pushed. GitHub repositories are isolated — merging a PR...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-queue-worker-stop-when-empty-for">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch">
     <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-queue-worker-stop-when-empty-for">
-    <meta property="og:title" content="Auto-Scale Queue Workers with --stop-when-empty-for in Laravel | Punyapal Shah">
-    <meta property="og:description" content="The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-queue-worker-stop-when-empty-for.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-queue-worker-stop-when-empty-for.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch">
+    <meta property="og:title" content="Trigger a GitHub Actions Workflow in Another Repository | Punyapal Shah">
+    <meta property="og:description" content="Use repositorydispatch to trigger a workflow in a different repository when a PR is merged or code is pushed. GitHub repositories are isolated — merging a PR...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/github-actions-cross-repo-workflow-dispatch.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/github-actions-cross-repo-workflow-dispatch.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Auto-Scale Queue Workers with --stop-when-empty-for in Laravel - Punyapal Shah">
+    <meta property="og:image:alt" content="Trigger a GitHub Actions Workflow in Another Repository - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2025-11-20">
+    <meta property="article:published_time" content="2026-08-11">
     <meta property="article:author" content="https://x.com/MrPunyapal">
-    <meta property="article:section" content="Laravel">
+    <meta property="article:section" content="Git">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-queue-worker-stop-when-empty-for">
-    <meta name="twitter:title" content="Auto-Scale Queue Workers with --stop-when-empty-for in Laravel | Punyapal Shah">
-    <meta name="twitter:description" content="The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-queue-worker-stop-when-empty-for.png">
-    <meta name="twitter:image:alt" content="Auto-Scale Queue Workers with --stop-when-empty-for in Laravel - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch">
+    <meta name="twitter:title" content="Trigger a GitHub Actions Workflow in Another Repository | Punyapal Shah">
+    <meta name="twitter:description" content="Use repositorydispatch to trigger a workflow in a different repository when a PR is merged or code is pushed. GitHub repositories are isolated — merging a PR...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/github-actions-cross-repo-workflow-dispatch.png">
+    <meta name="twitter:image:alt" content="Trigger a GitHub Actions Workflow in Another Repository - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -55,12 +55,12 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-queue-worker-stop-when-empty-for#article",
-                "headline": "Auto-Scale Queue Workers with --stop-when-empty-for in Laravel",
-                "description": "The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty...",
-                "datePublished": "2025-11-20",
+                "@id": "https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch#article",
+                "headline": "Trigger a GitHub Actions Workflow in Another Repository",
+                "description": "Use repositorydispatch to trigger a workflow in a different repository when a PR is merged or code is pushed. GitHub repositories are isolated — merging a PR...",
+                "datePublished": "2026-08-11",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-queue-worker-stop-when-empty-for",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -69,7 +69,7 @@
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "articleSection": "Laravel"
+                "articleSection": "Git"
             },
             {
                 "@type": "BreadcrumbList",
@@ -89,8 +89,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Auto-Scale Queue Workers with --stop-when-empty-for in Laravel",
-                        "item": "https://mrpunyapal.dev/tips/laravel-queue-worker-stop-when-empty-for"
+                        "name": "Trigger a GitHub Actions Workflow in Another Repository",
+                        "item": "https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch"
                     }
                 ]
             }
@@ -602,13 +602,13 @@
                     </a>
 
                     <div class="inline-flex items-center gap-1.5 flex-wrap">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border-red-100 dark:border-red-900/60">
-                            Laravel
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-900/60">
+                            Git
                         </span>
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Queue
+                                GitHub Actions
                             </span>
                         
                     </div>
@@ -617,7 +617,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Auto-Scale Queue Workers with --stop-when-empty-for in Laravel
+                        Trigger a GitHub Actions Workflow in Another Repository
                     </h1>
 
                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -626,9 +626,9 @@
                             <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2025-11-20" class="inline-flex items-center gap-1.5">
+                        <time datetime="2026-08-11" class="inline-flex items-center gap-1.5">
                             <svg class="icon text-xs opacity-70" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Nov 20, 2025
+                            Aug 11, 2026
                         </time>
                     </div>
                 </div>
@@ -642,7 +642,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty workloads.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Running `php artisan queue:work --stop-when-empty` in serverless environments or container auto-scalers terminates the worker process immediately when no jobs remain. If new jobs arrive seconds later, new processes must spin up continuously.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The `--stop-when-empty-for` option adds a configurable idle timeout:</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use `repository_dispatch` to trigger a workflow in a different repository when a PR is merged or code is pushed.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">GitHub repositories are isolated — merging a PR in Repo A will never automatically trigger a workflow in Repo B. The `repository_dispatch` event bridges this gap.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Set Up the Listener (Target Repo)</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In the repository where you want the workflow to **run**, add `repository_dispatch` as a trigger:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
         <div class="flex items-center gap-2">
@@ -650,23 +650,100 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="# Stops worker immediately once queue is empty
-php artisan queue:work --stop-when-empty
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="# .github/workflows/build.yml (target repo)
+name: Build Site
 
-# Keeps worker running for 60 idle seconds before exiting
-php artisan queue:work --stop-when-empty-for=60" aria-label="Copy code to clipboard">
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+    types: [content-updated]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo &quot;Build triggered!&quot;" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-bash"><span class="hljs-comment"># Stops worker immediately once queue is empty</span>
-php artisan queue:work --stop-when-empty
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-yaml"><span class="hljs-comment"># .github/workflows/build.yml (target repo)</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">Site</span>
 
-<span class="hljs-comment"># Keeps worker running for 60 idle seconds before exiting</span>
-php artisan queue:work --stop-when-empty-for=60</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Prevents process start/stop churn during intermittent job spikes</span></li><li class="leading-relaxed"><span class="align-middle">Ideal for AWS ECS, Kubernetes HPA, and Serverless worker instances</span></li><li class="leading-relaxed"><span class="align-middle">Retains database connection pooling while waiting for trailing jobs</span></li></ul>
+<span class="hljs-attr">on:</span>
+  <span class="hljs-attr">push:</span>
+    <span class="hljs-attr">branches:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">main</span>
+  <span class="hljs-attr">repository_dispatch:</span>
+    <span class="hljs-attr">types:</span> [<span class="hljs-string">content-updated</span>]
+  <span class="hljs-attr">workflow_dispatch:</span>
+
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">build:</span>
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+    <span class="hljs-attr">steps:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v4</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">run:</span> <span class="hljs-string">echo</span> <span class="hljs-string">&quot;Build triggered!&quot;</span></code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Set Up the Notifier (Source Repo)</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In the repository that should **send** the signal, add a workflow that fires a `curl` request:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#0d1117] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#161b22] border-b border-[#d0d7de] dark:border-[#30363d] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#30363d] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#30363d] bg-white dark:bg-[#21262d] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="# .github/workflows/notify.yml (source repo)
+name: Notify Target Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger target repo build
+        run: |
+          curl -X POST \
+            -H &quot;Authorization: Bearer ${{ secrets.DISPATCH_TOKEN }}&quot; \
+            -H &quot;Accept: application/vnd.github.v3+json&quot; \
+            https://api.github.com/repos/OWNER/TARGET-REPO/dispatches \
+            -d &#039;{&quot;event_type&quot;: &quot;content-updated&quot;}&#039;" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#0d1117]"><code class="hljs language-yaml"><span class="hljs-comment"># .github/workflows/notify.yml (source repo)</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">Notify</span> <span class="hljs-string">Target</span> <span class="hljs-string">Repo</span>
+
+<span class="hljs-attr">on:</span>
+  <span class="hljs-attr">push:</span>
+    <span class="hljs-attr">branches:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">main</span>
+
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">notify:</span>
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+    <span class="hljs-attr">steps:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Trigger</span> <span class="hljs-string">target</span> <span class="hljs-string">repo</span> <span class="hljs-string">build</span>
+        <span class="hljs-attr">run:</span> <span class="hljs-string">|
+          curl -X POST \
+            -H &quot;Authorization: Bearer ${{ secrets.DISPATCH_TOKEN }}&quot; \
+            -H &quot;Accept: application/vnd.github.v3+json&quot; \
+            https://api.github.com/repos/OWNER/TARGET-REPO/dispatches \
+            -d &#x27;{&quot;event_type&quot;: &quot;content-updated&quot;}&#x27;</span></code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">3. Create the Token</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Go to GitHub <strong>Settings</strong> → <strong>Developer Settings</strong> → <strong>Fine-Grained Personal Access Tokens</strong></span></li><li class="leading-relaxed"><span class="align-middle">Scope it to the <strong>target repository</strong> only</span></li><li class="leading-relaxed"><span class="align-middle">Grant <strong>Contents: Read and write</strong> permission</span></li><li class="leading-relaxed"><span class="align-middle">Save the token as <code>DISPATCH_TOKEN</code> in the <strong>source repository&#39;s</strong> Actions secrets
+</span></li><li class="leading-relaxed"><span class="align-middle">The <code>event_type</code> string must match exactly between the sender and the listener</span></li><li class="leading-relaxed"><span class="align-middle">The token needs write access to the <strong>target</strong> repo, stored as a secret in the <strong>source</strong> repo</span></li><li class="leading-relaxed"><span class="align-middle">Works for any cross-repo automation: monorepo builds, submodule syncs, deploy triggers</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -676,11 +753,11 @@ php artisan queue:work --stop-when-empty-for=60</code></pre>
                             <svg class="icon text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Queue</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#DevOps</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">#Git</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">#GitHub Actions</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">#CI/CD</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">#DevOps</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Auto-Scale%20Queue%20Workers%20with%20--stop-when-empty-for%20in%20Laravel%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-queue-worker-stop-when-empty-for" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Trigger%20a%20GitHub%20Actions%20Workflow%20in%20Another%20Repository%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Fgithub-actions-cross-repo-workflow-dispatch" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -697,7 +774,7 @@ php artisan queue:work --stop-when-empty-for=60</code></pre>
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/github-actions-cross-repo-workflow-dispatch" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-agent-detector-pao" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -713,13 +790,13 @@ php artisan queue:work --stop-when-empty-for=60</code></pre>
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Trigger a GitHub Actions Workflow in Another Repository
+                        Detect AI Agents in Laravel with AgentDetector and PAO
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </span>
                 </a>
-                <a href="/tips/laravel-livewire-flux-error-handling" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-squash-migrations-workflow" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -735,7 +812,7 @@ php artisan queue:work --stop-when-empty-for=60</code></pre>
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Render Multiple Field Validation Errors with Flux UI and Blade
+                        Squash Legacy Database Migrations Carefully
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
