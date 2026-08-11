@@ -9,9 +9,75 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Tue, 11 Aug 2026 09:56:00 GMT</lastBuildDate>
+    <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Tue, 11 Aug 2026 09:59:10 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Trigger a GitHub Actions Workflow in Another Repository]]></title>
+      <link>https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</guid>
+      <description><![CDATA[Use repositorydispatch to trigger a workflow in a different repository when a PR is merged or code is pushed. GitHub repositories are isolated — merging a PR...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use `repository_dispatch` to trigger a workflow in a different repository when a PR is merged or code is pushed.</blockquote>
+<p>GitHub repositories are isolated — merging a PR in Repo A will never automatically trigger a workflow in Repo B. The `repository_dispatch` event bridges this gap.</p>
+<h3>1. Set Up the Listener (Target Repo)</h3>
+<p>In the repository where you want the workflow to **run**, add `repository_dispatch` as a trigger:</p>
+<pre><code class="language-yaml"># .github/workflows/build.yml (target repo)
+name: Build Site
+
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+    types: [content-updated]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo &quot;Build triggered!&quot;</code></pre>
+<h3>2. Set Up the Notifier (Source Repo)</h3>
+<p>In the repository that should **send** the signal, add a workflow that fires a `curl` request:</p>
+<pre><code class="language-yaml"># .github/workflows/notify.yml (source repo)
+name: Notify Target Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger target repo build
+        run: |
+          curl -X POST \
+            -H &quot;Authorization: Bearer ${{ secrets.DISPATCH_TOKEN }}&quot; \
+            -H &quot;Accept: application/vnd.github.v3+json&quot; \
+            https://api.github.com/repos/OWNER/TARGET-REPO/dispatches \
+            -d &#039;{&quot;event_type&quot;: &quot;content-updated&quot;}&#039;</code></pre>
+<h3>3. Create the Token</h3>
+<ul>
+  <li>Go to GitHub <strong>Settings</strong> → <strong>Developer Settings</strong> → <strong>Fine-Grained Personal Access Tokens</strong></li>
+  <li>Scope it to the <strong>target repository</strong> only</li>
+  <li>Grant <strong>Contents: Read and write</strong> permission</li>
+  <li>Save the token as <code>DISPATCH_TOKEN</code> in the <strong>source repository&#39;s</strong> Actions secrets
+</li>
+  <li>The <code>event_type</code> string must match exactly between the sender and the listener</li>
+  <li>The token needs write access to the <strong>target</strong> repo, stored as a secret in the <strong>source</strong> repo</li>
+  <li>Works for any cross-repo automation: monorepo builds, submodule syncs, deploy triggers</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub Actions]]></category>
+      <category><![CDATA[CI/CD]]></category>
+      <category><![CDATA[DevOps]]></category>
+    </item>
     <item>
       <title><![CDATA[Render Multiple Field Validation Errors with Flux UI and Blade]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-livewire-flux-error-handling</link>
