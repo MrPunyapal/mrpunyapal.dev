@@ -47,6 +47,41 @@ export function renderSiteHeader(activePage = 'home') {
     const githubRepo = isTips ? 'https://github.com/MrPunyapal/tips' : 'https://github.com/MrPunyapal/mrpunyapal.dev';
     const githubLabel = isTips ? 'View Tips repository on GitHub' : 'View source code on GitHub';
 
+    const themeBtnInnerHtml = `<span class="theme-spider-btn-icon flex items-center justify-center text-slate-900 dark:text-white transition-colors duration-200" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="16" height="16" fill="currentColor" aria-hidden="true" style="display:block;">
+            <g stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 44 60 Q 28 80 16 78" />
+                <path d="M 56 60 Q 72 80 84 78" />
+                <path d="M 42 53 Q 20 63 10 53" />
+                <path d="M 58 53 Q 80 63 90 53" />
+                <path d="M 42 45 Q 18 36 12 24" />
+                <path d="M 58 45 Q 82 36 88 24" />
+                <path d="M 44 38 Q 30 18 20 10" />
+                <path d="M 56 38 Q 70 18 80 10" />
+            </g>
+            <ellipse cx="50" cy="35" rx="14" ry="17" />
+            <circle cx="50" cy="57" r="10" />
+            <path d="M 44 65 Q 47 73 47 77" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" />
+            <path d="M 56 65 Q 53 73 53 77" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" />
+        </svg>
+    </span>
+    <span class="theme-mode-badge absolute -top-1 -right-1 pointer-events-none flex items-center justify-center z-10" aria-hidden="true">
+        <svg class="hidden dark:block" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" fill="#f59e0b"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="block dark:hidden" viewBox="0 0 24 24" width="10" height="10" fill="#6366f1" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </span>`;
+
     const headerClasses = isResume 
         ? 'print:hidden border-b border-slate-200 dark:border-slate-800 relative z-20'
         : 'border-b border-slate-200 dark:border-slate-800 relative z-20';
@@ -74,7 +109,8 @@ ${desktopNavLinksHtml}
                         <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="site-nav-source p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
                             <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                         </a>
-                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn relative p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                            ${themeBtnInnerHtml}
                         </button>
                     </div>
                 </div>
@@ -89,7 +125,8 @@ ${desktopNavLinksHtml}
                         <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
                             <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                         </a>
-                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn relative p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                            ${themeBtnInnerHtml}
                         </button>
                         <button type="button" data-mobile-menu-toggle aria-expanded="false" aria-controls="mobile-sidebar" aria-label="Open sidebar navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded hover:bg-slate-100 dark:hover:bg-slate-800">
                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

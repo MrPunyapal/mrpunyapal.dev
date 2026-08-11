@@ -77,7 +77,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
     }).join('\n');
 
     const hubHtml = `<!DOCTYPE html>
-<html lang="en" class="overflow-x-hidden">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">

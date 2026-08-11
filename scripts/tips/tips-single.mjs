@@ -45,7 +45,7 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
         : `<span class="font-semibold">${escapeHtml(tip.author)}</span>`;
 
     const singleTipHtml = `<!DOCTYPE html>
-<html lang="en" class="overflow-x-hidden">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
