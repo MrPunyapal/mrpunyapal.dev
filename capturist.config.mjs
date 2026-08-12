@@ -20,6 +20,11 @@ function getTipPages() {
 
 export default defineConfig({
   // Built-in static server automatically builds and serves the compiled production assets with full Tailwind CSS & themes
+  cache: {
+    path: "public/og/.capturist-cache.json",
+    adopt: true,
+    prune: true,
+  },
   server: {
     dir: "./dist",
     buildCommand: "npm run build",
