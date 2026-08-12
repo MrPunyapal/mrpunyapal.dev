@@ -9,9 +9,71 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Tue, 11 Aug 2026 18:41:48 GMT</lastBuildDate>
+    <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Wed, 12 Aug 2026 16:08:44 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Simplify ULID Foreign Keys with foreignUlidFor()]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-foreignulidfor-schema-helper</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-foreignulidfor-schema-helper</guid>
+      <description><![CDATA[Laravel 13.25 adds foreignUlidFor() to the migration Blueprint, allowing you to define ULID foreign key columns and table constraints directly from model cla...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.25 adds foreignUlidFor() to the migration Blueprint, allowing you to define ULID foreign key columns and table constraints directly from model classes.</blockquote>
+<p>When building applications where models use ULIDs for primary keys, setting up foreign key columns in database migrations previously required declaring both the ULID column and its foreign constraint manually.</p>
+<p>Laravel 13.25 introduces the `foreignUlidFor()` schema helper on the `Illuminate\Database\Schema\Blueprint` class. This method automatically creates the ULID column and establishes the foreign key constraint based on the given model.</p>
+<h3>Before and After</h3>
+<h4>Before Laravel 13.25</h4>
+<p>Defining a ULID foreign key required manually declaring the ULID column and chaining foreign key constraints:</p>
+<pre><code class="language-php">use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+Schema::create(&#039;posts&#039;, function (Blueprint $table) {
+    $table-&gt;id();
+
+    // Manual ULID column and foreign key constraint
+    $table-&gt;ulid(&#039;user_id&#039;);
+    $table-&gt;foreign(&#039;user_id&#039;)
+        -&gt;references(&#039;id&#039;)
+        -&gt;on(&#039;users&#039;);
+
+    $table-&gt;timestamps();
+});</code></pre>
+<h4>With foreignUlidFor() in Laravel 13.25</h4>
+<p>Using `foreignUlidFor()`, the column name and table constraint are resolved directly from the model class:</p>
+<pre><code class="language-php">use App\Models\User;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+Schema::create(&#039;posts&#039;, function (Blueprint $table) {
+    $table-&gt;id();
+
+    // Creates user_id ULID column and foreign key constraint to users table
+    $table-&gt;foreignUlidFor(User::class);
+
+    $table-&gt;timestamps();
+});</code></pre>
+<h3>How It Works</h3>
+<p>Passing a model class (such as `User::class`) to `foreignUlidFor()` performs two steps during migration execution:</p>
+<ol>
+  <li>Creates a ULID column matching the conventional model foreign key name (<code>user_id</code>).</li>
+  <li>Configures the foreign key constraint referencing the <code>id</code> column on the associated model table (<code>users</code>).</li>
+</ol>
+<p>The helper assumes that the referenced model uses ULIDs for its primary keys.</p>
+<h3>Key Considerations</h3>
+<ul>
+  <li><strong>Migration Schema Helper Only</strong>: <code>foreignUlidFor()</code> is a database schema helper for migration files. It does not define Eloquent model relationships or inverse relationship methods on Eloquent model classes.</li>
+  <li><strong>New Migrations Scope</strong>: This helper applies when defining new tables or altering schemas inside active migration files. It does not automatically modify existing database tables or retroactively update previously executed migrations.</li>
+  <li><strong>Convention Driven</strong>: The column name and table target are derived from standard model conventions (<code>User</code> resolves to <code>user_id</code> and table <code>users</code>).</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Migrations]]></category>
+      <category><![CDATA[Database]]></category>
+    </item>
     <item>
       <title><![CDATA[Prevent Navigation Layout Shifts and Flickering in Web Applications]]></title>
       <link>https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker</link>
