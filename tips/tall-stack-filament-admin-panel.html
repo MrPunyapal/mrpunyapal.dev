@@ -652,21 +652,18 @@
 
                 <!-- Breadcrumbs & Category Badge -->
                 <div class="flex items-center justify-between gap-4 mb-6">
-                    <div class="flex items-center gap-2.5 sm:gap-3">
-                        <a href="/tips" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors py-1">
-                            <svg class="icon text-xs" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-left"/></svg>
-                            <span>Back to All Tips</span>
-                        </a>
-                        <span class="text-slate-300 dark:text-slate-700 select-none text-xs" aria-hidden="true">•</span>
-                        <button id="random-tip-btn" type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group cursor-pointer" aria-label="Open another random developer tip">
+                    <a href="/tips" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors py-1" title="Back to All Tips" aria-label="Back to All Tips">
+                        <svg class="icon text-xs" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-left"/></svg>
+                        <span class="hidden sm:inline">Back</span>
+                    </a>
+
+                    <div class="inline-flex items-center gap-1.5 flex-wrap">
+                        <button id="random-tip-btn" type="button" class="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group cursor-pointer" title="Open another random developer tip" aria-label="Open another random developer tip">
                             <svg class="w-3.5 h-3.5 text-red-500 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h7l-4 4m0 0l4 4M7 8h13M20 20h-7l4-4m0 0l-4-4m4 4H4" />
                             </svg>
-                            <span>Random Tip</span>
+                            <span class="hidden sm:inline">Random</span>
                         </button>
-                    </div>
-
-                    <div class="inline-flex items-center gap-1.5 flex-wrap">
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border-amber-100 dark:border-amber-900/60">
                             Filament
                         </span>
