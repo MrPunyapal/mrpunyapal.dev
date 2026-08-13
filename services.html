@@ -18,15 +18,15 @@
 
     <!-- Primary Meta Tags -->
     <meta name="description"
-        content="Punyapal Shah offers production Laravel engineering, legacy application modernization, testing architecture with Pest and PHPStan, developer tooling, and technical sponsorships.">
+        content="Punyapal Shah offers production Laravel engineering, legacy application modernization, testing architecture, 1:1 technical consultations, and technical sponsorships.">
     <meta name="author" content="Punyapal Shah">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mrpunyapal.dev/services">
-    <meta property="og:title" content="Services &amp; Sponsorships | Punyapal Shah - Laravel Engineering &amp; Technical Distribution">
+    <meta property="og:title" content="Services &amp; Sponsorships | Punyapal Shah - Laravel Engineering, Consultations &amp; Distribution">
     <meta property="og:description"
-        content="Production Laravel engineering, legacy application modernization, testing architecture, developer tooling, and technical sponsorships.">
+        content="Production Laravel engineering, legacy application modernization, testing architecture, 1:1 technical consultations, and technical sponsorships.">
     <meta property="og:image" content="https://mrpunyapal.dev/og/services.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/services.png">
     <meta property="og:image:type" content="image/png">
@@ -41,9 +41,9 @@
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/services">
-    <meta name="twitter:title" content="Services &amp; Sponsorships | Punyapal Shah - Laravel Engineering &amp; Technical Distribution">
+    <meta name="twitter:title" content="Services &amp; Sponsorships | Punyapal Shah - Laravel Engineering, Consultations &amp; Distribution">
     <meta name="twitter:description"
-        content="Production Laravel engineering, legacy application modernization, testing architecture, developer tooling, and technical sponsorships.">
+        content="Production Laravel engineering, legacy application modernization, testing architecture, 1:1 technical consultations, and technical sponsorships.">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/services.png">
     <meta name="twitter:image:src" content="https://mrpunyapal.dev/og/services.png">
     <meta name="twitter:image:alt" content="Punyapal Shah, Laravel Engineer and Open Source Maintainer">
@@ -60,8 +60,8 @@
                 "@type": "WebPage",
                 "@id": "https://mrpunyapal.dev/services#webpage",
                 "url": "https://mrpunyapal.dev/services",
-                "name": "Services & Sponsorships | Punyapal Shah - Laravel Engineering & Technical Distribution",
-                "description": "Production Laravel engineering, legacy application modernization, testing architecture, developer tooling, and technical sponsorships.",
+                "name": "Services & Sponsorships | Punyapal Shah - Laravel Engineering, Consultations & Distribution",
+                "description": "Production Laravel engineering, legacy application modernization, testing architecture, 1:1 technical consultations, and technical sponsorships.",
                 "inLanguage": "en",
                 "isPartOf": {
                     "@id": "https://mrpunyapal.dev/#website"
@@ -75,6 +75,9 @@
                     },
                     {
                         "@id": "https://mrpunyapal.dev/services#sponsorships"
+                    },
+                    {
+                        "@id": "https://mrpunyapal.dev/services#consultations"
                     }
                 ]
             },
@@ -144,6 +147,21 @@
                             "@type": "Service",
                             "name": "Technical Social & Launch Posts",
                             "description": "Paid sponsored technical announcement posts published across personal technical social channels (Primary: X, LinkedIn, Facebook; Secondary: Threads, Bluesky, Pinkary, Instagram, YouTube) for product launches, open source releases, and developer tools."
+                        }
+                    }
+                ]
+            },
+            {
+                "@type": "OfferCatalog",
+                "@id": "https://mrpunyapal.dev/services#consultations",
+                "name": "1:1 Technical Consultations",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "1:1 Technical Consultation",
+                            "description": "Focused 1:1 technical consultation calls ($50 for 30 min, $100 for 60 min) for architectural decisions, PHP and Laravel debugging, version upgrades, package choices, and second opinions."
                         }
                     }
                 ]
@@ -1000,17 +1018,85 @@
                         </svg>
                     </div>
 
-                    <!-- Work With Me Card Container matching opensource.html CTA -->
-                    <div class="relative z-10 w-full max-w-3xl border border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-[#121318]/95 backdrop-blur-md rounded-lg p-6 sm:p-10 shadow-lg shadow-slate-200/60 dark:shadow-none transition-all duration-300">
-                        <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Work With Me</h2>
+                    <!-- Work With Me Card Container matching site design language -->
+                    <div class="relative z-10 w-full max-w-5xl border border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-[#121318]/95 backdrop-blur-md rounded-lg p-6 sm:p-8 lg:p-10 shadow-lg shadow-slate-200/60 dark:shadow-none transition-all duration-300">
+                        <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Work With Me</h2>
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                            Have a Laravel application that needs engineering work or a technical announcement to share? Contact me directly to discuss your codebase or project requirements.
+                            Three ways to work with me: engineering, sponsorships, or technical advice.
                         </p>
-                        <a href="mailto:mrpunyapal@gmail.com" aria-label="Send email to collaborate on a project"
-                            class="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium border border-red-200 dark:border-red-900/60 text-red-600 dark:text-red-400 rounded hover:bg-red-600 hover:text-white hover:border-red-600 transition-all">
-                            <span>$this->collaborate()</span>
-                            <span aria-hidden="true">→</span>
-                        </a>
+
+                        <!-- Horizontal Divider -->
+                        <div class="border-t border-slate-200 dark:border-slate-800 pt-6">
+                            <!-- Three Equal Columns Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 text-left items-stretch">
+                                
+                                <!-- Column 1: Engineering -->
+                                <div class="flex flex-col justify-between h-full">
+                                    <div>
+                                        <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1 mb-2">
+                                            <h3 class="text-base font-bold text-slate-900 dark:text-white whitespace-nowrap">Engineering</h3>
+                                            <span class="text-xs font-mono text-slate-500 dark:text-slate-400 whitespace-nowrap">Project-based</span>
+                                        </div>
+                                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                            Building, extending, modernizing, or refactoring production Laravel applications.
+                                        </p>
+                                    </div>
+                                    <div class="pt-6 mt-auto">
+                                        <a href="mailto:mrpunyapal@gmail.com?subject=Engineering%20Project%20Inquiry" aria-label="Inquire about engineering work"
+                                            class="inline-flex items-center gap-1.5 text-xs font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors">
+                                            <span>$this->collaborate()</span>
+                                            <span aria-hidden="true">→</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Column 2: Sponsorships -->
+                                <div class="flex flex-col justify-between h-full border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 pt-6 md:pt-0 md:pl-6 lg:pl-8">
+                                    <div>
+                                        <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1 mb-2">
+                                            <h3 class="text-base font-bold text-slate-900 dark:text-white whitespace-nowrap">Sponsorships</h3>
+                                            <span class="text-xs font-mono text-slate-500 dark:text-slate-400 whitespace-nowrap">From $500</span>
+                                        </div>
+                                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                            Paid announcements and launch posts shared across personal technical channels.
+                                        </p>
+                                    </div>
+                                    <div class="pt-6 mt-auto">
+                                        <a href="mailto:mrpunyapal@gmail.com?subject=Sponsorship%20Inquiry" aria-label="Inquire about sponsorships"
+                                            class="inline-flex items-center gap-1.5 text-xs font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors">
+                                            <span>$this->inquire()</span>
+                                            <span aria-hidden="true">→</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Column 3: 1:1 Consultation -->
+                                <div class="flex flex-col justify-between h-full border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 pt-6 md:pt-0 md:pl-6 lg:pl-8">
+                                    <div>
+                                        <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1 mb-2">
+                                            <h3 class="text-base font-bold text-slate-900 dark:text-white whitespace-nowrap">1:1 Consultation</h3>
+                                            <span class="text-xs font-mono text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap">$50 / 30m · $100 / 60m</span>
+                                        </div>
+                                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                            Focused conversation to talk through architecture, debugging, upgrades, or technical decisions.
+                                        </p>
+                                    </div>
+                                    <div class="pt-6 mt-auto flex flex-col gap-1.5 items-start">
+                                        <a href="mailto:mrpunyapal@gmail.com?subject=1%3A1%20Consultation%20Inquiry" aria-label="Book a 1:1 consultation call"
+                                            class="inline-flex items-center gap-1.5 text-xs font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors">
+                                            <span>$this->bookCall()</span>
+                                            <span aria-hidden="true">→</span>
+                                        </a>
+                                        <a href="https://github.com/sponsors/MrPunyapal" target="_blank" rel="noopener noreferrer" aria-label="Sponsor on GitHub for 1:1 conversation time"
+                                            class="inline-flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors">
+                                            <span>Or sponsor on GitHub for 1:1 time</span>
+                                            <span aria-hidden="true">→</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
