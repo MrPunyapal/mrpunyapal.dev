@@ -580,7 +580,7 @@ html:not(.dark) .theme-moon-icon {
 
 /* Theme Toggle Curtain Sweep Overrides (Disables separate view-transition layers and holds pseudo-elements active for 2.5s curtain sweep) */
 html.theme-transitioning header,
-html.theme-transitioning [style*="view-transition-name: site-header"] {
+html.theme-transitioning [style*="view-transition-name"] {
     view-transition-name: none !important;
 }
 
@@ -605,6 +605,17 @@ header[style*="view-transition-name: site-header"] {
     animation-duration: 260ms;
     animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 10000;
+}
+
+/* Shared Profile Avatar Morphing */
+img[style*="view-transition-name: profile-avatar"] {
+    view-transition-name: profile-avatar;
+}
+
+::view-transition-group(profile-avatar) {
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10001;
 }
 
 /* Theme Spider Crawler View Transition Layering */
