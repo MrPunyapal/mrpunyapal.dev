@@ -72,7 +72,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add content/tips tips.html tips/ public/tips-search-index.json public/sitemap.xml public/resume.pdf public/og/
+          git add content/tips tips.html tips/ public/tips-search-index.json public/tips/feed.xml public/sitemap.xml public/resume.pdf public/og/
           if ! git diff --staged --quiet; then
             git commit -m "build: auto-generate site assets and update tips submodule"
             git checkout -- .
