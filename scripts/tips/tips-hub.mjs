@@ -40,11 +40,11 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                             </span>
                         ` : ''}
                     </div>
-                    <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">
+                    <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">
                         <a href="/tips/${tip.slug}" class="after:absolute after:inset-0 focus:outline-none">
                             ${escapeHtml(tip.title)}
                         </a>
-                    </h3>
+                    </h2>
                     <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
                         ${escapeHtml(tip.summary)}
                     </p>
@@ -87,6 +87,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#FF2D20">
@@ -356,7 +357,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">No matching tips found</h3>
+                    <h2 class="text-base font-semibold text-slate-900 dark:text-white mb-1">No matching tips found</h2>
                     <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">Try adjusting your search query or choosing another category/subcategory filter.</p>
                     <button type="button" id="reset-filters-btn" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-red-600 text-white text-xs font-semibold hover:bg-red-700 transition-colors cursor-pointer">
                         Reset Filters
