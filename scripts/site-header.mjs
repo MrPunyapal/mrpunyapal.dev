@@ -144,7 +144,7 @@ ${desktopNavLinksHtml}
 
                     <!-- Slide-Over Panel Container -->
                     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
-                        <div id="mobile-sidebar-panel" class="w-64 sm:w-72 h-screen min-h-screen bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
+                        <div id="mobile-sidebar-panel" class="w-64 sm:w-72 h-dvh max-h-dvh bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
                             
                             <!-- Sidebar Header Bar (Clean Close Button Only) -->
                             <div class="flex items-center justify-end px-4 py-3.5 border-b border-slate-200 dark:border-slate-800">
