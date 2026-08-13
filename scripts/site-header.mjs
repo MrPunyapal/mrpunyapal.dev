@@ -87,7 +87,7 @@ export function renderSiteHeader(activePage = 'home') {
         ? 'print:hidden border-b border-slate-200 dark:border-slate-800 relative z-20'
         : 'border-b border-slate-200 dark:border-slate-800 relative z-20';
 
-    return `<header class="${headerClasses}">
+    return `<header class="${headerClasses}" style="view-transition-name: site-header;">
                 <!-- Horizontal Line Extension -->
                 <div class="tech-line-h bottom-[-1px]"></div>
 

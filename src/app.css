@@ -134,38 +134,39 @@ site-header {
     display: none !important;
 }
 
-/* Nightwatch-Inspired Dark Mode Body & Text Readability Overrides */
+/* Sleek Matte Obsidian Charcoal & Graphite Dark Theme System (Laravel Forge / Vercel Aesthetic) */
 .dark body {
-    background-color: #0c0d10 !important;
-    color: #f1f5f9 !important;
+    background-color: #0a0a0a !important;
+    color: #f4f4f5 !important;
 }
 
-/* Nightwatch Surface Layers & Glass Borders */
-.dark .dark\:bg-slate-950 { background-color: #0c0d10 !important; }
-.dark .dark\:bg-slate-900 { background-color: rgba(18, 19, 24, 0.85) !important; }
-.dark .dark\:bg-slate-900\/80 { background-color: rgba(18, 19, 24, 0.8) !important; backdrop-filter: blur(14px) !important; }
-.dark .dark\:bg-slate-900\/60 { background-color: rgba(22, 23, 29, 0.6) !important; }
-.dark .dark\:bg-slate-900\/50 { background-color: rgba(22, 23, 29, 0.5) !important; }
+/* Matte Charcoal Surface Layers & Grid Borders */
+.dark .dark\:bg-slate-950 { background-color: #0a0a0a !important; }
+.dark .dark\:bg-slate-900 { background-color: #121212 !important; }
+.dark .dark\:bg-slate-900\/80 { background-color: rgba(18, 18, 18, 0.92) !important; backdrop-filter: blur(12px) !important; }
+.dark .dark\:bg-slate-900\/60 { background-color: rgba(22, 22, 22, 0.75) !important; }
+.dark .dark\:bg-slate-900\/50 { background-color: rgba(22, 22, 22, 0.65) !important; }
+.dark .dark\:bg-slate-950\/30 { background-color: transparent !important; }
 
-.dark .dark\:bg-slate-800 { background-color: rgba(26, 28, 35, 0.6) !important; }
-.dark .dark\:bg-slate-800\/50 { background-color: rgba(26, 28, 35, 0.5) !important; }
-.dark .dark\:bg-slate-800\/40 { background-color: rgba(22, 23, 29, 0.4) !important; }
+.dark .dark\:bg-slate-800 { background-color: #1a1a1a !important; }
+.dark .dark\:bg-slate-800\/50 { background-color: rgba(26, 26, 26, 0.65) !important; }
+.dark .dark\:bg-slate-800\/40 { background-color: rgba(22, 22, 22, 0.5) !important; }
 
-.dark .dark\:border-slate-800 { border-color: rgba(255, 255, 255, 0.08) !important; }
-.dark .dark\:border-slate-700 { border-color: rgba(255, 255, 255, 0.14) !important; }
+.dark .dark\:border-slate-800 { border-color: #262626 !important; }
+.dark .dark\:border-slate-700 { border-color: #333333 !important; }
 
-/* Nightwatch Card Hover State (Pure Carbon Slate Surface Lift) */
+/* Matte Charcoal Card Hover & Elevation Lift */
 .dark .dark\:hover\:bg-slate-800\/80:hover {
-    background-color: rgba(34, 36, 45, 0.9) !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
+    background-color: #1f1f1f !important;
+    border-color: #3f3f46 !important;
 }
 
 .dark .dark\:hover\:bg-slate-800\/50:hover,
 .dark .dark\:hover\:bg-slate-800\/40:hover,
 .dark .dark\:hover\:bg-slate-800:hover {
-    background-color: rgba(32, 34, 42, 0.85) !important;
-    border-color: rgba(255, 255, 255, 0.18) !important;
-    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.09) !important;
+    background-color: #1c1c1c !important;
+    border-color: #383838 !important;
+    box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
 }
 
 .dark .dark\:hover\:bg-red-950\/40:hover {
@@ -356,31 +357,31 @@ site-header {
     color: #fde047 !important;
 }
 
-.dark .text-slate-900 { color: #f8fafc !important; }
-.dark .text-slate-800 { color: #f1f5f9 !important; }
-.dark .text-slate-700 { color: #e2e8f0 !important; }
-.dark .text-slate-600 { color: #cbd5e1 !important; }
-.dark .text-slate-500 { color: #94a3b8 !important; }
+.dark .text-slate-900 { color: #ffffff !important; }
+.dark .text-slate-800 { color: #f4f4f5 !important; }
+.dark .text-slate-700 { color: #e4e4e7 !important; }
+.dark .text-slate-600 { color: #a1a1aa !important; }
+.dark .text-slate-500 { color: #71717a !important; }
 
 /* Dark mode overrides for technical markers and lines */
 .dark .tech-marker {
-    background-color: #0c0d10 !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.1) !important;
+    background-color: #0a0a0a !important;
+    border-color: #383838 !important;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5) !important;
 }
 
 .dark .tech-line-h,
 .dark .tech-line-v-top {
-    background-color: rgba(255, 255, 255, 0.08) !important;
+    background-color: #262626 !important;
 }
 
 .dark .tech-line-v-bottom {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), transparent) !important;
+    background: linear-gradient(to bottom, #262626, transparent) !important;
 }
 
 /* SVG grid lines for dark mode */
 .dark svg pattern#grid path {
-    stroke: rgba(255, 255, 255, 0.06) !important;
+    stroke: #1f1f1f !important;
 }
 
 /* Fix grid intersection '+' SVG corner cutout on card hover */
@@ -394,10 +395,10 @@ site-header {
 
 /* Door message box in dark mode (Nightwatch Glassmorphism) */
 .dark #doorMessage {
-    background-color: #121318 !important;
-    color: #f1f5f9 !important;
-    border-color: rgba(255, 255, 255, 0.12) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(244, 63, 94, 0.15) !important;
+    background-color: #141414 !important;
+    color: #f4f4f5 !important;
+    border-color: #262626 !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8) !important;
 }
 
 .dark #doorMessage p.text-slate-800 {
@@ -425,21 +426,29 @@ site-header {
     color: rgba(203, 213, 225, 0.9);
 }
 
-/* Nightwatch Telemetry Pill Badges in Dark Mode */
-.dark .bg-slate-100 { background-color: rgba(30, 41, 59, 0.7) !important; color: #cbd5e1 !important; border-color: rgba(255, 255, 255, 0.08) !important; }
-.dark .bg-slate-50 { background-color: rgba(15, 23, 42, 0.8) !important; color: #cbd5e1 !important; border-color: rgba(255, 255, 255, 0.08) !important; }
+.dark .bg-slate-100 { background-color: #1a1a1a !important; color: #f4f4f5 !important; border-color: #262626 !important; }
+.dark .bg-slate-50 { background-color: #141414 !important; color: #f4f4f5 !important; border-color: #262626 !important; }
+.dark .tip-content blockquote,
+.dark blockquote { background-color: #141414 !important; border-color: #262626 !important; border-left-color: #ef4444 !important; color: #e4e4e7 !important; }
 
-.dark .bg-red-50 { background-color: rgba(225, 29, 72, 0.15) !important; border-color: rgba(225, 29, 72, 0.35) !important; color: #fb7185 !important; box-shadow: 0 0 10px rgba(225, 29, 72, 0.12) !important; }
-.dark .bg-pink-50 { background-color: rgba(219, 39, 119, 0.15) !important; border-color: rgba(219, 39, 119, 0.35) !important; color: #f472b6 !important; box-shadow: 0 0 10px rgba(219, 39, 119, 0.12) !important; }
-.dark .bg-orange-50 { background-color: rgba(234, 88, 12, 0.15) !important; border-color: rgba(234, 88, 12, 0.35) !important; color: #fb923c !important; }
-.dark .bg-yellow-50 { background-color: rgba(202, 138, 4, 0.15) !important; border-color: rgba(202, 138, 4, 0.35) !important; color: #facc15 !important; }
-.dark .bg-green-50 { background-color: rgba(22, 163, 74, 0.15) !important; border-color: rgba(22, 163, 74, 0.35) !important; color: #4ade80 !important; box-shadow: 0 0 10px rgba(22, 163, 74, 0.12) !important; }
-.dark .bg-blue-50 { background-color: rgba(37, 99, 235, 0.15) !important; border-color: rgba(37, 99, 235, 0.35) !important; color: #60a5fa !important; }
-.dark .bg-purple-50 { background-color: rgba(147, 51, 234, 0.15) !important; border-color: rgba(147, 51, 234, 0.35) !important; color: #c084fc !important; }
-.dark .bg-indigo-50 { background-color: rgba(79, 70, 229, 0.15) !important; border-color: rgba(79, 70, 229, 0.35) !important; color: #818cf8 !important; }
-.dark .bg-amber-50 { background-color: rgba(217, 119, 6, 0.15) !important; border-color: rgba(217, 119, 6, 0.35) !important; color: #fbbf24 !important; }
-.dark .bg-emerald-50 { background-color: rgba(5, 150, 105, 0.15) !important; border-color: rgba(5, 150, 105, 0.35) !important; color: #34d399 !important; box-shadow: 0 0 10px rgba(5, 150, 105, 0.12) !important; }
-.dark .bg-amber-100 { background-color: rgba(217, 119, 6, 0.2) !important; color: #fbbf24 !important; }
+/* Dark Mode Pill Badges Design System (Matte Dark Tinted Surfaces & Harmonious Contrast) */
+.dark .bg-red-50, .dark .bg-red-100 { background-color: rgba(225, 29, 72, 0.15) !important; border-color: rgba(225, 29, 72, 0.35) !important; color: #fb7185 !important; }
+.dark .bg-pink-50, .dark .bg-pink-100 { background-color: rgba(219, 39, 119, 0.15) !important; border-color: rgba(219, 39, 119, 0.35) !important; color: #f472b6 !important; }
+.dark .bg-purple-50, .dark .bg-purple-100 { background-color: rgba(147, 51, 234, 0.15) !important; border-color: rgba(147, 51, 234, 0.35) !important; color: #c084fc !important; }
+.dark .bg-violet-50, .dark .bg-violet-100 { background-color: rgba(139, 92, 246, 0.15) !important; border-color: rgba(139, 92, 246, 0.35) !important; color: #a78bfa !important; }
+.dark .bg-indigo-50, .dark .bg-indigo-100 { background-color: rgba(79, 70, 229, 0.15) !important; border-color: rgba(79, 70, 229, 0.35) !important; color: #818cf8 !important; }
+.dark .bg-blue-50, .dark .bg-blue-100 { background-color: rgba(37, 99, 235, 0.15) !important; border-color: rgba(37, 99, 235, 0.35) !important; color: #60a5fa !important; }
+.dark .bg-sky-50, .dark .bg-sky-100 { background-color: rgba(14, 165, 233, 0.15) !important; border-color: rgba(14, 165, 233, 0.35) !important; color: #38bdf8 !important; }
+.dark .bg-cyan-50, .dark .bg-cyan-100 { background-color: rgba(6, 182, 212, 0.15) !important; border-color: rgba(6, 182, 212, 0.35) !important; color: #22d3ee !important; }
+.dark .bg-teal-50, .dark .bg-teal-100 { background-color: rgba(20, 184, 166, 0.15) !important; border-color: rgba(20, 184, 166, 0.35) !important; color: #2dd4bf !important; }
+.dark .bg-emerald-50, .dark .bg-emerald-100 { background-color: rgba(5, 150, 105, 0.15) !important; border-color: rgba(5, 150, 105, 0.35) !important; color: #34d399 !important; }
+.dark .bg-green-50, .dark .bg-green-100 { background-color: rgba(22, 163, 74, 0.15) !important; border-color: rgba(22, 163, 74, 0.35) !important; color: #4ade80 !important; }
+.dark .bg-lime-50, .dark .bg-lime-100 { background-color: rgba(101, 163, 13, 0.15) !important; border-color: rgba(101, 163, 13, 0.35) !important; color: #a3e635 !important; }
+.dark .bg-yellow-50, .dark .bg-yellow-100 { background-color: rgba(202, 138, 4, 0.15) !important; border-color: rgba(202, 138, 4, 0.35) !important; color: #facc15 !important; }
+.dark .bg-amber-50, .dark .bg-amber-100 { background-color: rgba(217, 119, 6, 0.15) !important; border-color: rgba(217, 119, 6, 0.35) !important; color: #fbbf24 !important; }
+.dark .bg-orange-50, .dark .bg-orange-100 { background-color: rgba(234, 88, 12, 0.15) !important; border-color: rgba(234, 88, 12, 0.35) !important; color: #fb923c !important; }
+.dark .bg-fuchsia-50, .dark .bg-fuchsia-100 { background-color: rgba(217, 70, 239, 0.15) !important; border-color: rgba(217, 70, 239, 0.35) !important; color: #e879f9 !important; }
+.dark .bg-rose-50, .dark .bg-rose-100 { background-color: rgba(244, 63, 94, 0.15) !important; border-color: rgba(244, 63, 94, 0.35) !important; color: #fb7185 !important; }
 
 /* Print Layout Optimization */
 @media print {
@@ -529,21 +538,76 @@ html:not(.dark) .theme-moon-icon {
     overflow: hidden !important;
 }
 
-/* Ultra-Smooth View Transitions API Layering */
-::view-transition-old(root),
-::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
+/* Native View Transition Keyframes for Page Navigations */
+@keyframes vt-page-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.995);
+    }
+}
+
+@keyframes vt-page-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 ::view-transition-old(root) {
+    animation: 220ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
+    mix-blend-mode: normal;
     z-index: 1;
 }
 
 ::view-transition-new(root) {
+    animation: 260ms cubic-bezier(0, 0, 0.2, 1) both vt-page-in;
+    mix-blend-mode: normal;
     z-index: 9999;
 }
 
+@keyframes theme-curtain-hold {
+    from { opacity: 1; }
+    to { opacity: 1; }
+}
+
+/* Theme Toggle Curtain Sweep Overrides (Disables separate view-transition layers and holds pseudo-elements active for 2.5s curtain sweep) */
+html.theme-transitioning header,
+html.theme-transitioning [style*="view-transition-name: site-header"] {
+    view-transition-name: none !important;
+}
+
+html.theme-transitioning::view-transition-old(root) {
+    animation: 2500ms linear both theme-curtain-hold !important;
+    mix-blend-mode: normal !important;
+    z-index: 1 !important;
+}
+
+html.theme-transitioning::view-transition-new(root) {
+    animation: 2500ms linear both theme-curtain-hold !important;
+    mix-blend-mode: normal !important;
+    z-index: 9999 !important;
+}
+
+/* Persistent Shared Navigation Header Morphing */
+header[style*="view-transition-name: site-header"] {
+    view-transition-name: site-header;
+}
+
+::view-transition-group(site-header) {
+    animation-duration: 260ms;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 10000;
+}
+
+/* Theme Spider Crawler View Transition Layering */
 ::view-transition-group(spider-crawler) {
     z-index: 2147483647 !important;
 }
@@ -554,6 +618,15 @@ html:not(.dark) .theme-moon-icon {
     animation: none !important;
     mix-blend-mode: normal !important;
     z-index: 2147483647 !important;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root),
+    ::view-transition-group(site-header) {
+        animation: none !important;
+    }
 }
 
 /* Spider Crawler Theme Curtain Transition */

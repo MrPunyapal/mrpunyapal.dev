@@ -381,8 +381,14 @@ export function toggleTheme(eventOrElement) {
                 }
             }
 
+            document.documentElement.classList.add('theme-transitioning');
+
             const transition = document.startViewTransition(() => {
                 setTheme(nextTheme);
+            });
+
+            transition.finished.finally(() => {
+                document.documentElement.classList.remove('theme-transitioning');
             });
 
             transition.ready.then(() => {
