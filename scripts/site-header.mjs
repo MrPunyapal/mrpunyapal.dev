@@ -140,7 +140,7 @@ ${desktopNavLinksHtml}
                 <!-- Off-Canvas Mobile Sidebar Drawer -->
                 <div id="mobile-sidebar" class="hidden sm:hidden fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation sidebar">
                     <!-- Semi-transparent Blur Backdrop -->
-                    <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity duration-300 ease-in-out opacity-0" aria-hidden="true"></div>
+                    <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity duration-300 ease-in-out opacity-0" aria-hidden="true"></div>
 
                     <!-- Slide-Over Panel Container -->
                     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">

@@ -273,7 +273,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
             </div>
 
             <!-- Slide-over Filter Sidebar Drawer -->
-            <div id="filter-drawer-backdrop" class="hidden fixed inset-0 bg-slate-900/50 dark:bg-slate-950/70 backdrop-blur-xs z-50 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true"></div>
+            <div id="filter-drawer-backdrop" class="hidden fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-xs z-50 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true"></div>
 
             <aside id="filter-drawer-panel" role="dialog" aria-modal="true" aria-label="Filters sidebar" class="hidden fixed top-0 bottom-0 right-0 h-dvh max-h-dvh w-full max-w-full sm:max-w-md md:max-w-lg bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col overflow-hidden">
                 <!-- Drawer Header -->
