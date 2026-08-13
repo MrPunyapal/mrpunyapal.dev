@@ -4,6 +4,7 @@ import path from 'node:path';
 export function generateSitemap(tips, publicDir) {
     const staticPages = [
         'https://mrpunyapal.dev/',
+        'https://mrpunyapal.dev/services',
         'https://mrpunyapal.dev/projects',
         'https://mrpunyapal.dev/opensource',
         'https://mrpunyapal.dev/tips',

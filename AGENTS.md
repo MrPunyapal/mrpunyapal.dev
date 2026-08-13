@@ -8,7 +8,7 @@ When making changes, prioritize consistency, maintainability, and factual accura
 
 ## Core File Mapping
 
-- **Website Pages**: `index.html`, `projects.html`, `opensource.html`, `tips.html`, `tips/<slug>.html`, `talks.html`, `resume.html`
+- **Website Pages**: `index.html`, `services.html`, `projects.html`, `opensource.html`, `tips.html`, `tips/<slug>.html`, `talks.html`, `resume.html`
 - **Tips Content Submodule**: `content/tips/` (Tracked submodule repository `MrPunyapal/tips` containing Markdown files)
 - **Tips Static Generator**: `scripts/build-tips.mjs` (Main orchestrator importing modular submodules from `scripts/tips/` for static HTML, search index, RSS 2.0 feed, and sitemap)
 - **Search Index**: `public/tips-search-index.json`

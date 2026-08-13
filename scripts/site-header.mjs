@@ -6,6 +6,7 @@
 export function renderSiteHeader(activePage = 'home') {
     const navItems = [
         { id: 'home', href: '/', label: 'Home' },
+        { id: 'services', href: '/services', label: 'Services' },
         { id: 'projects', href: '/projects', label: 'Projects' },
         { id: 'oss', href: '/opensource', label: 'Open Source', shortLabel: 'OSS', hasHeart: true },
         { id: 'tips', href: '/tips', label: 'Tips' },

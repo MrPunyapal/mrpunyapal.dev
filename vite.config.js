@@ -59,6 +59,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(__dirname, 'index.html'),
+        services: resolve(__dirname, 'services.html'),
         resume: resolve(__dirname, 'resume.html'),
         talks: resolve(__dirname, 'talks.html'),
         projects: resolve(__dirname, 'projects.html'),

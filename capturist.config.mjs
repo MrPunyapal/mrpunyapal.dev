@@ -43,6 +43,10 @@ export default defineConfig({
       output: "og/master.png",
     },
     {
+      route: "/services",
+      output: "og/services.png",
+    },
+    {
       route: "/projects",
       output: "og/projects.png",
     },
