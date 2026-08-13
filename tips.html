@@ -1159,11 +1159,11 @@
                 <!-- Off-Canvas Mobile Sidebar Drawer -->
                 <div id="mobile-sidebar" class="hidden sm:hidden fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation sidebar">
                     <!-- Semi-transparent Blur Backdrop -->
-                    <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity duration-300 ease-in-out opacity-0" aria-hidden="true"></div>
+                    <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity duration-300 ease-in-out opacity-0" aria-hidden="true"></div>
 
                     <!-- Slide-Over Panel Container -->
                     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
-                        <div id="mobile-sidebar-panel" class="w-64 sm:w-72 h-screen min-h-screen bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
+                        <div id="mobile-sidebar-panel" class="w-64 sm:w-72 h-dvh max-h-dvh bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
                             
                             <!-- Sidebar Header Bar (Clean Close Button Only) -->
                             <div class="flex items-center justify-end px-4 py-3.5 border-b border-slate-200 dark:border-slate-800">
@@ -1346,9 +1346,9 @@
             </div>
 
             <!-- Slide-over Filter Sidebar Drawer -->
-            <div id="filter-drawer-backdrop" class="hidden fixed inset-0 bg-slate-900/50 dark:bg-slate-950/70 backdrop-blur-xs z-50 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true"></div>
+            <div id="filter-drawer-backdrop" class="hidden fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-xs z-50 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true"></div>
 
-            <aside id="filter-drawer-panel" role="dialog" aria-modal="true" aria-label="Filters sidebar" class="hidden fixed top-0 bottom-0 right-0 h-screen h-dvh max-h-screen max-h-dvh w-full max-w-full sm:max-w-md md:max-w-lg bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col overflow-hidden">
+            <aside id="filter-drawer-panel" role="dialog" aria-modal="true" aria-label="Filters sidebar" class="hidden fixed top-0 bottom-0 right-0 h-dvh max-h-dvh w-full max-w-full sm:max-w-md md:max-w-lg bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col overflow-hidden">
                 <!-- Drawer Header -->
                 <div class="shrink-0 p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-900">
                     <div class="flex items-center gap-2.5">
