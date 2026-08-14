@@ -82,7 +82,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tips | Punyapal Shah</title>
+    <title>Laravel Tips | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,7 +96,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
 
     <!-- Primary Meta Tags -->
     <meta name="description"
-        content="Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.">
+        content="Practical Laravel, PHP, and ecosystem tips covering Eloquent, Livewire, testing, queues, performance, and more.">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips">
     <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
@@ -104,15 +104,15 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mrpunyapal.dev/tips">
-    <meta property="og:title" content="Tips | Punyapal Shah">
+    <meta property="og:title" content="Laravel Tips | Punyapal Shah">
     <meta property="og:description"
-        content="Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.">
+        content="Practical Laravel, PHP, and ecosystem tips covering Eloquent, Livewire, testing, queues, performance, and more.">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Punyapal Shah - Tips">
+    <meta property="og:image:alt" content="Laravel Tips - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
 
@@ -121,12 +121,12 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips">
-    <meta name="twitter:title" content="Tips | Punyapal Shah">
+    <meta name="twitter:title" content="Laravel Tips | Punyapal Shah">
     <meta name="twitter:description"
-        content="Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.">
+        content="Practical Laravel, PHP, and ecosystem tips covering Eloquent, Livewire, testing, queues, performance, and more.">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips.png">
     <meta name="twitter:image:src" content="https://mrpunyapal.dev/og/tips.png">
-    <meta name="twitter:image:alt" content="Punyapal Shah - Tips">
+    <meta name="twitter:image:alt" content="Laravel Tips - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -137,8 +137,8 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                 "@type": "CollectionPage",
                 "@id": "https://mrpunyapal.dev/tips#webpage",
                 "url": "https://mrpunyapal.dev/tips",
-                "name": "Tips | Punyapal Shah",
-                "description": "Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.",
+                "name": "Laravel Tips | Punyapal Shah",
+                "description": "Practical Laravel, PHP, and ecosystem tips covering Eloquent, Livewire, testing, queues, performance, and more.",
                 "inLanguage": "en",
                 "isPartOf": {
                     "@id": "https://mrpunyapal.dev/#website"
@@ -223,11 +223,15 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
                 <div class="animate-fade-up">
-                    <div class="flex items-center justify-between gap-4 mb-4">
+                    <div class="flex items-center justify-between gap-4 mb-3">
                         <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
-                            Tips
+                            Laravel Tips
                         </h1>
                         <div class="flex items-center gap-2">
+                            <a href="https://github.com/MrPunyapal/tips" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group" aria-label="GitHub Repository for Tips">
+                                <svg class="w-3.5 h-3.5 text-slate-700 dark:text-slate-300 group-hover:scale-110 transition-transform" viewBox="0 0 496 512" fill="currentColor" aria-hidden="true"><use href="#i-github"/></svg>
+                                <span>GitHub</span>
+                            </a>
                             <button id="random-tip-btn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group cursor-pointer" aria-label="Open a random developer tip">
                                 <svg class="w-3.5 h-3.5 text-red-500 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h7l-4 4m0 0l4 4M7 8h13M20 20h-7l4-4m0 0l-4-4m4 4H4" />
@@ -242,8 +246,8 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                             </a>
                         </div>
                     </div>
-                    <p class="text-lg text-red-600 dark:text-red-400 max-w-2xl font-mono">
-                        Bite-sized engineering patterns, performance techniques, and idiomatic snippets.
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mt-2 leading-relaxed">
+                        Practical engineering tips for Laravel developers and the wider PHP ecosystem.
                     </p>
                 </div>
 

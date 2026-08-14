@@ -16,10 +16,14 @@ export function generateSitemap(tips, publicDir) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${staticPages.map(url => `    <url>
         <loc>${url}</loc>
+        <changefreq>${url.endsWith('/tips') ? 'daily' : 'weekly'}</changefreq>
+        <priority>${url === 'https://mrpunyapal.dev/' ? '1.0' : url.endsWith('/tips') ? '0.9' : '0.8'}</priority>
     </url>`).join('\n')}
 ${tips.map(tip => `    <url>
         <loc>https://mrpunyapal.dev/tips/${tip.slug}</loc>
         <lastmod>${tip.date}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>`).join('\n')}
 </urlset>
 `;

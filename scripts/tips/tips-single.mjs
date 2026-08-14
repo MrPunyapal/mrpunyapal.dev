@@ -80,13 +80,19 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
     const shareByline = getShareByline(tip.author, tip.author_url);
     const tweetText = `${tip.title} ${shareByline}`;
 
+    const categorySuffix = tip.category === 'Laravel'
+        ? 'Laravel & PHP Tip'
+        : tip.category === 'Pest PHP'
+            ? 'Pest PHP & PHP Tip'
+            : `${tip.category} Tip`;
+
     const singleTipHtml = `<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${escapeHtml(tip.title)} | Tips | Punyapal Shah</title>
+    <title>${escapeHtml(tip.title)} - ${escapeHtml(categorySuffix)} | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,7 +113,7 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/${tip.slug}">
-    <meta property="og:title" content="${escapeHtml(tip.title)} | Punyapal Shah">
+    <meta property="og:title" content="${escapeHtml(tip.title)} - ${escapeHtml(categorySuffix)} | Punyapal Shah">
     <meta property="og:description" content="${escapeHtml(tip.summary)}">
     <meta property="og:image" content="${escapeHtml(tip.og_image)}">
     <meta property="og:image:secure_url" content="${escapeHtml(tip.og_image)}">
@@ -126,7 +132,7 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/${tip.slug}">
-    <meta name="twitter:title" content="${escapeHtml(tip.title)} | Punyapal Shah">
+    <meta name="twitter:title" content="${escapeHtml(tip.title)} - ${escapeHtml(categorySuffix)} | Punyapal Shah">
     <meta name="twitter:description" content="${escapeHtml(tip.summary)}">
     <meta name="twitter:image" content="${escapeHtml(tip.og_image)}">
     <meta name="twitter:image:alt" content="${escapeHtml(tip.title)} - Punyapal Shah">
@@ -144,6 +150,7 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
                 "datePublished": "${escapeJsonStr(tip.date)}",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/${tip.slug}",
+                "keywords": "${escapeJsonStr([tip.category, 'PHP tips', 'Laravel tips', ...(tip.tags || [])].join(', '))}",
                 "author": {
                     "@type": "Person",
                     "name": "${escapeJsonStr(tip.author)}"${tip.author_url ? `,\n                    "url": "${escapeJsonStr(tip.author_url)}"` : ''}
