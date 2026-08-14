@@ -99,7 +99,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
         content="Practical Laravel, PHP, and ecosystem tips covering Eloquent, Livewire, testing, queues, performance, and more.">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips">
-    <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
+    <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">

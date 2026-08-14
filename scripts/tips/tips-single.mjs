@@ -108,7 +108,7 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
     <meta name="description" content="${escapeHtml(tip.summary)}">
     <meta name="author" content="${escapeHtml(tip.author)}">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/${tip.slug}">
-    <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
+    <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
