@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simplify App Translations with JSON Translation Files - Laravel &amp; PHP Tip | Punyapal Shah</title>
+    <title>Detect Eloquent Model Attribute Changes Before and After Saving - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,25 +17,25 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Use JSON files in lang/ for localization to write default language strings directly as translation keys. Managing translation key strings like messages.welco...">
+    <meta name="description" content="Use isDirty() and isClean() before saving to inspect unsaved in-memory mutations, and use wasChanged() and getOriginal() after saving to verify persisted cha...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-localization-json-translation-keys">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-detect-model-changes-isdirty-waschanged">
     <link rel="alternate" type="application/rss+xml" title="Punyapal Shah's Tips" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-localization-json-translation-keys">
-    <meta property="og:title" content="Simplify App Translations with JSON Translation Files - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Use JSON files in lang/ for localization to write default language strings directly as translation keys. Managing translation key strings like messages.welco...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-localization-json-translation-keys.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-localization-json-translation-keys.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-detect-model-changes-isdirty-waschanged">
+    <meta property="og:title" content="Detect Eloquent Model Attribute Changes Before and After Saving - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Use isDirty() and isClean() before saving to inspect unsaved in-memory mutations, and use wasChanged() and getOriginal() after saving to verify persisted cha...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-detect-model-changes-isdirty-waschanged.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-detect-model-changes-isdirty-waschanged.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Simplify App Translations with JSON Translation Files - Punyapal Shah">
+    <meta property="og:image:alt" content="Detect Eloquent Model Attribute Changes Before and After Saving - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2023-06-17">
+    <meta property="article:published_time" content="2026-08-14">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="Laravel">
 
@@ -43,11 +43,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-localization-json-translation-keys">
-    <meta name="twitter:title" content="Simplify App Translations with JSON Translation Files - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Use JSON files in lang/ for localization to write default language strings directly as translation keys. Managing translation key strings like messages.welco...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-localization-json-translation-keys.png">
-    <meta name="twitter:image:alt" content="Simplify App Translations with JSON Translation Files - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-detect-model-changes-isdirty-waschanged">
+    <meta name="twitter:title" content="Detect Eloquent Model Attribute Changes Before and After Saving - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Use isDirty() and isClean() before saving to inspect unsaved in-memory mutations, and use wasChanged() and getOriginal() after saving to verify persisted cha...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-detect-model-changes-isdirty-waschanged.png">
+    <meta name="twitter:image:alt" content="Detect Eloquent Model Attribute Changes Before and After Saving - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -56,13 +56,13 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-localization-json-translation-keys#article",
-                "headline": "Simplify App Translations with JSON Translation Files",
-                "description": "Use JSON files in lang/ for localization to write default language strings directly as translation keys. Managing translation key strings like messages.welco...",
-                "datePublished": "2023-06-17",
+                "@id": "https://mrpunyapal.dev/tips/laravel-detect-model-changes-isdirty-waschanged#article",
+                "headline": "Detect Eloquent Model Attribute Changes Before and After Saving",
+                "description": "Use isDirty() and isClean() before saving to inspect unsaved in-memory mutations, and use wasChanged() and getOriginal() after saving to verify persisted cha...",
+                "datePublished": "2026-08-14",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-localization-json-translation-keys",
-                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Localization, i18n",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-detect-model-changes-isdirty-waschanged",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Eloquent, Database",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -91,8 +91,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Simplify App Translations with JSON Translation Files",
-                        "item": "https://mrpunyapal.dev/tips/laravel-localization-json-translation-keys"
+                        "name": "Detect Eloquent Model Attribute Changes Before and After Saving",
+                        "item": "https://mrpunyapal.dev/tips/laravel-detect-model-changes-isdirty-waschanged"
                     }
                 ]
             }
@@ -678,7 +678,7 @@
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Routing
+                                Eloquent
                             </span>
                         
                     </div>
@@ -687,7 +687,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Simplify App Translations with JSON Translation Files
+                        Detect Eloquent Model Attribute Changes Before and After Saving
                     </h1>
 
                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -696,9 +696,9 @@
                             <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2023-06-17" class="inline-flex items-center gap-1.5">
+                        <time datetime="2026-08-14" class="inline-flex items-center gap-1.5">
                             <svg class="icon text-xs opacity-70" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Jun 17, 2023
+                            Aug 14, 2026
                         </time>
                     </div>
                 </div>
@@ -712,7 +712,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use JSON files in lang/ for localization to write default language strings directly as translation keys.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Managing translation key strings like messages.welcome in short PHP translation files is tedious. Using JSON files (e.g. lang/es.json) lets you use full English sentences as translation keys.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use isDirty() and isClean() before saving to inspect unsaved in-memory mutations, and use wasChanged() and getOriginal() after saving to verify persisted changes and access previous values.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When updating Eloquent models, tracking whether specific attributes have changed depends on whether the model has already been saved to the database. Laravel provides dedicated helper methods tailored for checking model state before and after saving.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Inspecting Changes Before Saving</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Before calling `save()`, changes exist only in memory on the model instance.</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><code>isDirty()</code>: Returns <code>true</code> if any attribute (or a specified attribute) has been modified since the model was loaded from the database.</span></li><li class="leading-relaxed"><span class="align-middle"><code>isClean()</code>: The inverse of <code>isDirty()</code>. Returns <code>true</code> if an attribute remains unchanged.</span></li></ul>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -720,10 +720,75 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// lang/es.json
-{
-    &quot;Welcome to our application&quot;: &quot;Bienvenido a nuestra aplicación&quot;,
-    &quot;Hello :name&quot;: &quot;Hola :name&quot;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$user-&gt;name = &#039;Punyapal&#039;;
+
+// Before saving: check current unsaved changes
+$user-&gt;isDirty(&#039;name&#039;);  // true
+$user-&gt;isClean(&#039;email&#039;); // true" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$user</span>-&gt;name = <span class="hljs-string">&#x27;Punyapal&#x27;</span>;
+
+<span class="hljs-comment">// Before saving: check current unsaved changes</span>
+<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">isDirty</span>(<span class="hljs-string">&#x27;name&#x27;</span>);  <span class="hljs-comment">// true</span>
+<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">isClean</span>(<span class="hljs-string">&#x27;email&#x27;</span>); <span class="hljs-comment">// true</span></code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Inspecting Changes After Saving</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Once `save()` executes, the model synchronizes its in-memory attributes with the database. At this point, calling `isDirty()` returns `false` because there are no longer any unsaved modifications.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To inspect what changed during the save operation, use `wasChanged()` and `getOriginal()`:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><code>wasChanged()</code>: Returns <code>true</code> if an attribute was updated during the most recent <code>save()</code> call.</span></li><li class="leading-relaxed"><span class="align-middle"><code>getOriginal()</code>: Retrieves the attribute value as it was before mutations or before the save occurred.</span></li></ul>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$user-&gt;save();
+
+// After saving: check what changed during the last save
+$user-&gt;wasChanged(&#039;name&#039;);  // true
+$user-&gt;wasChanged(&#039;email&#039;); // false
+
+// Retrieve the original value
+$user-&gt;getOriginal(&#039;name&#039;); // previous name" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">save</span>();
+
+<span class="hljs-comment">// After saving: check what changed during the last save</span>
+<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">wasChanged</span>(<span class="hljs-string">&#x27;name&#x27;</span>);  <span class="hljs-comment">// true</span>
+<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">wasChanged</span>(<span class="hljs-string">&#x27;email&#x27;</span>); <span class="hljs-comment">// false</span>
+
+<span class="hljs-comment">// Retrieve the original value</span>
+<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">getOriginal</span>(<span class="hljs-string">&#x27;name&#x27;</span>); <span class="hljs-comment">// previous name</span></code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Practical Example: Email Verification & Notifications</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A common practical use case is resetting email verification when an email address changes and sending a verification notification after saving:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\User;
+
+$user = User::find(1);
+$user-&gt;email = &#039;new-email@example.com&#039;;
+
+// 1. Before saving: reset verification timestamp if email changed
+if ($user-&gt;isDirty(&#039;email&#039;)) {
+    $user-&gt;email_verified_at = null;
+}
+
+$user-&gt;save();
+
+// 2. After saving: send verification notification only if email changed
+if ($user-&gt;wasChanged(&#039;email&#039;)) {
+    $user-&gt;sendEmailVerificationNotification();
 }" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -731,12 +796,23 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-json"><span class="hljs-comment">// lang/es.json</span>
-<span class="hljs-punctuation">{</span>
-    <span class="hljs-attr">&quot;Welcome to our application&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Bienvenido a nuestra aplicación&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-attr">&quot;Hello :name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Hola :name&quot;</span>
-<span class="hljs-punctuation">}</span></code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Uses full default language strings as keys (no abstract keys like home.title)</span></li><li class="leading-relaxed"><span class="align-middle">Blade helper __(&#39;Welcome to our application&#39;) falls back to key if translation is missing</span></li><li class="leading-relaxed"><span class="align-middle">Supports dynamic parameters like __(&#39;Hello :name&#39;, [&#39;name&#39; =&gt; &#39;Punyapal&#39;])</span></li></ul>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+
+<span class="hljs-variable">$user</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">find</span>(<span class="hljs-number">1</span>);
+<span class="hljs-variable">$user</span>-&gt;email = <span class="hljs-string">&#x27;new-email@example.com&#x27;</span>;
+
+<span class="hljs-comment">// 1. Before saving: reset verification timestamp if email changed</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">isDirty</span>(<span class="hljs-string">&#x27;email&#x27;</span>)) {
+    <span class="hljs-variable">$user</span>-&gt;email_verified_at = <span class="hljs-literal">null</span>;
+}
+
+<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">save</span>();
+
+<span class="hljs-comment">// 2. After saving: send verification notification only if email changed</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">wasChanged</span>(<span class="hljs-string">&#x27;email&#x27;</span>)) {
+    <span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">sendEmailVerificationNotification</span>();
+}</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This pattern ensures that:</p><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><code>isDirty(&#39;email&#39;)</code> modifies companion in-memory attributes so both columns are written in a single database <code>UPDATE</code> query.</span></li><li class="leading-relaxed"><span class="align-middle"><code>wasChanged(&#39;email&#39;)</code> triggers external side effects (like sending emails) only after the changes have been successfully persisted.</span></li></ol><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Takeaways</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <code>isDirty()</code> and <code>isClean()</code> prior to persistence to conditionally run validation or assign companion attributes.</span></li><li class="leading-relaxed"><span class="align-middle">Use <code>wasChanged()</code> inside model events, observers, or service classes after calling <code>save()</code> to dispatch notifications only when relevant fields change.</span></li><li class="leading-relaxed"><span class="align-middle">Pass attribute names as arguments (for example, <code>isDirty(&#39;email&#39;)</code> or <code>wasChanged(&#39;email&#39;)</code>) to check specific columns rather than the entire model.</span></li><li class="leading-relaxed"><span class="align-middle">Use <code>getOriginal(&#39;column&#39;)</code> when you need the previous value for audit logging or old-vs-new comparison.</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -746,11 +822,11 @@
                             <svg class="icon text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Localization</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#i18n</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Database</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Simplify%20App%20Translations%20with%20JSON%20Translation%20Files%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-localization-json-translation-keys" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Detect%20Eloquent%20Model%20Attribute%20Changes%20Before%20and%20After%20Saving%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-detect-model-changes-isdirty-waschanged" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -767,28 +843,6 @@
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-detect-model-changes-isdirty-waschanged" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
-                    <!-- Corner Crosshairs -->
-                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Detect Eloquent Model Attribute Changes Before and After Saving
-                    </h3>
-                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </span>
-                </a>
                 <a href="/tips/laravel-uniquejobskipped-queue-event" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -806,6 +860,28 @@
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
                         Handle Skipped Unique Jobs with UniqueJobSkipped
+                    </h3>
+                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                <a href="/tips/laravel-foreignulidfor-schema-helper" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                    <!-- Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
+                        Simplify ULID Foreign Keys with foreignUlidFor()
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -831,7 +907,7 @@
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","laravel-schema-state-load-seeding","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-avoid-env-outside-config-pest-arch","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","laravel-schema-state-load-seeding","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-avoid-env-outside-config-pest-arch","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {

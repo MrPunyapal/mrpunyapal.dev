@@ -9,9 +9,79 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Thu, 13 Aug 2026 17:05:00 GMT</lastBuildDate>
+    <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Fri, 14 Aug 2026 14:59:02 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Detect Eloquent Model Attribute Changes Before and After Saving]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-detect-model-changes-isdirty-waschanged</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-detect-model-changes-isdirty-waschanged</guid>
+      <description><![CDATA[Use isDirty() and isClean() before saving to inspect unsaved in-memory mutations, and use wasChanged() and getOriginal() after saving to verify persisted cha...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use isDirty() and isClean() before saving to inspect unsaved in-memory mutations, and use wasChanged() and getOriginal() after saving to verify persisted changes and access previous values.</blockquote>
+<p>When updating Eloquent models, tracking whether specific attributes have changed depends on whether the model has already been saved to the database. Laravel provides dedicated helper methods tailored for checking model state before and after saving.</p>
+<h3>Inspecting Changes Before Saving</h3>
+<p>Before calling `save()`, changes exist only in memory on the model instance.</p>
+<ul>
+  <li><code>isDirty()</code>: Returns <code>true</code> if any attribute (or a specified attribute) has been modified since the model was loaded from the database.</li>
+  <li><code>isClean()</code>: The inverse of <code>isDirty()</code>. Returns <code>true</code> if an attribute remains unchanged.</li>
+</ul>
+<pre><code class="language-php">$user-&gt;name = &#039;Punyapal&#039;;
+
+// Before saving: check current unsaved changes
+$user-&gt;isDirty(&#039;name&#039;);  // true
+$user-&gt;isClean(&#039;email&#039;); // true</code></pre>
+<h3>Inspecting Changes After Saving</h3>
+<p>Once `save()` executes, the model synchronizes its in-memory attributes with the database. At this point, calling `isDirty()` returns `false` because there are no longer any unsaved modifications.</p>
+<p>To inspect what changed during the save operation, use `wasChanged()` and `getOriginal()`:</p>
+<ul>
+  <li><code>wasChanged()</code>: Returns <code>true</code> if an attribute was updated during the most recent <code>save()</code> call.</li>
+  <li><code>getOriginal()</code>: Retrieves the attribute value as it was before mutations or before the save occurred.</li>
+</ul>
+<pre><code class="language-php">$user-&gt;save();
+
+// After saving: check what changed during the last save
+$user-&gt;wasChanged(&#039;name&#039;);  // true
+$user-&gt;wasChanged(&#039;email&#039;); // false
+
+// Retrieve the original value
+$user-&gt;getOriginal(&#039;name&#039;); // previous name</code></pre>
+<h3>Practical Example: Email Verification & Notifications</h3>
+<p>A common practical use case is resetting email verification when an email address changes and sending a verification notification after saving:</p>
+<pre><code class="language-php">use App\Models\User;
+
+$user = User::find(1);
+$user-&gt;email = &#039;new-email@example.com&#039;;
+
+// 1. Before saving: reset verification timestamp if email changed
+if ($user-&gt;isDirty(&#039;email&#039;)) {
+    $user-&gt;email_verified_at = null;
+}
+
+$user-&gt;save();
+
+// 2. After saving: send verification notification only if email changed
+if ($user-&gt;wasChanged(&#039;email&#039;)) {
+    $user-&gt;sendEmailVerificationNotification();
+}</code></pre>
+<p>This pattern ensures that:</p>
+<ol>
+  <li><code>isDirty(&#39;email&#39;)</code> modifies companion in-memory attributes so both columns are written in a single database <code>UPDATE</code> query.</li>
+  <li><code>wasChanged(&#39;email&#39;)</code> triggers external side effects (like sending emails) only after the changes have been successfully persisted.</li>
+</ol>
+<h3>Key Takeaways</h3>
+<ul>
+  <li>Use <code>isDirty()</code> and <code>isClean()</code> prior to persistence to conditionally run validation or assign companion attributes.</li>
+  <li>Use <code>wasChanged()</code> inside model events, observers, or service classes after calling <code>save()</code> to dispatch notifications only when relevant fields change.</li>
+  <li>Pass attribute names as arguments (for example, <code>isDirty(&#39;email&#39;)</code> or <code>wasChanged(&#39;email&#39;)</code>) to check specific columns rather than the entire model.</li>
+  <li>Use <code>getOriginal(&#39;column&#39;)</code> when you need the previous value for audit logging or old-vs-new comparison.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Database]]></category>
+    </item>
     <item>
       <title><![CDATA[Handle Skipped Unique Jobs with UniqueJobSkipped]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-uniquejobskipped-queue-event</link>
