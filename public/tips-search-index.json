@@ -756,16 +756,16 @@
   },
   {
     "slug": "laravel-schema-state-load-seeding",
-    "title": "Seed Large Database Dumps with SchemaState::load()",
+    "title": "Load Large SQL Dumps in Laravel Seeders",
     "category": "Laravel",
     "subcategory": "Cache",
     "tags": [
       "Laravel",
       "Database",
-      "Testing"
+      "Seeders"
     ],
     "date": "2026-01-07",
-    "summary": "Use SchemaState::load() to load large raw SQL dump files directly through database CLI tools instead of slow DB::unprepared() execution. Executing massive ra...",
+    "summary": "Use DB::getSchemaState()-load() to load large reference SQL dump files in seeders, with DB::unprepared(filegetcontents(...)) as a fallback for older Laravel...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },

@@ -381,7 +381,7 @@
                         "@type": "ListItem",
                         "position": 51,
                         "url": "https://mrpunyapal.dev/tips/laravel-schema-state-load-seeding",
-                        "name": "Seed Large Database Dumps with SchemaState::load()"
+                        "name": "Load Large SQL Dumps in Laravel Seeders"
                     },
                     {
                         "@type": "ListItem",
@@ -4179,9 +4179,9 @@
             <div class="tip-card group relative p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between cursor-pointer"
                 data-category="Laravel"
                 data-subcategory="cache"
-                data-tags="laravel database testing"
-                data-title="seed large database dumps with schemastate::load()"
-                data-summary="use schemastate::load() to load large raw sql dump files directly through database cli tools instead of slow db::unprepared() execution. executing massive ra...">
+                data-tags="laravel database seeders"
+                data-title="load large sql dumps in laravel seeders"
+                data-summary="use db::getschemastate()-load() to load large reference sql dump files in seeders, with db::unprepared(filegetcontents(...)) as a fallback for older laravel...">
                 
                 <!-- 4-Corner Crosshair SVG Markers -->
                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -4210,11 +4210,11 @@
                     </div>
                     <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">
                         <a href="/tips/laravel-schema-state-load-seeding" class="after:absolute after:inset-0 focus:outline-none">
-                            Seed Large Database Dumps with SchemaState::load()
+                            Load Large SQL Dumps in Laravel Seeders
                         </a>
                     </h2>
                     <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
-                        Use SchemaState::load() to load large raw SQL dump files directly through database CLI tools instead of slow DB::unprepared() execution. Executing massive ra...
+                        Use DB::getSchemaState()-load() to load large reference SQL dump files in seeders, with DB::unprepared(filegetcontents(...)) as a fallback for older Laravel...
                     </p>
                 </div>
 

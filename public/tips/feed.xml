@@ -10,7 +10,7 @@
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
     <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Fri, 14 Aug 2026 14:59:02 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 15:22:38 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title><![CDATA[Detect Eloquent Model Attribute Changes Before and After Saving]]></title>
@@ -1741,29 +1741,70 @@ php artisan schema:dump --prune
       <category><![CDATA[DevOps]]></category>
     </item>
     <item>
-      <title><![CDATA[Seed Large Database Dumps with SchemaState::load()]]></title>
+      <title><![CDATA[Load Large SQL Dumps in Laravel Seeders]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-schema-state-load-seeding</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-schema-state-load-seeding</guid>
-      <description><![CDATA[Use SchemaState::load() to load large raw SQL dump files directly through database CLI tools instead of slow DB::unprepared() execution. Executing massive ra...]]></description>
-      <content:encoded><![CDATA[<blockquote>Use SchemaState::load() to load large raw SQL dump files directly through database CLI tools instead of slow DB::unprepared() execution.</blockquote>
-<p>Executing massive raw SQL dumps inside DB::unprepared() runs through PHP memory buffers and PDO statements, which is slow. SchemaState::load() invokes native database CLI tools (mysql/psql) directly.</p>
+      <description><![CDATA[Use DB::getSchemaState()-load() to load large reference SQL dump files in seeders, with DB::unprepared(filegetcontents(...)) as a fallback for older Laravel...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use DB::getSchemaState()->load() to load large reference SQL dump files in seeders, with DB::unprepared(file_get_contents(...)) as a fallback for older Laravel versions.</blockquote>
+<p>When seeding large static reference datasets such as countries, states, cities, or timezones, writing thousands of individual Eloquent `create()` or `insert()` calls adds unnecessary overhead. Developers frequently store these datasets as raw `.sql` files inside their repository and load them during database seeding.</p>
+<h3>The Common Approach</h3>
+<p>A standard way to execute an external SQL file is reading its contents into PHP memory and executing the raw query buffer with `DB::unprepared()`:</p>
 <pre><code class="language-php">use Illuminate\Support\Facades\DB;
 
-// Fast native CLI SQL dump loading
-$connection = DB::connection();
-$connection-&gt;getSchemaState()-&gt;load(database_path(&#039;dumps/initial_data.sql&#039;));</code></pre>
-<ul>
-  <li>Uses native database CLI binaries (mysql/psql) for maximum execution speed</li>
-  <li>Bypasses PHP memory buffer overhead during large data imports</li>
-  <li>Ideal for seeding production-like reference datasets in test environments</li>
-</ul>
+DB::unprepared(
+    file_get_contents(database_path(&#039;seeders/sql/world.sql&#039;))
+);</code></pre>
+<p>This approach works by having `file_get_contents()` read the entire SQL dump into a PHP string variable, which is then passed to PDO via `DB::unprepared()`. For very large SQL files, loading the entire file into PHP memory first can consume significant memory allocations.</p>
+<h3>Prefer SchemaState When Available</h3>
+<p>In Laravel versions that support schema state inspection, you can load the SQL file using `DB::getSchemaState()->load()`:</p>
+<pre><code class="language-php">use Illuminate\Support\Facades\DB;
+
+DB::getSchemaState()-&gt;load(
+    database_path(&#039;seeders/sql/world.sql&#039;)
+);</code></pre>
+<p>Instead of requiring application code to read the complete SQL file into a PHP string in memory, `getSchemaState()->load()` delegates the file path directly to Laravel's database-specific schema state implementation.</p>
+<h3>Older Laravel Projects</h3>
+<p>For projects running on older Laravel versions where `DB::getSchemaState()->load()` is not available, `DB::unprepared(file_get_contents(...))` remains a reliable and practical solution. There is no need to restructure working seeders on older installations unless you encounter memory limits during data loading.</p>
+<h3>Example Seeder</h3>
+<p>Here is how a dedicated reference dataset seeder looks using the preferred approach:</p>
+<pre><code class="language-php">namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class WorldSeeder extends Seeder
+{
+    public function run(): void
+    {
+        DB::getSchemaState()-&gt;load(
+            database_path(&#039;seeders/sql/world.sql&#039;)
+        );
+    }
+}</code></pre>
+<p>If your project requires compatibility with older Laravel releases, the fallback pattern can be used inside the same seeder:</p>
+<pre><code class="language-php">namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class WorldSeeder extends Seeder
+{
+    public function run(): void
+    {
+        DB::unprepared(
+            file_get_contents(
+                database_path(&#039;seeders/sql/world.sql&#039;)
+            )
+        );
+    }
+}</code></pre>
 ]]></content:encoded>
       <pubDate>Wed, 07 Jan 2026 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
       <category><![CDATA[Laravel]]></category>
       <category><![CDATA[Cache]]></category>
       <category><![CDATA[Database]]></category>
-      <category><![CDATA[Testing]]></category>
+      <category><![CDATA[Seeders]]></category>
     </item>
     <item>
       <title><![CDATA[Simplify Class Instantiation with Constructor Property Promotion]]></title>
