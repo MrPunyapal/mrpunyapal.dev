@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="preload" href="/profile-image-160.webp" as="image" type="image/webp" fetchpriority="high">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#23a6d5">
@@ -427,9 +428,9 @@
                         <picture>
                             <source srcset="/profile-image-160.webp" type="image/webp">
                             <img src="/profile-image.jpg" alt="Punyapal Shah, Laravel Engineer and Open Source Maintainer"
-                                class="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-2 border-white dark:border-slate-800 shadow-sm"
-                                style="view-transition-name: profile-avatar;"
-                                loading="eager" width="128" height="128" fetchpriority="high">
+                                class="relative w-24 h-24 sm:w-32 sm:h-32 aspect-square rounded-full object-cover border-2 border-white dark:border-slate-800 shadow-sm"
+                                style="aspect-ratio: 1 / 1; view-transition-name: profile-avatar;"
+                                loading="eager" width="96" height="96" fetchpriority="high">
                         </picture>
                     </div>
 

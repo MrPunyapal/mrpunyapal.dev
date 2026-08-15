@@ -1,7 +1,12 @@
 let currentPhrase = 0;
 let currentChar = 0;
 let isDeleting = false;
-let typingInterval;
+let typingAnimationFrameId = null;
+let lastStepTime = 0;
+let nextDelay = 100;
+let isTypingVisible = true;
+let isInteracting = false;
+let interactionTimeout = null;
 
 const phrases = [
     "Laravel Engineer",
@@ -13,36 +18,74 @@ const phrases = [
     "Content Creator",
 ];
 
-function typeAnimation() {
-    const typingText = document.getElementById('typingText');
-    if (!typingText) return;
-    
-    const fullText = phrases[currentPhrase];
-    
-    let newText = "";
-    if (isDeleting) {
-        newText = fullText.substring(0, currentChar - 1);
-        currentChar--;
-    } else {
-        newText = fullText.substring(0, currentChar + 1);
-        currentChar++;
+function stepTyping(timestamp) {
+    if (!isTypingVisible || isInteracting) {
+        typingAnimationFrameId = requestAnimationFrame(stepTyping);
+        return;
     }
 
-    typingText.textContent = newText;
-    
-    let typeSpeed = isDeleting ? 50 : 100;
-    
-    if (!isDeleting && currentChar === fullText.length) {
-        typeSpeed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && currentChar === 0) {
-        isDeleting = false;
-        currentPhrase = (currentPhrase + 1) % phrases.length;
-        typeSpeed = 500;
+    const typingText = document.getElementById('typingText');
+    if (!typingText) {
+        return;
     }
-    
-    clearTimeout(typingInterval);
-    typingInterval = setTimeout(typeAnimation, typeSpeed);
+
+    if (!lastStepTime) lastStepTime = timestamp;
+    const elapsed = timestamp - lastStepTime;
+
+    if (elapsed >= nextDelay) {
+        lastStepTime = timestamp;
+        const fullText = phrases[currentPhrase];
+
+        if (isDeleting) {
+            currentChar = Math.max(0, currentChar - 1);
+        } else {
+            currentChar = Math.min(fullText.length, currentChar + 1);
+        }
+
+        typingText.textContent = fullText.substring(0, currentChar);
+
+        nextDelay = isDeleting ? 50 : 100;
+
+        if (!isDeleting && currentChar === fullText.length) {
+            nextDelay = 2000;
+            isDeleting = true;
+        } else if (isDeleting && currentChar === 0) {
+            isDeleting = false;
+            currentPhrase = (currentPhrase + 1) % phrases.length;
+            nextDelay = 500;
+        }
+    }
+
+    typingAnimationFrameId = requestAnimationFrame(stepTyping);
+}
+
+function initTypingAnimation() {
+    const typingText = document.getElementById('typingText');
+    if (!typingText) return;
+
+    currentChar = phrases[0].length;
+    isDeleting = true;
+    nextDelay = 3000;
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            isTypingVisible = entries[0].isIntersecting;
+        }, { threshold: 0.1 });
+        observer.observe(typingText);
+    }
+
+    const handleUserInteraction = () => {
+        isInteracting = true;
+        clearTimeout(interactionTimeout);
+        interactionTimeout = setTimeout(() => {
+            isInteracting = false;
+        }, 600);
+    };
+
+    window.addEventListener('pointerdown', handleUserInteraction, { passive: true });
+    window.addEventListener('touchstart', handleUserInteraction, { passive: true });
+
+    typingAnimationFrameId = requestAnimationFrame(stepTyping);
 }
 
 function trackEvent(event, details) {
@@ -58,12 +101,7 @@ function trackEvent(event, details) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const typingText = document.getElementById('typingText');
-    if (typingText) {
-        currentChar = phrases[0].length;
-        isDeleting = true;
-        setTimeout(typeAnimation, 3000);
-    }
+    initTypingAnimation();
     
     document.querySelectorAll('a[target="_blank"]').forEach(link => {
         link.addEventListener('click', function() {
