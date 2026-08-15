@@ -9,9 +9,71 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Sat, 15 Aug 2026 15:28:44 GMT</lastBuildDate>
+    <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Sat, 15 Aug 2026 17:55:44 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Process Uploaded Images from Streams in Laravel 13.25]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-image-stream-format-response</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-image-stream-format-response</guid>
+      <description><![CDATA[Laravel 13.25 adds Image::fromStream(), makes toFormat() public, and pairs with toResponse() to process uploaded images and return them directly as HTTP resp...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.25 adds Image::fromStream(), makes toFormat() public, and pairs with toResponse() to process uploaded images and return them directly as HTTP responses.</blockquote>
+<p>When handling user uploads, processing an image and returning a converted preview often involves reading files from streams rather than saving intermediate files to disk. Laravel 13.25 updates the Image API with stream support, making it straightforward to load, convert, and respond in a single flow.</p>
+<h3>Process an Uploaded Image</h3>
+<p>Here is a controller action that reads an uploaded image stream, converts it to WebP, and returns the converted image directly as an HTTP response:</p>
+<pre><code class="language-php">namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Image;
+
+class ImagePreviewController extends Controller
+{
+    public function preview(Request $request): Response
+    {
+        // Create the image directly from the uploaded file stream.
+        $image = Image::fromStream(
+            $request-&gt;file(&#039;image&#039;)-&gt;readStream()
+        );
+
+        // Convert the image to WebP.
+        $image-&gt;toFormat(&#039;webp&#039;);
+
+        // Return the processed image as an HTTP response.
+        return $image-&gt;toResponse();
+    }
+}</code></pre>
+<h3>What Each Method Does</h3>
+<h4>Image::fromStream()</h4>
+<p>Laravel 13.25 introduces `Image::fromStream()`, allowing you to instantiate an image directly from a readable stream resource such as `$request->file('image')->readStream()`:</p>
+<pre><code class="language-php">$image = Image::fromStream(
+    $request-&gt;file(&#039;image&#039;)-&gt;readStream()
+);</code></pre>
+<p>This reads the stream directly without requiring the uploaded file to be permanently stored on disk first.</p>
+<h4>toFormat()</h4>
+<p>In Laravel 13.25, `toFormat()` is now public on the image instance, allowing you to convert the in-memory image representation to a target format such as WebP, PNG, or JPEG:</p>
+<pre><code class="language-php">$image-&gt;toFormat(&#039;webp&#039;);</code></pre>
+<p>Calling `toFormat()` updates the image format in memory without writing it to storage.</p>
+<h4>toResponse()</h4>
+<p>`toResponse()` converts the processed image into an `Illuminate\Http\Response` instance with the appropriate `Content-Type` header (such as `image/webp`):</p>
+<pre><code class="language-php">return $image-&gt;toResponse();</code></pre>
+<h3>The Flow</h3>
+<pre><code class="language-text">Uploaded file
+    ↓
+fromStream()
+    ↓
+toFormat(&#039;webp&#039;)
+    ↓
+toResponse()</code></pre>
+<p>This pattern is useful for on-the-fly preview endpoints, format conversion APIs, or serving dynamically formatted image responses directly from uploaded requests.</p>
+]]></content:encoded>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[HTTP & API]]></category>
+      <category><![CDATA[Images]]></category>
+      <category><![CDATA[HTTP]]></category>
+    </item>
     <item>
       <title><![CDATA[Detect Eloquent Model Attribute Changes Before and After Saving]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-detect-model-changes-isdirty-waschanged</link>

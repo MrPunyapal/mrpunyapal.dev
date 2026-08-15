@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assert JSON Columns and Backed Enums with assertDatabaseHas - Laravel &amp; PHP Tip | Punyapal Shah</title>
+    <title>Process Uploaded Images from Streams in Laravel 13.25 - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,25 +17,25 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...">
+    <meta name="description" content="Laravel 13.25 adds Image::fromStream(), makes toFormat() public, and pairs with toResponse() to process uploaded images and return them directly as HTTP resp...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-image-stream-format-response">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums">
-    <meta property="og:title" content="Assert JSON Columns and Backed Enums with assertDatabaseHas - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-assert-database-has-json-enums.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-assert-database-has-json-enums.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-image-stream-format-response">
+    <meta property="og:title" content="Process Uploaded Images from Streams in Laravel 13.25 - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Laravel 13.25 adds Image::fromStream(), makes toFormat() public, and pairs with toResponse() to process uploaded images and return them directly as HTTP resp...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-image-stream-format-response.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-image-stream-format-response.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Assert JSON Columns and Backed Enums with assertDatabaseHas - Punyapal Shah">
+    <meta property="og:image:alt" content="Process Uploaded Images from Streams in Laravel 13.25 - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-06-15">
+    <meta property="article:published_time" content="2026-08-15">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="Laravel">
 
@@ -43,11 +43,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums">
-    <meta name="twitter:title" content="Assert JSON Columns and Backed Enums with assertDatabaseHas - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-assert-database-has-json-enums.png">
-    <meta name="twitter:image:alt" content="Assert JSON Columns and Backed Enums with assertDatabaseHas - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-image-stream-format-response">
+    <meta name="twitter:title" content="Process Uploaded Images from Streams in Laravel 13.25 - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Laravel 13.25 adds Image::fromStream(), makes toFormat() public, and pairs with toResponse() to process uploaded images and return them directly as HTTP resp...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-image-stream-format-response.png">
+    <meta name="twitter:image:alt" content="Process Uploaded Images from Streams in Laravel 13.25 - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -56,13 +56,13 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums#article",
-                "headline": "Assert JSON Columns and Backed Enums with assertDatabaseHas",
-                "description": "In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...",
-                "datePublished": "2026-06-15",
+                "@id": "https://mrpunyapal.dev/tips/laravel-image-stream-format-response#article",
+                "headline": "Process Uploaded Images from Streams in Laravel 13.25",
+                "description": "Laravel 13.25 adds Image::fromStream(), makes toFormat() public, and pairs with toResponse() to process uploaded images and return them directly as HTTP resp...",
+                "datePublished": "2026-08-15",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums",
-                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Testing, Pest, Enums",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-image-stream-format-response",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Images, HTTP",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -91,8 +91,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Assert JSON Columns and Backed Enums with assertDatabaseHas",
-                        "item": "https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums"
+                        "name": "Process Uploaded Images from Streams in Laravel 13.25",
+                        "item": "https://mrpunyapal.dev/tips/laravel-image-stream-format-response"
                     }
                 ]
             }
@@ -678,7 +678,7 @@
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Utilities
+                                HTTP &amp; API
                             </span>
                         
                     </div>
@@ -687,7 +687,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Assert JSON Columns and Backed Enums with assertDatabaseHas
+                        Process Uploaded Images from Streams in Laravel 13.25
                     </h1>
 
                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -696,9 +696,9 @@
                             <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2026-06-15" class="inline-flex items-center gap-1.5">
+                        <time datetime="2026-08-15" class="inline-flex items-center gap-1.5">
                             <svg class="icon text-xs opacity-70" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Jun 15, 2026
+                            Aug 15, 2026
                         </time>
                     </div>
                 </div>
@@ -712,7 +712,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Testing JSON attributes or PHP backed enums requires no manual casting or encoding. assertDatabaseHas() supports arrow syntax and serializes enums automatically.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.25 adds Image::fromStream(), makes toFormat() public, and pairs with toResponse() to process uploaded images and return them directly as HTTP responses.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When handling user uploads, processing an image and returning a converted preview often involves reading files from streams rather than saving intermediate files to disk. Laravel 13.25 updates the Image API with stream support, making it straightforward to load, convert, and respond in a single flow.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Process an Uploaded Image</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Here is a controller action that reads an uploaded image stream, converts it to WebP, and returns the converted image directly as an HTTP response:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -720,21 +720,137 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$this-&gt;assertDatabaseHas(&#039;users&#039;, [
-    &#039;role&#039; =&gt; UserRole::Maintainer,
-    &#039;settings-&gt;theme&#039; =&gt; &#039;dark&#039;,
-]);" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Image;
+
+class ImagePreviewController extends Controller
+{
+    public function preview(Request $request): Response
+    {
+        // Create the image directly from the uploaded file stream.
+        $image = Image::fromStream(
+            $request-&gt;file(&#039;image&#039;)-&gt;readStream()
+        );
+
+        // Convert the image to WebP.
+        $image-&gt;toFormat(&#039;webp&#039;);
+
+        // Return the processed image as an HTTP response.
+        return $image-&gt;toResponse();
+    }
+}" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">assertDatabaseHas</span>(<span class="hljs-string">&#x27;users&#x27;</span>, [
-    <span class="hljs-string">&#x27;role&#x27;</span> =&gt; <span class="hljs-title class_">UserRole</span>::<span class="hljs-variable constant_">Maintainer</span>,
-    <span class="hljs-string">&#x27;settings-&gt;theme&#x27;</span> =&gt; <span class="hljs-string">&#x27;dark&#x27;</span>,
-]);</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Handles Backed Enums directly without -&gt;value casting</span></li><li class="leading-relaxed"><span class="align-middle">Queries nested JSON keys using arrow notation</span></li><li class="leading-relaxed"><span class="align-middle">Works out of the box with Pest and PHPUnit assertions</span></li></ul>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Http</span>\<span class="hljs-title class_">Controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Request</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Response</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Image</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImagePreviewController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preview</span>(<span class="hljs-params">Request <span class="hljs-variable">$request</span></span>): <span class="hljs-title">Response</span>
+    </span>{
+        <span class="hljs-comment">// Create the image directly from the uploaded file stream.</span>
+        <span class="hljs-variable">$image</span> = <span class="hljs-title class_">Image</span>::<span class="hljs-title function_ invoke__">fromStream</span>(
+            <span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">file</span>(<span class="hljs-string">&#x27;image&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">readStream</span>()
+        );
+
+        <span class="hljs-comment">// Convert the image to WebP.</span>
+        <span class="hljs-variable">$image</span>-&gt;<span class="hljs-title function_ invoke__">toFormat</span>(<span class="hljs-string">&#x27;webp&#x27;</span>);
+
+        <span class="hljs-comment">// Return the processed image as an HTTP response.</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$image</span>-&gt;<span class="hljs-title function_ invoke__">toResponse</span>();
+    }
+}</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">What Each Method Does</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Image::fromStream()</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel 13.25 introduces `Image::fromStream()`, allowing you to instantiate an image directly from a readable stream resource such as `$request->file('image')->readStream()`:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$image = Image::fromStream(
+    $request-&gt;file(&#039;image&#039;)-&gt;readStream()
+);" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$image</span> = <span class="hljs-title class_">Image</span>::<span class="hljs-title function_ invoke__">fromStream</span>(
+    <span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">file</span>(<span class="hljs-string">&#x27;image&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">readStream</span>()
+);</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This reads the stream directly without requiring the uploaded file to be permanently stored on disk first.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">toFormat()</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In Laravel 13.25, `toFormat()` is now public on the image instance, allowing you to convert the in-memory image representation to a target format such as WebP, PNG, or JPEG:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$image-&gt;toFormat(&#039;webp&#039;);" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$image</span>-&gt;<span class="hljs-title function_ invoke__">toFormat</span>(<span class="hljs-string">&#x27;webp&#x27;</span>);</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Calling `toFormat()` updates the image format in memory without writing it to storage.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">toResponse()</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">`toResponse()` converts the processed image into an `Illuminate\Http\Response` instance with the appropriate `Content-Type` header (such as `image/webp`):</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="return $image-&gt;toResponse();" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">return</span> <span class="hljs-variable">$image</span>-&gt;<span class="hljs-title function_ invoke__">toResponse</span>();</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Flow</h3>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="Uploaded file
+    ↓
+fromStream()
+    ↓
+toFormat(&#039;webp&#039;)
+    ↓
+toResponse()" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">Uploaded file
+    ↓
+fromStream()
+    ↓
+toFormat(&#x27;webp&#x27;)
+    ↓
+toResponse()</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This pattern is useful for on-the-fly preview endpoints, format conversion APIs, or serving dynamically formatted image responses directly from uploaded requests.</p>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -744,11 +860,11 @@
                             <svg class="icon text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Testing</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Pest</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Enums</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Images</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#HTTP</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Assert%20JSON%20Columns%20and%20Backed%20Enums%20with%20assertDatabaseHas%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-assert-database-has-json-enums" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Process%20Uploaded%20Images%20from%20Streams%20in%20Laravel%2013.25%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-image-stream-format-response" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -765,28 +881,6 @@
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-image-stream-format-response" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
-                    <!-- Corner Crosshairs -->
-                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Process Uploaded Images from Streams in Laravel 13.25
-                    </h3>
-                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </span>
-                </a>
                 <a href="/tips/laravel-detect-model-changes-isdirty-waschanged" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -804,6 +898,28 @@
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
                         Detect Eloquent Model Attribute Changes Before and After Saving
+                    </h3>
+                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                <a href="/tips/laravel-uniquejobskipped-queue-event" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                    <!-- Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
+                        Handle Skipped Unique Jobs with UniqueJobSkipped
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -829,7 +945,7 @@
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","laravel-schema-state-load-seeding","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-avoid-env-outside-config-pest-arch","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","laravel-schema-state-load-seeding","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-avoid-env-outside-config-pest-arch","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {
