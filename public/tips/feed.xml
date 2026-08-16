@@ -9,9 +9,53 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Sun, 16 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Mon, 17 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Global Queue Pause and Resume Controls in Laravel 13.25]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-global-queue-pause-resume</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-global-queue-pause-resume</guid>
+      <description><![CDATA[Laravel 13.25 introduces global queue pause and resume controls via queue:pause --all and Queue::pauseAll() to pause every queue across all connections durin...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.25 introduces global queue pause and resume controls via queue:pause --all and Queue::pauseAll() to pause every queue across all connections during deployments.</blockquote>
+<p>During zero-downtime deployments or infrastructure migrations, workers need to finish in-flight jobs and hold off on picking up new ones while code and database changes run. Previously, pausing workers required targeting specific connections and queue names one by one, or placing the entire application into maintenance mode.</p>
+<p>Laravel 13.25 introduces global queue pause and resume controls that affect every queue across all connections with a single command.</p>
+<h3>Global Queue Controls</h3>
+<p>You can pause and resume all background queues via Artisan commands or programmatically through the `Queue` facade:</p>
+<pre><code class="language-bash"># Pause every queue on every connection
+php artisan queue:pause --all
+
+# Resume every queue after the deployment
+php artisan queue:resume --all</code></pre>
+<pre><code class="language-php">use Illuminate\Support\Facades\Queue;
+
+// Pause all queues across all connections
+Queue::pauseAll();
+
+// Resume all queues after maintenance
+Queue::resumeAll();</code></pre>
+<h3>Global vs Individually Paused Queues</h3>
+<p>The global pause state operates independently from individual queue pause states:</p>
+<ul>
+  <li>Running <code>queue:pause --all</code> sets a global pause flag across all connections.</li>
+  <li>Running <code>queue:resume --all</code> clears the global pause flag, but queues that were already paused individually (such as <code>php artisan queue:pause redis billing</code>) stay paused.</li>
+</ul>
+<p>This intentional separation ensures a deployment script resuming all queues will not accidentally restart a problematic queue that an engineer intentionally paused earlier for debugging.</p>
+<h3>Global Queue Events</h3>
+<p>Laravel 13.25 also dispatches dedicated global events when these operations run:</p>
+<ul>
+  <li><code>Illuminate\Queue\Events\QueuesPaused</code>: Dispatched when all queues are paused globally.</li>
+  <li><code>Illuminate\Queue\Events\QueuesResumed</code>: Dispatched when the global pause flag is cleared.</li>
+</ul>
+<p>These differ from the per-queue events (`QueuePaused` and `QueueResumed`), which fire when specific individual queue names are paused or resumed.</p>
+]]></content:encoded>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+      <atom:updated>Mon, 17 Aug 2026 00:00:00 GMT</atom:updated>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Queue]]></category>
+      <category><![CDATA[Deployment]]></category>
+    </item>
     <item>
       <title><![CDATA[Use config() Instead of env() in Application Code]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch</link>
