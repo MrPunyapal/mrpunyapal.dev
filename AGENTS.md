@@ -87,7 +87,7 @@ The developer tips platform (`tips.html` and `tips/<slug>.html`) is statically g
   - **Individual Tip Pages**: Displays `Updated <date>` when `updated_at` exists; displays `<date>` without prefix when unchanged.
   - **Structured Data & SEO**: Preserves original `datePublished` as `created_at` across JSON-LD `TechArticle` and OpenGraph `article:published_time`, and adds `dateModified` / `article:modified_time` only when `updated_at` is present.
 - **Modular Build Architecture**: `scripts/build-tips.mjs` orchestrates imports from dedicated submodules in `scripts/tips/`:
-  - `scripts/tips/tips-helpers.mjs`: Centralized date helpers (`getTipEffectiveDate`, `normalizeDateStr`), formatting helpers (`formatDate`, `toRfc822Date`, `wrapCdata`, `slugify`, `extractSummary`, `escapeHtml`), `marked` renderer config with `highlight.js`, CSS grid styles, and icon SVG sprite.
+  - `scripts/tips/tips-helpers.mjs`: Centralized date helpers (`getTipEffectiveDate`, `normalizeDateStr`), formatting helpers (`formatDate`, `toRfc822Date`, `wrapCdata`, `slugify`, `extractSummary`, `escapeHtml`, `escapeJsonStr`), `marked` renderer config with `highlight.js`, CSS grid styles, and icon SVG sprite.
   - `scripts/tips/tips-hub.mjs`: Generates main archive page `tips.html` with title `Laravel Tips | Punyapal Shah`.
   - `scripts/tips/tips-single.mjs`: Generates individual tip pages `tips/<slug>.html`.
   - `scripts/tips/tips-rss.mjs`: Generates RSS 2.0 feed `public/tips/feed.xml` with channel title `Laravel Tips | Punyapal Shah`.
@@ -195,6 +195,7 @@ Whenever pages are modified:
   - Category and list pages (`projects.html`, `opensource.html`, `talks.html`, `tips.html`) must use `@type: "CollectionPage"`.
   - `services.html` separates distinct offerings into clean `OfferCatalog` objects under `mainEntity` (`services#catalog` for Laravel Engineering, `services#sponsorships` for Sponsorships & Partnerships, and `services#consultations` for 1:1 Consultations).
   - Tip pages (`tips/<slug>.html`) must include `@type: "TechArticle"` and `@type: "BreadcrumbList"`.
+  - **JSON-LD String Escaping**: Always use `escapeJsonStr()` (or `JSON.stringify()`) when injecting dynamic values into inline `<script type="application/ld+json">` blocks. Never use `escapeHtml()`, as it converts characters into HTML entities (`&quot;`, `&amp;`) which corrupts JSON-LD, and fails to escape raw backslashes (`\`), causing JSON syntax errors.
 - Keep `sitemap.xml`, `robots.txt`, and `llms.txt` synchronized.
 
 Do not add SEO content purely for keyword density.
