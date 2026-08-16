@@ -1,11 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { renderSiteHeader } from '../site-header.mjs';
-import { getCategoryBadge, escapeHtml, escapeJsonStr, criticalGridStyles, iconSprite, formatDate } from './tips-helpers.mjs';
+import { getCategoryBadge, escapeHtml, escapeJsonStr, criticalGridStyles, iconSprite, formatDate, getTipEffectiveDate } from './tips-helpers.mjs';
 
 export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) {
     const tipsCardsHtml = tips.map((tip, idx) => {
         const badge = getCategoryBadge(tip.category);
+        const effectiveDate = tip.effectiveDate || getTipEffectiveDate(tip);
 
         return `
             <div class="tip-card group relative p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between cursor-pointer"
@@ -51,8 +52,8 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                 </div>
 
                 <div class="pt-4 mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60">
-                    <time datetime="${escapeHtml(tip.date)}" class="text-xs font-mono text-slate-500 dark:text-slate-400 inline-flex items-center gap-1">
-                        ${formatDate(tip.date)}
+                    <time datetime="${escapeHtml(effectiveDate)}" class="text-xs font-mono text-slate-500 dark:text-slate-400 inline-flex items-center gap-1">
+                        ${formatDate(effectiveDate)}
                     </time>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
@@ -228,10 +229,6 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                             Laravel Tips
                         </h1>
                         <div class="flex items-center gap-2">
-                            <a href="https://github.com/MrPunyapal/tips" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group" aria-label="GitHub Repository for Tips">
-                                <svg class="w-3.5 h-3.5 text-slate-700 dark:text-slate-300 group-hover:scale-110 transition-transform" viewBox="0 0 496 512" fill="currentColor" aria-hidden="true"><use href="#i-github"/></svg>
-                                <span>GitHub</span>
-                            </a>
                             <button id="random-tip-btn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group cursor-pointer" aria-label="Open a random developer tip">
                                 <svg class="w-3.5 h-3.5 text-red-500 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h7l-4 4m0 0l4 4M7 8h13M20 20h-7l4-4m0 0l-4-4m4 4H4" />

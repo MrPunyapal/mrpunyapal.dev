@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { toRfc822Date, wrapCdata } from './tips-helpers.mjs';
+import { toRfc822Date, wrapCdata, getTipEffectiveDate } from './tips-helpers.mjs';
 
 export function generateRssFeed(tips, publicDir) {
     const publicTipsDir = path.join(publicDir, 'tips');
@@ -24,8 +24,10 @@ export function generateRssFeed(tips, publicDir) {
             .map(cat => `      <category>${wrapCdata(cat)}</category>`)
             .join('\n');
 
-        const updatedXml = tip.updated
-            ? `\n      <atom:updated>${toRfc822Date(tip.updated)}</atom:updated>`
+        const effectiveDate = tip.effectiveDate || getTipEffectiveDate(tip);
+        const updated_at = tip.updated_at || null;
+        const updatedXml = updated_at
+            ? `\n      <atom:updated>${toRfc822Date(updated_at)}</atom:updated>`
             : '';
 
         return `    <item>
@@ -34,15 +36,16 @@ export function generateRssFeed(tips, publicDir) {
       <guid isPermaLink="true">${canonicalUrl}</guid>
       <description>${wrapCdata(tip.summary)}</description>
       <content:encoded>${wrapCdata(tip.rssContent || tip.htmlContent)}</content:encoded>
-      <pubDate>${toRfc822Date(tip.date)}</pubDate>${updatedXml}
+      <pubDate>${toRfc822Date(effectiveDate)}</pubDate>${updatedXml}
       <dc:creator>${wrapCdata(tip.author)}</dc:creator>
 ${categoriesXml}
     </item>`;
     }).join('\n');
 
-    let lastBuildDate = new Date().toUTCString();
     const latestTip = tips.length > 0 ? tips[0] : null;
-    const feedPubDate = latestTip ? toRfc822Date(latestTip.updated || latestTip.date) : lastBuildDate;
+    const newestEffectiveDateRfc = latestTip ? toRfc822Date(latestTip.effectiveDate || getTipEffectiveDate(latestTip)) : new Date().toUTCString();
+    let lastBuildDate = newestEffectiveDateRfc;
+    const feedPubDate = newestEffectiveDateRfc;
 
     // Check if feed already exists in public/tips/feed.xml and if items are unchanged to prevent lastBuildDate churn on redeploys
     if (fs.existsSync(feedPathInPublic)) {

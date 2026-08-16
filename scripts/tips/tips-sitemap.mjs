@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { getTipEffectiveDate } from './tips-helpers.mjs';
 
 export function generateSitemap(tips, publicDir) {
     const staticPages = [
@@ -21,7 +22,7 @@ ${staticPages.map(url => `    <url>
     </url>`).join('\n')}
 ${tips.map(tip => `    <url>
         <loc>https://mrpunyapal.dev/tips/${tip.slug}</loc>
-        <lastmod>${tip.date}</lastmod>
+        <lastmod>${tip.effectiveDate || getTipEffectiveDate(tip)}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>`).join('\n')}

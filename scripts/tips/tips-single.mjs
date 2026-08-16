@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { renderSiteHeader } from '../site-header.mjs';
-import { getCategoryBadge, escapeHtml, escapeJsonStr, criticalGridStyles, iconSprite, formatDate } from './tips-helpers.mjs';
+import { getCategoryBadge, escapeHtml, escapeJsonStr, criticalGridStyles, iconSprite, formatDate, getTipEffectiveDate } from './tips-helpers.mjs';
 
 function getShareByline(author, authorUrl) {
     if (!author) return 'by @MrPunyapal';
@@ -41,6 +41,10 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
     const relatedTips = allTips
         .filter(t => t.slug !== tip.slug && (t.category === tip.category || t.tags.some(tag => tip.tags.includes(tag))))
         .slice(0, 2);
+
+    const created_at = tip.created_at || tip.date || '2026-07-01';
+    const updated_at = tip.updated_at || null;
+    const effectiveDate = tip.effectiveDate || getTipEffectiveDate(tip);
 
     const relatedHtml = relatedTips.length > 0 ? `
         <div class="mt-10 pt-8 border-t border-slate-200 dark:border-slate-800">
@@ -123,8 +127,8 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
     <meta property="og:image:alt" content="${escapeHtml(tip.title)} - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="${escapeHtml(tip.date)}">
-    <meta property="article:author" content="${escapeHtml(tip.author_url || 'https://mrpunyapal.dev/#person')}">
+    <meta property="article:published_time" content="${escapeHtml(created_at)}">
+${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml(updated_at)}">\n` : ''}    <meta property="article:author" content="${escapeHtml(tip.author_url || 'https://mrpunyapal.dev/#person')}">
     <meta property="article:section" content="${escapeHtml(tip.category)}">
 
     <!-- Twitter -->
@@ -147,8 +151,8 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
                 "@id": "https://mrpunyapal.dev/tips/${tip.slug}#article",
                 "headline": "${escapeJsonStr(tip.title)}",
                 "description": "${escapeJsonStr(tip.summary)}",
-                "datePublished": "${escapeJsonStr(tip.date)}",
-                "inLanguage": "en",
+                "datePublished": "${escapeJsonStr(created_at)}",
+                ${updated_at ? `"dateModified": "${escapeJsonStr(updated_at)}",\n                ` : ''}"inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/${tip.slug}",
                 "keywords": "${escapeJsonStr([tip.category, 'PHP tips', 'Laravel tips', ...(tip.tags || [])].join(', '))}",
                 "author": {
@@ -280,9 +284,9 @@ export function generateSingleTipPage(tip, allTips, tipsOutDir) {
                             ${authorHtml}
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="${escapeHtml(tip.date)}" class="inline-flex items-center gap-1.5">
+                        <time datetime="${escapeHtml(effectiveDate)}" class="inline-flex items-center gap-1.5">
                             <svg class="icon text-xs opacity-70" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            ${formatDate(tip.date)}
+                            ${updated_at ? `Updated ${formatDate(updated_at)}` : formatDate(created_at)}
                         </time>
                     </div>
                 </div>

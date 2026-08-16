@@ -1,11 +1,31 @@
 import { marked, Marked } from 'marked';
 import hljs from 'highlight.js';
 
+// Normalize date value (handling strings and Date objects from gray-matter)
+export function normalizeDateStr(val) {
+    if (!val) return null;
+    if (val instanceof Date) {
+        return val.toISOString().split('T')[0];
+    }
+    return String(val).trim();
+}
+
+// Centralized effective date helper: effectiveDate = updated_at ?? created_at
+export function getTipEffectiveDate(tipOrDate, fallbackDate = '') {
+    if (!tipOrDate) return normalizeDateStr(fallbackDate) || '';
+    if (typeof tipOrDate === 'object' && !(tipOrDate instanceof Date)) {
+        const updated = tipOrDate.updated_at || tipOrDate.updated || tipOrDate.last_updated;
+        const created = tipOrDate.created_at || tipOrDate.date;
+        return normalizeDateStr(updated) || normalizeDateStr(created) || normalizeDateStr(fallbackDate) || '';
+    }
+    return normalizeDateStr(tipOrDate) || normalizeDateStr(fallbackDate) || '';
+}
+
 // Format date helper: "2026-07-20" -> "Jul 20, 2026"
 export function formatDate(dateStr) {
     if (!dateStr) return '';
     const date = new Date(dateStr);
-    if (isNaN(date.getTime())) return dateStr;
+    if (isNaN(date.getTime())) return String(dateStr);
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 

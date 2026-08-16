@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 
-import { slugify, extractSummary, marked, renderRssHtml } from './tips/tips-helpers.mjs';
+import { slugify, extractSummary, marked, renderRssHtml, getTipEffectiveDate, normalizeDateStr } from './tips/tips-helpers.mjs';
 import { generateTipsHubPage } from './tips/tips-hub.mjs';
 import { generateSingleTipPage } from './tips/tips-single.mjs';
 import { generateRssFeed } from './tips/tips-rss.mjs';
@@ -80,8 +80,9 @@ export async function buildTips() {
         const category = data.category || 'Laravel';
         const subcategory = data.subcategory || null;
         const tags = Array.isArray(data.tags) ? data.tags : (data.tags ? String(data.tags).split(',').map(s => s.trim()) : [category]);
-        const date = data.date || '2026-07-01';
-        const updated = data.updated || data.last_updated || data.updated_at || null;
+        const created_at = normalizeDateStr(data.created_at || data.date) || '2026-07-01';
+        const updated_at = normalizeDateStr(data.updated_at || data.updated || data.last_updated) || null;
+        const effectiveDate = getTipEffectiveDate({ created_at, updated_at });
         const tweet_url = data.tweet_url || null;
         const author = data.author || 'Punyapal Shah';
         const author_url = data.author_url || (author === 'Punyapal Shah' ? 'https://x.com/MrPunyapal' : null);
@@ -96,8 +97,10 @@ export async function buildTips() {
             category,
             subcategory,
             tags,
-            date,
-            updated,
+            created_at,
+            updated_at,
+            effectiveDate,
+            date: effectiveDate,
             summary,
             tweet_url,
             author,
@@ -109,8 +112,8 @@ export async function buildTips() {
         });
     }
 
-    // Sort by date descending
-    tips.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // Sort by effective date descending (updated_at ?? created_at)
+    tips.sort((a, b) => new Date(b.effectiveDate).getTime() - new Date(a.effectiveDate).getTime());
 
     // Generate categories list with counts
     const categoriesMap = { 'All': tips.length };
@@ -129,17 +132,25 @@ export async function buildTips() {
     }
 
     // 3. Generate public search index
-    const searchIndex = tips.map(t => ({
-        slug: t.slug,
-        title: t.title,
-        category: t.category,
-        subcategory: t.subcategory,
-        tags: t.tags,
-        date: t.date,
-        summary: t.summary,
-        author: t.author,
-        author_url: t.author_url,
-    }));
+    const searchIndex = tips.map(t => {
+        const item = {
+            slug: t.slug,
+            title: t.title,
+            category: t.category,
+            subcategory: t.subcategory,
+            tags: t.tags,
+            created_at: t.created_at,
+            effective_date: t.effectiveDate,
+            date: t.effectiveDate,
+            summary: t.summary,
+            author: t.author,
+            author_url: t.author_url,
+        };
+        if (t.updated_at) {
+            item.updated_at = t.updated_at;
+        }
+        return item;
+    });
     fs.writeFileSync(path.join(publicDir, 'tips-search-index.json'), JSON.stringify(searchIndex, null, 2));
 
     // 4. Automatically generate/synchronize public/sitemap.xml
