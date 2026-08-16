@@ -9,9 +9,134 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Sun, 16 Aug 2026 15:00:33 GMT</lastBuildDate>
+    <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Sun, 16 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Use config() Instead of env() in Application Code]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch</guid>
+      <description><![CDATA[Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached. A founda...]]></description>
+      <content:encoded><![CDATA[<blockquote>Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached.</blockquote>
+<p>A foundational Laravel convention is keeping `env()` calls confined strictly to files in the `config/` directory while reading settings across controllers, services, and models via `config()`.</p>
+<h3>The Common Mistake</h3>
+<p>It is tempting to read environment variables directly inside application code:</p>
+<pre><code class="language-php">// ❌ Don&#039;t call env() directly in application code
+$stripeKey = env(&#039;STRIPE_KEY&#039;);</code></pre>
+<p>While this works during local development when `.env` is loaded on every request, it breaks in production when configuration caching is enabled.</p>
+<h3>The Laravel Way</h3>
+<p>Environment variables should be accessed inside configuration files, and application code should read from Laravel's configuration repository:</p>
+<pre><code class="language-php">// config/services.php
+return [
+    &#039;stripe&#039; =&gt; [
+        &#039;key&#039; =&gt; env(&#039;STRIPE_KEY&#039;),
+    ],
+];</code></pre>
+<p>Application code then retrieves the setting through `config()`:</p>
+<pre><code class="language-php">// ✅ Read the configured value
+$stripeKey = config(&#039;services.stripe.key&#039;);</code></pre>
+<p>The application does not need to know where the value originated; it accesses the value through Laravel's unified configuration repository.</p>
+<h3>Why config:cache Matters</h3>
+<p>In production, optimizing performance involves running:</p>
+<pre><code class="language-bash">php artisan config:cache</code></pre>
+<p>Once configuration is cached, Laravel combines all files in `config/*.php` into a single cached file and ignores the `.env` file during requests and Artisan commands.</p>
+<p>When `.env` is not loaded:</p>
+<ul>
+  <li><code>config(&#39;services.stripe.key&#39;)</code> reads the compiled value from the configuration cache.</li>
+  <li>Calling <code>env(&#39;STRIPE_KEY&#39;)</code> directly in application code bypasses the configuration cache and returns <code>null</code>, unless an external operating system environment variable of the same name is explicitly defined on the host server.</li>
+</ul>
+<h3>Enforce It with Pest</h3>
+<p>You can enforce this convention automatically using a Pest architecture test:</p>
+<pre><code class="language-php">// tests/ArchitectureTest.php
+arch(&#039;globals&#039;)
+    -&gt;expect([&#039;env&#039;])
+    -&gt;not-&gt;toBeUsed();</code></pre>
+<p>This test flags any direct `env()` usage in your application code before code is merged or deployed.</p>
+<h3>Catch It with Larastan</h3>
+<p>Larastan includes static analysis rules to detect `env()` usage outside configuration files.</p>
+<p>The `larastan.noEnvCallsOutsideOfConfig` rule (enabled by default in Larastan 3.x) analyzes your codebase and reports violations:</p>
+<pre><code class="language-text">Called &#039;env&#039; outside of the config directory which returns null when the config is cached, use &#039;config&#039;.</code></pre>
+<h3>Quick Rule</h3>
+<pre><code class="language-text">.env → env() → config/*.php → config() → application code</code></pre>
+<ul>
+  <li><code>env()</code> belongs in <code>config/*.php</code> files.</li>
+  <li><code>config()</code> belongs everywhere else in application code.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
+      <atom:updated>Sun, 16 Aug 2026 00:00:00 GMT</atom:updated>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Configuration]]></category>
+      <category><![CDATA[Testing]]></category>
+      <category><![CDATA[Pest PHP]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Load Large SQL Dumps in Laravel Seeders]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-schema-state-load-seeding</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-schema-state-load-seeding</guid>
+      <description><![CDATA[Use DB::getSchemaState()-load() to load large reference SQL dump files in seeders, with DB::unprepared(filegetcontents(...)) as a fallback for older Laravel...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use DB::getSchemaState()->load() to load large reference SQL dump files in seeders, with DB::unprepared(file_get_contents(...)) as a fallback for older Laravel versions.</blockquote>
+<p>When seeding large static reference datasets such as countries, states, cities, or timezones, writing thousands of individual Eloquent `create()` or `insert()` calls adds unnecessary overhead. Developers frequently store these datasets as raw `.sql` files inside their repository and load them during database seeding.</p>
+<h3>The Common Approach</h3>
+<p>A standard way to execute an external SQL file is reading its contents into PHP memory and executing the raw query buffer with `DB::unprepared()`:</p>
+<pre><code class="language-php">use Illuminate\Support\Facades\DB;
+
+DB::unprepared(
+    file_get_contents(database_path(&#039;seeders/sql/world.sql&#039;))
+);</code></pre>
+<p>This approach works by having `file_get_contents()` read the entire SQL dump into a PHP string variable, which is then passed to PDO via `DB::unprepared()`. For very large SQL files, loading the entire file into PHP memory first can consume significant memory allocations.</p>
+<h3>Prefer SchemaState When Available</h3>
+<p>In Laravel versions that support schema state inspection, you can load the SQL file using `DB::getSchemaState()->load()`:</p>
+<pre><code class="language-php">use Illuminate\Support\Facades\DB;
+
+DB::getSchemaState()-&gt;load(
+    database_path(&#039;seeders/sql/world.sql&#039;)
+);</code></pre>
+<p>Instead of requiring application code to read the complete SQL file into a PHP string in memory, `getSchemaState()->load()` delegates the file path directly to Laravel's database-specific schema state implementation.</p>
+<h3>Older Laravel Projects</h3>
+<p>For projects running on older Laravel versions where `DB::getSchemaState()->load()` is not available, `DB::unprepared(file_get_contents(...))` remains a reliable and practical solution. There is no need to restructure working seeders on older installations unless you encounter memory limits during data loading.</p>
+<h3>Example Seeder</h3>
+<p>Here is how a dedicated reference dataset seeder looks using the preferred approach:</p>
+<pre><code class="language-php">namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class WorldSeeder extends Seeder
+{
+    public function run(): void
+    {
+        DB::getSchemaState()-&gt;load(
+            database_path(&#039;seeders/sql/world.sql&#039;)
+        );
+    }
+}</code></pre>
+<p>If your project requires compatibility with older Laravel releases, the fallback pattern can be used inside the same seeder:</p>
+<pre><code class="language-php">namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class WorldSeeder extends Seeder
+{
+    public function run(): void
+    {
+        DB::unprepared(
+            file_get_contents(
+                database_path(&#039;seeders/sql/world.sql&#039;)
+            )
+        );
+    }
+}</code></pre>
+]]></content:encoded>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <atom:updated>Sat, 15 Aug 2026 00:00:00 GMT</atom:updated>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Database]]></category>
+      <category><![CDATA[Seeders]]></category>
+    </item>
     <item>
       <title><![CDATA[Process Uploaded Images from Streams in Laravel 13.25]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-image-stream-format-response</link>
@@ -1803,72 +1928,6 @@ php artisan schema:dump --prune
       <category><![CDATA[DevOps]]></category>
     </item>
     <item>
-      <title><![CDATA[Load Large SQL Dumps in Laravel Seeders]]></title>
-      <link>https://mrpunyapal.dev/tips/laravel-schema-state-load-seeding</link>
-      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-schema-state-load-seeding</guid>
-      <description><![CDATA[Use DB::getSchemaState()-load() to load large reference SQL dump files in seeders, with DB::unprepared(filegetcontents(...)) as a fallback for older Laravel...]]></description>
-      <content:encoded><![CDATA[<blockquote>Use DB::getSchemaState()->load() to load large reference SQL dump files in seeders, with DB::unprepared(file_get_contents(...)) as a fallback for older Laravel versions.</blockquote>
-<p>When seeding large static reference datasets such as countries, states, cities, or timezones, writing thousands of individual Eloquent `create()` or `insert()` calls adds unnecessary overhead. Developers frequently store these datasets as raw `.sql` files inside their repository and load them during database seeding.</p>
-<h3>The Common Approach</h3>
-<p>A standard way to execute an external SQL file is reading its contents into PHP memory and executing the raw query buffer with `DB::unprepared()`:</p>
-<pre><code class="language-php">use Illuminate\Support\Facades\DB;
-
-DB::unprepared(
-    file_get_contents(database_path(&#039;seeders/sql/world.sql&#039;))
-);</code></pre>
-<p>This approach works by having `file_get_contents()` read the entire SQL dump into a PHP string variable, which is then passed to PDO via `DB::unprepared()`. For very large SQL files, loading the entire file into PHP memory first can consume significant memory allocations.</p>
-<h3>Prefer SchemaState When Available</h3>
-<p>In Laravel versions that support schema state inspection, you can load the SQL file using `DB::getSchemaState()->load()`:</p>
-<pre><code class="language-php">use Illuminate\Support\Facades\DB;
-
-DB::getSchemaState()-&gt;load(
-    database_path(&#039;seeders/sql/world.sql&#039;)
-);</code></pre>
-<p>Instead of requiring application code to read the complete SQL file into a PHP string in memory, `getSchemaState()->load()` delegates the file path directly to Laravel's database-specific schema state implementation.</p>
-<h3>Older Laravel Projects</h3>
-<p>For projects running on older Laravel versions where `DB::getSchemaState()->load()` is not available, `DB::unprepared(file_get_contents(...))` remains a reliable and practical solution. There is no need to restructure working seeders on older installations unless you encounter memory limits during data loading.</p>
-<h3>Example Seeder</h3>
-<p>Here is how a dedicated reference dataset seeder looks using the preferred approach:</p>
-<pre><code class="language-php">namespace Database\Seeders;
-
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-
-class WorldSeeder extends Seeder
-{
-    public function run(): void
-    {
-        DB::getSchemaState()-&gt;load(
-            database_path(&#039;seeders/sql/world.sql&#039;)
-        );
-    }
-}</code></pre>
-<p>If your project requires compatibility with older Laravel releases, the fallback pattern can be used inside the same seeder:</p>
-<pre><code class="language-php">namespace Database\Seeders;
-
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-
-class WorldSeeder extends Seeder
-{
-    public function run(): void
-    {
-        DB::unprepared(
-            file_get_contents(
-                database_path(&#039;seeders/sql/world.sql&#039;)
-            )
-        );
-    }
-}</code></pre>
-]]></content:encoded>
-      <pubDate>Wed, 07 Jan 2026 00:00:00 GMT</pubDate>
-      <atom:updated>Sat, 15 Aug 2026 00:00:00 GMT</atom:updated>
-      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
-      <category><![CDATA[Laravel]]></category>
-      <category><![CDATA[Database]]></category>
-      <category><![CDATA[Seeders]]></category>
-    </item>
-    <item>
       <title><![CDATA[Simplify Class Instantiation with Constructor Property Promotion]]></title>
       <link>https://mrpunyapal.dev/tips/php-constructor-property-promotion</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-constructor-property-promotion</guid>
@@ -3063,65 +3122,6 @@ DB::table(&#039;archived_orders&#039;)-&gt;insertUsing(
       <category><![CDATA[Laravel]]></category>
       <category><![CDATA[Eloquent]]></category>
       <category><![CDATA[Blade]]></category>
-    </item>
-    <item>
-      <title><![CDATA[Use config() Instead of env() in Application Code]]></title>
-      <link>https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch</link>
-      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch</guid>
-      <description><![CDATA[Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached. A founda...]]></description>
-      <content:encoded><![CDATA[<blockquote>Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached.</blockquote>
-<p>A foundational Laravel convention is keeping `env()` calls confined strictly to files in the `config/` directory while reading settings across controllers, services, and models via `config()`.</p>
-<h3>The Common Mistake</h3>
-<p>It is tempting to read environment variables directly inside application code:</p>
-<pre><code class="language-php">// ❌ Don&#039;t call env() directly in application code
-$stripeKey = env(&#039;STRIPE_KEY&#039;);</code></pre>
-<p>While this works during local development when `.env` is loaded on every request, it breaks in production when configuration caching is enabled.</p>
-<h3>The Laravel Way</h3>
-<p>Environment variables should be accessed inside configuration files, and application code should read from Laravel's configuration repository:</p>
-<pre><code class="language-php">// config/services.php
-return [
-    &#039;stripe&#039; =&gt; [
-        &#039;key&#039; =&gt; env(&#039;STRIPE_KEY&#039;),
-    ],
-];</code></pre>
-<p>Application code then retrieves the setting through `config()`:</p>
-<pre><code class="language-php">// ✅ Read the configured value
-$stripeKey = config(&#039;services.stripe.key&#039;);</code></pre>
-<p>The application does not need to know where the value originated; it accesses the value through Laravel's unified configuration repository.</p>
-<h3>Why config:cache Matters</h3>
-<p>In production, optimizing performance involves running:</p>
-<pre><code class="language-bash">php artisan config:cache</code></pre>
-<p>Once configuration is cached, Laravel combines all files in `config/*.php` into a single cached file and ignores the `.env` file during requests and Artisan commands.</p>
-<p>When `.env` is not loaded:</p>
-<ul>
-  <li><code>config(&#39;services.stripe.key&#39;)</code> reads the compiled value from the configuration cache.</li>
-  <li>Calling <code>env(&#39;STRIPE_KEY&#39;)</code> directly in application code bypasses the configuration cache and returns <code>null</code>, unless an external operating system environment variable of the same name is explicitly defined on the host server.</li>
-</ul>
-<h3>Enforce It with Pest</h3>
-<p>You can enforce this convention automatically using a Pest architecture test:</p>
-<pre><code class="language-php">// tests/ArchitectureTest.php
-arch(&#039;globals&#039;)
-    -&gt;expect([&#039;env&#039;])
-    -&gt;not-&gt;toBeUsed();</code></pre>
-<p>This test flags any direct `env()` usage in your application code before code is merged or deployed.</p>
-<h3>Catch It with Larastan</h3>
-<p>Larastan includes static analysis rules to detect `env()` usage outside configuration files.</p>
-<p>The `larastan.noEnvCallsOutsideOfConfig` rule (enabled by default in Larastan 3.x) analyzes your codebase and reports violations:</p>
-<pre><code class="language-text">Called &#039;env&#039; outside of the config directory which returns null when the config is cached, use &#039;config&#039;.</code></pre>
-<h3>Quick Rule</h3>
-<pre><code class="language-text">.env → env() → config/*.php → config() → application code</code></pre>
-<ul>
-  <li><code>env()</code> belongs in <code>config/*.php</code> files.</li>
-  <li><code>config()</code> belongs everywhere else in application code.</li>
-</ul>
-]]></content:encoded>
-      <pubDate>Thu, 30 Nov 2023 00:00:00 GMT</pubDate>
-      <atom:updated>Sun, 16 Aug 2026 00:00:00 GMT</atom:updated>
-      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
-      <category><![CDATA[Laravel]]></category>
-      <category><![CDATA[Configuration]]></category>
-      <category><![CDATA[Testing]]></category>
-      <category><![CDATA[Pest PHP]]></category>
     </item>
     <item>
       <title><![CDATA[Essential Laravel Production Deployment Command Sequence]]></title>

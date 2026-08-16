@@ -1,5 +1,42 @@
 [
   {
+    "slug": "laravel-avoid-env-outside-config-pest-arch",
+    "title": "Use config() Instead of env() in Application Code",
+    "category": "Laravel",
+    "subcategory": "Configuration",
+    "tags": [
+      "Laravel",
+      "Configuration",
+      "Testing",
+      "Pest PHP"
+    ],
+    "created_at": "2023-11-30",
+    "effective_date": "2026-08-16",
+    "date": "2026-08-16",
+    "summary": "Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached. A founda...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal",
+    "updated_at": "2026-08-16"
+  },
+  {
+    "slug": "laravel-schema-state-load-seeding",
+    "title": "Load Large SQL Dumps in Laravel Seeders",
+    "category": "Laravel",
+    "subcategory": "Database",
+    "tags": [
+      "Laravel",
+      "Database",
+      "Seeders"
+    ],
+    "created_at": "2026-01-07",
+    "effective_date": "2026-08-15",
+    "date": "2026-08-15",
+    "summary": "Use DB::getSchemaState()-load() to load large reference SQL dump files in seeders, with DB::unprepared(filegetcontents(...)) as a fallback for older Laravel...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal",
+    "updated_at": "2026-08-15"
+  },
+  {
     "slug": "laravel-image-stream-format-response",
     "title": "Process Uploaded Images from Streams in Laravel 13.25",
     "category": "Laravel",
@@ -9,6 +46,8 @@
       "Images",
       "HTTP"
     ],
+    "created_at": "2026-08-15",
+    "effective_date": "2026-08-15",
     "date": "2026-08-15",
     "summary": "Laravel 13.25 adds Image::fromStream(), makes toFormat() public, and pairs with toResponse() to process uploaded images and return them directly as HTTP resp...",
     "author": "Punyapal Shah",
@@ -24,6 +63,8 @@
       "Eloquent",
       "Database"
     ],
+    "created_at": "2026-08-14",
+    "effective_date": "2026-08-14",
     "date": "2026-08-14",
     "summary": "Use isDirty() and isClean() before saving to inspect unsaved in-memory mutations, and use wasChanged() and getOriginal() after saving to verify persisted cha...",
     "author": "Punyapal Shah",
@@ -39,6 +80,8 @@
       "Queue",
       "Events"
     ],
+    "created_at": "2026-08-13",
+    "effective_date": "2026-08-13",
     "date": "2026-08-13",
     "summary": "Laravel 13.25 adds the UniqueJobSkipped event, allowing applications to react whenever a unique queue job is skipped because a duplicate instance is already...",
     "author": "Punyapal Shah",
@@ -54,6 +97,8 @@
       "Migrations",
       "Database"
     ],
+    "created_at": "2026-08-12",
+    "effective_date": "2026-08-12",
     "date": "2026-08-12",
     "summary": "Laravel 13.25 adds foreignUlidFor() to the migration Blueprint, allowing you to define ULID foreign key columns and table constraints directly from model cla...",
     "author": "Punyapal Shah",
@@ -70,6 +115,8 @@
       "Frontend",
       "Performance"
     ],
+    "created_at": "2026-08-11",
+    "effective_date": "2026-08-11",
     "date": "2026-08-11",
     "summary": "Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns. Navigation bars...",
     "author": "Punyapal Shah",
@@ -86,6 +133,8 @@
       "CI/CD",
       "DevOps"
     ],
+    "created_at": "2026-08-11",
+    "effective_date": "2026-08-11",
     "date": "2026-08-11",
     "summary": "Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository. GitHub Actions workflows are scoped to a...",
     "author": "Punyapal Shah",
@@ -102,6 +151,8 @@
       "Migrations",
       "Macros"
     ],
+    "created_at": "2026-08-11",
+    "effective_date": "2026-08-11",
     "date": "2026-08-11",
     "summary": "Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations. Database migrations often requ...",
     "author": "Punyapal Shah",
@@ -117,6 +168,8 @@
       "Eloquent",
       "Macros"
     ],
+    "created_at": "2026-08-11",
+    "effective_date": "2026-08-11",
     "date": "2026-08-11",
     "summary": "Register reusable query methods directly on the Builder so every model gains access without repeating logic. Laravel's Macroable trait lets you add methods t...",
     "author": "Vasile Papuc",
@@ -133,6 +186,8 @@
       "Blade",
       "Validation"
     ],
+    "created_at": "2026-08-08",
+    "effective_date": "2026-08-08",
     "date": "2026-08-08",
     "summary": "Suppress default single-error tooltips in Flux UI components and iterate over all validation messages per field using Blade error directives. When a single f...",
     "author": "Punyapal Shah",
@@ -148,6 +203,8 @@
       "Validation",
       "Performance"
     ],
+    "created_at": "2026-08-08",
+    "effective_date": "2026-08-08",
     "date": "2026-08-08",
     "summary": "Laravel 13.24 introduces dramatic performance optimizations for validating large nested arrays with wildcard rules, reducing validation execution time from 8...",
     "author": "Punyapal Shah",
@@ -163,6 +220,8 @@
       "Exceptions",
       "Best Practices"
     ],
+    "created_at": "2026-08-06",
+    "effective_date": "2026-08-06",
     "date": "2026-08-06",
     "summary": "Placing a return statement inside a try-catch finally block silently overrides exceptions and previous return statements. A return statement inside a finally...",
     "author": "Punyapal Shah",
@@ -178,6 +237,8 @@
       "Image",
       "Media"
     ],
+    "created_at": "2026-08-05",
+    "effective_date": "2026-08-05",
     "date": "2026-08-05",
     "summary": "Laravel 13.24 adds dominantColor() to the Image API for extracting the primary color of an image, plus native support for HEIC and AVIF formats. Extracting a...",
     "author": "Punyapal Shah",
@@ -193,6 +254,8 @@
       "Eloquent",
       "Database"
     ],
+    "created_at": "2026-08-05",
+    "effective_date": "2026-08-05",
     "date": "2026-08-05",
     "summary": "Laravel 13.24 adds modelKeys() directly to the Eloquent query builder, replacing hardcoded pluck('id') calls with a method that uses the model primary key. I...",
     "author": "Punyapal Shah",
@@ -207,6 +270,8 @@
       "Laravel",
       "Validation"
     ],
+    "created_at": "2026-08-05",
+    "effective_date": "2026-08-05",
     "date": "2026-08-05",
     "summary": "Laravel 13.24 adds the arraykeys validation rule to reject any unexpected keys in an array input, keeping input strictly limited to allowed keys. When buildi...",
     "author": "Punyapal Shah",
@@ -222,6 +287,8 @@
       "Filament",
       "Livewire"
     ],
+    "created_at": "2026-07-29",
+    "effective_date": "2026-07-29",
     "date": "2026-07-29",
     "summary": "Customize your Filament admin panel layout by moving the global search bar to the top of the navigation sidebar. In Filament admin panels, the global search...",
     "author": "Punyapal Shah",
@@ -237,6 +304,8 @@
       "Testing",
       "DX"
     ],
+    "created_at": "2026-07-29",
+    "effective_date": "2026-07-29",
     "date": "2026-07-29",
     "summary": "Configure Pest to run Test Impact Analysis by default in pest.php so only tests covering modified files execute. Running full test suites on every minor edit...",
     "author": "Punyapal Shah",
@@ -252,6 +321,8 @@
       "Rector",
       "Refactoring"
     ],
+    "created_at": "2026-07-29",
+    "effective_date": "2026-07-29",
     "date": "2026-07-29",
     "summary": "Use Rector rules to automatically convert immutable DTOs and value objects into native PHP 8.2 readonly classes. Manually adding readonly keywords across doz...",
     "author": "Punyapal Shah",
@@ -267,6 +338,8 @@
       "Service Container",
       "Attributes"
     ],
+    "created_at": "2026-07-28",
+    "effective_date": "2026-07-28",
     "date": "2026-07-28",
     "summary": "Laravel 13.22 introduces the #[BindWhen] attribute for declarative, conditional service container bindings directly on implementation classes. Instead of clu...",
     "author": "Punyapal Shah",
@@ -282,6 +355,8 @@
       "Pint",
       "Blade"
     ],
+    "created_at": "2026-07-25",
+    "effective_date": "2026-07-25",
     "date": "2026-07-25",
     "summary": "Laravel Pint v1.30.0 adds native Blade template formatting via the Pint/laravelblade rule, using Prettier under the hood. Blade gets opinionated formatting i...",
     "author": "Punyapal Shah",
@@ -297,6 +372,8 @@
       "Logging",
       "Configuration"
     ],
+    "created_at": "2026-07-22",
+    "effective_date": "2026-07-22",
     "date": "2026-07-22",
     "summary": "Laravel 13.23 adds a built-in monthly logging driver that rotates log files once per month instead of daily. Daily log rotation creates hundreds of log files...",
     "author": "Punyapal Shah",
@@ -312,6 +389,8 @@
       "Eloquent",
       "Database"
     ],
+    "created_at": "2026-07-20",
+    "effective_date": "2026-07-20",
     "date": "2026-07-20",
     "summary": "When you expect exactly one matching record, use sole() instead of firstOrFail(). It guards against multiple records by throwing MultipleRecordsFoundExceptio...",
     "author": "Punyapal Shah",
@@ -327,6 +406,8 @@
       "Artisan",
       "AI"
     ],
+    "created_at": "2026-07-16",
+    "effective_date": "2026-07-16",
     "date": "2026-07-16",
     "summary": "Use Laravel's Prohibitable trait on custom Artisan commands to selectively block AI agents from running destructive domain operations. While DB::prohibitDest...",
     "author": "Punyapal Shah",
@@ -342,6 +423,8 @@
       "AI",
       "DevOps"
     ],
+    "created_at": "2026-07-15",
+    "effective_date": "2026-07-15",
     "date": "2026-07-15",
     "summary": "Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI agents are part of moder...",
     "author": "Punyapal Shah",
@@ -357,6 +440,8 @@
       "Authorization",
       "Security"
     ],
+    "created_at": "2026-07-12",
+    "effective_date": "2026-07-12",
     "date": "2026-07-12",
     "summary": "Centralize authorization checks in Gate::define() and call Gate::authorize() in controllers instead of repeating manual if checks. Scattering authorization c...",
     "author": "Punyapal Shah",
@@ -372,6 +457,8 @@
       "Eloquent",
       "Performance"
     ],
+    "created_at": "2026-07-03",
+    "effective_date": "2026-07-03",
     "date": "2026-07-03",
     "summary": "cursor() hydrates single model instances sequentially using database cursors; lazy() streams records in chunks backed by LazyCollection. When iterating milli...",
     "author": "Punyapal Shah",
@@ -387,6 +474,8 @@
       "Collections",
       "Best Practices"
     ],
+    "created_at": "2026-07-02",
+    "effective_date": "2026-07-02",
     "date": "2026-07-02",
     "summary": "Use each() for iteration side effects like sending emails; use map() exclusively when returning a transformed collection. Using map() purely for side effects...",
     "author": "Punyapal Shah",
@@ -402,6 +491,8 @@
       "Eloquent",
       "Performance"
     ],
+    "created_at": "2026-07-02",
+    "effective_date": "2026-07-02",
     "date": "2026-07-02",
     "summary": "Understand offset vs keyset pagination when processing large datasets to avoid missing records during updates. Updating records inside chunk() modifies the r...",
     "author": "Punyapal Shah",
@@ -417,6 +508,8 @@
       "Collections",
       "Performance"
     ],
+    "created_at": "2026-07-01",
+    "effective_date": "2026-07-01",
     "date": "2026-07-01",
     "summary": "Calling get() loads all matching rows into memory before filtering. Use lazy() to process database records lazily. Chaining collection methods like filter()...",
     "author": "Punyapal Shah",
@@ -432,6 +525,8 @@
       "Eloquent",
       "Bug Prevention"
     ],
+    "created_at": "2026-06-30",
+    "effective_date": "2026-06-30",
     "date": "2026-06-30",
     "summary": "Always include foreign key and primary key columns when using select() alongside eager loaded relationships. Using select('name') on a query with eager loade...",
     "author": "Punyapal Shah",
@@ -447,6 +542,8 @@
       "Security",
       "Policies"
     ],
+    "created_at": "2026-06-30",
+    "effective_date": "2026-06-30",
     "date": "2026-06-30",
     "summary": "Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers. Hiding an edit button using @...",
     "author": "Punyapal Shah",
@@ -462,6 +559,8 @@
       "Eloquent",
       "Performance"
     ],
+    "created_at": "2026-06-29",
+    "effective_date": "2026-06-29",
     "date": "2026-06-29",
     "summary": "Use value() for single scalar values and pluck() for single-column arrays instead of instantiating full Eloquent models. Querying full Eloquent model instanc...",
     "author": "Punyapal Shah",
@@ -477,6 +576,8 @@
       "Database",
       "Queue"
     ],
+    "created_at": "2026-06-28",
+    "effective_date": "2026-06-28",
     "date": "2026-06-28",
     "summary": "Use DB::afterCommit() to defer job dispatching until surrounding database transactions complete successfully. Dispatching queue jobs inside active DB transac...",
     "author": "Punyapal Shah",
@@ -492,6 +593,8 @@
       "Eloquent",
       "Performance"
     ],
+    "created_at": "2026-06-27",
+    "effective_date": "2026-06-27",
     "date": "2026-06-27",
     "summary": "Use withWhereHas() to filter records based on relationship conditions and eager load the filtered relationship in a single method. Filtering models by relati...",
     "author": "Punyapal Shah",
@@ -507,6 +610,8 @@
       "Eloquent",
       "Bug Prevention"
     ],
+    "created_at": "2026-06-22",
+    "effective_date": "2026-06-22",
     "date": "2026-06-22",
     "summary": "Always use chunkById() instead of chunk() when modifying columns present in your query filters to avoid offset pagination shifts. Updating records inside sta...",
     "author": "Punyapal Shah",
@@ -522,6 +627,8 @@
       "Security",
       "Validation"
     ],
+    "created_at": "2026-06-21",
+    "effective_date": "2026-06-21",
     "date": "2026-06-21",
     "summary": "Always pass $request-validated() or $request-safe() into model creation methods to prevent mass-assignment vulnerabilities. Passing $request-all() directly i...",
     "author": "Punyapal Shah",
@@ -537,6 +644,8 @@
       "Eloquent",
       "Performance"
     ],
+    "created_at": "2026-06-20",
+    "effective_date": "2026-06-20",
     "date": "2026-06-20",
     "summary": "Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances. When you need a single a...",
     "author": "Punyapal Shah",
@@ -553,6 +662,8 @@
       "Pest",
       "Enums"
     ],
+    "created_at": "2026-06-15",
+    "effective_date": "2026-06-15",
     "date": "2026-06-15",
     "summary": "In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...",
     "author": "Punyapal Shah",
@@ -568,6 +679,8 @@
       "Artisan",
       "DX"
     ],
+    "created_at": "2026-06-10",
+    "effective_date": "2026-06-10",
     "date": "2026-06-10",
     "summary": "Extend your generator commands to scaffold common domain patterns like Actions, Custom Query Builders, or Collections. Pushing business logic into Action cla...",
     "author": "Punyapal Shah",
@@ -583,6 +696,8 @@
       "Eloquent",
       "Macros"
     ],
+    "created_at": "2026-05-25",
+    "effective_date": "2026-05-25",
     "date": "2026-05-25",
     "summary": "Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...",
     "author": "Punyapal Shah",
@@ -598,6 +713,8 @@
       "Testing",
       "DX"
     ],
+    "created_at": "2026-05-18",
+    "effective_date": "2026-05-18",
     "date": "2026-05-18",
     "summary": "Enable Test Impact Analysis (TIA) in Pest to only run tests directly covering code that changed since the last commit. Running full test suites on every tiny...",
     "author": "Punyapal Shah",
@@ -613,6 +730,8 @@
       "Database",
       "Security"
     ],
+    "created_at": "2026-05-02",
+    "effective_date": "2026-05-02",
     "date": "2026-05-02",
     "summary": "Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel's Prohibitable trait and DB::prohibitDestructiveCommands(). Accident...",
     "author": "Punyapal Shah",
@@ -628,6 +747,8 @@
       "Carbon",
       "Helpers"
     ],
+    "created_at": "2026-05-01",
+    "effective_date": "2026-05-01",
     "date": "2026-05-01",
     "summary": "Pass Carbon options to diffForHumans() to control syntax flags, short units, and multi-part granularity. Carbon's diffForHumans() displays human-readable dat...",
     "author": "Punyapal Shah",
@@ -643,6 +764,8 @@
       "Security",
       "XSS"
     ],
+    "created_at": "2026-04-18",
+    "effective_date": "2026-04-18",
     "date": "2026-04-18",
     "summary": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...",
     "author": "Punyapal Shah",
@@ -658,6 +781,8 @@
       "Collections",
       "Syntax"
     ],
+    "created_at": "2026-04-15",
+    "effective_date": "2026-04-15",
     "date": "2026-04-15",
     "summary": "Use higher-order collection proxies like $users-each-archive() or $orders-sum-total to replace verbose closure callbacks. Writing closures for single method...",
     "author": "Punyapal Shah",
@@ -673,6 +798,8 @@
       "Architecture",
       "Design Patterns"
     ],
+    "created_at": "2026-04-05",
+    "effective_date": "2026-04-05",
     "date": "2026-04-05",
     "summary": "Process complex data sequences or multi-stage order checks through Laravel's built-in Pipeline facade to replace massive controller methods. When processing...",
     "author": "Punyapal Shah",
@@ -688,6 +815,8 @@
       "Architecture",
       "HTTP"
     ],
+    "created_at": "2026-03-31",
+    "effective_date": "2026-03-31",
     "date": "2026-03-31",
     "summary": "Implement the Responsable interface to create dedicated response objects that handle headers, view data, and formatting outside controllers. When controller...",
     "author": "Punyapal Shah",
@@ -703,6 +832,8 @@
       "Eloquent",
       "Performance"
     ],
+    "created_at": "2026-03-12",
+    "effective_date": "2026-03-12",
     "date": "2026-03-12",
     "summary": "whereDate() wraps the column in a DATE() function, preventing the database from using indexes. Use whereBetween() with full timestamps for index-friendly fil...",
     "author": "Punyapal Shah",
@@ -718,6 +849,8 @@
       "Eloquent",
       "Relationships"
     ],
+    "created_at": "2026-03-12",
+    "effective_date": "2026-03-12",
     "date": "2026-03-12",
     "summary": "Use withoutRelation() or unsetRelation() to remove eager loaded relationships on specific Eloquent queries or model instances. Models with $with properties e...",
     "author": "Punyapal Shah",
@@ -734,6 +867,8 @@
       "Helpers",
       "Best Practices"
     ],
+    "created_at": "2026-02-20",
+    "effective_date": "2026-02-20",
     "date": "2026-02-20",
     "summary": "PHP's empty() treats 0, '0', and false as empty. Laravel's blank() and filled() helpers handle these values intuitively without silent bugs. PHP's empty() is...",
     "author": "Punyapal Shah",
@@ -749,6 +884,8 @@
       "Control Flow",
       "Syntax"
     ],
+    "created_at": "2026-02-16",
+    "effective_date": "2026-02-16",
     "date": "2026-02-16",
     "summary": "Separate multiple comma-delimited values within a single match expression arm to group identical execution branches. When multiple inputs share the exact sam...",
     "author": "Punyapal Shah",
@@ -764,23 +901,10 @@
       "Migrations",
       "DevOps"
     ],
+    "created_at": "2026-01-17",
+    "effective_date": "2026-01-17",
     "date": "2026-01-17",
     "summary": "Use php artisan schema:dump to collapse hundreds of old migration files into a single SQL schema file while preserving new migrations. As applications age, r...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-schema-state-load-seeding",
-    "title": "Load Large SQL Dumps in Laravel Seeders",
-    "category": "Laravel",
-    "subcategory": "Database",
-    "tags": [
-      "Laravel",
-      "Database",
-      "Seeders"
-    ],
-    "date": "2026-01-07",
-    "summary": "Use DB::getSchemaState()-load() to load large reference SQL dump files in seeders, with DB::unprepared(filegetcontents(...)) as a fallback for older Laravel...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -794,6 +918,8 @@
       "OOP",
       "Syntax"
     ],
+    "created_at": "2025-12-31",
+    "effective_date": "2025-12-31",
     "date": "2025-12-31",
     "summary": "Combine property declarations and constructor parameter assignments in PHP 8 for concise class definitions. Declaring class properties, parameter signatures,...",
     "author": "Punyapal Shah",
@@ -809,6 +935,8 @@
       "HTTP Client",
       "Middleware"
     ],
+    "created_at": "2025-12-29",
+    "effective_date": "2025-12-29",
     "date": "2025-12-29",
     "summary": "Laravel 12.44 adds the afterResponse() hook to the HTTP client, allowing you to attach response logging, metrics, and error handling callbacks cleanly inside...",
     "author": "Punyapal Shah",
@@ -823,6 +951,8 @@
       "Laravel",
       "Validation"
     ],
+    "created_at": "2025-12-28",
+    "effective_date": "2025-12-28",
     "date": "2025-12-28",
     "summary": "Laravel 12.44 introduces fluent date validation helpers on the Rule facade, replacing string-based date comparisons with self-documenting method calls. Valid...",
     "author": "Punyapal Shah",
@@ -838,6 +968,8 @@
       "Testing",
       "DX"
     ],
+    "created_at": "2025-12-28",
+    "effective_date": "2025-12-28",
     "date": "2025-12-28",
     "summary": "Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators. When running large test suites with hun...",
     "author": "Punyapal Shah",
@@ -853,6 +985,8 @@
       "Queue",
       "Best Practices"
     ],
+    "created_at": "2025-12-14",
+    "effective_date": "2025-12-14",
     "date": "2025-12-14",
     "summary": "Re-load or pass model primary keys into queued jobs instead of relying on stale serialized relationship collections. When Eloquent models are serialized for...",
     "author": "Punyapal Shah",
@@ -868,6 +1002,8 @@
       "Testing",
       "Setup"
     ],
+    "created_at": "2025-12-07",
+    "effective_date": "2025-12-07",
     "date": "2025-12-07",
     "summary": "Organize base test case bindings, helper functions, and global traits cleanly inside tests/Pest.php. Duplicate uses() declarations across every test file clu...",
     "author": "Punyapal Shah",
@@ -883,6 +1019,8 @@
       "Queue",
       "DevOps"
     ],
+    "created_at": "2025-12-05",
+    "effective_date": "2025-12-05",
     "date": "2025-12-05",
     "summary": "Use queue:work with appropriate sleep configuration or Redis blocking pops to reduce database CPU polling overheads. Queue workers set to poll databases with...",
     "author": "Punyapal Shah",
@@ -898,6 +1036,8 @@
       "Arrays",
       "Syntax"
     ],
+    "created_at": "2025-12-01",
+    "effective_date": "2025-12-01",
     "date": "2025-12-01",
     "summary": "Use array unpacking (...) inside square bracket array literals for string-keyed and indexed array merging. PHP 8.1 expanded array unpacking to support string...",
     "author": "Punyapal Shah",
@@ -913,6 +1053,8 @@
       "Queue",
       "DevOps"
     ],
+    "created_at": "2025-11-20",
+    "effective_date": "2025-11-20",
     "date": "2025-11-20",
     "summary": "The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty...",
     "author": "Punyapal Shah",
@@ -928,6 +1070,8 @@
       "Syntax",
       "Clean Code"
     ],
+    "created_at": "2025-11-18",
+    "effective_date": "2025-11-18",
     "date": "2025-11-18",
     "summary": "Replace verbose ternary checks and null coalescing reassignments with PHP null coalescing assignment operator (??=). Setting default values on nullable varia...",
     "author": "Punyapal Shah",
@@ -943,6 +1087,8 @@
       "Cache",
       "Performance"
     ],
+    "created_at": "2025-10-15",
+    "effective_date": "2025-10-15",
     "date": "2025-10-15",
     "summary": "Use Cache::memo() to combine persistent cache stores with per-request memory caching, preventing repetitive network roundtrips during a single HTTP request....",
     "author": "Punyapal Shah",
@@ -958,6 +1104,8 @@
       "Pint",
       "Code Quality"
     ],
+    "created_at": "2025-08-11",
+    "effective_date": "2025-08-11",
     "date": "2025-08-11",
     "summary": "Enable the usearrowfunctions rule in pint.json to automatically refactor single-line closures into arrow functions. Manually converting single-line function...",
     "author": "Punyapal Shah",
@@ -973,6 +1121,8 @@
       "JavaScript",
       "Frontend"
     ],
+    "created_at": "2025-07-27",
+    "effective_date": "2025-07-27",
     "date": "2025-07-27",
     "summary": "Spread multiple Alpine.data component factories into a single x-data directive to compose modular frontend state. When a single UI element requires state fro...",
     "author": "Punyapal Shah",
@@ -988,6 +1138,8 @@
       "Facades",
       "Testing"
     ],
+    "created_at": "2025-07-12",
+    "effective_date": "2025-07-12",
     "date": "2025-07-12",
     "summary": "Prefix any application class import with Facades\\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal services...",
     "author": "Punyapal Shah",
@@ -1003,6 +1155,8 @@
       "Constants",
       "Reference"
     ],
+    "created_at": "2025-06-29",
+    "effective_date": "2025-06-29",
     "date": "2025-06-29",
     "summary": "A practical cheat sheet covering PHP magic constants, filesystem path helpers, error reporting masks, and CLI stream handles. PHP provides built-in magic and...",
     "author": "Punyapal Shah",
@@ -1018,6 +1172,8 @@
       "CLI",
       "Tooling"
     ],
+    "created_at": "2025-06-28",
+    "effective_date": "2025-06-28",
     "date": "2025-06-28",
     "summary": "Run fast, zero-dependency PHP syntax validation from the terminal using php -l on individual files or recursively across entire projects. Before running stat...",
     "author": "Punyapal Shah",
@@ -1033,6 +1189,8 @@
       "Testing",
       "Pest PHP"
     ],
+    "created_at": "2025-06-25",
+    "effective_date": "2025-06-25",
     "date": "2025-06-25",
     "summary": "Use Queue::fakeExceptFor() to execute specific background jobs synchronously during a test while preventing all other jobs from running. When testing a featu...",
     "author": "Punyapal Shah",
@@ -1048,6 +1206,8 @@
       "Testing",
       "DX"
     ],
+    "created_at": "2025-06-21",
+    "effective_date": "2025-06-21",
     "date": "2025-06-21",
     "summary": "Append -only() to any Pest test declaration to execute only that specific test without writing long CLI filter strings. Filtering specific test names via CLI...",
     "author": "Punyapal Shah",
@@ -1063,6 +1223,8 @@
       "Eloquent",
       "Database"
     ],
+    "created_at": "2025-06-20",
+    "effective_date": "2025-06-20",
     "date": "2025-06-20",
     "summary": "Use the built-in touch() method to update updatedat timestamps on Eloquent records cleanly. Manually assigning $model-updatedat = now(); $model-save(); is re...",
     "author": "Punyapal Shah",
@@ -1078,6 +1240,8 @@
       "Refactoring",
       "Clean Code"
     ],
+    "created_at": "2025-06-16",
+    "effective_date": "2025-06-16",
     "date": "2025-06-16",
     "summary": "Replace deeply nested if statements with guard clauses that exit functions early when preconditions fail. Deeply nested if-else blocks make code hard to read...",
     "author": "Punyapal Shah",
@@ -1093,6 +1257,8 @@
       "Queue",
       "Type Safety"
     ],
+    "created_at": "2024-12-23",
+    "effective_date": "2024-12-23",
     "date": "2024-12-23",
     "summary": "Use dispatch(new ProcessReport($data)) for superior IDE constructor auto-completion and static analysis type checking. Static Job::dispatch(...) relies on ma...",
     "author": "Punyapal Shah",
@@ -1108,6 +1274,8 @@
       "Filament",
       "TALL Stack"
     ],
+    "created_at": "2024-11-13",
+    "effective_date": "2024-11-13",
     "date": "2024-11-13",
     "summary": "Use FilamentPHP to build full-featured administrative panels, forms, and tables using Livewire and Alpine.js. Building custom admin dashboards from scratch r...",
     "author": "Punyapal Shah",
@@ -1123,6 +1291,8 @@
       "Testing",
       "Time"
     ],
+    "created_at": "2024-09-12",
+    "effective_date": "2024-09-12",
     "date": "2024-09-12",
     "summary": "Use $this-travelTo() or freezeTime() in test suites to test date-sensitive logic without slowing down test execution with sleep(). Using sleep() in tests slo...",
     "author": "Punyapal Shah",
@@ -1138,6 +1308,8 @@
       "Enums",
       "Best Practices"
     ],
+    "created_at": "2024-08-31",
+    "effective_date": "2024-08-31",
     "date": "2024-08-31",
     "summary": "When creating integer-backed PHP Enums, index starting from 1 to avoid false-y evaluation bugs in loose comparisons. In PHP, 0 evaluates as false-y in loose...",
     "author": "Punyapal Shah",
@@ -1153,6 +1325,8 @@
       "Configuration",
       "Helpers"
     ],
+    "created_at": "2024-08-21",
+    "effective_date": "2024-08-21",
     "date": "2024-08-21",
     "summary": "Use config('app.name') to retrieve settings and config(['app.debug' =true]) to set runtime overrides. The config() helper accesses application configuration...",
     "author": "Punyapal Shah",
@@ -1168,6 +1342,8 @@
       "Pint",
       "PHP 8"
     ],
+    "created_at": "2024-06-27",
+    "effective_date": "2024-06-27",
     "date": "2024-06-27",
     "summary": "Configure Laravel Pint to collapse empty constructor bodies with promoted properties onto a single line for compact PHP 8 class declarations. PHP 8 construct...",
     "author": "Punyapal Shah",
@@ -1183,6 +1359,8 @@
       "Type Safety",
       "Best Practices"
     ],
+    "created_at": "2024-05-26",
+    "effective_date": "2024-05-26",
     "date": "2024-05-26",
     "summary": "Declare declare(stricttypes=1); at the top of PHP files to prevent unexpected scalar type coercions. By default, PHP coerces types scalar values (e.g. string...",
     "author": "Punyapal Shah",
@@ -1198,6 +1376,8 @@
       "Eloquent",
       "Performance"
     ],
+    "created_at": "2024-03-31",
+    "effective_date": "2024-03-31",
     "date": "2024-03-31",
     "summary": "Load specific relationship column values directly into model attributes using withAttribute() without loading complete child model instances. When you only n...",
     "author": "Punyapal Shah",
@@ -1213,6 +1393,8 @@
       "Rector",
       "Tooling"
     ],
+    "created_at": "2024-03-30",
+    "effective_date": "2024-03-30",
     "date": "2024-03-30",
     "summary": "Use Rector to automatically refactor legacy protected $casts array properties into the modern casts() method across your entire Laravel codebase. Laravel 11...",
     "author": "Punyapal Shah",
@@ -1228,6 +1410,8 @@
       "Artisan",
       "DX"
     ],
+    "created_at": "2024-03-24",
+    "effective_date": "2024-03-24",
     "date": "2024-03-24",
     "summary": "Publish and customize Artisan generator stubs using php artisan stub:publish to enforce custom code conventions across your team. Standard php artisan make:c...",
     "author": "Punyapal Shah",
@@ -1243,6 +1427,8 @@
       "Eloquent",
       "Enums"
     ],
+    "created_at": "2024-03-16",
+    "effective_date": "2024-03-16",
     "date": "2024-03-16",
     "summary": "Define PHP Backed Enums on model $casts to automatically hydrate strings and integers into typed Enums. Storing status strings like 'active' or 'pending' as...",
     "author": "Punyapal Shah",
@@ -1258,6 +1444,8 @@
       "Eloquent",
       "Database"
     ],
+    "created_at": "2024-03-07",
+    "effective_date": "2024-03-07",
     "date": "2024-03-07",
     "summary": "Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...",
     "author": "Punyapal Shah",
@@ -1273,6 +1461,8 @@
       "Eloquent",
       "Query Builder"
     ],
+    "created_at": "2024-02-01",
+    "effective_date": "2024-02-01",
     "date": "2024-02-01",
     "summary": "Use when() and unless() on query builders to apply conditional clauses without breaking method chains with if statements. Building dynamic search queries oft...",
     "author": "Punyapal Shah",
@@ -1288,6 +1478,8 @@
       "Eloquent",
       "Casts"
     ],
+    "created_at": "2024-01-30",
+    "effective_date": "2024-01-30",
     "date": "2024-01-30",
     "summary": "Use Eloquent custom casts (CastsAttributes) to handle complex JSON serialization and Backed Enum arrays cleanly. When model attributes contain complex JSON s...",
     "author": "Punyapal Shah",
@@ -1303,6 +1495,8 @@
       "Artisan",
       "Queue"
     ],
+    "created_at": "2024-01-29",
+    "effective_date": "2024-01-29",
     "date": "2024-01-29",
     "summary": "Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands like databa...",
     "author": "Punyapal Shah",
@@ -1318,6 +1512,8 @@
       "Eloquent",
       "Database"
     ],
+    "created_at": "2024-01-20",
+    "effective_date": "2024-01-20",
     "date": "2024-01-20",
     "summary": "Use whereJsonLength() to query database records based on the number of elements in a JSON array attribute. Filtering records by the number of elements stored...",
     "author": "Punyapal Shah",
@@ -1333,6 +1529,8 @@
       "Database",
       "Performance"
     ],
+    "created_at": "2024-01-19",
+    "effective_date": "2024-01-19",
     "date": "2024-01-19",
     "summary": "Use insertUsing() to execute INSERT INTO ... SELECT queries for copying data between database tables in SQL. Fetching records into PHP memory and re-insertin...",
     "author": "Punyapal Shah",
@@ -1348,6 +1546,8 @@
       "Tailwind CSS",
       "DOM"
     ],
+    "created_at": "2023-12-24",
+    "effective_date": "2023-12-24",
     "date": "2023-12-24",
     "summary": "Create lightweight, zero-dependency toggle dropdowns using inline JavaScript nextElementSibling calls with Tailwind CSS hidden classes. For simple marketing...",
     "author": "Punyapal Shah",
@@ -1362,24 +1562,10 @@
       "Laravel",
       "Blade"
     ],
+    "created_at": "2023-12-22",
+    "effective_date": "2023-12-22",
     "date": "2023-12-22",
     "summary": "Import multiple PHP classes or custom aliases inside Blade templates using array arguments in the @use directive. The Blade @use directive allows importing P...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
-    "slug": "laravel-avoid-env-outside-config-pest-arch",
-    "title": "Use config() Instead of env() in Application Code",
-    "category": "Laravel",
-    "subcategory": "Configuration",
-    "tags": [
-      "Laravel",
-      "Configuration",
-      "Testing",
-      "Pest PHP"
-    ],
-    "date": "2023-11-30",
-    "summary": "Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached. A founda...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -1393,6 +1579,8 @@
       "Deployment",
       "DevOps"
     ],
+    "created_at": "2023-11-09",
+    "effective_date": "2023-11-09",
     "date": "2023-11-09",
     "summary": "Execute standard caching and optimization Artisan commands during production CI/CD deployment scripts. Deploying Laravel applications without caching routes,...",
     "author": "Punyapal Shah",
@@ -1408,6 +1596,8 @@
       "Events",
       "Architecture"
     ],
+    "created_at": "2023-09-28",
+    "effective_date": "2023-09-28",
     "date": "2023-09-28",
     "summary": "Pass authenticated user objects or session data explicitly inside Event payloads instead of relying on global session helpers in listeners. Accessing global...",
     "author": "Punyapal Shah",
@@ -1422,6 +1612,8 @@
       "Laravel",
       "Queue"
     ],
+    "created_at": "2023-09-28",
+    "effective_date": "2023-09-28",
     "date": "2023-09-28",
     "summary": "Know when to push background jobs to asynchronous queues with dispatch() versus executing them immediately in the current HTTP request process using dispatch...",
     "author": "Punyapal Shah",
@@ -1437,6 +1629,8 @@
       "Database",
       "SQL"
     ],
+    "created_at": "2023-09-22",
+    "effective_date": "2023-09-22",
     "date": "2023-09-22",
     "summary": "MySQL prevents updating a table while selecting from it in a subquery. Wrap subqueries in an intermediate alias table. Executing UPDATE table WHERE id IN (SE...",
     "author": "Punyapal Shah",
@@ -1452,6 +1646,8 @@
       "Mail",
       "DX"
     ],
+    "created_at": "2023-09-07",
+    "effective_date": "2023-09-07",
     "date": "2023-09-07",
     "summary": "Return Mailable instances directly from route callbacks to preview compiled HTML emails in your browser without sending test emails. Testing email layouts by...",
     "author": "Punyapal Shah",
@@ -1467,6 +1663,8 @@
       "CSS",
       "Frontend"
     ],
+    "created_at": "2023-09-03",
+    "effective_date": "2023-09-03",
     "date": "2023-09-03",
     "summary": "Leverage Tailwind CSS utility classes to compose custom responsive designs directly in HTML without CSS stylesheet bloat. Writing custom CSS classes for ever...",
     "author": "Punyapal Shah",
@@ -1482,6 +1680,8 @@
       "Routing",
       "Architecture"
     ],
+    "created_at": "2023-06-29",
+    "effective_date": "2023-06-29",
     "date": "2023-06-29",
     "summary": "Use shallow nesting on resource routes to keep URLs concise while preserving parent-child relationships for creation and listing endpoints. Deeply nested res...",
     "author": "Punyapal Shah",
@@ -1497,6 +1697,8 @@
       "HTTP",
       "Filesystem"
     ],
+    "created_at": "2023-06-27",
+    "effective_date": "2023-06-27",
     "date": "2023-06-27",
     "summary": "Return proper HTTP file responses using response()-download(), response()-streamDownload(), and response()-file() for downloads and inline previews. Serving...",
     "author": "Punyapal Shah",
@@ -1511,6 +1713,8 @@
       "Laravel",
       "Routing"
     ],
+    "created_at": "2023-06-26",
+    "effective_date": "2023-06-26",
     "date": "2023-06-26",
     "summary": "Use missing() callbacks on route model bindings to return custom JSON responses or specialized error pages when records are not found. By default, implicit r...",
     "author": "Punyapal Shah",
@@ -1526,6 +1730,8 @@
       "Middleware",
       "Validation"
     ],
+    "created_at": "2023-06-26",
+    "effective_date": "2023-06-26",
     "date": "2023-06-26",
     "summary": "Laravel automatically trims request strings and converts empty string inputs to null via default global middleware. Laravel includes TrimStrings and ConvertE...",
     "author": "Punyapal Shah",
@@ -1541,6 +1747,8 @@
       "Collections",
       "Syntax"
     ],
+    "created_at": "2023-06-25",
+    "effective_date": "2023-06-25",
     "date": "2023-06-25",
     "summary": "Use flatMap() to map over a collection and collapse the nested array result into a flat collection in a single operation. Mapping over a collection where cal...",
     "author": "Punyapal Shah",
@@ -1556,6 +1764,8 @@
       "Syntax",
       "Readability"
     ],
+    "created_at": "2023-06-23",
+    "effective_date": "2023-06-23",
     "date": "2023-06-23",
     "summary": "Use underscores () as visual numeric literal separators in PHP code to improve number readability. Reading large numbers like 1000000000 requires counting ze...",
     "author": "Punyapal Shah",
@@ -1571,6 +1781,8 @@
       "Eloquent",
       "Relationships"
     ],
+    "created_at": "2023-06-22",
+    "effective_date": "2023-06-22",
     "date": "2023-06-22",
     "summary": "Use dot-notation strings inside with() to eager load deeply nested relationships in single database query chains. When fetching models that require multi-lev...",
     "author": "Punyapal Shah",
@@ -1586,6 +1798,8 @@
       "Eloquent",
       "Casts"
     ],
+    "created_at": "2023-06-21",
+    "effective_date": "2023-06-21",
     "date": "2023-06-21",
     "summary": "Use mergeCasts() to dynamically append attribute casting rules to Eloquent model instances at runtime. When working with dynamic attributes or traits on mode...",
     "author": "Punyapal Shah",
@@ -1601,6 +1815,8 @@
       "Eloquent",
       "Database"
     ],
+    "created_at": "2023-06-19",
+    "effective_date": "2023-06-19",
     "date": "2023-06-19",
     "summary": "Define relationships on models where foreign keys are stored as JSON arrays or comma-separated lists rather than traditional single-id foreign keys. When dea...",
     "author": "Punyapal Shah",
@@ -1616,6 +1832,8 @@
       "Arr",
       "Helpers"
     ],
+    "created_at": "2023-06-18",
+    "effective_date": "2023-06-18",
     "date": "2023-06-18",
     "summary": "Use Arr::query() to build properly encoded URL query strings directly from nested associative arrays. Building complex query parameters manually using httpbu...",
     "author": "Punyapal Shah",
@@ -1631,6 +1849,8 @@
       "Localization",
       "i18n"
     ],
+    "created_at": "2023-06-17",
+    "effective_date": "2023-06-17",
     "date": "2023-06-17",
     "summary": "Use JSON files in lang/ for localization to write default language strings directly as translation keys. Managing translation key strings like messages.welco...",
     "author": "Punyapal Shah",
@@ -1646,6 +1866,8 @@
       "Pagination",
       "UI"
     ],
+    "created_at": "2023-06-14",
+    "effective_date": "2023-06-14",
     "date": "2023-06-14",
     "summary": "Use onEachSide() on paginated Eloquent queries to adjust the number of page links shown beside the current page. Default pagination controls can show too man...",
     "author": "Punyapal Shah",
@@ -1661,6 +1883,8 @@
       "Responsive",
       "Frontend"
     ],
+    "created_at": "2023-02-24",
+    "effective_date": "2023-02-24",
     "date": "2023-02-24",
     "summary": "Use CSS Container Queries (@container) to adjust component layouts based on parent container width rather than viewport size. Media queries (@media) check to...",
     "author": "Punyapal Shah",
