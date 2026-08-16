@@ -249,13 +249,13 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
                 <!-- Breadcrumbs & Category Badge -->
                 <div class="flex items-center justify-between gap-4 mb-6">
                     <a href="/tips" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors py-1" title="Back to All Tips" aria-label="Back to All Tips">
-                        <svg class="icon text-xs" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-left"/></svg>
+                        <svg class="icon text-xs" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-left"/></svg>
                         <span class="hidden sm:inline">Back</span>
                     </a>
 
                     <div class="inline-flex items-center gap-1.5 flex-wrap">
                         <button id="random-tip-btn" type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group cursor-pointer" title="Open another random developer tip" aria-label="Open another random developer tip">
-                            <svg class="w-3.5 h-3.5 text-red-500 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <svg class="w-3.5 h-3.5 text-red-500 group-hover:rotate-180 transition-transform duration-500" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h7l-4 4m0 0l4 4M7 8h13M20 20h-7l4-4m0 0l-4-4m4 4H4" />
                             </svg>
                             <span>Random</span>
@@ -280,12 +280,12 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
 
                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <span class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
+                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
                             ${authorHtml}
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
                         <time datetime="${escapeHtml(effectiveDate)}" class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
+                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                             ${updated_at ? `Updated ${formatDate(updated_at)}` : formatDate(created_at)}
                         </time>
                     </div>
@@ -307,7 +307,7 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
                 <div class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mr-1 inline-flex items-center gap-1.5 font-mono">
-                            <svg class="icon text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
+                            <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
                         ${tip.tags.map(t => `<span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded ${badge.bg} ${badge.text} border ${badge.border}">#${escapeHtml(t)}</span>`).join(' ')}
@@ -315,11 +315,11 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
 
                     <div class="flex items-center gap-2">
                         <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent('https://mrpunyapal.dev/tips/' + tip.slug)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
-                            <svg class="icon text-[11px]" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
+                            <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
                         <button type="button" id="share-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors text-[11px] font-bold uppercase tracking-wider cursor-pointer" aria-label="Copy page link">
-                            <svg class="icon text-[11px]" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-share"/></svg>
+                            <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-share"/></svg>
                             <span id="share-link-text">Copy Link</span>
                         </button>
                     </div>

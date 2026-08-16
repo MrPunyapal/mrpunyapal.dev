@@ -91,6 +91,8 @@ When creating or modifying HTML markup across pages:
 When maintaining or building interactive components and assets:
 
 - **Minimal Main-Thread Overhead**: Avoid unnecessary JavaScript and long execution tasks. Keep client-side scripts lean.
+- **Interaction Responsiveness (INP Optimization)**: Interactive event listeners (click, pointer, touch, toggle handlers) must return synchronously in 0ms without blocking the main thread. Defer DOM measurements, animation triggers, audio context calls, or particle creation to `requestAnimationFrame()` or non-blocking tasks. Never force synchronous layout reflows (e.g. `void element.offsetWidth` or `getBoundingClientRect()`) inside tight interaction handlers.
+- **SVG Explicit Dimensions (CLS Prevention)**: All `<svg>` elements (including icons, sprites, and decorative graphics) must declare explicit `width` and `height` attributes (e.g. `width="16" height="16"` or `width="12" height="12"`). Unstyled `<svg>` elements default to `300px × 150px` during HTML parsing before CSS loads, causing severe Cumulative Layout Shift (CLS) when styles apply.
 - **Animation Loops**: Use `requestAnimationFrame` for dynamic animation loops when appropriate, and avoid unnecessary polling loops.
 - **Visibility Checks**: Pause animation loops or expensive work when content is not visible where practical (e.g. using `IntersectionObserver`).
 - **Font Delivery**: Load Google Fonts using `<link rel="stylesheet">` with `display=swap` and preconnect links in `<head>`. Avoid `@import` rules in CSS files to prevent blocking network waterfalls.
@@ -378,6 +380,8 @@ Before marking a task complete, verify:
 - Structured data (JSON-LD) remains valid and properly escaped via `JSON.stringify()` or `escapeJsonStr()`.
 - Page metadata and Open Graph tags remain consistent.
 - Analytics environment isolation (`localhost`, `127.0.0.1`, `*.test`, `*.local`) is preserved.
+- Interaction listeners (click, touch, pointer) execute non-blocking (`requestAnimationFrame`) to preserve INP under 200ms without forced synchronous reflows (`void offsetWidth`).
+- SVG elements declare explicit `width` and `height` attributes to prevent intrinsic 300px × 150px layout shifts (CLS).
 - Responsive layout and print styling have not regressed.
 - No em dashes appear in newly created or updated copy.
 - No unnecessary dependencies were introduced.

@@ -337,21 +337,21 @@ document.addEventListener('DOMContentLoaded', function() {
         elephpant.style.transform = translateFrom(anchor, currentBottom, currentRight);
         elephpant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode');
         
-        void elephpant.offsetWidth;
-        
-        if (doorContainer) doorContainer.classList.add('open');
-        
-        const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
-        const elephpantSize = elephpant.offsetWidth || 220;
-        const scaledSize = elephpantSize * 0.5;
-        const offset = (elephpantSize - scaledSize) / 2;
-        
-        const targetBottom = (windowHeight - doorRect.bottom) - offset;
-        const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
-        const targetRight = doorCenterFromRight - (elephpantSize / 2);
+        requestAnimationFrame(() => {
+            if (doorContainer) doorContainer.classList.add('open');
+            
+            const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
+            const elephpantSize = elephpant.offsetWidth || 220;
+            const scaledSize = elephpantSize * 0.5;
+            const offset = (elephpantSize - scaledSize) / 2;
+            
+            const targetBottom = (windowHeight - doorRect.bottom) - offset;
+            const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
+            const targetRight = doorCenterFromRight - (elephpantSize / 2);
 
-        elephpant.classList.add('returning-home');
-        elephpant.style.transform = `${translateFrom(anchor, targetBottom, targetRight)} scale(0.5)`;
+            elephpant.classList.add('returning-home');
+            elephpant.style.transform = `${translateFrom(anchor, targetBottom, targetRight)} scale(0.5)`;
+        });
         
         setTimeout(() => {
             elephpant.classList.add('hidden-behind-door');
@@ -392,14 +392,14 @@ document.addEventListener('DOMContentLoaded', function() {
             elephpant.style.transition = 'none';
             elephpant.style.transform = `${translateFrom(anchor, targetBottom, startRight)} scale(0.5)`;
 
-            void elephpant.offsetWidth;
+            requestAnimationFrame(() => {
+                elephpant.classList.remove('returning-home');
+                elephpant.classList.add('exiting-door');
 
-            elephpant.classList.remove('returning-home');
-            elephpant.classList.add('exiting-door');
-
-            // Step 2: Step out of the hut and transition down to screen perimeter run
-            elephpant.style.transition = 'transform 1s cubic-bezier(0.2, 0.8, 0.2, 1)';
-            elephpant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
+                // Step 2: Step out of the hut and transition down to screen perimeter run
+                elephpant.style.transition = 'transform 1s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                elephpant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
+            });
 
             setTimeout(() => {
                 elephpant.classList.remove('exiting-door');
@@ -417,13 +417,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Door Click Event
     if (doorContainer) {
         doorContainer.addEventListener('click', () => {
-            initElephpant();
-            if (isElephpantHome) {
-                releaseElephpant();
-                playTrumpetSound();
-            } else {
-                sendElephpantHome();
-            }
+            requestAnimationFrame(() => {
+                initElephpant();
+                if (isElephpantHome) {
+                    releaseElephpant();
+                    playTrumpetSound();
+                } else {
+                    sendElephpantHome();
+                }
+            });
         });
     }
 

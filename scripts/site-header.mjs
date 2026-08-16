@@ -23,7 +23,7 @@ export function renderSiteHeader(activePage = 'home') {
         if (item.hasHeart) {
             return `                    <a href="${item.href}"${isActive ? ' aria-current="page"' : ''} class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium ${isActive ? activeClasses : inactiveClasses} inline-flex items-center gap-1.5 whitespace-nowrap">
                         <span class="nav-label" data-text="${item.label}"><span>${item.label}</span></span>
-                        <svg class="icon text-red-500 text-xs" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-heart"/></svg>
+                        <svg class="icon text-red-500 text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-heart"/></svg>
                     </a>`;
         }
 
@@ -108,7 +108,7 @@ ${desktopNavLinksHtml}
                     <!-- Utility Buttons -->
                     <div class="site-nav-utilities flex items-center gap-1 sm:gap-1.5 py-2 pl-2 sm:pl-3 border-l border-slate-200 dark:border-slate-800 shrink-0">
                         <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="site-nav-source p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
-                            <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                            <svg class="icon text-sm" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                         </a>
                         <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn relative p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
                             ${themeBtnInnerHtml}
@@ -124,7 +124,7 @@ ${desktopNavLinksHtml}
 
                     <div class="flex items-center gap-1.5">
                         <a href="${githubRepo}" target="_blank" rel="noopener noreferrer" aria-label="${githubLabel}" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
-                            <svg class="icon text-sm" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                            <svg class="icon text-sm" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                         </a>
                         <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn relative p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
                             ${themeBtnInnerHtml}
