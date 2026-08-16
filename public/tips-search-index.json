@@ -1369,16 +1369,17 @@
   },
   {
     "slug": "laravel-avoid-env-outside-config-pest-arch",
-    "title": "Never Use env() Outside Config Files + Enforce with Pest Arch",
+    "title": "Use config() Instead of env() in Application Code",
     "category": "Laravel",
-    "subcategory": "Cache",
+    "subcategory": "Configuration",
     "tags": [
       "Laravel",
-      "Architecture",
-      "Pest"
+      "Configuration",
+      "Testing",
+      "Pest PHP"
     ],
     "date": "2023-11-30",
-    "summary": "env() returns null when config is cached in production. Always use config() and enforce this with Pest architecture tests. In production environments running...",
+    "summary": "Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached. A founda...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },

@@ -627,7 +627,7 @@
                         "@type": "ListItem",
                         "position": 92,
                         "url": "https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch",
-                        "name": "Never Use env() Outside Config Files + Enforce with Pest Arch"
+                        "name": "Use config() Instead of env() in Application Code"
                     },
                     {
                         "@type": "ListItem",
@@ -6360,10 +6360,10 @@
 
             <div class="tip-card group relative p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between cursor-pointer"
                 data-category="Laravel"
-                data-subcategory="cache"
-                data-tags="laravel architecture pest"
-                data-title="never use env() outside config files + enforce with pest arch"
-                data-summary="env() returns null when config is cached in production. always use config() and enforce this with pest architecture tests. in production environments running...">
+                data-subcategory="configuration"
+                data-tags="laravel configuration testing pest php"
+                data-title="use config() instead of env() in application code"
+                data-summary="call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached. a founda...">
                 
                 <!-- 4-Corner Crosshair SVG Markers -->
                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -6386,17 +6386,17 @@
                         </span>
                         
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Cache
+                                Configuration
                             </span>
                         
                     </div>
                     <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">
                         <a href="/tips/laravel-avoid-env-outside-config-pest-arch" class="after:absolute after:inset-0 focus:outline-none">
-                            Never Use env() Outside Config Files + Enforce with Pest Arch
+                            Use config() Instead of env() in Application Code
                         </a>
                     </h2>
                     <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
-                        env() returns null when config is cached in production. Always use config() and enforce this with Pest architecture tests. In production environments running...
+                        Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached. A founda...
                     </p>
                 </div>
 

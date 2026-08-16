@@ -10,7 +10,7 @@
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
     <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Sat, 15 Aug 2026 17:55:44 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2026 14:38:54 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title><![CDATA[Process Uploaded Images from Streams in Laravel 13.25]]></title>
@@ -3064,29 +3064,62 @@ DB::table(&#039;archived_orders&#039;)-&gt;insertUsing(
       <category><![CDATA[Blade]]></category>
     </item>
     <item>
-      <title><![CDATA[Never Use env() Outside Config Files + Enforce with Pest Arch]]></title>
+      <title><![CDATA[Use config() Instead of env() in Application Code]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch</guid>
-      <description><![CDATA[env() returns null when config is cached in production. Always use config() and enforce this with Pest architecture tests. In production environments running...]]></description>
-      <content:encoded><![CDATA[<blockquote>env() returns null when config is cached in production. Always use config() and enforce this with Pest architecture tests.</blockquote>
-<p>In production environments running php artisan config:cache, calling env() outside files in config/*.php returns null. Enforce this rule across your codebase using Pest architecture testing.</p>
-<pre><code class="language-php">// tests/ArchitectureTest.php
-arch(&#039;avoid env outside config&#039;)
-    -&gt;expect(&#039;env&#039;)
-    -&gt;not-&gt;toBeUsed()
-    -&gt;ignoring(&#039;config&#039;);</code></pre>
+      <description><![CDATA[Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached. A founda...]]></description>
+      <content:encoded><![CDATA[<blockquote>Call env() only inside configuration files and use config() throughout your application code to prevent missing values when configuration is cached.</blockquote>
+<p>A foundational Laravel convention is keeping `env()` calls confined strictly to files in the `config/` directory while reading settings across controllers, services, and models via `config()`.</p>
+<h3>The Common Mistake</h3>
+<p>It is tempting to read environment variables directly inside application code:</p>
+<pre><code class="language-php">// ❌ Don&#039;t call env() directly in application code
+$stripeKey = env(&#039;STRIPE_KEY&#039;);</code></pre>
+<p>While this works during local development when `.env` is loaded on every request, it breaks in production when configuration caching is enabled.</p>
+<h3>The Laravel Way</h3>
+<p>Environment variables should be accessed inside configuration files, and application code should read from Laravel's configuration repository:</p>
+<pre><code class="language-php">// config/services.php
+return [
+    &#039;stripe&#039; =&gt; [
+        &#039;key&#039; =&gt; env(&#039;STRIPE_KEY&#039;),
+    ],
+];</code></pre>
+<p>Application code then retrieves the setting through `config()`:</p>
+<pre><code class="language-php">// ✅ Read the configured value
+$stripeKey = config(&#039;services.stripe.key&#039;);</code></pre>
+<p>The application does not need to know where the value originated; it accesses the value through Laravel's unified configuration repository.</p>
+<h3>Why config:cache Matters</h3>
+<p>In production, optimizing performance involves running:</p>
+<pre><code class="language-bash">php artisan config:cache</code></pre>
+<p>Once configuration is cached, Laravel combines all files in `config/*.php` into a single cached file and ignores the `.env` file during requests and Artisan commands.</p>
+<p>When `.env` is not loaded:</p>
 <ul>
-  <li>env() returns null in production when config:cache is active</li>
-  <li>Always define configuration keys in config/*.php files and call config(&#39;key&#39;)</li>
-  <li>Pest arch tests catch leftover env() calls before deployment</li>
+  <li><code>config(&#39;services.stripe.key&#39;)</code> reads the compiled value from the configuration cache.</li>
+  <li>Calling <code>env(&#39;STRIPE_KEY&#39;)</code> directly in application code bypasses the configuration cache and returns <code>null</code>, unless an external operating system environment variable of the same name is explicitly defined on the host server.</li>
+</ul>
+<h3>Enforce It with Pest</h3>
+<p>You can enforce this convention automatically using a Pest architecture test:</p>
+<pre><code class="language-php">// tests/ArchitectureTest.php
+arch(&#039;globals&#039;)
+    -&gt;expect([&#039;env&#039;])
+    -&gt;not-&gt;toBeUsed();</code></pre>
+<p>This test flags any direct `env()` usage in your application code before code is merged or deployed.</p>
+<h3>Catch It with Larastan</h3>
+<p>Larastan includes static analysis rules to detect `env()` usage outside configuration files.</p>
+<p>The `larastan.noEnvCallsOutsideOfConfig` rule (enabled by default in Larastan 3.x) analyzes your codebase and reports violations:</p>
+<pre><code class="language-text">Called &#039;env&#039; outside of the config directory which returns null when the config is cached, use &#039;config&#039;.</code></pre>
+<h3>Quick Rule</h3>
+<pre><code class="language-text">.env → env() → config/*.php → config() → application code</code></pre>
+<ul>
+  <li><code>env()</code> belongs in <code>config/*.php</code> files.</li>
+  <li><code>config()</code> belongs everywhere else in application code.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Thu, 30 Nov 2023 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
       <category><![CDATA[Laravel]]></category>
-      <category><![CDATA[Cache]]></category>
-      <category><![CDATA[Architecture]]></category>
-      <category><![CDATA[Pest]]></category>
+      <category><![CDATA[Configuration]]></category>
+      <category><![CDATA[Testing]]></category>
+      <category><![CDATA[Pest PHP]]></category>
     </item>
     <item>
       <title><![CDATA[Essential Laravel Production Deployment Command Sequence]]></title>
