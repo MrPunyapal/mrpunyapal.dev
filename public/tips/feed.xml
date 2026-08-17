@@ -9,9 +9,86 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Mon, 17 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Tue, 18 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Terminal UI Upgrade for php artisan dev in Laravel 13.25]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-artisan-dev-multiplex-terminal-ui</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-artisan-dev-multiplex-terminal-ui</guid>
+      <description><![CDATA[Laravel 13.25 upgrades php artisan dev with @laravel/multiplex to provide a tabbed terminal UI with process search, restarts, and log management. Running com...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.25 upgrades php artisan dev with @laravel/multiplex to provide a tabbed terminal UI with process search, restarts, and log management.</blockquote>
+<p>Running `composer run dev` or `php artisan dev` manages multiple development processes in parallel, such as the PHP development server, queue workers, log streaming with Pail, and asset compilation with Vite.</p>
+<p>Previously, all active processes wrote their output concurrently into a single shared scrolling terminal window, making it difficult to isolate specific server logs or track build errors.</p>
+<p>Laravel 13.25 upgrades `php artisan dev` to use `@laravel/multiplex` as its terminal interface on supported platforms, giving each development process its own dedicated tab and interactive controls.</p>
+<h3>What the Multiplex UI Provides</h3>
+<p>The updated terminal interface organizes concurrent processes into distinct views and introduces several process management features:</p>
+<ul>
+  <li><strong>Tabbed process views</strong>: Each registered command (HTTP server, Vite, Queue, Pail) runs in its own tab, selectable with keyboard shortcuts.</li>
+  <li><strong>Searchable output</strong>: Filter and search through process logs directly in the terminal interface.</li>
+  <li><strong>Individual process restarts</strong>: Restart a specific process (such as a queue worker) without restarting your entire development environment.</li>
+  <li><strong>Log clearing</strong>: Clear the log buffer for any individual process window.</li>
+  <li><strong>Automatic crash recovery</strong>: Processes that fail or crash can automatically restart in the background.</li>
+  <li><strong>Exit log preservation</strong>: When stopping <code>artisan dev</code>, buffered logs from each process are printed to the main terminal so recent errors are preserved.</li>
+</ul>
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────┐
+│  Laravel Dev                                            │
+├──────────────┬──────────────────────────────────────────┤
+│ ● Server     │                                          │
+│ ● Queue      │   [active process output]                │
+│ ● Pail       │                                          │
+│ ● Vite       │   ...                                    │
+├──────────────┴──────────────────────────────────────────┤
+│ Search  │ Restart │ Clear │ ...                         │
+└─────────────────────────────────────────────────────────┘</code></pre>
+<h3>CLI Usage and Output Modes</h3>
+<p>You can run `artisan dev` with flags to customize output formatting and runtime behavior:</p>
+<pre><code class="language-bash"># Start all dev processes with tabbed Multiplex UI
+composer run dev
+
+# Or run directly via Artisan
+php artisan dev
+
+# Fall back to interleaved streaming output
+php artisan dev --stream
+
+# Prepend timestamps to log output lines
+php artisan dev --timestamps
+
+# Prevent crashed processes from automatically restarting
+php artisan dev --no-restart</code></pre>
+<p>`php artisan dev` supports three distinct output modes:</p>
+<ol>
+  <li><code>tabs</code> (default): Interactive tabbed interface powered by <code>@laravel/multiplex</code>.</li>
+  <li><code>stream</code>: Traditional interleaved terminal stream where all process logs appear in one combined feed.</li>
+  <li><code>inline</code>: Plain non-interactive output, activated automatically when running without an interactive TTY (such as in CI or scripted environments).</li>
+</ol>
+<h3>Configuring DevCommands in PHP</h3>
+<p>In addition to CLI flags, you can configure default development process behavior globally using the `Illuminate\Foundation\DevCommands` facade:</p>
+<pre><code class="language-php">use Illuminate\Foundation\DevCommands;
+
+// Configure runtime options introduced in Laravel 13.25
+DevCommands::stream();
+DevCommands::withTimestamps();
+DevCommands::disableAutoRestart();
+DevCommands::bufferSize(5000);</code></pre>
+<p>These configuration helpers complement existing process registration methods (such as `DevCommands::register()`, `artisan()`, `node()`, `only()`, and `except()`), allowing teams to enforce consistent local development defaults across an entire project.</p>
+<h3>Platform and Node.js Requirements</h3>
+<p>The `@laravel/multiplex` interface has specific platform prerequisites:</p>
+<ul>
+  <li><strong>Supported Platforms</strong>: macOS and Linux.</li>
+  <li><strong>Windows Support</strong>: On Windows environments, <code>php artisan dev</code> automatically falls back to <code>concurrently</code> streaming.</li>
+  <li><strong>Node.js Version</strong>: The Multiplex path requires Node.js v22.13 or newer.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Utilities]]></category>
+      <category><![CDATA[Artisan]]></category>
+      <category><![CDATA[DX]]></category>
+      <category><![CDATA[Tooling]]></category>
+    </item>
     <item>
       <title><![CDATA[Global Queue Pause and Resume Controls in Laravel 13.25]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-global-queue-pause-resume</link>
