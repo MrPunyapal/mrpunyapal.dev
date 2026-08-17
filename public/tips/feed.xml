@@ -57,6 +57,69 @@ Queue::resumeAll();</code></pre>
       <category><![CDATA[Deployment]]></category>
     </item>
     <item>
+      <title><![CDATA[Queue Anonymous Event Listeners with queueable()]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-queueable-anonymous-event-listeners</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-queueable-anonymous-event-listeners</guid>
+      <description><![CDATA[Wrap closure-based event listeners with the queueable() helper to push them to background queues without creating dedicated listener classes. When registerin...]]></description>
+      <content:encoded><![CDATA[<blockquote>Wrap closure-based event listeners with the queueable() helper to push them to background queues without creating dedicated listener classes.</blockquote>
+<p>When registering event listeners in Laravel, standard closures execute synchronously within the current request cycle. If a listener performs slower work like sending an email or notifying a third-party API, developers typically scaffold a full listener class implementing `ShouldQueue`.</p>
+<p>For small or single-purpose tasks, you can use the `Illuminate\Events\queueable` helper function to queue an anonymous closure directly while retaining complete control over connection, queue, delay, and failure handling.</p>
+<h3>Queueing a Closure Listener</h3>
+<p>Wrap your listener closure with `queueable()` when calling `Event::listen()`:</p>
+<pre><code class="language-php">use App\Events\OrderPlaced;
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
+use Throwable;
+use function Illuminate\Events\queueable;
+
+Event::listen(
+    queueable(function (OrderPlaced $event) {
+        Mail::to($event-&gt;order-&gt;user-&gt;email)
+            -&gt;send(new OrderConfirmation($event-&gt;order));
+    })
+        -&gt;onConnection(&#039;redis&#039;)
+        -&gt;onQueue(&#039;orders&#039;)
+        -&gt;delay(now()-&gt;addSeconds(10))
+        -&gt;catch(function (OrderPlaced $event, Throwable $e) {
+            logger()-&gt;error(&#039;Order confirmation failed&#039;, [
+                &#039;order_id&#039; =&gt; $event-&gt;order-&gt;id,
+                &#039;error&#039; =&gt; $e-&gt;getMessage(),
+            ]);
+        })
+);</code></pre>
+<h3>How It Works</h3>
+<p>Under the hood, `queueable()` wraps the closure in an instance of `Illuminate\Events\QueuedClosure`. When the event fires, Laravel serializes the closure and dispatches it as an asynchronous queue job instead of executing it inline.</p>
+<p>The `QueuedClosure` object provides fluent chaining methods matching standard queued job options:</p>
+<ul>
+  <li><code>onConnection(&#39;redis&#39;)</code>: Specifies which database or queue connection handles the listener.</li>
+  <li><code>onQueue(&#39;orders&#39;)</code>: Routes the listener to a specific named queue.</li>
+  <li><code>delay(now()-&gt;addSeconds(10))</code>: Postpones execution by a given duration.</li>
+  <li><code>catch(callable)</code>: Defines a fallback callback executed if the queued listener exhausts its retry attempts or encounters an unhandled exception.</li>
+</ul>
+<h3>When to Use Queueable Closures</h3>
+<p>Queueable anonymous listeners work well for:</p>
+<ul>
+  <li>Lightweight notifications and transactional emails tied directly to an event.</li>
+  <li>Simple cache invalidation or audit logging.</li>
+  <li>Prototypes and small applications where creating dedicated listener files adds boilerplate without architectural benefits.</li>
+</ul>
+<h3>When to Use Dedicated Listener Classes</h3>
+<p>Stick with dedicated listener classes (`php artisan make:listener SendOrderConfirmation --queued`) when:</p>
+<ul>
+  <li>The listener involves complex orchestration with multiple injected dependencies.</li>
+  <li>You need isolated unit or integration tests specifically targeting the listener class.</li>
+  <li>The listener logic is shared across multiple events or needs reuse throughout the codebase.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+      <atom:updated>Mon, 17 Aug 2026 00:00:00 GMT</atom:updated>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Queue]]></category>
+      <category><![CDATA[Events]]></category>
+    </item>
+    <item>
       <title><![CDATA[Use config() Instead of env() in Application Code]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-avoid-env-outside-config-pest-arch</guid>

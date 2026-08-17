@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clear Query Order Constraints with reorder() - Laravel &amp; PHP Tip | Punyapal Shah</title>
+    <title>Queue Anonymous Event Listeners with queueable() - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,25 +17,26 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...">
+    <meta name="description" content="Wrap closure-based event listeners with the queueable() helper to push them to background queues without creating dedicated listener classes. When registerin...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-queueable-anonymous-event-listeners">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder">
-    <meta property="og:title" content="Clear Query Order Constraints with reorder() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-eloquent-reorder-query-builder.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-eloquent-reorder-query-builder.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-queueable-anonymous-event-listeners">
+    <meta property="og:title" content="Queue Anonymous Event Listeners with queueable() - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Wrap closure-based event listeners with the queueable() helper to push them to background queues without creating dedicated listener classes. When registerin...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-queueable-anonymous-event-listeners.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-queueable-anonymous-event-listeners.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Clear Query Order Constraints with reorder() - Punyapal Shah">
+    <meta property="og:image:alt" content="Queue Anonymous Event Listeners with queueable() - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2024-03-07">
+    <meta property="article:published_time" content="2026-08-17">
+    <meta property="article:modified_time" content="2026-08-17">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="Laravel">
 
@@ -43,11 +44,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder">
-    <meta name="twitter:title" content="Clear Query Order Constraints with reorder() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-eloquent-reorder-query-builder.png">
-    <meta name="twitter:image:alt" content="Clear Query Order Constraints with reorder() - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-queueable-anonymous-event-listeners">
+    <meta name="twitter:title" content="Queue Anonymous Event Listeners with queueable() - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Wrap closure-based event listeners with the queueable() helper to push them to background queues without creating dedicated listener classes. When registerin...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-queueable-anonymous-event-listeners.png">
+    <meta name="twitter:image:alt" content="Queue Anonymous Event Listeners with queueable() - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -56,13 +57,14 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder#article",
-                "headline": "Clear Query Order Constraints with reorder()",
-                "description": "Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...",
-                "datePublished": "2024-03-07",
+                "@id": "https://mrpunyapal.dev/tips/laravel-queueable-anonymous-event-listeners#article",
+                "headline": "Queue Anonymous Event Listeners with queueable()",
+                "description": "Wrap closure-based event listeners with the queueable() helper to push them to background queues without creating dedicated listener classes. When registerin...",
+                "datePublished": "2026-08-17",
+                "dateModified": "2026-08-17",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder",
-                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Eloquent, Database",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-queueable-anonymous-event-listeners",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Events, Queue",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -91,8 +93,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Clear Query Order Constraints with reorder()",
-                        "item": "https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder"
+                        "name": "Queue Anonymous Event Listeners with queueable()",
+                        "item": "https://mrpunyapal.dev/tips/laravel-queueable-anonymous-event-listeners"
                     }
                 ]
             }
@@ -678,7 +680,7 @@
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Eloquent
+                                Queue
                             </span>
                         
                     </div>
@@ -687,7 +689,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Clear Query Order Constraints with reorder()
+                        Queue Anonymous Event Listeners with queueable()
                     </h1>
 
                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -696,9 +698,9 @@
                             <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2024-03-07" class="inline-flex items-center gap-1.5">
+                        <time datetime="2026-08-17" class="inline-flex items-center gap-1.5">
                             <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Mar 7, 2024
+                            Updated Aug 17, 2026
                         </time>
                     </div>
                 </div>
@@ -712,7 +714,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When modifying existing query builders or model scopes that already contain orderBy clauses, appending another orderBy appends a secondary sort. reorder() strips existing ordering rules.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Wrap closure-based event listeners with the queueable() helper to push them to background queues without creating dedicated listener classes.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When registering event listeners in Laravel, standard closures execute synchronously within the current request cycle. If a listener performs slower work like sending an email or notifying a third-party API, developers typically scaffold a full listener class implementing `ShouldQueue`.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">For small or single-purpose tasks, you can use the `Illuminate\Events\queueable` helper function to queue an anonymous closure directly while retaining complete control over connection, queue, delay, and failure handling.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Queueing a Closure Listener</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Wrap your listener closure with `queueable()` when calling `Event::listen()`:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -720,25 +722,57 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\User;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Events\OrderPlaced;
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
+use Throwable;
+use function Illuminate\Events\queueable;
 
-$query = User::orderBy(&#039;name&#039;, &#039;asc&#039;);
-
-// Replaces &#039;name&#039; sorting with &#039;created_at&#039; sorting
-$users = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();" aria-label="Copy code to clipboard">
+Event::listen(
+    queueable(function (OrderPlaced $event) {
+        Mail::to($event-&gt;order-&gt;user-&gt;email)
+            -&gt;send(new OrderConfirmation($event-&gt;order));
+    })
+        -&gt;onConnection(&#039;redis&#039;)
+        -&gt;onQueue(&#039;orders&#039;)
+        -&gt;delay(now()-&gt;addSeconds(10))
+        -&gt;catch(function (OrderPlaced $event, Throwable $e) {
+            logger()-&gt;error(&#039;Order confirmation failed&#039;, [
+                &#039;order_id&#039; =&gt; $event-&gt;order-&gt;id,
+                &#039;error&#039; =&gt; $e-&gt;getMessage(),
+            ]);
+        })
+);" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Events</span>\<span class="hljs-title">OrderPlaced</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Mail</span>\<span class="hljs-title">OrderConfirmation</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Event</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Mail</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Throwable</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-keyword">function</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Events</span>\<span class="hljs-title">queueable</span>;
 
-<span class="hljs-variable">$query</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">orderBy</span>(<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;asc&#x27;</span>);
-
-<span class="hljs-comment">// Replaces &#x27;name&#x27; sorting with &#x27;created_at&#x27; sorting</span>
-<span class="hljs-variable">$users</span> = <span class="hljs-variable">$query</span>-&gt;<span class="hljs-title function_ invoke__">reorder</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-string">&#x27;desc&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Strips all existing orderBy clauses from the query builder</span></li><li class="leading-relaxed"><span class="align-middle">Accepts optional new column and direction arguments to re-apply sorting</span></li><li class="leading-relaxed"><span class="align-middle">Essential when overriding default sorting rules defined in model scopes</span></li></ul>
+<span class="hljs-title class_">Event</span>::<span class="hljs-title function_ invoke__">listen</span>(
+    <span class="hljs-title function_ invoke__">queueable</span>(function (OrderPlaced <span class="hljs-variable">$event</span>) {
+        <span class="hljs-title class_">Mail</span>::<span class="hljs-title function_ invoke__">to</span>(<span class="hljs-variable">$event</span>-&gt;order-&gt;user-&gt;email)
+            -&gt;<span class="hljs-title function_ invoke__">send</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OrderConfirmation</span>(<span class="hljs-variable">$event</span>-&gt;order));
+    })
+        -&gt;<span class="hljs-title function_ invoke__">onConnection</span>(<span class="hljs-string">&#x27;redis&#x27;</span>)
+        -&gt;<span class="hljs-title function_ invoke__">onQueue</span>(<span class="hljs-string">&#x27;orders&#x27;</span>)
+        -&gt;<span class="hljs-title function_ invoke__">delay</span>(<span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">addSeconds</span>(<span class="hljs-number">10</span>))
+        -&gt;<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">OrderPlaced <span class="hljs-variable">$event</span>, <span class="hljs-built_in">Throwable</span> <span class="hljs-variable">$e</span></span>) </span>{
+            <span class="hljs-title function_ invoke__">logger</span>()-&gt;<span class="hljs-title function_ invoke__">error</span>(<span class="hljs-string">&#x27;Order confirmation failed&#x27;</span>, [
+                <span class="hljs-string">&#x27;order_id&#x27;</span> =&gt; <span class="hljs-variable">$event</span>-&gt;order-&gt;id,
+                <span class="hljs-string">&#x27;error&#x27;</span> =&gt; <span class="hljs-variable">$e</span>-&gt;<span class="hljs-title function_ invoke__">getMessage</span>(),
+            ]);
+        })
+);</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How It Works</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Under the hood, `queueable()` wraps the closure in an instance of `Illuminate\Events\QueuedClosure`. When the event fires, Laravel serializes the closure and dispatches it as an asynchronous queue job instead of executing it inline.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The `QueuedClosure` object provides fluent chaining methods matching standard queued job options:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><code>onConnection(&#39;redis&#39;)</code>: Specifies which database or queue connection handles the listener.</span></li><li class="leading-relaxed"><span class="align-middle"><code>onQueue(&#39;orders&#39;)</code>: Routes the listener to a specific named queue.</span></li><li class="leading-relaxed"><span class="align-middle"><code>delay(now()-&gt;addSeconds(10))</code>: Postpones execution by a given duration.</span></li><li class="leading-relaxed"><span class="align-middle"><code>catch(callable)</code>: Defines a fallback callback executed if the queued listener exhausts its retry attempts or encounters an unhandled exception.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">When to Use Queueable Closures</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Queueable anonymous listeners work well for:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Lightweight notifications and transactional emails tied directly to an event.</span></li><li class="leading-relaxed"><span class="align-middle">Simple cache invalidation or audit logging.</span></li><li class="leading-relaxed"><span class="align-middle">Prototypes and small applications where creating dedicated listener files adds boilerplate without architectural benefits.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">When to Use Dedicated Listener Classes</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Stick with dedicated listener classes (`php artisan make:listener SendOrderConfirmation --queued`) when:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">The listener involves complex orchestration with multiple injected dependencies.</span></li><li class="leading-relaxed"><span class="align-middle">You need isolated unit or integration tests specifically targeting the listener class.</span></li><li class="leading-relaxed"><span class="align-middle">The listener logic is shared across multiple events or needs reuse throughout the codebase.</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -748,11 +782,11 @@ $users = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Database</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Events</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Queue</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Clear%20Query%20Order%20Constraints%20with%20reorder()%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-eloquent-reorder-query-builder" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Queue%20Anonymous%20Event%20Listeners%20with%20queueable()%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-queueable-anonymous-event-listeners" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -791,7 +825,7 @@ $users = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </span>
                 </a>
-                <a href="/tips/laravel-queueable-anonymous-event-listeners" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-avoid-env-outside-config-pest-arch" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -807,7 +841,7 @@ $users = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Queue Anonymous Event Listeners with queueable()
+                        Use config() Instead of env() in Application Code
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -833,7 +867,7 @@ $users = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["laravel-global-queue-pause-resume","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {
