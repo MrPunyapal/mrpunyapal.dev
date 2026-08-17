@@ -31,8 +31,7 @@
   <li><strong>Automatic crash recovery</strong>: Processes that fail or crash can automatically restart in the background.</li>
   <li><strong>Exit log preservation</strong>: When stopping <code>artisan dev</code>, buffered logs from each process are printed to the main terminal so recent errors are preserved.</li>
 </ul>
-<pre>
-┌─────────────────────────────────────────────────────────┐
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────┐
 │  Laravel Dev                                            │
 ├──────────────┬──────────────────────────────────────────┤
 │ ● Server     │                                          │
@@ -41,8 +40,8 @@
 │ ● Vite       │   ...                                    │
 ├──────────────┴──────────────────────────────────────────┤
 │ Search  │ Restart │ Clear │ ...                         │
-└─────────────────────────────────────────────────────────┘
-</pre><h3>CLI Usage and Output Modes</h3>
+└─────────────────────────────────────────────────────────┘</code></pre>
+<h3>CLI Usage and Output Modes</h3>
 <p>You can run `artisan dev` with flags to customize output formatting and runtime behavior:</p>
 <pre><code class="language-bash"># Start all dev processes with tabbed Multiplex UI
 composer run dev
