@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why strip_tags() Is Not Enough for XSS Protection - PHP Tip | Punyapal Shah</title>
+    <title>Use Cache for Short-Lived Tokens Instead of Database Columns - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,37 +17,37 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...">
+    <meta name="description" content="Store temporary verification tokens, OTPs, and one-time codes in Laravel&#039;s cache with a defined TTL instead of adding temporary columns to database tables. W...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-cache-short-lived-tokens-over-database">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier">
-    <meta property="og:title" content="Why strip_tags() Is Not Enough for XSS Protection - PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/php-security-strip-tags-vs-htmlpurifier.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/php-security-strip-tags-vs-htmlpurifier.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-cache-short-lived-tokens-over-database">
+    <meta property="og:title" content="Use Cache for Short-Lived Tokens Instead of Database Columns - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Store temporary verification tokens, OTPs, and one-time codes in Laravel&#039;s cache with a defined TTL instead of adding temporary columns to database tables. W...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-cache-short-lived-tokens-over-database.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-cache-short-lived-tokens-over-database.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Why strip_tags() Is Not Enough for XSS Protection - Punyapal Shah">
+    <meta property="og:image:alt" content="Use Cache for Short-Lived Tokens Instead of Database Columns - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-04-18">
+    <meta property="article:published_time" content="2026-08-18">
     <meta property="article:author" content="https://x.com/MrPunyapal">
-    <meta property="article:section" content="PHP">
+    <meta property="article:section" content="Laravel">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier">
-    <meta name="twitter:title" content="Why strip_tags() Is Not Enough for XSS Protection - PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/php-security-strip-tags-vs-htmlpurifier.png">
-    <meta name="twitter:image:alt" content="Why strip_tags() Is Not Enough for XSS Protection - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-cache-short-lived-tokens-over-database">
+    <meta name="twitter:title" content="Use Cache for Short-Lived Tokens Instead of Database Columns - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Store temporary verification tokens, OTPs, and one-time codes in Laravel&#039;s cache with a defined TTL instead of adding temporary columns to database tables. W...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-cache-short-lived-tokens-over-database.png">
+    <meta name="twitter:image:alt" content="Use Cache for Short-Lived Tokens Instead of Database Columns - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -56,13 +56,13 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier#article",
-                "headline": "Why strip_tags() Is Not Enough for XSS Protection",
-                "description": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input. A common s...",
-                "datePublished": "2026-04-18",
+                "@id": "https://mrpunyapal.dev/tips/laravel-cache-short-lived-tokens-over-database#article",
+                "headline": "Use Cache for Short-Lived Tokens Instead of Database Columns",
+                "description": "Store temporary verification tokens, OTPs, and one-time codes in Laravel's cache with a defined TTL instead of adding temporary columns to database tables. W...",
+                "datePublished": "2026-08-18",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier",
-                "keywords": "PHP, PHP tips, Laravel tips, PHP, Security, XSS",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-cache-short-lived-tokens-over-database",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Cache, Database, Architecture",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -71,7 +71,7 @@
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "articleSection": "PHP"
+                "articleSection": "Laravel"
             },
             {
                 "@type": "BreadcrumbList",
@@ -91,8 +91,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Why strip_tags() Is Not Enough for XSS Protection",
-                        "item": "https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier"
+                        "name": "Use Cache for Short-Lived Tokens Instead of Database Columns",
+                        "item": "https://mrpunyapal.dev/tips/laravel-cache-short-lived-tokens-over-database"
                     }
                 ]
             }
@@ -672,13 +672,13 @@
                             </svg>
                             <span>Random</span>
                         </button>
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border-indigo-100 dark:border-indigo-900/60">
-                            PHP
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border-red-100 dark:border-red-900/60">
+                            Laravel
                         </span>
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Basics
+                                Cache
                             </span>
                         
                     </div>
@@ -687,7 +687,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Why strip_tags() Is Not Enough for XSS Protection
+                        Use Cache for Short-Lived Tokens Instead of Database Columns
                     </h1>
 
                     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -696,9 +696,9 @@
                             <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                         </span>
                         <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2026-04-18" class="inline-flex items-center gap-1.5">
+                        <time datetime="2026-08-18" class="inline-flex items-center gap-1.5">
                             <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Apr 18, 2026
+                            Aug 18, 2026
                         </time>
                     </div>
                 </div>
@@ -712,7 +712,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A common security misconception in PHP is relying on strip_tags() to sanitize user-submitted rich text. It allows attribute payloads like onload= or javascript: URIs through if allowed tags are specified.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Store temporary verification tokens, OTPs, and one-time codes in Laravel's cache with a defined TTL instead of adding temporary columns to database tables.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When implementing email verification codes, SMS OTPs, or passwordless login tokens, a common instinct is adding temporary columns (such as `verification_code` and `verification_expires_at`) to the `users` table.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">For data that is temporary by design, adding columns to permanent database tables creates schema clutter and requires recurring cleanup queries. Laravel's cache provides a cleaner mechanism for short-lived state with automatic expiration.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Storing and Verifying Temporary Tokens</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">You can store the token with a defined expiration time using `Cache::put()`, retrieve it upon verification, and consume it immediately with `Cache::forget()`:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -720,21 +720,53 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use HTMLPurifier;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Cache;
 
-$purifier = new HTMLPurifier();
-$cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
+// Temporarily store the token for 10 minutes.
+Cache::put(
+    &#039;verify:&#039;.$user-&gt;id,
+    $token,
+    now()-&gt;addMinutes(10),
+);
+
+// Retrieve the temporary token.
+$cached = Cache::get(&#039;verify:&#039;.$user-&gt;id);
+
+if (is_null($cached)) {
+    // Expired
+} elseif (hash_equals($cached, $request-&gt;token)) {
+    Cache::forget(&#039;verify:&#039;.$user-&gt;id);
+    // Verified
+} else {
+    // Invalid token
+}" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">HTMLPurifier</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Cache</span>;
 
-<span class="hljs-variable">$purifier</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HTMLPurifier</span>();
-<span class="hljs-variable">$cleanHtml</span> = <span class="hljs-variable">$purifier</span>-&gt;<span class="hljs-title function_ invoke__">purify</span>(<span class="hljs-variable">$input</span>);</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">strip_tags() does not validate tag attributes or execution vectors</span></li><li class="leading-relaxed"><span class="align-middle">Always escape plain text with e() or Blade&#39;s {{ $var }}</span></li><li class="leading-relaxed"><span class="align-middle">For user-submitted rich text, use reliable HTML sanitizers like HTMLPurifier</span></li></ul>
+<span class="hljs-comment">// Temporarily store the token for 10 minutes.</span>
+<span class="hljs-title class_">Cache</span>::<span class="hljs-title function_ invoke__">put</span>(
+    <span class="hljs-string">&#x27;verify:&#x27;</span>.<span class="hljs-variable">$user</span>-&gt;id,
+    <span class="hljs-variable">$token</span>,
+    <span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">addMinutes</span>(<span class="hljs-number">10</span>),
+);
+
+<span class="hljs-comment">// Retrieve the temporary token.</span>
+<span class="hljs-variable">$cached</span> = <span class="hljs-title class_">Cache</span>::<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&#x27;verify:&#x27;</span>.<span class="hljs-variable">$user</span>-&gt;id);
+
+<span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">is_null</span>(<span class="hljs-variable">$cached</span>)) {
+    <span class="hljs-comment">// Expired</span>
+} <span class="hljs-keyword">elseif</span> (<span class="hljs-title function_ invoke__">hash_equals</span>(<span class="hljs-variable">$cached</span>, <span class="hljs-variable">$request</span>-&gt;token)) {
+    <span class="hljs-title class_">Cache</span>::<span class="hljs-title function_ invoke__">forget</span>(<span class="hljs-string">&#x27;verify:&#x27;</span>.<span class="hljs-variable">$user</span>-&gt;id);
+    <span class="hljs-comment">// Verified</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Invalid token</span>
+}</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How It Works</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Self-managing lifecycle</strong>: When you pass a <code>DateTime</code> or integer duration to <code>Cache::put()</code>, the cache store automatically discards expired values without requiring scheduled cleanup commands.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Timing-safe comparison</strong>: Using <code>hash_equals()</code> mitigates timing attacks when comparing sensitive tokens compared to standard equality checks.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Immediate invalidation</strong>: Calling <code>Cache::forget()</code> immediately consumes the token once verified, preventing replay attempts within the remaining TTL window.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">When Cache Fits Best</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Using cache is a practical choice for genuinely ephemeral data:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Short-lived OTPs or SMS confirmation pins (e.g. 5 to 10 minutes).</span></li><li class="leading-relaxed"><span class="align-middle">Email change confirmation tokens.</span></li><li class="leading-relaxed"><span class="align-middle">Temporary rate limiting counters and challenge nonces.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">When a Database Table Is Better</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Cache is not a universal substitute for persistent storage. You should continue using database tables when the data requires:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Durable auditing</strong>: Preserving an immutable historical record of every issued and redeemed token for compliance.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Complex queries</strong>: Searching or filtering records across multiple dimensions (such as finding all pending tokens issued by an admin).</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Guaranteed persistence</strong>: Certain cache drivers (like Memcached or Redis under memory pressure) may evict keys before their TTL expires if memory limits are exceeded.</span></li></ul>
                 </div>
 
                 <!-- Tag Cloud & Inline Share Actions -->
@@ -744,11 +776,11 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">#PHP</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">#Security</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">#XSS</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Cache</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Database</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Architecture</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Why%20strip_tags()%20Is%20Not%20Enough%20for%20XSS%20Protection%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Fphp-security-strip-tags-vs-htmlpurifier" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Use%20Cache%20for%20Short-Lived%20Tokens%20Instead%20of%20Database%20Columns%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-cache-short-lived-tokens-over-database" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -765,7 +797,7 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/php-never-return-in-finally-block" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-artisan-dev-multiplex-terminal-ui" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -781,13 +813,13 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Never Return Statements inside Finally Blocks in PHP
+                        Terminal UI Upgrade for php artisan dev in Laravel 13.25
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </span>
                 </a>
-                <a href="/tips/php-rector-automate-readonly-classes" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-global-queue-pause-resume" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -803,7 +835,7 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Automate PHP Readonly Class Refactoring with Rector
+                        Global Queue Pause and Resume Controls in Laravel 13.25
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -829,7 +861,7 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {
