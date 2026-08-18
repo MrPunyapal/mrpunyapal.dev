@@ -453,7 +453,36 @@
                     </div>
 
                     <!-- Door Container Placeholder for Desktop -->
-                    <div id="desktop-door-placeholder" class="relative shrink-0 hidden md:flex items-center justify-center min-w-[120px] min-h-[150px]"></div>
+                    <div id="desktop-door-placeholder" class="relative shrink-0 hidden md:flex items-center justify-center min-w-[120px] min-h-[150px]">
+                        <div id="door-container" class="door-container" role="button" tabindex="0" aria-label="Knock to see me: reveals the elephpant easter egg">
+                            <div class="door-frame-outer">
+                                <div class="door-lintel"></div>
+                                <div class="door-panel left-panel">
+                                    <div class="panel-inner">
+                                        <svg aria-hidden="true" class="door-carving" viewBox="0 0 50 100" preserveAspectRatio="none">
+                                            <!-- Left half of elephpant face -->
+                                            <path d="M50,15 C30,10 2,20 2,45 C2,70 25,70 35,60 Q35,80 30,95 L42,100 L50,100 L50,15 Z" class="carving-shape" />
+                                            <circle cx="32" cy="40" r="3" class="carving-eye" />
+                                            <path d="M38,65 Q25,80 35,90" class="carving-tusk" />
+                                        </svg>
+                                    </div>
+                                    <div class="door-handle"></div>
+                                </div>
+                                <div class="door-panel right-panel">
+                                    <div class="panel-inner">
+                                        <svg aria-hidden="true" class="door-carving" viewBox="0 0 50 100" preserveAspectRatio="none">
+                                            <!-- Right half of elephpant face -->
+                                            <path d="M0,15 C20,10 48,20 48,45 C48,70 25,70 15,60 Q15,80 20,95 L8,100 L0,100 L0,15 Z" class="carving-shape" />
+                                            <circle cx="18" cy="40" r="3" class="carving-eye" />
+                                            <path d="M12,65 Q25,80 15,90" class="carving-tusk" />
+                                        </svg>
+                                    </div>
+                                    <div class="door-handle"></div>
+                                </div>
+                                <div class="door-message" id="doorMessage">Knock to see me</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -607,36 +636,7 @@
 
 
         <!-- Mobile Door Placeholder -->
-        <div id="mobile-door-placeholder" class="md:hidden w-full flex justify-center min-h-[150px]">
-            <div id="door-container" class="door-container" role="button" tabindex="0" aria-label="Knock to see me: reveals the elephpant easter egg">
-                <div class="door-frame-outer">
-                    <div class="door-lintel"></div>
-                    <div class="door-panel left-panel">
-                        <div class="panel-inner">
-                            <svg aria-hidden="true" class="door-carving" viewBox="0 0 50 100" preserveAspectRatio="none">
-                                <!-- Left half of elephpant face -->
-                                <path d="M50,15 C30,10 2,20 2,45 C2,70 25,70 35,60 Q35,80 30,95 L42,100 L50,100 L50,15 Z" class="carving-shape" />
-                                <circle cx="32" cy="40" r="3" class="carving-eye" />
-                                <path d="M38,65 Q25,80 35,90" class="carving-tusk" />
-                            </svg>
-                        </div>
-                        <div class="door-handle"></div>
-                    </div>
-                    <div class="door-panel right-panel">
-                        <div class="panel-inner">
-                            <svg aria-hidden="true" class="door-carving" viewBox="0 0 50 100" preserveAspectRatio="none">
-                                <!-- Right half of elephpant face -->
-                                <path d="M0,15 C20,10 48,20 48,45 C48,70 25,70 15,60 Q15,80 20,95 L8,100 L0,100 L0,15 Z" class="carving-shape" />
-                                <circle cx="18" cy="40" r="3" class="carving-eye" />
-                                <path d="M12,65 Q25,80 15,90" class="carving-tusk" />
-                            </svg>
-                        </div>
-                        <div class="door-handle"></div>
-                    </div>
-                    <div class="door-message" id="doorMessage">Knock to see me</div>
-                </div>
-            </div>
-        </div>
+        <div id="mobile-door-placeholder" class="md:hidden w-full flex justify-center min-h-[150px]"></div>
     </main>
 
     <!-- Lazy Loaded Elephpant Template -->

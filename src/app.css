@@ -12,6 +12,13 @@ body {
 site-header {
     display: block;
     width: 100%;
+    min-height: 49px;
+}
+
+@media (min-width: 640px) {
+    site-header {
+        min-height: 57px;
+    }
 }
 
 .site-nav-tabs a {
