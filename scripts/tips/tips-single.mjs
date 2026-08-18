@@ -278,16 +278,23 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
                         ${escapeHtml(tip.title)}
                     </h1>
 
-                    <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
-                        <span class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
-                            ${authorHtml}
-                        </span>
-                        <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="${escapeHtml(effectiveDate)}" class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            ${updated_at ? `Updated ${formatDate(updated_at)}` : formatDate(created_at)}
-                        </time>
+                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                            <span class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
+                                ${authorHtml}
+                            </span>
+                            <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+                            <time datetime="${escapeHtml(effectiveDate)}" class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
+                                ${updated_at ? `Updated ${formatDate(updated_at)}` : formatDate(created_at)}
+                            </time>
+                        </div>
+
+                        <a href="${escapeHtml(tip.github_file_url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                            <span>edit this tip</span>
+                            <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -303,14 +310,22 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
                     ${tip.htmlContent}
                 </div>
 
+                <!-- Bottom Inline Edit Link -->
+                <div class="mt-8 flex justify-end">
+                    <a href="${escapeHtml(tip.github_file_url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                        <span>edit this tip</span>
+                        <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
                 <!-- Tag Cloud & Inline Share Actions -->
-                <div class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mr-1 inline-flex items-center gap-1.5 font-mono">
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        ${tip.tags.map(t => `<span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded ${badge.bg} ${badge.text} border ${badge.border}">#${escapeHtml(t)}</span>`).join(' ')}
+                        ${tip.tags.map(t => `<span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded ${badge.bg} ${badge.text} border ${badge.border}">${escapeHtml(t)}</span>`).join(' ')}
                     </div>
 
                     <div class="flex items-center gap-2">

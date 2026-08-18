@@ -88,6 +88,10 @@ export async function buildTips() {
         const author_url = data.author_url || (author === 'Punyapal Shah' ? 'https://x.com/MrPunyapal' : null);
         const og_image = data.og_image || data.image || `https://mrpunyapal.dev/og/tips/${slug}.png`;
 
+        const tipsSubmoduleDir = path.resolve(rootDir, 'content', 'tips');
+        const relativePath = path.relative(tipsSubmoduleDir, filePath).replace(/\\/g, '/');
+        const github_file_url = `https://github.com/MrPunyapal/tips/blob/main/${relativePath}`;
+
         const htmlContent = marked.parse(cleanBody);
         const rssContent = renderRssHtml(cleanBody);
 
@@ -106,6 +110,7 @@ export async function buildTips() {
             author,
             author_url,
             og_image,
+            github_file_url,
             rawMarkdown: cleanBody,
             htmlContent,
             rssContent,
