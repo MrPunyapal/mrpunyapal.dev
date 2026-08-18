@@ -9,9 +9,76 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Tue, 18 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Wed, 19 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Laravel 13.25 Reverses Merge Order in Request::all()]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-request-all-input-file-precedence</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-request-all-input-file-precedence</guid>
+      <description><![CDATA[In Laravel 13.25, Request::all() now gives submitted input precedence over uploaded files when their keys collide, while file() continues to provide direct a...]]></description>
+      <content:encoded><![CDATA[<blockquote>In Laravel 13.25, Request::all() now gives submitted input precedence over uploaded files when their keys collide, while file() continues to provide direct access to uploaded files.</blockquote>
+<p>When handling incoming HTTP requests containing both structured form fields and uploaded files, Laravel combines input data and file uploads into a unified collection when calling `$request->all()`.</p>
+<p>Laravel 13.25 updates the internal merge order inside `Request::all()` to ensure submitted input values take precedence whenever an input field and an uploaded file share the exact same key.</p>
+<h3>What Changed?</h3>
+<p>Under the hood, Laravel combines the input bag (`$this->input()`) and the uploaded files bag (`$this->allFiles()`).</p>
+<p>Prior to Laravel 13.25, the merge order placed files second:</p>
+<pre><code class="language-php">// Before Laravel 13.25
+array_replace_recursive($this-&gt;input(), $this-&gt;allFiles());</code></pre>
+<p>In Laravel 13.25, this order is reversed so input is merged last:</p>
+<pre><code class="language-php">// Laravel 13.25+
+array_replace_recursive($this-&gt;allFiles(), $this-&gt;input());</code></pre>
+<p>This ensures submitted input values win collisions across `$request->all()`, `$request->only()`, dynamic property access (`$request->profile`), and array access (`$request['profile']`).</p>
+<h3>Example: Colliding Input and Upload Keys</h3>
+<p>Consider a request containing a nested `profile.name` text field alongside an uploaded file also named `profile.name`:</p>
+<pre><code class="language-php">use Illuminate\Http\Request;
+
+$request = Request::create(&#039;/&#039;, &#039;POST&#039;, [
+    &#039;profile&#039; =&gt; [
+        &#039;name&#039; =&gt; &#039;Taylor&#039;,
+    ],
+], [], [
+    &#039;profile&#039; =&gt; [
+        &#039;name&#039; =&gt; $file,
+        &#039;avatar&#039; =&gt; $avatar,
+    ],
+]);
+
+// Before Laravel 13.25
+// Files were merged last, so a colliding file replaced the input.
+$request-&gt;all();
+// profile.name =&gt; UploadedFile
+
+// Laravel 13.25
+// Input is merged last, so the submitted value takes precedence.
+$request-&gt;all();
+// profile.name =&gt; &#039;Taylor&#039;
+// profile.avatar =&gt; UploadedFile
+
+// Need the uploaded file? file() still returns it.
+$request-&gt;file(&#039;profile.name&#039;);
+// UploadedFile</code></pre>
+<h3>Uploaded Files Remain Accessible via file()</h3>
+<p>This change only alters key collisions inside `$request->all()` and related helper methods. Laravel does not discard the uploaded file.</p>
+<p>When you need the uploaded file instance, the dedicated `$request->file()` API is completely unaffected and continues to return the `UploadedFile` object directly:</p>
+<pre><code class="language-php">$avatar = $request-&gt;file(&#039;profile.name&#039;);</code></pre>
+<h3>Nested Recursive Merging</h3>
+<p>Because Laravel uses `array_replace_recursive()`, precedence only applies to specific keys that collide:</p>
+<ul>
+  <li><code>profile.name</code> exists in both input and files, so the submitted string <code>&#39;Taylor&#39;</code> takes precedence in <code>all()</code>.</li>
+  <li><code>profile.avatar</code> exists only in the files bag, so it continues to appear in <code>$request-&gt;all()</code> as an <code>UploadedFile</code> without interference.</li>
+</ul>
+<h3>Summary</h3>
+<p>`Request::all()` now prefers submitted input values over files when key collisions occur, while `$request->file()` remains the dedicated way to retrieve uploaded files.</p>
+]]></content:encoded>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[HTTP / API]]></category>
+      <category><![CDATA[HTTP]]></category>
+      <category><![CDATA[Request]]></category>
+      <category><![CDATA[Files]]></category>
+    </item>
     <item>
       <title><![CDATA[Smooth Cross-Document View Transitions with @view-transition and Shared Elements]]></title>
       <link>https://mrpunyapal.dev/tips/css-view-transition-cross-document-shared-elements</link>
