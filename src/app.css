@@ -625,6 +625,17 @@ img[style*="view-transition-name: profile-avatar"] {
     z-index: 10001;
 }
 
+/* Shared Profile Name Morphing */
+h1[style*="view-transition-name: profile-name"] {
+    view-transition-name: profile-name;
+}
+
+::view-transition-group(profile-name) {
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10001;
+}
+
 /* Theme Spider Crawler View Transition Layering */
 ::view-transition-group(spider-crawler) {
     z-index: 2147483647 !important;
@@ -642,7 +653,9 @@ img[style*="view-transition-name: profile-avatar"] {
 @media (prefers-reduced-motion: reduce) {
     ::view-transition-old(root),
     ::view-transition-new(root),
-    ::view-transition-group(site-header) {
+    ::view-transition-group(site-header),
+    ::view-transition-group(profile-avatar),
+    ::view-transition-group(profile-name) {
         animation: none !important;
     }
 }
