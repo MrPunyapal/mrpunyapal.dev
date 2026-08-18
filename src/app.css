@@ -569,13 +569,13 @@ html:not(.dark) .theme-moon-icon {
 }
 
 ::view-transition-old(root) {
-    animation: 220ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
+    animation: 280ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
     mix-blend-mode: normal;
     z-index: 1;
 }
 
 ::view-transition-new(root) {
-    animation: 260ms cubic-bezier(0, 0, 0.2, 1) both vt-page-in;
+    animation: 380ms cubic-bezier(0, 0, 0.2, 1) both vt-page-in;
     mix-blend-mode: normal;
     z-index: 9999;
 }
@@ -609,8 +609,8 @@ header[style*="view-transition-name: site-header"] {
 }
 
 ::view-transition-group(site-header) {
-    animation-duration: 260ms;
-    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+    animation-duration: 480ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 10000;
 }
 
@@ -620,8 +620,8 @@ img[style*="view-transition-name: profile-avatar"] {
 }
 
 ::view-transition-group(profile-avatar) {
-    animation-duration: 320ms;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-duration: 480ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 10001;
 }
 
@@ -631,8 +631,8 @@ h1[style*="view-transition-name: profile-name"] {
 }
 
 ::view-transition-group(profile-name) {
-    animation-duration: 320ms;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-duration: 480ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 10001;
 }
 
@@ -649,13 +649,32 @@ h1[style*="view-transition-name: profile-name"] {
     z-index: 2147483647 !important;
 }
 
+/* Shared Active Nav Indicator Sliding Morph */
+.nav-active-indicator[style*="view-transition-name: active-nav-indicator"] {
+    view-transition-name: active-nav-indicator;
+}
+
+::view-transition-group(active-nav-indicator) {
+    animation-duration: 480ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 10002;
+}
+
+::view-transition-old(active-nav-indicator),
+::view-transition-new(active-nav-indicator) {
+    animation: none;
+    mix-blend-mode: normal;
+    height: 100%;
+}
+
 /* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
     ::view-transition-old(root),
     ::view-transition-new(root),
     ::view-transition-group(site-header),
     ::view-transition-group(profile-avatar),
-    ::view-transition-group(profile-name) {
+    ::view-transition-group(profile-name),
+    ::view-transition-group(active-nav-indicator) {
         animation: none !important;
     }
 }
