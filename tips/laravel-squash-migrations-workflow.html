@@ -690,16 +690,23 @@
                         Squash Legacy Database Migrations Carefully
                     </h1>
 
-                    <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
-                        <span class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
-                            <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
-                        </span>
-                        <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2026-01-17" class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Jan 17, 2026
-                        </time>
+                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                            <span class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
+                                <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
+                            </span>
+                            <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+                            <time datetime="2026-01-17" class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
+                                Jan 17, 2026
+                            </time>
+                        </div>
+
+                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/configuration/laravel-squash-migrations-workflow.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                            <span>edit this tip</span>
+                            <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -737,14 +744,22 @@ php artisan schema:dump --prune
 </div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Collapses old migration files into a single database/schema dump file</span></li><li class="leading-relaxed"><span class="align-middle">Slashes migration execution time during automated test suite runs</span></li><li class="leading-relaxed"><span class="align-middle">New migration files created after squashing run sequentially after the schema dump</span></li></ul>
                 </div>
 
+                <!-- Bottom Inline Edit Link -->
+                <div class="mt-8 flex justify-end">
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/configuration/laravel-squash-migrations-workflow.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                        <span>edit this tip</span>
+                        <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
                 <!-- Tag Cloud & Inline Share Actions -->
-                <div class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mr-1 inline-flex items-center gap-1.5 font-mono">
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#Migrations</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">#DevOps</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Migrations</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">DevOps</span>
                     </div>
 
                     <div class="flex items-center gap-2">

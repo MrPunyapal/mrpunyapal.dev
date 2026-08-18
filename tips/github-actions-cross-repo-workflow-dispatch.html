@@ -690,16 +690,23 @@
                         Trigger a GitHub Actions Workflow Across Repositories
                     </h1>
 
-                    <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
-                        <span class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
-                            <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
-                        </span>
-                        <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2026-08-11" class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Aug 11, 2026
-                        </time>
+                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                            <span class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
+                                <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
+                            </span>
+                            <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+                            <time datetime="2026-08-11" class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
+                                Aug 11, 2026
+                            </time>
+                        </div>
+
+                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/git/github-actions/github-actions-cross-repo-workflow-dispatch.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                            <span>edit this tip</span>
+                            <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -827,14 +834,22 @@ jobs:
 </div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">3. Create and Assign the Access Token</h3><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Create a Fine-Grained Personal Access Token under GitHub Developer Settings.</span></li><li class="leading-relaxed"><span class="align-middle">Select the target repository under <strong>Repository Access</strong>.</span></li><li class="leading-relaxed"><span class="align-middle">Set <strong>Contents</strong> permission to <strong>Read and write</strong>.</span></li><li class="leading-relaxed"><span class="align-middle">Save the token as <code>WEBSITE_DISPATCH_TOKEN</code> in the source repository&#39;s Actions Secrets.</span></li></ol><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Considerations</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">The <code>event_type</code> string in the payload must match the array value under <code>types: [...]</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Always pass <code>--fail --show-error</code> to <code>curl</code> so HTTP errors exit with code 1 instead of failing silently.</span></li><li class="leading-relaxed"><span class="align-middle">Fine-grained tokens limit dispatch access strictly to the targeted repository.</span></li></ul>
                 </div>
 
+                <!-- Bottom Inline Edit Link -->
+                <div class="mt-8 flex justify-end">
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/git/github-actions/github-actions-cross-repo-workflow-dispatch.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                        <span>edit this tip</span>
+                        <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
                 <!-- Tag Cloud & Inline Share Actions -->
-                <div class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mr-1 inline-flex items-center gap-1.5 font-mono">
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">#Git</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">#GitHub Actions</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">#CI/CD</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">#DevOps</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">Git</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">GitHub Actions</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">CI/CD</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">DevOps</span>
                     </div>
 
                     <div class="flex items-center gap-2">

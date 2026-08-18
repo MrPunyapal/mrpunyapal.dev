@@ -690,16 +690,23 @@
                         Prevent Navigation Layout Shifts and Flickering in Web Applications
                     </h1>
 
-                    <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
-                        <span class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
-                            <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
-                        </span>
-                        <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                        <time datetime="2026-08-11" class="inline-flex items-center gap-1.5">
-                            <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                            Aug 11, 2026
-                        </time>
+                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                            <span class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
+                                <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
+                            </span>
+                            <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+                            <time datetime="2026-08-11" class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
+                                Aug 11, 2026
+                            </time>
+                        </div>
+
+                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/css/styling/css-prevent-navigation-layout-shift-flicker.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                            <span>edit this tip</span>
+                            <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -951,14 +958,22 @@ body {
 </div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Key Takeaways</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Reserve scrollbar width on <code>html</code> with <code>scrollbar-gutter: stable</code> and clip horizontal overflow on <code>body</code> with <code>overflow-x: clip</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Clip View Transition root pseudo-elements with <code>overflow: hidden</code> to prevent split-second scrollbar popping.</span></li><li class="leading-relaxed"><span class="align-middle">Reserve space for bold tab labels using <code>display: inline-grid</code> and <code>content: attr(data-text)</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Pre-render all theme toggle states in static HTML to eliminate DOM injection flicker.</span></li><li class="leading-relaxed"><span class="align-middle">Adjust text opacity rather than hex colors to preserve font glyph vector calculations.</span></li></ul>
                 </div>
 
+                <!-- Bottom Inline Edit Link -->
+                <div class="mt-8 flex justify-end">
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/css/styling/css-prevent-navigation-layout-shift-flicker.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                        <span>edit this tip</span>
+                        <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
                 <!-- Tag Cloud & Inline Share Actions -->
-                <div class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mr-1 inline-flex items-center gap-1.5 font-mono">
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">#CSS</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">#Layout Shift</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">#Frontend</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">#Performance</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">CSS</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Layout Shift</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Frontend</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Performance</span>
                     </div>
 
                     <div class="flex items-center gap-2">
