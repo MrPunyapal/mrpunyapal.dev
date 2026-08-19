@@ -343,11 +343,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
             </aside>
 
             <!-- Tips Grid Section (Signature 2-Column Crosshair Grid) -->
-            <section class="border-b border-slate-200 dark:border-slate-800 relative">
-                <div class="tech-line-h bottom-[-1px]"></div>
-                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
-                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
-
+            <section class="relative">
                 <div id="tips-container" class="grid grid-cols-1 md:grid-cols-2 border-l border-slate-200 dark:border-slate-800">
                     ${tipsCardsHtml}
                 </div>
