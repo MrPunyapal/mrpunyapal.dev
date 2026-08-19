@@ -314,9 +314,9 @@ export const criticalGridStyles = `
         }
 
         .dark .tech-marker {
-            background-color: #0f172a;
-            border-color: #334155;
-            box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.5);
+            background-color: #121212;
+            border-color: #3f3f46;
+            box-shadow: 0 0 0 2px #0a0a0a;
         }
 
         /* Infinite Grid Lines */
@@ -332,7 +332,7 @@ export const criticalGridStyles = `
         }
 
         .dark .tech-line-h {
-            background-color: #1e293b;
+            background-color: #262626;
         }
 
         .tech-line-v-top {
@@ -346,7 +346,7 @@ export const criticalGridStyles = `
         }
 
         .dark .tech-line-v-top {
-            background-color: #1e293b;
+            background-color: #262626;
         }
 
         .tech-line-v-bottom {
@@ -360,7 +360,7 @@ export const criticalGridStyles = `
         }
 
         .dark .tech-line-v-bottom {
-            background: linear-gradient(to bottom, #1e293b, transparent);
+            background: linear-gradient(to bottom, #262626, transparent);
         }
 
         /* Official GitHub Light Theme */
