@@ -283,7 +283,8 @@ export function toggleTheme(eventOrElement) {
         { transform: `translate(${dropX}px, ${dropTargetY}px) rotate(90deg)`, opacity: 1 }
     ], {
         duration: dropDuration,
-        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        fill: 'forwards'
     });
 
     silkLine.animate([
@@ -291,11 +292,13 @@ export function toggleTheme(eventOrElement) {
         { height: `${Math.max(0, dropTargetY - dropStartY)}px`, opacity: 1 }
     ], {
         duration: dropDuration,
-        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        fill: 'forwards'
     });
 
     dropAnim.onfinish = () => {
         silkLine.style.display = 'none';
+        crawler.style.transform = `translate(${dropX}px, ${dropTargetY}px) rotate(90deg)`;
 
         // Step 2: Walk to start edge (top for Dark Mode, bottom for Light Mode) & perform 180deg U-turn
         const prepDuration = 1000;
@@ -348,10 +351,16 @@ export function toggleTheme(eventOrElement) {
 
         const prepAnim = crawler.animate(prepKeyframes, {
             duration: prepDuration,
-            easing: 'ease-in-out'
+            easing: 'ease-in-out',
+            fill: 'forwards'
         });
 
         prepAnim.onfinish = () => {
+            const finalPrepTransform = isMobile 
+                ? `translate(${mobileTargetX}px, ${curtainStartY}px) rotate(${baseAngle}deg)` 
+                : `translate(${curtainStartX}px, ${verticalY}px) rotate(${baseAngle}deg)`;
+            crawler.style.transform = finalPrepTransform;
+
             // Step 3: Perform View Transition curtain sweep across the page (Horizontal for Desktop, Vertical for Mobile)
             const sweepDuration = 2500;
             const sweepKeyframes = [];
@@ -394,7 +403,8 @@ export function toggleTheme(eventOrElement) {
 
                 const spiderAnim = crawler.animate(sweepKeyframes, {
                     duration: sweepDuration,
-                    easing: easing
+                    easing: easing,
+                    fill: 'forwards'
                 });
 
                 const curtainAnim = document.documentElement.animate(
@@ -410,6 +420,10 @@ export function toggleTheme(eventOrElement) {
                 curtainAnim.currentTime = 0;
 
                 spiderAnim.onfinish = () => {
+                    const finalSweepTransform = isMobile 
+                        ? `translate(${mobileTargetX}px, ${endY}px) rotate(${baseAngle}deg)` 
+                        : `translate(${endX}px, ${verticalY}px) rotate(${baseAngle}deg)`;
+                    crawler.style.transform = finalSweepTransform;
                     crawler.classList.remove('active-spider');
                     document.documentElement.classList.remove('spider-crawling');
                     restoreElephpant();
