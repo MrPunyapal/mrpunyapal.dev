@@ -193,7 +193,9 @@ renderer.code = function({ text, lang }) {
 </div>`;
 };
 
-renderer.heading = function({ text, depth }) {
+renderer.heading = function(token) {
+    const text = token.tokens ? this.parser.parseInline(token.tokens) : (token.text || '');
+    const depth = token.depth || 1;
     const headingLevel = Math.min(depth + 1, 6);
     const classes = {
         2: 'text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight',
@@ -204,11 +206,14 @@ renderer.heading = function({ text, depth }) {
     return `<h${headingLevel} class="${classes}">${text}</h${headingLevel}>`;
 };
 
-renderer.blockquote = function({ text }) {
+renderer.blockquote = function(token) {
+    const raw = token.tokens ? this.parser.parse(token.tokens) : (token.text || '');
+    const text = raw.replace(/^<p class="[^"]*">([\s\S]*)<\/p>\s*$/i, '$1');
     return `<blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">${text}</blockquote>`;
 };
 
-renderer.paragraph = function({ text }) {
+renderer.paragraph = function(token) {
+    const text = token.tokens ? this.parser.parseInline(token.tokens) : (token.text || '');
     return `<p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">${text}</p>`;
 };
 
