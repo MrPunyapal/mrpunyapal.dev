@@ -13,6 +13,81 @@
     <lastBuildDate>Wed, 19 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title><![CDATA[Use Database Expressions for Dynamic Migration Defaults]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-migration-default-expression</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-migration-default-expression</guid>
+      <description><![CDATA[Pass an Expression instance to Laravel's migration default() method to define raw SQL functions and dynamic defaults directly in your database schema. When d...]]></description>
+      <content:encoded><![CDATA[<blockquote>Pass an Expression instance to Laravel's migration default() method to define raw SQL functions and dynamic defaults directly in your database schema.</blockquote>
+<p>When defining default column values in Laravel migrations, passing a scalar value (such as a string or integer) instructs Laravel's schema grammar to quote and escape the value as a literal string in the generated `DEFAULT '...'` clause.</p>
+<p>However, many database engines support native SQL functions and dynamic expressions for column defaults, such as `CURRENT_TIMESTAMP`, `(UUID())`, `gen_random_uuid()`, or `(JSON_ARRAY())`.</p>
+<p>Passing an `Illuminate\Database\Query\Expression` object to `default()` instructs Laravel to emit the raw SQL expression directly into the column definition without surrounding quotes.</p>
+<h3>Literal Defaults vs Expression Defaults</h3>
+<p>Passing a literal string quotes the value, which fails when attempting to use SQL functions:</p>
+<pre><code class="language-php">use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Query\Expression;
+
+Schema::create(&#039;orders&#039;, function (Blueprint $table) {
+    $table-&gt;id();
+
+    // Standard static defaults (strings, integers, booleans)
+    $table-&gt;string(&#039;status&#039;)-&gt;default(&#039;pending&#039;);
+    $table-&gt;unsignedInteger(&#039;retry_count&#039;)-&gt;default(0);
+    $table-&gt;boolean(&#039;is_active&#039;)-&gt;default(true);
+
+    // ❌ Literal string for SQL function: Generates DEFAULT &#039;CURRENT_TIMESTAMP&#039;
+    $table-&gt;timestamp(&#039;placed_at&#039;)-&gt;default(&#039;CURRENT_TIMESTAMP&#039;);
+
+    // ✅ Expression object: Generates DEFAULT CURRENT_TIMESTAMP
+    $table-&gt;timestamp(&#039;placed_at&#039;)-&gt;default(new Expression(&#039;CURRENT_TIMESTAMP&#039;));
+
+    // ✅ Database-generated UUID default: Generates DEFAULT (UUID())
+    $table-&gt;uuid(&#039;order_uuid&#039;)-&gt;default(new Expression(&#039;(UUID())&#039;));
+
+    // ✅ Empty JSON array default in MySQL: Generates DEFAULT (JSON_ARRAY())
+    $table-&gt;json(&#039;metadata&#039;)-&gt;default(new Expression(&#039;(JSON_ARRAY())&#039;));
+});</code></pre>
+<h3>Common Use Cases</h3>
+<h4>1. Native Database UUID Generation</h4>
+<p>When you want the database engine itself to generate unique identifiers automatically upon insert, database expressions provide schema-level generation:</p>
+<pre><code class="language-php">// PostgreSQL UUID default
+$table-&gt;uuid(&#039;id&#039;)-&gt;primary()-&gt;default(new Expression(&#039;gen_random_uuid()&#039;));
+
+// MySQL 8.0+ UUID default (wrapped in parentheses per MySQL syntax)
+$table-&gt;uuid(&#039;tracking_id&#039;)-&gt;default(new Expression(&#039;(UUID())&#039;));</code></pre>
+<h4>2. JSON Column Defaults</h4>
+<p>Database systems require valid JSON literals or constructor functions for default values:</p>
+<pre><code class="language-php">// MySQL 8.0+ JSON default function
+$table-&gt;json(&#039;tags&#039;)-&gt;default(new Expression(&#039;(JSON_ARRAY())&#039;));
+$table-&gt;json(&#039;settings&#039;)-&gt;default(new Expression(&#039;(JSON_OBJECT())&#039;));
+
+// PostgreSQL JSONB default literal
+$table-&gt;jsonb(&#039;preferences&#039;)-&gt;default(new Expression(&quot;&#039;{}&#039;::jsonb&quot;));</code></pre>
+<h4>3. Temporal Expressions and Offsets</h4>
+<p>You can define dynamic date and time expressions directly in the schema definition:</p>
+<pre><code class="language-php">// MySQL: Default to current timestamp
+$table-&gt;timestamp(&#039;created_at&#039;)-&gt;default(new Expression(&#039;CURRENT_TIMESTAMP&#039;));
+
+// PostgreSQL: Default to current date
+$table-&gt;date(&#039;active_since&#039;)-&gt;default(new Expression(&#039;CURRENT_DATE&#039;));</code></pre>
+<h3>Practical Takeaways</h3>
+<ul>
+  <li>Passing a string to <code>default()</code> treats it as a literal value and wraps it in quotes in the generated SQL DDL.</li>
+  <li>Passing an <code>Expression</code> instance (or <code>new Expression(&#39;...&#39;)</code>) tells the schema grammar to render raw SQL without quoting.</li>
+  <li>Database functions in MySQL 8.0+ often require enclosing parentheses (for example, <code>(UUID())</code> or <code>(JSON_ARRAY())</code>) to be recognized as valid default expressions.</li>
+  <li>Keeps default value generation at the database engine level, ensuring consistency even when records are inserted outside of Eloquent.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Database]]></category>
+      <category><![CDATA[Migrations]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[SQL]]></category>
+    </item>
+    <item>
       <title><![CDATA[Laravel 13.25 Reverses Merge Order in Request::all()]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-request-all-input-file-precedence</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-request-all-input-file-precedence</guid>

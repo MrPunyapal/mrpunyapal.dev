@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UI Controls Are Not Security Layers: Always Enforce Policies - Laravel &amp; PHP Tip | Punyapal Shah</title>
+    <title>Use Database Expressions for Dynamic Migration Defaults - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,25 +17,25 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers. Hiding an edit button using @...">
+    <meta name="description" content="Pass an Expression instance to Laravel&#039;s migration default() method to define raw SQL functions and dynamic defaults directly in your database schema. When d...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-security-ui-vs-policy-enforcement">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-migration-default-expression">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-security-ui-vs-policy-enforcement">
-    <meta property="og:title" content="UI Controls Are Not Security Layers: Always Enforce Policies - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers. Hiding an edit button using @...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-security-ui-vs-policy-enforcement.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-security-ui-vs-policy-enforcement.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-migration-default-expression">
+    <meta property="og:title" content="Use Database Expressions for Dynamic Migration Defaults - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Pass an Expression instance to Laravel&#039;s migration default() method to define raw SQL functions and dynamic defaults directly in your database schema. When d...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-migration-default-expression.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-migration-default-expression.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="UI Controls Are Not Security Layers: Always Enforce Policies - Punyapal Shah">
+    <meta property="og:image:alt" content="Use Database Expressions for Dynamic Migration Defaults - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-06-30">
+    <meta property="article:published_time" content="2026-08-19">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="Laravel">
 
@@ -43,11 +43,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-security-ui-vs-policy-enforcement">
-    <meta name="twitter:title" content="UI Controls Are Not Security Layers: Always Enforce Policies - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers. Hiding an edit button using @...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-security-ui-vs-policy-enforcement.png">
-    <meta name="twitter:image:alt" content="UI Controls Are Not Security Layers: Always Enforce Policies - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-migration-default-expression">
+    <meta name="twitter:title" content="Use Database Expressions for Dynamic Migration Defaults - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Pass an Expression instance to Laravel&#039;s migration default() method to define raw SQL functions and dynamic defaults directly in your database schema. When d...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-migration-default-expression.png">
+    <meta name="twitter:image:alt" content="Use Database Expressions for Dynamic Migration Defaults - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -56,13 +56,13 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-security-ui-vs-policy-enforcement#article",
-                "headline": "UI Controls Are Not Security Layers: Always Enforce Policies",
-                "description": "Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers. Hiding an edit button using @...",
-                "datePublished": "2026-06-30",
+                "@id": "https://mrpunyapal.dev/tips/laravel-migration-default-expression#article",
+                "headline": "Use Database Expressions for Dynamic Migration Defaults",
+                "description": "Pass an Expression instance to Laravel's migration default() method to define raw SQL functions and dynamic defaults directly in your database schema. When d...",
+                "datePublished": "2026-08-19",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-security-ui-vs-policy-enforcement",
-                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Security, Policies",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-migration-default-expression",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Migrations, Database, Eloquent, SQL",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -91,8 +91,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "UI Controls Are Not Security Layers: Always Enforce Policies",
-                        "item": "https://mrpunyapal.dev/tips/laravel-security-ui-vs-policy-enforcement"
+                        "name": "Use Database Expressions for Dynamic Migration Defaults",
+                        "item": "https://mrpunyapal.dev/tips/laravel-migration-default-expression"
                     }
                 ]
             }
@@ -685,7 +685,7 @@
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Validation
+                                Database
                             </span>
                         
                     </div>
@@ -694,7 +694,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        UI Controls Are Not Security Layers: Always Enforce Policies
+                        Use Database Expressions for Dynamic Migration Defaults
                     </h1>
 
                     <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -704,13 +704,13 @@
                                 <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                             </span>
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                            <time datetime="2026-06-30" class="inline-flex items-center gap-1.5">
+                            <time datetime="2026-08-19" class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                                Jun 30, 2026
+                                Aug 19, 2026
                             </time>
                         </div>
 
-                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/validation/laravel-security-ui-vs-policy-enforcement.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/database/laravel-migration-default-expression.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
                             <span>edit this tip</span>
                             <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                         </a>
@@ -723,7 +723,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Hiding an edit button using @can or v-if only modifies visual presentation. Attackers can submit HTTP requests directly to backend endpoints. Always enforce authorization logic in backend controllers or form requests.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Pass an Expression instance to Laravel&#39;s migration default() method to define raw SQL functions and dynamic defaults directly in your database schema.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When defining default column values in Laravel migrations, passing a scalar value (such as a string or integer) instructs Laravel&#39;s schema grammar to quote and escape the value as a literal string in the generated <code>DEFAULT &#39;...&#39;</code> clause.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">However, many database engines support native SQL functions and dynamic expressions for column defaults, such as <code>CURRENT_TIMESTAMP</code>, <code>(UUID())</code>, <code>gen_random_uuid()</code>, or <code>(JSON_ARRAY())</code>.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Passing an <code>Illuminate\Database\Query\Expression</code> object to <code>default()</code> instructs Laravel to emit the raw SQL expression directly into the column definition without surrounding quotes.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Literal Defaults vs Expression Defaults</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Passing a literal string quotes the value, which fails when attempting to use SQL functions:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -731,40 +731,142 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Blade UI (Visual convenience only)
-@can(&#039;update&#039;, $post)
-    &lt;a href=&quot;{{ route(&#039;posts.edit&#039;, $post) }}&quot;&gt;Edit Post&lt;/a&gt;
-@endcan
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Query\Expression;
 
-// Controller Action (Actual Security Layer)
-public function update(UpdatePostRequest $request, Post $post)
-{
-    $this-&gt;authorize(&#039;update&#039;, $post); // Enforces server-side security
-    $post-&gt;update($request-&gt;validated());
-}" aria-label="Copy code to clipboard">
+Schema::create(&#039;orders&#039;, function (Blueprint $table) {
+    $table-&gt;id();
+
+    // Standard static defaults (strings, integers, booleans)
+    $table-&gt;string(&#039;status&#039;)-&gt;default(&#039;pending&#039;);
+    $table-&gt;unsignedInteger(&#039;retry_count&#039;)-&gt;default(0);
+    $table-&gt;boolean(&#039;is_active&#039;)-&gt;default(true);
+
+    // ❌ Literal string for SQL function: Generates DEFAULT &#039;CURRENT_TIMESTAMP&#039;
+    $table-&gt;timestamp(&#039;placed_at&#039;)-&gt;default(&#039;CURRENT_TIMESTAMP&#039;);
+
+    // ✅ Expression object: Generates DEFAULT CURRENT_TIMESTAMP
+    $table-&gt;timestamp(&#039;placed_at&#039;)-&gt;default(new Expression(&#039;CURRENT_TIMESTAMP&#039;));
+
+    // ✅ Database-generated UUID default: Generates DEFAULT (UUID())
+    $table-&gt;uuid(&#039;order_uuid&#039;)-&gt;default(new Expression(&#039;(UUID())&#039;));
+
+    // ✅ Empty JSON array default in MySQL: Generates DEFAULT (JSON_ARRAY())
+    $table-&gt;json(&#039;metadata&#039;)-&gt;default(new Expression(&#039;(JSON_ARRAY())&#039;));
+});" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Blade UI (Visual convenience only)</span>
-@<span class="hljs-title function_ invoke__">can</span>(<span class="hljs-string">&#x27;update&#x27;</span>, <span class="hljs-variable">$post</span>)
-    &lt;a href=<span class="hljs-string">&quot;{{ route(&#x27;posts.edit&#x27;, <span class="hljs-subst">$post</span>) }}&quot;</span>&gt;Edit Post&lt;/a&gt;
-@endcan
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Migrations</span>\<span class="hljs-title">Migration</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Schema</span>\<span class="hljs-title">Blueprint</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Schema</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Query</span>\<span class="hljs-title">Expression</span>;
 
-<span class="hljs-comment">// Controller Action (Actual Security Layer)</span>
-<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span>(<span class="hljs-params">UpdatePostRequest <span class="hljs-variable">$request</span>, Post <span class="hljs-variable">$post</span></span>)
-</span>{
-    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">authorize</span>(<span class="hljs-string">&#x27;update&#x27;</span>, <span class="hljs-variable">$post</span>); <span class="hljs-comment">// Enforces server-side security</span>
-    <span class="hljs-variable">$post</span>-&gt;<span class="hljs-title function_ invoke__">update</span>(<span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">validated</span>());
-}</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">UI directive checks like @can are user-experience features, not security guards</span></li><li class="leading-relaxed"><span class="align-middle">Always enforce $this-&gt;authorize() or Policy checks in backend controllers</span></li><li class="leading-relaxed"><span class="align-middle">Prevents unauthorized HTTP request payload tampering</span></li></ul>
+<span class="hljs-title class_">Schema</span>::<span class="hljs-title function_ invoke__">create</span>(<span class="hljs-string">&#x27;orders&#x27;</span>, function (Blueprint <span class="hljs-variable">$table</span>) {
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">id</span>();
+
+    <span class="hljs-comment">// Standard static defaults (strings, integers, booleans)</span>
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-keyword">string</span>(<span class="hljs-string">&#x27;status&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-string">&#x27;pending&#x27;</span>);
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">unsignedInteger</span>(<span class="hljs-string">&#x27;retry_count&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-number">0</span>);
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-keyword">boolean</span>(<span class="hljs-string">&#x27;is_active&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-literal">true</span>);
+
+    <span class="hljs-comment">// ❌ Literal string for SQL function: Generates DEFAULT &#x27;CURRENT_TIMESTAMP&#x27;</span>
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">timestamp</span>(<span class="hljs-string">&#x27;placed_at&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-string">&#x27;CURRENT_TIMESTAMP&#x27;</span>);
+
+    <span class="hljs-comment">// ✅ Expression object: Generates DEFAULT CURRENT_TIMESTAMP</span>
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">timestamp</span>(<span class="hljs-string">&#x27;placed_at&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&#x27;CURRENT_TIMESTAMP&#x27;</span>));
+
+    <span class="hljs-comment">// ✅ Database-generated UUID default: Generates DEFAULT (UUID())</span>
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">uuid</span>(<span class="hljs-string">&#x27;order_uuid&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&#x27;(UUID())&#x27;</span>));
+
+    <span class="hljs-comment">// ✅ Empty JSON array default in MySQL: Generates DEFAULT (JSON_ARRAY())</span>
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">json</span>(<span class="hljs-string">&#x27;metadata&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&#x27;(JSON_ARRAY())&#x27;</span>));
+});</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Common Use Cases</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">1. Native Database UUID Generation</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When you want the database engine itself to generate unique identifiers automatically upon insert, database expressions provide schema-level generation:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// PostgreSQL UUID default
+$table-&gt;uuid(&#039;id&#039;)-&gt;primary()-&gt;default(new Expression(&#039;gen_random_uuid()&#039;));
+
+// MySQL 8.0+ UUID default (wrapped in parentheses per MySQL syntax)
+$table-&gt;uuid(&#039;tracking_id&#039;)-&gt;default(new Expression(&#039;(UUID())&#039;));" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// PostgreSQL UUID default</span>
+<span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">uuid</span>(<span class="hljs-string">&#x27;id&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">primary</span>()-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&#x27;gen_random_uuid()&#x27;</span>));
+
+<span class="hljs-comment">// MySQL 8.0+ UUID default (wrapped in parentheses per MySQL syntax)</span>
+<span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">uuid</span>(<span class="hljs-string">&#x27;tracking_id&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&#x27;(UUID())&#x27;</span>));</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">2. JSON Column Defaults</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Database systems require valid JSON literals or constructor functions for default values:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// MySQL 8.0+ JSON default function
+$table-&gt;json(&#039;tags&#039;)-&gt;default(new Expression(&#039;(JSON_ARRAY())&#039;));
+$table-&gt;json(&#039;settings&#039;)-&gt;default(new Expression(&#039;(JSON_OBJECT())&#039;));
+
+// PostgreSQL JSONB default literal
+$table-&gt;jsonb(&#039;preferences&#039;)-&gt;default(new Expression(&quot;&#039;{}&#039;::jsonb&quot;));" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// MySQL 8.0+ JSON default function</span>
+<span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">json</span>(<span class="hljs-string">&#x27;tags&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&#x27;(JSON_ARRAY())&#x27;</span>));
+<span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">json</span>(<span class="hljs-string">&#x27;settings&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&#x27;(JSON_OBJECT())&#x27;</span>));
+
+<span class="hljs-comment">// PostgreSQL JSONB default literal</span>
+<span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">jsonb</span>(<span class="hljs-string">&#x27;preferences&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&quot;&#x27;{}&#x27;::jsonb&quot;</span>));</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">3. Temporal Expressions and Offsets</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">You can define dynamic date and time expressions directly in the schema definition:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// MySQL: Default to current timestamp
+$table-&gt;timestamp(&#039;created_at&#039;)-&gt;default(new Expression(&#039;CURRENT_TIMESTAMP&#039;));
+
+// PostgreSQL: Default to current date
+$table-&gt;date(&#039;active_since&#039;)-&gt;default(new Expression(&#039;CURRENT_DATE&#039;));" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// MySQL: Default to current timestamp</span>
+<span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">timestamp</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&#x27;CURRENT_TIMESTAMP&#x27;</span>));
+
+<span class="hljs-comment">// PostgreSQL: Default to current date</span>
+<span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&#x27;active_since&#x27;</span>)-&gt;<span class="hljs-keyword">default</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Expression</span>(<span class="hljs-string">&#x27;CURRENT_DATE&#x27;</span>));</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Practical Takeaways</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Passing a string to <code>default()</code> treats it as a literal value and wraps it in quotes in the generated SQL DDL.</span></li><li class="leading-relaxed"><span class="align-middle">Passing an <code>Expression</code> instance (or <code>new Expression(&#39;...&#39;)</code>) tells the schema grammar to render raw SQL without quoting.</span></li><li class="leading-relaxed"><span class="align-middle">Database functions in MySQL 8.0+ often require enclosing parentheses (for example, <code>(UUID())</code> or <code>(JSON_ARRAY())</code>) to be recognized as valid default expressions.</span></li><li class="leading-relaxed"><span class="align-middle">Keeps default value generation at the database engine level, ensuring consistency even when records are inserted outside of Eloquent.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->
                 <div class="mt-8 flex justify-end">
-                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/validation/laravel-security-ui-vs-policy-enforcement.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/database/laravel-migration-default-expression.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
                         <span>edit this tip</span>
                         <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                     </a>
@@ -777,11 +879,11 @@ public function update(UpdatePostRequest $request, Post $post)
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Security</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Policies</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Migrations</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Database</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">SQL</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=UI%20Controls%20Are%20Not%20Security%20Layers%3A%20Always%20Enforce%20Policies%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-security-ui-vs-policy-enforcement" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Use%20Database%20Expressions%20for%20Dynamic%20Migration%20Defaults%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-migration-default-expression" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -798,28 +900,6 @@ public function update(UpdatePostRequest $request, Post $post)
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-migration-default-expression" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
-                    <!-- Corner Crosshairs -->
-                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Use Database Expressions for Dynamic Migration Defaults
-                    </h3>
-                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </span>
-                </a>
                 <a href="/tips/laravel-request-all-input-file-precedence" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -837,6 +917,28 @@ public function update(UpdatePostRequest $request, Post $post)
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
                         Laravel 13.25 Reverses Merge Order in Request::all()
+                    </h3>
+                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                <a href="/tips/laravel-cache-short-lived-tokens-over-database" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                    <!-- Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
+                        Use Cache for Short-Lived Tokens Instead of Database Columns
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -862,7 +964,7 @@ public function update(UpdatePostRequest $request, Post $post)
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["laravel-migration-default-expression","laravel-request-all-input-file-precedence","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["laravel-request-all-input-file-precedence","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {
