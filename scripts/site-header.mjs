@@ -51,9 +51,25 @@ export function renderSiteHeader(activePage = 'home') {
     const githubRepo = isTips ? 'https://github.com/MrPunyapal/tips' : 'https://github.com/MrPunyapal/mrpunyapal.dev';
     const githubLabel = isTips ? 'View Tips repository on GitHub' : 'View source code on GitHub';
 
-    const themeBtnInnerHtml = `<span class="theme-spider-btn-icon flex items-center justify-center text-slate-900 dark:text-white transition-colors duration-200" aria-hidden="true">
-        <svg viewBox="0 0 100 100" width="16" height="16" fill="currentColor" aria-hidden="true" style="display:block;">
-            <g stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    const themeBtnInnerHtml = `<span class="theme-icon-container flex items-center justify-center" aria-hidden="true">
+        <svg class="theme-sun-icon hidden dark:block text-amber-400" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+            <line x1="12" y1="2" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
+            <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
+            <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
+        </svg>
+        <svg class="theme-moon-icon block dark:hidden text-indigo-500" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </span>
+    <span class="theme-spider-badge absolute -top-1 -right-1 pointer-events-none flex items-center justify-center z-10 text-slate-800 dark:text-slate-200" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="13.5" height="13.5" fill="currentColor" aria-hidden="true" style="display:block;">
+            <g stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M 44 60 Q 28 80 16 78" />
                 <path d="M 56 60 Q 72 80 84 78" />
                 <path d="M 42 53 Q 20 63 10 53" />
@@ -65,24 +81,8 @@ export function renderSiteHeader(activePage = 'home') {
             </g>
             <ellipse cx="50" cy="35" rx="14" ry="17" />
             <circle cx="50" cy="57" r="10" />
-            <path d="M 44 65 Q 47 73 47 77" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" />
-            <path d="M 56 65 Q 53 73 53 77" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" />
-        </svg>
-    </span>
-    <span class="theme-mode-badge absolute -top-1 -right-1 pointer-events-none flex items-center justify-center z-10" aria-hidden="true">
-        <svg class="hidden dark:block" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5" fill="#f59e0b"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <svg class="block dark:hidden" viewBox="0 0 24 24" width="10" height="10" fill="#6366f1" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            <path d="M 44 65 Q 47 73 47 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+            <path d="M 56 65 Q 53 73 53 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
         </svg>
     </span>`;
 
