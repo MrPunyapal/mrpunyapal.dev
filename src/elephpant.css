@@ -79,7 +79,48 @@
 .elephpant-container.party-mode svg {
   animation:
     partyGlow 0.5s ease-in-out infinite alternate,
-    partyBounce 1s ease-in-out infinite;
+    partyBounce 0.9s ease-in-out infinite;
+}
+
+/* Party Mode Dancing Elements */
+.elephpant-container.party-mode .elephpant-body {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: partyDanceBody 0.45s infinite cubic-bezier(0.36, 0.07, 0.19, 0.97) !important;
+}
+
+.elephpant-container.party-mode .elephpant-legs .elephpant-leg {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: partyDanceLeg 0.45s infinite ease-in-out !important;
+}
+
+.elephpant-container.party-mode .elephpant-leg.back-left,
+.elephpant-container.party-mode .elephpant-leg.front-right {
+  animation-delay: 0s !important;
+}
+
+.elephpant-container.party-mode .elephpant-leg.front-left,
+.elephpant-container.party-mode .elephpant-leg.back-right {
+  animation-delay: 0.225s !important;
+}
+
+.elephpant-container.party-mode .elephpant-trunk {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: partyDanceTrunk 0.45s infinite ease-in-out !important;
+}
+
+.elephpant-container.party-mode .elephpant-ear {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: partyDanceEar 0.45s infinite ease-in-out !important;
+}
+
+.elephpant-container.party-mode .elephpant-tail-unified {
+  transform-box: fill-box;
+  transform-origin: top left;
+  animation: partyDanceTail 0.3s infinite ease-in-out !important;
 }
 
 .elephpant-container.turbo-mode {
@@ -304,30 +345,26 @@
   }
 }
 
-/* Enhanced leg animations with more realistic running motion */
+/* Enhanced leg animations with realistic pachyderm trot */
 .elephpant-legs .elephpant-leg {
-  animation: legRun 1.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  transform-box: fill-box;
   transform-origin: top center;
+  animation: legRun 0.95s infinite ease-in-out;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
 }
 
-/* Walk cycle: Back Left -> Front Left -> Back Right -> Front Right */
-/* Order in DOM: FL(1), FR(2), BL(3), BR(4) */
-.elephpant-legs .elephpant-leg:nth-child(3) {
-  /* Back Left */
+/* 4-beat pachyderm trot gait cycle */
+.elephpant-leg.back-left {
   animation-delay: 0s;
 }
-.elephpant-legs .elephpant-leg:nth-child(1) {
-  /* Front Left */
-  animation-delay: 0.3s;
+.elephpant-leg.front-left {
+  animation-delay: 0.24s;
 }
-.elephpant-legs .elephpant-leg:nth-child(4) {
-  /* Back Right */
-  animation-delay: 0.6s;
+.elephpant-leg.back-right {
+  animation-delay: 0.48s;
 }
-.elephpant-legs .elephpant-leg:nth-child(2) {
-  /* Front Right */
-  animation-delay: 0.9s;
+.elephpant-leg.front-right {
+  animation-delay: 0.72s;
 }
 
 @keyframes legRun {
@@ -335,131 +372,57 @@
     transform: rotate(0deg) translateY(0);
   }
   25% {
-    transform: rotate(12deg) translateY(-4px);
+    transform: rotate(14deg) translateY(-3px);
   } /* Lift forward */
   50% {
     transform: rotate(0deg) translateY(0);
-  } /* Plant */
+  } /* Plant foot */
   75% {
-    transform: rotate(-8deg) translateY(0);
-  } /* Push back */
+    transform: rotate(-10deg) translateY(0);
+  } /* Push backward */
   100% {
     transform: rotate(0deg) translateY(0);
   }
 }
 
-/* Enhanced tail animation with more dynamic movement and inertia */
+/* Enhanced unified tail animation with natural sway */
 .elephpant-tail-unified {
-  animation:
-    tailSway 2.7s infinite cubic-bezier(0.4, 0, 0.6, 1),
-    tailInertia 0.9s infinite ease-in-out;
-  transform-origin: 300px 200px;
+  transform-box: fill-box;
+  transform-origin: top left;
+  animation: tailSway 2.2s infinite ease-in-out;
 }
 
 @keyframes tailSway {
   0% {
-    transform: rotate(0deg) scale(1);
-  }
-  20% {
-    transform: rotate(18deg) scale(1.02);
-  }
-  40% {
-    transform: rotate(-5deg) scale(0.98);
-  }
-  60% {
-    transform: rotate(22deg) scale(1.03);
-  }
-  80% {
-    transform: rotate(-8deg) scale(0.97);
-  }
-  100% {
-    transform: rotate(0deg) scale(1);
-  }
-}
-
-@keyframes tailInertia {
-  0%,
-  100% {
-    transform: translateX(0) translateY(0);
+    transform: rotate(0deg);
   }
   25% {
-    transform: translateX(-2px) translateY(1px);
+    transform: rotate(16deg) scale(1.02);
   }
   50% {
-    transform: translateX(1px) translateY(-1px);
+    transform: rotate(-6deg) scale(0.98);
   }
   75% {
-    transform: translateX(2px) translateY(1px);
+    transform: rotate(20deg) scale(1.03);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 
-/* Enhanced body bounce with more realistic physics */
+/* Steady body with subtle pachyderm trot stride (removes erratic dancing/wobble) */
 .elephpant-body {
-  animation:
-    bodyBounce 0.9s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    bodyTexture 8s infinite ease-in-out,
-    bodyMomentum 1.8s infinite ease-in-out,
-    heartbeat 4.5s infinite ease-in-out;
+  transform-box: fill-box;
+  transform-origin: center center;
+  animation: bodyTrot 0.95s infinite ease-in-out;
 }
 
-@keyframes bodyBounce {
-  0% {
-    transform: translateY(0) scaleY(1) translateX(0);
-  }
-  30% {
-    transform: translateY(-6px) scaleY(0.98) translateX(-1px);
-  }
-  60% {
-    transform: translateY(-2px) scaleY(1.01) translateX(1px);
-  }
-  100% {
-    transform: translateY(0) scaleY(1) translateX(0);
-  }
-}
-
-@keyframes bodyMomentum {
-  0%,
-  100% {
-    transform: translateX(0) rotate(0deg);
-  }
-  25% {
-    transform: translateX(-1px) rotate(-0.5deg);
+@keyframes bodyTrot {
+  0%, 100% {
+    transform: translateY(0);
   }
   50% {
-    transform: translateX(0) rotate(0deg);
-  }
-  75% {
-    transform: translateX(1px) rotate(0.5deg);
-  }
-}
-
-@keyframes bodyTexture {
-  0%,
-  100% {
-    filter: brightness(1) saturate(1);
-  }
-  50% {
-    filter: brightness(1.05) saturate(1.1);
-  }
-}
-
-@keyframes heartbeat {
-  0%,
-  50%,
-  100% {
-    transform: scale(1);
-  }
-  5% {
-    transform: scale(1.008);
-  }
-  10% {
-    transform: scale(1);
-  }
-  15% {
-    transform: scale(1.005);
-  }
-  20% {
-    transform: scale(1);
+    transform: translateY(-2px);
   }
 }
 
@@ -1079,13 +1042,67 @@
     transform: translateY(0) rotate(0deg);
   }
   25% {
-    transform: translateY(-10px) rotate(5deg);
+    transform: translateY(-8px) rotate(4deg);
   }
   50% {
-    transform: translateY(-20px) rotate(0deg);
+    transform: translateY(-16px) rotate(0deg);
   }
   75% {
-    transform: translateY(-10px) rotate(-5deg);
+    transform: translateY(-8px) rotate(-4deg);
+  }
+}
+
+@keyframes partyDanceBody {
+  0%, 100% {
+    transform: translateY(0) scale(1, 1) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-6px) scale(0.96, 1.04) rotate(2.5deg);
+  }
+  50% {
+    transform: translateY(0) scale(1.04, 0.96) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-6px) scale(0.96, 1.04) rotate(-2.5deg);
+  }
+}
+
+@keyframes partyDanceLeg {
+  0%, 100% {
+    transform: rotate(-10deg) translateY(0);
+  }
+  50% {
+    transform: rotate(14deg) translateY(-5px);
+  }
+}
+
+@keyframes partyDanceTrunk {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(16deg);
+  }
+  75% {
+    transform: rotate(-16deg);
+  }
+}
+
+@keyframes partyDanceEar {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-16deg) scale(1.06);
+  }
+}
+
+@keyframes partyDanceTail {
+  0%, 100% {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: rotate(28deg);
   }
 }
 
