@@ -80,6 +80,220 @@ $request-&gt;file(&#039;profile.name&#039;);
       <category><![CDATA[Files]]></category>
     </item>
     <item>
+      <title><![CDATA[Build Polished Static Documentation Sites from Markdown with DocSmith]]></title>
+      <link>https://mrpunyapal.dev/tips/php-docsmith-static-documentation-generator</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-docsmith-static-documentation-generator</guid>
+      <description><![CDATA[DocSmith is a lightweight PHP tool that compiles Markdown directories into responsive, searchable, SEO-friendly static documentation websites with zero front...]]></description>
+      <content:encoded><![CDATA[<blockquote>DocSmith is a lightweight PHP tool that compiles Markdown directories into responsive, searchable, SEO-friendly static documentation websites with zero frontend configuration.</blockquote>
+<p>Writing technical documentation in Markdown is straightforward, but transforming those files into a searchable, responsive website often introduces complex JavaScript static site generators, node build pipelines, or heavy CMS platforms.</p>
+<p>`mrpunyapal/docsmith` is a native PHP library and standalone CLI tool that compiles a directory of Markdown files directly into clean static HTML pages with built-in dark mode, dual-theme syntax highlighting, search, and AI-ready exports.</p>
+<p>You can explore a live example of a site generated with DocSmith at [mrpunyapal.github.io/docsmith](https://mrpunyapal.github.io/docsmith/).</p>
+<h3>How DocSmith Works</h3>
+<p>DocSmith follows a straightforward static compilation pipeline:</p>
+<pre><code class="language-text">Markdown Files (docs/)
+          ↓
+DocSmith Engine
+├── Frontmatter parsing and document discovery
+├── League CommonMark (GFM) + Phiki syntax highlighting
+├── Navigation tree generation and custom ordering
+└── Search index, sitemap, and LLM text generation
+          ↓
+Static HTML Documentation Site (dist/)</code></pre>
+<ol>
+  <li><strong>Source Discovery</strong>: Scans your documentation directory and parses YAML frontmatter metadata.</li>
+  <li><strong>Markdown Rendering</strong>: Converts Markdown through League CommonMark with GitHub-flavored Markdown extensions.</li>
+  <li><strong>Syntax Highlighting</strong>: Renders server-side code syntax highlighting using Phiki with GitHub Light and Dark themes.</li>
+  <li><strong>Site Assembly</strong>: Injects navigation, table of contents, search overlays, and responsive mobile drawers.</li>
+  <li><strong>Asset &amp; Metadata Publishing</strong>: Emits static assets, <code>search-index.json</code>, <code>sitemap.xml</code>, <code>llms.txt</code>, and <code>.nojekyll</code>.</li>
+</ol>
+<h3>Installation and Quick Start</h3>
+<p>DocSmith requires **PHP 8.3 or newer** and Composer:</p>
+<pre><code class="language-bash">composer require --dev mrpunyapal/docsmith</code></pre>
+<h4>1. Build via CLI</h4>
+<p>DocSmith ships with a standalone binary at `vendor/bin/docsmith`:</p>
+<pre><code class="language-bash">vendor/bin/docsmith build --source=md --output=docs --title=&quot;Package Docs&quot;</code></pre>
+<h4>2. Build via PHP API</h4>
+<p>You can also run builds directly within PHP build scripts using the static entry point or fluent builder:</p>
+<pre><code class="language-php">use Docsmith\Docsmith;
+
+Docsmith::make()
+    -&gt;source(__DIR__ . &#039;/md&#039;)
+    -&gt;output(__DIR__ . &#039;/dist&#039;)
+    -&gt;title(&#039;Acme Cache Docs&#039;)
+    -&gt;description(&#039;High-performance caching library for PHP.&#039;)
+    -&gt;accentColor(&#039;#ff2d20&#039;)
+    -&gt;accentColorDark(&#039;#ff6b61&#039;)
+    -&gt;siteUrl(&#039;https://acme.github.io/cache&#039;)
+    -&gt;repositoryUrl(&#039;https://github.com/acme/cache&#039;)
+    -&gt;rightSidebar()
+    -&gt;build();</code></pre>
+<h3>Organizing Markdown Files</h3>
+<p>DocSmith maps your Markdown files directly to clean static URLs:</p>
+<pre><code class="language-text">md/
+├── index.md                    →  docs/index.html
+├── installation.md             →  docs/installation/index.html
+├── configuration.md            →  docs/configuration/index.html
+└── usage/
+    ├── basics.md               →  docs/usage/basics/index.html
+    └── advanced.md             →  docs/usage/advanced/index.html</code></pre>
+<p>If your source directory does not contain an `index.md`, DocSmith automatically generates a clean landing page listing all available documentation sections.</p>
+<h4>Frontmatter Options</h4>
+<p>Each Markdown file can include YAML frontmatter to control page metadata and navigation:</p>
+<pre><code class="language-markdown">---
+title: Advanced Configuration
+description: Fine-tune caching drivers, timeouts, and memory limits.
+sidebar_label: Configuration
+order: 3
+hidden: false
+---
+
+# Advanced Configuration</code></pre>
+<ul>
+  <li><code>title</code>: Page title displayed in browser tabs and navigation.</li>
+  <li><code>description</code>: Meta description used for SEO and search snippets.</li>
+  <li><code>sidebar_label</code>: Shorter label displayed in the sidebar menu.</li>
+  <li><code>order</code>: Numeric sort priority.</li>
+  <li><code>hidden</code>: When set to <code>true</code>, the page is rendered to HTML but omitted from the sidebar, search index, and previous/next pagination.</li>
+</ul>
+<h3>Customizing Sidebar Navigation Order</h3>
+<p>By default, pages appear in alphabetical or frontmatter-defined order. You can set an explicit sequence using `navigationOrder()`:</p>
+<pre><code class="language-php">Docsmith::make()
+    -&gt;source(__DIR__ . &#039;/md&#039;)
+    -&gt;output(__DIR__ . &#039;/dist&#039;)
+    -&gt;navigationOrder([
+        &#039;Introduction&#039;,
+        &#039;Installation&#039;,
+        &#039;Configuration&#039;,
+        &#039;Basic Usage&#039;,
+        &#039;Advanced Usage&#039;,
+    ])
+    -&gt;build();</code></pre>
+<p>Entries can match page titles, `sidebar_label` properties, or relative Markdown paths. Unlisted pages retain their natural position after ordered items.</p>
+<h3>Polished Reading Experience</h3>
+<p>DocSmith generates standalone, zero-dependency HTML with built-in UX features:</p>
+<h4>1. Dual-Theme Syntax Highlighting</h4>
+<p>Code blocks are highlighted during static compilation using **Phiki**, emitting token styles for both light and dark backgrounds without client-side highlighting libraries:</p>
+<pre><code class="language-php">use Acme\Cache\Repository;
+
+$cache = new Repository(driver: &#039;redis&#039;);
+$cache-&gt;set(&#039;user:42&#039;, $user, ttl: 3600);</code></pre>
+<p>Each code block includes a 1-click clipboard copy button.</p>
+<h4>2. Light and Dark Theme Modes</h4>
+<p>The site includes a theme toggle that automatically detects system color scheme preferences (`prefers-color-scheme`) and persists manual user selections via `localStorage`.</p>
+<h4>3. Responsive Navigation & Tables</h4>
+<ul>
+  <li>Mobile layouts include a sliding navigation drawer with touch backdrop support.</li>
+  <li>Wide Markdown tables are automatically wrapped in <code>&lt;div class=&quot;table-scroll&quot;&gt;</code> containers to prevent viewport overflow on smaller screens.</li>
+  <li>An optional right sidebar (<code>-&gt;rightSidebar()</code>) extracts page headings into an active Table of Contents.</li>
+</ul>
+<h3>Built-In Search & Modal Overlay</h3>
+<p>DocSmith builds a static `search-index.json` during compilation containing page titles, descriptions, section headings, and content text:</p>
+<ul>
+  <li><strong>Sidebar Filter</strong>: Instantly filters sidebar navigation links as you type.</li>
+  <li><strong>Global Search Overlay</strong>: Press <code>Cmd+K</code> (macOS) or <code>Ctrl+K</code> (Windows/Linux) or click the search bar to launch a modal search dialog with full content matching.</li>
+</ul>
+<h3>Multi-Version Documentation</h3>
+<p>For libraries maintaining multiple major releases, DocSmith provides multi-version builds with a header version switcher:</p>
+<pre><code class="language-php">Docsmith::make()
+    -&gt;source(__DIR__ . &#039;/md&#039;)
+    -&gt;output(__DIR__ . &#039;/dist&#039;)
+    -&gt;versions([
+        &#039;v1&#039; =&gt; [&#039;label&#039; =&gt; &#039;v1.x&#039;, &#039;source&#039; =&gt; __DIR__ . &#039;/md/v1&#039;, &#039;default&#039; =&gt; true],
+        &#039;v2&#039; =&gt; [&#039;label&#039; =&gt; &#039;v2.x&#039;, &#039;source&#039; =&gt; __DIR__ . &#039;/md/v2&#039;],
+    ])
+    -&gt;build();</code></pre>
+<ul>
+  <li>The default version outputs directly to the root (<code>/installation/index.html</code>).</li>
+  <li>Secondary versions output to versioned subpaths (<code>/v2/installation/index.html</code>).</li>
+  <li>A version switcher dropdown is automatically rendered in the header navigation.</li>
+</ul>
+<h3>AI-Ready Documentation Exports</h3>
+<p>DocSmith automatically exports documentation in formats structured for LLMs, coding agents, and automated workflows:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Format and Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>llms.txt</code></td>
+<td>Standard directory index per the <a href="https://llmstxt.org/">llms.txt</a> specification with absolute URLs and summaries.</td>
+</tr>
+<tr>
+<td><code>llms-full.txt</code></td>
+<td>Concatenated plain-text export of the entire documentation site.</td>
+</tr>
+<tr>
+<td><code>export/docs.md</code></td>
+<td>Single unified Markdown file containing all pages and metadata.</td>
+</tr>
+</tbody></table>
+<p>AI exports are enabled by default and can be toggled using `->llmsExport(false)`.</p>
+<h3>Open Graph Social Cards</h3>
+<p>DocSmith can generate Open Graph preview images using Playwright and capturist:</p>
+<pre><code class="language-php">Docsmith::make()
+    -&gt;source(__DIR__ . &#039;/md&#039;)
+    -&gt;output(__DIR__ . &#039;/docs&#039;)
+    -&gt;siteUrl(&#039;https://acme.github.io/cache&#039;)
+    -&gt;ogGeneratedAll() // Generates docs/og/cover.png
+    -&gt;build();</code></pre>
+<p>You can generate a single shared social cover or individual cards per page (`->ogGeneratedPerPage()`), with support for custom HTML card templates (`->ogTemplate(...)`).</p>
+<h3>Real-World Example: Package Documentation Script</h3>
+<p>Here is a complete `build-docs.php` script for a PHP package:</p>
+<pre><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+require __DIR__ . &#039;/vendor/autoload.php&#039;;
+
+use Docsmith\Docsmith;
+
+Docsmith::make()
+    -&gt;source(__DIR__ . &#039;/docs&#039;)
+    -&gt;output(__DIR__ . &#039;/dist&#039;)
+    -&gt;title(&#039;AuditLogger PHP&#039;)
+    -&gt;description(&#039;Immutable audit logging and security tracing for PHP applications.&#039;)
+    -&gt;accentColor(&#039;#0284c7&#039;)
+    -&gt;accentColorDark(&#039;#38bdf8&#039;)
+    -&gt;siteUrl(&#039;https://acme.github.io/audit-logger&#039;)
+    -&gt;repositoryUrl(&#039;https://github.com/acme/audit-logger&#039;)
+    -&gt;editBranch(&#039;main&#039;)
+    -&gt;rightSidebar()
+    -&gt;navigationOrder([
+        &#039;Getting Started&#039;,
+        &#039;Installation&#039;,
+        &#039;Configuration&#039;,
+        &#039;Logging Events&#039;,
+        &#039;Custom Formatters&#039;,
+    ])
+    -&gt;build();
+
+echo &quot;Documentation built successfully in dist/\n&quot;;</code></pre>
+<p>Add a Composer shortcut to `composer.json`:</p>
+<pre><code class="language-json">&quot;scripts&quot;: {
+    &quot;docs:build&quot;: &quot;@php build-docs.php&quot;
+}</code></pre>
+<h3>Summary</h3>
+<p>DocSmith provides a focused, native PHP solution for turning Markdown into production-ready static documentation sites:</p>
+<ul>
+  <li><strong>Zero Node Runtime</strong>: Compiles complete HTML sites natively in PHP without requiring node modules or complex JavaScript build tools.</li>
+  <li><strong>Built-in Essentials</strong>: Includes dark mode, Phiki syntax highlighting, search index generation, mobile navigation, and LLM text exports out of the box.</li>
+  <li><strong>Hosting Agnostic</strong>: Generates clean static folders compatible with GitHub Pages (<code>.nojekyll</code>), Cloudflare Pages, Netlify, and Vercel.</li>
+  <li><strong>Live Documentation</strong>: View a live production example at <a href="https://mrpunyapal.github.io/docsmith/">mrpunyapal.github.io/docsmith</a>.</li>
+  <li><strong>GitHub Repository</strong>: <a href="https://github.com/MrPunyapal/docsmith">MrPunyapal/DocSmith</a></li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Tooling]]></category>
+      <category><![CDATA[DocSmith]]></category>
+      <category><![CDATA[Documentation]]></category>
+      <category><![CDATA[Open Source]]></category>
+      <category><![CDATA[Markdown]]></category>
+    </item>
+    <item>
       <title><![CDATA[Smooth Cross-Document View Transitions with @view-transition and Shared Elements]]></title>
       <link>https://mrpunyapal.dev/tips/css-view-transition-cross-document-shared-elements</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/css-view-transition-cross-document-shared-elements</guid>
