@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trigger a GitHub Actions Workflow Across Repositories - Git Tip | Punyapal Shah</title>
+    <title>Reusable API Configuration with Laravel HTTP Client Macros - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,37 +17,37 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository. GitHub Actions workflows are scoped to a...">
+    <meta name="description" content="Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application. When int...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-http-client-macros">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch">
-    <meta property="og:title" content="Trigger a GitHub Actions Workflow Across Repositories - Git Tip | Punyapal Shah">
-    <meta property="og:description" content="Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository. GitHub Actions workflows are scoped to a...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/github-actions-cross-repo-workflow-dispatch.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/github-actions-cross-repo-workflow-dispatch.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-http-client-macros">
+    <meta property="og:title" content="Reusable API Configuration with Laravel HTTP Client Macros - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application. When int...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-http-client-macros.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-http-client-macros.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Trigger a GitHub Actions Workflow Across Repositories - Punyapal Shah">
+    <meta property="og:image:alt" content="Reusable API Configuration with Laravel HTTP Client Macros - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-08-11">
+    <meta property="article:published_time" content="2026-08-20">
     <meta property="article:author" content="https://x.com/MrPunyapal">
-    <meta property="article:section" content="Git">
+    <meta property="article:section" content="Laravel">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch">
-    <meta name="twitter:title" content="Trigger a GitHub Actions Workflow Across Repositories - Git Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository. GitHub Actions workflows are scoped to a...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/github-actions-cross-repo-workflow-dispatch.png">
-    <meta name="twitter:image:alt" content="Trigger a GitHub Actions Workflow Across Repositories - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-http-client-macros">
+    <meta name="twitter:title" content="Reusable API Configuration with Laravel HTTP Client Macros - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application. When int...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-http-client-macros.png">
+    <meta name="twitter:image:alt" content="Reusable API Configuration with Laravel HTTP Client Macros - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -56,13 +56,13 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch#article",
-                "headline": "Trigger a GitHub Actions Workflow Across Repositories",
-                "description": "Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository. GitHub Actions workflows are scoped to a...",
-                "datePublished": "2026-08-11",
+                "@id": "https://mrpunyapal.dev/tips/laravel-http-client-macros#article",
+                "headline": "Reusable API Configuration with Laravel HTTP Client Macros",
+                "description": "Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application. When int...",
+                "datePublished": "2026-08-20",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch",
-                "keywords": "Git, PHP tips, Laravel tips, Git, GitHub Actions, CI/CD, DevOps",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-http-client-macros",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, HTTP Client, API, Architecture",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -71,7 +71,7 @@
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "articleSection": "Git"
+                "articleSection": "Laravel"
             },
             {
                 "@type": "BreadcrumbList",
@@ -91,8 +91,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Trigger a GitHub Actions Workflow Across Repositories",
-                        "item": "https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch"
+                        "name": "Reusable API Configuration with Laravel HTTP Client Macros",
+                        "item": "https://mrpunyapal.dev/tips/laravel-http-client-macros"
                     }
                 ]
             }
@@ -679,13 +679,13 @@
                             </svg>
                             <span>Random</span>
                         </button>
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-900/60">
-                            Git
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border-red-100 dark:border-red-900/60">
+                            Laravel
                         </span>
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                GitHub Actions
+                                HTTP &amp; API
                             </span>
                         
                     </div>
@@ -694,7 +694,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Trigger a GitHub Actions Workflow Across Repositories
+                        Reusable API Configuration with Laravel HTTP Client Macros
                     </h1>
 
                     <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -704,13 +704,13 @@
                                 <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                             </span>
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                            <time datetime="2026-08-11" class="inline-flex items-center gap-1.5">
+                            <time datetime="2026-08-20" class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                                Aug 11, 2026
+                                Aug 20, 2026
                             </time>
                         </div>
 
-                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/git/github-actions/github-actions-cross-repo-workflow-dispatch.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/http-api/laravel-http-client-macros.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
                             <span>edit this tip</span>
                             <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                         </a>
@@ -723,7 +723,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use <code>repository_dispatch</code> to trigger a workflow in a target repository when commits or PRs land in a source repository.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">GitHub Actions workflows are scoped to a single repository by default. To run a workflow in another repository after merging a PR or pushing a commit, use GitHub&#39;s <code>repository_dispatch</code> API endpoint.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Configure the Target Repository Listener</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Add <code>repository_dispatch</code> to the <code>on</code> block in the target repository workflow file:</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When interacting with external APIs in a Laravel application, developers often repeat identical HTTP setup (such as API keys, base URLs, timeouts, and JSON headers) across multiple controllers, jobs, and service classes:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -731,47 +731,37 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="# .github/workflows/build.yml (target repo)
-name: Build Site
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Repeated across multiple call sites
+$customer = Http::withToken(config(&#039;services.payments.secret&#039;))
+    -&gt;baseUrl(config(&#039;services.payments.url&#039;))
+    -&gt;acceptJson()
+    -&gt;timeout(10)
+    -&gt;get(&quot;/customers/{$customerId}&quot;);
 
-on:
-  push:
-    branches:
-      - main
-  repository_dispatch:
-    types: [content-updated]
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo &quot;Build triggered&quot;" aria-label="Copy code to clipboard">
+$refund = Http::withToken(config(&#039;services.payments.secret&#039;))
+    -&gt;baseUrl(config(&#039;services.payments.url&#039;))
+    -&gt;acceptJson()
+    -&gt;timeout(10)
+    -&gt;post(&#039;/refunds&#039;, [&#039;payment_id&#039; =&gt; $paymentId]);" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-yaml"><span class="hljs-comment"># .github/workflows/build.yml (target repo)</span>
-<span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">Site</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Repeated across multiple call sites</span>
+<span class="hljs-variable">$customer</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withToken</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.secret&#x27;</span>))
+    -&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.url&#x27;</span>))
+    -&gt;<span class="hljs-title function_ invoke__">acceptJson</span>()
+    -&gt;<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">10</span>)
+    -&gt;<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&quot;/customers/<span class="hljs-subst">{$customerId}</span>&quot;</span>);
 
-<span class="hljs-attr">on:</span>
-  <span class="hljs-attr">push:</span>
-    <span class="hljs-attr">branches:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">main</span>
-  <span class="hljs-attr">repository_dispatch:</span>
-    <span class="hljs-attr">types:</span> [<span class="hljs-string">content-updated</span>]
-  <span class="hljs-attr">workflow_dispatch:</span>
-
-<span class="hljs-attr">jobs:</span>
-  <span class="hljs-attr">build:</span>
-    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
-    <span class="hljs-attr">steps:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v4</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">run:</span> <span class="hljs-string">echo</span> <span class="hljs-string">&quot;Build triggered&quot;</span></code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Configure the Source Repository Dispatcher</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In the source repository, add a workflow step that sends a POST request to GitHub&#39;s dispatches endpoint:</p>
+<span class="hljs-variable">$refund</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withToken</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.secret&#x27;</span>))
+    -&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.url&#x27;</span>))
+    -&gt;<span class="hljs-title function_ invoke__">acceptJson</span>()
+    -&gt;<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">10</span>)
+    -&gt;<span class="hljs-title function_ invoke__">post</span>(<span class="hljs-string">&#x27;/refunds&#x27;</span>, [<span class="hljs-string">&#x27;payment_id&#x27;</span> =&gt; <span class="hljs-variable">$paymentId</span>]);</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Repeating this configuration creates duplication, increases the risk of inconsistent headers or timeouts, and makes updating credentials or URLs tedious.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s HTTP client supports macros via <code>Http::macro()</code>, allowing you to define your service setup once and reuse the pre-configured client anywhere.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Define Once, Reuse Anywhere</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">An HTTP macro does not need to execute the request immediately. Instead, the macro can return a configured <code>PendingRequest</code> instance that callers can continue chaining with standard methods (<code>get()</code>, <code>post()</code>, <code>withHeaders()</code>, etc.):</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -779,68 +769,119 @@ jobs:
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="# .github/workflows/notify.yml (source repo)
-name: Notify Target Repo
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Http;
 
-on:
-  push:
-    branches:
-      - main
+// Define the API setup once (e.g. in AppServiceProvider)
+Http::macro(&#039;payments&#039;, function () {
+    return Http::withToken(config(&#039;services.payments.secret&#039;))
+        -&gt;baseUrl(config(&#039;services.payments.url&#039;))
+        -&gt;acceptJson()
+        -&gt;timeout(10);
+});
 
-jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger target build
-        env:
-          TOKEN: ${{ secrets.WEBSITE_DISPATCH_TOKEN }}
-        run: |
-          if [ -z &quot;$TOKEN&quot; ]; then
-            echo &quot;WEBSITE_DISPATCH_TOKEN is not set&quot;
-            exit 1
-          fi
-          curl --fail --show-error -X POST \
-            -H &quot;Authorization: Bearer $TOKEN&quot; \
-            -H &quot;Accept: application/vnd.github.v3+json&quot; \
-            https://api.github.com/repos/OWNER/TARGET-REPO/dispatches \
-            -d &#039;{&quot;event_type&quot;: &quot;content-updated&quot;}&#039;" aria-label="Copy code to clipboard">
+// Reuse the configured client anywhere in your application
+$customer = Http::payments()
+    -&gt;get(&quot;/customers/{$customerId}&quot;);
+
+$refund = Http::payments()
+    -&gt;post(&#039;/refunds&#039;, [
+        &#039;payment_id&#039; =&gt; $paymentId,
+        &#039;amount&#039;     =&gt; 4900,
+    ]);" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-yaml"><span class="hljs-comment"># .github/workflows/notify.yml (source repo)</span>
-<span class="hljs-attr">name:</span> <span class="hljs-string">Notify</span> <span class="hljs-string">Target</span> <span class="hljs-string">Repo</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Http</span>;
 
-<span class="hljs-attr">on:</span>
-  <span class="hljs-attr">push:</span>
-    <span class="hljs-attr">branches:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">main</span>
+<span class="hljs-comment">// Define the API setup once (e.g. in AppServiceProvider)</span>
+<span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;payments&#x27;</span>, function () {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withToken</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.secret&#x27;</span>))
+        -&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.url&#x27;</span>))
+        -&gt;<span class="hljs-title function_ invoke__">acceptJson</span>()
+        -&gt;<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">10</span>);
+});
 
-<span class="hljs-attr">jobs:</span>
-  <span class="hljs-attr">notify:</span>
-    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
-    <span class="hljs-attr">steps:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Trigger</span> <span class="hljs-string">target</span> <span class="hljs-string">build</span>
-        <span class="hljs-attr">env:</span>
-          <span class="hljs-attr">TOKEN:</span> <span class="hljs-string">${{</span> <span class="hljs-string">secrets.WEBSITE_DISPATCH_TOKEN</span> <span class="hljs-string">}}</span>
-        <span class="hljs-attr">run:</span> <span class="hljs-string">|
-          if [ -z &quot;$TOKEN&quot; ]; then
-            echo &quot;WEBSITE_DISPATCH_TOKEN is not set&quot;
-            exit 1
-          fi
-          curl --fail --show-error -X POST \
-            -H &quot;Authorization: Bearer $TOKEN&quot; \
-            -H &quot;Accept: application/vnd.github.v3+json&quot; \
-            https://api.github.com/repos/OWNER/TARGET-REPO/dispatches \
-            -d &#x27;{&quot;event_type&quot;: &quot;content-updated&quot;}&#x27;</span></code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">3. Create and Assign the Access Token</h3><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Create a Fine-Grained Personal Access Token under GitHub Developer Settings.</span></li><li class="leading-relaxed"><span class="align-middle">Select the target repository under <strong>Repository Access</strong>.</span></li><li class="leading-relaxed"><span class="align-middle">Set <strong>Contents</strong> permission to <strong>Read and write</strong>.</span></li><li class="leading-relaxed"><span class="align-middle">Save the token as <code>WEBSITE_DISPATCH_TOKEN</code> in the source repository&#39;s Actions Secrets.</span></li></ol><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Considerations</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">The <code>event_type</code> string in the payload must match the array value under <code>types: [...]</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Always pass <code>--fail --show-error</code> to <code>curl</code> so HTTP errors exit with code 1 instead of failing silently.</span></li><li class="leading-relaxed"><span class="align-middle">Fine-grained tokens limit dispatch access strictly to the targeted repository.</span></li></ul>
+<span class="hljs-comment">// Reuse the configured client anywhere in your application</span>
+<span class="hljs-variable">$customer</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">payments</span>()
+    -&gt;<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&quot;/customers/<span class="hljs-subst">{$customerId}</span>&quot;</span>);
+
+<span class="hljs-variable">$refund</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">payments</span>()
+    -&gt;<span class="hljs-title function_ invoke__">post</span>(<span class="hljs-string">&#x27;/refunds&#x27;</span>, [
+        <span class="hljs-string">&#x27;payment_id&#x27;</span> =&gt; <span class="hljs-variable">$paymentId</span>,
+        <span class="hljs-string">&#x27;amount&#x27;</span>     =&gt; <span class="hljs-number">4900</span>,
+    ]);</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Centralized Registration in Service Providers</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Register your HTTP macros centrally within your application&#39;s service provider boot lifecycle:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Providers;
+
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Http::macro(&#039;payments&#039;, fn () =&gt; Http::withToken(config(&#039;services.payments.secret&#039;))
+            -&gt;baseUrl(config(&#039;services.payments.url&#039;))
+            -&gt;acceptJson()
+            -&gt;timeout(10));
+
+        Http::macro(&#039;shipping&#039;, fn () =&gt; Http::withHeaders([
+            &#039;X-API-Key&#039; =&gt; config(&#039;services.shipping.key&#039;),
+            &#039;X-Account-ID&#039; =&gt; config(&#039;services.shipping.account_id&#039;),
+        ])-&gt;baseUrl(config(&#039;services.shipping.url&#039;))-&gt;acceptJson());
+    }
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Providers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Http</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppServiceProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boot</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
+    </span>{
+        <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;payments&#x27;</span>, fn () =&gt; <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withToken</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.secret&#x27;</span>))
+            -&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.url&#x27;</span>))
+            -&gt;<span class="hljs-title function_ invoke__">acceptJson</span>()
+            -&gt;<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">10</span>));
+
+        <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;shipping&#x27;</span>, fn () =&gt; <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withHeaders</span>([
+            <span class="hljs-string">&#x27;X-API-Key&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.shipping.key&#x27;</span>),
+            <span class="hljs-string">&#x27;X-Account-ID&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.shipping.account_id&#x27;</span>),
+        ])-&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.shipping.url&#x27;</span>))-&gt;<span class="hljs-title function_ invoke__">acceptJson</span>());
+    }
+}</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">What Belongs in the Macro vs Call Site</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To keep macros clean and flexible, separate shared infrastructure configuration from request-specific logic:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Inside the Macro</strong>:
+- Base URL (<code>baseUrl()</code>)
+- Authentication tokens or API keys (<code>withToken()</code>, <code>withBasicAuth()</code>)
+- Shared headers (<code>acceptJson()</code>, custom organizational headers)
+- Default connection timeouts or retry policies (<code>timeout()</code>, <code>retry()</code>)
+</span></li><li class="leading-relaxed"><span class="align-middle"><strong>At the Call Site</strong>:
+- Specific endpoints and path parameters (<code>/orders/{id}</code>)
+- HTTP verbs (<code>get()</code>, <code>post()</code>, <code>put()</code>, <code>delete()</code>)
+- Request payloads and query parameters
+- Contextual error handling (<code>throw()</code>, <code>onError()</code>)</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Macros vs Dedicated Service Classes</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">HTTP macros provide a lightweight abstraction that avoids boilerplate for small to medium third-party integrations. However, consider the scope of your integration:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Use HTTP Macros when</strong>: You need consistent credentials, base URLs, and headers across a few endpoints, and standard HTTP response methods (<code>$response-&gt;json()</code>, <code>$response-&gt;successful()</code>) are sufficient.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Use Dedicated Service Classes when</strong>: The integration requires complex domain logic, custom data transfer objects (DTOs), webhook verification, or multi-step token exchange workflows.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <code>Http::macro()</code> to centralize repeated API connection setup into named, fluent methods.</span></li><li class="leading-relaxed"><span class="align-middle">Return the configured <code>Http</code> instance from the macro closure so calling code retains full HTTP client chaining capabilities.</span></li><li class="leading-relaxed"><span class="align-middle">Keep credentials and URLs in <code>config/services.php</code> rather than hardcoding them inside the macro.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->
                 <div class="mt-8 flex justify-end">
-                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/git/github-actions/github-actions-cross-repo-workflow-dispatch.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/http-api/laravel-http-client-macros.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
                         <span>edit this tip</span>
                         <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                     </a>
@@ -853,11 +894,11 @@ jobs:
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">Git</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">GitHub Actions</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">CI/CD</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60">DevOps</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">HTTP Client</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">API</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Architecture</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Trigger%20a%20GitHub%20Actions%20Workflow%20Across%20Repositories%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Fgithub-actions-cross-repo-workflow-dispatch" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Reusable%20API%20Configuration%20with%20Laravel%20HTTP%20Client%20Macros%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-http-client-macros" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -874,7 +915,7 @@ jobs:
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-queue-forward-reroute-infrastructure" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-migration-default-expression" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -890,13 +931,13 @@ jobs:
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Centralized Queue Routing with Queue::forward() in Laravel 13.26
+                        Use Database Expressions for Dynamic Migration Defaults
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </span>
                 </a>
-                <a href="/tips/laravel-agent-detector-pao" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                <a href="/tips/laravel-request-all-input-file-precedence" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                         <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -912,7 +953,7 @@ jobs:
                     </div>
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Detect AI Agents in Laravel with AgentDetector and PAO
+                        Laravel 13.25 Reverses Merge Order in Request::all()
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -938,7 +979,7 @@ jobs:
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {

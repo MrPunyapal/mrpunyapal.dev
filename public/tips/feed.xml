@@ -9,9 +9,109 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Wed, 19 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Thu, 20 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Reusable API Configuration with Laravel HTTP Client Macros]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-http-client-macros</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-http-client-macros</guid>
+      <description><![CDATA[Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application. When int...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application.</blockquote>
+<p>When interacting with external APIs in a Laravel application, developers often repeat identical HTTP setup (such as API keys, base URLs, timeouts, and JSON headers) across multiple controllers, jobs, and service classes:</p>
+<pre><code class="language-php">// Repeated across multiple call sites
+$customer = Http::withToken(config(&#039;services.payments.secret&#039;))
+    -&gt;baseUrl(config(&#039;services.payments.url&#039;))
+    -&gt;acceptJson()
+    -&gt;timeout(10)
+    -&gt;get(&quot;/customers/{$customerId}&quot;);
+
+$refund = Http::withToken(config(&#039;services.payments.secret&#039;))
+    -&gt;baseUrl(config(&#039;services.payments.url&#039;))
+    -&gt;acceptJson()
+    -&gt;timeout(10)
+    -&gt;post(&#039;/refunds&#039;, [&#039;payment_id&#039; =&gt; $paymentId]);</code></pre>
+<p>Repeating this configuration creates duplication, increases the risk of inconsistent headers or timeouts, and makes updating credentials or URLs tedious.</p>
+<p>Laravel's HTTP client supports macros via `Http::macro()`, allowing you to define your service setup once and reuse the pre-configured client anywhere.</p>
+<h3>Define Once, Reuse Anywhere</h3>
+<p>An HTTP macro does not need to execute the request immediately. Instead, the macro can return a configured `PendingRequest` instance that callers can continue chaining with standard methods (`get()`, `post()`, `withHeaders()`, etc.):</p>
+<pre><code class="language-php">use Illuminate\Support\Facades\Http;
+
+// Define the API setup once (e.g. in AppServiceProvider)
+Http::macro(&#039;payments&#039;, function () {
+    return Http::withToken(config(&#039;services.payments.secret&#039;))
+        -&gt;baseUrl(config(&#039;services.payments.url&#039;))
+        -&gt;acceptJson()
+        -&gt;timeout(10);
+});
+
+// Reuse the configured client anywhere in your application
+$customer = Http::payments()
+    -&gt;get(&quot;/customers/{$customerId}&quot;);
+
+$refund = Http::payments()
+    -&gt;post(&#039;/refunds&#039;, [
+        &#039;payment_id&#039; =&gt; $paymentId,
+        &#039;amount&#039;     =&gt; 4900,
+    ]);</code></pre>
+<h3>Centralized Registration in Service Providers</h3>
+<p>Register your HTTP macros centrally within your application's service provider boot lifecycle:</p>
+<pre><code class="language-php">namespace App\Providers;
+
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Http::macro(&#039;payments&#039;, fn () =&gt; Http::withToken(config(&#039;services.payments.secret&#039;))
+            -&gt;baseUrl(config(&#039;services.payments.url&#039;))
+            -&gt;acceptJson()
+            -&gt;timeout(10));
+
+        Http::macro(&#039;shipping&#039;, fn () =&gt; Http::withHeaders([
+            &#039;X-API-Key&#039; =&gt; config(&#039;services.shipping.key&#039;),
+            &#039;X-Account-ID&#039; =&gt; config(&#039;services.shipping.account_id&#039;),
+        ])-&gt;baseUrl(config(&#039;services.shipping.url&#039;))-&gt;acceptJson());
+    }
+}</code></pre>
+<h3>What Belongs in the Macro vs Call Site</h3>
+<p>To keep macros clean and flexible, separate shared infrastructure configuration from request-specific logic:</p>
+<ul>
+  <li><strong>Inside the Macro</strong>:
+- Base URL (<code>baseUrl()</code>)
+- Authentication tokens or API keys (<code>withToken()</code>, <code>withBasicAuth()</code>)
+- Shared headers (<code>acceptJson()</code>, custom organizational headers)
+- Default connection timeouts or retry policies (<code>timeout()</code>, <code>retry()</code>)
+</li>
+  <li><strong>At the Call Site</strong>:
+- Specific endpoints and path parameters (<code>/orders/{id}</code>)
+- HTTP verbs (<code>get()</code>, <code>post()</code>, <code>put()</code>, <code>delete()</code>)
+- Request payloads and query parameters
+- Contextual error handling (<code>throw()</code>, <code>onError()</code>)</li>
+</ul>
+<h3>Macros vs Dedicated Service Classes</h3>
+<p>HTTP macros provide a lightweight abstraction that avoids boilerplate for small to medium third-party integrations. However, consider the scope of your integration:</p>
+<ul>
+  <li><strong>Use HTTP Macros when</strong>: You need consistent credentials, base URLs, and headers across a few endpoints, and standard HTTP response methods (<code>$response-&gt;json()</code>, <code>$response-&gt;successful()</code>) are sufficient.</li>
+  <li><strong>Use Dedicated Service Classes when</strong>: The integration requires complex domain logic, custom data transfer objects (DTOs), webhook verification, or multi-step token exchange workflows.</li>
+</ul>
+<h3>Summary</h3>
+<ul>
+  <li>Use <code>Http::macro()</code> to centralize repeated API connection setup into named, fluent methods.</li>
+  <li>Return the configured <code>Http</code> instance from the macro closure so calling code retains full HTTP client chaining capabilities.</li>
+  <li>Keep credentials and URLs in <code>config/services.php</code> rather than hardcoding them inside the macro.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[HTTP & API]]></category>
+      <category><![CDATA[HTTP Client]]></category>
+      <category><![CDATA[API]]></category>
+      <category><![CDATA[Architecture]]></category>
+    </item>
     <item>
       <title><![CDATA[Use Database Expressions for Dynamic Migration Defaults]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-migration-default-expression</link>
@@ -185,7 +285,7 @@ $request-&gt;file(&#039;profile.name&#039;);
       <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
       <category><![CDATA[Laravel]]></category>
-      <category><![CDATA[HTTP / API]]></category>
+      <category><![CDATA[HTTP & API]]></category>
       <category><![CDATA[HTTP]]></category>
       <category><![CDATA[Request]]></category>
       <category><![CDATA[Files]]></category>
