@@ -411,10 +411,10 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
             function openDrawer() {
                 drawerBackdrop.classList.remove('hidden');
                 drawerPanel.classList.remove('hidden');
-                // Force browser reflow to trigger CSS transition smoothly
-                void drawerPanel.offsetWidth;
-                drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
-                drawerPanel.classList.remove('translate-x-full');
+                requestAnimationFrame(() => {
+                    drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+                    drawerPanel.classList.remove('translate-x-full');
+                });
                 if (toggleFilterBtn) toggleFilterBtn.setAttribute('aria-expanded', 'true');
                 document.documentElement.style.overflow = 'hidden';
                 document.body.style.overflow = 'hidden';

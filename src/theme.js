@@ -449,7 +449,9 @@ export function initTheme() {
         const toggleBtn = e.target.closest('[data-theme-toggle]');
         if (toggleBtn) {
             e.preventDefault();
-            toggleTheme(e);
+            requestAnimationFrame(() => {
+                toggleTheme(toggleBtn);
+            });
         }
     });
 }
