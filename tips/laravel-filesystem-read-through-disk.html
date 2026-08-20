@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a Reusable whereLike Macro for Eloquent Searching - Laravel &amp; PHP Tip | Punyapal Shah</title>
+    <title>Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26 - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,25 +17,25 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...">
+    <meta name="description" content="Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested. Migr...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro">
-    <meta property="og:title" content="Add a Reusable whereLike Macro for Eloquent Searching - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-custom-wherelike-macro.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-custom-wherelike-macro.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk">
+    <meta property="og:title" content="Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26 - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested. Migr...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-filesystem-read-through-disk.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-filesystem-read-through-disk.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Add a Reusable whereLike Macro for Eloquent Searching - Punyapal Shah">
+    <meta property="og:image:alt" content="Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26 - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-05-25">
+    <meta property="article:published_time" content="2026-08-21">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="Laravel">
 
@@ -43,11 +43,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro">
-    <meta name="twitter:title" content="Add a Reusable whereLike Macro for Eloquent Searching - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-custom-wherelike-macro.png">
-    <meta name="twitter:image:alt" content="Add a Reusable whereLike Macro for Eloquent Searching - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk">
+    <meta name="twitter:title" content="Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26 - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested. Migr...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-filesystem-read-through-disk.png">
+    <meta name="twitter:image:alt" content="Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26 - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -56,13 +56,13 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro#article",
-                "headline": "Add a Reusable whereLike Macro for Eloquent Searching",
-                "description": "Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...",
-                "datePublished": "2026-05-25",
+                "@id": "https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk#article",
+                "headline": "Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26",
+                "description": "Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested. Migr...",
+                "datePublished": "2026-08-21",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro",
-                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Eloquent, Macros",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Filesystem, Storage, Architecture, DevOps",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -91,8 +91,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Add a Reusable whereLike Macro for Eloquent Searching",
-                        "item": "https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro"
+                        "name": "Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26",
+                        "item": "https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk"
                     }
                 ]
             }
@@ -685,7 +685,7 @@
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Eloquent
+                                Storage
                             </span>
                         
                     </div>
@@ -694,7 +694,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Add a Reusable whereLike Macro for Eloquent Searching
+                        Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26
                     </h1>
 
                     <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -704,13 +704,13 @@
                                 <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                             </span>
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                            <time datetime="2026-05-25" class="inline-flex items-center gap-1.5">
+                            <time datetime="2026-08-21" class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                                May 25, 2026
+                                Aug 21, 2026
                             </time>
                         </div>
 
-                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/eloquent/laravel-custom-wherelike-macro.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/storage/laravel-filesystem-read-through-disk.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
                             <span>edit this tip</span>
                             <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                         </a>
@@ -723,7 +723,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Searching across multiple string columns usually requires repetitive orWhere chains. Registering a macro in AppServiceProvider provides a clean API for wildcard matching.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Migrating large file storage backends (such as transitioning terabytes of user uploads from an expensive legacy S3 bucket to Cloudflare R2 or MinIO) is traditionally an operational headache. A full upfront migration requires batch copy scripts, handling synchronization delays, and coordinating downtime before updating application disk configurations.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel 13.26 introduces the <code>read-through</code> filesystem driver. It pairs a <strong>primary disk</strong> with a <strong>fallback disk</strong>, allowing applications to serve existing files from the fallback storage while automatically promoting requested files to the primary storage on demand.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How the Read-Through Flow Works</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When an application reads a file through a read-through disk, Laravel resolves the request through a tiered lookup:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -731,26 +731,180 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\User;
-
-// Search across name, email, and bio in a single call
-$users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;], $search)-&gt;get();" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="Read requested
+      ↓
+Check primary disk
+   ↙       ↘
+found     missing
+  ↓          ↓
+serve    read from fallback
+             ↓
+       promote/copy to primary
+             ↓
+           serve" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">Read requested
+      ↓
+Check primary disk
+   ↙       ↘
+found     missing
+  ↓          ↓
+serve    read from fallback
+             ↓
+       promote/copy to primary
+             ↓
+           serve</code></pre>
+</div><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Check Primary</strong>: Laravel checks whether the file exists on the primary disk. If found, it is served immediately.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Fallback Read</strong>: If missing from primary, Laravel reads the file stream from the fallback disk.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Lazy Promotion</strong>: By default, the file is automatically copied/promoted to the primary disk.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Response</strong>: The file content is returned to the application.</span></li></ol><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Subsequent reads for the same path hit the primary disk directly without touching the fallback storage.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Configuration</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Define a <code>read-through</code> disk in <code>config/filesystems.php</code> referencing your primary and fallback disks:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// config/filesystems.php
+&#039;disks&#039; =&gt; [
 
-<span class="hljs-comment">// Search across name, email, and bio in a single call</span>
-<span class="hljs-variable">$users</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">whereLike</span>([<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;email&#x27;</span>, <span class="hljs-string">&#x27;bio&#x27;</span>], <span class="hljs-variable">$search</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Wraps multiple orWhere calls inside a grouped subquery clause</span></li><li class="leading-relaxed"><span class="align-middle">Works with single column strings or arrays of columns</span></li><li class="leading-relaxed"><span class="align-middle">Keeps controller search logic minimal and readable</span></li></ul>
+    &#039;r2&#039; =&gt; [
+        &#039;driver&#039; =&gt; &#039;s3&#039;,
+        &#039;key&#039; =&gt; env(&#039;CLOUDFLARE_R2_KEY&#039;),
+        &#039;secret&#039; =&gt; env(&#039;CLOUDFLARE_R2_SECRET&#039;),
+        &#039;bucket&#039; =&gt; env(&#039;CLOUDFLARE_R2_BUCKET&#039;),
+        &#039;endpoint&#039; =&gt; env(&#039;CLOUDFLARE_R2_ENDPOINT&#039;),
+    ],
+
+    &#039;legacy-s3&#039; =&gt; [
+        &#039;driver&#039; =&gt; &#039;s3&#039;,
+        &#039;key&#039; =&gt; env(&#039;AWS_ACCESS_KEY_ID&#039;),
+        &#039;secret&#039; =&gt; env(&#039;AWS_SECRET_ACCESS_KEY&#039;),
+        &#039;bucket&#039; =&gt; env(&#039;AWS_BUCKET&#039;),
+        &#039;region&#039; =&gt; env(&#039;AWS_DEFAULT_REGION&#039;),
+    ],
+
+    &#039;assets&#039; =&gt; [
+        &#039;driver&#039; =&gt; &#039;read-through&#039;,
+        &#039;primary&#039; =&gt; &#039;r2&#039;,
+        &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
+    ],
+
+]," aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// config/filesystems.php</span>
+<span class="hljs-string">&#x27;disks&#x27;</span> =&gt; [
+
+    <span class="hljs-string">&#x27;r2&#x27;</span> =&gt; [
+        <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;s3&#x27;</span>,
+        <span class="hljs-string">&#x27;key&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_KEY&#x27;</span>),
+        <span class="hljs-string">&#x27;secret&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_SECRET&#x27;</span>),
+        <span class="hljs-string">&#x27;bucket&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_BUCKET&#x27;</span>),
+        <span class="hljs-string">&#x27;endpoint&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_ENDPOINT&#x27;</span>),
+    ],
+
+    <span class="hljs-string">&#x27;legacy-s3&#x27;</span> =&gt; [
+        <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;s3&#x27;</span>,
+        <span class="hljs-string">&#x27;key&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;AWS_ACCESS_KEY_ID&#x27;</span>),
+        <span class="hljs-string">&#x27;secret&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;AWS_SECRET_ACCESS_KEY&#x27;</span>),
+        <span class="hljs-string">&#x27;bucket&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;AWS_BUCKET&#x27;</span>),
+        <span class="hljs-string">&#x27;region&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;AWS_DEFAULT_REGION&#x27;</span>),
+    ],
+
+    <span class="hljs-string">&#x27;assets&#x27;</span> =&gt; [
+        <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;read-through&#x27;</span>,
+        <span class="hljs-string">&#x27;primary&#x27;</span> =&gt; <span class="hljs-string">&#x27;r2&#x27;</span>,
+        <span class="hljs-string">&#x27;fallback&#x27;</span> =&gt; <span class="hljs-string">&#x27;legacy-s3&#x27;</span>,
+    ],
+
+],</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Application code reads and writes through the composite <code>assets</code> disk as usual:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Storage;
+
+// Reads check &#039;r2&#039; first, fall back to &#039;legacy-s3&#039;, and promote to &#039;r2&#039;
+$avatar = Storage::disk(&#039;assets&#039;)-&gt;get(&#039;avatars/user-102.jpg&#039;);" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Storage</span>;
+
+<span class="hljs-comment">// Reads check &#x27;r2&#x27; first, fall back to &#x27;legacy-s3&#x27;, and promote to &#x27;r2&#x27;</span>
+<span class="hljs-variable">$avatar</span> = <span class="hljs-title class_">Storage</span>::<span class="hljs-title function_ invoke__">disk</span>(<span class="hljs-string">&#x27;assets&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&#x27;avatars/user-102.jpg&#x27;</span>);</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Writes, Deletes, and Directory Listings</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The <code>read-through</code> driver is specifically designed for read fallback and lazy promotion. All write and state operations route strictly to the <strong>primary disk</strong>:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Writes (<code>put</code>, <code>writeStream</code>)</strong>: Saved directly to the primary disk. The fallback disk is not modified.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Deletes (<code>delete</code>, <code>deleteDirectory</code>)</strong>: Removed from the primary disk. The fallback disk is untouched.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Directory Listings (<code>files</code>, <code>allFiles</code>, <code>directories</code>)</strong>: Scanned exclusively from the primary disk.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Disabling Promotion with No-Copy Mode</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If you want to read legacy files without writing them to the primary disk, disable automatic promotion using the <code>copy</code> option:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="&#039;assets&#039; =&gt; [
+    &#039;driver&#039; =&gt; &#039;read-through&#039;,
+    &#039;primary&#039; =&gt; &#039;r2&#039;,
+    &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
+    &#039;copy&#039; =&gt; false,
+]," aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-string">&#x27;assets&#x27;</span> =&gt; [
+    <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;read-through&#x27;</span>,
+    <span class="hljs-string">&#x27;primary&#x27;</span> =&gt; <span class="hljs-string">&#x27;r2&#x27;</span>,
+    <span class="hljs-string">&#x27;fallback&#x27;</span> =&gt; <span class="hljs-string">&#x27;legacy-s3&#x27;</span>,
+    <span class="hljs-string">&#x27;copy&#x27;</span> =&gt; <span class="hljs-literal">false</span>,
+],</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This no-copy mode is particularly useful in local development or staging environments where you want to read production files from a shared backup without populating your local disk or incurring write costs.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Handling Promotion Failures</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">By default, if promoting a file to the primary disk fails (e.g. due to network timeouts or temporary permission errors), Laravel swallows the copy error and returns the file from the fallback so the user request does not break.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If you prefer to strictly enforce promotion and surface any write issues immediately, enable <code>throw_on_promotion_failure</code>:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="&#039;assets&#039; =&gt; [
+    &#039;driver&#039; =&gt; &#039;read-through&#039;,
+    &#039;primary&#039; =&gt; &#039;r2&#039;,
+    &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
+    &#039;throw_on_promotion_failure&#039; =&gt; true,
+]," aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-string">&#x27;assets&#x27;</span> =&gt; [
+    <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;read-through&#x27;</span>,
+    <span class="hljs-string">&#x27;primary&#x27;</span> =&gt; <span class="hljs-string">&#x27;r2&#x27;</span>,
+    <span class="hljs-string">&#x27;fallback&#x27;</span> =&gt; <span class="hljs-string">&#x27;legacy-s3&#x27;</span>,
+    <span class="hljs-string">&#x27;throw_on_promotion_failure&#x27;</span> =&gt; <span class="hljs-literal">true</span>,
+],</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Important Considerations</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Lazy vs Bulk Migration</strong>: A read-through disk does not automatically migrate an entire storage bucket in the background. It promotes individual files only when they are accessed.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Unrequested Files</strong>: Seldom-used or archived files that are never requested will remain solely on the fallback disk until accessed or purged.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Independent Credentials</strong>: Both primary and fallback disks must have valid driver configurations and accessible permissions.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use the <code>read-through</code> driver in Laravel 13.26 to pair a primary storage disk with a fallback storage disk.</span></li><li class="leading-relaxed"><span class="align-middle">Reads check the primary disk first, retrieve missing files from the fallback disk, and promote them to primary storage lazily.</span></li><li class="leading-relaxed"><span class="align-middle">Writes, deletes, and directory listings always operate on the primary disk.</span></li><li class="leading-relaxed"><span class="align-middle">Configure <code>copy =&gt; false</code> for read-only fallback, and <code>throw_on_promotion_failure =&gt; true</code> to surface copy errors.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->
                 <div class="mt-8 flex justify-end">
-                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/eloquent/laravel-custom-wherelike-macro.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/storage/laravel-filesystem-read-through-disk.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
                         <span>edit this tip</span>
                         <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                     </a>
@@ -763,11 +917,11 @@ $users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;],
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Macros</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Filesystem</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Storage</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Architecture</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">DevOps</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Add%20a%20Reusable%20whereLike%20Macro%20for%20Eloquent%20Searching%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-custom-wherelike-macro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Lazy%20Storage%20Migration%20with%20Read-Through%20Filesystem%20Disks%20in%20Laravel%2013.26%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-filesystem-read-through-disk" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -784,28 +938,6 @@ $users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;],
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-filesystem-read-through-disk" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
-                    <!-- Corner Crosshairs -->
-                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26
-                    </h3>
-                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </span>
-                </a>
                 <a href="/tips/laravel-http-client-macros" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -823,6 +955,28 @@ $users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;],
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
                         Reusable API Configuration with Laravel HTTP Client Macros
+                    </h3>
+                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                <a href="/tips/laravel-migration-default-expression" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                    <!-- Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
+                        Use Database Expressions for Dynamic Migration Defaults
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -848,7 +1002,7 @@ $users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;],
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {

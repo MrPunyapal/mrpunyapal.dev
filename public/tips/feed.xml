@@ -9,9 +9,117 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Thu, 20 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Fri, 21 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk</guid>
+      <description><![CDATA[Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested. Migr...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested.</blockquote>
+<p>Migrating large file storage backends (such as transitioning terabytes of user uploads from an expensive legacy S3 bucket to Cloudflare R2 or MinIO) is traditionally an operational headache. A full upfront migration requires batch copy scripts, handling synchronization delays, and coordinating downtime before updating application disk configurations.</p>
+<p>Laravel 13.26 introduces the `read-through` filesystem driver. It pairs a **primary disk** with a **fallback disk**, allowing applications to serve existing files from the fallback storage while automatically promoting requested files to the primary storage on demand.</p>
+<h3>How the Read-Through Flow Works</h3>
+<p>When an application reads a file through a read-through disk, Laravel resolves the request through a tiered lookup:</p>
+<pre><code class="language-text">Read requested
+      ↓
+Check primary disk
+   ↙       ↘
+found     missing
+  ↓          ↓
+serve    read from fallback
+             ↓
+       promote/copy to primary
+             ↓
+           serve</code></pre>
+<ol>
+  <li><strong>Check Primary</strong>: Laravel checks whether the file exists on the primary disk. If found, it is served immediately.</li>
+  <li><strong>Fallback Read</strong>: If missing from primary, Laravel reads the file stream from the fallback disk.</li>
+  <li><strong>Lazy Promotion</strong>: By default, the file is automatically copied/promoted to the primary disk.</li>
+  <li><strong>Response</strong>: The file content is returned to the application.</li>
+</ol>
+<p>Subsequent reads for the same path hit the primary disk directly without touching the fallback storage.</p>
+<h3>Configuration</h3>
+<p>Define a `read-through` disk in `config/filesystems.php` referencing your primary and fallback disks:</p>
+<pre><code class="language-php">// config/filesystems.php
+&#039;disks&#039; =&gt; [
+
+    &#039;r2&#039; =&gt; [
+        &#039;driver&#039; =&gt; &#039;s3&#039;,
+        &#039;key&#039; =&gt; env(&#039;CLOUDFLARE_R2_KEY&#039;),
+        &#039;secret&#039; =&gt; env(&#039;CLOUDFLARE_R2_SECRET&#039;),
+        &#039;bucket&#039; =&gt; env(&#039;CLOUDFLARE_R2_BUCKET&#039;),
+        &#039;endpoint&#039; =&gt; env(&#039;CLOUDFLARE_R2_ENDPOINT&#039;),
+    ],
+
+    &#039;legacy-s3&#039; =&gt; [
+        &#039;driver&#039; =&gt; &#039;s3&#039;,
+        &#039;key&#039; =&gt; env(&#039;AWS_ACCESS_KEY_ID&#039;),
+        &#039;secret&#039; =&gt; env(&#039;AWS_SECRET_ACCESS_KEY&#039;),
+        &#039;bucket&#039; =&gt; env(&#039;AWS_BUCKET&#039;),
+        &#039;region&#039; =&gt; env(&#039;AWS_DEFAULT_REGION&#039;),
+    ],
+
+    &#039;assets&#039; =&gt; [
+        &#039;driver&#039; =&gt; &#039;read-through&#039;,
+        &#039;primary&#039; =&gt; &#039;r2&#039;,
+        &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
+    ],
+
+],</code></pre>
+<p>Application code reads and writes through the composite `assets` disk as usual:</p>
+<pre><code class="language-php">use Illuminate\Support\Facades\Storage;
+
+// Reads check &#039;r2&#039; first, fall back to &#039;legacy-s3&#039;, and promote to &#039;r2&#039;
+$avatar = Storage::disk(&#039;assets&#039;)-&gt;get(&#039;avatars/user-102.jpg&#039;);</code></pre>
+<h3>Writes, Deletes, and Directory Listings</h3>
+<p>The `read-through` driver is specifically designed for read fallback and lazy promotion. All write and state operations route strictly to the **primary disk**:</p>
+<ul>
+  <li><strong>Writes (<code>put</code>, <code>writeStream</code>)</strong>: Saved directly to the primary disk. The fallback disk is not modified.</li>
+  <li><strong>Deletes (<code>delete</code>, <code>deleteDirectory</code>)</strong>: Removed from the primary disk. The fallback disk is untouched.</li>
+  <li><strong>Directory Listings (<code>files</code>, <code>allFiles</code>, <code>directories</code>)</strong>: Scanned exclusively from the primary disk.</li>
+</ul>
+<h3>Disabling Promotion with No-Copy Mode</h3>
+<p>If you want to read legacy files without writing them to the primary disk, disable automatic promotion using the `copy` option:</p>
+<pre><code class="language-php">&#039;assets&#039; =&gt; [
+    &#039;driver&#039; =&gt; &#039;read-through&#039;,
+    &#039;primary&#039; =&gt; &#039;r2&#039;,
+    &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
+    &#039;copy&#039; =&gt; false,
+],</code></pre>
+<p>This no-copy mode is particularly useful in local development or staging environments where you want to read production files from a shared backup without populating your local disk or incurring write costs.</p>
+<h3>Handling Promotion Failures</h3>
+<p>By default, if promoting a file to the primary disk fails (e.g. due to network timeouts or temporary permission errors), Laravel swallows the copy error and returns the file from the fallback so the user request does not break.</p>
+<p>If you prefer to strictly enforce promotion and surface any write issues immediately, enable `throw_on_promotion_failure`:</p>
+<pre><code class="language-php">&#039;assets&#039; =&gt; [
+    &#039;driver&#039; =&gt; &#039;read-through&#039;,
+    &#039;primary&#039; =&gt; &#039;r2&#039;,
+    &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
+    &#039;throw_on_promotion_failure&#039; =&gt; true,
+],</code></pre>
+<h3>Important Considerations</h3>
+<ul>
+  <li><strong>Lazy vs Bulk Migration</strong>: A read-through disk does not automatically migrate an entire storage bucket in the background. It promotes individual files only when they are accessed.</li>
+  <li><strong>Unrequested Files</strong>: Seldom-used or archived files that are never requested will remain solely on the fallback disk until accessed or purged.</li>
+  <li><strong>Independent Credentials</strong>: Both primary and fallback disks must have valid driver configurations and accessible permissions.</li>
+</ul>
+<h3>Summary</h3>
+<ul>
+  <li>Use the <code>read-through</code> driver in Laravel 13.26 to pair a primary storage disk with a fallback storage disk.</li>
+  <li>Reads check the primary disk first, retrieve missing files from the fallback disk, and promote them to primary storage lazily.</li>
+  <li>Writes, deletes, and directory listings always operate on the primary disk.</li>
+  <li>Configure <code>copy =&gt; false</code> for read-only fallback, and <code>throw_on_promotion_failure =&gt; true</code> to surface copy errors.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Storage]]></category>
+      <category><![CDATA[Filesystem]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[DevOps]]></category>
+    </item>
     <item>
       <title><![CDATA[Reusable API Configuration with Laravel HTTP Client Macros]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-http-client-macros</link>
