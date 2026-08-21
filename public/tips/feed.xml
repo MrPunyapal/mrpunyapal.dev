@@ -13,6 +13,118 @@
     <lastBuildDate>Fri, 21 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title><![CDATA[Stream CSV Downloads in Laravel Without Creating Temporary Files]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-stream-csv-downloads-without-temporary-files</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-stream-csv-downloads-without-temporary-files</guid>
+      <description><![CDATA[Combine response()-streamDownload(), php://output, and query chunking to stream CSV exports directly to the browser without writing temporary files to disk....]]></description>
+      <content:encoded><![CDATA[<blockquote>Combine response()->streamDownload(), php://output, and query chunking to stream CSV exports directly to the browser without writing temporary files to disk.</blockquote>
+<p>When building CSV export features, a common approach is to query records from the database, format them, save them to a temporary file on the server disk (`storage_path('app/temp.csv')`), and then return a download response:</p>
+<pre><code class="language-text">Traditional approach:
+Query database → Save temporary CSV on disk → Send download → Delete temporary file</code></pre>
+<p>This workflow introduces unnecessary disk I/O, requires server cleanup routines to purge orphan files, and can overwhelm server memory if large record sets are loaded upfront.</p>
+<p>Laravel allows you to stream CSV responses directly to the client as they are generated, eliminating the need for intermediate files entirely.</p>
+<pre><code class="language-text">Streamed approach:
+Query database in chunks → Write CSV rows directly to php://output → Stream download</code></pre>
+<h3>A Complete Laravel Example</h3>
+<p>Using a single-action invokable controller, you can combine `response()->streamDownload()`, `php://output`, and Eloquent query chunking:</p>
+<pre><code class="language-php">namespace App\Http\Controllers;
+
+use App\Models\Product;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+
+class ExportProductsController
+{
+    public function __invoke(): StreamedResponse
+    {
+        return response()-&gt;streamDownload(function (): void {
+            $output = fopen(&#039;php://output&#039;, &#039;w&#039;);
+
+            // Write CSV column headers
+            fputcsv($output, [&#039;SKU&#039;, &#039;Name&#039;, &#039;Description&#039;, &#039;Price&#039;]);
+
+            // Process records in chunks to control memory consumption
+            Product::query()
+                -&gt;select([&#039;sku&#039;, &#039;name&#039;, &#039;description&#039;, &#039;price&#039;])
+                -&gt;chunk(500, function ($products) use ($output): void {
+                    foreach ($products as $product) {
+                        fputcsv($output, [
+                            $product-&gt;sku,
+                            $product-&gt;name,
+                            $product-&gt;description,
+                            $product-&gt;price,
+                        ]);
+                    }
+                });
+
+            fclose($output);
+        }, &#039;products.csv&#039;, [
+            &#039;Content-Type&#039; =&gt; &#039;text/csv&#039;,
+        ]);
+    }
+}</code></pre>
+<p>Expose the controller in your routes:</p>
+<pre><code class="language-php">use App\Http\Controllers\ExportProductsController;
+use Illuminate\Support\Facades\Route;
+
+Route::get(&#039;/products/export&#039;, ExportProductsController::class)
+    -&gt;middleware(&#039;auth&#039;);</code></pre>
+<h3>How the Components Work Together</h3>
+<h4>1. `response()->streamDownload()`</h4>
+<p>Instead of taking a file path on disk, `streamDownload()` accepts a callback and immediately sends streaming HTTP headers (`Content-Disposition: attachment; filename="products.csv"`). Output produced inside the callback is sent directly through the HTTP response buffer to the client.</p>
+<h4>2. `php://output` and `fputcsv()`</h4>
+<p>Opening `fopen('php://output', 'w')` provides a writable PHP output stream. Passing this resource to PHP's built-in `fputcsv()` ensures that values containing commas, quotes, or newlines are properly escaped and written straight to the response stream without ever touching physical storage.</p>
+<h4>3. Query Chunking (`chunk()` and `chunkById()`)</h4>
+<p>Streaming alone does not prevent high memory usage if you load all records with `Product::all()`. </p>
+<p>Using `chunk(500, ...)` limits database query results to 500 hydrated models at a time, recycling memory after each batch is written to the output stream.</p>
+<h3>`chunk()` vs `chunkById()`</h3>
+<ul>
+  <li><strong>Use <code>chunk()</code></strong>: For read-only queries with stable ordering or where data is not being inserted or modified concurrently during the export.</li>
+  <li><strong>Use <code>chunkById()</code></strong>: For large datasets on active systems where new records might be added or modified while the download is streaming. <code>chunkById()</code> uses primary key pagination (<code>where id &gt; last_seen_id</code>) instead of SQL offsets (<code>OFFSET 500</code>), preventing missed or duplicate records.</li>
+</ul>
+<pre><code class="language-php">Product::query()
+    -&gt;select([&#039;id&#039;, &#039;sku&#039;, &#039;name&#039;, &#039;description&#039;, &#039;price&#039;])
+    -&gt;chunkById(500, function ($products) use ($output): void {
+        foreach ($products as $product) {
+            fputcsv($output, [
+                $product-&gt;sku,
+                $product-&gt;name,
+                $product-&gt;description,
+                $product-&gt;price,
+            ]);
+        }
+    });</code></pre>
+<h3>When to Use Native Streaming vs Export Packages</h3>
+<p>For straightforward tabular CSV exports (such as downloading order lists, user reports, or product catalogs), native PHP streams and Laravel responses provide a zero-dependency solution.</p>
+<p>However, consider dedicated export packages (such as Laravel Excel or Spatie Simple Excel) when your requirements involve:</p>
+<ul>
+  <li>Multi-sheet Excel workbooks (<code>.xlsx</code>)</li>
+  <li>Custom cell styling, formulas, or formatting</li>
+  <li>Generating exports asynchronously via background queue jobs with email notifications</li>
+  <li>Complex imports and validation pipelines</li>
+</ul>
+<h3>Production Considerations</h3>
+<ul>
+  <li><strong>Authorization</strong>: Always protect export endpoints behind appropriate authorization gates or policies before streaming sensitive data.</li>
+  <li><strong>Chunk Sizing</strong>: A chunk size between 200 and 1,000 records typically provides a good balance between database roundtrips and memory efficiency.</li>
+  <li><strong>Column Selection</strong>: Use <code>select([...])</code> to retrieve only the specific database columns required for the CSV rather than hydrating full models with unused attributes.</li>
+</ul>
+<h3>Summary</h3>
+<ul>
+  <li>Use <code>response()-&gt;streamDownload()</code> with <code>php://output</code> to send CSV data directly to the user without writing temporary files to disk.</li>
+  <li>Combine streaming with <code>chunk()</code> or <code>chunkById()</code> to process large datasets without exhausting PHP memory limits.</li>
+  <li>Rely on native PHP <code>fputcsv()</code> for zero-dependency escaping and formatting of simple CSV downloads.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[HTTP & API]]></category>
+      <category><![CDATA[HTTP]]></category>
+      <category><![CDATA[Streaming]]></category>
+      <category><![CDATA[CSV]]></category>
+      <category><![CDATA[Database]]></category>
+    </item>
+    <item>
       <title><![CDATA[Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk</guid>
