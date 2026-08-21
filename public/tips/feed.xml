@@ -125,6 +125,108 @@ Route::get(&#039;/products/export&#039;, ExportProductsController::class)
       <category><![CDATA[Database]]></category>
     </item>
     <item>
+      <title><![CDATA[Debounce Queued Event Listeners with #[DebounceFor] in Laravel 13.26]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-queue-debounced-event-listeners</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-queue-debounced-event-listeners</guid>
+      <description><![CDATA[Laravel 13.26 extends the #[DebounceFor] attribute to queued event listeners, collapsing bursts of repeated events into a single execution based on the lates...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.26 extends the #[DebounceFor] attribute to queued event listeners, collapsing bursts of repeated events into a single execution based on the latest resource state.</blockquote>
+<p>In event-driven architectures, certain domain events fire repeatedly within a short window. For example, editing product details, autosaving a document, updating bulk inventory, or changing user profile attributes can trigger multiple `ProductUpdated` or `DocumentSaved` events in rapid succession.</p>
+<p>If an event triggers expensive asynchronous work (such as rebuilding a full-text search index, generating document thumbnails, or warming cache stores), running the queued listener for every single intermediate event creates unnecessary queue churn and database load.</p>
+<p>While Laravel already supports `#[DebounceFor]` for standard queued jobs, **Laravel 13.26 extends `#[DebounceFor]` directly to queued event listeners**.</p>
+<h3>The Debounce Flow</h3>
+<p>Rather than queuing a separate listener execution for each event occurrence, debouncing pauses execution until activity for that specific resource settles:</p>
+<pre><code class="language-text">Product #42 updated
+       ↓
+Product #42 updated
+       ↓
+Product #42 updated
+       ↓
+30-second debounce window settles
+       ↓
+Single listener execution
+       ↓
+Indexes latest product state</code></pre>
+<p>Intermediate dispatches are collapsed during the debounce window, ensuring the listener runs only once using the latest state.</p>
+<h3>Implementation Example</h3>
+<p>To debounce a queued listener, add the `#[DebounceFor]` attribute to your listener class and implement the `debounceId()` method:</p>
+<pre><code class="language-php">namespace App\Listeners;
+
+use App\Events\ProductUpdated;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\DebounceFor;
+
+#[DebounceFor(30, maxWait: 120)]
+class UpdateProductSearchIndex implements ShouldQueue
+{
+    // Scope debouncing per product ID so different products process independently
+    public function debounceId(ProductUpdated $event): string
+    {
+        return (string) $event-&gt;product-&gt;getKey();
+    }
+
+    public function handle(ProductUpdated $event): void
+    {
+        // Executes with the latest product data once the window settles
+        $event-&gt;product-&gt;searchable();
+    }
+}</code></pre>
+<h3>How debounceId() Scopes Dispatches</h3>
+<p>The `debounceId()` method is crucial because it isolates debounce windows by resource key:</p>
+<pre><code class="language-text">Product #42 events → Debounce group &quot;42&quot; (settles in 30s)
+Product #99 events → Debounce group &quot;99&quot; (settles independently)</code></pre>
+<p>Without a unique `debounceId()`, all incoming `ProductUpdated` events would share a global debounce window, inadvertently delaying indexing for unrelated products.</p>
+<h3>Preventing Indefinite Delays with maxWait</h3>
+<p>If an active user or automated process continuously modifies a record every 10 seconds, a standard 30-second debounce window would continually reset and postpone execution indefinitely.</p>
+<p>The `maxWait` parameter sets a hard ceiling on total delay:</p>
+<pre><code class="language-php">#[DebounceFor(30, maxWait: 120)]</code></pre>
+<ul>
+  <li><strong><code>30</code></strong>: The idle settling window (waits for 30 seconds of inactivity).</li>
+  <li><strong><code>maxWait: 120</code></strong>: Forces execution after 120 seconds regardless of ongoing events.</li>
+</ul>
+<h3>Listener-Specific Isolation</h3>
+<p>Debounce attributes apply strictly to the specific listener where they are declared, not globally to the event itself:</p>
+<pre><code class="language-text">ProductUpdated Event
+├── UpdateProductSearchIndex (#[DebounceFor(30)]) → Debounced (runs once)
+├── SendAuditNotification                       → Runs immediately on dispatch
+└── IncrementMetricCounters                      → Runs immediately on dispatch</code></pre>
+<p>Other listeners listening to `ProductUpdated` continue processing every dispatch normally.</p>
+<h3>Important Constraint: Incompatible with ShouldBeUnique</h3>
+<p>A debounced listener cannot implement `ShouldBeUnique`. Combining `#[DebounceFor]` with `ShouldBeUnique` causes Laravel to throw a `LogicException`:</p>
+<ul>
+  <li><strong><code>ShouldBeUnique</code></strong>: Locks and rejects subsequent dispatches, preserving only the <strong>first</strong> job.</li>
+  <li><strong><code>#[DebounceFor]</code></strong>: Collects intermediate dispatches and executes the <strong>latest</strong> dispatch once activity settles.</li>
+</ul>
+<p>Because their execution semantics conflict, choose `#[DebounceFor]` when you need the freshest state after a burst of activity, and `ShouldBeUnique` when preventing duplicate concurrent execution of identical tasks.</p>
+<h3>When to Debounce vs Process Every Event</h3>
+<h4>Good Candidates for Debouncing</h4>
+<ul>
+  <li><strong>Search Indexing</strong>: Re-indexing models where only the final record state matters.</li>
+  <li><strong>Cache Invalidation &amp; Warmup</strong>: Rebuilding expensive cache fragments after bulk updates.</li>
+  <li><strong>Asset Processing</strong>: Regenerating PDF previews, video thumbnails, or computed summaries for frequently saved drafts.</li>
+</ul>
+<h4>When NOT to Debounce</h4>
+<ul>
+  <li><strong>Financial Transactions</strong>: Ledgers, payment captures, or balance changes where every event represents an immutable financial record.</li>
+  <li><strong>Audit Logs</strong>: Security tracking and compliance logs where every individual action must be preserved.</li>
+  <li><strong>Direct Notifications</strong>: Customer emails or transactional SMS alerts that correspond to explicit user actions.</li>
+</ul>
+<h3>Summary</h3>
+<ul>
+  <li>Laravel 13.26 extends <code>#[DebounceFor]</code> to queued event listeners (<code>implements ShouldQueue</code>).</li>
+  <li>Use <code>debounceId()</code> to isolate debounce windows per resource entity.</li>
+  <li>Configure <code>maxWait</code> to ensure continuously updated resources execute within a bounded timeframe.</li>
+  <li>Reserve debouncing for tasks where intermediate updates are safely superseded by the latest state.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Queue]]></category>
+      <category><![CDATA[Events]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Performance]]></category>
+    </item>
+    <item>
       <title><![CDATA[Lazy Storage Migration with Read-Through Filesystem Disks in Laravel 13.26]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk</guid>
