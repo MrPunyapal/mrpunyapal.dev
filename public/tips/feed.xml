@@ -96,6 +96,120 @@ local_dump.sql</code></pre>
       <category><![CDATA[Tooling]]></category>
     </item>
     <item>
+      <title><![CDATA[Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-process-idle-timeout-fake-assertions</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-process-idle-timeout-fake-assertions</guid>
+      <description><![CDATA[Laravel 13.26 introduces ProcessIdleTimedOutException to distinguish idle processes from overall runtime timeouts, alongside new testing assertions for execu...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.26 introduces ProcessIdleTimedOutException to distinguish idle processes from overall runtime timeouts, alongside new testing assertions for execution count and sequence order.</blockquote>
+<p>Running external shell processes and CLI commands in Laravel is handled by the `Process` facade. When managing long-running tasks such as deployment scripts, data exports, or media processing, diagnosing process failures and writing comprehensive automated tests are critical requirements.</p>
+<p>Laravel 13.26 improves the `Process` facade in two core areas:</p>
+<ol>
+  <li><strong>Granular Timeout Exceptions</strong>: Differentiating between silent/idle processes and processes that exceed total execution time.</li>
+  <li><strong>Enhanced Process Fakes</strong>: New test assertions for process execution count (<code>assertRanCount</code>), sequence ordering (<code>assertRanInOrder</code>), and recorded interaction inspection (<code>recorded()</code>).</li>
+</ol>
+<hr>
+<h3>1. Overall Timeout vs. Idle Timeout</h3>
+<p>When executing an external command, two distinct timeout conditions can occur:</p>
+<ul>
+  <li><strong>Overall Timeout (<code>timeout</code>)</strong>: The maximum total duration the process is allowed to run from start to finish.</li>
+  <li><strong>Idle Timeout (<code>idleTimeout</code>)</strong>: The maximum allowed duration without the process emitting any standard output (<code>stdout</code> or <code>stderr</code>).</li>
+</ul>
+<p>Before Laravel 13.26, exceeding either limit threw the generic `Illuminate\Process\Exceptions\ProcessTimedOutException`. In Laravel 13.26, idle timeouts trigger a dedicated exception: `Illuminate\Process\Exceptions\ProcessIdleTimedOutException`.</p>
+<h4>Differentiating Process Failures</h4>
+<pre><code class="language-php">use Illuminate\Process\Exceptions\ProcessIdleTimedOutException;
+use Illuminate\Process\Exceptions\ProcessTimedOutException;
+use Illuminate\Support\Facades\Process;
+
+try {
+    $result = Process::timeout(600)      // Total runtime limit: 10 minutes
+        -&gt;idleTimeout(30)               // Output inactivity limit: 30 seconds
+        -&gt;run(&#039;./deploy-services.sh&#039;);
+
+    if ($result-&gt;successful()) {
+        logger()-&gt;info(&#039;Deployment completed successfully.&#039;);
+    }
+} catch (ProcessIdleTimedOutException $e) {
+    // The process stopped producing output for 30 seconds (e.g. waiting on a prompt or stuck in deadlock)
+    logger()-&gt;error(&#039;Process stalled with no output: &#039; . $e-&gt;getMessage());
+} catch (ProcessTimedOutException $e) {
+    // The process continued producing output but exceeded the 10-minute overall limit
+    logger()-&gt;error(&#039;Process exceeded total execution budget: &#039; . $e-&gt;getMessage());
+}</code></pre>
+<p>This separation allows automated pipelines to take targeted recovery steps, such as terminating unresponsive processes immediately when idle while permitting active, progressing tasks to run up to their total timeout limit.</p>
+<hr>
+<h3>2. Process Fake Testing Assertions</h3>
+<p>Laravel's `Process::fake()` allows tests to mock process execution without executing actual shell commands. Laravel 13.26 adds dedicated assertion methods to inspect execution count, ordering, and recorded instances.</p>
+<h4>Asserting Execution Count with `assertRanCount()`</h4>
+<p>`Process::assertRanCount()` verifies the exact number of commands invoked during a test:</p>
+<pre><code class="language-php">use Illuminate\Support\Facades\Process;
+
+test(&#039;deployment command executes expected subprocesses&#039;, function () {
+    Process::fake([
+        &#039;git pull&#039; =&gt; Process::result(&#039;Already up to date.&#039;),
+        &#039;composer install --no-dev&#039; =&gt; Process::result(&#039;Installing dependencies...&#039;),
+        &#039;php artisan migrate --force&#039; =&gt; Process::result(&#039;Migrated successfully.&#039;),
+    ]);
+
+    $this-&gt;artisan(&#039;app:deploy&#039;);
+
+    // Asserts that exactly 3 processes were executed
+    Process::assertRanCount(3);
+});</code></pre>
+<p>This prevents subtle bugs where an unexpected branching condition executes a command multiple times or skips an intended execution silently.</p>
+<h4>Asserting Command Sequence with `assertRanInOrder()`</h4>
+<p>When external tasks depend on strict chronological execution (such as pulling latest source code before migrating database tables), `Process::assertRanInOrder()` verifies the exact sequence:</p>
+<pre><code class="language-php">use Illuminate\Support\Facades\Process;
+
+test(&#039;build pipeline executes steps in chronological sequence&#039;, function () {
+    Process::fake();
+
+    $this-&gt;artisan(&#039;app:build&#039;);
+
+    // Asserts commands ran in this exact order
+    Process::assertRanInOrder([
+        &#039;npm ci&#039;,
+        &#039;npm run build&#039;,
+        &#039;php artisan config:cache&#039;,
+        &#039;php artisan route:cache&#039;,
+    ]);
+});</code></pre>
+<h4>Inspecting Recorded Results with `recorded()`</h4>
+<p>The `Process::recorded()` method returns a collection of all executed processes and their corresponding result objects. You can also pass a closure to filter and inspect specific process runs:</p>
+<pre><code class="language-php">use Illuminate\Process\PendingProcess;
+use Illuminate\Contracts\Process\ProcessResult;
+use Illuminate\Support\Facades\Process;
+
+test(&#039;inspects specific command payloads&#039;, function () {
+    Process::fake();
+
+    $this-&gt;artisan(&#039;reports:generate&#039;);
+
+    // Filter recorded interactions
+    $exportProcesses = Process::recorded(function (PendingProcess $process, ProcessResult $result) {
+        return str_contains($process-&gt;command, &#039;mysqldump&#039;);
+    });
+
+    expect($exportProcesses)-&gt;toHaveCount(1);
+});</code></pre>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li><strong><code>ProcessIdleTimedOutException</code></strong>: Catch output inactivity separately from total runtime timeouts via <code>idleTimeout()</code>.</li>
+  <li><strong><code>Process::assertRanCount()</code></strong>: Assert the total number of process invocations in tests.</li>
+  <li><strong><code>Process::assertRanInOrder()</code></strong>: Verify strict chronological command execution order.</li>
+  <li><strong><code>Process::recorded()</code></strong>: Inspect and filter recorded process and result pairs using closures.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Utilities]]></category>
+      <category><![CDATA[Process]]></category>
+      <category><![CDATA[Testing]]></category>
+      <category><![CDATA[CLI]]></category>
+      <category><![CDATA[Architecture]]></category>
+    </item>
+    <item>
       <title><![CDATA[Stream CSV Downloads in Laravel Without Creating Temporary Files]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-stream-csv-downloads-without-temporary-files</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-stream-csv-downloads-without-temporary-files</guid>

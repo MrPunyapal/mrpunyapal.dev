@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Specific Related Attributes with withAggregate() - Laravel &amp; PHP Tip | Punyapal Shah</title>
+    <title>Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,25 +17,25 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances. When you need a single a...">
+    <meta name="description" content="Laravel 13.26 introduces ProcessIdleTimedOutException to distinguish idle processes from overall runtime timeouts, alongside new testing assertions for execu...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-withaggregate-subquery-optimization">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-process-idle-timeout-fake-assertions">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-withaggregate-subquery-optimization">
-    <meta property="og:title" content="Fetch Specific Related Attributes with withAggregate() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances. When you need a single a...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-withaggregate-subquery-optimization.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-withaggregate-subquery-optimization.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-process-idle-timeout-fake-assertions">
+    <meta property="og:title" content="Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Laravel 13.26 introduces ProcessIdleTimedOutException to distinguish idle processes from overall runtime timeouts, alongside new testing assertions for execu...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-process-idle-timeout-fake-assertions.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-process-idle-timeout-fake-assertions.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Fetch Specific Related Attributes with withAggregate() - Punyapal Shah">
+    <meta property="og:image:alt" content="Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-06-20">
+    <meta property="article:published_time" content="2026-08-22">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="Laravel">
 
@@ -43,11 +43,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-withaggregate-subquery-optimization">
-    <meta name="twitter:title" content="Fetch Specific Related Attributes with withAggregate() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances. When you need a single a...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-withaggregate-subquery-optimization.png">
-    <meta name="twitter:image:alt" content="Fetch Specific Related Attributes with withAggregate() - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-process-idle-timeout-fake-assertions">
+    <meta name="twitter:title" content="Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Laravel 13.26 introduces ProcessIdleTimedOutException to distinguish idle processes from overall runtime timeouts, alongside new testing assertions for execu...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-process-idle-timeout-fake-assertions.png">
+    <meta name="twitter:image:alt" content="Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -56,13 +56,13 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-withaggregate-subquery-optimization#article",
-                "headline": "Fetch Specific Related Attributes with withAggregate()",
-                "description": "Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances. When you need a single a...",
-                "datePublished": "2026-06-20",
+                "@id": "https://mrpunyapal.dev/tips/laravel-process-idle-timeout-fake-assertions#article",
+                "headline": "Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions",
+                "description": "Laravel 13.26 introduces ProcessIdleTimedOutException to distinguish idle processes from overall runtime timeouts, alongside new testing assertions for execu...",
+                "datePublished": "2026-08-22",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-withaggregate-subquery-optimization",
-                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Eloquent, Performance",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-process-idle-timeout-fake-assertions",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Process, Testing, CLI, Architecture",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -91,8 +91,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Fetch Specific Related Attributes with withAggregate()",
-                        "item": "https://mrpunyapal.dev/tips/laravel-withaggregate-subquery-optimization"
+                        "name": "Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions",
+                        "item": "https://mrpunyapal.dev/tips/laravel-process-idle-timeout-fake-assertions"
                     }
                 ]
             }
@@ -685,7 +685,7 @@
                         
                             <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                Eloquent
+                                Utilities
                             </span>
                         
                     </div>
@@ -694,7 +694,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Fetch Specific Related Attributes with withAggregate()
+                        Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions
                     </h1>
 
                     <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -704,13 +704,13 @@
                                 <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                             </span>
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                            <time datetime="2026-06-20" class="inline-flex items-center gap-1.5">
+                            <time datetime="2026-08-22" class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                                Jun 20, 2026
+                                Aug 22, 2026
                             </time>
                         </div>
 
-                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/eloquent/laravel-withaggregate-subquery-optimization.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/utilities/laravel-process-idle-timeout-fake-assertions.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
                             <span>edit this tip</span>
                             <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                         </a>
@@ -723,7 +723,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When you need a single attribute from a related model, eager loading the entire relationship wastes memory. Laravel&#39;s withAggregate() runs a subselect query directly in SQL.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.26 introduces ProcessIdleTimedOutException to distinguish idle processes from overall runtime timeouts, alongside new testing assertions for execution count and sequence order.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Running external shell processes and CLI commands in Laravel is handled by the <code>Process</code> facade. When managing long-running tasks such as deployment scripts, data exports, or media processing, diagnosing process failures and writing comprehensive automated tests are critical requirements.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel 13.26 improves the <code>Process</code> facade in two core areas:</p><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Granular Timeout Exceptions</strong>: Differentiating between silent/idle processes and processes that exceed total execution time.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Enhanced Process Fakes</strong>: New test assertions for process execution count (<code>assertRanCount</code>), sequence ordering (<code>assertRanInOrder</code>), and recorded interaction inspection (<code>recorded()</code>).</span></li></ol><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Overall Timeout vs. Idle Timeout</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When executing an external command, two distinct timeout conditions can occur:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Overall Timeout (<code>timeout</code>)</strong>: The maximum total duration the process is allowed to run from start to finish.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Idle Timeout (<code>idleTimeout</code>)</strong>: The maximum allowed duration without the process emitting any standard output (<code>stdout</code> or <code>stderr</code>).</span></li></ul><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Before Laravel 13.26, exceeding either limit threw the generic <code>Illuminate\Process\Exceptions\ProcessTimedOutException</code>. In Laravel 13.26, idle timeouts trigger a dedicated exception: <code>Illuminate\Process\Exceptions\ProcessIdleTimedOutException</code>.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Differentiating Process Failures</h4>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -731,26 +732,190 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\Post;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Process\Exceptions\ProcessIdleTimedOutException;
+use Illuminate\Process\Exceptions\ProcessTimedOutException;
+use Illuminate\Support\Facades\Process;
 
-// Pulls user name directly as $post-&gt;user_name via SQL subquery
-$posts = Post::withAggregate(&#039;user&#039;, &#039;name&#039;)-&gt;get();" aria-label="Copy code to clipboard">
+try {
+    $result = Process::timeout(600)      // Total runtime limit: 10 minutes
+        -&gt;idleTimeout(30)               // Output inactivity limit: 30 seconds
+        -&gt;run(&#039;./deploy-services.sh&#039;);
+
+    if ($result-&gt;successful()) {
+        logger()-&gt;info(&#039;Deployment completed successfully.&#039;);
+    }
+} catch (ProcessIdleTimedOutException $e) {
+    // The process stopped producing output for 30 seconds (e.g. waiting on a prompt or stuck in deadlock)
+    logger()-&gt;error(&#039;Process stalled with no output: &#039; . $e-&gt;getMessage());
+} catch (ProcessTimedOutException $e) {
+    // The process continued producing output but exceeded the 10-minute overall limit
+    logger()-&gt;error(&#039;Process exceeded total execution budget: &#039; . $e-&gt;getMessage());
+}" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Post</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Process</span>\<span class="hljs-title">Exceptions</span>\<span class="hljs-title">ProcessIdleTimedOutException</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Process</span>\<span class="hljs-title">Exceptions</span>\<span class="hljs-title">ProcessTimedOutException</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Process</span>;
 
-<span class="hljs-comment">// Pulls user name directly as $post-&gt;user_name via SQL subquery</span>
-<span class="hljs-variable">$posts</span> = <span class="hljs-title class_">Post</span>::<span class="hljs-title function_ invoke__">withAggregate</span>(<span class="hljs-string">&#x27;user&#x27;</span>, <span class="hljs-string">&#x27;name&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Creates virtual attributes named {relation}_{column} or your alias</span></li><li class="leading-relaxed"><span class="align-middle">Runs in a single database subquery instead of N+1 queries</span></li><li class="leading-relaxed"><span class="align-middle">Underlies withCount(), withSum(), and withAvg() helpers</span></li></ul>
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-variable">$result</span> = <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">600</span>)      <span class="hljs-comment">// Total runtime limit: 10 minutes</span>
+        -&gt;<span class="hljs-title function_ invoke__">idleTimeout</span>(<span class="hljs-number">30</span>)               <span class="hljs-comment">// Output inactivity limit: 30 seconds</span>
+        -&gt;<span class="hljs-title function_ invoke__">run</span>(<span class="hljs-string">&#x27;./deploy-services.sh&#x27;</span>);
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">successful</span>()) {
+        <span class="hljs-title function_ invoke__">logger</span>()-&gt;<span class="hljs-title function_ invoke__">info</span>(<span class="hljs-string">&#x27;Deployment completed successfully.&#x27;</span>);
+    }
+} <span class="hljs-keyword">catch</span> (ProcessIdleTimedOutException <span class="hljs-variable">$e</span>) {
+    <span class="hljs-comment">// The process stopped producing output for 30 seconds (e.g. waiting on a prompt or stuck in deadlock)</span>
+    <span class="hljs-title function_ invoke__">logger</span>()-&gt;<span class="hljs-title function_ invoke__">error</span>(<span class="hljs-string">&#x27;Process stalled with no output: &#x27;</span> . <span class="hljs-variable">$e</span>-&gt;<span class="hljs-title function_ invoke__">getMessage</span>());
+} <span class="hljs-keyword">catch</span> (ProcessTimedOutException <span class="hljs-variable">$e</span>) {
+    <span class="hljs-comment">// The process continued producing output but exceeded the 10-minute overall limit</span>
+    <span class="hljs-title function_ invoke__">logger</span>()-&gt;<span class="hljs-title function_ invoke__">error</span>(<span class="hljs-string">&#x27;Process exceeded total execution budget: &#x27;</span> . <span class="hljs-variable">$e</span>-&gt;<span class="hljs-title function_ invoke__">getMessage</span>());
+}</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This separation allows automated pipelines to take targeted recovery steps, such as terminating unresponsive processes immediately when idle while permitting active, progressing tasks to run up to their total timeout limit.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Process Fake Testing Assertions</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s <code>Process::fake()</code> allows tests to mock process execution without executing actual shell commands. Laravel 13.26 adds dedicated assertion methods to inspect execution count, ordering, and recorded instances.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Asserting Execution Count with <code>assertRanCount()</code></h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code>Process::assertRanCount()</code> verifies the exact number of commands invoked during a test:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Process;
+
+test(&#039;deployment command executes expected subprocesses&#039;, function () {
+    Process::fake([
+        &#039;git pull&#039; =&gt; Process::result(&#039;Already up to date.&#039;),
+        &#039;composer install --no-dev&#039; =&gt; Process::result(&#039;Installing dependencies...&#039;),
+        &#039;php artisan migrate --force&#039; =&gt; Process::result(&#039;Migrated successfully.&#039;),
+    ]);
+
+    $this-&gt;artisan(&#039;app:deploy&#039;);
+
+    // Asserts that exactly 3 processes were executed
+    Process::assertRanCount(3);
+});" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Process</span>;
+
+<span class="hljs-title function_ invoke__">test</span>(<span class="hljs-string">&#x27;deployment command executes expected subprocesses&#x27;</span>, function () {
+    <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">fake</span>([
+        <span class="hljs-string">&#x27;git pull&#x27;</span> =&gt; <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">result</span>(<span class="hljs-string">&#x27;Already up to date.&#x27;</span>),
+        <span class="hljs-string">&#x27;composer install --no-dev&#x27;</span> =&gt; <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">result</span>(<span class="hljs-string">&#x27;Installing dependencies...&#x27;</span>),
+        <span class="hljs-string">&#x27;php artisan migrate --force&#x27;</span> =&gt; <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">result</span>(<span class="hljs-string">&#x27;Migrated successfully.&#x27;</span>),
+    ]);
+
+    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">artisan</span>(<span class="hljs-string">&#x27;app:deploy&#x27;</span>);
+
+    <span class="hljs-comment">// Asserts that exactly 3 processes were executed</span>
+    <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">assertRanCount</span>(<span class="hljs-number">3</span>);
+});</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This prevents subtle bugs where an unexpected branching condition executes a command multiple times or skips an intended execution silently.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Asserting Command Sequence with <code>assertRanInOrder()</code></h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When external tasks depend on strict chronological execution (such as pulling latest source code before migrating database tables), <code>Process::assertRanInOrder()</code> verifies the exact sequence:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Process;
+
+test(&#039;build pipeline executes steps in chronological sequence&#039;, function () {
+    Process::fake();
+
+    $this-&gt;artisan(&#039;app:build&#039;);
+
+    // Asserts commands ran in this exact order
+    Process::assertRanInOrder([
+        &#039;npm ci&#039;,
+        &#039;npm run build&#039;,
+        &#039;php artisan config:cache&#039;,
+        &#039;php artisan route:cache&#039;,
+    ]);
+});" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Process</span>;
+
+<span class="hljs-title function_ invoke__">test</span>(<span class="hljs-string">&#x27;build pipeline executes steps in chronological sequence&#x27;</span>, function () {
+    <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">fake</span>();
+
+    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">artisan</span>(<span class="hljs-string">&#x27;app:build&#x27;</span>);
+
+    <span class="hljs-comment">// Asserts commands ran in this exact order</span>
+    <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">assertRanInOrder</span>([
+        <span class="hljs-string">&#x27;npm ci&#x27;</span>,
+        <span class="hljs-string">&#x27;npm run build&#x27;</span>,
+        <span class="hljs-string">&#x27;php artisan config:cache&#x27;</span>,
+        <span class="hljs-string">&#x27;php artisan route:cache&#x27;</span>,
+    ]);
+});</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Inspecting Recorded Results with <code>recorded()</code></h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The <code>Process::recorded()</code> method returns a collection of all executed processes and their corresponding result objects. You can also pass a closure to filter and inspect specific process runs:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Process\PendingProcess;
+use Illuminate\Contracts\Process\ProcessResult;
+use Illuminate\Support\Facades\Process;
+
+test(&#039;inspects specific command payloads&#039;, function () {
+    Process::fake();
+
+    $this-&gt;artisan(&#039;reports:generate&#039;);
+
+    // Filter recorded interactions
+    $exportProcesses = Process::recorded(function (PendingProcess $process, ProcessResult $result) {
+        return str_contains($process-&gt;command, &#039;mysqldump&#039;);
+    });
+
+    expect($exportProcesses)-&gt;toHaveCount(1);
+});" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Process</span>\<span class="hljs-title">PendingProcess</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Contracts</span>\<span class="hljs-title">Process</span>\<span class="hljs-title">ProcessResult</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Process</span>;
+
+<span class="hljs-title function_ invoke__">test</span>(<span class="hljs-string">&#x27;inspects specific command payloads&#x27;</span>, function () {
+    <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">fake</span>();
+
+    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">artisan</span>(<span class="hljs-string">&#x27;reports:generate&#x27;</span>);
+
+    <span class="hljs-comment">// Filter recorded interactions</span>
+    <span class="hljs-variable">$exportProcesses</span> = <span class="hljs-title class_">Process</span>::<span class="hljs-title function_ invoke__">recorded</span>(function (PendingProcess <span class="hljs-variable">$process</span>, ProcessResult <span class="hljs-variable">$result</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">str_contains</span>(<span class="hljs-variable">$process</span>-&gt;command, <span class="hljs-string">&#x27;mysqldump&#x27;</span>);
+    });
+
+    <span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-variable">$exportProcesses</span>)-&gt;<span class="hljs-title function_ invoke__">toHaveCount</span>(<span class="hljs-number">1</span>);
+});</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong><code>ProcessIdleTimedOutException</code></strong>: Catch output inactivity separately from total runtime timeouts via <code>idleTimeout()</code>.</span></li><li class="leading-relaxed"><span class="align-middle"><strong><code>Process::assertRanCount()</code></strong>: Assert the total number of process invocations in tests.</span></li><li class="leading-relaxed"><span class="align-middle"><strong><code>Process::assertRanInOrder()</code></strong>: Verify strict chronological command execution order.</span></li><li class="leading-relaxed"><span class="align-middle"><strong><code>Process::recorded()</code></strong>: Inspect and filter recorded process and result pairs using closures.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->
                 <div class="mt-8 flex justify-end">
-                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/eloquent/laravel-withaggregate-subquery-optimization.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/utilities/laravel-process-idle-timeout-fake-assertions.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
                         <span>edit this tip</span>
                         <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                     </a>
@@ -763,11 +928,11 @@ $posts = Post::withAggregate(&#039;user&#039;, &#039;name&#039;)-&gt;get();" ari
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Performance</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Process</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Testing</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">CLI</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Architecture</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Fetch%20Specific%20Related%20Attributes%20with%20withAggregate()%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-withaggregate-subquery-optimization" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Process%20Improvements%20in%20Laravel%2013.26%3A%20Idle%20Timeouts%20and%20Testing%20Assertions%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-process-idle-timeout-fake-assertions" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -784,28 +949,6 @@ $posts = Post::withAggregate(&#039;user&#039;, &#039;name&#039;)-&gt;get();" ari
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-process-idle-timeout-fake-assertions" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
-                    <!-- Corner Crosshairs -->
-                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions
-                    </h3>
-                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </span>
-                </a>
                 <a href="/tips/laravel-stream-csv-downloads-without-temporary-files" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -823,6 +966,28 @@ $posts = Post::withAggregate(&#039;user&#039;, &#039;name&#039;)-&gt;get();" ari
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
                         Stream CSV Downloads in Laravel Without Creating Temporary Files
+                    </h3>
+                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                <a href="/tips/laravel-queue-debounced-event-listeners" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                    <!-- Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
+                        Debounce Queued Event Listeners with #[DebounceFor] in Laravel 13.26
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -848,7 +1013,7 @@ $posts = Post::withAggregate(&#039;user&#039;, &#039;name&#039;)-&gt;get();" ari
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["git-local-ignore-info-exclude","laravel-process-idle-timeout-fake-assertions","laravel-stream-csv-downloads-without-temporary-files","laravel-queue-debounced-event-listeners","laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","php-predefined-constants-cheat-sheet","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-rector-remove-unnecessary-comments","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","php-timeout-guard-ticks-without-pcntl","laravel-tappable-scopes-eloquent-scout","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","phpstan-static-analysis-levels-guide","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","php-rector-refactor-enums-pascal-case","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-broadcast-database-notifications-instantly","laravel-eloquent-when-and-unless-conditional-queries","laravel-cast-enum-json-array-key","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","laravel-enum-has-label-trait","livewire-teleport-blade-view-cache-directive-fix","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-activity-log-event-subscriber","laravel-generate-unique-slug-without-looping","php-str-increment-decrement","laravel-carbon-set-test-now-time-manipulation","laravel-production-deployment-commands","livewire-renderless-export-csv-reports","laravel-belongs-to-team-multitenancy-trait","laravel-custom-wherelike-macro","laravel-collection-groupby-closure","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["git-local-ignore-info-exclude","laravel-stream-csv-downloads-without-temporary-files","laravel-queue-debounced-event-listeners","laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","php-predefined-constants-cheat-sheet","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-rector-remove-unnecessary-comments","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","php-timeout-guard-ticks-without-pcntl","laravel-tappable-scopes-eloquent-scout","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","phpstan-static-analysis-levels-guide","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","php-rector-refactor-enums-pascal-case","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-broadcast-database-notifications-instantly","laravel-eloquent-when-and-unless-conditional-queries","laravel-cast-enum-json-array-key","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","laravel-enum-has-label-trait","livewire-teleport-blade-view-cache-directive-fix","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-activity-log-event-subscriber","laravel-generate-unique-slug-without-looping","php-str-increment-decrement","laravel-carbon-set-test-now-time-manipulation","laravel-production-deployment-commands","livewire-renderless-export-csv-reports","laravel-belongs-to-team-multitenancy-trait","laravel-custom-wherelike-macro","laravel-collection-groupby-closure","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {
