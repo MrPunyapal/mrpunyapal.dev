@@ -943,23 +943,6 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "laravel-custom-wherelike-macro",
-    "title": "Add a Reusable whereLike Macro for Eloquent Searching",
-    "category": "Laravel",
-    "subcategory": "Eloquent",
-    "tags": [
-      "Laravel",
-      "Eloquent",
-      "Macros"
-    ],
-    "created_at": "2026-05-25",
-    "effective_date": "2026-05-25",
-    "date": "2026-05-25",
-    "summary": "Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
     "slug": "pest-tia-plugin-workflow",
     "title": "Streamline Testing with Pest Test Impact Analysis (TIA)",
     "category": "Pest PHP",
@@ -1079,6 +1062,25 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "php-predefined-constants-cheat-sheet",
+    "title": "PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready)",
+    "category": "PHP",
+    "subcategory": "Tooling",
+    "tags": [
+      "PHP",
+      "Constants",
+      "Reference",
+      "PHP 8.4"
+    ],
+    "created_at": "2025-06-29",
+    "effective_date": "2026-03-28",
+    "date": "2026-03-28",
+    "summary": "A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4. PHP provides built-in...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal",
+    "updated_at": "2026-03-28"
+  },
+  {
     "slug": "laravel-wheredate-index-performance",
     "title": "Avoid whereDate() on Large Tables: Use Range Queries Instead",
     "category": "Laravel",
@@ -1109,6 +1111,25 @@
     "effective_date": "2026-03-12",
     "date": "2026-03-12",
     "summary": "Use withoutRelation() or unsetRelation() to remove eager loaded relationships on specific Eloquent queries or model instances. Models with $with properties e...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-rector-remove-unnecessary-comments",
+    "title": "Clean Up Redundant Code Comments with a Custom Rector Rule",
+    "category": "PHP",
+    "subcategory": "Tooling",
+    "tags": [
+      "PHP",
+      "Rector",
+      "Refactoring",
+      "Clean Code",
+      "Tooling"
+    ],
+    "created_at": "2026-03-11",
+    "effective_date": "2026-03-11",
+    "date": "2026-03-11",
+    "summary": "Use a custom Rector rule to automatically strip noisy inline comments and empty docblocks across your codebase while preserving essential PHPDoc annotations....",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -1402,23 +1423,6 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "php-predefined-constants-cheat-sheet",
-    "title": "Master Essential PHP Predefined and Magic Constants",
-    "category": "PHP",
-    "subcategory": "Tooling",
-    "tags": [
-      "PHP",
-      "Constants",
-      "Reference"
-    ],
-    "created_at": "2025-06-29",
-    "effective_date": "2025-06-29",
-    "date": "2025-06-29",
-    "summary": "A practical cheat sheet covering PHP magic constants, filesystem path helpers, error reporting masks, and CLI stream handles. PHP provides built-in magic and...",
-    "author": "Punyapal Shah",
-    "author_url": "https://x.com/MrPunyapal"
-  },
-  {
     "slug": "php-cli-syntax-check-linting",
     "title": "Lint PHP Files Instantly with php -l CLI Syntax Check",
     "category": "PHP",
@@ -1500,6 +1504,43 @@
     "effective_date": "2025-06-16",
     "date": "2025-06-16",
     "summary": "Replace deeply nested if statements with guard clauses that exit functions early when preconditions fail. Deeply nested if-else blocks make code hard to read...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-timeout-guard-ticks-without-pcntl",
+    "title": "Tick-Based Execution Timeout Wrapper in PHP Without PCNTL",
+    "category": "PHP",
+    "subcategory": "Tooling",
+    "tags": [
+      "PHP",
+      "Performance",
+      "CLI",
+      "Architecture"
+    ],
+    "created_at": "2025-06-13",
+    "effective_date": "2025-06-13",
+    "date": "2025-06-13",
+    "summary": "Interrupt long-running synchronous PHP callables on any operating system using PHP tick declarations and tick callback functions without requiring the pcntl...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-tappable-scopes-eloquent-scout",
+    "title": "Reusable Tappable Scopes for Eloquent and Laravel Scout Queries",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Scout",
+      "Architecture",
+      "DRY"
+    ],
+    "created_at": "2025-02-07",
+    "effective_date": "2025-02-07",
+    "date": "2025-02-07",
+    "summary": "Extract query filtering logic into invokable scope classes that work interchangeably across Eloquent query builders and Laravel Scout search instances. Stand...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -1589,6 +1630,25 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "phpstan-static-analysis-levels-guide",
+    "title": "Complete Guide to PHPStan Static Analysis Levels (0 to 10)",
+    "category": "PHP",
+    "subcategory": "Tooling",
+    "tags": [
+      "PHP",
+      "PHPStan",
+      "Tooling",
+      "Static Analysis",
+      "Type Safety"
+    ],
+    "created_at": "2024-07-25",
+    "effective_date": "2024-07-25",
+    "date": "2024-07-25",
+    "summary": "Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10. PHPStan in...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-pint-single-line-empty-constructors",
     "title": "Format Single-Line Property Promotion Constructors with Pint",
     "category": "Laravel",
@@ -1619,6 +1679,26 @@
     "effective_date": "2024-05-26",
     "date": "2024-05-26",
     "summary": "Declare declare(stricttypes=1); at the top of PHP files to prevent unexpected scalar type coercions. By default, PHP coerces types scalar values (e.g. string...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-rector-refactor-enums-pascal-case",
+    "title": "Refactor PHP Enum Cases from snake_case to PascalCase with Rector",
+    "category": "PHP",
+    "subcategory": "Tooling",
+    "tags": [
+      "PHP",
+      "Rector",
+      "Enums",
+      "Refactoring",
+      "Blade",
+      "Tooling"
+    ],
+    "created_at": "2024-05-20",
+    "effective_date": "2024-05-20",
+    "date": "2024-05-20",
+    "summary": "Automate renaming PHP 8.1+ enum cases from SNAKECASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script. Whe...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -1708,6 +1788,25 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-broadcast-database-notifications-instantly",
+    "title": "Instantly Broadcast Real-Time Database Notifications Using Model Observers",
+    "category": "Laravel",
+    "subcategory": "Events",
+    "tags": [
+      "Laravel",
+      "Notifications",
+      "WebSockets",
+      "Events",
+      "Real-Time"
+    ],
+    "created_at": "2024-02-11",
+    "effective_date": "2024-02-11",
+    "date": "2024-02-11",
+    "summary": "Automatically broadcast WebSocket events to private user channels whenever a database notification is saved using an observer on Laravel's DatabaseNotificati...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-eloquent-when-and-unless-conditional-queries",
     "title": "Build Conditional Queries Cleanly with when() and unless()",
     "category": "Laravel",
@@ -1721,6 +1820,25 @@
     "effective_date": "2024-02-01",
     "date": "2024-02-01",
     "summary": "Use when() and unless() on query builders to apply conditional clauses without breaking method chains with if statements. Building dynamic search queries oft...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-cast-enum-json-array-key",
+    "title": "Cast Enums Inside JSON and Array Column Keys in Eloquent",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Enums",
+      "Casts",
+      "JSON"
+    ],
+    "created_at": "2024-01-30",
+    "effective_date": "2024-01-30",
+    "date": "2024-01-30",
+    "summary": "Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators. Laravel provides first-party enum casting f...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },
@@ -1793,6 +1911,43 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-enum-has-label-trait",
+    "title": "Human-Friendly Enum Case Labels with a Reusable HasLabel Trait",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Enums",
+      "Architecture",
+      "Clean Code"
+    ],
+    "created_at": "2024-01-17",
+    "effective_date": "2024-01-17",
+    "date": "2024-01-17",
+    "summary": "Add human-readable display labels to PHP 8.1+ enums automatically using a lightweight HasLabel trait without maintaining manual match statements. When using...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "livewire-teleport-blade-view-cache-directive-fix",
+    "title": "Fix Blade View Cache Compilation for Teleport Directives in Livewire",
+    "category": "Laravel",
+    "subcategory": "Livewire",
+    "tags": [
+      "Laravel",
+      "Livewire",
+      "Blade",
+      "Alpine.js",
+      "Tooling"
+    ],
+    "created_at": "2024-01-14",
+    "effective_date": "2024-01-14",
+    "date": "2024-01-14",
+    "summary": "Prevent view compilation glitches when running php artisan view:cache on templates using @teleport by registering explicit Blade directives. When using Livew...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "javascript-tailwind-dropdown-next-element-sibling",
     "title": "Build Framework-Free Dropdowns with Tailwind and nextElementSibling",
     "category": "JavaScript",
@@ -1826,6 +1981,79 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-activity-log-event-subscriber",
+    "title": "Centralized Application Activity Logging with Laravel Event Subscribers",
+    "category": "Laravel",
+    "subcategory": "Events",
+    "tags": [
+      "Laravel",
+      "Events",
+      "Logging",
+      "Architecture",
+      "Audit"
+    ],
+    "created_at": "2023-12-01",
+    "effective_date": "2023-12-01",
+    "date": "2023-12-01",
+    "summary": "Capture HTTP requests, Artisan CLI commands, and outgoing API responses into a unified audit trail using a single Laravel Event Subscriber. Applications freq...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-generate-unique-slug-without-looping",
+    "title": "Efficient Unique Slug Generation in Eloquent Without Looping Queries",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Performance",
+      "Clean Code"
+    ],
+    "created_at": "2023-11-29",
+    "effective_date": "2023-11-29",
+    "date": "2023-11-29",
+    "summary": "Generate unique database slugs in Eloquent by querying the maximum existing numerical suffix directly instead of executing repeated queries in a while loop....",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "php-str-increment-decrement",
+    "title": "Alphanumeric String Increment and Decrement in PHP 8.3",
+    "category": "PHP",
+    "subcategory": "Tooling",
+    "tags": [
+      "PHP",
+      "Strings",
+      "PHP 8.3"
+    ],
+    "created_at": "2023-11-28",
+    "effective_date": "2023-11-28",
+    "date": "2023-11-28",
+    "summary": "PHP 8.3 introduces strincrement() and strdecrement() to predictably increment and decrement alphanumeric strings according to standard base-26/base-36 conven...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-carbon-set-test-now-time-manipulation",
+    "title": "Freeze and Inspect Application Time in Tests with Carbon setTestNow()",
+    "category": "Laravel",
+    "subcategory": "Testing",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Carbon",
+      "PHP"
+    ],
+    "created_at": "2023-11-23",
+    "effective_date": "2023-11-23",
+    "date": "2023-11-23",
+    "summary": "Control system time during testing and development using Carbon::setTestNow() and inspect active time mocks with Carbon::hasTestNow(). When writing unit test...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-production-deployment-commands",
     "title": "Essential Laravel Production Deployment Command Sequence",
     "category": "Laravel",
@@ -1839,6 +2067,82 @@
     "effective_date": "2023-11-09",
     "date": "2023-11-09",
     "summary": "Execute standard caching and optimization Artisan commands during production CI/CD deployment scripts. Deploying Laravel applications without caching routes,...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "livewire-renderless-export-csv-reports",
+    "title": "Stream CSV Report Downloads with Renderless Livewire Component Actions",
+    "category": "Laravel",
+    "subcategory": "Livewire",
+    "tags": [
+      "Laravel",
+      "Livewire",
+      "HTTP",
+      "Streaming",
+      "CSV",
+      "Performance"
+    ],
+    "created_at": "2023-11-06",
+    "effective_date": "2023-11-06",
+    "date": "2023-11-06",
+    "summary": "Use Livewire 3's #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-belongs-to-team-multitenancy-trait",
+    "title": "Multi-Tenant Team Scoping with a Reusable BelongsToTeam Model Trait",
+    "category": "Laravel",
+    "subcategory": "Architecture",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Multi-Tenancy",
+      "Architecture",
+      "Security"
+    ],
+    "created_at": "2023-11-05",
+    "effective_date": "2023-11-05",
+    "date": "2023-11-05",
+    "summary": "Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes. In multi-tenan...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-custom-wherelike-macro",
+    "title": "Reusable whereLike Macro with Relationship and Expression Support",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Macros",
+      "Search",
+      "Database"
+    ],
+    "created_at": "2023-10-27",
+    "effective_date": "2023-10-27",
+    "date": "2023-10-27",
+    "summary": "Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder...",
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-collection-groupby-closure",
+    "title": "Dynamic Date Grouping in Laravel Collections Using Closures in groupBy()",
+    "category": "Laravel",
+    "subcategory": "Collections",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "PHP",
+      "Dates"
+    ],
+    "created_at": "2023-10-26",
+    "effective_date": "2023-10-26",
+    "date": "2023-10-26",
+    "summary": "Pass a closure to Laravel Collection's groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel's Collection::groupBy...",
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
   },

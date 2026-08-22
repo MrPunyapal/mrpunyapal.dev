@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Laravel &amp; PHP Tip | Punyapal Shah</title>
+
+    <!-- Browser and Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#FF2D20">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
+    <!-- Primary SEO Meta Tags -->
+    <meta name="description" content="Pass a closure to Laravel Collection&#039;s groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel&#039;s Collection::groupBy...">
+    <meta name="author" content="Punyapal Shah">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-collection-groupby-closure">
+    <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-collection-groupby-closure">
+    <meta property="og:title" content="Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Pass a closure to Laravel Collection&#039;s groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel&#039;s Collection::groupBy...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-collection-groupby-closure.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-collection-groupby-closure.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Punyapal Shah">
+    <meta property="og:site_name" content="Punyapal Shah">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2023-10-26">
+    <meta property="article:author" content="https://x.com/MrPunyapal">
+    <meta property="article:section" content="Laravel">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@MrPunyapal">
+    <meta name="twitter:creator" content="@MrPunyapal">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-collection-groupby-closure">
+    <meta name="twitter:title" content="Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Pass a closure to Laravel Collection&#039;s groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel&#039;s Collection::groupBy...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-collection-groupby-closure.png">
+    <meta name="twitter:image:alt" content="Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Punyapal Shah">
+
+    <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "https://mrpunyapal.dev/tips/laravel-collection-groupby-closure#article",
+                "headline": "Dynamic Date Grouping in Laravel Collections Using Closures in groupBy()",
+                "description": "Pass a closure to Laravel Collection's groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel's Collection::groupBy...",
+                "datePublished": "2023-10-26",
+                "inLanguage": "en",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-collection-groupby-closure",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Collections, PHP, Dates",
+                "author": {
+                    "@type": "Person",
+                    "name": "Punyapal Shah",
+                    "url": "https://x.com/MrPunyapal"
+                },
+                "publisher": {
+                    "@id": "https://mrpunyapal.dev/#person"
+                },
+                "articleSection": "Laravel"
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://mrpunyapal.dev/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Tips",
+                        "item": "https://mrpunyapal.dev/tips"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Dynamic Date Grouping in Laravel Collections Using Closures in groupBy()",
+                        "item": "https://mrpunyapal.dev/tips/laravel-collection-groupby-closure"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="128x128">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <meta name="msapplication-TileColor" content="#FF2D20">
+
+    
+    <style>
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Technical Grid Markers */
+        .tech-marker {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background-color: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            z-index: 50;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .dark .tech-marker {
+            background-color: #121212;
+            border-color: #3f3f46;
+            box-shadow: 0 0 0 2px #0a0a0a;
+        }
+
+        /* Infinite Grid Lines */
+        .tech-line-h {
+            position: absolute;
+            height: 1px;
+            background-color: #e2e8f0;
+            z-index: 0;
+            pointer-events: none;
+            width: 300vw;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .dark .tech-line-h {
+            background-color: #262626;
+        }
+
+        .tech-line-v-top {
+            position: absolute;
+            width: 1px;
+            background-color: #e2e8f0;
+            z-index: 0;
+            pointer-events: none;
+            bottom: 100%;
+            height: 100vh;
+        }
+
+        .dark .tech-line-v-top {
+            background-color: #262626;
+        }
+
+        .tech-line-v-bottom {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(to bottom, #e2e8f0, transparent);
+            z-index: 0;
+            pointer-events: none;
+            top: 100%;
+            height: 120px;
+        }
+
+        .dark .tech-line-v-bottom {
+            background: linear-gradient(to bottom, #262626, transparent);
+        }
+
+        /* Official GitHub Light Theme */
+        .hljs {
+            color: #24292e;
+            background: transparent;
+        }
+        .hljs-doctag,
+        .hljs-keyword,
+        .hljs-meta .hljs-keyword,
+        .hljs-template-tag,
+        .hljs-template-variable,
+        .hljs-type,
+        .hljs-variable.language_ {
+            color: #d73a49;
+            font-weight: 600;
+        }
+        .hljs-title,
+        .hljs-title.class_,
+        .hljs-title.class_.inherited__,
+        .hljs-title.function_ {
+            color: #6f42c1;
+            font-weight: 600;
+        }
+        .hljs-attr,
+        .hljs-attribute,
+        .hljs-literal,
+        .hljs-meta,
+        .hljs-number,
+        .hljs-operator,
+        .hljs-variable,
+        .hljs-selector-attr,
+        .hljs-selector-class,
+        .hljs-selector-id {
+            color: #005cc5;
+        }
+        .hljs-regexp,
+        .hljs-string,
+        .hljs-meta .hljs-string {
+            color: #032f62;
+        }
+        .hljs-built_in,
+        .hljs-symbol {
+            color: #e36209;
+        }
+        .hljs-comment,
+        .hljs-code,
+        .hljs-formula {
+            color: #6a737d;
+            font-style: italic;
+        }
+        .hljs-name,
+        .hljs-quote,
+        .hljs-selector-tag,
+        .hljs-selector-pseudo {
+            color: #22863a;
+        }
+        .hljs-subst {
+            color: #24292e;
+        }
+        .hljs-section {
+            color: #005cc5;
+            font-weight: bold;
+        }
+        .hljs-bullet {
+            color: #735c0f;
+        }
+        .hljs-emphasis {
+            color: #24292e;
+            font-style: italic;
+        }
+        .hljs-strong {
+            color: #24292e;
+            font-weight: bold;
+        }
+        .hljs-link {
+            text-decoration: underline;
+        }
+
+        /* Official GitHub Dark Theme */
+        .dark .hljs {
+            color: #c9d1d9;
+            background: transparent;
+        }
+        .dark .hljs-doctag,
+        .dark .hljs-keyword,
+        .dark .hljs-meta .hljs-keyword,
+        .dark .hljs-template-tag,
+        .dark .hljs-template-variable,
+        .dark .hljs-type,
+        .dark .hljs-variable.language_ {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .dark .hljs-title,
+        .dark .hljs-title.class_,
+        .dark .hljs-title.class_.inherited__,
+        .dark .hljs-title.function_ {
+            color: #d2a8ff;
+            font-weight: 600;
+        }
+        .dark .hljs-attr,
+        .dark .hljs-attribute,
+        .dark .hljs-literal,
+        .dark .hljs-meta,
+        .dark .hljs-number,
+        .dark .hljs-operator,
+        .dark .hljs-variable,
+        .dark .hljs-selector-attr,
+        .dark .hljs-selector-class,
+        .dark .hljs-selector-id {
+            color: #79c0ff;
+        }
+        .dark .hljs-regexp,
+        .dark .hljs-string,
+        .dark .hljs-meta .hljs-string {
+            color: #a5d6ff;
+        }
+        .dark .hljs-built_in,
+        .dark .hljs-symbol {
+            color: #ffa657;
+        }
+        .dark .hljs-comment,
+        .dark .hljs-code,
+        .dark .hljs-formula {
+            color: #8b949e;
+            font-style: italic;
+        }
+        .dark .hljs-name,
+        .dark .hljs-quote,
+        .dark .hljs-selector-tag,
+        .dark .hljs-selector-pseudo {
+            color: #7ee787;
+        }
+        .dark .hljs-subst {
+            color: #c9d1d9;
+        }
+        .dark .hljs-section {
+            color: #1f6feb;
+            font-weight: bold;
+        }
+        .dark .hljs-bullet {
+            color: #f2cc60;
+        }
+        .dark .hljs-emphasis {
+            color: #c9d1d9;
+            font-style: italic;
+        }
+        .dark .hljs-strong {
+            color: #c9d1d9;
+            font-weight: bold;
+        }
+        .dark .hljs-link {
+            text-decoration: underline;
+        }
+    </style>
+
+    <link rel="stylesheet" href="/src/tailwind.css">
+    <link rel="stylesheet" href="/src/app.css">
+    <script type="module" src="/src/main.js"></script>
+    <script>
+        (function() {
+            const saved = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && systemDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+
+<body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative antialiased transition-colors duration-200">
+    
+    <!-- Icon sprite: Font Awesome Free 6.4.2 icons -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+        <defs>
+            <symbol id="i-heart" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></symbol>
+            <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
+            <symbol id="i-calendar" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></symbol>
+            <symbol id="i-x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></symbol>
+            <symbol id="i-arrow-left" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></symbol>
+            <symbol id="i-share" viewBox="0 0 512 512"><path d="M307 34.8c-11.5 5.1-19 16.6-19 29.2v64H176C78.8 128 0 206.8 0 304C0 417.3 81.5 467.9 100.2 478.1c2.5 1.4 5.3 1.9 8.1 1.9c10.9 0 19.7-8.9 19.7-19.7c0-7.5-4.3-14.4-9.8-19.5C108.8 431.9 96 414.4 96 384c0-53 43-96 96-96h96v64c0 12.6 7.5 24.1 19 29.2s25 2.6 34-6.4l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-9-9-22.5-11.5-34-6.4z"/></symbol>
+            <symbol id="i-tag" viewBox="0 0 512 512"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.824 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64a48 48 0 1 0 0 96 48 48 0 1 0 0-96z"/></symbol>
+            <symbol id="i-user" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></symbol>
+        </defs>
+    </svg>
+
+    <!-- Main Content Frame -->
+    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
+        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
+
+            <!-- Tech Markers: Corners -->
+            <div class="tech-marker -top-[4px] -left-[4px]"></div>
+            <div class="tech-marker -top-[4px] -right-[4px]"></div>
+            <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+            <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+            <!-- Global Infinite Extensions -->
+            <div class="tech-line-h top-[-1px]"></div>
+            <div class="tech-line-h bottom-[-1px]"></div>
+
+            <div class="tech-line-v-top left-[-1px]"></div>
+            <div class="tech-line-v-top right-[-1px]"></div>
+
+            <div class="tech-line-v-bottom left-[-1px]"></div>
+            <div class="tech-line-v-bottom right-[-1px]"></div>
+
+            <!-- Card Header: Top Nav Bar -->
+            <header class="border-b border-slate-200 dark:border-slate-800 relative z-20" style="view-transition-name: site-header;">
+                <!-- Horizontal Line Extension -->
+                <div class="tech-line-h bottom-[-1px]"></div>
+
+                <!-- Intersections with outer border -->
+                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+                <!-- Desktop Nav Row (Visible on sm: and larger) -->
+                <div class="hidden sm:flex site-nav-row items-center overflow-x-auto px-4 sm:px-6 w-full">
+                    <!-- Spacer pushes nav to the right -->
+                    <div class="site-nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
+
+                    <!-- Navigation Tabs -->
+                    <nav aria-label="Main Navigation" class="site-nav-tabs flex items-center -mb-[1px] shrink-0">
+                    <a href="/" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Home"><span>Home</span></span>
+                        
+                    </a>
+                    <a href="/services" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Services"><span>Services</span></span>
+                        
+                    </a>
+                    <a href="/projects" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Projects"><span>Projects</span></span>
+                        
+                    </a>
+                    <a href="/opensource" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center gap-1.5 whitespace-nowrap">
+                        <span class="nav-label" data-text="Open Source"><span>Open Source</span></span>
+                        <svg class="icon text-red-500 text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-heart"/></svg>
+                        
+                    </a>
+                    <a href="/tips" aria-current="page" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900 dark:text-white border-b-2 border-transparent relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Tips"><span>Tips</span></span>
+                        <span class="nav-active-indicator absolute -bottom-[1px] inset-x-0 h-[2px] bg-red-500 z-10" style="view-transition-name: active-nav-indicator;" aria-hidden="true"></span>
+                    </a>
+                    <a href="/resume" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Resume"><span>Resume</span></span>
+                        
+                    </a>
+                    <a href="/talks" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Talks"><span>Talks</span></span>
+                        
+                    </a>
+                    </nav>
+
+                    <!-- Utility Buttons -->
+                    <div class="site-nav-utilities flex items-center gap-1 sm:gap-1.5 py-2 pl-2 sm:pl-3 border-l border-slate-200 dark:border-slate-800 shrink-0">
+                        <a href="https://github.com/MrPunyapal/tips" target="_blank" rel="noopener noreferrer" aria-label="View Tips repository on GitHub" class="site-nav-source p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
+                            <svg class="icon text-sm" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                        </a>
+                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn relative p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                            <span class="theme-icon-container flex items-center justify-center" aria-hidden="true">
+        <svg class="theme-sun-icon hidden dark:block text-amber-400" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+            <line x1="12" y1="2" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
+            <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
+            <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
+        </svg>
+        <svg class="theme-moon-icon block dark:hidden text-indigo-500" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </span>
+    <span class="theme-spider-badge absolute -top-1 -right-1 pointer-events-none flex items-center justify-center z-10 text-slate-800 dark:text-slate-200" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="13.5" height="13.5" fill="currentColor" aria-hidden="true" style="display:block;">
+            <g stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 44 60 Q 28 80 16 78" />
+                <path d="M 56 60 Q 72 80 84 78" />
+                <path d="M 42 53 Q 20 63 10 53" />
+                <path d="M 58 53 Q 80 63 90 53" />
+                <path d="M 42 45 Q 18 36 12 24" />
+                <path d="M 58 45 Q 82 36 88 24" />
+                <path d="M 44 38 Q 30 18 20 10" />
+                <path d="M 56 38 Q 70 18 80 10" />
+            </g>
+            <ellipse cx="50" cy="35" rx="14" ry="17" />
+            <circle cx="50" cy="57" r="10" />
+            <path d="M 44 65 Q 47 73 47 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+            <path d="M 56 65 Q 53 73 53 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+        </svg>
+    </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Header Bar (Visible on mobile < sm) -->
+                <div class="flex sm:hidden items-center justify-between px-4 py-2.5 w-full">
+                    <a href="/" aria-label="Home page" class="px-2 py-1 text-sm font-semibold text-slate-900 dark:text-white hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                        Home
+                    </a>
+
+                    <div class="flex items-center gap-1.5">
+                        <a href="https://github.com/MrPunyapal/tips" target="_blank" rel="noopener noreferrer" aria-label="View Tips repository on GitHub" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
+                            <svg class="icon text-sm" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                        </a>
+                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn relative p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                            <span class="theme-icon-container flex items-center justify-center" aria-hidden="true">
+        <svg class="theme-sun-icon hidden dark:block text-amber-400" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+            <line x1="12" y1="2" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
+            <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
+            <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
+        </svg>
+        <svg class="theme-moon-icon block dark:hidden text-indigo-500" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </span>
+    <span class="theme-spider-badge absolute -top-1 -right-1 pointer-events-none flex items-center justify-center z-10 text-slate-800 dark:text-slate-200" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="13.5" height="13.5" fill="currentColor" aria-hidden="true" style="display:block;">
+            <g stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 44 60 Q 28 80 16 78" />
+                <path d="M 56 60 Q 72 80 84 78" />
+                <path d="M 42 53 Q 20 63 10 53" />
+                <path d="M 58 53 Q 80 63 90 53" />
+                <path d="M 42 45 Q 18 36 12 24" />
+                <path d="M 58 45 Q 82 36 88 24" />
+                <path d="M 44 38 Q 30 18 20 10" />
+                <path d="M 56 38 Q 70 18 80 10" />
+            </g>
+            <ellipse cx="50" cy="35" rx="14" ry="17" />
+            <circle cx="50" cy="57" r="10" />
+            <path d="M 44 65 Q 47 73 47 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+            <path d="M 56 65 Q 53 73 53 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+        </svg>
+    </span>
+                        </button>
+                        <button type="button" data-mobile-menu-toggle aria-expanded="false" aria-controls="mobile-sidebar" aria-label="Open sidebar navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M3.75 8.25h16.5M3.75 15.75h11"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Off-Canvas Mobile Sidebar Drawer -->
+                <div id="mobile-sidebar" class="hidden sm:hidden fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation sidebar">
+                    <!-- Semi-transparent Blur Backdrop -->
+                    <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity duration-300 ease-in-out opacity-0" aria-hidden="true"></div>
+
+                    <!-- Slide-Over Panel Container -->
+                    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+                        <div id="mobile-sidebar-panel" class="w-64 sm:w-72 h-dvh max-h-dvh bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
+                            
+                            <!-- Sidebar Header Bar (Clean Close Button Only) -->
+                            <div class="flex items-center justify-end px-4 py-3.5 border-b border-slate-200 dark:border-slate-800">
+                                <button type="button" data-mobile-sidebar-close aria-label="Close navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M18 6 6 18M6 6l12 12"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Sidebar Content Links -->
+                            <div class="flex-1 overflow-y-auto px-3 py-4 space-y-1.5">
+                <a href="/" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Home</span>
+                </a>
+                <a href="/services" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Services</span>
+                </a>
+                <a href="/projects" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Projects</span>
+                </a>
+                <a href="/opensource" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Open Source</span>
+                </a>
+                <a href="/tips" aria-current="page" class="flex items-center px-4 py-3 text-base transition-all bg-slate-100 dark:bg-slate-800/60 text-slate-900 dark:text-white font-medium border-l-4 border-red-500">
+                    <span>Tips</span>
+                </a>
+                <a href="/resume" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Resume</span>
+                </a>
+                <a href="/talks" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Talks</span>
+                </a>
+                            </div>
+
+                            <!-- Sidebar Footer -->
+                            <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                                <span class="font-medium text-slate-700 dark:text-slate-300">Punyapal Shah</span>
+                                <a href="https://github.com/MrPunyapal/tips" target="_blank" rel="noopener noreferrer" aria-label="View Tips repository on GitHub" class="hover:text-slate-900 dark:hover:text-white transition-colors font-mono">GitHub ↗</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smooth Interactivity Script for Off-Canvas Sidebar -->
+                <script>
+                if (!window.__sidebarNavInit) {
+                    window.__sidebarNavInit = true;
+
+                    function preventTouchMove(e) {
+                        if (e.target.closest('#mobile-sidebar-panel')) return;
+                        e.preventDefault();
+                    }
+
+                    function openSidebar() {
+                        var sidebar = document.getElementById('mobile-sidebar');
+                        var backdrop = document.getElementById('mobile-sidebar-backdrop');
+                        var panel = document.getElementById('mobile-sidebar-panel');
+                        var toggleBtn = document.querySelector('[data-mobile-menu-toggle]');
+                        if (!sidebar || !backdrop || !panel) return;
+
+                        sidebar.classList.remove('hidden');
+
+                        document.addEventListener('touchmove', preventTouchMove, { passive: false });
+
+                        requestAnimationFrame(function() {
+                            backdrop.classList.remove('opacity-0');
+                            backdrop.classList.add('opacity-100');
+                            panel.classList.remove('translate-x-full');
+                            panel.classList.add('translate-x-0');
+                        });
+
+                        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+                    }
+
+                    function closeSidebar() {
+                        var sidebar = document.getElementById('mobile-sidebar');
+                        var backdrop = document.getElementById('mobile-sidebar-backdrop');
+                        var panel = document.getElementById('mobile-sidebar-panel');
+                        var toggleBtn = document.querySelector('[data-mobile-menu-toggle]');
+                        if (!sidebar || !backdrop || !panel) return;
+
+                        backdrop.classList.remove('opacity-100');
+                        backdrop.classList.add('opacity-0');
+                        panel.classList.remove('translate-x-0');
+                        panel.classList.add('translate-x-full');
+
+                        document.removeEventListener('touchmove', preventTouchMove);
+
+                        setTimeout(function() {
+                            sidebar.classList.add('hidden');
+                        }, 300);
+
+                        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                    }
+
+                    document.addEventListener('click', function(e) {
+                        var openBtn = e.target.closest('[data-mobile-menu-toggle]');
+                        if (openBtn) {
+                            e.preventDefault();
+                            openSidebar();
+                            return;
+                        }
+
+                        var closeBtn = e.target.closest('[data-mobile-sidebar-close]');
+                        var backdrop = e.target.closest('#mobile-sidebar-backdrop');
+                        if (closeBtn || backdrop) {
+                            e.preventDefault();
+                            closeSidebar();
+                            return;
+                        }
+                    });
+
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape') {
+                            var sidebar = document.getElementById('mobile-sidebar');
+                            if (sidebar && !sidebar.classList.contains('hidden')) {
+                                closeSidebar();
+                            }
+                        }
+                    });
+                }
+                </script>
+            </header>
+
+            <!-- Tip Article Header Section -->
+            <div class="p-6 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative">
+                <div class="tech-line-h bottom-[-1px]"></div>
+                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+                <!-- Breadcrumbs & Category Badge -->
+                <div class="flex items-center justify-between gap-4 mb-6">
+                    <a href="/tips" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors py-1" title="Back to All Tips" aria-label="Back to All Tips">
+                        <svg class="icon text-xs" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-left"/></svg>
+                        <span class="hidden sm:inline">Back</span>
+                    </a>
+
+                    <div class="inline-flex items-center gap-1.5 flex-wrap">
+                        <button id="random-tip-btn" type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group cursor-pointer" title="Open another random developer tip" aria-label="Open another random developer tip">
+                            <svg class="w-3.5 h-3.5 text-red-500 group-hover:rotate-180 transition-transform duration-500" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h7l-4 4m0 0l4 4M7 8h13M20 20h-7l4-4m0 0l-4-4m4 4H4" />
+                            </svg>
+                            <span>Random</span>
+                        </button>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold border bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border-red-100 dark:border-red-900/60">
+                            Laravel
+                        </span>
+                        
+                            <span class="text-slate-400 dark:text-slate-600 text-xs font-mono select-none" aria-hidden="true">/</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
+                                Collections
+                            </span>
+                        
+                    </div>
+                </div>
+
+                <!-- Title & Meta -->
+                <div class="animate-fade-up">
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
+                        Dynamic Date Grouping in Laravel Collections Using Closures in groupBy()
+                    </h1>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                            <span class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-user"/></svg>
+                                <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
+                            </span>
+                            <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+                            <time datetime="2023-10-26" class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
+                                Oct 26, 2023
+                            </time>
+                        </div>
+
+                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/collections/laravel-collection-groupby-closure.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                            <span>edit this tip</span>
+                            <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tip Article Content Body -->
+            <article class="p-6 sm:p-12 relative">
+
+                <!-- Main Tip Content -->
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Pass a closure to Laravel Collection&#39;s groupBy() method to group models and arrays dynamically by day, week, month, or quarter.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s <code>Collection::groupBy()</code> method is commonly used with a simple string key (such as <code>-&gt;groupBy(&#39;status&#39;)</code>).</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">However, <code>groupBy()</code> also accepts a closure that receives each item in the collection and returns the dynamic group key. This is especially useful for aggregating records into date intervals such as weeks, quarters, or formatted periods for reporting dashboards.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Grouping Records by Dynamic Time Periods</h3>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use AppModelsOrder;
+use CarbonCarbon;
+use IlluminateSupportCollection;
+
+$orders = Order::query()
+    -&gt;where(&#039;created_at&#039;, &#039;&gt;=&#039;, now()-&gt;subYear())
+    -&gt;get();
+
+$interval = request(&#039;interval&#039;, &#039;week&#039;); // &#039;day&#039;, &#039;week&#039;, &#039;month&#039;, &#039;quarter&#039;, &#039;year&#039;
+
+$groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): string {
+    $date = $order-&gt;created_at;
+
+    return match ($interval) {
+        &#039;day&#039; =&gt; $date-&gt;format(&#039;D d M Y&#039;),
+        // Output: &quot;Sun 01 Jan 2026&quot;
+
+        &#039;week&#039; =&gt; $date-&gt;copy()-&gt;startOfWeek()-&gt;format(&#039;d M Y&#039;) . &#039; - &#039; . $date-&gt;copy()-&gt;endOfWeek()-&gt;format(&#039;d M Y&#039;),
+        // Output: &quot;01 Jan 2026 - 07 Jan 2026&quot;
+
+        &#039;month&#039; =&gt; $date-&gt;format(&#039;M Y&#039;),
+        // Output: &quot;Jan 2026&quot;
+
+        &#039;quarter&#039; =&gt; $date-&gt;copy()-&gt;firstOfQuarter()-&gt;format(&#039;M&#039;) . &#039; - &#039; . $date-&gt;copy()-&gt;lastOfQuarter()-&gt;format(&#039;M Y&#039;),
+        // Output: &quot;Jan - Mar 2026&quot;
+
+        &#039;year&#039; =&gt; $date-&gt;format(&#039;Y&#039;),
+        // Output: &quot;2026&quot;
+    };
+});" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">AppModelsOrder</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">CarbonCarbon</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateSupportCollection</span>;
+
+<span class="hljs-variable">$orders</span> = <span class="hljs-title class_">Order</span>::<span class="hljs-title function_ invoke__">query</span>()
+    -&gt;<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-string">&#x27;&gt;=&#x27;</span>, <span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">subYear</span>())
+    -&gt;<span class="hljs-title function_ invoke__">get</span>();
+
+<span class="hljs-variable">$interval</span> = <span class="hljs-title function_ invoke__">request</span>(<span class="hljs-string">&#x27;interval&#x27;</span>, <span class="hljs-string">&#x27;week&#x27;</span>); <span class="hljs-comment">// &#x27;day&#x27;, &#x27;week&#x27;, &#x27;month&#x27;, &#x27;quarter&#x27;, &#x27;year&#x27;</span>
+
+<span class="hljs-variable">$groupedOrders</span> = <span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">groupBy</span>(function (Order <span class="hljs-variable">$order</span>) <span class="hljs-keyword">use</span> ($<span class="hljs-title">interval</span>): <span class="hljs-title">string</span> {
+    $<span class="hljs-title">date</span> = $<span class="hljs-title">order</span>-&gt;<span class="hljs-title">created_at</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">match</span> (<span class="hljs-variable">$interval</span>) {
+        <span class="hljs-string">&#x27;day&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;D d M Y&#x27;</span>),
+        <span class="hljs-comment">// Output: &quot;Sun 01 Jan 2026&quot;</span>
+
+        <span class="hljs-string">&#x27;week&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">startOfWeek</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;d M Y&#x27;</span>) . <span class="hljs-string">&#x27; - &#x27;</span> . <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">endOfWeek</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;d M Y&#x27;</span>),
+        <span class="hljs-comment">// Output: &quot;01 Jan 2026 - 07 Jan 2026&quot;</span>
+
+        <span class="hljs-string">&#x27;month&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;M Y&#x27;</span>),
+        <span class="hljs-comment">// Output: &quot;Jan 2026&quot;</span>
+
+        <span class="hljs-string">&#x27;quarter&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">firstOfQuarter</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;M&#x27;</span>) . <span class="hljs-string">&#x27; - &#x27;</span> . <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">lastOfQuarter</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;M Y&#x27;</span>),
+        <span class="hljs-comment">// Output: &quot;Jan - Mar 2026&quot;</span>
+
+        <span class="hljs-string">&#x27;year&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;Y&#x27;</span>),
+        <span class="hljs-comment">// Output: &quot;2026&quot;</span>
+    };
+});</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Structure of the Resulting Collection</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The returned collection uses the formatted date strings as keys, with each entry containing the subset of matching models:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Example quarter grouping:
+[
+    &quot;Jan - Mar 2026&quot; =&gt; Collection [ Order #101, Order #102 ],
+    &quot;Oct - Dec 2025&quot; =&gt; Collection [ Order #89, Order #90 ],
+]" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Example quarter grouping:</span>
+[
+    <span class="hljs-string">&quot;Jan - Mar 2026&quot;</span> =&gt; Collection [ Order <span class="hljs-comment">#101, Order #102 ],</span>
+    <span class="hljs-string">&quot;Oct - Dec 2025&quot;</span> =&gt; Collection [ Order <span class="hljs-comment">#89, Order #90 ],</span>
+]</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Aggregating Data per Period</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Once grouped, you can chain standard collection operations like <code>map()</code> or <code>sum()</code> to build dashboard statistics:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$revenueByQuarter = $groupedOrders-&gt;map(function (Collection $orders): float {
+    return $orders-&gt;sum(&#039;total_amount&#039;);
+});" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$revenueByQuarter</span> = <span class="hljs-variable">$groupedOrders</span>-&gt;<span class="hljs-title function_ invoke__">map</span>(function (Collection <span class="hljs-variable">$orders</span>): <span class="hljs-keyword">float</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">sum</span>(<span class="hljs-string">&#x27;total_amount&#x27;</span>);
+});</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Pass a closure to <code>Collection::groupBy()</code> for dynamic, computed grouping criteria.</span></li><li class="leading-relaxed"><span class="align-middle">Pair with Carbon&#39;s period helpers (<code>startOfWeek()</code>, <code>firstOfQuarter()</code>) to group data into reporting intervals.</span></li><li class="leading-relaxed"><span class="align-middle">Chain <code>map()</code> and <code>sum()</code> on grouped collections to calculate interval metrics effortlessly.</span></li></ul>
+                </div>
+
+                <!-- Bottom Inline Edit Link -->
+                <div class="mt-8 flex justify-end">
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/collections/laravel-collection-groupby-closure.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                        <span>edit this tip</span>
+                        <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
+                <!-- Tag Cloud & Inline Share Actions -->
+                <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mr-1 inline-flex items-center gap-1.5 font-mono">
+                            <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
+                            Tags:
+                        </span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Collections</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">PHP</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Dates</span>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <a href="https://twitter.com/intent/tweet?text=Dynamic%20Date%20Grouping%20in%20Laravel%20Collections%20Using%20Closures%20in%20groupBy()%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-collection-groupby-closure" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                            <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
+                            <span>Share on X</span>
+                        </a>
+                        <button type="button" id="share-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors text-[11px] font-bold uppercase tracking-wider cursor-pointer" aria-label="Copy page link">
+                            <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-share"/></svg>
+                            <span id="share-link-text">Copy Link</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Related Tips -->
+                
+        <div class="mt-10 pt-8 border-t border-slate-200 dark:border-slate-800">
+            <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
+                
+                <a href="/tips/laravel-stream-csv-downloads-without-temporary-files" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                    <!-- Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
+                        Stream CSV Downloads in Laravel Without Creating Temporary Files
+                    </h3>
+                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                <a href="/tips/laravel-queue-debounced-event-listeners" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                    <!-- Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
+                        Debounce Queued Event Listeners with #[DebounceFor] in Laravel 13.26
+                    </h3>
+                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    
+            </article>
+        </div>
+
+        <!-- Footer -->
+        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 print:hidden">
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                // Found an issue or want to contribute a tip?
+                <a href="https://github.com/MrPunyapal/tips" target="_blank" rel="noopener noreferrer"
+                    class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold ml-1">
+                    github.com/MrPunyapal/tips
+                </a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Copy Link & Code helper script -->
+    <script>
+        const OTHER_TIP_SLUGS = ["git-local-ignore-info-exclude","laravel-stream-csv-downloads-without-temporary-files","laravel-queue-debounced-event-listeners","laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","php-predefined-constants-cheat-sheet","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-rector-remove-unnecessary-comments","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","php-timeout-guard-ticks-without-pcntl","laravel-tappable-scopes-eloquent-scout","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","phpstan-static-analysis-levels-guide","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","php-rector-refactor-enums-pascal-case","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-broadcast-database-notifications-instantly","laravel-eloquent-when-and-unless-conditional-queries","laravel-cast-enum-json-array-key","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","laravel-enum-has-label-trait","livewire-teleport-blade-view-cache-directive-fix","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-activity-log-event-subscriber","laravel-generate-unique-slug-without-looping","php-str-increment-decrement","laravel-carbon-set-test-now-time-manipulation","laravel-production-deployment-commands","livewire-renderless-export-csv-reports","laravel-belongs-to-team-multitenancy-trait","laravel-custom-wherelike-macro","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        document.addEventListener('DOMContentLoaded', () => {
+            const randomTipBtn = document.getElementById('random-tip-btn');
+            if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {
+                randomTipBtn.addEventListener('click', () => {
+                    const randomIndex = Math.floor(Math.random() * OTHER_TIP_SLUGS.length);
+                    const randomSlug = OTHER_TIP_SLUGS[randomIndex];
+                    window.location.href = '/tips/' + randomSlug;
+                });
+            }
+            const shareBtn = document.getElementById('share-link-btn');
+            const shareText = document.getElementById('share-link-text');
+            if (shareBtn && shareText) {
+                shareBtn.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        shareText.textContent = 'Copied!';
+                        setTimeout(() => { shareText.textContent = 'Copy Link'; }, 2000);
+                    } catch(e) {
+                        console.error('Failed to copy link', e);
+                    }
+                });
+            }
+
+            document.querySelectorAll('.copy-code-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const code = btn.getAttribute('data-code');
+                    if (!code) return;
+                    try {
+                        await navigator.clipboard.writeText(code);
+                        const label = btn.querySelector('.copy-label');
+                        if (label) label.textContent = 'Copied!';
+                        btn.classList.add('bg-emerald-700', 'text-white');
+                        setTimeout(() => {
+                            if (label) label.textContent = 'Copy';
+                            btn.classList.remove('bg-emerald-700', 'text-white');
+                        }, 2000);
+                    } catch (e) {
+                        console.error('Failed to copy code', e);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

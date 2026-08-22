@@ -2883,29 +2883,6 @@ php artisan make:action CreateOrderAction</code></pre>
       <category><![CDATA[DX]]></category>
     </item>
     <item>
-      <title><![CDATA[Add a Reusable whereLike Macro for Eloquent Searching]]></title>
-      <link>https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro</link>
-      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro</guid>
-      <description><![CDATA[Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...]]></description>
-      <content:encoded><![CDATA[<blockquote>Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder.</blockquote>
-<p>Searching across multiple string columns usually requires repetitive orWhere chains. Registering a macro in AppServiceProvider provides a clean API for wildcard matching.</p>
-<pre><code class="language-php">use App\Models\User;
-
-// Search across name, email, and bio in a single call
-$users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;], $search)-&gt;get();</code></pre>
-<ul>
-  <li>Wraps multiple orWhere calls inside a grouped subquery clause</li>
-  <li>Works with single column strings or arrays of columns</li>
-  <li>Keeps controller search logic minimal and readable</li>
-</ul>
-]]></content:encoded>
-      <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
-      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
-      <category><![CDATA[Laravel]]></category>
-      <category><![CDATA[Eloquent]]></category>
-      <category><![CDATA[Macros]]></category>
-    </item>
-    <item>
       <title><![CDATA[Streamline Testing with Pest Test Impact Analysis (TIA)]]></title>
       <link>https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</guid>
@@ -3104,6 +3081,332 @@ return new InvoiceExportResponse($data);</code></pre>
       <category><![CDATA[HTTP]]></category>
     </item>
     <item>
+      <title><![CDATA[PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready)]]></title>
+      <link>https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet</guid>
+      <description><![CDATA[A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4. PHP provides built-in...]]></description>
+      <content:encoded><![CDATA[<blockquote>A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4.</blockquote>
+<p>PHP provides built-in constants for filesystem operations, compile-time metadata, runtime environment information, error levels, and stream handles. These constants are available globally without importing namespaces or requiring setup.</p>
+<h3>Filesystem and Path Constants</h3>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Example Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DIRECTORY_SEPARATOR</code></td>
+<td>Path separator (<code>/</code> on Unix, <code>\</code> on Windows)</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td><code>PATH_SEPARATOR</code></td>
+<td>Include path separator (<code>:</code> on Unix, <code>;</code> on Windows)</td>
+<td><code>:</code></td>
+</tr>
+<tr>
+<td><code>__FILE__</code></td>
+<td>Full filesystem path and filename of the current file</td>
+<td><code>/var/www/html/index.php</code></td>
+</tr>
+<tr>
+<td><code>__DIR__</code></td>
+<td>Directory path containing the current file</td>
+<td><code>/var/www/html</code></td>
+</tr>
+<tr>
+<td><code>__LINE__</code></td>
+<td>Current line number in the executing file</td>
+<td><code>42</code></td>
+</tr>
+</tbody></table>
+<h3>Magic Compile-Time Constants</h3>
+<p>Magic constants are resolved at compile time, introducing zero runtime performance overhead:</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Example Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>__FUNCTION__</code></td>
+<td>Current function name</td>
+<td><code>calculateTotal</code></td>
+</tr>
+<tr>
+<td><code>__CLASS__</code></td>
+<td>Current class name with namespace</td>
+<td><code>App\Models\Order</code></td>
+</tr>
+<tr>
+<td><code>__TRAIT__</code></td>
+<td>Current trait name</td>
+<td><code>App\Traits\HasLabel</code></td>
+</tr>
+<tr>
+<td><code>__METHOD__</code></td>
+<td>Current class method name</td>
+<td><code>App\Services\PaymentService::charge</code></td>
+</tr>
+<tr>
+<td><code>__NAMESPACE__</code></td>
+<td>Current namespace</td>
+<td><code>App\Services</code></td>
+</tr>
+</tbody></table>
+<h3>PHP Environment and System Limits</h3>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Example Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PHP_VERSION</code></td>
+<td>Full PHP version string</td>
+<td><code>8.4.1</code></td>
+</tr>
+<tr>
+<td><code>PHP_MAJOR_VERSION</code></td>
+<td>Major version integer</td>
+<td><code>8</code></td>
+</tr>
+<tr>
+<td><code>PHP_MINOR_VERSION</code></td>
+<td>Minor version integer</td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>PHP_RELEASE_VERSION</code></td>
+<td>Patch release integer</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>PHP_OS</code></td>
+<td>Operating system string from PHP build</td>
+<td><code>Linux</code>, <code>WINNT</code>, <code>Darwin</code></td>
+</tr>
+<tr>
+<td><code>PHP_OS_FAMILY</code></td>
+<td>Portable operating system group</td>
+<td><code>Linux</code>, <code>Windows</code>, <code>BSD</code>, <code>Darwin</code></td>
+</tr>
+<tr>
+<td><code>PHP_SAPI</code></td>
+<td>Server API interface type</td>
+<td><code>cli</code>, <code>fpm-fcgi</code>, <code>apache2handler</code></td>
+</tr>
+<tr>
+<td><code>PHP_EOL</code></td>
+<td>Correct newline character for the host OS</td>
+<td><code>\n</code> or <code>\r\n</code></td>
+</tr>
+<tr>
+<td><code>PHP_INT_MAX</code></td>
+<td>Maximum integer supported by host architecture</td>
+<td><code>9223372036854775807</code></td>
+</tr>
+<tr>
+<td><code>PHP_INT_MIN</code></td>
+<td>Minimum integer supported by host architecture</td>
+<td><code>-9223372036854775808</code></td>
+</tr>
+<tr>
+<td><code>PHP_FLOAT_MAX</code></td>
+<td>Maximum floating-point number</td>
+<td><code>1.7976931348623E+308</code></td>
+</tr>
+<tr>
+<td><code>PHP_FLOAT_MIN</code></td>
+<td>Minimum positive normalized floating-point number</td>
+<td><code>2.2250738585072E-308</code></td>
+</tr>
+</tbody></table>
+<h3>Error Reporting Masks</h3>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Category</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>E_ERROR</code></td>
+<td>Fatal runtime errors that halt execution</td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_WARNING</code></td>
+<td>Non-fatal runtime warnings</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_PARSE</code></td>
+<td>Compile-time parse/syntax errors</td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_NOTICE</code></td>
+<td>Runtime notices about potential issues</td>
+<td>Notice</td>
+</tr>
+<tr>
+<td><code>E_CORE_ERROR</code></td>
+<td>Fatal errors generated by PHP core startup</td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_CORE_WARNING</code></td>
+<td>Warnings generated by PHP core startup</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_COMPILE_ERROR</code></td>
+<td>Fatal errors generated by the Zend script engine</td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_COMPILE_WARNING</code></td>
+<td>Warnings generated by the Zend script engine</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_USER_ERROR</code></td>
+<td>User-generated fatal error via <code>trigger_error()</code></td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_USER_WARNING</code></td>
+<td>User-generated warning via <code>trigger_error()</code></td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_USER_NOTICE</code></td>
+<td>User-generated notice via <code>trigger_error()</code></td>
+<td>Notice</td>
+</tr>
+<tr>
+<td><code>E_RECOVERABLE_ERROR</code></td>
+<td>Catchable fatal error</td>
+<td>Fatal (Catchable)</td>
+</tr>
+<tr>
+<td><code>E_DEPRECATED</code></td>
+<td>Runtime notices about deprecated features</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_USER_DEPRECATED</code></td>
+<td>User-generated deprecation notice</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_ALL</code></td>
+<td>Bitmask covering all supported error levels</td>
+<td>Aggregate</td>
+</tr>
+</tbody></table>
+<h3>File Upload Error Codes</h3>
+<p>When processing `$_FILES['upload']['error']`, compare against these constants instead of magic numbers:</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>UPLOAD_ERR_OK</code></td>
+<td><code>0</code></td>
+<td>File uploaded successfully</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_INI_SIZE</code></td>
+<td><code>1</code></td>
+<td>File exceeds <code>upload_max_filesize</code> in <code>php.ini</code></td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_FORM_SIZE</code></td>
+<td><code>2</code></td>
+<td>File exceeds <code>MAX_FILE_SIZE</code> specified in HTML form</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_PARTIAL</code></td>
+<td><code>3</code></td>
+<td>File was only partially uploaded</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_NO_FILE</code></td>
+<td><code>4</code></td>
+<td>No file was selected for upload</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_NO_TMP_DIR</code></td>
+<td><code>6</code></td>
+<td>Missing temporary upload folder on server</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_CANT_WRITE</code></td>
+<td><code>7</code></td>
+<td>Failed to write file to server disk</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_EXTENSION</code></td>
+<td><code>8</code></td>
+<td>A PHP extension stopped the file upload</td>
+</tr>
+</tbody></table>
+<h3>CLI Stream Constants</h3>
+<p>Available automatically in Command Line Interface (CLI) scripts:</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Direction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>STDIN</code></td>
+<td>Open stream resource reading from standard input</td>
+<td>Input</td>
+</tr>
+<tr>
+<td><code>STDOUT</code></td>
+<td>Open stream resource writing to standard output</td>
+<td>Output</td>
+</tr>
+<tr>
+<td><code>STDERR</code></td>
+<td>Open stream resource writing to standard error</td>
+<td>Output</td>
+</tr>
+</tbody></table>
+<h3>Summary</h3>
+<ul>
+  <li>Use <code>PHP_OS_FAMILY</code> instead of comparing against individual <code>PHP_OS</code> strings for cross-platform compatibility.</li>
+  <li>Use <code>UPLOAD_ERR_*</code> constants when handling file uploads for descriptive error checking.</li>
+  <li>Leverage magic constants (<code>__DIR__</code>, <code>__CLASS__</code>, <code>__METHOD__</code>) for zero-overhead compile-time introspection.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sat, 28 Mar 2026 00:00:00 GMT</pubDate>
+      <atom:updated>Sat, 28 Mar 2026 00:00:00 GMT</atom:updated>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Tooling]]></category>
+      <category><![CDATA[Constants]]></category>
+      <category><![CDATA[Reference]]></category>
+      <category><![CDATA[PHP 8.4]]></category>
+    </item>
+    <item>
       <title><![CDATA[Avoid whereDate() on Large Tables: Use Range Queries Instead]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-wheredate-index-performance</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-wheredate-index-performance</guid>
@@ -3153,6 +3456,158 @@ $post-&gt;unsetRelation(&#039;comments&#039;);</code></pre>
       <category><![CDATA[Laravel]]></category>
       <category><![CDATA[Eloquent]]></category>
       <category><![CDATA[Relationships]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Clean Up Redundant Code Comments with a Custom Rector Rule]]></title>
+      <link>https://mrpunyapal.dev/tips/php-rector-remove-unnecessary-comments</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-rector-remove-unnecessary-comments</guid>
+      <description><![CDATA[Use a custom Rector rule to automatically strip noisy inline comments and empty docblocks across your codebase while preserving essential PHPDoc annotations....]]></description>
+      <content:encoded><![CDATA[<blockquote>Use a custom Rector rule to automatically strip noisy inline comments and empty docblocks across your codebase while preserving essential PHPDoc annotations.</blockquote>
+<p>Codebases often accumulate redundant comments over time: commented-out legacy code, obvious explanations (`// set user name`), or empty boilerplate docblocks generated by older IDE templates.</p>
+<p>Manually reviewing and removing thousands of stale comments across hundreds of files is time-consuming. Using Rector, you can define an AbstractRector rule that strips non-essential comments while retaining critical PHPDoc annotations such as `@param`, `@return`, and `@throws`.</p>
+<h3>The Rector Implementation</h3>
+<pre><code class="language-php">namespace AppRector;
+
+use PhpParserComment;
+use PhpParserCommentDoc;
+use PhpParserNode;
+use RectorRectorAbstractRector;
+use SymplifyRuleDocGeneratorValueObjectCodeSampleCodeSample;
+use SymplifyRuleDocGeneratorValueObjectRuleDefinition;
+
+final class RemoveUnnecessaryCommentsRector extends AbstractRector
+{
+    // Whitelist specific comment strings or tags you want to keep
+    private const ALLOWED_PATTERNS = [
+        &#039;@todo&#039;,
+        &#039;@var&#039;,
+    ];
+
+    public function getNodeTypes(): array
+    {
+        return [Node::class];
+    }
+
+    public function refactor(Node $node): ?Node
+    {
+        $comments = $node-&gt;getComments();
+
+        if ($comments === []) {
+            return null;
+        }
+
+        $filtered = [];
+        $changed = false;
+
+        foreach ($comments as $comment) {
+            if ($comment instanceof Doc) {
+                $cleaned = $this-&gt;cleanDocBlock($comment);
+
+                if ($cleaned !== $comment-&gt;getText()) {
+                    if ($cleaned !== &#039;&#039;) {
+                        $filtered[] = new Doc($cleaned);
+                    }
+                    $changed = true;
+                } else {
+                    $filtered[] = $comment;
+                }
+                continue;
+            }
+
+            // Check if regular comment contains allowed keywords
+            if ($this-&gt;isAllowed($comment-&gt;getText())) {
+                $filtered[] = $comment;
+            } else {
+                $changed = true;
+            }
+        }
+
+        if (! $changed) {
+            return null;
+        }
+
+        $node-&gt;setAttribute(&#039;comments&#039;, $filtered);
+
+        return $node;
+    }
+
+    private function cleanDocBlock(Doc $doc): string
+    {
+        $lines = preg_split(&#039;/\R/&#039;, $doc-&gt;getText());
+        $tags = [];
+
+        foreach ($lines as $line) {
+            $line = trim(preg_replace(&#039;/^\s*\*\s?/&#039;, &#039;&#039;, $line));
+
+            if ($line === &#039;&#039;) {
+                continue;
+            }
+
+            // Preserve standard PHPDoc annotations (@param, @return, @throws, etc.)
+            if (str_starts_with($line, &#039;@&#039;)) {
+                $tags[] = $line;
+            }
+        }
+
+        if ($tags === []) {
+            return &#039;&#039;;
+        }
+
+        return &quot;/**\n * &quot; . implode(&quot;\n * &quot;, $tags) . &quot;\n */&quot;;
+    }
+
+    private function isAllowed(string $text): bool
+    {
+        foreach (self::ALLOWED_PATTERNS as $allowed) {
+            if (str_contains($text, $allowed)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getRuleDefinition(): RuleDefinition
+    {
+        return new RuleDefinition(&#039;Remove redundant inline comments while retaining essential PHPDoc tags&#039;, [
+            new CodeSample(
+                &lt;&lt;&lt;&#039;CODE&#039;
+                // Initialize user model
+                $user = new User();
+                CODE
+                ,
+                &lt;&lt;&lt;&#039;CODE&#039;
+                $user = new User();
+                CODE
+            ),
+        ]);
+    }
+}</code></pre>
+<h3>Registering in `rector.php`</h3>
+<p>Add the custom rule to your project's Rector configuration:</p>
+<pre><code class="language-php">use AppRectorRemoveUnnecessaryCommentsRector;
+use RectorConfigRectorConfig;
+
+return RectorConfig::configure()
+    -&gt;withRules([
+        RemoveUnnecessaryCommentsRector::class,
+    ]);</code></pre>
+<p>Run the refactoring dry-run to preview changes:</p>
+<pre><code class="language-bash">vendor/bin/rector process --dry-run</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Use AST-based comment manipulation in Rector to systematically clean comment noise across large codebases.</li>
+  <li>The rule strips redundant plain comments (<code>// comment</code>) while keeping meaningful docblock tags (<code>@param</code>, <code>@return</code>, <code>@throws</code>).</li>
+  <li>Easily extensible to whitelist specific tags or maintenance markers such as <code>@todo</code>.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Tooling]]></category>
+      <category><![CDATA[Rector]]></category>
+      <category><![CDATA[Refactoring]]></category>
+      <category><![CDATA[Clean Code]]></category>
     </item>
     <item>
       <title><![CDATA[Use blank() and filled() Instead of empty() in Laravel]]></title>
@@ -3665,50 +4120,6 @@ class CheckoutController
       <category><![CDATA[Testing]]></category>
     </item>
     <item>
-      <title><![CDATA[Master Essential PHP Predefined and Magic Constants]]></title>
-      <link>https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet</link>
-      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet</guid>
-      <description><![CDATA[A practical cheat sheet covering PHP magic constants, filesystem path helpers, error reporting masks, and CLI stream handles. PHP provides built-in magic and...]]></description>
-      <content:encoded><![CDATA[<blockquote>A practical cheat sheet covering PHP magic constants, filesystem path helpers, error reporting masks, and CLI stream handles.</blockquote>
-<p>PHP provides built-in magic and environment constants that provide system context and platform independent path formatting.</p>
-<pre><code class="language-php">// Filesystem &amp; Path Constants
-DIRECTORY_SEPARATOR; // &#039;/&#039; on Unix, &#039;\&#039; on Windows
-PATH_SEPARATOR;      // &#039;:&#039; on Unix, &#039;;&#039; on Windows
-__FILE__;            // Full file path of current file
-__DIR__;             // Directory of current file
-__LINE__;            // Current line number
-
-// Magic Compile Constants
-__FUNCTION__;        // Current function name
-__CLASS__;           // Current class name
-__TRAIT__;           // Current trait name
-__METHOD__;          // Current class method name
-__NAMESPACE__;       // Current namespace name
-
-// Environment &amp; Platform
-PHP_VERSION;         // e.g. &quot;8.4.1&quot;
-PHP_OS_FAMILY;       // &quot;Windows&quot;, &quot;Linux&quot;, &quot;BSD&quot;, &quot;Darwin&quot;
-PHP_EOL;             // End-of-line character for host OS
-PHP_INT_MAX;         // Maximum integer supported
-
-// CLI Stream Handles (available in CLI mode)
-STDIN;               // Standard input stream
-STDOUT;              // Standard output stream
-STDERR;              // Standard error stream</code></pre>
-<ul>
-  <li>Always use <code>DIRECTORY_SEPARATOR</code> or forward slashes for cross-platform file paths</li>
-  <li>Use <code>PHP_OS_FAMILY</code> instead of checking <code>PHP_OS</code> strings</li>
-  <li>Magic constants resolve at compile time, making sure minimal runtime overhead</li>
-</ul>
-]]></content:encoded>
-      <pubDate>Sun, 29 Jun 2025 00:00:00 GMT</pubDate>
-      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
-      <category><![CDATA[PHP]]></category>
-      <category><![CDATA[Tooling]]></category>
-      <category><![CDATA[Constants]]></category>
-      <category><![CDATA[Reference]]></category>
-    </item>
-    <item>
       <title><![CDATA[Lint PHP Files Instantly with php -l CLI Syntax Check]]></title>
       <link>https://mrpunyapal.dev/tips/php-cli-syntax-check-linting</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-cli-syntax-check-linting</guid>
@@ -3866,6 +4277,163 @@ public function processClean(User $user): bool
       <category><![CDATA[Clean Code]]></category>
     </item>
     <item>
+      <title><![CDATA[Tick-Based Execution Timeout Wrapper in PHP Without PCNTL]]></title>
+      <link>https://mrpunyapal.dev/tips/php-timeout-guard-ticks-without-pcntl</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-timeout-guard-ticks-without-pcntl</guid>
+      <description><![CDATA[Interrupt long-running synchronous PHP callables on any operating system using PHP tick declarations and tick callback functions without requiring the pcntl...]]></description>
+      <content:encoded><![CDATA[<blockquote>Interrupt long-running synchronous PHP callables on any operating system using PHP tick declarations and tick callback functions without requiring the pcntl extension.</blockquote>
+<p>In command-line scripts, background jobs, or plugin execution engines, you may need to impose a hard execution timeout on a closure or callable. The standard Unix approach uses `pcntl_alarm()` or `pcntl_fork()`, but the `pcntl` extension is unavailable on Windows environments and in certain shared hosting setups.</p>
+<p>Using PHP ticks (`declare(ticks=1)`), you can implement a cross-platform execution watchdog that monitors elapsed execution time and interrupts runaway code.</p>
+<h3>The TimeoutGuard Implementation</h3>
+<pre><code class="language-php">declare(ticks=1);
+
+class TimeoutException extends Exception {}
+
+class TimeoutGuard
+{
+    public static function run(callable $callback, float $seconds): mixed
+    {
+        $start = microtime(true);
+
+        // Tick handler: checks elapsed time on every low-level tick event
+        $watchdog = function () use ($start, $seconds): void {
+            if ((microtime(true) - $start) &gt; $seconds) {
+                throw new TimeoutException(&quot;Execution interrupted: timeout of {$seconds}s exceeded&quot;);
+            }
+        };
+
+        register_tick_function($watchdog);
+
+        try {
+            return $callback();
+        } finally {
+            unregister_tick_function($watchdog);
+        }
+    }
+}</code></pre>
+<h3>Usage Example</h3>
+<p>Wrap any synchronous task inside `TimeoutGuard::run()`:</p>
+<pre><code class="language-php">try {
+    $result = TimeoutGuard::run(function () {
+        // Heavy computational task or complex regex matching
+        for ($i = 0; $i &lt; 1e7; $i++) {
+            sqrt($i);
+        }
+        return &#039;Completed&#039;;
+    }, 0.5); // 500ms limit
+
+    echo &quot;Task finished: {$result}
+&quot;;
+} catch (TimeoutException $e) {
+    echo &quot;Execution timed out: &quot; . $e-&gt;getMessage() . &quot;
+&quot;;
+}</code></pre>
+<h3>How It Works</h3>
+<ol>
+  <li><strong><code>declare(ticks=1)</code></strong>: Tells the PHP parser to emit a tick event after every single low-level statement execution.</li>
+  <li><strong><code>register_tick_function()</code></strong>: Registers a lightweight watchdog callback evaluated on each tick.</li>
+  <li><strong><code>microtime(true)</code> Check</strong>: Compares the current timestamp against the initial start time. If the elapsed time exceeds the threshold, it throws a <code>TimeoutException</code>.</li>
+  <li><strong><code>finally</code> Cleanup</strong>: Always unregisters the tick handler when execution finishes (or errors) to avoid overhead in subsequent operations.</li>
+</ol>
+<h3>When to Use This Pattern</h3>
+<ul>
+  <li><strong>User-submitted Script Sandboxing</strong>: Enforcing computation budgets on dynamic expressions or formula evaluation.</li>
+  <li><strong>Cross-Platform CLI Tools</strong>: Running timeout-protected commands on both Windows and Linux without conditional <code>pcntl</code> checks.</li>
+  <li><strong>Complex Regex Matching</strong>: Preventing catastrophic backtracking (ReDoS) from hanging PHP worker processes.</li>
+</ul>
+<h3>Summary</h3>
+<ul>
+  <li>Use <code>declare(ticks=1)</code> and <code>register_tick_function()</code> to create a zero-dependency execution timeout watchdog.</li>
+  <li>Works across all operating systems including Windows where <code>pcntl</code> is unavailable.</li>
+  <li>Always unregister tick callbacks inside a <code>finally</code> block to prevent memory leaks and unwanted background invocation.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Tooling]]></category>
+      <category><![CDATA[Performance]]></category>
+      <category><![CDATA[CLI]]></category>
+      <category><![CDATA[Architecture]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Reusable Tappable Scopes for Eloquent and Laravel Scout Queries]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-tappable-scopes-eloquent-scout</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-tappable-scopes-eloquent-scout</guid>
+      <description><![CDATA[Extract query filtering logic into invokable scope classes that work interchangeably across Eloquent query builders and Laravel Scout search instances. Stand...]]></description>
+      <content:encoded><![CDATA[<blockquote>Extract query filtering logic into invokable scope classes that work interchangeably across Eloquent query builders and Laravel Scout search instances.</blockquote>
+<p>Standard Eloquent local scopes (`scopeActive()`, `scopeFilter()`) work well for database queries, but they are tightly coupled to the Eloquent `Builder` instance and cannot be directly invoked on a Laravel Scout search query builder (`Post::search()->...`).</p>
+<p>By creating invokable "Tappable Scope" classes, you can share identical query constraints across both database queries and full-text search pipelines without duplicating logic.</p>
+<h3>1. Create the Invokable Scope Class</h3>
+<p>Create a dedicated scope class that accepts either an Eloquent `Builder` or a Scout `Builder`:</p>
+<pre><code class="language-php">namespace AppModelsScopes;
+
+use AppModelsUser;
+use IlluminateDatabaseEloquentBuilder;
+use LaravelScoutBuilder as ScoutBuilder;
+
+final class PublishedScope
+{
+    public function __construct(
+        private ?User $user = null
+    ) {}
+
+    public function __invoke(Builder|ScoutBuilder $query): Builder|ScoutBuilder
+    {
+        return $query
+            -&gt;where(&#039;is_published&#039;, true)
+            -&gt;when($this-&gt;user, fn ($q) =&gt; $q-&gt;where(&#039;author_id&#039;, $this-&gt;user-&gt;id));
+    }
+}</code></pre>
+<h3>2. Using in Model Local Scopes</h3>
+<p>Apply the scope class inside your model's local scope using `$query->tap()`:</p>
+<pre><code class="language-php">namespace AppModels;
+
+use AppModelsScopesPublishedScope;
+use IlluminateDatabaseEloquentBuilder;
+use IlluminateDatabaseEloquentModel;
+use LaravelScoutSearchable;
+
+class Post extends Model
+{
+    use Searchable;
+
+    public function scopePublished(Builder $query, ?User $user = null): Builder
+    {
+        return $query-&gt;tap(new PublishedScope($user));
+    }
+}</code></pre>
+<h3>3. Using in Laravel Scout Search Queries</h3>
+<p>The same scope class can be piped directly into Scout search queries via `->tap()`:</p>
+<pre><code class="language-php">use AppModelsPost;
+use AppModelsScopesPublishedScope;
+
+// Search posts with the same publishing constraints applied
+$results = Post::search($searchTerm)
+    -&gt;tap(new PublishedScope(auth()-&gt;user()))
+    -&gt;get();</code></pre>
+<h3>Why Use Tappable Scopes?</h3>
+<ul>
+  <li><strong>Dual Compatibility</strong>: Operates seamlessly across both standard Eloquent queries and Laravel Scout search pipelines.</li>
+  <li><strong>Cross-Model Reuse</strong>: Share identical filtering rules across multiple models (e.g. <code>Post</code>, <code>Article</code>, <code>Video</code>) without bloated traits.</li>
+  <li><strong>Cleaner Models</strong>: Keeps model files lightweight by extracting complex filtering criteria into dedicated, testable classes.</li>
+</ul>
+<h3>Summary</h3>
+<ul>
+  <li>Use invokable scope classes paired with <code>-&gt;tap()</code> to share query logic between Eloquent and Scout.</li>
+  <li>Keeps search filtering synchronized with database query scopes.</li>
+  <li>Eliminates duplicate query logic and keeps model classes lean.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Fri, 07 Feb 2025 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Scout]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[DRY]]></category>
+    </item>
+    <item>
       <title><![CDATA[Prefer dispatch(new Job(...)) Over Static Job::dispatch()]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-job-dispatch-new-instance</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-job-dispatch-new-instance</guid>
@@ -4013,6 +4581,228 @@ config([&#039;services.stripe.key&#039; =&gt; &#039;pk_test_12345&#039;]);</code
       <category><![CDATA[Helpers]]></category>
     </item>
     <item>
+      <title><![CDATA[Complete Guide to PHPStan Static Analysis Levels (0 to 10)]]></title>
+      <link>https://mrpunyapal.dev/tips/phpstan-static-analysis-levels-guide</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/phpstan-static-analysis-levels-guide</guid>
+      <description><![CDATA[Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10. PHPStan in...]]></description>
+      <content:encoded><![CDATA[<blockquote>Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10.</blockquote>
+<p>PHPStan inspects your PHP code without executing it, discovering subtle type mismatches, dead code, and unhandled edge cases. PHPStan organizes its rule sets into numeric levels ranging from **0 (most lenient)** to **10 (maximum strictness)**.</p>
+<p>When adopting PHPStan in existing or greenfield projects, understanding what each level verifies helps you establish progressive static analysis milestones.</p>
+<h3>Overview of PHPStan Levels</h3>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Focus Area</th>
+<th>What It Detects</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>0</strong></td>
+<td>Basic Checks</td>
+<td>Unknown classes, non-existent methods, wrong argument counts</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>Undefined Variables</td>
+<td>Variables that might be undefined in certain code branches</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Unknown Methods &amp; Properties</td>
+<td>Validates methods/properties on all expressions and PHPDoc types</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Return &amp; Property Types</td>
+<td>Ensures return types and property assignments match declared types</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>Dead Code Checks</td>
+<td>Unreachable <code>else</code> branches, redundant <code>instanceof</code> checks</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>Function &amp; Method Arguments</td>
+<td>Verifies argument types passed to methods against signatures</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>Missing Typehints</td>
+<td>Reports missing parameter and return type declarations</td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td>Union Type Accuracy</td>
+<td>Detects partially wrong union types (calling a method only on one variant)</td>
+</tr>
+<tr>
+<td><strong>8</strong></td>
+<td>Nullable Type Safety</td>
+<td>Flags method calls and property accesses on potentially null values</td>
+</tr>
+<tr>
+<td><strong>9</strong></td>
+<td>Strict <code>mixed</code> Evaluation</td>
+<td>Prohibits calling methods or accessing properties on <code>mixed</code> without narrowing</td>
+</tr>
+<tr>
+<td><strong>10</strong></td>
+<td>Strict Explicit <code>mixed</code> Types</td>
+<td>Prohibits passing or returning <code>mixed</code> where specific types are expected</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>Level-by-Level Code Examples</h3>
+<h4>Level 0: Basic Syntax & Function Calls</h4>
+<p>Verifies that called classes, functions, and methods exist, and that required parameter counts are satisfied:</p>
+<pre><code class="language-php">class Example
+{
+    public function run(): void
+    {
+        $this-&gt;unknownMethod(); // Error: Call to an undefined method
+    }
+}
+
+function calculate(int $a, int $b): int
+{
+    return $a + $b;
+}
+
+calculate(1); // Error: Function calculate() called with 1 parameter, 2 required.</code></pre>
+<h4>Level 1: Possibly Undefined Variables</h4>
+<p>Ensures every variable accessed is guaranteed to be defined in all branching paths:</p>
+<pre><code class="language-php">function process(bool $flag): void
+{
+    if ($flag) {
+        $data = &#039;ready&#039;;
+    }
+
+    echo $data; // Error: Variable $data might not be defined.
+}</code></pre>
+<h4>Level 2: Unknown Methods on All Expressions</h4>
+<p>Checks methods and properties on expressions where types are known via annotations or reflection:</p>
+<pre><code class="language-php">class User
+{
+    public function getName(): string { return &#039;Alex&#039;; }
+}
+
+$user = new User();
+$user-&gt;getProfilePhoto(); // Error: Call to an undefined method User::getProfilePhoto()</code></pre>
+<h4>Level 3: Return Types and Property Assignments</h4>
+<p>Validates that returned values and assigned properties match their type definitions:</p>
+<pre><code class="language-php">class Order
+{
+    private int $total;
+
+    public function setTotal(string $amount): void
+    {
+        $this-&gt;total = $amount; // Error: Property Order::$total (int) does not accept string.
+    }
+
+    public function getInvoiceNumber(): string
+    {
+        return 12345; // Error: Method getInvoiceNumber() should return string but returns int.
+    }
+}</code></pre>
+<h4>Level 4: Dead Code and Redundant Logic</h4>
+<p>Detects unreachable statements and conditionals that always evaluate to true or false:</p>
+<pre><code class="language-php">function check(User $user): void
+{
+    if ($user instanceof User) { // Always true
+        echo &#039;Valid&#039;;
+    }
+
+    return;
+    echo &#039;Unreachable&#039;; // Error: Unreachable statement - code above always returns.
+}</code></pre>
+<h4>Level 5: Argument Type Validation</h4>
+<p>Verifies that arguments passed to functions match the declared parameter types:</p>
+<pre><code class="language-php">function setDiscount(int $percentage): void {}
+
+setDiscount(&#039;20&#039;); // Error: Parameter #1 expects int, string given.</code></pre>
+<h4>Level 6: Missing Typehints</h4>
+<p>Requires explicit typehints on function parameters, return types, and properties:</p>
+<pre><code class="language-php">class Report
+{
+    // Error: Property Report::$records has no type specified.
+    private $records;
+
+    // Error: Method generate() has parameter $options with no type specified.
+    public function generate($options) {}
+}</code></pre>
+<h4>Level 7: Partially Wrong Union Types</h4>
+<p>Flags method calls on union types where only some union members implement the method:</p>
+<pre><code class="language-php">class Customer { public function sendInvoice(): void {} }
+class Guest {}
+
+function notify(Customer|Guest $recipient): void
+{
+    // Error: Call to method sendInvoice() on Customer|Guest (Guest does not have method).
+    $recipient-&gt;sendInvoice();
+}</code></pre>
+<h4>Level 8: Nullable Type Access</h4>
+<p>Catches potential "Call to a member function on null" errors:</p>
+<pre><code class="language-php">function printLength(?string $input): int
+{
+    // Error: Cannot call method strlen() with parameter ?string (requires string).
+    return strlen($input);
+}</code></pre>
+<h4>Level 9: Strict `mixed` Evaluation</h4>
+<p>At Level 9, `mixed` is treated strictly. You cannot perform operations on `mixed` values without explicit type narrowing:</p>
+<pre><code class="language-php">function formatData(mixed $value): string
+{
+    // Error: Cannot call method trim() on mixed. Narrow type with is_string() first.
+    return trim($value);
+}</code></pre>
+<h4>Level 10: Strict Explicit `mixed` Types (PHPStan 2.0+)</h4>
+<p>PHPStan 2.0 introduces Level 10 (or `level: max`), which goes beyond Level 9 by prohibiting passing `mixed` values or returning `mixed` where specific types are expected, ensuring full end-to-end type safety throughout generic containers and arrays:</p>
+<pre><code class="language-php">/**
+ * @param array&lt;string, mixed&gt; $payload
+ */
+function processPayload(array $payload): string
+{
+    // Level 10 Error: Parameter #1 $name of function greet() expects string, mixed given.
+    return greet($payload[&#039;name&#039;]);
+}
+
+function greet(string $name): string
+{
+    return &quot;Hello, {$name}!&quot;;
+}</code></pre>
+<p>To satisfy Level 10, explicitly assert or validate the type:</p>
+<pre><code class="language-php">function processPayload(array $payload): string
+{
+    if (! isset($payload[&#039;name&#039;]) || ! is_string($payload[&#039;name&#039;])) {
+        throw new InvalidArgumentException(&#039;Expected name to be a string.&#039;);
+    }
+
+    return greet($payload[&#039;name&#039;]); // Valid at Level 10
+}</code></pre>
+<h3>Recommended Adoption Strategy</h3>
+<ol>
+  <li><strong>Start at Level 1 or 2</strong>: Fix baseline undefined variables and non-existent methods in legacy codebases.</li>
+  <li><strong>Advance to Level 5</strong>: Add argument type verification to prevent runtime TypeError exceptions.</li>
+  <li><strong>Target Level 8 or Level 10</strong>: Ideal for modern, strongly typed Laravel and PHP applications using Larastan.</li>
+</ol>
+<h3>Summary</h3>
+<ul>
+  <li>PHPStan levels range progressively from 0 (lenient) to 10 (maximum strictness).</li>
+  <li>Levels 1 to 5 catch common runtime bugs without requiring exhaustive PHPDoc annotations.</li>
+  <li>Levels 6 to 8 enforce complete type coverage and nullable safety.</li>
+  <li>Levels 9 and 10 enforce strict type narrowing on <code>mixed</code> values and array payloads.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Thu, 25 Jul 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Tooling]]></category>
+      <category><![CDATA[PHPStan]]></category>
+      <category><![CDATA[Static Analysis]]></category>
+      <category><![CDATA[Type Safety]]></category>
+    </item>
+    <item>
       <title><![CDATA[Format Single-Line Property Promotion Constructors with Pint]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-pint-single-line-empty-constructors</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-pint-single-line-empty-constructors</guid>
@@ -4074,6 +4864,160 @@ class TaxCalculator
       <category><![CDATA[Syntax]]></category>
       <category><![CDATA[Type Safety]]></category>
       <category><![CDATA[Best Practices]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Refactor PHP Enum Cases from snake_case to PascalCase with Rector]]></title>
+      <link>https://mrpunyapal.dev/tips/php-rector-refactor-enums-pascal-case</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-rector-refactor-enums-pascal-case</guid>
+      <description><![CDATA[Automate renaming PHP 8.1+ enum cases from SNAKECASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script. Whe...]]></description>
+      <content:encoded><![CDATA[<blockquote>Automate renaming PHP 8.1+ enum cases from SNAKE_CASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script.</blockquote>
+<p>When PHP 8.1 backed enums were introduced, many projects originally named enum cases in uppercase snake case (`case PENDING_REVIEW;`), matching older class constant conventions. Modern PHP and Laravel coding style standards (including PER-CS and Laravel Pint) recommend PascalCase for enum cases (`case PendingReview;`).</p>
+<p>Renaming enum cases across a large production application manually is error-prone. By combining a custom Rector rule with an Artisan Blade updater, you can refactor all enum declarations, references, and Blade view usages automatically.</p>
+<h3>1. Custom Rector Rule for Enum Cases</h3>
+<pre><code class="language-php">namespace AppRector;
+
+use PhpParserNode;
+use PhpParserNodeExprClassConstFetch;
+use PhpParserNodeIdentifier;
+use PhpParserNodeStmtEnumCase;
+use PHPStanReflectionReflectionProvider;
+use RectorRectorAbstractRector;
+use SymplifyRuleDocGeneratorValueObjectCodeSampleCodeSample;
+use SymplifyRuleDocGeneratorValueObjectRuleDefinition;
+
+final class RenameEnumCasesToPascalCaseRector extends AbstractRector
+{
+    public function __construct(
+        private ReflectionProvider $reflectionProvider
+    ) {}
+
+    public function getNodeTypes(): array
+    {
+        return [EnumCase::class, ClassConstFetch::class];
+    }
+
+    public function refactor(Node $node): ?Node
+    {
+        if ($node instanceof EnumCase) {
+            return $this-&gt;refactorEnumCase($node);
+        }
+
+        if ($node instanceof ClassConstFetch) {
+            return $this-&gt;refactorEnumCaseFetch($node);
+        }
+
+        return null;
+    }
+
+    private function refactorEnumCase(EnumCase $node): ?Node
+    {
+        $oldName = $this-&gt;getName($node-&gt;name);
+        $newName = $this-&gt;convertSnakeToPascalCase($oldName);
+
+        if ($oldName !== $newName) {
+            $node-&gt;name = new Identifier($newName);
+            return $node;
+        }
+
+        return null;
+    }
+
+    private function refactorEnumCaseFetch(ClassConstFetch $node): ?Node
+    {
+        $objectType = $this-&gt;getType($node-&gt;class);
+
+        if ($objectType-&gt;isEnum()-&gt;yes()) {
+            $oldName = $this-&gt;getName($node-&gt;name);
+            if ($oldName === &#039;class&#039; || $oldName === null) {
+                return null;
+            }
+
+            $newName = $this-&gt;convertSnakeToPascalCase($oldName);
+            if ($oldName !== $newName) {
+                $node-&gt;name = new Identifier($newName);
+                return $node;
+            }
+        }
+
+        return null;
+    }
+
+    private function convertSnakeToPascalCase(string $name): string
+    {
+        return str_replace(&#039; &#039;, &#039;&#039;, ucwords(str_replace(&#039;_&#039;, &#039; &#039;, mb_strtolower($name))));
+    }
+
+    public function getRuleDefinition(): RuleDefinition
+    {
+        return new RuleDefinition(&#039;Convert SNAKE_CASE enum cases to PascalCase&#039;, [
+            new CodeSample(
+                &#039;enum Status { case PENDING_PAYMENT; }&#039;,
+                &#039;enum Status { case PendingPayment; }&#039;
+            ),
+        ]);
+    }
+}</code></pre>
+<h3>2. Refactoring Blade Templates</h3>
+<p>Because Rector parses PHP files rather than Blade templates, use an Artisan command to update enum case usages inside `resources/views/**/*.blade.php`:</p>
+<pre><code class="language-php">namespace AppConsoleCommands;
+
+use IlluminateConsoleCommand;
+use IlluminateSupportFacadesFile;
+
+class RefactorBladeEnumsCommand extends Command
+{
+    protected $signature = &#039;refactor:blade-enums&#039;;
+    protected $description = &#039;Refactor enum cases in Blade views from SNAKE_CASE to PascalCase&#039;;
+
+    public function handle(): int
+    {
+        $views = File::allFiles(resource_path(&#039;views&#039;));
+
+        foreach ($views as $file) {
+            if ($file-&gt;getExtension() !== &#039;php&#039;) {
+                continue;
+            }
+
+            $content = File::get($file-&gt;getRealPath());
+
+            // Match patterns like Status::PENDING_PAYMENT
+            $updated = preg_replace_callback(&#039;/([A-Z][A-Za-z0-9]+)::([A-Z0-9_]+)/&#039;, function ($matches) {
+                $class = $matches[1];
+                $case = $matches[2];
+
+                if ($case === &#039;class&#039;) {
+                    return $matches[0];
+                }
+
+                $pascalCase = str_replace(&#039; &#039;, &#039;&#039;, ucwords(str_replace(&#039;_&#039;, &#039; &#039;, strtolower($case))));
+                return &quot;{$class}::{$pascalCase}&quot;;
+            }, $content);
+
+            if ($content !== $updated) {
+                File::put($file-&gt;getRealPath(), $updated);
+                $this-&gt;line(&quot;Updated view: &quot; . $file-&gt;getRelativePathname());
+            }
+        }
+
+        $this-&gt;info(&#039;Blade enum refactoring completed.&#039;);
+        return Command::SUCCESS;
+    }
+}</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Use Rector to safely refactor Enum definitions and PHP references via AST inspection and PHPStan static reflection.</li>
+  <li>Run a targeted Blade regex migration script to update template references without manual search-and-replace.</li>
+  <li>Standardizes your enum architecture to PascalCase conventions across the entire application.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Mon, 20 May 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Tooling]]></category>
+      <category><![CDATA[Rector]]></category>
+      <category><![CDATA[Enums]]></category>
+      <category><![CDATA[Refactoring]]></category>
+      <category><![CDATA[Blade]]></category>
     </item>
     <item>
       <title><![CDATA[Subquery Attribute Loading with withAttribute() in Eloquent]]></title>
@@ -4228,6 +5172,85 @@ $users = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();
       <category><![CDATA[Database]]></category>
     </item>
     <item>
+      <title><![CDATA[Instantly Broadcast Real-Time Database Notifications Using Model Observers]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-broadcast-database-notifications-instantly</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-broadcast-database-notifications-instantly</guid>
+      <description><![CDATA[Automatically broadcast WebSocket events to private user channels whenever a database notification is saved using an observer on Laravel's DatabaseNotificati...]]></description>
+      <content:encoded><![CDATA[<blockquote>Automatically broadcast WebSocket events to private user channels whenever a database notification is saved using an observer on Laravel's DatabaseNotification model.</blockquote>
+<p>Laravel's notification system supports both database persistence (`via: ['database']`) and real-time broadcasting (`via: ['broadcast']`). However, configuring notifications to broadcast simultaneously often duplicates payload formatting and requires configuring separate broadcast channels for each notification class.</p>
+<p>By attaching an observer to Laravel's underlying `DatabaseNotification` model, you can automatically broadcast every database notification in real time over private channels with zero per-notification boilerplate.</p>
+<h3>1. Register the Observer in AppServiceProvider</h3>
+<pre><code class="language-php">namespace AppProviders;
+
+use IlluminateBroadcastingPrivateChannel;
+use IlluminateNotificationsDatabaseNotification;
+use IlluminateSupportServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        DatabaseNotification::observe(new class {
+            public function created(DatabaseNotification $notification): void
+            {
+                broadcast(new class($notification) {
+                    public function __construct(
+                        public DatabaseNotification $notification
+                    ) {}
+
+                    public function broadcastOn(): PrivateChannel
+                    {
+                        // Derives channel from notifiable type (e.g. &#039;users.42&#039;)
+                        $type = strtolower(class_basename(str($this-&gt;notification-&gt;notifiable_type)-&gt;plural()));
+                        return new PrivateChannel(&quot;{$type}.{$this-&gt;notification-&gt;notifiable_id}&quot;);
+                    }
+
+                    public function broadcastAs(): string
+                    {
+                        return &#039;DatabaseNotificationCreated&#039;;
+                    }
+                });
+            }
+        });
+    }
+}</code></pre>
+<h3>2. Listening with Laravel Echo (Frontend)</h3>
+<p>In your client-side JavaScript or Alpine.js component, subscribe to the user's private channel:</p>
+<pre><code class="language-javascript">Echo.private(`users.${userId}`)
+    .listen(&#039;.DatabaseNotificationCreated&#039;, (e) =&gt; {
+        console.log(&#039;New notification received:&#039;, e.notification);
+    });</code></pre>
+<h3>3. Listening in Livewire Components</h3>
+<p>In Livewire 3 components, use the `#[On]` attribute:</p>
+<pre><code class="language-php">namespace AppLivewire;
+
+use LivewireAttributesOn;
+use LivewireComponent;
+
+class NotificationBell extends Component
+{
+    #[On(&#039;echo-private:users.{userId},.DatabaseNotificationCreated&#039;)]
+    public function onNotificationReceived(array $payload): void
+    {
+        $this-&gt;dispatch(&#039;refreshNotifications&#039;);
+    }
+}</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Observe <code>DatabaseNotification::created</code> to automatically broadcast real-time events for every stored database notification.</li>
+  <li>Eliminates the need to duplicate broadcast payload definitions in individual notification classes.</li>
+  <li>Seamlessly integrates with Laravel Echo, Livewire, and Vue/React frontend architectures.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sun, 11 Feb 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Events]]></category>
+      <category><![CDATA[Notifications]]></category>
+      <category><![CDATA[WebSockets]]></category>
+      <category><![CDATA[Real-Time]]></category>
+    </item>
+    <item>
       <title><![CDATA[Build Conditional Queries Cleanly with when() and unless()]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-eloquent-when-and-unless-conditional-queries</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-eloquent-when-and-unless-conditional-queries</guid>
@@ -4251,6 +5274,82 @@ $users = User::query()
       <category><![CDATA[Laravel]]></category>
       <category><![CDATA[Eloquent]]></category>
       <category><![CDATA[Query Builder]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Cast Enums Inside JSON and Array Column Keys in Eloquent]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key</guid>
+      <description><![CDATA[Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators. Laravel provides first-party enum casting f...]]></description>
+      <content:encoded><![CDATA[<blockquote>Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.</blockquote>
+<p>Laravel provides first-party enum casting for standard model columns:</p>
+<pre><code class="language-php">protected $casts = [
+    &#039;status&#039; =&gt; PostStatus::class,
+];</code></pre>
+<p>However, when an enum value is stored inside a nested JSON object or array column (such as `options->status` or `settings['status']`), Laravel's default column casting casts the entire column to an array, leaving the nested enum value as a raw string or integer.</p>
+<p>Using Eloquent's `Attribute` accessor and mutator, you can automatically hydrate and serialize nested enum instances.</p>
+<h3>Implementing the Nested Enum Cast</h3>
+<pre><code class="language-php">namespace AppModels;
+
+use AppEnumsPostStatus;
+use IlluminateDatabaseEloquentCastsAttribute;
+use IlluminateDatabaseEloquentModel;
+
+class Post extends Model
+{
+    protected function options(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value): array {
+                $options = json_decode($value ?? &#039;[]&#039;, true) ?? [];
+
+                // Hydrate string value to Backed Enum instance
+                if (isset($options[&#039;status&#039;])) {
+                    $options[&#039;status&#039;] = PostStatus::tryFrom($options[&#039;status&#039;]) ?? $options[&#039;status&#039;];
+                }
+
+                return $options;
+            },
+            set: function ($value): string {
+                $options = is_array($value) ? $value : (json_decode($value, true) ?? []);
+
+                // Serialize Backed Enum instance to scalar value before storing
+                if (isset($options[&#039;status&#039;]) &amp;&amp; $options[&#039;status&#039;] instanceof PostStatus) {
+                    $options[&#039;status&#039;] = $options[&#039;status&#039;]-&gt;value;
+                }
+
+                return json_encode($options);
+            }
+        );
+    }
+}</code></pre>
+<h3>Practical Usage</h3>
+<p>You can now interact with nested enum properties as strongly typed objects:</p>
+<pre><code class="language-php">$post = Post::find(1);
+
+// Accessing the nested enum
+if ($post-&gt;options[&#039;status&#039;] === PostStatus::Draft) {
+    // Strongly typed enum comparison
+}
+
+// Updating the nested enum
+$options = $post-&gt;options;
+$options[&#039;status&#039;] = PostStatus::Published;
+$post-&gt;options = $options;
+$post-&gt;save();</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Use Eloquent <code>Attribute::make()</code> to hydrate and serialize enums nested inside JSON attributes.</li>
+  <li>Use <code>PostStatus::tryFrom()</code> in the getter to gracefully handle unexpected values without throwing exceptions.</li>
+  <li>Ensures strongly typed enum consistency even for schemaless or flexible JSON payloads.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Tue, 30 Jan 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Enums]]></category>
+      <category><![CDATA[Casts]]></category>
+      <category><![CDATA[JSON]]></category>
     </item>
     <item>
       <title><![CDATA[Combine Custom Casts and Enums for Complex Attributes]]></title>
@@ -4364,6 +5463,157 @@ DB::table(&#039;archived_orders&#039;)-&gt;insertUsing(
       <category><![CDATA[Performance]]></category>
     </item>
     <item>
+      <title><![CDATA[Human-Friendly Enum Case Labels with a Reusable HasLabel Trait]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-enum-has-label-trait</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-enum-has-label-trait</guid>
+      <description><![CDATA[Add human-readable display labels to PHP 8.1+ enums automatically using a lightweight HasLabel trait without maintaining manual match statements. When using...]]></description>
+      <content:encoded><![CDATA[<blockquote>Add human-readable display labels to PHP 8.1+ enums automatically using a lightweight HasLabel trait without maintaining manual match statements.</blockquote>
+<p>When using backed Enums in Laravel models and Blade views, you often need a formatted, user-friendly label (such as displaying `"Partially Paid and Refunded"` for `PaymentStatus::PartiallyPaidAndRefunded`).</p>
+<p>Maintaining manual `match ($this)` methods across dozens of application enums is repetitive. A lightweight trait can derive clean titles automatically while allowing custom overrides when needed.</p>
+<h3>The HasLabel Trait</h3>
+<pre><code class="language-php">namespace AppTraits;
+
+trait HasLabel
+{
+    public function label(): string
+    {
+        // Convert case name (e.g. PARTIALLY_REFUNDED or PartiallyRefunded) to Title Case
+        $clean = str_replace(&#039;_&#039;, &#039; &#039;, $this-&gt;name);
+
+        // Convert camelCase / PascalCase boundaries to spaced words
+        $spaced = preg_replace(&#039;/(?&lt;!^)[A-Z]/&#039;, &#039; $0&#039;, $clean);
+
+        return ucwords(strtolower(trim($spaced)));
+    }
+}</code></pre>
+<h3>Applying the Trait to Enums</h3>
+<pre><code class="language-php">namespace AppEnums;
+
+use AppTraitsHasLabel;
+
+enum PaymentStatus: int
+{
+    use HasLabel;
+
+    case PENDING = 1;
+    case FAILED = 2;
+    case REFUNDED = 3;
+    case PARTIALLY_REFUNDED = 4;
+    case PARTIALLY_PAID = 5;
+    case PAID = 6;
+    case PARTIALLY_PAID_AND_REFUNDED = 7;
+}</code></pre>
+<h3>Usage in Controllers and Blade Views</h3>
+<pre><code class="language-php">use AppEnumsPaymentStatus;
+
+PaymentStatus::PENDING-&gt;label();
+// Output: &quot;Pending&quot;
+
+PaymentStatus::PARTIALLY_REFUNDED-&gt;label();
+// Output: &quot;Partially Refunded&quot;
+
+PaymentStatus::PARTIALLY_PAID_AND_REFUNDED-&gt;label();
+// Output: &quot;Partially Paid And Refunded&quot;</code></pre>
+<p>In Blade templates:</p>
+<pre><code class="language-blade">&lt;span class=&quot;badge&quot;&gt;
+    {{ $order-&gt;payment_status-&gt;label() }}
+&lt;/span&gt;</code></pre>
+<h3>Overriding Specific Labels</h3>
+<p>If a specific case requires specialized branding or wording that differs from the automated title, override the method:</p>
+<pre><code class="language-php">enum InvoiceStatus: string
+{
+    use HasLabel;
+
+    case DRAFT = &#039;draft&#039;;
+    case SENT = &#039;sent&#039;;
+    case OVERDUE = &#039;overdue&#039;;
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::OVERDUE =&gt; &#039;Action Required: Overdue&#039;,
+            default =&gt; $this-&gt;defaultLabel(),
+        };
+    }
+}</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Use a <code>HasLabel</code> trait to generate consistent, human-friendly titles from enum case names automatically.</li>
+  <li>Eliminates boilerplate <code>match</code> expressions across project enums.</li>
+  <li>Easily customizable for specific localized or marketing terminology when needed.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 17 Jan 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Enums]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Clean Code]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Fix Blade View Cache Compilation for Teleport Directives in Livewire]]></title>
+      <link>https://mrpunyapal.dev/tips/livewire-teleport-blade-view-cache-directive-fix</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/livewire-teleport-blade-view-cache-directive-fix</guid>
+      <description><![CDATA[Prevent view compilation glitches when running php artisan view:cache on templates using @teleport by registering explicit Blade directives. When using Livew...]]></description>
+      <content:encoded><![CDATA[<blockquote>Prevent view compilation glitches when running php artisan view:cache on templates using @teleport by registering explicit Blade directives.</blockquote>
+<p>When using Livewire or Alpine.js `@teleport` directives inside Blade templates, running `php artisan view:cache` in production or CI/CD pipelines can occasionally cause compilation errors or unparsed tags if custom directive compilation is missing from the service container.</p>
+<p>You can ensure consistent, error-free view compilation by registering custom Blade compiler directives for `@teleport` and `@endteleport`.</p>
+<h3>The Fix in AppServiceProvider</h3>
+<p>Add the custom directive registration inside your `AppServiceProvider::register()` or `boot()` method:</p>
+<pre><code class="language-php">namespace AppProviders;
+
+use IlluminateSupportFacadesBlade;
+use IlluminateSupportServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Blade::directive(&#039;teleport&#039;, function (string $expression): string {
+            return &quot;&lt;template x-teleport=&quot;&lt;?php echo e({$expression}); ?&gt;&quot;&gt;&quot;;
+        });
+
+        Blade::directive(&#039;endteleport&#039;, function (): string {
+            return &quot;&lt;/template&gt;&quot;;
+        });
+    }
+}</code></pre>
+<h3>Usage in Blade Views</h3>
+<p>You can now use `@teleport` cleanly across cached views:</p>
+<pre><code class="language-blade">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = true&quot;&gt;Open Modal&lt;/button&gt;
+
+    @teleport(&#039;body&#039;)
+        &lt;div x-show=&quot;open&quot; class=&quot;modal-backdrop&quot;&gt;
+            &lt;div class=&quot;modal-content&quot;&gt;
+                &lt;h3&gt;Modal Title&lt;/h3&gt;
+                &lt;button @click=&quot;open = false&quot;&gt;Close&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    @endteleport
+&lt;/div&gt;</code></pre>
+<h3>Testing View Caching</h3>
+<p>Run view cache compilation to verify:</p>
+<pre><code class="language-bash">php artisan view:clear
+php artisan view:cache</code></pre>
+<p>All views compile cleanly into cached PHP templates without syntax exceptions.</p>
+<h3>Summary</h3>
+<ul>
+  <li>Register explicit <code>@teleport</code> and <code>@endteleport</code> Blade directives in <code>AppServiceProvider</code> to resolve compilation glitches during <code>view:cache</code>.</li>
+  <li>Translates cleanly into standard Alpine.js <code>&lt;template x-teleport=&quot;...&quot;&gt;</code> elements.</li>
+  <li>Prevents production deployment build failures when caching views.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sun, 14 Jan 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Livewire]]></category>
+      <category><![CDATA[Blade]]></category>
+      <category><![CDATA[Alpine.js]]></category>
+      <category><![CDATA[Tooling]]></category>
+    </item>
+    <item>
       <title><![CDATA[Build Framework-Free Dropdowns with Tailwind and nextElementSibling]]></title>
       <link>https://mrpunyapal.dev/tips/javascript-tailwind-dropdown-next-element-sibling</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/javascript-tailwind-dropdown-next-element-sibling</guid>
@@ -4426,6 +5676,298 @@ DB::table(&#039;archived_orders&#039;)-&gt;insertUsing(
       <category><![CDATA[Blade]]></category>
     </item>
     <item>
+      <title><![CDATA[Centralized Application Activity Logging with Laravel Event Subscribers]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-activity-log-event-subscriber</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-activity-log-event-subscriber</guid>
+      <description><![CDATA[Capture HTTP requests, Artisan CLI commands, and outgoing API responses into a unified audit trail using a single Laravel Event Subscriber. Applications freq...]]></description>
+      <content:encoded><![CDATA[<blockquote>Capture HTTP requests, Artisan CLI commands, and outgoing API responses into a unified audit trail using a single Laravel Event Subscriber.</blockquote>
+<p>Applications frequently need to log key lifecycle actions for debugging and compliance. Instead of scattering logging logic across various middleware, commands, and service classes, Laravel Event Subscribers let you listen to multiple framework events from a single centralized class.</p>
+<h3>The ActivityLogEventSubscriber</h3>
+<pre><code class="language-php">namespace AppListeners;
+
+use IlluminateConsoleEventsCommandFinished;
+use IlluminateEventsDispatcher;
+use IlluminateFoundationHttpEventsRequestHandled;
+use IlluminateHttpClientEventsResponseReceived;
+use IlluminateSupportFacadesLog;
+
+class ActivityLogEventSubscriber
+{
+    public function handleHttpRequest(RequestHandled $event): void
+    {
+        $this-&gt;logActivity(&#039;RequestHandled&#039;, [
+            &#039;method&#039; =&gt; $event-&gt;request-&gt;method(),
+            &#039;url&#039; =&gt; $event-&gt;request-&gt;fullUrl(),
+            &#039;status&#039; =&gt; $event-&gt;response-&gt;getStatusCode(),
+            &#039;user_id&#039; =&gt; $event-&gt;request-&gt;user()?-&gt;id,
+        ]);
+    }
+
+    public function handleConsoleCommand(CommandFinished $event): void
+    {
+        $this-&gt;logActivity(&#039;CommandFinished&#039;, [
+            &#039;command&#039; =&gt; $event-&gt;command,
+            &#039;exit_code&#039; =&gt; $event-&gt;exitCode,
+        ]);
+    }
+
+    public function handleHttpClientResponse(ResponseReceived $event): void
+    {
+        $this-&gt;logActivity(&#039;HttpClientResponse&#039;, [
+            &#039;url&#039; =&gt; (string) $event-&gt;request-&gt;url(),
+            &#039;status&#039; =&gt; $event-&gt;response-&gt;status(),
+        ]);
+    }
+
+    private function logActivity(string $eventType, array $payload): void
+    {
+        Log::channel(&#039;activity&#039;)-&gt;info(&quot;Activity [{$eventType}]&quot;, $payload);
+    }
+
+    public function subscribe(Dispatcher $events): array
+    {
+        return [
+            RequestHandled::class =&gt; &#039;handleHttpRequest&#039;,
+            CommandFinished::class =&gt; &#039;handleConsoleCommand&#039;,
+            ResponseReceived::class =&gt; &#039;handleHttpClientResponse&#039;,
+        ];
+    }
+}</code></pre>
+<h3>Registering the Subscriber</h3>
+<p>In Laravel 11+, register the subscriber inside your `AppServiceProvider::boot()` method (or `EventServiceProvider` in earlier versions):</p>
+<pre><code class="language-php">namespace AppProviders;
+
+use AppListenersActivityLogEventSubscriber;
+use IlluminateSupportFacadesEvent;
+use IlluminateSupportServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Event::subscribe(ActivityLogEventSubscriber::class);
+    }
+}</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Use an Event Subscriber to group related event handlers into a single cohesive class.</li>
+  <li>Listen to built-in framework events like <code>RequestHandled</code>, <code>CommandFinished</code>, and <code>ResponseReceived</code> for comprehensive audit logging.</li>
+  <li>Decouples monitoring and logging logic from core HTTP controllers and console commands.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Events]]></category>
+      <category><![CDATA[Logging]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Audit]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Efficient Unique Slug Generation in Eloquent Without Looping Queries]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-generate-unique-slug-without-looping</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-generate-unique-slug-without-looping</guid>
+      <description><![CDATA[Generate unique database slugs in Eloquent by querying the maximum existing numerical suffix directly instead of executing repeated queries in a while loop....]]></description>
+      <content:encoded><![CDATA[<blockquote>Generate unique database slugs in Eloquent by querying the maximum existing numerical suffix directly instead of executing repeated queries in a while loop.</blockquote>
+<p>When generating URL slugs for blog posts, products, or articles, collisions occur when two records share the same title (`"My First Post"`).</p>
+<p>A frequent implementation uses a `while` loop that repeatedly queries the database (`post-1`, `post-2`, `post-3`, ...) until an available slug is found. On busy applications with many duplicate titles, this pattern generates dozens of sequential database roundtrips for a single record creation.</p>
+<p>You can determine the next unique slug in a single query by inspecting the maximum numeric suffix using SQL functions.</p>
+<h3>The Efficient Implementation</h3>
+<pre><code class="language-php">namespace AppModels;
+
+use IlluminateDatabaseEloquentModel;
+use IlluminateSupportFacadesDB;
+
+class Article extends Model
+{
+    protected static function booted(): void
+    {
+        static::creating(function (Article $article): void {
+            if (empty($article-&gt;slug)) {
+                $article-&gt;slug = static::generateUniqueSlug($article-&gt;title);
+            }
+        });
+    }
+
+    public static function generateUniqueSlug(string $title): string
+    {
+        $baseSlug = str($title)-&gt;slug()-&gt;value();
+
+        // Check if base slug is already available
+        if (static::where(&#039;slug&#039;, $baseSlug)-&gt;doesntExist()) {
+            return $baseSlug;
+        }
+
+        // Query the maximum existing numeric suffix in a single query
+        $maxSuffix = static::query()
+            -&gt;where(&#039;slug&#039;, &#039;LIKE&#039;, &quot;{$baseSlug}-%&quot;)
+            -&gt;max(DB::raw(&#039;CAST(SUBSTRING_INDEX(slug, &quot;-&quot;, -1) AS SIGNED)&#039;));
+
+        if ($maxSuffix === null || $maxSuffix &lt;= 0) {
+            return &quot;{$baseSlug}-2&quot;;
+        }
+
+        return &quot;{$baseSlug}-&quot; . ($maxSuffix + 1);
+    }
+}</code></pre>
+<h3>How It Works</h3>
+<ol>
+  <li><strong>Initial Availability Check</strong>: Checks if the clean base slug (<code>&quot;laravel-tips&quot;</code>) exists. If available, it returns immediately with 1 simple indexed lookup.</li>
+  <li><strong><code>SUBSTRING_INDEX</code> Extraction</strong>: For duplicate titles, MySQL&#39;s <code>SUBSTRING_INDEX(slug, &quot;-&quot;, -1)</code> extracts the trailing characters after the last hyphen.</li>
+  <li><strong><code>CAST(... AS SIGNED)</code></strong>: Converts the extracted substring into an integer so the <code>MAX()</code> aggregate computes the numerical maximum rather than alphabetical sorting.</li>
+  <li><strong>Calculated Next Suffix</strong>: Increments the maximum found suffix (<code>max + 1</code>), guaranteeing uniqueness without sequential trial-and-error queries.</li>
+</ol>
+<h3>Performance Comparison</h3>
+<ul>
+  <li><strong>While Loop Approach</strong>: Runs (N) database queries (where (N) is the number of existing collisions).</li>
+  <li><strong>Direct Max Calculation</strong>: Always runs exactly 2 queries regardless of whether 2 or 2,000 colliding records exist.</li>
+</ul>
+<h3>Summary</h3>
+<ul>
+  <li>Avoid <code>while (Model::whereSlug(...)-&gt;exists())</code> loops that create unpredictable N+1 database roundtrips.</li>
+  <li>Use SQL string extraction and integer casting to retrieve the maximum numerical suffix in a single lookup.</li>
+  <li>Guarantees fast, predictable execution time during bulk imports and high-traffic record creation.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 29 Nov 2023 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Database]]></category>
+      <category><![CDATA[Performance]]></category>
+      <category><![CDATA[Clean Code]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Alphanumeric String Increment and Decrement in PHP 8.3]]></title>
+      <link>https://mrpunyapal.dev/tips/php-str-increment-decrement</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-str-increment-decrement</guid>
+      <description><![CDATA[PHP 8.3 introduces strincrement() and strdecrement() to predictably increment and decrement alphanumeric strings according to standard base-26/base-36 conven...]]></description>
+      <content:encoded><![CDATA[<blockquote>PHP 8.3 introduces str_increment() and str_decrement() to predictably increment and decrement alphanumeric strings according to standard base-26/base-36 conventions.</blockquote>
+<p>Prior to PHP 8.3, developers relied on the legacy Perl-style string increment operator (`$str++`). While convenient, it suffered from inconsistent behavior, had no corresponding decrement operator (`$str--` did nothing on strings), and frequently produced silent type coercion bugs when strings resembled scientific notation numbers.</p>
+<p>PHP 8.3 solves this by introducing two dedicated functions: `str_increment()` and `str_decrement()`.</p>
+<h3>Incrementing Alphanumeric Strings</h3>
+<p>`str_increment()` steps through ASCII characters (0-9, a-z, A-Z). When a character overflows (such as `z` rolling over), it wraps around to `aa`, preserving case and padding conventions:</p>
+<pre><code class="language-php">// Single character rollover
+echo str_increment(&#039;a&#039;);   // &#039;b&#039;
+echo str_increment(&#039;z&#039;);   // &#039;aa&#039;
+echo str_increment(&#039;Z&#039;);   // &#039;AA&#039;
+
+// Multi-character progression
+echo str_increment(&#039;az&#039;);  // &#039;ba&#039;
+echo str_increment(&#039;zz&#039;);  // &#039;aaa&#039;
+echo str_increment(&#039;zzz&#039;); // &#039;aaaa&#039;
+
+// Mixed alphanumeric strings
+echo str_increment(&#039;1&#039;);   // &#039;2&#039;
+echo str_increment(&#039;a1&#039;);  // &#039;a2&#039;
+echo str_increment(&#039;a9&#039;);  // &#039;b0&#039;
+echo str_increment(&#039;aZ&#039;);  // &#039;bA&#039;
+echo str_increment(&#039;aZz&#039;); // &#039;bAa&#039;</code></pre>
+<h3>Decrementing Alphanumeric Strings</h3>
+<p>Unlike the old `++` operator, PHP 8.3 introduces a corresponding `str_decrement()` function that operates in reverse:</p>
+<pre><code class="language-php">// Single character rollbacks
+echo str_decrement(&#039;b&#039;);    // &#039;a&#039;
+echo str_decrement(&#039;aa&#039;);   // &#039;z&#039;
+echo str_decrement(&#039;AA&#039;);   // &#039;Z&#039;
+
+// Multi-character reduction
+echo str_decrement(&#039;ba&#039;);   // &#039;az&#039;
+echo str_decrement(&#039;aaa&#039;);  // &#039;zz&#039;
+echo str_decrement(&#039;aaaa&#039;); // &#039;zzz&#039;
+
+// Mixed alphanumeric decrement
+echo str_decrement(&#039;2&#039;);    // &#039;1&#039;
+echo str_decrement(&#039;a2&#039;);   // &#039;a1&#039;
+echo str_decrement(&#039;b0&#039;);   // &#039;a9&#039;
+echo str_decrement(&#039;bA&#039;);   // &#039;aZ&#039;
+echo str_decrement(&#039;bAa&#039;);  // &#039;aZz&#039;</code></pre>
+<h3>Practical Applications</h3>
+<p>These functions are particularly helpful for generating sequential human-readable identifiers, spreadsheet-style column names (A, B, ... Z, AA, AB), version codes, or SKU serial numbers:</p>
+<pre><code class="language-php">function generateNextSku(string $currentSku): string
+{
+    // PRD-001A -&gt; PRD-001B
+    return str_increment($currentSku);
+}</code></pre>
+<h3>Error Handling</h3>
+<p>Both functions accept only non-empty strings containing ASCII alphanumeric characters (`[a-zA-Z0-9]`). If an invalid character or empty string is passed, PHP throws a `ValueError`:</p>
+<pre><code class="language-php">str_increment(&#039;item-1&#039;); // Throws ValueError: non-alphanumeric character &#039;-&#039;
+str_decrement(&#039;a&#039;);      // Throws ValueError: &#039;a&#039; cannot be decremented below &#039;a&#039;</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Use <code>str_increment()</code> to advance alphanumeric strings with consistent case and overflow behavior.</li>
+  <li>Use <code>str_decrement()</code> for symmetric reverse stepping.</li>
+  <li>Replaces legacy <code>$str++</code> tricks with strict, predictable function calls.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Tooling]]></category>
+      <category><![CDATA[Strings]]></category>
+      <category><![CDATA[PHP 8.3]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Freeze and Inspect Application Time in Tests with Carbon setTestNow()]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-carbon-set-test-now-time-manipulation</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-carbon-set-test-now-time-manipulation</guid>
+      <description><![CDATA[Control system time during testing and development using Carbon::setTestNow() and inspect active time mocks with Carbon::hasTestNow(). When writing unit test...]]></description>
+      <content:encoded><![CDATA[<blockquote>Control system time during testing and development using Carbon::setTestNow() and inspect active time mocks with Carbon::hasTestNow().</blockquote>
+<p>When writing unit tests or developing features that rely on temporal calculations (such as subscription renewals, birthday promotions, trial expirations, or grace periods), relying on real system time creates flaky tests that fail depending on the time of day or month.</p>
+<p>Carbon provides `setTestNow()` to lock time to a specific instant, alongside `hasTestNow()` to verify whether the temporal state is currently mocked.</p>
+<h3>Freezing Time in Feature Logic</h3>
+<pre><code class="language-php">use CarbonCarbon;
+
+function isBirthdayOfferActive(Carbon $birthday): bool
+{
+    return Carbon::now()-&gt;isSameDay($birthday);
+}
+
+// Check without mock time
+$userBirthday = Carbon::create(1995, 11, 23);
+isBirthdayOfferActive($userBirthday); // Evaluates against real current date
+
+// Freeze application time to a specific target date
+Carbon::setTestNow(Carbon::create(2026, 11, 23));
+
+isBirthdayOfferActive($userBirthday); // Returns true!
+
+// Reset back to real system time
+Carbon::setTestNow(null);</code></pre>
+<h3>Checking if Mock Time is Active with `hasTestNow()`</h3>
+<p>In custom debug bars, health checks, or safety middleware, you can inspect whether the application is running under a simulated timestamp:</p>
+<pre><code class="language-php">use CarbonCarbon;
+
+if (Carbon::hasTestNow()) {
+    logger()-&gt;warning(&#039;Application running with mocked Carbon time: &#039; . Carbon::now()-&gt;toDateTimeString());
+}</code></pre>
+<h3>Laravel Test Helpers Under the Hood</h3>
+<p>Laravel's built-in testing helpers (`$this->travelTo()`, `$this->freezeTime()`) interact directly with `Carbon::setTestNow()`:</p>
+<pre><code class="language-php">test(&#039;trial expires after 14 days&#039;, function () {
+    $this-&gt;freezeTime();
+
+    $user = User::factory()-&gt;create([&#039;trial_ends_at&#039; =&gt; now()-&gt;addDays(14)]);
+    expect($user-&gt;hasExpiredTrial())-&gt;toBeFalse();
+
+    // Travel forward 15 days
+    $this-&gt;travel(15)-&gt;days();
+
+    expect($user-&gt;hasExpiredTrial())-&gt;toBeTrue();
+});</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Use <code>Carbon::setTestNow()</code> to freeze time during test executions and verify time-dependent edge cases reliably.</li>
+  <li>Always reset mock time with <code>Carbon::setTestNow(null)</code> in test teardown hooks if not using Laravel&#39;s test time helpers.</li>
+  <li>Use <code>Carbon::hasTestNow()</code> to check if time manipulation is currently active.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Thu, 23 Nov 2023 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Testing]]></category>
+      <category><![CDATA[Carbon]]></category>
+      <category><![CDATA[PHP]]></category>
+    </item>
+    <item>
       <title><![CDATA[Essential Laravel Production Deployment Command Sequence]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-production-deployment-commands</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-production-deployment-commands</guid>
@@ -4450,6 +5992,324 @@ php artisan queue:restart</code></pre>
       <category><![CDATA[Queue]]></category>
       <category><![CDATA[Deployment]]></category>
       <category><![CDATA[DevOps]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Stream CSV Report Downloads with Renderless Livewire Component Actions]]></title>
+      <link>https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports</guid>
+      <description><![CDATA[Use Livewire 3's #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use Livewire 3's #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.</blockquote>
+<p>When triggering a file download or CSV export from a Livewire component, Livewire's default lifecycle runs the component's `render()` method after executing the action.</p>
+<p>If your `render()` method executes complex database queries or chart calculations, running `render()` during a binary file download wastes server CPU and memory since the HTML response is discarded in favor of the download stream.</p>
+<p>Livewire 3 provides the `#[Renderless]` attribute to execute an action without invoking `render()`.</p>
+<h3>The Livewire Component</h3>
+<pre><code class="language-php">namespace AppLivewire;
+
+use AppModelsReport;
+use LivewireAttributesRenderless;
+use LivewireComponent;
+use SymfonyComponentHttpFoundationStreamedResponse;
+
+class TransactionReports extends Component
+{
+    public string $startDate = &#039;&#039;;
+    public string $endDate = &#039;&#039;;
+    public array $selectedColumns = [&#039;id&#039;, &#039;reference&#039;, &#039;amount&#039;, &#039;created_at&#039;];
+
+    #[Renderless]
+    public function exportCsv(): StreamedResponse
+    {
+        return response()-&gt;streamDownload(function (): void {
+            $output = fopen(&#039;php://output&#039;, &#039;w&#039;);
+
+            // Write CSV header
+            fputcsv($output, $this-&gt;selectedColumns);
+
+            // Stream records in chunks
+            Report::query()
+                -&gt;when($this-&gt;startDate, fn ($q) =&gt; $q-&gt;where(&#039;created_at&#039;, &#039;&gt;=&#039;, $this-&gt;startDate))
+                -&gt;when($this-&gt;endDate, fn ($q) =&gt; $q-&gt;where(&#039;created_at&#039;, &#039;&lt;=&#039;, $this-&gt;endDate))
+                -&gt;select($this-&gt;selectedColumns)
+                -&gt;chunk(500, function ($rows) use ($output): void {
+                    foreach ($rows as $row) {
+                        fputcsv($output, $row-&gt;toArray());
+                    }
+                });
+
+            fclose($output);
+        }, &#039;reports.csv&#039;, [
+            &#039;Content-Type&#039; =&gt; &#039;text/csv&#039;,
+        ]);
+    }
+
+    public function render()
+    {
+        // Heavy query executed ONLY when rendering HTML UI, NOT during CSV export
+        return view(&#039;livewire.transaction-reports&#039;, [
+            &#039;reports&#039; =&gt; Report::latest()-&gt;paginate(25),
+        ]);
+    }
+}</code></pre>
+<h3>In the Blade Template</h3>
+<pre><code class="language-blade">&lt;div&gt;
+    &lt;button wire:click=&quot;exportCsv&quot; class=&quot;btn btn-secondary&quot;&gt;
+        Export CSV
+    &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Apply <code>#[Renderless]</code> (or <code>$this-&gt;skipRender()</code> in Livewire 2/3) to file export methods in Livewire components.</li>
+  <li>Skips the <code>render()</code> lifecycle entirely, preventing redundant database queries and HTML rendering during downloads.</li>
+  <li>Combines with <code>response()-&gt;streamDownload()</code> for memory-efficient exports directly to the browser.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Mon, 06 Nov 2023 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Livewire]]></category>
+      <category><![CDATA[HTTP]]></category>
+      <category><![CDATA[Streaming]]></category>
+      <category><![CDATA[CSV]]></category>
+      <category><![CDATA[Performance]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Multi-Tenant Team Scoping with a Reusable BelongsToTeam Model Trait]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-belongs-to-team-multitenancy-trait</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-belongs-to-team-multitenancy-trait</guid>
+      <description><![CDATA[Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes. In multi-tenan...]]></description>
+      <content:encoded><![CDATA[<blockquote>Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes.</blockquote>
+<p>In multi-tenant or team-based SaaS applications, models (such as projects, invoices, and documents) must belong to a specific team, and users must only access records belonging to their active team.</p>
+<p>Instead of writing repetitive query scopes and `$model->team_id = auth()->user()->team_id` assignments in every controller, you can encapsulate multi-tenant behavior in a reusable model trait.</p>
+<h3>The BelongsToTeam Trait</h3>
+<pre><code class="language-php">namespace AppTraitsModels;
+
+use AppModelsTeam;
+use IlluminateDatabaseEloquentBuilder;
+use IlluminateDatabaseEloquentRelationsBelongsTo;
+
+trait BelongsToTeam
+{
+    public static function bootBelongsToTeam(): void
+    {
+        // Automatically set the team_id when creating a new record
+        static::creating(function ($model): void {
+            if (auth()-&gt;check() &amp;&amp; empty($model-&gt;team_id)) {
+                $model-&gt;team_id = auth()-&gt;user()-&gt;team_id;
+            }
+        });
+    }
+
+    protected static function booted(): void
+    {
+        parent::booted();
+
+        // Apply a global scope to filter queries by active team
+        if (auth()-&gt;check()) {
+            static::addGlobalScope(&#039;team&#039;, function (Builder $query): void {
+                $query-&gt;team();
+            });
+        }
+    }
+
+    public function scopeTeam(Builder $query): Builder
+    {
+        return $query-&gt;when(
+            auth()-&gt;user()?-&gt;team_id,
+            function (Builder $query, int $teamId): Builder {
+                // Prefix column with table name to prevent SQL ambiguity in joins
+                return $query-&gt;where($this-&gt;getTable() . &#039;.team_id&#039;, $teamId);
+            },
+            function (Builder $query): Builder {
+                // If the user has no team, prevent data leakage
+                abort(403, &#039;User does not belong to an active team.&#039;);
+            }
+        );
+    }
+
+    public function team(): BelongsTo
+    {
+        return $this-&gt;belongsTo(Team::class);
+    }
+}</code></pre>
+<h3>Using the Trait on Models</h3>
+<pre><code class="language-php">namespace AppModels;
+
+use AppTraitsModelsBelongsToTeam;
+use IlluminateDatabaseEloquentModel;
+
+class Project extends Model
+{
+    use BelongsToTeam;
+
+    protected $fillable = [&#039;name&#039;, &#039;description&#039;];
+}</code></pre>
+<h3>What This Automates</h3>
+<ol>
+  <li><strong>Automatic Assignment</strong>: Calling <code>Project::create([&#39;name&#39; =&gt; &#39;API v2&#39;])</code> automatically populates <code>team_id</code> from the authenticated user.</li>
+  <li><strong>Automatic Query Scoping</strong>: Calling <code>Project::all()</code> automatically generates <code>WHERE projects.team_id = ?</code>.</li>
+  <li><strong>Join Safety</strong>: Using <code>$this-&gt;getTable() . &#39;.team_id&#39;</code> ensures joins and <code>hasManyThrough</code> relationships do not encounter &quot;ambiguous column&quot; SQL errors.</li>
+</ol>
+<h3>Summary</h3>
+<ul>
+  <li>Use a <code>BelongsToTeam</code> trait to automate tenant ID assignment on creation and filter queries via global scopes.</li>
+  <li>Table-prefix column references in query scopes to prevent SQL errors in joins.</li>
+  <li>Eliminates manual scoping across controllers and guarantees tenant isolation.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sun, 05 Nov 2023 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Multi-Tenancy]]></category>
+      <category><![CDATA[Security]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Reusable whereLike Macro with Relationship and Expression Support]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro</guid>
+      <description><![CDATA[Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder...]]></description>
+      <content:encoded><![CDATA[<blockquote>Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder.</blockquote>
+<p>Searching across multiple attributes frequently leads to verbose and repetitive `orWhere` query chains in controller code.</p>
+<p>By registering a custom `whereLike` macro on Eloquent's `Builder`, you can search across model columns, dot-notation relationships (`user.name`), and custom database expressions (`DB::raw()`) in a single readable call.</p>
+<h3>Registering the Macro in AppServiceProvider</h3>
+<pre><code class="language-php">namespace App\Providers;
+
+use Illuminate\Contracts\Database\Query\Expression;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Builder::macro(&#039;whereLike&#039;, function ($attributes, string $searchTerm) {
+            return $this-&gt;where(function (Builder $query) use ($attributes, $searchTerm) {
+                foreach (Arr::wrap($attributes) as $attribute) {
+                    $query-&gt;when(
+                        // Check if attribute is a relationship dot-notation string (e.g. &#039;user.name&#039;)
+                        ! ($attribute instanceof Expression) &amp;&amp; str_contains((string) $attribute, &#039;.&#039;),
+                        function (Builder $query) use ($attribute, $searchTerm) {
+                            [$relation, $relatedAttribute] = explode(&#039;.&#039;, (string) $attribute);
+
+                            $query-&gt;orWhereHas($relation, function (Builder $query) use ($relatedAttribute, $searchTerm) {
+                                $query-&gt;where($relatedAttribute, &#039;LIKE&#039;, &quot;%{$searchTerm}%&quot;);
+                            });
+                        },
+                        function (Builder $query) use ($attribute, $searchTerm) {
+                            // Search on local column or DB::raw expression
+                            $query-&gt;orWhere($attribute, &#039;LIKE&#039;, &quot;%{$searchTerm}%&quot;);
+                        }
+                    );
+                }
+            });
+        });
+    }
+}</code></pre>
+<h3>Usage Example</h3>
+<p>You can pass single columns, related model fields using dot notation, and formatted raw SQL expressions:</p>
+<pre><code class="language-php">use App\Models\Post;
+use Illuminate\Support\Facades\DB;
+
+$search = request(&#039;search&#039;);
+
+$posts = Post::query()
+    -&gt;whereLike([
+        &#039;title&#039;,
+        &#039;description&#039;,
+        &#039;user.name&#039;,
+        &#039;user.email&#039;,
+        DB::raw(&#039;CONCAT(user.first_name, &quot; &quot;, user.last_name)&#039;),
+        DB::raw(&#039;DATE_FORMAT(created_at, &quot;%d/%m/%Y&quot;)&#039;),
+    ], $search)
+    -&gt;with(&#039;user&#039;)
+    -&gt;paginate(15);</code></pre>
+<h3>How It Works</h3>
+<ol>
+  <li><strong>Encapsulated Scope</strong>: Wraps the entire search clause in a single <code>$this-&gt;where(function ($query) ...)</code> closure so that boolean <code>AND</code> / <code>OR</code> operator precedence is respected when chained with other query filters.</li>
+  <li><strong>Relationship Detection</strong>: Automatically detects dot notation (<code>&#39;user.name&#39;</code>) and applies <code>orWhereHas</code> subqueries against the related model.</li>
+  <li><strong>Expression Compatibility</strong>: Supports <code>DB::raw()</code> expressions without throwing type errors, enabling searches on computed columns and SQL date formats.</li>
+</ol>
+<h3>Summary</h3>
+<ul>
+  <li>Use <code>Builder::macro(&#39;whereLike&#39;)</code> to consolidate multi-attribute wildcard searches into a single expressive method.</li>
+  <li>Automatically handles both local table columns and related model attributes via <code>orWhereHas</code>.</li>
+  <li>Respects SQL operator grouping and supports raw database expressions.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Fri, 27 Oct 2023 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Macros]]></category>
+      <category><![CDATA[Search]]></category>
+      <category><![CDATA[Database]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Dynamic Date Grouping in Laravel Collections Using Closures in groupBy()]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-collection-groupby-closure</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-collection-groupby-closure</guid>
+      <description><![CDATA[Pass a closure to Laravel Collection's groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel's Collection::groupBy...]]></description>
+      <content:encoded><![CDATA[<blockquote>Pass a closure to Laravel Collection's groupBy() method to group models and arrays dynamically by day, week, month, or quarter.</blockquote>
+<p>Laravel's `Collection::groupBy()` method is commonly used with a simple string key (such as `->groupBy('status')`).</p>
+<p>However, `groupBy()` also accepts a closure that receives each item in the collection and returns the dynamic group key. This is especially useful for aggregating records into date intervals such as weeks, quarters, or formatted periods for reporting dashboards.</p>
+<h3>Grouping Records by Dynamic Time Periods</h3>
+<pre><code class="language-php">use AppModelsOrder;
+use CarbonCarbon;
+use IlluminateSupportCollection;
+
+$orders = Order::query()
+    -&gt;where(&#039;created_at&#039;, &#039;&gt;=&#039;, now()-&gt;subYear())
+    -&gt;get();
+
+$interval = request(&#039;interval&#039;, &#039;week&#039;); // &#039;day&#039;, &#039;week&#039;, &#039;month&#039;, &#039;quarter&#039;, &#039;year&#039;
+
+$groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): string {
+    $date = $order-&gt;created_at;
+
+    return match ($interval) {
+        &#039;day&#039; =&gt; $date-&gt;format(&#039;D d M Y&#039;),
+        // Output: &quot;Sun 01 Jan 2026&quot;
+
+        &#039;week&#039; =&gt; $date-&gt;copy()-&gt;startOfWeek()-&gt;format(&#039;d M Y&#039;) . &#039; - &#039; . $date-&gt;copy()-&gt;endOfWeek()-&gt;format(&#039;d M Y&#039;),
+        // Output: &quot;01 Jan 2026 - 07 Jan 2026&quot;
+
+        &#039;month&#039; =&gt; $date-&gt;format(&#039;M Y&#039;),
+        // Output: &quot;Jan 2026&quot;
+
+        &#039;quarter&#039; =&gt; $date-&gt;copy()-&gt;firstOfQuarter()-&gt;format(&#039;M&#039;) . &#039; - &#039; . $date-&gt;copy()-&gt;lastOfQuarter()-&gt;format(&#039;M Y&#039;),
+        // Output: &quot;Jan - Mar 2026&quot;
+
+        &#039;year&#039; =&gt; $date-&gt;format(&#039;Y&#039;),
+        // Output: &quot;2026&quot;
+    };
+});</code></pre>
+<h3>Structure of the Resulting Collection</h3>
+<p>The returned collection uses the formatted date strings as keys, with each entry containing the subset of matching models:</p>
+<pre><code class="language-php">// Example quarter grouping:
+[
+    &quot;Jan - Mar 2026&quot; =&gt; Collection [ Order #101, Order #102 ],
+    &quot;Oct - Dec 2025&quot; =&gt; Collection [ Order #89, Order #90 ],
+]</code></pre>
+<h3>Aggregating Data per Period</h3>
+<p>Once grouped, you can chain standard collection operations like `map()` or `sum()` to build dashboard statistics:</p>
+<pre><code class="language-php">$revenueByQuarter = $groupedOrders-&gt;map(function (Collection $orders): float {
+    return $orders-&gt;sum(&#039;total_amount&#039;);
+});</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Pass a closure to <code>Collection::groupBy()</code> for dynamic, computed grouping criteria.</li>
+  <li>Pair with Carbon&#39;s period helpers (<code>startOfWeek()</code>, <code>firstOfQuarter()</code>) to group data into reporting intervals.</li>
+  <li>Chain <code>map()</code> and <code>sum()</code> on grouped collections to calculate interval metrics effortlessly.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Collections]]></category>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Dates]]></category>
     </item>
     <item>
       <title><![CDATA[Avoid auth() and session() Inside Event Listeners]]></title>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a Reusable whereLike Macro for Eloquent Searching - Laravel &amp; PHP Tip | Punyapal Shah</title>
+    <title>Reusable whereLike Macro with Relationship and Expression Support - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...">
+    <meta name="description" content="Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
@@ -25,17 +25,17 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro">
-    <meta property="og:title" content="Add a Reusable whereLike Macro for Eloquent Searching - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...">
+    <meta property="og:title" content="Reusable whereLike Macro with Relationship and Expression Support - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-custom-wherelike-macro.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-custom-wherelike-macro.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Add a Reusable whereLike Macro for Eloquent Searching - Punyapal Shah">
+    <meta property="og:image:alt" content="Reusable whereLike Macro with Relationship and Expression Support - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2026-05-25">
+    <meta property="article:published_time" content="2023-10-27">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="Laravel">
 
@@ -44,10 +44,10 @@
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro">
-    <meta name="twitter:title" content="Add a Reusable whereLike Macro for Eloquent Searching - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...">
+    <meta name="twitter:title" content="Reusable whereLike Macro with Relationship and Expression Support - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-custom-wherelike-macro.png">
-    <meta name="twitter:image:alt" content="Add a Reusable whereLike Macro for Eloquent Searching - Punyapal Shah">
+    <meta name="twitter:image:alt" content="Reusable whereLike Macro with Relationship and Expression Support - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -57,12 +57,12 @@
             {
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro#article",
-                "headline": "Add a Reusable whereLike Macro for Eloquent Searching",
-                "description": "Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder. Searching across multiple str...",
-                "datePublished": "2026-05-25",
+                "headline": "Reusable whereLike Macro with Relationship and Expression Support",
+                "description": "Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder...",
+                "datePublished": "2023-10-27",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro",
-                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Eloquent, Macros",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Eloquent, Macros, Search, Database",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -91,7 +91,7 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Add a Reusable whereLike Macro for Eloquent Searching",
+                        "name": "Reusable whereLike Macro with Relationship and Expression Support",
                         "item": "https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro"
                     }
                 ]
@@ -694,7 +694,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Add a Reusable whereLike Macro for Eloquent Searching
+                        Reusable whereLike Macro with Relationship and Expression Support
                     </h1>
 
                     <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -704,9 +704,9 @@
                                 <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                             </span>
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                            <time datetime="2026-05-25" class="inline-flex items-center gap-1.5">
+                            <time datetime="2023-10-27" class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                                May 25, 2026
+                                Oct 27, 2023
                             </time>
                         </div>
 
@@ -723,7 +723,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Simplify multi-column wildcard searches across model attributes by registering a clean whereLike macro on the Eloquent Builder.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Searching across multiple string columns usually requires repetitive orWhere chains. Registering a macro in AppServiceProvider provides a clean API for wildcard matching.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Searching across multiple attributes frequently leads to verbose and repetitive <code>orWhere</code> query chains in controller code.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">By registering a custom <code>whereLike</code> macro on Eloquent&#39;s <code>Builder</code>, you can search across model columns, dot-notation relationships (<code>user.name</code>), and custom database expressions (<code>DB::raw()</code>) in a single readable call.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Registering the Macro in AppServiceProvider</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -731,21 +731,127 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\User;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Providers;
 
-// Search across name, email, and bio in a single call
-$users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;], $search)-&gt;get();" aria-label="Copy code to clipboard">
+use Illuminate\Contracts\Database\Query\Expression;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Builder::macro(&#039;whereLike&#039;, function ($attributes, string $searchTerm) {
+            return $this-&gt;where(function (Builder $query) use ($attributes, $searchTerm) {
+                foreach (Arr::wrap($attributes) as $attribute) {
+                    $query-&gt;when(
+                        // Check if attribute is a relationship dot-notation string (e.g. &#039;user.name&#039;)
+                        ! ($attribute instanceof Expression) &amp;&amp; str_contains((string) $attribute, &#039;.&#039;),
+                        function (Builder $query) use ($attribute, $searchTerm) {
+                            [$relation, $relatedAttribute] = explode(&#039;.&#039;, (string) $attribute);
+
+                            $query-&gt;orWhereHas($relation, function (Builder $query) use ($relatedAttribute, $searchTerm) {
+                                $query-&gt;where($relatedAttribute, &#039;LIKE&#039;, &quot;%{$searchTerm}%&quot;);
+                            });
+                        },
+                        function (Builder $query) use ($attribute, $searchTerm) {
+                            // Search on local column or DB::raw expression
+                            $query-&gt;orWhere($attribute, &#039;LIKE&#039;, &quot;%{$searchTerm}%&quot;);
+                        }
+                    );
+                }
+            });
+        });
+    }
+}" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Providers</span>;
 
-<span class="hljs-comment">// Search across name, email, and bio in a single call</span>
-<span class="hljs-variable">$users</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">whereLike</span>([<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;email&#x27;</span>, <span class="hljs-string">&#x27;bio&#x27;</span>], <span class="hljs-variable">$search</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Wraps multiple orWhere calls inside a grouped subquery clause</span></li><li class="leading-relaxed"><span class="align-middle">Works with single column strings or arrays of columns</span></li><li class="leading-relaxed"><span class="align-middle">Keeps controller search logic minimal and readable</span></li></ul>
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Contracts</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Query</span>\<span class="hljs-title">Expression</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Builder</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Arr</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppServiceProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boot</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
+    </span>{
+        <span class="hljs-title class_">Builder</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;whereLike&#x27;</span>, function (<span class="hljs-variable">$attributes</span>, <span class="hljs-keyword">string</span> <span class="hljs-variable">$searchTerm</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">where</span>(function (Builder <span class="hljs-variable">$query</span>) <span class="hljs-keyword">use</span> ($<span class="hljs-title">attributes</span>, $<span class="hljs-title">searchTerm</span>) {
+                <span class="hljs-title">foreach</span> (<span class="hljs-title">Arr</span>::<span class="hljs-title">wrap</span>($<span class="hljs-title">attributes</span>) <span class="hljs-keyword">as</span> $<span class="hljs-title">attribute</span>) {
+                    $<span class="hljs-title">query</span>-&gt;<span class="hljs-title">when</span>(
+                        // <span class="hljs-title">Check</span> <span class="hljs-title">if</span> <span class="hljs-title">attribute</span> <span class="hljs-title">is</span> <span class="hljs-title">a</span> <span class="hljs-title">relationship</span> <span class="hljs-title">dot</span>-<span class="hljs-title">notation</span> <span class="hljs-title">string</span> (<span class="hljs-title">e</span>.<span class="hljs-title">g</span>. &#x27;<span class="hljs-title">user</span>.<span class="hljs-title">name</span>&#x27;)
+                        ! ($<span class="hljs-title">attribute</span> <span class="hljs-title">instanceof</span> <span class="hljs-title">Expression</span>) &amp;&amp; <span class="hljs-title">str_contains</span>((<span class="hljs-title">string</span>) $<span class="hljs-title">attribute</span>, &#x27;.&#x27;),
+                        <span class="hljs-keyword">function</span> (<span class="hljs-title">Builder</span> $<span class="hljs-title">query</span>) <span class="hljs-title">use</span> ($<span class="hljs-title">attribute</span>, $<span class="hljs-title">searchTerm</span>) {
+                            [$<span class="hljs-title">relation</span>, $<span class="hljs-title">relatedAttribute</span>] = <span class="hljs-title">explode</span>(&#x27;.&#x27;, (<span class="hljs-title">string</span>) $<span class="hljs-title">attribute</span>);
+
+                            <span class="hljs-variable">$query</span>-&gt;<span class="hljs-title function_ invoke__">orWhereHas</span>(<span class="hljs-variable">$relation</span>, function (Builder <span class="hljs-variable">$query</span>) <span class="hljs-keyword">use</span> ($<span class="hljs-title">relatedAttribute</span>, $<span class="hljs-title">searchTerm</span>) {
+                                $<span class="hljs-title">query</span>-&gt;<span class="hljs-title">where</span>($<span class="hljs-title">relatedAttribute</span>, &#x27;<span class="hljs-title">LIKE</span>&#x27;, &quot;%{$<span class="hljs-title">searchTerm</span>}%&quot;);
+                            });
+                        },
+                        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Builder <span class="hljs-variable">$query</span></span>) <span class="hljs-keyword">use</span> (<span class="hljs-params"><span class="hljs-variable">$attribute</span>, <span class="hljs-variable">$searchTerm</span></span>) </span>{
+                            <span class="hljs-comment">// Search on local column or DB::raw expression</span>
+                            <span class="hljs-variable">$query</span>-&gt;<span class="hljs-title function_ invoke__">orWhere</span>(<span class="hljs-variable">$attribute</span>, <span class="hljs-string">&#x27;LIKE&#x27;</span>, <span class="hljs-string">&quot;%<span class="hljs-subst">{$searchTerm}</span>%&quot;</span>);
+                        }
+                    );
+                }
+            });
+        });
+    }
+}</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Usage Example</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">You can pass single columns, related model fields using dot notation, and formatted raw SQL expressions:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\Post;
+use Illuminate\Support\Facades\DB;
+
+$search = request(&#039;search&#039;);
+
+$posts = Post::query()
+    -&gt;whereLike([
+        &#039;title&#039;,
+        &#039;description&#039;,
+        &#039;user.name&#039;,
+        &#039;user.email&#039;,
+        DB::raw(&#039;CONCAT(user.first_name, &quot; &quot;, user.last_name)&#039;),
+        DB::raw(&#039;DATE_FORMAT(created_at, &quot;%d/%m/%Y&quot;)&#039;),
+    ], $search)
+    -&gt;with(&#039;user&#039;)
+    -&gt;paginate(15);" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Post</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">DB</span>;
+
+<span class="hljs-variable">$search</span> = <span class="hljs-title function_ invoke__">request</span>(<span class="hljs-string">&#x27;search&#x27;</span>);
+
+<span class="hljs-variable">$posts</span> = <span class="hljs-title class_">Post</span>::<span class="hljs-title function_ invoke__">query</span>()
+    -&gt;<span class="hljs-title function_ invoke__">whereLike</span>([
+        <span class="hljs-string">&#x27;title&#x27;</span>,
+        <span class="hljs-string">&#x27;description&#x27;</span>,
+        <span class="hljs-string">&#x27;user.name&#x27;</span>,
+        <span class="hljs-string">&#x27;user.email&#x27;</span>,
+        DB::<span class="hljs-title function_ invoke__">raw</span>(<span class="hljs-string">&#x27;CONCAT(user.first_name, &quot; &quot;, user.last_name)&#x27;</span>),
+        DB::<span class="hljs-title function_ invoke__">raw</span>(<span class="hljs-string">&#x27;DATE_FORMAT(created_at, &quot;%d/%m/%Y&quot;)&#x27;</span>),
+    ], <span class="hljs-variable">$search</span>)
+    -&gt;<span class="hljs-title function_ invoke__">with</span>(<span class="hljs-string">&#x27;user&#x27;</span>)
+    -&gt;<span class="hljs-title function_ invoke__">paginate</span>(<span class="hljs-number">15</span>);</code></pre>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How It Works</h3><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Encapsulated Scope</strong>: Wraps the entire search clause in a single <code>$this-&gt;where(function ($query) ...)</code> closure so that boolean <code>AND</code> / <code>OR</code> operator precedence is respected when chained with other query filters.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Relationship Detection</strong>: Automatically detects dot notation (<code>&#39;user.name&#39;</code>) and applies <code>orWhereHas</code> subqueries against the related model.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Expression Compatibility</strong>: Supports <code>DB::raw()</code> expressions without throwing type errors, enabling searches on computed columns and SQL date formats.</span></li></ol><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <code>Builder::macro(&#39;whereLike&#39;)</code> to consolidate multi-attribute wildcard searches into a single expressive method.</span></li><li class="leading-relaxed"><span class="align-middle">Automatically handles both local table columns and related model attributes via <code>orWhereHas</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Respects SQL operator grouping and supports raw database expressions.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->
@@ -763,11 +869,11 @@ $users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;],
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Macros</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Macros</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Search</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Database</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Add%20a%20Reusable%20whereLike%20Macro%20for%20Eloquent%20Searching%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-custom-wherelike-macro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Reusable%20whereLike%20Macro%20with%20Relationship%20and%20Expression%20Support%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-custom-wherelike-macro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -848,7 +954,7 @@ $users = User::whereLike([&#039;name&#039;, &#039;email&#039;, &#039;bio&#039;],
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["git-local-ignore-info-exclude","laravel-stream-csv-downloads-without-temporary-files","laravel-queue-debounced-event-listeners","laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-predefined-constants-cheat-sheet","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["git-local-ignore-info-exclude","laravel-stream-csv-downloads-without-temporary-files","laravel-queue-debounced-event-listeners","laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","php-predefined-constants-cheat-sheet","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-rector-remove-unnecessary-comments","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","php-timeout-guard-ticks-without-pcntl","laravel-tappable-scopes-eloquent-scout","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","phpstan-static-analysis-levels-guide","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","php-rector-refactor-enums-pascal-case","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-broadcast-database-notifications-instantly","laravel-eloquent-when-and-unless-conditional-queries","laravel-cast-enum-json-array-key","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","laravel-enum-has-label-trait","livewire-teleport-blade-view-cache-directive-fix","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-activity-log-event-subscriber","laravel-generate-unique-slug-without-looping","php-str-increment-decrement","laravel-carbon-set-test-now-time-manipulation","laravel-production-deployment-commands","livewire-renderless-export-csv-reports","laravel-belongs-to-team-multitenancy-trait","laravel-collection-groupby-closure","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {

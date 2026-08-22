@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Essential PHP Predefined and Magic Constants - PHP Tip | Punyapal Shah</title>
+    <title>PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready) - PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="A practical cheat sheet covering PHP magic constants, filesystem path helpers, error reporting masks, and CLI stream handles. PHP provides built-in magic and...">
+    <meta name="description" content="A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4. PHP provides built-in...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
@@ -25,17 +25,18 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet">
-    <meta property="og:title" content="Master Essential PHP Predefined and Magic Constants - PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="A practical cheat sheet covering PHP magic constants, filesystem path helpers, error reporting masks, and CLI stream handles. PHP provides built-in magic and...">
+    <meta property="og:title" content="PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready) - PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4. PHP provides built-in...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/php-predefined-constants-cheat-sheet.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/php-predefined-constants-cheat-sheet.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Master Essential PHP Predefined and Magic Constants - Punyapal Shah">
+    <meta property="og:image:alt" content="PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready) - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
     <meta property="article:published_time" content="2025-06-29">
+    <meta property="article:modified_time" content="2026-03-28">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="PHP">
 
@@ -44,10 +45,10 @@
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet">
-    <meta name="twitter:title" content="Master Essential PHP Predefined and Magic Constants - PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="A practical cheat sheet covering PHP magic constants, filesystem path helpers, error reporting masks, and CLI stream handles. PHP provides built-in magic and...">
+    <meta name="twitter:title" content="PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready) - PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4. PHP provides built-in...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/php-predefined-constants-cheat-sheet.png">
-    <meta name="twitter:image:alt" content="Master Essential PHP Predefined and Magic Constants - Punyapal Shah">
+    <meta name="twitter:image:alt" content="PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready) - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -57,12 +58,13 @@
             {
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet#article",
-                "headline": "Master Essential PHP Predefined and Magic Constants",
-                "description": "A practical cheat sheet covering PHP magic constants, filesystem path helpers, error reporting masks, and CLI stream handles. PHP provides built-in magic and...",
+                "headline": "PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready)",
+                "description": "A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4. PHP provides built-in...",
                 "datePublished": "2025-06-29",
+                "dateModified": "2026-03-28",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet",
-                "keywords": "PHP, PHP tips, Laravel tips, PHP, Constants, Reference",
+                "keywords": "PHP, PHP tips, Laravel tips, PHP, Constants, Reference, PHP 8.4",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -91,7 +93,7 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Master Essential PHP Predefined and Magic Constants",
+                        "name": "PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready)",
                         "item": "https://mrpunyapal.dev/tips/php-predefined-constants-cheat-sheet"
                     }
                 ]
@@ -694,7 +696,7 @@
                 <!-- Title & Meta -->
                 <div class="animate-fade-up">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Master Essential PHP Predefined and Magic Constants
+                        PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready)
                     </h1>
 
                     <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -704,9 +706,9 @@
                                 <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                             </span>
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                            <time datetime="2025-06-29" class="inline-flex items-center gap-1.5">
+                            <time datetime="2026-03-28" class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                                Jun 29, 2025
+                                Updated Mar 28, 2026
                             </time>
                         </div>
 
@@ -723,69 +725,301 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">A practical cheat sheet covering PHP magic constants, filesystem path helpers, error reporting masks, and CLI stream handles.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHP provides built-in magic and environment constants that provide system context and platform independent path formatting.</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Filesystem &amp; Path Constants
-DIRECTORY_SEPARATOR; // &#039;/&#039; on Unix, &#039;\&#039; on Windows
-PATH_SEPARATOR;      // &#039;:&#039; on Unix, &#039;;&#039; on Windows
-__FILE__;            // Full file path of current file
-__DIR__;             // Directory of current file
-__LINE__;            // Current line number
-
-// Magic Compile Constants
-__FUNCTION__;        // Current function name
-__CLASS__;           // Current class name
-__TRAIT__;           // Current trait name
-__METHOD__;          // Current class method name
-__NAMESPACE__;       // Current namespace name
-
-// Environment &amp; Platform
-PHP_VERSION;         // e.g. &quot;8.4.1&quot;
-PHP_OS_FAMILY;       // &quot;Windows&quot;, &quot;Linux&quot;, &quot;BSD&quot;, &quot;Darwin&quot;
-PHP_EOL;             // End-of-line character for host OS
-PHP_INT_MAX;         // Maximum integer supported
-
-// CLI Stream Handles (available in CLI mode)
-STDIN;               // Standard input stream
-STDOUT;              // Standard output stream
-STDERR;              // Standard error stream" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Filesystem &amp; Path Constants</span>
-DIRECTORY_SEPARATOR; <span class="hljs-comment">// &#x27;/&#x27; on Unix, &#x27;\&#x27; on Windows</span>
-PATH_SEPARATOR;      <span class="hljs-comment">// &#x27;:&#x27; on Unix, &#x27;;&#x27; on Windows</span>
-<span class="hljs-keyword">__FILE__</span>;            <span class="hljs-comment">// Full file path of current file</span>
-<span class="hljs-keyword">__DIR__</span>;             <span class="hljs-comment">// Directory of current file</span>
-<span class="hljs-keyword">__LINE__</span>;            <span class="hljs-comment">// Current line number</span>
-
-<span class="hljs-comment">// Magic Compile Constants</span>
-<span class="hljs-keyword">__FUNCTION__</span>;        <span class="hljs-comment">// Current function name</span>
-<span class="hljs-keyword">__CLASS__</span>;           <span class="hljs-comment">// Current class name</span>
-<span class="hljs-keyword">__TRAIT__</span>;           <span class="hljs-comment">// Current trait name</span>
-<span class="hljs-keyword">__METHOD__</span>;          <span class="hljs-comment">// Current class method name</span>
-<span class="hljs-keyword">__NAMESPACE__</span>;       <span class="hljs-comment">// Current namespace name</span>
-
-<span class="hljs-comment">// Environment &amp; Platform</span>
-PHP_VERSION;         <span class="hljs-comment">// e.g. &quot;8.4.1&quot;</span>
-PHP_OS_FAMILY;       <span class="hljs-comment">// &quot;Windows&quot;, &quot;Linux&quot;, &quot;BSD&quot;, &quot;Darwin&quot;</span>
-PHP_EOL;             <span class="hljs-comment">// End-of-line character for host OS</span>
-PHP_INT_MAX;         <span class="hljs-comment">// Maximum integer supported</span>
-
-<span class="hljs-comment">// CLI Stream Handles (available in CLI mode)</span>
-STDIN;               <span class="hljs-comment">// Standard input stream</span>
-STDOUT;              <span class="hljs-comment">// Standard output stream</span>
-STDERR;              <span class="hljs-comment">// Standard error stream</span></code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Always use <code>DIRECTORY_SEPARATOR</code> or forward slashes for cross-platform file paths</span></li><li class="leading-relaxed"><span class="align-middle">Use <code>PHP_OS_FAMILY</code> instead of checking <code>PHP_OS</code> strings</span></li><li class="leading-relaxed"><span class="align-middle">Magic constants resolve at compile time, making sure minimal runtime overhead</span></li></ul>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHP provides built-in constants for filesystem operations, compile-time metadata, runtime environment information, error levels, and stream handles. These constants are available globally without importing namespaces or requiring setup.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Filesystem and Path Constants</h3><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Example Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DIRECTORY_SEPARATOR</code></td>
+<td>Path separator (<code>/</code> on Unix, <code>\</code> on Windows)</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td><code>PATH_SEPARATOR</code></td>
+<td>Include path separator (<code>:</code> on Unix, <code>;</code> on Windows)</td>
+<td><code>:</code></td>
+</tr>
+<tr>
+<td><code>__FILE__</code></td>
+<td>Full filesystem path and filename of the current file</td>
+<td><code>/var/www/html/index.php</code></td>
+</tr>
+<tr>
+<td><code>__DIR__</code></td>
+<td>Directory path containing the current file</td>
+<td><code>/var/www/html</code></td>
+</tr>
+<tr>
+<td><code>__LINE__</code></td>
+<td>Current line number in the executing file</td>
+<td><code>42</code></td>
+</tr>
+</tbody></table>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Magic Compile-Time Constants</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Magic constants are resolved at compile time, introducing zero runtime performance overhead:</p><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Example Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>__FUNCTION__</code></td>
+<td>Current function name</td>
+<td><code>calculateTotal</code></td>
+</tr>
+<tr>
+<td><code>__CLASS__</code></td>
+<td>Current class name with namespace</td>
+<td><code>App\Models\Order</code></td>
+</tr>
+<tr>
+<td><code>__TRAIT__</code></td>
+<td>Current trait name</td>
+<td><code>App\Traits\HasLabel</code></td>
+</tr>
+<tr>
+<td><code>__METHOD__</code></td>
+<td>Current class method name</td>
+<td><code>App\Services\PaymentService::charge</code></td>
+</tr>
+<tr>
+<td><code>__NAMESPACE__</code></td>
+<td>Current namespace</td>
+<td><code>App\Services</code></td>
+</tr>
+</tbody></table>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">PHP Environment and System Limits</h3><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Example Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PHP_VERSION</code></td>
+<td>Full PHP version string</td>
+<td><code>8.4.1</code></td>
+</tr>
+<tr>
+<td><code>PHP_MAJOR_VERSION</code></td>
+<td>Major version integer</td>
+<td><code>8</code></td>
+</tr>
+<tr>
+<td><code>PHP_MINOR_VERSION</code></td>
+<td>Minor version integer</td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>PHP_RELEASE_VERSION</code></td>
+<td>Patch release integer</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>PHP_OS</code></td>
+<td>Operating system string from PHP build</td>
+<td><code>Linux</code>, <code>WINNT</code>, <code>Darwin</code></td>
+</tr>
+<tr>
+<td><code>PHP_OS_FAMILY</code></td>
+<td>Portable operating system group</td>
+<td><code>Linux</code>, <code>Windows</code>, <code>BSD</code>, <code>Darwin</code></td>
+</tr>
+<tr>
+<td><code>PHP_SAPI</code></td>
+<td>Server API interface type</td>
+<td><code>cli</code>, <code>fpm-fcgi</code>, <code>apache2handler</code></td>
+</tr>
+<tr>
+<td><code>PHP_EOL</code></td>
+<td>Correct newline character for the host OS</td>
+<td><code>\n</code> or <code>\r\n</code></td>
+</tr>
+<tr>
+<td><code>PHP_INT_MAX</code></td>
+<td>Maximum integer supported by host architecture</td>
+<td><code>9223372036854775807</code></td>
+</tr>
+<tr>
+<td><code>PHP_INT_MIN</code></td>
+<td>Minimum integer supported by host architecture</td>
+<td><code>-9223372036854775808</code></td>
+</tr>
+<tr>
+<td><code>PHP_FLOAT_MAX</code></td>
+<td>Maximum floating-point number</td>
+<td><code>1.7976931348623E+308</code></td>
+</tr>
+<tr>
+<td><code>PHP_FLOAT_MIN</code></td>
+<td>Minimum positive normalized floating-point number</td>
+<td><code>2.2250738585072E-308</code></td>
+</tr>
+</tbody></table>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Error Reporting Masks</h3><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Category</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>E_ERROR</code></td>
+<td>Fatal runtime errors that halt execution</td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_WARNING</code></td>
+<td>Non-fatal runtime warnings</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_PARSE</code></td>
+<td>Compile-time parse/syntax errors</td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_NOTICE</code></td>
+<td>Runtime notices about potential issues</td>
+<td>Notice</td>
+</tr>
+<tr>
+<td><code>E_CORE_ERROR</code></td>
+<td>Fatal errors generated by PHP core startup</td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_CORE_WARNING</code></td>
+<td>Warnings generated by PHP core startup</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_COMPILE_ERROR</code></td>
+<td>Fatal errors generated by the Zend script engine</td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_COMPILE_WARNING</code></td>
+<td>Warnings generated by the Zend script engine</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_USER_ERROR</code></td>
+<td>User-generated fatal error via <code>trigger_error()</code></td>
+<td>Fatal</td>
+</tr>
+<tr>
+<td><code>E_USER_WARNING</code></td>
+<td>User-generated warning via <code>trigger_error()</code></td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_USER_NOTICE</code></td>
+<td>User-generated notice via <code>trigger_error()</code></td>
+<td>Notice</td>
+</tr>
+<tr>
+<td><code>E_RECOVERABLE_ERROR</code></td>
+<td>Catchable fatal error</td>
+<td>Fatal (Catchable)</td>
+</tr>
+<tr>
+<td><code>E_DEPRECATED</code></td>
+<td>Runtime notices about deprecated features</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_USER_DEPRECATED</code></td>
+<td>User-generated deprecation notice</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>E_ALL</code></td>
+<td>Bitmask covering all supported error levels</td>
+<td>Aggregate</td>
+</tr>
+</tbody></table>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">File Upload Error Codes</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When processing <code>$_FILES[&#39;upload&#39;][&#39;error&#39;]</code>, compare against these constants instead of magic numbers:</p><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>UPLOAD_ERR_OK</code></td>
+<td><code>0</code></td>
+<td>File uploaded successfully</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_INI_SIZE</code></td>
+<td><code>1</code></td>
+<td>File exceeds <code>upload_max_filesize</code> in <code>php.ini</code></td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_FORM_SIZE</code></td>
+<td><code>2</code></td>
+<td>File exceeds <code>MAX_FILE_SIZE</code> specified in HTML form</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_PARTIAL</code></td>
+<td><code>3</code></td>
+<td>File was only partially uploaded</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_NO_FILE</code></td>
+<td><code>4</code></td>
+<td>No file was selected for upload</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_NO_TMP_DIR</code></td>
+<td><code>6</code></td>
+<td>Missing temporary upload folder on server</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_CANT_WRITE</code></td>
+<td><code>7</code></td>
+<td>Failed to write file to server disk</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERR_EXTENSION</code></td>
+<td><code>8</code></td>
+<td>A PHP extension stopped the file upload</td>
+</tr>
+</tbody></table>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">CLI Stream Constants</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Available automatically in Command Line Interface (CLI) scripts:</p><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Description</th>
+<th>Direction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>STDIN</code></td>
+<td>Open stream resource reading from standard input</td>
+<td>Input</td>
+</tr>
+<tr>
+<td><code>STDOUT</code></td>
+<td>Open stream resource writing to standard output</td>
+<td>Output</td>
+</tr>
+<tr>
+<td><code>STDERR</code></td>
+<td>Open stream resource writing to standard error</td>
+<td>Output</td>
+</tr>
+</tbody></table>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <code>PHP_OS_FAMILY</code> instead of comparing against individual <code>PHP_OS</code> strings for cross-platform compatibility.</span></li><li class="leading-relaxed"><span class="align-middle">Use <code>UPLOAD_ERR_*</code> constants when handling file uploads for descriptive error checking.</span></li><li class="leading-relaxed"><span class="align-middle">Leverage magic constants (<code>__DIR__</code>, <code>__CLASS__</code>, <code>__METHOD__</code>) for zero-overhead compile-time introspection.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->
@@ -803,11 +1037,11 @@ STDERR;              <span class="hljs-comment">// Standard error stream</span><
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">PHP</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">Constants</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">Reference</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">PHP</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">Constants</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">Reference</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">PHP 8.4</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Master%20Essential%20PHP%20Predefined%20and%20Magic%20Constants%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Fphp-predefined-constants-cheat-sheet" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=PHP%20Predefined%20and%20Magic%20Constants%20Cheat%20Sheet%20(PHP%208.4%20Ready)%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Fphp-predefined-constants-cheat-sheet" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -888,7 +1122,7 @@ STDERR;              <span class="hljs-comment">// Standard error stream</span><
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["git-local-ignore-info-exclude","laravel-stream-csv-downloads-without-temporary-files","laravel-queue-debounced-event-listeners","laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","laravel-custom-wherelike-macro","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-eloquent-when-and-unless-conditional-queries","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-production-deployment-commands","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
+        const OTHER_TIP_SLUGS = ["git-local-ignore-info-exclude","laravel-stream-csv-downloads-without-temporary-files","laravel-queue-debounced-event-listeners","laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-laracon-us-tips-povilas-korop","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-rector-remove-unnecessary-comments","php-blank-filled-over-empty","php-match-arm-multiple-values","laravel-squash-migrations-workflow","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","php-null-coalescing-assignment-operator","laravel-cache-memo-driver-in-memory","laravel-pint-use-arrow-functions-rule","alpinejs-multiple-data-objects-xdata","laravel-real-time-facades","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","pest-only-method-test-focus","laravel-model-touch-timestamp-update","php-early-returns-guard-clauses","php-timeout-guard-ticks-without-pcntl","laravel-tappable-scopes-eloquent-scout","laravel-job-dispatch-new-instance","tall-stack-filament-admin-panel","laravel-test-time-travel-freeze","php-backed-integer-enums-indexing","laravel-config-helper-get-set","phpstan-static-analysis-levels-guide","laravel-pint-single-line-empty-constructors","php-strict-types-property-declarations","php-rector-refactor-enums-pascal-case","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-eloquent-reorder-query-builder","laravel-broadcast-database-notifications-instantly","laravel-eloquent-when-and-unless-conditional-queries","laravel-cast-enum-json-array-key","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","laravel-enum-has-label-trait","livewire-teleport-blade-view-cache-directive-fix","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-activity-log-event-subscriber","laravel-generate-unique-slug-without-looping","php-str-increment-decrement","laravel-carbon-set-test-now-time-manipulation","laravel-production-deployment-commands","livewire-renderless-export-csv-reports","laravel-belongs-to-team-multitenancy-trait","laravel-custom-wherelike-macro","laravel-collection-groupby-closure","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","mysql-subquery-same-table-update-restriction","laravel-mailable-browser-preview","laravel-tailwind-utility-css-workflow","laravel-nested-resource-controllers-shallow-nesting","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-merge-casts-dynamic","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","css-container-queries-responsive-components"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {
