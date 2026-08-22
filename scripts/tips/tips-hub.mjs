@@ -52,9 +52,11 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                 </div>
 
                 <div class="pt-4 mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60">
-                    <time datetime="${escapeHtml(effectiveDate)}" class="text-xs font-mono text-slate-500 dark:text-slate-400 inline-flex items-center gap-1">
-                        ${formatDate(effectiveDate)}
-                    </time>
+                    <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <time datetime="${escapeHtml(effectiveDate)}">${formatDate(effectiveDate)}</time>
+                        <span aria-hidden="true">·</span>
+                        <span>${tip.readingTime} min read</span>
+                    </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
                         <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>

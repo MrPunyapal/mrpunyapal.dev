@@ -162,6 +162,7 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
+                "timeRequired": "PT${tip.readingTime}M",
                 "articleSection": "${escapeJsonStr(tip.category)}"
             },
             {
@@ -289,6 +290,11 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
                                 ${updated_at ? `Updated ${formatDate(updated_at)}` : formatDate(created_at)}
                             </time>
+                            <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+                            <span class="inline-flex items-center gap-1.5">
+                                <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-clock"/></svg>
+                                ${tip.readingTime} min read
+                            </span>
                         </div>
 
                         <a href="${escapeHtml(tip.github_file_url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">

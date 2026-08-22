@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 
-import { slugify, extractSummary, marked, renderRssHtml, getTipEffectiveDate, normalizeDateStr } from './tips/tips-helpers.mjs';
+import { slugify, extractSummary, estimateReadingTime, marked, renderRssHtml, getTipEffectiveDate, normalizeDateStr } from './tips/tips-helpers.mjs';
 import { generateTipsHubPage } from './tips/tips-hub.mjs';
 import { generateSingleTipPage } from './tips/tips-single.mjs';
 import { generateRssFeed } from './tips/tips-rss.mjs';
@@ -94,6 +94,7 @@ export async function buildTips() {
 
         const htmlContent = marked.parse(cleanBody);
         const rssContent = renderRssHtml(cleanBody);
+        const readingTime = estimateReadingTime(cleanBody);
 
         tips.push({
             slug,
@@ -106,6 +107,7 @@ export async function buildTips() {
             effectiveDate,
             date: effectiveDate,
             summary,
+            readingTime,
             tweet_url,
             author,
             author_url,
