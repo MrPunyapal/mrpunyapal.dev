@@ -732,301 +732,55 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHP provides built-in constants for filesystem operations, compile-time metadata, runtime environment information, error levels, and stream handles. These constants are available globally without importing namespaces or requiring setup.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Filesystem and Path Constants</h3><table>
-<thead>
-<tr>
-<th>Constant</th>
-<th>Description</th>
-<th>Example Output</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>DIRECTORY_SEPARATOR</code></td>
-<td>Path separator (<code>/</code> on Unix, <code>\</code> on Windows)</td>
-<td><code>/</code></td>
-</tr>
-<tr>
-<td><code>PATH_SEPARATOR</code></td>
-<td>Include path separator (<code>:</code> on Unix, <code>;</code> on Windows)</td>
-<td><code>:</code></td>
-</tr>
-<tr>
-<td><code>__FILE__</code></td>
-<td>Full filesystem path and filename of the current file</td>
-<td><code>/var/www/html/index.php</code></td>
-</tr>
-<tr>
-<td><code>__DIR__</code></td>
-<td>Directory path containing the current file</td>
-<td><code>/var/www/html</code></td>
-</tr>
-<tr>
-<td><code>__LINE__</code></td>
-<td>Current line number in the executing file</td>
-<td><code>42</code></td>
-</tr>
-</tbody></table>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Magic Compile-Time Constants</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Magic constants are resolved at compile time, introducing zero runtime performance overhead:</p><table>
-<thead>
-<tr>
-<th>Constant</th>
-<th>Description</th>
-<th>Example Output</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>__FUNCTION__</code></td>
-<td>Current function name</td>
-<td><code>calculateTotal</code></td>
-</tr>
-<tr>
-<td><code>__CLASS__</code></td>
-<td>Current class name with namespace</td>
-<td><code>App\Models\Order</code></td>
-</tr>
-<tr>
-<td><code>__TRAIT__</code></td>
-<td>Current trait name</td>
-<td><code>App\Traits\HasLabel</code></td>
-</tr>
-<tr>
-<td><code>__METHOD__</code></td>
-<td>Current class method name</td>
-<td><code>App\Services\PaymentService::charge</code></td>
-</tr>
-<tr>
-<td><code>__NAMESPACE__</code></td>
-<td>Current namespace</td>
-<td><code>App\Services</code></td>
-</tr>
-</tbody></table>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">PHP Environment and System Limits</h3><table>
-<thead>
-<tr>
-<th>Constant</th>
-<th>Description</th>
-<th>Example Output</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>PHP_VERSION</code></td>
-<td>Full PHP version string</td>
-<td><code>8.4.1</code></td>
-</tr>
-<tr>
-<td><code>PHP_MAJOR_VERSION</code></td>
-<td>Major version integer</td>
-<td><code>8</code></td>
-</tr>
-<tr>
-<td><code>PHP_MINOR_VERSION</code></td>
-<td>Minor version integer</td>
-<td><code>4</code></td>
-</tr>
-<tr>
-<td><code>PHP_RELEASE_VERSION</code></td>
-<td>Patch release integer</td>
-<td><code>1</code></td>
-</tr>
-<tr>
-<td><code>PHP_OS</code></td>
-<td>Operating system string from PHP build</td>
-<td><code>Linux</code>, <code>WINNT</code>, <code>Darwin</code></td>
-</tr>
-<tr>
-<td><code>PHP_OS_FAMILY</code></td>
-<td>Portable operating system group</td>
-<td><code>Linux</code>, <code>Windows</code>, <code>BSD</code>, <code>Darwin</code></td>
-</tr>
-<tr>
-<td><code>PHP_SAPI</code></td>
-<td>Server API interface type</td>
-<td><code>cli</code>, <code>fpm-fcgi</code>, <code>apache2handler</code></td>
-</tr>
-<tr>
-<td><code>PHP_EOL</code></td>
-<td>Correct newline character for the host OS</td>
-<td><code>\n</code> or <code>\r\n</code></td>
-</tr>
-<tr>
-<td><code>PHP_INT_MAX</code></td>
-<td>Maximum integer supported by host architecture</td>
-<td><code>9223372036854775807</code></td>
-</tr>
-<tr>
-<td><code>PHP_INT_MIN</code></td>
-<td>Minimum integer supported by host architecture</td>
-<td><code>-9223372036854775808</code></td>
-</tr>
-<tr>
-<td><code>PHP_FLOAT_MAX</code></td>
-<td>Maximum floating-point number</td>
-<td><code>1.7976931348623E+308</code></td>
-</tr>
-<tr>
-<td><code>PHP_FLOAT_MIN</code></td>
-<td>Minimum positive normalized floating-point number</td>
-<td><code>2.2250738585072E-308</code></td>
-</tr>
-</tbody></table>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Error Reporting Masks</h3><table>
-<thead>
-<tr>
-<th>Constant</th>
-<th>Description</th>
-<th>Category</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>E_ERROR</code></td>
-<td>Fatal runtime errors that halt execution</td>
-<td>Fatal</td>
-</tr>
-<tr>
-<td><code>E_WARNING</code></td>
-<td>Non-fatal runtime warnings</td>
-<td>Warning</td>
-</tr>
-<tr>
-<td><code>E_PARSE</code></td>
-<td>Compile-time parse/syntax errors</td>
-<td>Fatal</td>
-</tr>
-<tr>
-<td><code>E_NOTICE</code></td>
-<td>Runtime notices about potential issues</td>
-<td>Notice</td>
-</tr>
-<tr>
-<td><code>E_CORE_ERROR</code></td>
-<td>Fatal errors generated by PHP core startup</td>
-<td>Fatal</td>
-</tr>
-<tr>
-<td><code>E_CORE_WARNING</code></td>
-<td>Warnings generated by PHP core startup</td>
-<td>Warning</td>
-</tr>
-<tr>
-<td><code>E_COMPILE_ERROR</code></td>
-<td>Fatal errors generated by the Zend script engine</td>
-<td>Fatal</td>
-</tr>
-<tr>
-<td><code>E_COMPILE_WARNING</code></td>
-<td>Warnings generated by the Zend script engine</td>
-<td>Warning</td>
-</tr>
-<tr>
-<td><code>E_USER_ERROR</code></td>
-<td>User-generated fatal error via <code>trigger_error()</code></td>
-<td>Fatal</td>
-</tr>
-<tr>
-<td><code>E_USER_WARNING</code></td>
-<td>User-generated warning via <code>trigger_error()</code></td>
-<td>Warning</td>
-</tr>
-<tr>
-<td><code>E_USER_NOTICE</code></td>
-<td>User-generated notice via <code>trigger_error()</code></td>
-<td>Notice</td>
-</tr>
-<tr>
-<td><code>E_RECOVERABLE_ERROR</code></td>
-<td>Catchable fatal error</td>
-<td>Fatal (Catchable)</td>
-</tr>
-<tr>
-<td><code>E_DEPRECATED</code></td>
-<td>Runtime notices about deprecated features</td>
-<td>Warning</td>
-</tr>
-<tr>
-<td><code>E_USER_DEPRECATED</code></td>
-<td>User-generated deprecation notice</td>
-<td>Warning</td>
-</tr>
-<tr>
-<td><code>E_ALL</code></td>
-<td>Bitmask covering all supported error levels</td>
-<td>Aggregate</td>
-</tr>
-</tbody></table>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">File Upload Error Codes</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When processing <code>$_FILES[&#39;upload&#39;][&#39;error&#39;]</code>, compare against these constants instead of magic numbers:</p><table>
-<thead>
-<tr>
-<th>Constant</th>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>UPLOAD_ERR_OK</code></td>
-<td><code>0</code></td>
-<td>File uploaded successfully</td>
-</tr>
-<tr>
-<td><code>UPLOAD_ERR_INI_SIZE</code></td>
-<td><code>1</code></td>
-<td>File exceeds <code>upload_max_filesize</code> in <code>php.ini</code></td>
-</tr>
-<tr>
-<td><code>UPLOAD_ERR_FORM_SIZE</code></td>
-<td><code>2</code></td>
-<td>File exceeds <code>MAX_FILE_SIZE</code> specified in HTML form</td>
-</tr>
-<tr>
-<td><code>UPLOAD_ERR_PARTIAL</code></td>
-<td><code>3</code></td>
-<td>File was only partially uploaded</td>
-</tr>
-<tr>
-<td><code>UPLOAD_ERR_NO_FILE</code></td>
-<td><code>4</code></td>
-<td>No file was selected for upload</td>
-</tr>
-<tr>
-<td><code>UPLOAD_ERR_NO_TMP_DIR</code></td>
-<td><code>6</code></td>
-<td>Missing temporary upload folder on server</td>
-</tr>
-<tr>
-<td><code>UPLOAD_ERR_CANT_WRITE</code></td>
-<td><code>7</code></td>
-<td>Failed to write file to server disk</td>
-</tr>
-<tr>
-<td><code>UPLOAD_ERR_EXTENSION</code></td>
-<td><code>8</code></td>
-<td>A PHP extension stopped the file upload</td>
-</tr>
-</tbody></table>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">CLI Stream Constants</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Available automatically in Command Line Interface (CLI) scripts:</p><table>
-<thead>
-<tr>
-<th>Constant</th>
-<th>Description</th>
-<th>Direction</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>STDIN</code></td>
-<td>Open stream resource reading from standard input</td>
-<td>Input</td>
-</tr>
-<tr>
-<td><code>STDOUT</code></td>
-<td>Open stream resource writing to standard output</td>
-<td>Output</td>
-</tr>
-<tr>
-<td><code>STDERR</code></td>
-<td>Open stream resource writing to standard error</td>
-<td>Output</td>
-</tr>
-</tbody></table>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <code>PHP_OS_FAMILY</code> instead of comparing against individual <code>PHP_OS</code> strings for cross-platform compatibility.</span></li><li class="leading-relaxed"><span class="align-middle">Use <code>UPLOAD_ERR_*</code> constants when handling file uploads for descriptive error checking.</span></li><li class="leading-relaxed"><span class="align-middle">Leverage magic constants (<code>__DIR__</code>, <code>__CLASS__</code>, <code>__METHOD__</code>) for zero-overhead compile-time introspection.</span></li></ul>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">A categorized reference of the most useful constants in PHP with descriptions, error masks, and sample outputs for PHP 8.3 and PHP 8.4.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHP provides built-in constants for filesystem operations, compile-time metadata, runtime environment information, error levels, and stream handles. These constants are available globally without importing namespaces or requiring setup.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Filesystem and Path Constants</h3>
+<div class="tip-table-wrapper my-6 overflow-x-auto rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] shadow-sm">
+    <table class="w-full min-w-[32rem] max-w-none border-collapse text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+        <thead>
+            <tr class="bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626]"><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Constant</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Description</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Example Output</th></tr>
+        </thead>
+        <tbody><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>DIRECTORY_SEPARATOR</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Path separator (<code>/</code> on Unix, <code>\</code> on Windows)</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>/</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PATH_SEPARATOR</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Include path separator (<code>:</code> on Unix, <code>;</code> on Windows)</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>:</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>__FILE__</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Full filesystem path and filename of the current file</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>/var/www/html/index.php</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>__DIR__</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Directory path containing the current file</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>/var/www/html</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>__LINE__</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Current line number in the executing file</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>42</code></td></tr></tbody>
+    </table>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Magic Compile-Time Constants</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Magic constants are resolved at compile time, introducing zero runtime performance overhead:</p>
+<div class="tip-table-wrapper my-6 overflow-x-auto rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] shadow-sm">
+    <table class="w-full min-w-[32rem] max-w-none border-collapse text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+        <thead>
+            <tr class="bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626]"><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Constant</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Description</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Example Output</th></tr>
+        </thead>
+        <tbody><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>__FUNCTION__</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Current function name</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>calculateTotal</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>__CLASS__</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Current class name with namespace</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>App\Models\Order</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>__TRAIT__</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Current trait name</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>App\Traits\HasLabel</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>__METHOD__</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Current class method name</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>App\Services\PaymentService::charge</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>__NAMESPACE__</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Current namespace</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>App\Services</code></td></tr></tbody>
+    </table>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">PHP Environment and System Limits</h3>
+<div class="tip-table-wrapper my-6 overflow-x-auto rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] shadow-sm">
+    <table class="w-full min-w-[32rem] max-w-none border-collapse text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+        <thead>
+            <tr class="bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626]"><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Constant</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Description</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Example Output</th></tr>
+        </thead>
+        <tbody><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_VERSION</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Full PHP version string</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>8.4.1</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_MAJOR_VERSION</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Major version integer</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>8</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_MINOR_VERSION</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Minor version integer</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>4</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_RELEASE_VERSION</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Patch release integer</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>1</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_OS</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Operating system string from PHP build</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>Linux</code>, <code>WINNT</code>, <code>Darwin</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_OS_FAMILY</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Portable operating system group</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>Linux</code>, <code>Windows</code>, <code>BSD</code>, <code>Darwin</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_SAPI</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Server API interface type</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>cli</code>, <code>fpm-fcgi</code>, <code>apache2handler</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_EOL</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Correct newline character for the host OS</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>\n</code> or <code>\r\n</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_INT_MAX</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Maximum integer supported by host architecture</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>9223372036854775807</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_INT_MIN</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Minimum integer supported by host architecture</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>-9223372036854775808</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_FLOAT_MAX</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Maximum floating-point number</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>1.7976931348623E+308</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>PHP_FLOAT_MIN</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Minimum positive normalized floating-point number</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>2.2250738585072E-308</code></td></tr></tbody>
+    </table>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Error Reporting Masks</h3>
+<div class="tip-table-wrapper my-6 overflow-x-auto rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] shadow-sm">
+    <table class="w-full min-w-[32rem] max-w-none border-collapse text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+        <thead>
+            <tr class="bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626]"><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Constant</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Description</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Category</th></tr>
+        </thead>
+        <tbody><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_ERROR</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Fatal runtime errors that halt execution</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Fatal</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_WARNING</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Non-fatal runtime warnings</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Warning</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_PARSE</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Compile-time parse/syntax errors</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Fatal</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_NOTICE</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Runtime notices about potential issues</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Notice</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_CORE_ERROR</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Fatal errors generated by PHP core startup</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Fatal</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_CORE_WARNING</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Warnings generated by PHP core startup</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Warning</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_COMPILE_ERROR</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Fatal errors generated by the Zend script engine</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Fatal</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_COMPILE_WARNING</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Warnings generated by the Zend script engine</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Warning</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_USER_ERROR</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">User-generated fatal error via <code>trigger_error()</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Fatal</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_USER_WARNING</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">User-generated warning via <code>trigger_error()</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Warning</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_USER_NOTICE</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">User-generated notice via <code>trigger_error()</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Notice</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_RECOVERABLE_ERROR</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Catchable fatal error</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Fatal (Catchable)</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_DEPRECATED</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Runtime notices about deprecated features</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Warning</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_USER_DEPRECATED</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">User-generated deprecation notice</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Warning</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>E_ALL</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Bitmask covering all supported error levels</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Aggregate</td></tr></tbody>
+    </table>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">File Upload Error Codes</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When processing <code>$_FILES[&#39;upload&#39;][&#39;error&#39;]</code>, compare against these constants instead of magic numbers:</p>
+<div class="tip-table-wrapper my-6 overflow-x-auto rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] shadow-sm">
+    <table class="w-full min-w-[32rem] max-w-none border-collapse text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+        <thead>
+            <tr class="bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626]"><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Constant</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Code</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Description</th></tr>
+        </thead>
+        <tbody><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>UPLOAD_ERR_OK</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>0</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">File uploaded successfully</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>UPLOAD_ERR_INI_SIZE</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>1</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">File exceeds <code>upload_max_filesize</code> in <code>php.ini</code></td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>UPLOAD_ERR_FORM_SIZE</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>2</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">File exceeds <code>MAX_FILE_SIZE</code> specified in HTML form</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>UPLOAD_ERR_PARTIAL</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>3</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">File was only partially uploaded</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>UPLOAD_ERR_NO_FILE</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>4</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">No file was selected for upload</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>UPLOAD_ERR_NO_TMP_DIR</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>6</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Missing temporary upload folder on server</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>UPLOAD_ERR_CANT_WRITE</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>7</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Failed to write file to server disk</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>UPLOAD_ERR_EXTENSION</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>8</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">A PHP extension stopped the file upload</td></tr></tbody>
+    </table>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">CLI Stream Constants</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Available automatically in Command Line Interface (CLI) scripts:</p>
+<div class="tip-table-wrapper my-6 overflow-x-auto rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] shadow-sm">
+    <table class="w-full min-w-[32rem] max-w-none border-collapse text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+        <thead>
+            <tr class="bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626]"><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Constant</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Description</th><th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 text-left font-semibold text-slate-900 dark:text-white whitespace-nowrap">Direction</th></tr>
+        </thead>
+        <tbody><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>STDIN</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Open stream resource reading from standard input</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Input</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>STDOUT</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Open stream resource writing to standard output</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Output</td></tr><tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]"><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed"><code>STDERR</code></td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Open stream resource writing to standard error</td><td class="px-3 sm:px-4 py-2.5 sm:py-3 text-left align-top leading-relaxed">Output</td></tr></tbody>
+    </table>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <code>PHP_OS_FAMILY</code> instead of comparing against individual <code>PHP_OS</code> strings for cross-platform compatibility.</span></li><li class="leading-relaxed"><span class="align-middle">Use <code>UPLOAD_ERR_*</code> constants when handling file uploads for descriptive error checking.</span></li><li class="leading-relaxed"><span class="align-middle">Leverage magic constants (<code>__DIR__</code>, <code>__CLASS__</code>, <code>__METHOD__</code>) for zero-overhead compile-time introspection.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

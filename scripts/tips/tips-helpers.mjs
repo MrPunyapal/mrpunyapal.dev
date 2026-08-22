@@ -226,6 +226,39 @@ renderer.blockquote = function(token) {
     return `<blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">${text}</blockquote>`;
 };
 
+// Responsive table: horizontal-scroll wrapper so wide markdown tables never break mobile layout
+const tableAlignClasses = {
+    left: 'text-left',
+    center: 'text-center',
+    right: 'text-right',
+};
+
+renderer.table = function(token) {
+    const headerRow = token.header.map(cell => this.tablecell(cell)).join('');
+    const bodyRows = token.rows
+        .map(row => `<tr class="border-t border-slate-200 dark:border-[#262626] transition-colors hover:bg-slate-50 dark:hover:bg-[#181818]">${row.map(cell => this.tablecell(cell)).join('')}</tr>`)
+        .join('');
+
+    return `
+<div class="tip-table-wrapper my-6 overflow-x-auto rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] shadow-sm">
+    <table class="w-full min-w-[32rem] max-w-none border-collapse text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+        <thead>
+            <tr class="bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626]">${headerRow}</tr>
+        </thead>
+        <tbody>${bodyRows}</tbody>
+    </table>
+</div>`;
+};
+
+renderer.tablecell = function(cell) {
+    const content = cell.tokens ? this.parser.parseInline(cell.tokens) : escapeHtml(cell.text || '');
+    const align = tableAlignClasses[cell.align] || 'text-left';
+    if (cell.header) {
+        return `<th scope="col" class="px-3 sm:px-4 py-2.5 sm:py-3 ${align} font-semibold text-slate-900 dark:text-white whitespace-nowrap">${content}</th>`;
+    }
+    return `<td class="px-3 sm:px-4 py-2.5 sm:py-3 ${align} align-top leading-relaxed">${content}</td>`;
+};
+
 renderer.paragraph = function(token) {
     const text = token.tokens ? this.parser.parseInline(token.tokens) : (token.text || '');
     return `<p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">${text}</p>`;
