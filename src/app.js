@@ -105,9 +105,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.querySelectorAll('a[target="_blank"]').forEach(link => {
         link.addEventListener('click', function() {
-            trackEvent('external_link_click', {
-                url: this.href,
-                text: this.textContent.trim()
+            const url = this.href;
+            const text = this.textContent.trim();
+            requestAnimationFrame(() => {
+                trackEvent('external_link_click', {
+                    url: url,
+                    text: text
+                });
             });
         });
     });
