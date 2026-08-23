@@ -9,9 +9,117 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Sat, 22 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Sun, 23 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Sun, 23 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Scope Pivot Table Queries with Closures in wherePivot() in Laravel 13.26]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-wherepivot-closure-scopes</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-wherepivot-closure-scopes</guid>
+      <description><![CDATA[Laravel 13.26 allows wherePivot() and orWherePivot() to accept closures, enabling direct reuse of local scopes defined on custom Pivot models. In many-to-man...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.26 allows wherePivot() and orWherePivot() to accept closures, enabling direct reuse of local scopes defined on custom Pivot models.</blockquote>
+<p>In many-to-many Eloquent relationships (`belongsToMany`), pivot tables frequently store meaningful domain state (such as subscription statuses, membership roles, notification toggles, or expiration dates).</p>
+<p>While Laravel has always supported filtering pivot columns using scalar values (such as `wherePivot('is_active', true)`), expressing multi-column business conditions across multiple controllers often leads to duplicated filtering logic.</p>
+<p>**Laravel 13.26 enhances `wherePivot()` and `orWherePivot()` to accept a closure**, providing a builder instance that can invoke local scopes defined directly on your custom pivot model.</p>
+<hr>
+<h3>1. The Traditional Approach: Repeated Scalar Conditions</h3>
+<p>Consider a `Project` model with a many-to-many `subscribers` relationship:</p>
+<pre><code class="language-php">// Project.php
+public function subscribers(): BelongsToMany
+{
+    return $this-&gt;belongsToMany(User::class, &#039;project_subscribers&#039;)
+        -&gt;using(ProjectSubscriber::class)
+        -&gt;withPivot([&#039;is_active&#039;, &#039;is_muted&#039;, &#039;role&#039;]);
+}</code></pre>
+<p>Prior to Laravel 13.26, filtering active, unmuted subscribers required repeating raw column checks wherever the relationship was queried:</p>
+<pre><code class="language-php">// Filtering active, non-muted subscribers
+$activeSubscribers = $project-&gt;subscribers()
+    -&gt;wherePivot(&#039;is_active&#039;, true)
+    -&gt;wherePivot(&#039;is_muted&#039;, false)
+    -&gt;get();</code></pre>
+<p>While functional, this approach scatters internal pivot schema details across your application and duplicates logic whenever those business rules are queried.</p>
+<hr>
+<h3>2. Defining Scopes on the Custom Pivot Model</h3>
+<p>With custom pivot models extending `Illuminate\Database\Eloquent\Relations\Pivot`, you can encapsulate business rules as standard Eloquent local scopes:</p>
+<pre><code class="language-php">namespace App\Models;
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+
+class ProjectSubscriber extends Pivot
+{
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query-&gt;where(&#039;is_active&#039;, true);
+    }
+
+    public function scopeNotMuted(Builder $query): Builder
+    {
+        return $query-&gt;where(&#039;is_muted&#039;, false);
+    }
+
+    public function scopeAdmins(Builder $query): Builder
+    {
+        return $query-&gt;where(&#039;role&#039;, &#039;admin&#039;);
+    }
+}</code></pre>
+<hr>
+<h3>3. Laravel 13.26: Passing Closures to `wherePivot()`</h3>
+<p>In Laravel 13.26, you can pass a closure to `wherePivot()`. The closure receives a builder scoped to the custom pivot model, allowing you to chain your pivot model's local scopes directly:</p>
+<pre><code class="language-php">// Query using custom pivot scopes directly
+$subscribers = $project-&gt;subscribers()
+    -&gt;wherePivot(fn ($query) =&gt; $query
+        -&gt;active()
+        -&gt;notMuted()
+    )
+    -&gt;get();</code></pre>
+<h4>Before vs. After</h4>
+<ul>
+  <li><strong>Before</strong>: Relationship queries explicitly specify raw column conditions (<code>-&gt;wherePivot(&#39;is_active&#39;, true)-&gt;wherePivot(&#39;is_muted&#39;, false)</code>).</li>
+  <li><strong>After</strong>: Relationship queries express domain intent (<code>-&gt;wherePivot(fn ($q) =&gt; $q-&gt;active()-&gt;notMuted())</code>), while the implementation rules reside inside the <code>ProjectSubscriber</code> pivot class.</li>
+</ul>
+<hr>
+<h3>4. Reusing Pivot Scopes Across Queries</h3>
+<p>Because the query logic lives inside the custom pivot class, changes to what constitutes an "active" subscription (such as adding an expiration check) only need to be updated in one place:</p>
+<pre><code class="language-php">// Active subscribers
+$active = $project-&gt;subscribers()
+    -&gt;wherePivot(fn ($query) =&gt; $query-&gt;active())
+    -&gt;get();
+
+// Active admins
+$admins = $project-&gt;subscribers()
+    -&gt;wherePivot(fn ($query) =&gt; $query-&gt;active()-&gt;admins())
+    -&gt;get();</code></pre>
+<hr>
+<h3>5. Companion Support in `orWherePivot()`</h3>
+<p>The same closure capability is available on `orWherePivot()` for alternative conditions:</p>
+<pre><code class="language-php">$eligibleUsers = $project-&gt;subscribers()
+    -&gt;wherePivot(fn ($query) =&gt; $query-&gt;active())
+    -&gt;orWherePivot(fn ($query) =&gt; $query-&gt;admins())
+    -&gt;get();</code></pre>
+<hr>
+<h3>What This Feature Is Not</h3>
+<ul>
+  <li><code>wherePivot()</code> itself is not new; Laravel 13.26 simply adds closure and pivot-scope resolution.</li>
+  <li>It does not replace custom pivot models, but instead gives them greater utility within relationship chains.</li>
+  <li>Scalar <code>wherePivot(&#39;column&#39;, $value)</code> syntax remains fully supported for simple one-off checks.</li>
+</ul>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li>Laravel 13.26 allows <code>wherePivot()</code> and <code>orWherePivot()</code> to accept closures.</li>
+  <li>Closures receive a builder instance configured for the relationship&#39;s custom pivot model.</li>
+  <li>Encapsulates pivot filtering logic into reusable local scopes on the pivot class instead of repeating raw column checks.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Relationships]]></category>
+      <category><![CDATA[Database]]></category>
+      <category><![CDATA[Clean Code]]></category>
+    </item>
     <item>
       <title><![CDATA[Ignore Local Files Without Modifying .gitignore Using .git/info/exclude]]></title>
       <link>https://mrpunyapal.dev/tips/git-local-ignore-info-exclude</link>
