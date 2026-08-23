@@ -634,22 +634,38 @@
                         if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
                     }
 
-                    document.addEventListener('click', function(e) {
-                        var openBtn = e.target.closest('[data-mobile-menu-toggle]');
-                        if (openBtn) {
-                            e.preventDefault();
-                            openSidebar();
-                            return;
-                        }
+                    function initSidebarEvents() {
+                        var toggleBtns = document.querySelectorAll('[data-mobile-menu-toggle]');
+                        var closeBtns = document.querySelectorAll('[data-mobile-sidebar-close]');
+                        var backdrop = document.getElementById('mobile-sidebar-backdrop');
 
-                        var closeBtn = e.target.closest('[data-mobile-sidebar-close]');
-                        var backdrop = e.target.closest('#mobile-sidebar-backdrop');
-                        if (closeBtn || backdrop) {
-                            e.preventDefault();
-                            closeSidebar();
-                            return;
+                        toggleBtns.forEach(function(btn) {
+                            btn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                openSidebar();
+                            });
+                        });
+
+                        closeBtns.forEach(function(btn) {
+                            btn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                closeSidebar();
+                            });
+                        });
+
+                        if (backdrop) {
+                            backdrop.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                closeSidebar();
+                            });
                         }
-                    });
+                    }
+
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initSidebarEvents);
+                    } else {
+                        initSidebarEvents();
+                    }
 
                     document.addEventListener('keydown', function(e) {
                         if (e.key === 'Escape') {

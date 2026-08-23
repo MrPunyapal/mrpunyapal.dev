@@ -74,6 +74,7 @@ site-header {
 .site-nav-tabs a > .nav-label::after,
 .site-nav-tabs a > .nav-label > span {
     grid-area: label;
+    pointer-events: none;
 }
 
 /* Tab Width Locking: Reserves space for bold text without breaking horizontal flex alignment */
@@ -98,6 +99,11 @@ site-header {
     width: auto;
     fill: currentColor;
     vertical-align: -0.125em;
+    pointer-events: none;
+}
+
+.icon use {
+    pointer-events: none;
 }
 
 /* Responsive header navigation.
