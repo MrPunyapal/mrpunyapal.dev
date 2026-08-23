@@ -4803,6 +4803,417 @@ config([&#039;services.stripe.key&#039; =&gt; &#039;pk_test_12345&#039;]);</code
       <category><![CDATA[Helpers]]></category>
     </item>
     <item>
+      <title><![CDATA[Complete Modern PHP Type System Cheat Sheet]]></title>
+      <link>https://mrpunyapal.dev/tips/php-type-system-cheat-sheet</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-type-system-cheat-sheet</guid>
+      <description><![CDATA[A reference guide to scalar, compound, special, user-defined, union, and intersection types in modern PHP. PHP features a gradual and expressive type system....]]></description>
+      <content:encoded><![CDATA[<blockquote>A reference guide to scalar, compound, special, user-defined, union, and intersection types in modern PHP.</blockquote>
+<p>PHP features a gradual and expressive type system. From scalar type declarations introduced in PHP 7 to union types in PHP 8.0, intersection types in PHP 8.1, and standalone `true`, `false`, and `null` types in PHP 8.2, PHP provides robust type safety at runtime and compile time.</p>
+<hr>
+<h3>1. Atomic and Scalar Types</h3>
+<p>Scalar types represent basic primitive values:</p>
+<pre><code class="language-php">// Scalar Types
+$active   = true;              // bool (or literal true / false)
+$quantity = 42;                // int
+$price    = 19.99;             // float
+$name     = &#039;Punyapal&#039;;        // string
+
+// Built-in Special Types
+$empty    = null;              // null
+$items    = [1, 2, 3];         // array
+$payload  = new stdClass();    // object
+$handle   = fopen(&#039;php://memory&#039;, &#039;r+&#039;); // resource</code></pre>
+<hr>
+<h3>2. Special Return Types</h3>
+<p>PHP supports specialized return types that describe function termination and inheritance contexts:</p>
+<pre><code class="language-php">// void: Function executes without returning a value
+function logMessage(string $msg): void
+{
+    echo $msg;
+}
+
+// never: Function always exits or throws an exception, never finishing normally
+function abortWithError(string $error): never
+{
+    throw new RuntimeException($error);
+}
+
+// Relative Class Types
+class Model
+{
+    // self: Returns an instance of the exact class where the method is defined
+    public function createSelf(): self
+    {
+        return new self();
+    }
+
+    // static: Returns an instance of the calling class (respects Late Static Binding)
+    public static function make(): static
+    {
+        return new static();
+    }
+}
+
+class User extends Model
+{
+    // parent: References the immediate parent class
+    public function getBaseModel(): parent
+    {
+        return new parent();
+    }
+}</code></pre>
+<hr>
+<h3>3. User-Defined Types</h3>
+<p>Types created within application domain code:</p>
+<pre><code class="language-php">// Interfaces
+interface Notifiable
+{
+    public function notify(): void;
+}
+
+// Concrete Classes
+class Invoice implements Notifiable
+{
+    public function notify(): void {}
+}
+
+// Backed &amp; Pure Enums (PHP 8.1+)
+enum OrderStatus: string
+{
+    case Draft = &#039;draft&#039;;
+    case Paid  = &#039;paid&#039;;
+}</code></pre>
+<hr>
+<h3>4. Callables and Invocations</h3>
+<pre><code class="language-php">// Closure or invokable class instance
+function executeTask(callable $task): void
+{
+    $task();
+}
+
+executeTask(fn () =&gt; print(&quot;Task completed\n&quot;));</code></pre>
+<hr>
+<h3>5. Composite Types: Unions and Intersections</h3>
+<h4>Union Types (`A|B`)</h4>
+<p>Allows an argument or return value to satisfy any of the listed types:</p>
+<pre><code class="language-php">function findUser(int|string $identifier): ?User
+{
+    return is_int($identifier)
+        ? User::find($identifier)
+        : User::where(&#039;email&#039;, $identifier)-&gt;first();
+}</code></pre>
+<h4>Intersection Types (`A&B`)</h4>
+<p>Requires an object to satisfy all listed interfaces simultaneously:</p>
+<pre><code class="language-php">interface HasId { public function getId(): int; }
+interface HasName { public function getName(): string; }
+
+function displayEntity(HasId&amp;HasName $entity): string
+{
+    return &quot;#{$entity-&gt;getId()}: {$entity-&gt;getName()}&quot;;
+}</code></pre>
+<h4>Disjunctive Normal Form (DNF) Types (PHP 8.2+)</h4>
+<p>Combines Union and Intersection types using parentheses:</p>
+<pre><code class="language-php">// Accepts (HasId AND HasName) OR null
+function formatRecord((HasId&amp;HasName)|null $record): string
+{
+    return $record ? displayEntity($record) : &#039;Anonymous&#039;;
+}</code></pre>
+<hr>
+<h3>6. Top Types: `mixed` and `iterable`</h3>
+<pre><code class="language-php">// mixed: Equivalent to array|bool|callable|int|float|null|object|resource|string
+function debugValue(mixed $value): void
+{
+    var_dump($value);
+}
+
+// iterable: Accepts both arrays and objects implementing Traversable (like Generators or Collections)
+function processBatch(iterable $items): void
+{
+    foreach ($items as $item) {
+        // ...
+    }
+}</code></pre>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li>Use scalar and atomic types (<code>int</code>, <code>string</code>, <code>bool</code>, <code>float</code>) for basic primitives.</li>
+  <li>Use <code>void</code> when no value is returned, and <code>never</code> for methods that always terminate or throw.</li>
+  <li>Use <code>static</code> return types for fluent chaining and late static binding in parent classes.</li>
+  <li>Use Union types (<code>int|string</code>) and Intersection types (<code>InterfaceA&amp;InterfaceB</code>) for precise polymorphic contracts.</li>
+  <li>Use <code>iterable</code> to accept both arrays and <code>Traversable</code> collections seamlessly.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Thu, 25 Jul 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Syntax]]></category>
+      <category><![CDATA[Types]]></category>
+      <category><![CDATA[Reference]]></category>
+      <category><![CDATA[Type Safety]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Typed Arrays and Array Shapes in PHP with PHPDoc]]></title>
+      <link>https://mrpunyapal.dev/tips/php-array-shapes-phpdoc</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-array-shapes-phpdoc</guid>
+      <description><![CDATA[Document and enforce structured array schemas using PHPDoc array shapes, lists, and non-empty array annotations for static analysis in PHPStan and Psalm. PHP...]]></description>
+      <content:encoded><![CDATA[<blockquote>Document and enforce structured array schemas using PHPDoc array shapes, lists, and non-empty array annotations for static analysis in PHPStan and Psalm.</blockquote>
+<p>PHP arrays are versatile: they function as zero-indexed lists, associative maps, and nested dictionary structures. However, using native typehints like `function process(array $data)` leaves the contents of the array untyped, leading to potential missing key errors or unexpected values at runtime.</p>
+<p>By using PHPDoc array shapes and pseudo-types, static analysis tools (like PHPStan and Psalm) and modern IDEs (such as PhpStorm and VS Code) can strictly validate array keys and types without requiring dedicated Data Transfer Objects (DTOs) for every small payload.</p>
+<hr>
+<h3>1. Defining Exact Array Shapes (`array{...}`)</h3>
+<p>Array shapes define the exact dictionary schema of an associative array, including expected keys and their individual types:</p>
+<pre><code class="language-php">/**
+ * @param array{id: int, name: string, email: string, is_active?: bool} $user
+ * @return array{status: string, timestamp: int}
+ */
+function registerUser(array $user): array
+{
+    // PHPStan ensures $user[&#039;id&#039;], $user[&#039;name&#039;], and $user[&#039;email&#039;] exist
+    $status = $user[&#039;is_active&#039;] ?? true ? &#039;active&#039; : &#039;pending&#039;;
+
+    return [
+        &#039;status&#039; =&gt; $status,
+        &#039;timestamp&#039; =&gt; time(),
+    ];
+}</code></pre>
+<ul>
+  <li><strong>Required Keys</strong>: <code>id: int, name: string</code></li>
+  <li><strong>Optional Keys (<code>?</code>)</strong>: <code>is_active?: bool</code> (the key may or may not be present in the array)</li>
+</ul>
+<hr>
+<h3>2. Zero-Indexed Lists (`list<T>`)</h3>
+<p>Standard PHP arrays can have arbitrary or sparse integer keys. When an array is guaranteed to be a contiguous, zero-indexed numerical list (`0, 1, 2, ...`), use `list<T>`:</p>
+<pre><code class="language-php">/**
+ * @param list&lt;int&gt; $scores
+ * @return float
+ */
+function calculateAverage(array $scores): float
+{
+    if ($scores === []) {
+        return 0.0;
+    }
+
+    return array_sum($scores) / count($scores);
+}
+
+// Valid list
+calculateAverage([90, 85, 95]);
+
+// PHPStan flags non-list associative arrays
+calculateAverage([&#039;first&#039; =&gt; 90, &#039;second&#039; =&gt; 85]); // Error</code></pre>
+<hr>
+<h3>3. Associative Key-Value Maps (`array<K, V>`)</h3>
+<p>When working with dynamic key-value maps (such as configuration options or lookup tables):</p>
+<pre><code class="language-php">/**
+ * @param array&lt;string, mixed&gt; $payload
+ * @return string
+ */
+function serializePayload(array $payload): string
+{
+    return json_encode($payload, JSON_THROW_ON_ERROR);
+}
+
+/**
+ * @param array&lt;int, User&gt; $usersById
+ */
+function notifyUsers(array $usersById): void
+{
+    foreach ($usersById as $id =&gt; $user) {
+        // $id is typed as int, $user is typed as User
+        $user-&gt;sendNotification();
+    }
+}</code></pre>
+<hr>
+<h3>4. Non-Empty Arrays (`non-empty-array<T>`)</h3>
+<p>If a function requires at least one element to prevent division-by-zero or empty-set errors, declare it with `non-empty-array`:</p>
+<pre><code class="language-php">/**
+ * @param non-empty-array&lt;string&gt; $recipients
+ * @return string
+ */
+function getPrimaryRecipient(array $recipients): string
+{
+    // Guaranteed to contain at least 1 element; safe from undefined offset
+    return $recipients[0];
+}</code></pre>
+<hr>
+<h3>5. Typed Callback Arrays (`array<callable>`)</h3>
+<p>When storing or dispatching collections of closures or invokable handlers:</p>
+<pre><code class="language-php">/**
+ * @param list&lt;callable(): void&gt; $listeners
+ */
+function triggerListeners(array $listeners): void
+{
+    foreach ($listeners as $listener) {
+        $listener();
+    }
+}
+
+triggerListeners([
+    fn () =&gt; logger()-&gt;info(&#039;First listener executed&#039;),
+    fn () =&gt; logger()-&gt;info(&#039;Second listener executed&#039;),
+]);</code></pre>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li>Use <code>array{key: type}</code> to define explicit key requirements and prevent missing array index bugs.</li>
+  <li>Use <code>list&lt;T&gt;</code> for contiguous, zero-indexed sequential lists.</li>
+  <li>Use <code>array&lt;KeyType, ValueType&gt;</code> for generic maps and associative containers.</li>
+  <li>Use <code>non-empty-array&lt;T&gt;</code> to statically assert that an array contains at least one item.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Thu, 25 Jul 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Tooling]]></category>
+      <category><![CDATA[PHPStan]]></category>
+      <category><![CDATA[Type Safety]]></category>
+      <category><![CDATA[Arrays]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Generic Classes and Functions in PHP Using PHPDoc @template]]></title>
+      <link>https://mrpunyapal.dev/tips/php-generics-phpdoc-template</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-generics-phpdoc-template</guid>
+      <description><![CDATA[Implement type-safe generic collections, wrapper classes, and utility functions in PHP using PHPDoc template annotations for static analysis engines. While P...]]></description>
+      <content:encoded><![CDATA[<blockquote>Implement type-safe generic collections, wrapper classes, and utility functions in PHP using PHPDoc template annotations for static analysis engines.</blockquote>
+<p>While PHP does not have native language-level generic syntax (like `class Collection<T>`), static analysis tools such as PHPStan and Psalm provide full generic support via `@template` annotations.</p>
+<p>By annotating wrapper classes and helper functions with `@template`, you preserve exact object types across transformations and collections without resorting to ambiguous `mixed` or `object` returns.</p>
+<hr>
+<h3>1. Generic Collections and Repositories</h3>
+<p>Annotate a class with `@template T` so the items stored inside match the items returned:</p>
+<pre><code class="language-php">/**
+ * @template T
+ */
+class Collection
+{
+    /** @var list&lt;T&gt; */
+    private array $items = [];
+
+    /**
+     * @param T $item
+     */
+    public function add(mixed $item): void
+    {
+        $this-&gt;items[] = $item;
+    }
+
+    /**
+     * @return list&lt;T&gt;
+     */
+    public function all(): array
+    {
+        return $this-&gt;items;
+    }
+
+    /**
+     * @return T|null
+     */
+    public function first(): mixed
+    {
+        return $this-&gt;items[0] ?? null;
+    }
+}</code></pre>
+<h4>Usage with Type Preservation</h4>
+<pre><code class="language-php">/** @var Collection&lt;User&gt; $userCollection */
+$userCollection = new Collection();
+$userCollection-&gt;add(new User(&#039;Alice&#039;));
+
+// IDE and PHPStan know $user is an instance of User
+$user = $userCollection-&gt;first();
+$userName = $user?-&gt;name;</code></pre>
+<hr>
+<h3>2. Generic Type Constraints (`@template T of BaseClass`)</h3>
+<p>You can restrict a generic type parameter to a specific class, interface, or union type using the `of` keyword:</p>
+<pre><code class="language-php">abstract class Animal
+{
+    abstract public function speak(): string;
+}
+
+class Dog extends Animal
+{
+    public function speak(): string { return &#039;Woof&#039;; }
+}
+
+class Cat extends Animal
+{
+    public function speak(): string { return &#039;Meow&#039;; }
+}
+
+/**
+ * @template T of Animal
+ */
+class Shelter
+{
+    /** @var list&lt;T&gt; */
+    private array $residents = [];
+
+    /**
+     * @param T $animal
+     */
+    public function admit(Animal $animal): void
+    {
+        $this-&gt;residents[] = $animal;
+    }
+
+    /**
+     * @return list&lt;T&gt;
+     */
+    public function getResidents(): array
+    {
+        return $this-&gt;residents;
+    }
+}</code></pre>
+<hr>
+<h3>3. Generic Functions and Utility Methods</h3>
+<p>Generic functions capture the type passed in arguments and return that exact same type:</p>
+<pre><code class="language-php">/**
+ * @template T
+ * @param non-empty-array&lt;T&gt; $items
+ * @return T
+ */
+function getFirstItem(array $items): mixed
+{
+    return $items[array_key_first($items)];
+}
+
+// Inferred return type: int
+$number = getFirstItem([10, 20, 30]);
+
+// Inferred return type: Product
+$product = getFirstItem([new Product(&#039;Keyboard&#039;), new Product(&#039;Mouse&#039;)]);</code></pre>
+<hr>
+<h3>4. Generic Factory Methods with `class-string<T>`</h3>
+<p>When instantiating or resolving classes dynamically by class name, combine `@template T` with `class-string<T>`:</p>
+<pre><code class="language-php">/**
+ * @template T of object
+ * @param class-string&lt;T&gt; $className
+ * @return T
+ */
+function createInstance(string $className): object
+{
+    return new $className();
+}
+
+// $service is statically typed as PaymentGateway, with full autocomplete
+$service = createInstance(PaymentGateway::class);</code></pre>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li>Use <code>@template T</code> on classes and functions to capture dynamic types and prevent type degradation to <code>mixed</code>.</li>
+  <li>Use <code>@template T of Constraint</code> to enforce class hierarchy or interface boundaries on generic parameters.</li>
+  <li>Combine <code>@template T</code> with <code>class-string&lt;T&gt;</code> for strongly typed factory and dependency injection methods.</li>
+  <li>Enables compile-time type safety across complex collections and architectures.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Thu, 25 Jul 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Tooling]]></category>
+      <category><![CDATA[Generics]]></category>
+      <category><![CDATA[PHPStan]]></category>
+      <category><![CDATA[Type Safety]]></category>
+      <category><![CDATA[Architecture]]></category>
+    </item>
+    <item>
       <title><![CDATA[Complete Guide to PHPStan Static Analysis Levels (0 to 10)]]></title>
       <link>https://mrpunyapal.dev/tips/phpstan-static-analysis-levels-guide</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/phpstan-static-analysis-levels-guide</guid>
