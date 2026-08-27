@@ -18,23 +18,48 @@ const templatePath = path.resolve(__dirname, 'resume-print.html');
 let htmlContent = fs.readFileSync(templatePath, 'utf8');
 
 const outputPath = path.resolve(__dirname, '../public/resume.pdf');
+const { execSync } = require('child_process');
+
 const force = process.argv.includes('--force');
 
-if (!force && fs.existsSync(outputPath)) {
-  const pdfStat = fs.statSync(outputPath);
+function shouldSkipPdf() {
+  if (force) return false;
+  if (!fs.existsSync(outputPath)) return false;
+
+  if (process.env.CI) {
+    if (process.env.GITHUB_EVENT_NAME === 'repository_dispatch') {
+      return true;
+    }
+    try {
+      const diff = execSync('git diff --name-only HEAD~1 HEAD -- scripts/resume-print.html resume.html', {
+        encoding: 'utf-8',
+        cwd: path.resolve(__dirname, '..')
+      }).trim();
+      return diff.length === 0;
+    } catch {
+      return true;
+    }
+  }
+
+  try {
+    const status = execSync('git status --porcelain scripts/resume-print.html resume.html', {
+      encoding: 'utf-8',
+      cwd: path.resolve(__dirname, '..')
+    }).trim();
+    if (status.length > 0) return false;
+  } catch {}
+
   const templateStat = fs.statSync(templatePath);
-  const scriptStat = fs.statSync(__filename);
   const resumeHtmlPath = path.resolve(__dirname, '../resume.html');
   const resumeHtmlStat = fs.existsSync(resumeHtmlPath) ? fs.statSync(resumeHtmlPath) : null;
+  const pdfStat = fs.statSync(outputPath);
 
-  const isPdfNewerThanTemplate = pdfStat.mtimeMs >= templateStat.mtimeMs;
-  const isPdfNewerThanScript = pdfStat.mtimeMs >= scriptStat.mtimeMs;
-  const isPdfNewerThanResumeHtml = !resumeHtmlStat || (pdfStat.mtimeMs >= resumeHtmlStat.mtimeMs);
+  return pdfStat.mtimeMs >= templateStat.mtimeMs && (!resumeHtmlStat || pdfStat.mtimeMs >= resumeHtmlStat.mtimeMs);
+}
 
-  if (isPdfNewerThanTemplate && isPdfNewerThanScript && isPdfNewerThanResumeHtml) {
-    console.log('📄 Resume PDF is already up to date. Skipping PDF generation.');
-    process.exit(0);
-  }
+if (shouldSkipPdf()) {
+  console.log('📄 Resume PDF is already up to date. Skipping PDF generation.');
+  process.exit(0);
 }
 
 // Inject centralized URLs into template tokens
