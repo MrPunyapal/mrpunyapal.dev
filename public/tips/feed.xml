@@ -9,9 +9,143 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Sun, 23 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Sun, 23 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Thu, 27 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Refresh and Lock an Existing Eloquent Model with refreshForUpdate()]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-refresh-for-update-pessimistic-locking</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-refresh-for-update-pessimistic-locking</guid>
+      <description><![CDATA[Laravel 13.27 adds refreshForUpdate(), making it easier to refresh an existing Eloquent model with the latest database state while locking its row for update...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.27 adds refreshForUpdate(), making it easier to refresh an existing Eloquent model with the latest database state while locking its row for update.</blockquote>
+<p>A model is often loaded before a transaction starts.</p>
+<p>For example, route model binding may already give you a Product instance:</p>
+<pre><code class="language-php">public function purchase(Product $product): Response
+{
+    DB::transaction(function () use ($product) {
+        // ...
+    });
+}</code></pre>
+<p>If you need the latest database state and a pessimistic lock before modifying the row, the traditional approach was to query the model again.</p>
+<h3>Before Laravel 13.27</h3>
+<p>You would typically need to create another query, find the model by its primary key, and replace the existing instance:</p>
+<pre><code class="language-php">public function purchase(Product $product): Response
+{
+    DB::transaction(function () use ($product) {
+        $product = Product::query()
+            -&gt;lockForUpdate()
+            -&gt;findOrFail($product-&gt;getKey());
+
+        if ($product-&gt;stock === 0) {
+            throw new RuntimeException(&#039;The product is out of stock.&#039;);
+        }
+
+        $product-&gt;decrement(&#039;stock&#039;);
+    });
+
+    // ...
+}</code></pre>
+<p>The model was already available, but we still needed another query and had to reassign the result.</p>
+<h3>Laravel 13.27: refreshForUpdate()</h3>
+<p>Laravel 13.27 adds a simpler way to do the same thing:</p>
+<pre><code class="language-php">public function purchase(Product $product): Response
+{
+    DB::transaction(function () use ($product) {
+        $product-&gt;refreshForUpdate();
+
+        if ($product-&gt;stock === 0) {
+            throw new RuntimeException(&#039;The product is out of stock.&#039;);
+        }
+
+        $product-&gt;decrement(&#039;stock&#039;);
+    });
+
+    // ...
+}</code></pre>
+<p>refreshForUpdate() reloads the existing model from the database while applying lockForUpdate() to the query used to refresh it.</p>
+<p>The existing model instance is updated in place, so there is no need to query the model again and reassign it.</p>
+<h3>refresh() vs refreshForUpdate()</h3>
+<p>The two methods are similar, but refreshForUpdate() also applies a row lock to the refresh query.</p>
+<pre><code class="language-php">$product-&gt;refresh();</code></pre>
+<p>Reloads the model with fresh attributes from the database.</p>
+<pre><code class="language-php">$product-&gt;refreshForUpdate();</code></pre>
+<p>Reloads the model with fresh attributes and applies lockForUpdate() to the query.</p>
+<p>So when you already have an Eloquent model and need a fresh, locked version of that same instance, refreshForUpdate() expresses that intent directly.</p>
+<h3>A practical stock example</h3>
+<p>Imagine a product has limited stock and multiple requests can attempt to purchase it at the same time.</p>
+<p>The model may have been loaded before the transaction starts, so its current attributes may no longer represent the latest database state.</p>
+<p>Refresh and lock the row before checking the current stock:</p>
+<pre><code class="language-php">DB::transaction(function () use ($product) {
+    $product-&gt;refreshForUpdate();
+
+    if ($product-&gt;stock &lt; 1) {
+        throw new RuntimeException(&#039;The product is out of stock.&#039;);
+    }
+
+    $product-&gt;decrement(&#039;stock&#039;);
+});</code></pre>
+<p>The stock check now uses the freshly loaded database state after the row has been locked for update.</p>
+<h3>The model stays the same instance</h3>
+<p>refreshForUpdate() refreshes the existing model instance rather than returning a different model that you need to assign.</p>
+<pre><code class="language-php">DB::transaction(function () use ($product) {
+    $result = $product-&gt;refreshForUpdate();
+
+    // $result and $product refer to the same model instance.
+});</code></pre>
+<p>The model's attributes are refreshed from the database, and its dirty state is synchronized with those fresh attributes.</p>
+<p>You can simply continue using $product after calling the method.</p>
+<h3>Why this is useful with route model binding</h3>
+<p>A common flow looks like this:</p>
+<pre><code class="language-text">Route model binding
+        ↓
+Product instance already exists
+        ↓
+Transaction starts
+        ↓
+refreshForUpdate()
+        ↓
+Fresh database attributes + row lock
+        ↓
+Continue using the same Product instance</code></pre>
+<p>This is where the new method removes a small but repetitive piece of Eloquent code.</p>
+<p>Instead of looking up the model again by its primary key, you can simply do:</p>
+<pre><code class="language-php">$product-&gt;refreshForUpdate();</code></pre>
+<h3>Keep it inside the transaction</h3>
+<p>refreshForUpdate() is intended for situations where the row needs to be locked while the transaction performs its work:</p>
+<pre><code class="language-php">DB::transaction(function () use ($product) {
+    $product-&gt;refreshForUpdate();
+
+    // Read the current state...
+    // Perform the required changes...
+});</code></pre>
+<p>The method does not replace the transaction itself.</p>
+<p>The row lock is part of the database transaction, so the refresh and the work that depends on that lock should be performed within the same transaction.</p>
+<h3>What happens under the hood?</h3>
+<p>refreshForUpdate() uses the same refresh flow as refresh(), but builds the query with lockForUpdate():</p>
+<pre><code class="language-php">$this-&gt;newQueryWithoutScopes()
+    -&gt;lockForUpdate();</code></pre>
+<p>Laravel then uses that query to reload the current model by its existing primary key.</p>
+<p>This means the feature is not a completely different way of refreshing a model. It is the existing refresh behavior with the update lock applied to the refresh query.</p>
+<h3>Summary</h3>
+<ul>
+  <li>refreshForUpdate() was added in Laravel 13.27.</li>
+  <li>It reloads the existing Eloquent model with fresh database attributes.</li>
+  <li>The refresh query uses lockForUpdate().</li>
+  <li>The existing model instance is refreshed in place.</li>
+  <li>You no longer need to query and reassign an already-loaded model just to refresh it with a row lock.</li>
+  <li>It is particularly useful when a model was loaded before a transaction, such as through route model binding.</li>
+  <li>Use it inside the transaction where the locked row needs to be read or modified.</li>
+  <li>It does not eliminate the database query. It provides a cleaner API for refreshing and locking the existing model.</li>
+</ul>
+<p>If you already have the Eloquent model, Laravel 13.27 gives you a cleaner way to refresh it and lock it for update.</p>
+]]></content:encoded>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Database]]></category>
+      <category><![CDATA[Transactions]]></category>
+    </item>
     <item>
       <title><![CDATA[Scope Pivot Table Queries with Closures in wherePivot() in Laravel 13.26]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-wherepivot-closure-scopes</link>
