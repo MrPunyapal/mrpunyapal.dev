@@ -6335,6 +6335,59 @@ $allTrue = $flags-&gt;every(); // true</code></pre>
       <category><![CDATA[Clean Code]]></category>
     </item>
     <item>
+      <title><![CDATA[Standardize Database Timestamps and Format Dates with Eloquent Date Casts]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-eloquent-date-casting-and-carbon-accessors</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-eloquent-date-casting-and-carbon-accessors</guid>
+      <description><![CDATA[Store all dates in UTC database timestamps and use Eloquent date casting and Carbon accessors for display formatting. Parsing date strings repeatedly inside...]]></description>
+      <content:encoded><![CDATA[<blockquote>Store all dates in UTC database timestamps and use Eloquent date casting and Carbon accessors for display formatting.</blockquote>
+<p>Parsing date strings repeatedly inside Blade views with manual `Carbon::parse($order->ordered_at)->format('M d, Y')` calls is slow, repetitive, and fails if the column value is null.</p>
+<p>Eloquent date casting automatically converts database timestamp strings into immutable Carbon instances upon retrieval.</p>
+<h3>Defining Date Casts on Models</h3>
+<pre><code class="language-php">namespace AppModels;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Subscription extends Model
+{
+    protected function casts(): array
+    {
+        return [
+            &#039;starts_at&#039; =&gt; &#039;datetime&#039;,
+            &#039;ends_at&#039;   =&gt; &#039;datetime&#039;,
+            &#039;trial_ends_at&#039; =&gt; &#039;immutable_datetime&#039;,
+        ];
+    }
+}</code></pre>
+<h3>Accessing Fluent Carbon Methods</h3>
+<p>Once cast, properties automatically return Carbon instances with full date math and comparison capabilities:</p>
+<pre><code class="language-php">$subscription = Subscription::find(1);
+
+// Date comparison
+if ($subscription-&gt;ends_at-&gt;isPast()) {
+    $subscription-&gt;markAsExpired();
+}
+
+// Relative human diffs
+echo $subscription-&gt;ends_at-&gt;diffForHumans(); // &quot;in 3 days&quot;</code></pre>
+<h3>In Blade Templates</h3>
+<pre><code class="language-blade">&lt;p class=&quot;text-sm&quot;&gt;
+    Subscription active until {{ $subscription-&gt;ends_at-&gt;format(&#039;M d, Y&#039;) }}
+&lt;/p&gt;</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Store timestamps in standard SQL <code>TIMESTAMP</code> / <code>DATETIME</code> format in UTC.</li>
+  <li><code>datetime</code> and <code>immutable_datetime</code> casts ensure attributes hydrate as Carbon instances.</li>
+  <li>Simplifies timezone conversions, relative formatting, and chronological comparisons.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 09 Oct 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Carbon]]></category>
+      <category><![CDATA[Dates]]></category>
+    </item>
+    <item>
       <title><![CDATA[Mute Model Observers During Bulk Updates with Model::withoutEvents()]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-eloquent-without-events-mute-observers</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-eloquent-without-events-mute-observers</guid>
@@ -6456,6 +6509,74 @@ $nested = $dotArray-&gt;undot();
       <category><![CDATA[Configuration]]></category>
       <category><![CDATA[Testing]]></category>
       <category><![CDATA[Time]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Replace Magic Strings with PHP 8 Backed Enums in Eloquent Models]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-clean-code-enums-and-config-constants</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-clean-code-enums-and-config-constants</guid>
+      <description><![CDATA[Use PHP 8 Backed Enums to eliminate magic strings in database columns, query scopes, and form validation rules. Hardcoding status strings like $order-status...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use PHP 8 Backed Enums to eliminate magic strings in database columns, query scopes, and form validation rules.</blockquote>
+<p>Hardcoding status strings like `$order->status === 'pending'` or `User::where('role', 'admin')` across multiple controllers makes refactoring difficult and introduces silent typo bugs that static analysis tools cannot catch.</p>
+<p>PHP 8 Backed Enums provide type safety and IDE autocomplete.</p>
+<h3>Defining a Backed Enum</h3>
+<pre><code class="language-php">namespace App\Enums;
+
+enum OrderStatus: string
+{
+    case PENDING    = &#039;pending&#039;;
+    case PROCESSING = &#039;processing&#039;;
+    case COMPLETED  = &#039;completed&#039;;
+    case CANCELLED  = &#039;cancelled&#039;;
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::PENDING    =&gt; &#039;Order Pending&#039;,
+            self::PROCESSING =&gt; &#039;In Processing&#039;,
+            self::COMPLETED  =&gt; &#039;Order Completed&#039;,
+            self::CANCELLED  =&gt; &#039;Cancelled&#039;,
+        };
+    }
+}</code></pre>
+<h3>Casting in Eloquent Models</h3>
+<pre><code class="language-php">namespace AppModels;
+
+use App\Enums\OrderStatus;
+use Illuminate\Database\Eloquent\Model;
+
+class Order extends Model
+{
+    protected function casts(): array
+    {
+        return [
+            &#039;status&#039; =&gt; OrderStatus::class,
+        ];
+    }
+}</code></pre>
+<h3>Type-Safe Querying and Comparison</h3>
+<pre><code class="language-php">use App\Enums\OrderStatus;
+
+// Type-safe query: No magic strings
+$orders = Order::where(&#039;status&#039;, OrderStatus::PENDING)-&gt;get();
+
+// Natural enum comparison
+if ($order-&gt;status === OrderStatus::COMPLETED) {
+    // Process fulfillment
+}</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Prevents typos and catches invalid status assignments during compilation.</li>
+  <li>Provides native casting with Eloquent models via <code>casts()</code>.</li>
+  <li>Bundles domain display labels and helper methods directly inside Enum classes.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 11 Sep 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Enums]]></category>
+      <category><![CDATA[PHP 8.1+]]></category>
+      <category><![CDATA[Clean Code]]></category>
     </item>
     <item>
       <title><![CDATA[Integer Enums: Start Indexing from 1, Avoid 0]]></title>
@@ -6593,6 +6714,69 @@ config([&#039;services.stripe.key&#039; =&gt; &#039;pk_test_12345&#039;]);</code
       <category><![CDATA[Laravel]]></category>
       <category><![CDATA[Configuration]]></category>
       <category><![CDATA[Helpers]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Avoid Redundant Eloquent Overrides by Embracing Convention over Configuration]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-eloquent-convention-over-configuration</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-eloquent-convention-over-configuration</guid>
+      <description><![CDATA[Remove unnecessary $table, $primaryKey, and $timestamps properties from Eloquent models by adhering to standard Laravel conventions. Declaring explicit overr...]]></description>
+      <content:encoded><![CDATA[<blockquote>Remove unnecessary $table, $primaryKey, and $timestamps properties from Eloquent models by adhering to standard Laravel conventions.</blockquote>
+<p>Declaring explicit overrides for standard default behaviors adds noise to Eloquent model definitions.</p>
+<p>Laravel relies on convention over configuration: if your database table follows standard naming rules, zero configuration properties are required.</p>
+<h3>Over-Configured Model (Anti-Pattern)</h3>
+<pre><code class="language-php">namespace AppModels;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Article extends Model
+{
+    // ❌ Redundant: Laravel already assumes table is &#039;articles&#039;
+    protected $table = &#039;articles&#039;;
+
+    // ❌ Redundant: Laravel already assumes primary key is &#039;id&#039;
+    protected $primaryKey = &#039;id&#039;;
+
+    // ❌ Redundant: Laravel already assumes auto-incrementing integer key
+    public $incrementing = true;
+    protected $keyType = &#039;int&#039;;
+
+    // ❌ Redundant: Laravel already expects timestamps by default
+    public $timestamps = true;
+}</code></pre>
+<h3>Clean Eloquent Model (Recommended)</h3>
+<pre><code class="language-php">namespace AppModels;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Article extends Model
+{
+    use HasFactory;
+
+    protected $guarded = [&#039;id&#039;];
+}</code></pre>
+<h3>When to Explicitly Override</h3>
+<p>Declare properties only when deviating from standard conventions (such as legacy database tables or UUID primary keys):</p>
+<pre><code class="language-php">class LegacyCustomer extends Model
+{
+    protected $table = &#039;tbl_customers_legacy&#039;;
+    protected $primaryKey = &#039;customer_uuid&#039;;
+    public $incrementing = false;
+    protected $keyType = &#039;string&#039;;
+}</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Eliminates boilerplate properties from model definitions.</li>
+  <li>Keeps model files focused on relationships, scopes, and casts.</li>
+  <li>Declare properties only when integrating with non-standard legacy database schemas.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 14 Aug 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Clean Code]]></category>
     </item>
     <item>
       <title><![CDATA[Pass Collections into Custom Processors with Collection::pipe()]]></title>
@@ -7308,6 +7492,76 @@ class ProjectPolicy
       <category><![CDATA[HTTP]]></category>
     </item>
     <item>
+      <title><![CDATA[Keep Controllers Lean by Delegating Business Logic to Action Classes]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-architecture-skinny-controllers-invokable-actions</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-architecture-skinny-controllers-invokable-actions</guid>
+      <description><![CDATA[Refactor fat controller methods by moving multi-step transactions, file storage, and third-party integrations into invokable Action classes. When a controlle...]]></description>
+      <content:encoded><![CDATA[<blockquote>Refactor fat controller methods by moving multi-step transactions, file storage, and third-party integrations into invokable Action classes.</blockquote>
+<p>When a controller handles file uploads, payment transactions, database record creation, and email notifications in a single method, testing individual business steps becomes difficult and duplicates logic across CLI commands or API endpoints.</p>
+<p>Moving domain logic into dedicated, invokable Action classes creates modular, reusable application layers.</p>
+<h3>Fat Controller (Anti-Pattern)</h3>
+<pre><code class="language-php">public function store(StoreOrderRequest $request)
+{
+    // ❌ Fat controller mixing validation, billing, file storage, and events
+    $payment = Stripe::charges()-&gt;create([...]);
+    $order = Order::create([...]);
+    $invoicePdf = PDF::generate($order);
+    Storage::disk(&#039;s3&#039;)-&gt;put(&quot;invoices/{$order-&gt;id}.pdf&quot;, $invoicePdf);
+    Mail::to($request-&gt;user())-&gt;send(new OrderConfirmation($order));
+
+    return to_route(&#039;orders.show&#039;, $order);
+}</code></pre>
+<h3>Refactored Action Class</h3>
+<pre><code class="language-php">namespace App\Actions\Orders;
+
+use App\Models\Order;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
+class CreateOrderAction
+{
+    public function __construct(
+        protected PaymentGateway $gateway,
+        protected InvoiceGenerator $invoices
+    ) {}
+
+    public function execute(User $user, array $orderData, string $paymentToken): Order
+    {
+        return DB::transaction(function () use ($user, $orderData, $paymentToken) {
+            $charge = $this-&gt;gateway-&gt;charge($user, $orderData[&#039;total&#039;], $paymentToken);
+            $order = $user-&gt;orders()-&gt;create([...$orderData, &#039;transaction_id&#039; =&gt; $charge-&gt;id]);
+            $this-&gt;invoices-&gt;generateAndStore($order);
+
+            return $order;
+        });
+    }
+}</code></pre>
+<h3>Skinny Controller</h3>
+<pre><code class="language-php">public function store(StoreOrderRequest $request, CreateOrderAction $action)
+{
+    $order = $action-&gt;execute(
+        $request-&gt;user(),
+        $request-&gt;validated(),
+        $request-&gt;input(&#039;payment_token&#039;)
+    );
+
+    return to_route(&#039;orders.show&#039;, $order)-&gt;with(&#039;success&#039;, &#039;Order created.&#039;);
+}</code></pre>
+<h3>Summary</h3>
+<ul>
+  <li>Action classes isolate core business rules from HTTP transport details.</li>
+  <li>Reusable across web controllers, API endpoints, queue workers, and Artisan commands.</li>
+  <li>Easily testable with isolated unit test mocks.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 10 Jul 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Controllers]]></category>
+      <category><![CDATA[Design Patterns]]></category>
+    </item>
+    <item>
       <title><![CDATA[Format Single-Line Property Promotion Constructors with Pint]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-pint-single-line-empty-constructors</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-pint-single-line-empty-constructors</guid>
@@ -7436,6 +7690,194 @@ public function updatePassword(UpdatePasswordRequest $request)
       <category><![CDATA[Authentication]]></category>
       <category><![CDATA[Security]]></category>
       <category><![CDATA[Sessions]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Follow Laravel Standard Naming Conventions for Predictable Architecture]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-architecture-naming-conventions-reference</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-architecture-naming-conventions-reference</guid>
+      <description><![CDATA[A complete reference guide to Laravel community naming conventions across models, controllers, migrations, relationships, routes, views, enums, and tests. Fo...]]></description>
+      <content:encoded><![CDATA[<blockquote>A complete reference guide to Laravel community naming conventions across models, controllers, migrations, relationships, routes, views, enums, and tests.</blockquote>
+<p>Following standard naming conventions allows Laravel's internal reflection engines (including route model binding, Eloquent relation resolution, and migration schema builders) to function automatically without manual configuration.</p>
+<h3>Complete Naming Conventions Cheat Sheet</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Convention</th>
+<th>Good Example</th>
+<th>Bad Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Controller</strong></td>
+<td>Singular (PascalCase)</td>
+<td><code>ArticleController</code></td>
+<td><code>ArticlesController</code></td>
+</tr>
+<tr>
+<td><strong>Model</strong></td>
+<td>Singular (PascalCase)</td>
+<td><code>User</code>, <code>Order</code></td>
+<td><code>Users</code>, <code>Orders</code></td>
+</tr>
+<tr>
+<td><strong>Migration Table</strong></td>
+<td>Plural (snake_case)</td>
+<td><code>articles</code>, <code>order_items</code></td>
+<td><code>article</code>, <code>orderItems</code></td>
+</tr>
+<tr>
+<td><strong>Pivot Table</strong></td>
+<td>Singular alphabetical (snake_case)</td>
+<td><code>article_user</code>, <code>order_product</code></td>
+<td><code>articles_users</code>, <code>user_article</code></td>
+</tr>
+<tr>
+<td><strong>Table Column</strong></td>
+<td>snake_case without model prefix</td>
+<td><code>meta_title</code>, <code>status</code></td>
+<td><code>MetaTitle</code>, <code>article_meta_title</code></td>
+</tr>
+<tr>
+<td><strong>Model Property</strong></td>
+<td>snake_case</td>
+<td><code>$user-&gt;created_at</code></td>
+<td><code>$user-&gt;createdAt</code></td>
+</tr>
+<tr>
+<td><strong>Primary Key</strong></td>
+<td>Default <code>id</code></td>
+<td><code>id</code></td>
+<td><code>article_id</code>, <code>custom_id</code></td>
+</tr>
+<tr>
+<td><strong>Foreign Key</strong></td>
+<td>Singular model + <code>_id</code></td>
+<td><code>user_id</code>, <code>order_id</code></td>
+<td><code>user_fk</code>, <code>id_user</code>, <code>users_id</code></td>
+</tr>
+<tr>
+<td><strong>Relationship (<code>hasOne</code> / <code>belongsTo</code>)</strong></td>
+<td>Singular (camelCase)</td>
+<td><code>user()</code>, <code>articleComment()</code></td>
+<td><code>users()</code>, <code>article_comment()</code></td>
+</tr>
+<tr>
+<td><strong>Relationship (<code>hasMany</code> / <code>belongsToMany</code>)</strong></td>
+<td>Plural (camelCase)</td>
+<td><code>comments()</code>, <code>roles()</code></td>
+<td><code>comment()</code>, <code>article_comments()</code></td>
+</tr>
+<tr>
+<td><strong>Route URI</strong></td>
+<td>Plural (kebab-case)</td>
+<td><code>/articles/{article}</code></td>
+<td><code>/article/{id}</code>, <code>/view_articles</code></td>
+</tr>
+<tr>
+<td><strong>Route Name</strong></td>
+<td>Plural resource dot notation</td>
+<td><code>articles.index</code>, <code>orders.show</code></td>
+<td><code>show_article</code>, <code>articleShow</code></td>
+</tr>
+<tr>
+<td><strong>View Template</strong></td>
+<td>kebab-case</td>
+<td><code>show-filtered.blade.php</code></td>
+<td><code>showFiltered.blade.php</code>, <code>show_filtered.blade.php</code></td>
+</tr>
+<tr>
+<td><strong>Config File</strong></td>
+<td>snake_case</td>
+<td><code>config/google_calendar.php</code></td>
+<td><code>googleCalendar.php</code>, <code>google-calendar.php</code></td>
+</tr>
+<tr>
+<td><strong>Config Key</strong></td>
+<td>snake_case</td>
+<td><code>config(&#39;services.stripe_key&#39;)</code></td>
+<td><code>config(&#39;services.StripeKey&#39;)</code></td>
+</tr>
+<tr>
+<td><strong>Contract (Interface)</strong></td>
+<td>Adjective or Noun (PascalCase)</td>
+<td><code>Authenticatable</code>, <code>PaymentGateway</code></td>
+<td><code>IAuthentication</code>, <code>AuthInterface</code></td>
+</tr>
+<tr>
+<td><strong>Trait</strong></td>
+<td>Adjective (PascalCase)</td>
+<td><code>Notifiable</code>, <code>Sluggable</code></td>
+<td><code>NotificationTrait</code>, <code>TraitNotifiable</code></td>
+</tr>
+<tr>
+<td><strong>Enum</strong></td>
+<td>Singular (PascalCase)</td>
+<td><code>UserRole</code>, <code>OrderStatus</code></td>
+<td><code>UserRoles</code>, <code>UserRoleEnum</code></td>
+</tr>
+<tr>
+<td><strong>Form Request</strong></td>
+<td>Singular Action + Model + <code>Request</code></td>
+<td><code>UpdateUserRequest</code>, <code>StorePostRequest</code></td>
+<td><code>UserFormRequest</code>, <code>UserRequest</code></td>
+</tr>
+<tr>
+<td><strong>Seeder</strong></td>
+<td>Singular (PascalCase)</td>
+<td><code>UserSeeder</code>, <code>OrderSeeder</code></td>
+<td><code>UsersSeeder</code>, <code>OrdersSeeder</code></td>
+</tr>
+<tr>
+<td><strong>Resource Controller Action</strong></td>
+<td>Standard REST verb</td>
+<td><code>index</code>, <code>store</code>, <code>update</code></td>
+<td><code>getAll</code>, <code>saveArticle</code></td>
+</tr>
+<tr>
+<td><strong>Class Method</strong></td>
+<td>camelCase</td>
+<td><code>getFullName()</code>, <code>processPayment()</code></td>
+<td><code>get_full_name()</code>, <code>ProcessPayment()</code></td>
+</tr>
+<tr>
+<td><strong>Test Method</strong></td>
+<td>camelCase or <code>test_</code> snake_case</td>
+<td><code>testUserCanPurchase()</code>, <code>it_charges_order()</code></td>
+<td><code>UserCanPurchase</code></td>
+</tr>
+<tr>
+<td><strong>Collection Variable</strong></td>
+<td>Descriptive plural</td>
+<td><code>$activeUsers = User::active()-&gt;get()</code></td>
+<td><code>$data</code>, <code>$active</code>, <code>$usersList</code></td>
+</tr>
+<tr>
+<td><strong>Single Model Variable</strong></td>
+<td>Descriptive singular</td>
+<td><code>$user = User::first()</code></td>
+<td><code>$users</code>, <code>$obj</code>, <code>$item</code></td>
+</tr>
+</tbody></table>
+<h3>Why Conventions Matter</h3>
+<ol>
+  <li><strong>Automatic Relation Resolution</strong>: Eloquent infers foreign keys and pivot tables automatically without requiring manual string parameters.</li>
+  <li><strong>Implicit Route Model Binding</strong>: Type-hinting <code>Article $article</code> on <code>/articles/{article}</code> resolves the model with zero controller boilerplate.</li>
+  <li><strong>Consistency</strong>: Engineers moving between Laravel projects immediately know where files live and how methods are named.</li>
+</ol>
+<h3>Summary</h3>
+<ul>
+  <li>Eliminates redundant <code>$table</code>, <code>$primaryKey</code>, and relationship foreign key parameters.</li>
+  <li>Guarantees predictable codebase navigation across development teams.</li>
+  <li>Follows standard PHP-FIG PSR-12 and Laravel framework conventions.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 05 Jun 2024 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Best Practices]]></category>
+      <category><![CDATA[Clean Code]]></category>
     </item>
     <item>
       <title><![CDATA[Detect and Eliminate N+1 Queries in Development with preventLazyLoading()]]></title>
