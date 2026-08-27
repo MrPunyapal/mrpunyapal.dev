@@ -673,8 +673,8 @@
       "text": "text-red-700 dark:text-red-300",
       "border": "border-red-100 dark:border-red-900/60"
     },
-    "author": "Vasile Papuc",
-    "author_url": "https://www.linkedin.com/in/vasile-papuc-6423a41b5"
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
   },
   {
     "slug": "laravel-livewire-flux-error-handling",
@@ -821,7 +821,7 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
-    "slug": "filament-laracon-us-tips-povilas-korop",
+    "slug": "filament-move-global-search-sidebar",
     "title": "Move Filament Global Search to Sidebar",
     "category": "Filament",
     "subcategory": "Admin Panel",
@@ -1666,6 +1666,131 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-cache-flexible-stale-while-revalidate",
+    "title": "Eliminate Cache Stampedes with Cache::flexible() and Stale-While-Revalidate",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Cache",
+      "Performance",
+      "Architecture"
+    ],
+    "created_at": "2026-03-01",
+    "effective_date": "2026-03-01",
+    "date": "2026-03-01",
+    "formatted_date": "Mar 1, 2026",
+    "summary": "Use Cache::flexible() to serve slightly stale cache values immediately to users while refreshing the cache in the background. When a heavily requested cached...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-validation-current-password-rule",
+    "title": "Verify Existing User Credentials with the current_password Validation Rule",
+    "category": "Laravel",
+    "subcategory": "Validation",
+    "tags": [
+      "Laravel",
+      "Validation",
+      "Security",
+      "Authentication"
+    ],
+    "created_at": "2026-03-01",
+    "effective_date": "2026-03-01",
+    "date": "2026-03-01",
+    "formatted_date": "Mar 1, 2026",
+    "summary": "Use the currentpassword validation rule to require users to confirm their existing password before performing sensitive account actions. When a user changes...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-validation-rule-image-dimensions",
+    "title": "Validate Image Width, Height, and Aspect Ratio with Rule::dimensions()",
+    "category": "Laravel",
+    "subcategory": "Validation",
+    "tags": [
+      "Laravel",
+      "Validation",
+      "Images",
+      "Security"
+    ],
+    "created_at": "2026-03-01",
+    "effective_date": "2026-03-01",
+    "date": "2026-03-01",
+    "formatted_date": "Mar 1, 2026",
+    "summary": "Use Rule::dimensions() in validation rules to enforce exact pixel dimensions, minimum thresholds, and aspect ratios on uploaded images. Validating avatar upl...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-testing-queue-fake-job-assertions",
+    "title": "Assert Background Job Dispatching with Queue::fake()",
+    "category": "Laravel",
+    "subcategory": "Testing",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Queue",
+      "Clean Code"
+    ],
+    "created_at": "2026-02-28",
+    "effective_date": "2026-02-28",
+    "date": "2026-02-28",
+    "formatted_date": "Feb 28, 2026",
+    "summary": "Use Queue::fake() to prevent jobs from executing during tests and verify that background tasks are dispatched with correct parameters. When testing controlle...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-testing-event-fake-except-selective",
+    "title": "Fake Events Selectively with Event::fakeExcept()",
+    "category": "Laravel",
+    "subcategory": "Testing",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Events",
+      "Clean Code"
+    ],
+    "created_at": "2026-02-25",
+    "effective_date": "2026-02-25",
+    "date": "2026-02-25",
+    "formatted_date": "Feb 25, 2026",
+    "summary": "Use Event::fakeExcept() to mock all application events while allowing specific mission-critical event listeners to run during tests. Calling Event::fake() mu...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "php-blank-filled-over-empty",
     "title": "Use blank() and filled() Instead of empty() in Laravel",
     "category": "Laravel",
@@ -1681,6 +1806,31 @@
     "date": "2026-02-20",
     "formatted_date": "Feb 20, 2026",
     "summary": "PHP's empty() treats 0, '0', and false as empty. Laravel's blank() and filled() helpers handle these values intuitively without silent bugs. PHP's empty() is...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-request-expects-json-content-negotiation",
+    "title": "Handle Hybrid API and Web Controllers with $request->expectsJson()",
+    "category": "Laravel",
+    "subcategory": "HTTP API",
+    "tags": [
+      "Laravel",
+      "HTTP",
+      "API",
+      "Controllers"
+    ],
+    "created_at": "2026-02-18",
+    "effective_date": "2026-02-18",
+    "date": "2026-02-18",
+    "formatted_date": "Feb 18, 2026",
+    "summary": "Use $request-expectsJson() in hybrid controllers to serve formatted JSON responses to API/AJAX requests and redirects to standard web browsers. When building...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -1715,6 +1865,56 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-routing-force-https-scheme",
+    "title": "Enforce HTTPS URL Generation in Production with URL::forceHttps()",
+    "category": "Laravel",
+    "subcategory": "Routing",
+    "tags": [
+      "Laravel",
+      "Routing",
+      "Security",
+      "SSL"
+    ],
+    "created_at": "2026-02-11",
+    "effective_date": "2026-02-11",
+    "date": "2026-02-11",
+    "formatted_date": "Feb 11, 2026",
+    "summary": "Use URL::forceHttps() in AppServiceProvider to ensure all generated URLs, assets, and pagination links use HTTPS when behind load balancers and reverse proxi...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-queue-bulk-dispatch-batches-and-chains",
+    "title": "Coordinate Complex Background Workflows with Bus::batch() and Bus::chain()",
+    "category": "Laravel",
+    "subcategory": "Queue",
+    "tags": [
+      "Laravel",
+      "Queue",
+      "Architecture",
+      "Performance"
+    ],
+    "created_at": "2026-01-28",
+    "effective_date": "2026-01-28",
+    "date": "2026-01-28",
+    "formatted_date": "Jan 28, 2026",
+    "summary": "Use Bus::batch() to run parallel background jobs with completion callbacks, and Bus::chain() to execute sequential dependencies. When managing complex backgr...",
+    "readingTime": 2,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-squash-migrations-workflow",
     "title": "Squash Legacy Database Migrations Carefully",
     "category": "Laravel",
@@ -1729,6 +1929,31 @@
     "date": "2026-01-17",
     "formatted_date": "Jan 17, 2026",
     "summary": "Use php artisan schema:dump to collapse hundreds of old migration files into a single SQL schema file while preserving new migrations. As applications age, r...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-queue-delete-when-missing-models",
+    "title": "Automatically Discard Orphaned Queue Jobs with deleteWhenMissingModels",
+    "category": "Laravel",
+    "subcategory": "Queue",
+    "tags": [
+      "Laravel",
+      "Queue",
+      "Error Handling",
+      "Clean Code"
+    ],
+    "created_at": "2026-01-14",
+    "effective_date": "2026-01-14",
+    "date": "2026-01-14",
+    "formatted_date": "Jan 14, 2026",
+    "summary": "Use the $deleteWhenMissingModels property on queued jobs to silently discard jobs if their referenced database records were deleted before execution. When an...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -1829,6 +2054,31 @@
       "bg": "bg-purple-50 dark:bg-purple-950/50",
       "text": "text-purple-700 dark:text-purple-300",
       "border": "border-purple-100 dark:border-purple-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-queue-without-relations-serialization",
+    "title": "Prevent Queue Payload Bloat with withoutRelations()",
+    "category": "Laravel",
+    "subcategory": "Queue",
+    "tags": [
+      "Laravel",
+      "Queue",
+      "Performance",
+      "Architecture"
+    ],
+    "created_at": "2025-12-17",
+    "effective_date": "2025-12-17",
+    "date": "2025-12-17",
+    "formatted_date": "Dec 17, 2025",
+    "summary": "Use withoutRelations() when passing models to queue jobs to prevent large in-memory relationship graphs from serializing into queue storage. When dispatching...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
     },
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
@@ -1954,6 +2204,32 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-eloquent-where-year-vs-date-between-index",
+    "title": "Optimize Date Queries by Replacing whereYear() with whereBetween()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Performance",
+      "Database",
+      "Indexes"
+    ],
+    "created_at": "2025-11-19",
+    "effective_date": "2025-11-19",
+    "date": "2025-11-19",
+    "formatted_date": "Nov 19, 2025",
+    "summary": "Replace whereYear() and whereMonth() on large database tables with whereBetween() date ranges to enable SQL index lookups. Using whereYear('createdat', 2026)...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "php-null-coalescing-assignment-operator",
     "title": "Simplify Default Values with Null Coalescing Assignment (??=)",
     "category": "PHP",
@@ -1978,6 +2254,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-eloquent-latest-and-oldest-ordering",
+    "title": "Simplify Chronological Query Sorting with latest() and oldest()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Clean Code"
+    ],
+    "created_at": "2025-10-15",
+    "effective_date": "2025-10-15",
+    "date": "2025-10-15",
+    "formatted_date": "Oct 15, 2025",
+    "summary": "Replace verbose orderBy('createdat', 'desc') clauses with the clean latest() and oldest() query builder helpers. Sorting records by creation timestamp is the...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-cache-memo-driver-in-memory",
     "title": "Prevent Duplicate Redis and Database Lookups with Cache::memo()",
     "category": "Laravel",
@@ -1992,6 +2293,81 @@
     "date": "2025-10-15",
     "formatted_date": "Oct 15, 2025",
     "summary": "Use Cache::memo() to combine persistent cache stores with per-request memory caching, preventing repetitive network roundtrips during a single HTTP request....",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-first-or-fallback-closure",
+    "title": "Execute Custom Fallbacks on Missing Records with firstOr()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Clean Code"
+    ],
+    "created_at": "2025-09-17",
+    "effective_date": "2025-09-17",
+    "date": "2025-09-17",
+    "formatted_date": "Sep 17, 2025",
+    "summary": "Use firstOr() to retrieve the first matching database record or execute a custom fallback closure when no record is found. When searching for a record where...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-database-generated-virtual-columns",
+    "title": "Index Dynamic JSON Attributes with Generated Virtual Columns",
+    "category": "Laravel",
+    "subcategory": "Database",
+    "tags": [
+      "Laravel",
+      "Database",
+      "Migrations",
+      "Performance"
+    ],
+    "created_at": "2025-08-27",
+    "effective_date": "2025-08-27",
+    "date": "2025-08-27",
+    "formatted_date": "Aug 27, 2025",
+    "summary": "Use virtualAs() and storedAs() in migrations to create generated database columns for high-speed indexing on JSON attributes. Querying deep JSON attributes (...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-find-many-keys",
+    "title": "Retrieve Multiple Models by Primary Key with findMany()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Clean Code"
+    ],
+    "created_at": "2025-08-20",
+    "effective_date": "2025-08-20",
+    "date": "2025-08-20",
+    "formatted_date": "Aug 20, 2025",
+    "summary": "Use findMany() or find([$id1, $id2]) to fetch a collection of models by their primary keys without writing whereIn('id', ...) queries. When looking up a list...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -2026,6 +2402,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-str-deduplicate-consecutive-characters",
+    "title": "Collapse Consecutive Duplicate Characters with Str::deduplicate()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Strings",
+      "Data Cleansing",
+      "Utilities"
+    ],
+    "created_at": "2025-07-30",
+    "effective_date": "2025-07-30",
+    "date": "2025-07-30",
+    "formatted_date": "Jul 30, 2025",
+    "summary": "Use Str::deduplicate() to collapse repeated consecutive spaces, slashes, or characters into a single instance. When sanitizing user input, formatting URI pat...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "alpinejs-multiple-data-objects-xdata",
     "title": "Combine Multiple Alpine.data Objects Inside a Single x-data",
     "category": "JavaScript",
@@ -2045,6 +2446,31 @@
       "bg": "bg-amber-50 dark:bg-amber-950/50",
       "text": "text-amber-800 dark:text-amber-300",
       "border": "border-amber-100 dark:border-amber-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-collection-to-query",
+    "title": "Convert Eloquent Collections Back into Query Builders with toQuery()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Collections",
+      "Database"
+    ],
+    "created_at": "2025-07-16",
+    "effective_date": "2025-07-16",
+    "date": "2025-07-16",
+    "formatted_date": "Jul 16, 2025",
+    "summary": "Use toQuery() on Eloquent collections to convert a set of in-memory models back into an Eloquent query builder for bulk operations. When you have loaded a co...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
     },
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
@@ -2122,6 +2548,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-validation-bail-rule-first-failure",
+    "title": "Stop Validating on First Attribute Failure with the bail Rule",
+    "category": "Laravel",
+    "subcategory": "Validation",
+    "tags": [
+      "Laravel",
+      "Validation",
+      "Performance",
+      "Security"
+    ],
+    "created_at": "2025-06-25",
+    "effective_date": "2025-06-25",
+    "date": "2025-06-25",
+    "formatted_date": "Jun 25, 2025",
+    "summary": "Add the bail rule to validation rules to stop executing subsequent expensive checks (like database queries) as soon as the first validation rule fails. By de...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "pest-only-method-test-focus",
     "title": "Focus Test Runs Instantly with Pest ->only() Method",
     "category": "Pest PHP",
@@ -2160,6 +2611,31 @@
     "date": "2025-06-20",
     "formatted_date": "Jun 20, 2025",
     "summary": "Use the built-in touch() method to update updatedat timestamps on Eloquent records cleanly. Manually assigning $model-updatedat = now(); $model-save(); is re...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-get-original-and-is-dirty",
+    "title": "Inspect Model Modifications with isDirty(), wasChanged(), and getOriginal()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Observers",
+      "Clean Code"
+    ],
+    "created_at": "2025-06-18",
+    "effective_date": "2025-06-18",
+    "date": "2025-06-18",
+    "formatted_date": "Jun 18, 2025",
+    "summary": "Use isDirty(), wasChanged(), and getOriginal() to inspect modified attributes, verify column changes, and retrieve pre-update database values. When building...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -2219,6 +2695,205 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-mailable-preview-in-browser-routes",
+    "title": "Preview Mailables Directly in Your Browser Routes",
+    "category": "Laravel",
+    "subcategory": "Mail",
+    "tags": [
+      "Laravel",
+      "Mail",
+      "Blade",
+      "Debugging"
+    ],
+    "created_at": "2025-05-28",
+    "effective_date": "2025-05-28",
+    "date": "2025-05-28",
+    "formatted_date": "May 28, 2025",
+    "summary": "Return Mailable instances directly from web routes to preview rendered email templates in your browser during local development. Testing HTML email layout ch...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-without-timestamps-modifier",
+    "title": "Update Model Attributes Without Mutating updated_at with withoutTimestamps()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Clean Code"
+    ],
+    "created_at": "2025-05-14",
+    "effective_date": "2025-05-14",
+    "date": "2025-05-14",
+    "formatted_date": "May 14, 2025",
+    "summary": "Use Model::withoutTimestamps() to update records during data migrations or internal status increments without altering their updatedat timestamps. When runni...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-collection-times-numeric-ranges",
+    "title": "Generate Iterative Collections Quickly with Collection::times()",
+    "category": "Laravel",
+    "subcategory": "Collections",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Clean Code"
+    ],
+    "created_at": "2025-04-30",
+    "effective_date": "2025-04-30",
+    "date": "2025-04-30",
+    "formatted_date": "Apr 30, 2025",
+    "summary": "Use Collection::times() to generate numeric-sequence collections or execute closures N times fluently without writing for loops. When creating dummy datasets...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-migration-foreign-id-for-model",
+    "title": "Define Type-Safe Foreign Keys with $table->foreignIdFor()",
+    "category": "Laravel",
+    "subcategory": "Database",
+    "tags": [
+      "Laravel",
+      "Database",
+      "Migrations",
+      "Eloquent"
+    ],
+    "created_at": "2025-04-16",
+    "effective_date": "2025-04-16",
+    "date": "2025-04-16",
+    "formatted_date": "Apr 16, 2025",
+    "summary": "Use $table-foreignIdFor(Model::class) in migrations to create foreign key columns that automatically match the model's primary key type and name. Hardcoding...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-str-is-url-validation",
+    "title": "Validate and Detect URLs Cleanly with Str::isUrl()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Strings",
+      "Validation",
+      "Utilities"
+    ],
+    "created_at": "2025-03-26",
+    "effective_date": "2025-03-26",
+    "date": "2025-03-26",
+    "formatted_date": "Mar 26, 2025",
+    "summary": "Use Str::isUrl() to determine whether a string is a valid URL with customizable protocol restrictions. Checking if an input string is a valid web URL using c...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-db-when-querying-for-longer-than",
+    "title": "Detect Cumulative Database Query Spikes with whenQueryingForLongerThan()",
+    "category": "Laravel",
+    "subcategory": "Database",
+    "tags": [
+      "Laravel",
+      "Database",
+      "Performance",
+      "Monitoring"
+    ],
+    "created_at": "2025-03-12",
+    "effective_date": "2025-03-12",
+    "date": "2025-03-12",
+    "formatted_date": "Mar 12, 2025",
+    "summary": "Use DB::whenQueryingForLongerThan() to monitor the cumulative time spent in database queries per HTTP request and notify developers of slow requests. While D...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-where-morphed-to-polymorphic",
+    "title": "Query Polymorphic Relations Expressively with whereMorphedTo()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Polymorphism",
+      "Database"
+    ],
+    "created_at": "2025-02-26",
+    "effective_date": "2025-02-26",
+    "date": "2025-02-26",
+    "formatted_date": "Feb 26, 2025",
+    "summary": "Use whereMorphedTo() to query polymorphic models without manually checking both type and ID columns. When querying polymorphic relationships (such as comment...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-container-app-optimizes-deployment",
+    "title": "Hook Custom Cache Generation into php artisan optimize with App::optimizes()",
+    "category": "Laravel",
+    "subcategory": "Architecture",
+    "tags": [
+      "Laravel",
+      "Deployment",
+      "Artisan",
+      "Performance"
+    ],
+    "created_at": "2025-02-19",
+    "effective_date": "2025-02-19",
+    "date": "2025-02-19",
+    "formatted_date": "Feb 19, 2025",
+    "summary": "Use App::optimizes() in Service Providers to register custom cache generation commands that automatically run during php artisan optimize. When building pack...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-tappable-scopes-eloquent-scout",
     "title": "Reusable Tappable Scopes for Eloquent and Laravel Scout Queries",
     "category": "Laravel",
@@ -2236,6 +2911,81 @@
     "formatted_date": "Feb 7, 2025",
     "summary": "Extract query filtering logic into invokable scope classes that work interchangeably across Eloquent query builders and Laravel Scout search instances. Stand...",
     "readingTime": 2,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-database-raw-ddl-statements",
+    "title": "Execute Raw DDL and Schema Commands Safely with DB::statement()",
+    "category": "Laravel",
+    "subcategory": "Database",
+    "tags": [
+      "Laravel",
+      "Database",
+      "Migrations",
+      "SQL"
+    ],
+    "created_at": "2025-01-22",
+    "effective_date": "2025-01-22",
+    "date": "2025-01-22",
+    "formatted_date": "Jan 22, 2025",
+    "summary": "Use DB::statement() in database migrations to execute raw SQL statements for database triggers, stored procedures, and full-text indexes. While Laravel's Sch...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-container-contextual-attributes",
+    "title": "Inject Configuration and Models Directly with Contextual Attributes",
+    "category": "Laravel",
+    "subcategory": "Architecture",
+    "tags": [
+      "Laravel",
+      "Container",
+      "Attributes",
+      "PHP 8.2+"
+    ],
+    "created_at": "2025-01-15",
+    "effective_date": "2025-01-15",
+    "date": "2025-01-15",
+    "formatted_date": "Jan 15, 2025",
+    "summary": "Use #[Config], #[CurrentUser], and #[RouteParameter] attributes to inject configuration and contextual parameters directly into service constructors. Traditi...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-testing-faker-valid-modifier",
+    "title": "Enforce Specific Fake Data Constraints with Faker's valid() Modifier",
+    "category": "Laravel",
+    "subcategory": "Testing",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Faker",
+      "Clean Code"
+    ],
+    "created_at": "2024-12-25",
+    "effective_date": "2024-12-25",
+    "date": "2024-12-25",
+    "formatted_date": "Dec 25, 2024",
+    "summary": "Use Faker's valid() modifier in seeders and factories to generate values that strictly satisfy custom validation closures. When generating fake data for mode...",
+    "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
       "text": "text-red-700 dark:text-red-300",
@@ -2269,6 +3019,79 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-collection-when-not-empty-transformations",
+    "title": "Transform Non-Empty Datasets Fluently with whenNotEmpty()",
+    "category": "Laravel",
+    "subcategory": "Collections",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Clean Code"
+    ],
+    "created_at": "2024-12-18",
+    "effective_date": "2024-12-18",
+    "date": "2024-12-18",
+    "formatted_date": "Dec 18, 2024",
+    "summary": "Use whenNotEmpty() on Laravel Collections to execute transformations or side effects only when collections contain items. When transforming collections or se...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-factory-custom-state-modifiers",
+    "title": "Define Clean Model Variations with Factory State Methods",
+    "category": "Laravel",
+    "subcategory": "Testing",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Factories",
+      "Clean Code"
+    ],
+    "created_at": "2024-11-27",
+    "effective_date": "2024-11-27",
+    "date": "2024-11-27",
+    "formatted_date": "Nov 27, 2024",
+    "summary": "Define expressive state modifier methods on Eloquent Factories to generate realistic model variations in test suites. When writing unit and feature tests, ma...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-collection-zip-combine-arrays",
+    "title": "Combine Multiple Arrays by Index with Collection::zip()",
+    "category": "Laravel",
+    "subcategory": "Collections",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Data Transformation"
+    ],
+    "created_at": "2024-11-20",
+    "effective_date": "2024-11-20",
+    "date": "2024-11-20",
+    "formatted_date": "Nov 20, 2024",
+    "summary": "Use zip() on Laravel Collections to merge array elements sharing matching index positions into paired sub-collections. When processing paired tabular data (s...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "tall-stack-filament-admin-panel",
     "title": "Accelerate TALL Stack Development with FilamentPHP",
     "category": "Filament",
@@ -2288,6 +3111,106 @@
       "bg": "bg-amber-50 dark:bg-amber-950/50",
       "text": "text-amber-700 dark:text-amber-300",
       "border": "border-amber-100 dark:border-amber-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-artisan-closure-commands-console-routes",
+    "title": "Create Lightweight CLI Tools with Closure Commands in routes/console.php",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Artisan",
+      "CLI",
+      "Clean Code"
+    ],
+    "created_at": "2024-10-30",
+    "effective_date": "2024-10-30",
+    "date": "2024-10-30",
+    "formatted_date": "Oct 30, 2024",
+    "summary": "Use Artisan::command() in routes/console.php to build focused CLI commands using closures without creating dedicated Command classes. Creating a full php art...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-collection-every-predicate-check",
+    "title": "Verify Entire Datasets with Collection::every()",
+    "category": "Laravel",
+    "subcategory": "Collections",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Validation",
+      "Clean Code"
+    ],
+    "created_at": "2024-10-16",
+    "effective_date": "2024-10-16",
+    "date": "2024-10-16",
+    "formatted_date": "Oct 16, 2024",
+    "summary": "Use every() on Laravel Collections to verify whether every single item in a collection satisfies a truth test. When validating whether all line items in an o...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-without-events-mute-observers",
+    "title": "Mute Model Observers During Bulk Updates with Model::withoutEvents()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Observers",
+      "Performance"
+    ],
+    "created_at": "2024-09-25",
+    "effective_date": "2024-09-25",
+    "date": "2024-09-25",
+    "formatted_date": "Sep 25, 2024",
+    "summary": "Use Model::withoutEvents() to execute model operations while temporarily suppressing all Eloquent events and observers. When running mass database seeds, bat...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-collection-dot-and-undot-arrays",
+    "title": "Flatten and Restore Nested Arrays with Collection::dot() and undot()",
+    "category": "Laravel",
+    "subcategory": "Collections",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Arrays",
+      "Data Transformation"
+    ],
+    "created_at": "2024-09-18",
+    "effective_date": "2024-09-18",
+    "date": "2024-09-18",
+    "formatted_date": "Sep 18, 2024",
+    "summary": "Use dot() to flatten nested multi-dimensional arrays into single-level dot notation maps, and undot() to reconstruct full nested structures. When storing nes...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
     },
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
@@ -2341,6 +3264,55 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-request-fingerprint-unique-identification",
+    "title": "Identify Client Requests with $request->fingerprint()",
+    "category": "Laravel",
+    "subcategory": "HTTP API",
+    "tags": [
+      "Laravel",
+      "HTTP",
+      "Rate Limiting",
+      "Security"
+    ],
+    "created_at": "2024-08-28",
+    "effective_date": "2024-08-28",
+    "date": "2024-08-28",
+    "formatted_date": "Aug 28, 2024",
+    "summary": "Use $request-fingerprint() to generate unique client identity hashes for rate limiting, deduplication, and guest session tracking. When rate-limiting public...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-collection-contains-one-item",
+    "title": "Check for Exactly One Collection Item with containsOneItem()",
+    "category": "Laravel",
+    "subcategory": "Collections",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Clean Code"
+    ],
+    "created_at": "2024-08-21",
+    "effective_date": "2024-08-21",
+    "date": "2024-08-21",
+    "formatted_date": "Aug 21, 2024",
+    "summary": "Use containsOneItem() on Laravel Collections instead of count() === 1 to write cleaner, more expressive dataset assertions. Checking whether a collection or...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-config-helper-get-set",
     "title": "Retrieve and Override Configurations with the config() Helper",
     "category": "Laravel",
@@ -2355,6 +3327,30 @@
     "date": "2024-08-21",
     "formatted_date": "Aug 21, 2024",
     "summary": "Use config('app.name') to retrieve settings and config(['app.debug' =true]) to set runtime overrides. The config() helper accesses application configuration...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-collection-pipe-custom-transforms",
+    "title": "Pass Collections into Custom Processors with Collection::pipe()",
+    "category": "Laravel",
+    "subcategory": "Collections",
+    "tags": [
+      "Laravel",
+      "Collections",
+      "Clean Code"
+    ],
+    "created_at": "2024-07-31",
+    "effective_date": "2024-07-31",
+    "date": "2024-07-31",
+    "formatted_date": "Jul 31, 2024",
+    "summary": "Use Collection::pipe() to pass the entire collection into a custom closure or external service class without breaking method chaining. When performing custom...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -2469,6 +3465,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-gate-deny-as-not-found-security",
+    "title": "Prevent Information Disclosure with Gate::denyAsNotFound()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Authorization",
+      "Security",
+      "HTTP"
+    ],
+    "created_at": "2024-07-17",
+    "effective_date": "2024-07-17",
+    "date": "2024-07-17",
+    "formatted_date": "Jul 17, 2024",
+    "summary": "Use Response::denyAsNotFound() in policies to return a 404 Not Found response instead of 403 Forbidden, concealing the existence of private resources. Return...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-pint-single-line-empty-constructors",
     "title": "Format Single-Line Property Promotion Constructors with Pint",
     "category": "Laravel",
@@ -2483,6 +3504,81 @@
     "date": "2024-06-27",
     "formatted_date": "Jun 27, 2024",
     "summary": "Configure Laravel Pint to collapse empty constructor bodies with promoted properties onto a single line for compact PHP 8 class declarations. PHP 8 construct...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-pipeline-send-multi-step-workflows",
+    "title": "Execute Multi-Step Business Workflows with the Pipeline Facade",
+    "category": "Laravel",
+    "subcategory": "Architecture",
+    "tags": [
+      "Laravel",
+      "Architecture",
+      "Design Patterns",
+      "Clean Code"
+    ],
+    "created_at": "2024-06-26",
+    "effective_date": "2024-06-26",
+    "date": "2024-06-26",
+    "formatted_date": "Jun 26, 2024",
+    "summary": "Use Laravel's Pipeline facade to pass objects through sequential pipe classes, keeping complex order processing and data transformations modular. When an app...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-auth-logout-other-devices",
+    "title": "Invalidate Sessions on Other Devices with Auth::logoutOtherDevices()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Authentication",
+      "Security",
+      "Sessions"
+    ],
+    "created_at": "2024-06-12",
+    "effective_date": "2024-06-12",
+    "date": "2024-06-12",
+    "formatted_date": "Jun 12, 2024",
+    "summary": "Use Auth::logoutOtherDevices() to terminate a user's active login sessions across other browsers and mobile devices after password updates. When a user updat...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-prevent-lazy-loading-strict-mode",
+    "title": "Detect and Eliminate N+1 Queries in Development with preventLazyLoading()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Performance",
+      "Debugging"
+    ],
+    "created_at": "2024-05-29",
+    "effective_date": "2024-05-29",
+    "date": "2024-05-29",
+    "formatted_date": "May 29, 2024",
+    "summary": "Enable Model::preventLazyLoading() in local development to automatically throw exceptions whenever a relationship is lazy loaded. Accidentally accessing rela...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -2539,6 +3635,81 @@
       "bg": "bg-indigo-50 dark:bg-indigo-950/50",
       "text": "text-indigo-700 dark:text-indigo-300",
       "border": "border-indigo-100 dark:border-indigo-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-http-with-token-bearer-authentication",
+    "title": "Authenticate External API Requests Cleanly with withToken()",
+    "category": "Laravel",
+    "subcategory": "HTTP API",
+    "tags": [
+      "Laravel",
+      "HTTP",
+      "API",
+      "Authentication"
+    ],
+    "created_at": "2024-05-15",
+    "effective_date": "2024-05-15",
+    "date": "2024-05-15",
+    "formatted_date": "May 15, 2024",
+    "summary": "Use withToken() on the Laravel HTTP client to attach Authorization Bearer tokens without manual header string formatting. When sending authenticated requests...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-str-headline-human-readable-titles",
+    "title": "Convert Variable Names and Slugs to Title Case with Str::headline()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Strings",
+      "Formatting",
+      "Utilities"
+    ],
+    "created_at": "2024-04-24",
+    "effective_date": "2024-04-24",
+    "date": "2024-04-24",
+    "formatted_date": "Apr 24, 2024",
+    "summary": "Use Str::headline() to convert camelCase, snakecase, or kebab-case strings into clean, human-readable title headings. When generating automated table headers...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-http-pool-concurrent-requests",
+    "title": "Send Concurrent HTTP Requests with Http::pool()",
+    "category": "Laravel",
+    "subcategory": "HTTP API",
+    "tags": [
+      "Laravel",
+      "HTTP",
+      "Performance",
+      "Concurrency"
+    ],
+    "created_at": "2024-04-10",
+    "effective_date": "2024-04-10",
+    "date": "2024-04-10",
+    "formatted_date": "Apr 10, 2024",
+    "summary": "Use Http::pool() to dispatch multiple external API requests concurrently in parallel rather than waiting for sequential responses. When your application fetc...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
     },
     "author": "Punyapal Shah",
     "author_url": "https://x.com/MrPunyapal"
@@ -2630,6 +3801,31 @@
     "date": "2024-03-16",
     "formatted_date": "Mar 16, 2024",
     "summary": "Define PHP Backed Enums on model $casts to automatically hydrate strings and integers into typed Enums. Storing status strings like 'active' or 'pending' as...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-str-password-secure-generation",
+    "title": "Generate Secure Random Passwords with Str::password()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Security",
+      "Strings",
+      "Utilities"
+    ],
+    "created_at": "2024-03-13",
+    "effective_date": "2024-03-13",
+    "date": "2024-03-13",
+    "formatted_date": "Mar 13, 2024",
+    "summary": "Use Str::password() to generate cryptographically secure random passwords with customizable length and character constraints. Generating random temporary pas...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -3159,6 +4355,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-context-facade-metadata-correlation",
+    "title": "Correlate Requests and Queue Jobs with the Context Facade",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Logging",
+      "Queue",
+      "Architecture"
+    ],
+    "created_at": "2023-12-20",
+    "effective_date": "2023-12-20",
+    "date": "2023-12-20",
+    "formatted_date": "Dec 20, 2023",
+    "summary": "Use the Context facade to capture request metadata that automatically propagates to logs, exception reports, and queued jobs. When an HTTP request dispatches...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-eloquent-order-by-subquery",
     "title": "Sort Eloquent Results by Subquery Columns with orderByDesc()",
     "category": "Laravel",
@@ -3200,6 +4421,31 @@
     "formatted_date": "Dec 13, 2023",
     "summary": "Use Laravel's built-in can: middleware to enforce policy authorization checks directly on route declarations. Instead of calling $this-authorize('update', $p...",
     "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-queue-job-rate-limiting",
+    "title": "Throttle Background Queue Jobs with RateLimiter::for()",
+    "category": "Laravel",
+    "subcategory": "Queue",
+    "tags": [
+      "Laravel",
+      "Queue",
+      "Rate Limiting",
+      "Architecture"
+    ],
+    "created_at": "2023-12-06",
+    "effective_date": "2023-12-06",
+    "date": "2023-12-06",
+    "formatted_date": "Dec 6, 2023",
+    "summary": "Use RateLimiter inside queue job middleware to throttle background job execution against third-party API rate limits. When background queue workers process e...",
+    "readingTime": 2,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
       "text": "text-red-700 dark:text-red-300",
@@ -3385,6 +4631,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-validation-rule-prohibited-if",
+    "title": "Reject Mutually Exclusive Inputs with Rule::prohibitedIf()",
+    "category": "Laravel",
+    "subcategory": "Validation",
+    "tags": [
+      "Laravel",
+      "Validation",
+      "Security",
+      "Clean Code"
+    ],
+    "created_at": "2023-11-22",
+    "effective_date": "2023-11-22",
+    "date": "2023-11-22",
+    "formatted_date": "Nov 22, 2023",
+    "summary": "Use Rule::prohibitedIf() and Rule::prohibited() to ensure specific fields cannot be submitted based on other form selections. When building forms with mutual...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-migration-column-comments-schema",
     "title": "Document Database Schemas Directly in Migrations with comment()",
     "category": "Laravel",
@@ -3449,6 +4720,31 @@
     "date": "2023-11-09",
     "formatted_date": "Nov 9, 2023",
     "summary": "Execute standard caching and optimization Artisan commands during production CI/CD deployment scripts. Deploying Laravel applications without caching routes,...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-request-merge-if-missing-defaults",
+    "title": "Inject Default Values Safely with $request->mergeIfMissing()",
+    "category": "Laravel",
+    "subcategory": "HTTP API",
+    "tags": [
+      "Laravel",
+      "HTTP",
+      "Form Requests",
+      "Clean Code"
+    ],
+    "created_at": "2023-11-08",
+    "effective_date": "2023-11-08",
+    "date": "2023-11-08",
+    "formatted_date": "Nov 8, 2023",
+    "summary": "Use $request-mergeIfMissing() in Form Requests to set default fallback parameters without overwriting user-provided values. When handling search queries, pag...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -3663,6 +4959,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-route-singleton-resource-endpoints",
+    "title": "Register 1:1 Resources with Route::singleton()",
+    "category": "Laravel",
+    "subcategory": "Routing",
+    "tags": [
+      "Laravel",
+      "Routing",
+      "REST",
+      "Clean Code"
+    ],
+    "created_at": "2023-10-25",
+    "effective_date": "2023-10-25",
+    "date": "2023-10-25",
+    "formatted_date": "Oct 25, 2023",
+    "summary": "Use Route::singleton() to register RESTful routes for resources that have only a single instance per user (like /profile or /settings). Standard Route::resou...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-collection-duplicates-detection",
     "title": "Identify and Extract Duplicate Values with Collection::duplicates()",
     "category": "Laravel",
@@ -3727,6 +5048,31 @@
     "date": "2023-10-11",
     "formatted_date": "Oct 11, 2023",
     "summary": "Use anonymous class migrations (return new class extends Migration) to eliminate class name collisions in large Laravel applications. In traditional Laravel...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-testing-lazily-refresh-database",
+    "title": "Speed Up Test Suites with the LazilyRefreshDatabase Trait",
+    "category": "Laravel",
+    "subcategory": "Testing",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Performance",
+      "Database"
+    ],
+    "created_at": "2023-10-11",
+    "effective_date": "2023-10-11",
+    "date": "2023-10-11",
+    "formatted_date": "Oct 11, 2023",
+    "summary": "Use LazilyRefreshDatabase instead of RefreshDatabase to run database transactions only for tests that actually touch the database. When running large test su...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -3858,6 +5204,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-factory-recycle-existing-models",
+    "title": "Reuse Model Instances Across Nested Factories with Factory recycle()",
+    "category": "Laravel",
+    "subcategory": "Testing",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Factories",
+      "Performance"
+    ],
+    "created_at": "2023-09-27",
+    "effective_date": "2023-09-27",
+    "date": "2023-09-27",
+    "formatted_date": "Sep 27, 2023",
+    "summary": "Use Factory::recycle() to pass existing parent models to child factories, avoiding duplicate database record creation in test fixtures. When generating compl...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "mysql-subquery-same-table-update-restriction",
     "title": "Work Around MySQL Subquery Restrictions on Target Tables",
     "category": "MySQL",
@@ -3946,6 +5317,31 @@
     "date": "2023-09-13",
     "formatted_date": "Sep 13, 2023",
     "summary": "Use loadMissing() to eager-load relationships only if they have not already been loaded on the model instance. When passing models through service layers, no...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-http-fake-prevent-stray-requests",
+    "title": "Catch Unmocked External API Calls with Http::preventStrayRequests()",
+    "category": "Laravel",
+    "subcategory": "Testing",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "HTTP",
+      "Security"
+    ],
+    "created_at": "2023-09-13",
+    "effective_date": "2023-09-13",
+    "date": "2023-09-13",
+    "formatted_date": "Sep 13, 2023",
+    "summary": "Enable Http::preventStrayRequests() in test suites to throw exceptions whenever HTTP requests are made without explicit mocks. In test suites, accidental out...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -4054,6 +5450,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-eloquent-to-base-query-builder",
+    "title": "Reduce Memory Usage in Heavy Read Queries with toBase()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Performance"
+    ],
+    "created_at": "2023-08-30",
+    "effective_date": "2023-08-30",
+    "date": "2023-08-30",
+    "formatted_date": "Aug 30, 2023",
+    "summary": "Use toBase() on Eloquent queries to retrieve raw stdClass records without the memory overhead of hydrating full Eloquent models. When querying tens of thousa...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-update-existing-pivot-records",
     "title": "Update Pivot Table Attributes Directly with updateExistingPivot()",
     "category": "Laravel",
@@ -4119,6 +5540,31 @@
     "date": "2023-08-23",
     "formatted_date": "Aug 23, 2023",
     "summary": "Configure dynamic rate limiting thresholds by IP, user ID, or subscription tier using RateLimiter::for() in AppServiceProvider. Protecting public APIs, login...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-touching-parent-timestamps",
+    "title": "Invalidate Caches Automatically by Touching Parent Timestamps with $touches",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Cache",
+      "Relationships"
+    ],
+    "created_at": "2023-08-16",
+    "effective_date": "2023-08-16",
+    "date": "2023-08-16",
+    "formatted_date": "Aug 16, 2023",
+    "summary": "Define the $touches property on child models to update parent model updatedat timestamps automatically when child records change. When caching parent model d...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -4204,6 +5650,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-eloquent-where-all-and-where-any",
+    "title": "Search Across Multiple Columns with whereAny() and whereAll()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Queries"
+    ],
+    "created_at": "2023-08-02",
+    "effective_date": "2023-08-02",
+    "date": "2023-08-02",
+    "formatted_date": "Aug 2, 2023",
+    "summary": "Use whereAny() and whereAll() to apply query conditions across multiple database columns without repetitive orWhere() closures. When building search features...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-http-client-throw-exception-handling",
     "title": "Throw Exceptions on HTTP Client Errors with throw() and throwIf()",
     "category": "Laravel",
@@ -4269,6 +5740,31 @@
     "date": "2023-07-26",
     "formatted_date": "Jul 26, 2023",
     "summary": "Generate custom, reusable validation rule objects using php artisan make:rule with the Illuminate\\Contracts\\Validation\\ValidationRule interface. When complex...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-insert-or-ignore-queries",
+    "title": "Batch Insert Records Safely with insertOrIgnore()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Performance"
+    ],
+    "created_at": "2023-07-19",
+    "effective_date": "2023-07-19",
+    "date": "2023-07-19",
+    "formatted_date": "Jul 19, 2023",
+    "summary": "Use insertOrIgnore() to perform mass database insertions while silently ignoring unique constraint violations and duplicate key errors. When batch-importing...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -4369,6 +5865,31 @@
     "date": "2023-07-05",
     "formatted_date": "Jul 5, 2023",
     "summary": "Use DB::scalar() to execute raw SQL queries that return a single scalar value without array wrapping. When running aggregate SQL functions, database version...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-first-where-query-shorthand",
+    "title": "Retrieve Single Matching Models with firstWhere()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Clean Code"
+    ],
+    "created_at": "2023-07-05",
+    "effective_date": "2023-07-05",
+    "date": "2023-07-05",
+    "formatted_date": "Jul 5, 2023",
+    "summary": "Replace where('column', $val)-first() chains with the concise firstWhere() query builder method. Looking up a single model by email, slug, or token using Mod...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -4596,6 +6117,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-eloquent-doesnt-have-relationships",
+    "title": "Find Models Without Related Records Using doesntHave() and whereDoesntHave()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Queries"
+    ],
+    "created_at": "2023-06-21",
+    "effective_date": "2023-06-21",
+    "date": "2023-06-21",
+    "formatted_date": "Jun 21, 2023",
+    "summary": "Use doesntHave() and whereDoesntHave() to query models that have zero related child records. Finding orphan records or inactive users (such as users who have...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-eloquent-merge-casts-dynamic",
     "title": "Dynamically Append Model Casts with mergeCasts()",
     "category": "Laravel",
@@ -4791,6 +6337,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-eloquent-where-key-primary-lookup",
+    "title": "Query Primary Keys Dynamically with whereKey() and whereKeyNot()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Clean Code"
+    ],
+    "created_at": "2023-06-07",
+    "effective_date": "2023-06-07",
+    "date": "2023-06-07",
+    "formatted_date": "Jun 7, 2023",
+    "summary": "Use whereKey() and whereKeyNot() to query model primary keys automatically without hardcoding 'id' column names. Models with custom primary keys (such as pro...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-data-get-nested-array-traversal",
     "title": "Safely Traverse Deeply Nested Arrays and Objects with data_get()",
     "category": "Laravel",
@@ -4856,6 +6427,31 @@
     "date": "2023-05-31",
     "formatted_date": "May 31, 2023",
     "summary": "Use whenLoaded() inside API Resources to include related models only when they have been explicitly eager-loaded by the controller. When transforming Eloquen...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-eloquent-with-exists-subquery",
+    "title": "Check Relationship Presence Efficiently with withExists()",
+    "category": "Laravel",
+    "subcategory": "Eloquent",
+    "tags": [
+      "Laravel",
+      "Eloquent",
+      "Database",
+      "Performance"
+    ],
+    "created_at": "2023-05-24",
+    "effective_date": "2023-05-24",
+    "date": "2023-05-24",
+    "formatted_date": "May 24, 2023",
+    "summary": "Use withExists() in Eloquent queries to inject boolean relationship presence flags directly into model attributes via SQL subqueries. When displaying lists o...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -4965,6 +6561,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-str-words-and-limit-truncation",
+    "title": "Truncate Long Text Cleanly with Str::words() and Str::limit()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Strings",
+      "Blade",
+      "Utilities"
+    ],
+    "created_at": "2023-05-10",
+    "effective_date": "2023-05-10",
+    "date": "2023-05-10",
+    "formatted_date": "May 10, 2023",
+    "summary": "Use Str::words() to truncate text by word count and Str::limit() to truncate by character length with customizable ellipses. When rendering blog card excerpt...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-form-request-after-validation-hooks",
     "title": "Add Complex Business Checks with FormRequest::after() Hooks",
     "category": "Laravel",
@@ -5005,6 +6626,31 @@
     "date": "2023-04-26",
     "formatted_date": "Apr 26, 2023",
     "summary": "Use Str::markdown() to convert GitHub Flavored Markdown into secure, sanitized HTML using CommonMark under the hood. Rendering user comments, documentation p...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-str-swap-multiple-string-replacement",
+    "title": "Perform Multiple String Replacements Simultaneously with Str::swap()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Strings",
+      "Templates",
+      "Utilities"
+    ],
+    "created_at": "2023-04-26",
+    "effective_date": "2023-04-26",
+    "date": "2023-04-26",
+    "formatted_date": "Apr 26, 2023",
+    "summary": "Use Str::swap() to perform atomic multi-pattern string replacements using key-value translation dictionaries. When generating template notifications, substit...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -5090,6 +6736,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-str-chop-start-and-chop-end",
+    "title": "Strip Specific Prefixes and Suffixes with Str::chopStart() and chopEnd()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Strings",
+      "Utilities",
+      "Clean Code"
+    ],
+    "created_at": "2023-04-12",
+    "effective_date": "2023-04-12",
+    "date": "2023-04-12",
+    "formatted_date": "Apr 12, 2023",
+    "summary": "Use Str::chopStart() and Str::chopEnd() to remove specific leading or trailing substrings without regex or manual length slicing. When sanitizing URLs, remov...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-session-pull-retrieve-and-forget",
     "title": "Retrieve and Delete Session Data in One Step with session()->pull()",
     "category": "Laravel",
@@ -5155,6 +6826,31 @@
     "date": "2023-03-29",
     "formatted_date": "Mar 29, 2023",
     "summary": "Use has() and for() on Eloquent Factories to create parent and child relationship hierarchies in a single readable chain. Creating relational test models (su...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-number-file-size-human-readable",
+    "title": "Format Raw Bytes into Human-Readable File Sizes with Number::fileSize()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Formatting",
+      "Files",
+      "Utilities"
+    ],
+    "created_at": "2023-03-29",
+    "effective_date": "2023-03-29",
+    "date": "2023-03-29",
+    "formatted_date": "Mar 29, 2023",
+    "summary": "Use Number::fileSize() to convert raw byte integers into formatted KB, MB, GB, and TB strings with customizable precision. When displaying file upload sizes...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -5240,6 +6936,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-number-utility-currency-and-percentages",
+    "title": "Format Currencies, Percentages, and Ordinals with the Number Utility",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Formatting",
+      "Utilities",
+      "Localization"
+    ],
+    "created_at": "2023-03-15",
+    "effective_date": "2023-03-15",
+    "date": "2023-03-15",
+    "formatted_date": "Mar 15, 2023",
+    "summary": "Use Laravel's Number utility class to format numbers into localized currencies, percentages, and spelled-out words. Formatting numbers for localized user int...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-route-without-middleware-exclusion",
     "title": "Exclude Specific Middleware from Route Groups with withoutMiddleware()",
     "category": "Laravel",
@@ -5281,6 +7002,31 @@
     "formatted_date": "Mar 8, 2023",
     "summary": "Use prepareForValidation() inside Form Request classes to trim, normalize, cast, or pre-format request inputs before validation rules execute. Validation rul...",
     "readingTime": 2,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-sleep-helper-testable-delays",
+    "title": "Test Time Delays Without Slowing Down Tests Using the Sleep Helper",
+    "category": "Laravel",
+    "subcategory": "Testing",
+    "tags": [
+      "Laravel",
+      "Testing",
+      "Utilities",
+      "Clean Code"
+    ],
+    "created_at": "2023-03-01",
+    "effective_date": "2023-03-01",
+    "date": "2023-03-01",
+    "formatted_date": "Mar 1, 2023",
+    "summary": "Replace PHP's native sleep() and usleep() with Laravel's Sleep facade to write testable, fakeable time pauses. Using native sleep(5) in queue jobs or API pol...",
+    "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
       "text": "text-red-700 dark:text-red-300",
@@ -5355,6 +7101,31 @@
     "formatted_date": "Feb 22, 2023",
     "summary": "Compare two Eloquent model instances using is() and isNot() to verify matching primary keys, table names, and database connections. Comparing model identity...",
     "readingTime": 2,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-lottery-probabilistic-execution",
+    "title": "Execute Tasks Probabilistically with the Lottery Class",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Architecture",
+      "Performance",
+      "Utilities"
+    ],
+    "created_at": "2023-02-15",
+    "effective_date": "2023-02-15",
+    "date": "2023-02-15",
+    "formatted_date": "Feb 15, 2023",
+    "summary": "Use the Lottery class to run sample logging, performance profiling, and background metrics on a fraction of incoming requests. Running expensive diagnostic o...",
+    "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
       "text": "text-red-700 dark:text-red-300",
@@ -5464,6 +7235,31 @@
     "author_url": "https://x.com/MrPunyapal"
   },
   {
+    "slug": "laravel-throw-if-and-throw-unless-exceptions",
+    "title": "Throw Exceptions Conditionally with throw_if() and throw_unless()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Exceptions",
+      "Clean Code",
+      "Error Handling"
+    ],
+    "created_at": "2023-02-01",
+    "effective_date": "2023-02-01",
+    "date": "2023-02-01",
+    "formatted_date": "Feb 1, 2023",
+    "summary": "Replace multi-line if statements with expressive throwif() and throwunless() helpers for guard clauses and business validations. Writing repetitive if ($cond...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-save-quietly-without-events",
     "title": "Update Models Without Triggering Observers Using saveQuietly()",
     "category": "Laravel",
@@ -5529,6 +7325,31 @@
     "date": "2023-01-18",
     "formatted_date": "Jan 18, 2023",
     "summary": "Use Laravel's Benchmark helper to test and compare execution times of complex queries, algorithms, and closures. When optimizing database queries, comparing...",
+    "readingTime": 1,
+    "badge": {
+      "bg": "bg-red-50 dark:bg-red-950/50",
+      "text": "text-red-700 dark:text-red-300",
+      "border": "border-red-100 dark:border-red-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "laravel-rescue-helper-exception-handling",
+    "title": "Catch Exceptions and Return Fallbacks Cleanly with rescue()",
+    "category": "Laravel",
+    "subcategory": "Utilities",
+    "tags": [
+      "Laravel",
+      "Exceptions",
+      "Clean Code",
+      "Utilities"
+    ],
+    "created_at": "2023-01-18",
+    "effective_date": "2023-01-18",
+    "date": "2023-01-18",
+    "formatted_date": "Jan 18, 2023",
+    "summary": "Use the rescue() helper to execute risky operations, catch exceptions, and return fallback values without writing full try-catch blocks. When calling externa...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
