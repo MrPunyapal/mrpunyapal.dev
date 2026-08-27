@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process';
+import { execSync, spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -31,8 +31,34 @@ function getMarkdownSourceMap() {
   return map;
 }
 
+function getChangedTipsFromGit() {
+  const changed = new Set();
+  try {
+    const status = execSync('git -C content/tips status --porcelain', { encoding: 'utf-8' });
+    for (const line of status.split('\n')) {
+      const match = line.trim().match(/^[AMDRCU?]{1,2}\s+(.+)$/);
+      if (match && match[1].endsWith('.md')) {
+        changed.add(path.basename(match[1], '.md'));
+      }
+    }
+  } catch {}
+
+  try {
+    const diff = execSync('git -C content/tips diff --name-only HEAD~1 HEAD', { encoding: 'utf-8' });
+    for (const line of diff.split('\n')) {
+      const trimmed = line.trim();
+      if (trimmed.endsWith('.md')) {
+        changed.add(path.basename(trimmed, '.md'));
+      }
+    }
+  } catch {}
+
+  return changed;
+}
+
 function getPendingPages() {
   const pending = [];
+  const changedTips = getChangedTipsFromGit();
 
   const mainPages = [
     { route: '/', output: 'og/master.png', source: 'index.html' },
@@ -50,7 +76,7 @@ function getPendingPages() {
 
     if (isForce || !fs.existsSync(outPath)) {
       pending.push(page);
-    } else if (fs.existsSync(srcPath)) {
+    } else if (!process.env.CI && fs.existsSync(srcPath)) {
       const srcStat = fs.statSync(srcPath);
       const outStat = fs.statSync(outPath);
       if (srcStat.mtimeMs > outStat.mtimeMs) {
@@ -69,9 +95,9 @@ function getPendingPages() {
       const outPath = path.resolve(rootDir, 'public', 'og', 'tips', `${slug}.png`);
       const mdSourcePath = mdMap.get(slug);
 
-      if (isForce || !fs.existsSync(outPath)) {
+      if (isForce || !fs.existsSync(outPath) || changedTips.has(slug)) {
         pending.push({ route: `/tips/${slug}`, output: `og/tips/${slug}.png` });
-      } else if (mdSourcePath && fs.existsSync(mdSourcePath)) {
+      } else if (!process.env.CI && mdSourcePath && fs.existsSync(mdSourcePath)) {
         const mdStat = fs.statSync(mdSourcePath);
         const outStat = fs.statSync(outPath);
         if (mdStat.mtimeMs > outStat.mtimeMs) {
