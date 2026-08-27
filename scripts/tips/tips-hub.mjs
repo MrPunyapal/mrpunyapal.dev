@@ -170,10 +170,15 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
                 <div class="animate-fade-up">
-                    <div class="flex items-center justify-between gap-3 sm:gap-4 mb-3">
-                        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight whitespace-nowrap">
-                            Laravel Tips
-                        </h1>
+                    <div class="flex items-center justify-between gap-3 sm:gap-4 mb-3 flex-wrap">
+                        <div class="flex items-center gap-2.5 sm:gap-3">
+                            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight whitespace-nowrap">
+                                Laravel Tips
+                            </h1>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-medium border bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border-red-200 dark:border-red-900/60">
+                                ${tips.length} tips
+                            </span>
+                        </div>
                         <div class="flex items-center gap-2 shrink-0">
                             <button id="random-tip-btn" type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors text-xs font-mono group cursor-pointer" aria-label="Open a random developer tip">
                                 <svg class="w-3.5 h-3.5 text-red-500 group-hover:rotate-180 transition-transform duration-500" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
