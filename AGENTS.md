@@ -122,7 +122,7 @@ Tip Markdown files live in `content/tips/content/*.md` with YAML frontmatter:
 
 ```yaml
 ---
-category: "Laravel" # Primary category (Laravel, Pest PHP, PHP, Filament, JavaScript, TypeScript, Git)
+category: "Laravel" # Primary category (Laravel, Livewire, Pest PHP, PHP, Filament, JavaScript, TypeScript, Git)
 subcategory: "Eloquent" # Optional subcategory (Eloquent, Testing, Performance, Architecture, Security, etc.)
 tags: ["Laravel", "Eloquent"]
 date: "YYYY-MM-DD" # or created_at: "YYYY-MM-DD"

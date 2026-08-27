@@ -133,6 +133,12 @@ export function getCategoryBadge(category) {
                 text: 'text-blue-700 dark:text-blue-300',
                 border: 'border-blue-100 dark:border-blue-900/60',
             };
+        case 'Livewire':
+            return {
+                bg: 'bg-pink-50 dark:bg-pink-950/50',
+                text: 'text-pink-700 dark:text-pink-300',
+                border: 'border-pink-100 dark:border-pink-900/60',
+            };
         case 'Git':
         case 'DevOps':
         case 'Security':
