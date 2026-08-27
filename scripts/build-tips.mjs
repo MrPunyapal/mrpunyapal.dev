@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 
-import { slugify, extractSummary, estimateReadingTime, marked, renderRssHtml, getTipEffectiveDate, normalizeDateStr } from './tips/tips-helpers.mjs';
+import { slugify, extractSummary, estimateReadingTime, marked, renderRssHtml, getTipEffectiveDate, normalizeDateStr, formatDate, getCategoryBadge } from './tips/tips-helpers.mjs';
 import { generateTipsHubPage } from './tips/tips-hub.mjs';
 import { generateSingleTipPage } from './tips/tips-single.mjs';
 import { generateRssFeed } from './tips/tips-rss.mjs';
@@ -149,7 +149,10 @@ export async function buildTips() {
             created_at: t.created_at,
             effective_date: t.effectiveDate,
             date: t.effectiveDate,
+            formatted_date: formatDate(t.effectiveDate),
             summary: t.summary,
+            readingTime: t.readingTime,
+            badge: getCategoryBadge(t.category),
             author: t.author,
             author_url: t.author_url,
         };

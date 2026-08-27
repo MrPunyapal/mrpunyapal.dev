@@ -581,3 +581,69 @@ export const iconSprite = `
             <symbol id="i-user" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></symbol>
         </defs>
     </svg>`;
+
+// Chunk size for progressive tip loading on the hub page
+export const TIPS_CHUNK_SIZE = 24;
+
+// Reusable tip card HTML renderer (shared by hub page and chunk generator)
+export function renderTipCard(tip) {
+    const badge = getCategoryBadge(tip.category);
+    const effectiveDate = tip.effectiveDate || getTipEffectiveDate(tip);
+
+    return `
+            <div class="tip-card group relative p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between cursor-pointer"
+                data-slug="${escapeHtml(tip.slug)}"
+                data-category="${escapeHtml(tip.category)}"
+                data-subcategory="${escapeHtml((tip.subcategory || '').toLowerCase())}"
+                data-tags="${escapeHtml(tip.tags.join(' ').toLowerCase())}"
+                data-title="${escapeHtml(tip.title.toLowerCase())}"
+                data-summary="${escapeHtml(tip.summary.toLowerCase())}">
+                
+                <!-- 4-Corner Crosshair SVG Markers -->
+                <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                    <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
+                    <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                    <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
+                    <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-1.5 mb-2.5 flex-wrap relative z-10">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${badge.bg} ${badge.text} ${badge.border}">
+                            ${escapeHtml(tip.category)}
+                        </span>
+                        ${tip.subcategory ? `
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
+                                ${escapeHtml(tip.subcategory)}
+                            </span>
+                        ` : ''}
+                    </div>
+                    <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">
+                        <a href="/tips/${tip.slug}" class="after:absolute after:inset-0 focus:outline-none">
+                            ${escapeHtml(tip.title)}
+                        </a>
+                    </h2>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
+                        ${escapeHtml(tip.summary)}
+                    </p>
+                </div>
+
+                <div class="pt-4 mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60">
+                    <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <time datetime="${escapeHtml(effectiveDate)}">${formatDate(effectiveDate)}</time>
+                        <span aria-hidden="true">·</span>
+                        <span>${tip.readingTime} min read</span>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
+                        <span>READ</span>
+                        <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </div>`
+;}

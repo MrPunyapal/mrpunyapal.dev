@@ -1,69 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { renderSiteHeader } from '../site-header.mjs';
-import { getCategoryBadge, escapeHtml, escapeJsonStr, criticalGridStyles, iconSprite, formatDate, getTipEffectiveDate } from './tips-helpers.mjs';
+import { getCategoryBadge, escapeHtml, escapeJsonStr, criticalGridStyles, iconSprite, formatDate, getTipEffectiveDate, renderTipCard, TIPS_CHUNK_SIZE } from './tips-helpers.mjs';
 
 export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) {
-    const tipsCardsHtml = tips.map((tip, idx) => {
-        const badge = getCategoryBadge(tip.category);
-        const effectiveDate = tip.effectiveDate || getTipEffectiveDate(tip);
-
-        return `
-            <div class="tip-card group relative p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between cursor-pointer"
-                data-category="${escapeHtml(tip.category)}"
-                data-subcategory="${escapeHtml((tip.subcategory || '').toLowerCase())}"
-                data-tags="${escapeHtml(tip.tags.join(' ').toLowerCase())}"
-                data-title="${escapeHtml(tip.title.toLowerCase())}"
-                data-summary="${escapeHtml(tip.summary.toLowerCase())}">
-                
-                <!-- 4-Corner Crosshair SVG Markers -->
-                <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                    <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
-                    <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                    <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">
-                    <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-
-                <div>
-                    <div class="flex items-center gap-1.5 mb-2.5 flex-wrap relative z-10">
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${badge.bg} ${badge.text} ${badge.border}">
-                            ${escapeHtml(tip.category)}
-                        </span>
-                        ${tip.subcategory ? `
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">
-                                ${escapeHtml(tip.subcategory)}
-                            </span>
-                        ` : ''}
-                    </div>
-                    <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">
-                        <a href="/tips/${tip.slug}" class="after:absolute after:inset-0 focus:outline-none">
-                            ${escapeHtml(tip.title)}
-                        </a>
-                    </h2>
-                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
-                        ${escapeHtml(tip.summary)}
-                    </p>
-                </div>
-
-                <div class="pt-4 mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60">
-                    <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
-                        <time datetime="${escapeHtml(effectiveDate)}">${formatDate(effectiveDate)}</time>
-                        <span aria-hidden="true">·</span>
-                        <span>${tip.readingTime} min read</span>
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
-                        <span>READ</span>
-                        <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </span>
-                </div>
-            </div>`;
-    }).join('\n');
+    // Render the first batch of tip cards statically into HTML (for instant 0ms paint & SEO)
+    const initialTips = tips.slice(0, TIPS_CHUNK_SIZE);
+    const tipsCardsHtml = initialTips.map(renderTipCard).join('\n');
+    const hasMoreInitial = tips.length > TIPS_CHUNK_SIZE;
 
     const filterPillsHtml = categoryList.map(cat => {
         const count = categoriesMap[cat];
@@ -327,8 +271,8 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                                         <button type="button" class="subcat-filter-btn px-2.5 py-1 rounded text-[11px] font-mono font-medium border bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all cursor-pointer whitespace-nowrap" data-subcat="${escapeHtml(subcat)}" data-categories="${escapeHtml(cats)}">
                                             ${escapeHtml(subcat)}
                                         </button>`;
-                                }).join('');
-                            })()}
+                                });
+                            })().join('')}
                         </div>
                     </div>
                 </div>
@@ -349,6 +293,9 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                 <div id="tips-container" class="grid grid-cols-1 md:grid-cols-2 border-l border-slate-200 dark:border-slate-800">
                     ${tipsCardsHtml}
                 </div>
+
+                <!-- Infinite scroll sentinel (observed by IntersectionObserver) -->
+                <div id="tips-sentinel" aria-hidden="true"${!hasMoreInitial ? ' class="hidden"' : ''}></div>
 
                 <!-- Empty State (hidden by default) -->
                 <div id="empty-state" class="hidden p-12 text-center border-t border-slate-200 dark:border-slate-800">
@@ -379,9 +326,76 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
         </div>
     </main>
 
-    <!-- Client-side Interactive Filter & Search Script -->
+    <!-- Client-side Interactive Filter, Search & Infinite Scroll Script -->
     <script>
         const ALL_TIP_SLUGS = ${JSON.stringify(tips.map(t => t.slug))};
+        const BATCH_SIZE = ${TIPS_CHUNK_SIZE};
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function renderTipCardClient(tip) {
+            const badge = tip.badge || { bg: 'bg-red-50 dark:bg-red-950/50', text: 'text-red-700 dark:text-red-300', border: 'border-red-100 dark:border-red-900/60' };
+            const effectiveDate = tip.effective_date || tip.date || '';
+            const displayDate = tip.formatted_date || effectiveDate;
+            const tagsStr = Array.isArray(tip.tags) ? tip.tags.join(' ').toLowerCase() : '';
+
+            return '<div class="tip-card group relative p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between cursor-pointer" ' +
+                'data-slug="' + escapeHtml(tip.slug) + '" ' +
+                'data-category="' + escapeHtml(tip.category) + '" ' +
+                'data-subcategory="' + escapeHtml((tip.subcategory || '').toLowerCase()) + '" ' +
+                'data-tags="' + escapeHtml(tagsStr) + '" ' +
+                'data-title="' + escapeHtml(tip.title.toLowerCase()) + '" ' +
+                'data-summary="' + escapeHtml(tip.summary.toLowerCase()) + '">' +
+                '<div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">' +
+                    '<svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>' +
+                '</div>' +
+                '<div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">' +
+                    '<svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>' +
+                '</div>' +
+                '<div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">' +
+                    '<svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>' +
+                '</div>' +
+                '<div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block">' +
+                    '<svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>' +
+                '</div>' +
+                '<div>' +
+                    '<div class="flex items-center gap-1.5 mb-2.5 flex-wrap relative z-10">' +
+                        '<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ' + badge.bg + ' ' + badge.text + ' ' + badge.border + '">' +
+                            escapeHtml(tip.category) +
+                        '</span>' +
+                        (tip.subcategory ? '<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800">' + escapeHtml(tip.subcategory) + '</span>' : '') +
+                    '</div>' +
+                    '<h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">' +
+                        '<a href="/tips/' + tip.slug + '" class="after:absolute after:inset-0 focus:outline-none">' +
+                            escapeHtml(tip.title) +
+                        '</a>' +
+                    '</h2>' +
+                    '<p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">' +
+                        escapeHtml(tip.summary) +
+                    '</p>' +
+                '</div>' +
+                '<div class="pt-4 mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60">' +
+                    '<div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">' +
+                        '<time datetime="' + escapeHtml(effectiveDate) + '">' + escapeHtml(displayDate) + '</time>' +
+                        '<span aria-hidden="true">·</span>' +
+                        '<span>' + (tip.readingTime || 1) + ' min read</span>' +
+                    '</div>' +
+                    '<span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">' +
+                        '<span>READ</span>' +
+                        '<svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' +
+                    '</span>' +
+                '</div>' +
+            '</div>';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && ALL_TIP_SLUGS.length > 0) {
@@ -391,10 +405,12 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                     window.location.href = '/tips/' + randomSlug;
                 });
             }
+
             const searchInput = document.getElementById('tip-search');
+            const container = document.getElementById('tips-container');
+            const sentinel = document.getElementById('tips-sentinel');
             const categoryFilterBtns = document.querySelectorAll('.filter-btn');
             const subcategoryFilterBtns = document.querySelectorAll('.subcat-filter-btn');
-            const cards = document.querySelectorAll('.tip-card');
             const emptyState = document.getElementById('empty-state');
             const resetBtn = document.getElementById('reset-filters-btn');
             const sidebarResetBtn = document.getElementById('sidebar-reset-btn');
@@ -410,6 +426,242 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
             let activeCategory = 'All';
             let activeSubcategory = 'All';
 
+            // --- Tips Data & Infinite Scroll State ---
+            let allTipsData = null;
+            let tipsIndexPromise = null;
+            let currentList = null; // null = default unfiltered view; Array = filtered results
+            let renderedCount = BATCH_SIZE; // first 24 are already rendered statically
+            let isLoadingMore = false;
+            let filterSequence = 0; // Generation token to prevent stale async race conditions
+            let observer = null;
+
+            // Fetch the search index (cached singleton Promise - race condition free)
+            function getTipsIndex() {
+                if (allTipsData) return Promise.resolve(allTipsData);
+                if (!tipsIndexPromise) {
+                    tipsIndexPromise = fetch('/tips-search-index.json')
+                        .then(resp => {
+                            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                            return resp.json();
+                        })
+                        .then(data => {
+                            allTipsData = data;
+                            requestAnimationFrame(checkAndLoadMore);
+                            return data;
+                        })
+                        .catch(err => {
+                            console.error('Failed to fetch tips index:', err);
+                            allTipsData = [];
+                            return [];
+                        });
+                }
+                return tipsIndexPromise;
+            }
+
+            function isSentinelInView() {
+                if (!sentinel) return false;
+                const rect = sentinel.getBoundingClientRect();
+                return rect.top <= (window.innerHeight + 800);
+            }
+
+            function updateSentinel() {
+                if (!sentinel) return;
+                const activeList = (currentList !== null) ? currentList : allTipsData;
+                if (!activeList || renderedCount >= activeList.length) {
+                    sentinel.classList.add('hidden');
+                } else {
+                    sentinel.classList.remove('hidden');
+                }
+            }
+
+            // Append next batch of cards safely with race condition guards
+            async function checkAndLoadMore() {
+                if (isLoadingMore) return;
+                const seq = filterSequence;
+                const tips = await getTipsIndex();
+                if (seq !== filterSequence) return; // Stale request, discarded
+
+                const activeList = (currentList !== null) ? currentList : tips;
+                if (!activeList || renderedCount >= activeList.length) {
+                    updateSentinel();
+                    return;
+                }
+
+                if (!isSentinelInView()) return;
+
+                isLoadingMore = true;
+                try {
+                    const nextBatch = activeList.slice(renderedCount, renderedCount + BATCH_SIZE);
+                    if (nextBatch.length > 0 && seq === filterSequence) {
+                        const html = nextBatch.map(renderTipCardClient).join('');
+                        const temp = document.createElement('div');
+                        temp.innerHTML = html;
+                        const frag = document.createDocumentFragment();
+                        while (temp.firstChild) frag.appendChild(temp.firstChild);
+                        if (seq === filterSequence) {
+                            container.appendChild(frag);
+                            renderedCount += nextBatch.length;
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error rendering cards:', e);
+                }
+                isLoadingMore = false;
+                if (seq === filterSequence) {
+                    updateSentinel();
+
+                    // If sentinel is STILL in view (e.g. fast scrolling or zoomed out or refresh at bottom),
+                    // continue loading the next batch with requestAnimationFrame!
+                    if (isSentinelInView() && renderedCount < activeList.length) {
+                        requestAnimationFrame(checkAndLoadMore);
+                    }
+                }
+            }
+
+            // Immediately kick off background fetch
+            getTipsIndex();
+
+            // Set up IntersectionObserver
+            if (sentinel) {
+                observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        checkAndLoadMore();
+                    }
+                }, { rootMargin: '800px' });
+                observer.observe(sentinel);
+            }
+
+            // Passive scroll and resize listeners for fast scrolling and page refresh recovery
+            let scrollTicking = false;
+            window.addEventListener('scroll', () => {
+                if (!scrollTicking) {
+                    scrollTicking = true;
+                    requestAnimationFrame(() => {
+                        checkAndLoadMore();
+                        scrollTicking = false;
+                    });
+                }
+            }, { passive: true });
+            window.addEventListener('resize', checkAndLoadMore, { passive: true });
+
+            // --- Filter & Search Logic ---
+
+            function isFilterActive() {
+                const query = searchInput ? searchInput.value.trim() : '';
+                return activeCategory !== 'All' || activeSubcategory !== 'All' || query.length > 0;
+            }
+
+            function updateFilterBadge() {
+                let count = 0;
+                if (activeCategory !== 'All') count++;
+                if (activeSubcategory !== 'All') count++;
+
+                if (count > 0 && activeFilterBadge) {
+                    activeFilterBadge.textContent = count;
+                    activeFilterBadge.classList.remove('hidden');
+                } else if (activeFilterBadge) {
+                    activeFilterBadge.classList.add('hidden');
+                }
+            }
+
+            async function applyFilter() {
+                const seq = ++filterSequence; // Advance generation token
+                const tips = await getTipsIndex();
+                if (seq !== filterSequence) return; // Discard stale filter execution
+
+                const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+                if (!isFilterActive()) {
+                    // Default state: restore unfiltered tips list starting with first 24
+                    currentList = null;
+                    container.innerHTML = tips.slice(0, BATCH_SIZE).map(renderTipCardClient).join('');
+                    renderedCount = Math.min(BATCH_SIZE, tips.length);
+                    emptyState.classList.add('hidden');
+                    updateSentinel();
+                    updateFilterBadge();
+                    if (isSentinelInView() && renderedCount < tips.length) {
+                        requestAnimationFrame(checkAndLoadMore);
+                    }
+                    return;
+                }
+
+                // Filter across all tips in memory
+                currentList = tips.filter(tip => {
+                    const category = tip.category || '';
+                    const subcategory = (tip.subcategory || '').toLowerCase();
+                    const tags = Array.isArray(tip.tags) ? tip.tags.join(' ').toLowerCase() : '';
+                    const title = (tip.title || '').toLowerCase();
+                    const summary = (tip.summary || '').toLowerCase();
+
+                    const matchesCategory = (activeCategory === 'All' || category === activeCategory);
+                    const matchesSubcategory = (activeSubcategory === 'All' || subcategory === activeSubcategory.toLowerCase());
+
+                    const matchesQuery = !query ||
+                        title.includes(query) ||
+                        summary.includes(query) ||
+                        tags.includes(query) ||
+                        category.toLowerCase().includes(query) ||
+                        subcategory.includes(query);
+
+                    return matchesCategory && matchesSubcategory && matchesQuery;
+                });
+
+                if (seq !== filterSequence) return;
+
+                if (currentList.length === 0) {
+                    container.innerHTML = '';
+                    emptyState.classList.remove('hidden');
+                    renderedCount = 0;
+                } else {
+                    emptyState.classList.add('hidden');
+                    const initialFilteredBatch = currentList.slice(0, BATCH_SIZE);
+                    container.innerHTML = initialFilteredBatch.map(renderTipCardClient).join('');
+                    renderedCount = initialFilteredBatch.length;
+                }
+
+                updateSentinel();
+                updateFilterBadge();
+
+                if (isSentinelInView() && renderedCount < currentList.length) {
+                    requestAnimationFrame(checkAndLoadMore);
+                }
+            }
+
+            function updateSubcategoryVisibility() {
+                let currentSubcatValid = (activeSubcategory === 'All');
+
+                subcategoryFilterBtns.forEach(btn => {
+                    const subcat = btn.getAttribute('data-subcat');
+                    if (subcat === 'All') {
+                        btn.style.display = 'inline-flex';
+                        return;
+                    }
+                    const cats = (btn.getAttribute('data-categories') || '').split(',');
+                    if (activeCategory === 'All' || cats.includes(activeCategory)) {
+                        btn.style.display = 'inline-flex';
+                        if (subcat.toLowerCase() === activeSubcategory.toLowerCase()) {
+                            currentSubcatValid = true;
+                        }
+                    } else {
+                        btn.style.display = 'none';
+                    }
+                });
+
+                if (!currentSubcatValid) {
+                    activeSubcategory = 'All';
+                    subcategoryFilterBtns.forEach(b => {
+                        if (b.getAttribute('data-subcat') === 'All') {
+                            b.classList.add('active-subcat', 'bg-red-600', 'text-white', 'border-red-600', 'shadow-xs');
+                            b.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300', 'border-slate-200', 'dark:border-slate-800');
+                        } else {
+                            b.classList.remove('active-subcat', 'bg-red-600', 'text-white', 'border-red-600', 'shadow-xs');
+                            b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300', 'border-slate-200', 'dark:border-slate-800');
+                        }
+                    });
+                }
+            }
+
+            // --- Drawer Controls ---
             function openDrawer() {
                 drawerBackdrop.classList.remove('hidden');
                 drawerPanel.classList.remove('hidden');
@@ -451,91 +703,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                 }
             });
 
-            function updateFilterBadge() {
-                let count = 0;
-                if (activeCategory !== 'All') count++;
-                if (activeSubcategory !== 'All') count++;
-
-                if (count > 0 && activeFilterBadge) {
-                    activeFilterBadge.textContent = count;
-                    activeFilterBadge.classList.remove('hidden');
-                } else if (activeFilterBadge) {
-                    activeFilterBadge.classList.add('hidden');
-                }
-            }
-
-            function filterCards() {
-                const query = searchInput.value.toLowerCase().trim();
-                let visibleCount = 0;
-
-                cards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    const subcategory = card.getAttribute('data-subcategory') || '';
-                    const tags = card.getAttribute('data-tags');
-                    const title = card.getAttribute('data-title');
-                    const summary = card.getAttribute('data-summary');
-
-                    const matchesCategory = (activeCategory === 'All' || category === activeCategory);
-                    const matchesSubcategory = (activeSubcategory === 'All' || subcategory.toLowerCase() === activeSubcategory.toLowerCase());
-
-                    const matchesQuery = !query || 
-                        title.includes(query) || 
-                        summary.includes(query) || 
-                        tags.includes(query) || 
-                        category.toLowerCase().includes(query) ||
-                        subcategory.includes(query);
-
-                    if (matchesCategory && matchesSubcategory && matchesQuery) {
-                        card.style.display = 'flex';
-                        visibleCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                if (visibleCount === 0) {
-                    emptyState.classList.remove('hidden');
-                } else {
-                    emptyState.classList.add('hidden');
-                }
-
-                updateFilterBadge();
-            }
-
-            function updateSubcategoryVisibility() {
-                let currentSubcatValid = (activeSubcategory === 'All');
-
-                subcategoryFilterBtns.forEach(btn => {
-                    const subcat = btn.getAttribute('data-subcat');
-                    if (subcat === 'All') {
-                        btn.style.display = 'inline-flex';
-                        return;
-                    }
-                    const cats = (btn.getAttribute('data-categories') || '').split(',');
-                    if (activeCategory === 'All' || cats.includes(activeCategory)) {
-                        btn.style.display = 'inline-flex';
-                        if (subcat.toLowerCase() === activeSubcategory.toLowerCase()) {
-                            currentSubcatValid = true;
-                        }
-                    } else {
-                        btn.style.display = 'none';
-                    }
-                });
-
-                if (!currentSubcatValid) {
-                    activeSubcategory = 'All';
-                    subcategoryFilterBtns.forEach(b => {
-                        if (b.getAttribute('data-subcat') === 'All') {
-                            b.classList.add('active-subcat', 'bg-red-600', 'text-white', 'border-red-600', 'shadow-xs');
-                            b.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300', 'border-slate-200', 'dark:border-slate-800');
-                        } else {
-                            b.classList.remove('active-subcat', 'bg-red-600', 'text-white', 'border-red-600', 'shadow-xs');
-                            b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300', 'border-slate-200', 'dark:border-slate-800');
-                        }
-                    });
-                }
-            }
-
+            // --- Filter Buttons Event Listeners ---
             categoryFilterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     activeCategory = btn.getAttribute('data-filter');
@@ -561,7 +729,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                     });
 
                     updateSubcategoryVisibility();
-                    filterCards();
+                    applyFilter();
                 });
             });
 
@@ -579,16 +747,16 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                         }
                     });
 
-                    filterCards();
+                    applyFilter();
                 });
             });
 
             if (searchInput) {
-                searchInput.addEventListener('input', filterCards);
+                searchInput.addEventListener('input', applyFilter);
             }
 
             function resetAllFilters() {
-                searchInput.value = '';
+                if (searchInput) searchInput.value = '';
                 activeSubcategory = 'All';
 
                 const allCatBtn = document.querySelector('[data-filter="All"]');
