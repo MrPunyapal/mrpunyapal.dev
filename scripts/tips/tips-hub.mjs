@@ -793,5 +793,13 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
 </body>
 </html>`;
 
-    fs.writeFileSync(path.join(rootDir, 'tips.html'), hubHtml.replace(/\r\n/g, '\n'), 'utf-8');
+    const outHubPath = path.join(rootDir, 'tips.html');
+    const normalizedHubHtml = hubHtml.replace(/\r\n/g, '\n');
+    if (fs.existsSync(outHubPath)) {
+        const existing = fs.readFileSync(outHubPath, 'utf-8');
+        if (existing === normalizedHubHtml) {
+            return;
+        }
+    }
+    fs.writeFileSync(outHubPath, normalizedHubHtml, 'utf-8');
 }

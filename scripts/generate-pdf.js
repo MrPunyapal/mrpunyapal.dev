@@ -17,6 +17,26 @@ const SITE_URLS = {
 const templatePath = path.resolve(__dirname, 'resume-print.html');
 let htmlContent = fs.readFileSync(templatePath, 'utf8');
 
+const outputPath = path.resolve(__dirname, '../public/resume.pdf');
+const force = process.argv.includes('--force');
+
+if (!force && fs.existsSync(outputPath)) {
+  const pdfStat = fs.statSync(outputPath);
+  const templateStat = fs.statSync(templatePath);
+  const scriptStat = fs.statSync(__filename);
+  const resumeHtmlPath = path.resolve(__dirname, '../resume.html');
+  const resumeHtmlStat = fs.existsSync(resumeHtmlPath) ? fs.statSync(resumeHtmlPath) : null;
+
+  const isPdfNewerThanTemplate = pdfStat.mtimeMs >= templateStat.mtimeMs;
+  const isPdfNewerThanScript = pdfStat.mtimeMs >= scriptStat.mtimeMs;
+  const isPdfNewerThanResumeHtml = !resumeHtmlStat || (pdfStat.mtimeMs >= resumeHtmlStat.mtimeMs);
+
+  if (isPdfNewerThanTemplate && isPdfNewerThanScript && isPdfNewerThanResumeHtml) {
+    console.log('📄 Resume PDF is already up to date. Skipping PDF generation.');
+    process.exit(0);
+  }
+}
+
 // Inject centralized URLs into template tokens
 Object.keys(SITE_URLS).forEach(key => {
   const token = new RegExp(`{{SITE_URLS.${key}}}`, 'g');

@@ -29,5 +29,13 @@ ${tips.map(tip => `    <url>
 </urlset>
 `;
 
-    fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemapXml.trim() + '\n', 'utf8');
+    const outSitemapPath = path.join(publicDir, 'sitemap.xml');
+    const normalizedSitemapXml = sitemapXml.trim() + '\n';
+    if (fs.existsSync(outSitemapPath)) {
+        const existing = fs.readFileSync(outSitemapPath, 'utf-8');
+        if (existing === normalizedSitemapXml) {
+            return;
+        }
+    }
+    fs.writeFileSync(outSitemapPath, normalizedSitemapXml, 'utf8');
 }

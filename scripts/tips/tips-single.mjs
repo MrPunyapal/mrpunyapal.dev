@@ -409,5 +409,15 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
 </body>
 </html>`;
 
-    fs.writeFileSync(path.join(tipsOutDir, `${tip.slug}.html`), singleTipHtml.replace(/\r\n/g, '\n'), 'utf-8');
+    const outFilePath = path.join(tipsOutDir, `${tip.slug}.html`);
+    const normalizedHtml = singleTipHtml.replace(/\r\n/g, '\n');
+
+    if (fs.existsSync(outFilePath)) {
+        const existing = fs.readFileSync(outFilePath, 'utf-8');
+        if (existing === normalizedHtml) {
+            return;
+        }
+    }
+
+    fs.writeFileSync(outFilePath, normalizedHtml, 'utf-8');
 }

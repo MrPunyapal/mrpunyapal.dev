@@ -2,71 +2,106 @@ import { defineConfig } from "capturist";
 import fs from "node:fs";
 import path from "node:path";
 
+const forceAll = process.argv.includes('--force') || process.env.FORCE_ALL_OG === 'true';
+
+function getMarkdownSourceMap() {
+  const tipsContentDir = path.resolve('./content/tips');
+  const map = new Map();
+
+  function scan(dir) {
+    if (!fs.existsSync(dir)) return;
+    for (const file of fs.readdirSync(dir)) {
+      const fullPath = path.join(dir, file);
+      const stat = fs.statSync(fullPath);
+      if (stat.isDirectory()) {
+        scan(fullPath);
+      } else if (file.endsWith('.md') && file.toLowerCase() !== 'readme.md') {
+        const slug = file.replace(/\.md$/, '');
+        map.set(slug, fullPath);
+      }
+    }
+  }
+
+  scan(tipsContentDir);
+  return map;
+}
+
+function getMainPages() {
+  const mainRoutes = [
+    { route: "/", output: "og/master.png", source: "index.html" },
+    { route: "/services", output: "og/services.png", source: "services.html" },
+    { route: "/projects", output: "og/projects.png", source: "projects.html" },
+    { route: "/talks", output: "og/talks.png", source: "talks.html" },
+    { route: "/opensource", output: "og/opensource.png", source: "opensource.html" },
+    { route: "/resume", output: "og/resume.png", source: "resume.html" },
+    { route: "/tips", output: "og/tips.png", source: "tips.html" },
+  ];
+
+  if (forceAll) {
+    return mainRoutes.map(({ route, output }) => ({ route, output }));
+  }
+
+  return mainRoutes
+    .filter(({ output, source }) => {
+      const outPath = path.resolve(`./public/${output}`);
+      if (!fs.existsSync(outPath)) return true;
+      const srcPath = path.resolve(`./${source}`);
+      if (fs.existsSync(srcPath)) {
+        const srcStat = fs.statSync(srcPath);
+        const outStat = fs.statSync(outPath);
+        return srcStat.mtimeMs > outStat.mtimeMs;
+      }
+      return false;
+    })
+    .map(({ route, output }) => ({ route, output }));
+}
+
 function getTipPages() {
   const tipsDir = path.resolve("./tips");
   const tipPages = [];
+  const mdMap = getMarkdownSourceMap();
+
   if (fs.existsSync(tipsDir)) {
     const files = fs.readdirSync(tipsDir).filter(f => f.endsWith('.html'));
     for (const file of files) {
       const slug = file.replace(/\.html$/, '');
-      tipPages.push({
-        route: `/tips/${slug}`,
-        output: `og/tips/${slug}.png`,
-      });
+      const outPath = path.resolve(`./public/og/tips/${slug}.png`);
+      const mdSourcePath = mdMap.get(slug);
+
+      if (forceAll || !fs.existsSync(outPath)) {
+        tipPages.push({
+          route: `/tips/${slug}`,
+          output: `og/tips/${slug}.png`,
+        });
+      } else if (mdSourcePath && fs.existsSync(mdSourcePath)) {
+        const mdStat = fs.statSync(mdSourcePath);
+        const outStat = fs.statSync(outPath);
+        if (mdStat.mtimeMs > outStat.mtimeMs) {
+          tipPages.push({
+            route: `/tips/${slug}`,
+            output: `og/tips/${slug}.png`,
+          });
+        }
+      }
     }
   }
   return tipPages;
 }
 
 export default defineConfig({
-  // Built-in static server automatically builds and serves the compiled production assets with full Tailwind CSS & themes
   cache: {
     path: "public/og/.capturist-cache.json",
     adopt: true,
-    prune: true,
+    prune: false,
   },
   server: {
     dir: "./dist",
     buildCommand: "npm run build",
   },
-
-  // 2x Retina high-resolution presets with font smoothing
   retina: true,
-
-  // Save generated screenshots directly to the public/ directory
   outputDir: "public",
-
-  // Page targets matching the website structure
   pages: [
-    {
-      route: "/",
-      output: "og/master.png",
-    },
-    {
-      route: "/services",
-      output: "og/services.png",
-    },
-    {
-      route: "/projects",
-      output: "og/projects.png",
-    },
-    {
-      route: "/talks",
-      output: "og/talks.png",
-    },
-    {
-      route: "/opensource",
-      output: "og/opensource.png",
-    },
-    {
-      route: "/resume",
-      output: "og/resume.png",
-    },
-    {
-      route: "/tips",
-      output: "og/tips.png",
-    },
+    ...getMainPages(),
     ...getTipPages(),
   ],
 });
-

@@ -161,7 +161,16 @@ export async function buildTips() {
         }
         return item;
     });
-    fs.writeFileSync(path.join(publicDir, 'tips-search-index.json'), JSON.stringify(searchIndex, null, 2));
+    const searchIndexJson = JSON.stringify(searchIndex, null, 2);
+    const searchIndexPath = path.join(publicDir, 'tips-search-index.json');
+    if (fs.existsSync(searchIndexPath)) {
+        const existing = fs.readFileSync(searchIndexPath, 'utf-8');
+        if (existing !== searchIndexJson) {
+            fs.writeFileSync(searchIndexPath, searchIndexJson);
+        }
+    } else {
+        fs.writeFileSync(searchIndexPath, searchIndexJson);
+    }
 
     // 4. Automatically generate/synchronize public/sitemap.xml
     generateSitemap(tips, publicDir);

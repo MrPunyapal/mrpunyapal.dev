@@ -85,5 +85,11 @@ ${itemsXml}
 `;
 
     const cleanXml = rssXml.replace(/\r\n/g, '\n');
+    if (fs.existsSync(feedPathInPublic)) {
+        const existing = fs.readFileSync(feedPathInPublic, 'utf-8');
+        if (existing === cleanXml) {
+            return;
+        }
+    }
     fs.writeFileSync(feedPathInPublic, cleanXml, 'utf-8');
 }
