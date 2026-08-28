@@ -9,9 +9,71 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Thu, 27 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Fri, 28 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Mask Query Bindings in Laravel Exception Messages]]></title>
+      <link>https://mrpunyapal.dev/tips/mask-query-bindings-in-exception-messages</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/mask-query-bindings-in-exception-messages</guid>
+      <description><![CDATA[Keep query bindings out of QueryException messages while retaining access to the actual bindings. When a database query fails, Laravel's QueryException messa...]]></description>
+      <content:encoded><![CDATA[<blockquote>Keep query bindings out of `QueryException` messages while retaining access to the actual bindings.</blockquote>
+<p>When a database query fails, Laravel's `QueryException` message can include the values that were bound to the query.</p>
+<p>That can be useful while debugging, but it can also mean sensitive values end up in logs, error trackers, or other places where exception messages are stored.</p>
+<p>Laravel 13.27 adds an option to mask those bindings in exception messages.</p>
+<h3>Before</h3>
+<p>A failed query can produce an exception message containing the actual value:</p>
+<pre><code class="language-text">SQL: select * from `users` where `email` = &#039;john@example.com&#039;</code></pre>
+<p>That means the query's bound values become part of the exception message.</p>
+<h3>Laravel 13.27</h3>
+<p>Enable binding masking on your database connection:</p>
+<pre><code class="language-php">// config/database.php
+
+&#039;connections&#039; =&gt; [
+    &#039;mysql&#039; =&gt; [
+        // ...
+
+        &#039;mask_bindings_in_exception_messages&#039; =&gt; true,
+    ],
+];</code></pre>
+<p>Now the exception message keeps the placeholder instead of interpolating the binding:</p>
+<pre><code class="language-text">SQL: select * from `users` where `email` = ?</code></pre>
+<h3>The bindings are still available</h3>
+<p>Masking the exception message does not remove the bindings from the query.</p>
+<p>You can still access them separately through:</p>
+<pre><code class="language-php">$exception-&gt;getBindings();</code></pre>
+<p>This gives you a useful separation:</p>
+<pre><code class="language-text">Exception message
+    ↓
+SQL with ? placeholders
+
+Exception bindings
+    ↓
+Actual values</code></pre>
+<p>So your error message can avoid exposing query values while the actual bindings remain available when you explicitly need them.</p>
+<h3>Why this is useful</h3>
+<p>This can be especially useful when exceptions are sent to:</p>
+<ul>
+  <li>application logs</li>
+  <li>error tracking services</li>
+  <li>APM systems</li>
+  <li>failed job records</li>
+  <li>other external monitoring systems</li>
+</ul>
+<p>If query values can contain sensitive or personal information, keeping them out of the exception message reduces the chance of accidentally exposing them through your error reporting pipeline.</p>
+<h3>Takeaway</h3>
+<p>Laravel 13.27 gives you more control over what appears in `QueryException` messages.</p>
+<p>If you don't need actual query bindings embedded in your exception messages, enable:</p>
+<pre><code class="language-php">&#039;mask_bindings_in_exception_messages&#039; =&gt; true,</code></pre>
+<p>You still have access to the bindings separately through `getBindings()`.</p>
+]]></content:encoded>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Database]]></category>
+      <category><![CDATA[Security]]></category>
+      <category><![CDATA[Exceptions]]></category>
+    </item>
     <item>
       <title><![CDATA[Refresh and Lock an Existing Eloquent Model with refreshForUpdate()]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-refresh-for-update-pessimistic-locking</link>
