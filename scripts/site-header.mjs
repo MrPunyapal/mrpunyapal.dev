@@ -47,9 +47,8 @@ export function renderSiteHeader(activePage = 'home') {
     }).join('\n');
 
     const isResume = activePage === 'resume';
-    const isTips = activePage === 'tips';
-    const githubRepo = isTips ? 'https://github.com/MrPunyapal/tips' : 'https://github.com/MrPunyapal/mrpunyapal.dev';
-    const githubLabel = isTips ? 'View Tips repository on GitHub' : 'View source code on GitHub';
+    const githubRepo = 'https://github.com/MrPunyapal/mrpunyapal.dev';
+    const githubLabel = 'View source code on GitHub';
 
     const themeBtnInnerHtml = `<span class="theme-icon-container flex items-center justify-center" aria-hidden="true">
         <svg class="theme-sun-icon hidden dark:block text-amber-400" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
