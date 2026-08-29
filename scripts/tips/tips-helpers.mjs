@@ -349,9 +349,28 @@ export function renderRssHtml(markdownContent) {
 // Critical Grid & Marker Styles exactly matching index.html
 export const criticalGridStyles = `
     <style>
-        @keyframes fade-up {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Stable Core Layout Baseline */
+        main {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .max-w-6xl {
+            width: 100%;
+            max-width: 72rem;
+            position: relative;
+        }
+
+        .site-nav-tabs {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
         }
 
         /* Technical Grid Markers */

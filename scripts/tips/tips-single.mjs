@@ -274,7 +274,7 @@ ${updated_at ? `    <meta property="article:modified_time" content="${escapeHtml
                 </div>
 
                 <!-- Title & Meta -->
-                <div class="animate-fade-up">
+                <div>
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
                         ${escapeHtml(tip.title)}
                     </h1>

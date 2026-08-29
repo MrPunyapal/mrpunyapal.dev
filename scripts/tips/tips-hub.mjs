@@ -169,7 +169,7 @@ export function generateTipsHubPage(tips, categoryList, categoriesMap, rootDir) 
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
-                <div class="animate-fade-up">
+                <div>
                     <div class="flex items-center justify-between gap-3 sm:gap-4 mb-3 flex-wrap">
                         <div class="flex items-center gap-2.5 sm:gap-3">
                             <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight whitespace-nowrap">
