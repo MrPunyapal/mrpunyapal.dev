@@ -9,9 +9,69 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Sat, 29 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Precise Binary String Comparisons with whereBinary() in Laravel 13.27]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-query-builder-where-binary</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-query-builder-where-binary</guid>
+      <description><![CDATA[Laravel 13.27 adds whereBinary() to the query builder, replacing manual whereRaw() expressions for exact byte-level string comparisons. When querying case-se...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.27 adds whereBinary() to the query builder, replacing manual whereRaw() expressions for exact byte-level string comparisons.</blockquote>
+<p>When querying case-sensitive fields (such as invite codes, usernames, or token hashes) on MySQL/MariaDB tables with case-insensitive (`_ci`) collations, normal `where()` queries treat uppercase and lowercase strings identically.</p>
+<p>To enforce exact byte matching, developers previously had to drop down to raw SQL.</p>
+<p>Laravel 13.27 introduces native query builder methods for binary comparisons.</p>
+<hr>
+<h3>Before Laravel 13.27</h3>
+<pre><code class="language-php">use Illuminate\Support\Facades\DB;
+
+$user = DB::table(&#039;users&#039;)
+    -&gt;whereRaw(&#039;username = BINARY ?&#039;, [$username])
+    -&gt;first();</code></pre>
+<hr>
+<h3>Laravel 13.27: whereBinary()</h3>
+<pre><code class="language-php">use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
+// Query builder
+$user = DB::table(&#039;users&#039;)
+    -&gt;whereBinary(&#039;username&#039;, $username)
+    -&gt;first();
+
+// Eloquent model
+$invitation = Invitation::whereBinary(&#039;code&#039;, $code)-&gt;first();</code></pre>
+<hr>
+<h3>Additional Binary Query Methods</h3>
+<p>Laravel 13.27 also includes the corresponding OR and negation variants:</p>
+<pre><code class="language-php">// OR condition
+$user = DB::table(&#039;users&#039;)
+    -&gt;where(&#039;status&#039;, &#039;active&#039;)
+    -&gt;orWhereBinary(&#039;handle&#039;, $handle)
+    -&gt;first();
+
+// Negation (NOT BINARY)
+$tokens = DB::table(&#039;api_tokens&#039;)
+    -&gt;whereNotBinary(&#039;secret_hash&#039;, $revokedHash)
+    -&gt;get();
+
+// Negated OR
+$query-&gt;orWhereNotBinary(&#039;token&#039;, $expiredToken);</code></pre>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li><code>whereBinary()</code> provides first-class binary string comparisons on MySQL and MariaDB.</li>
+  <li>Avoids writing raw <code>BINARY ?</code> SQL strings in <code>whereRaw()</code>.</li>
+  <li>Includes <code>orWhereBinary()</code>, <code>whereNotBinary()</code>, and <code>orWhereNotBinary()</code>.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Database]]></category>
+      <category><![CDATA[Query Builder]]></category>
+      <category><![CDATA[MySQL]]></category>
+      <category><![CDATA[MariaDB]]></category>
+    </item>
     <item>
       <title><![CDATA[Apply Individual Commits Across Branches with Git cherry-pick]]></title>
       <link>https://mrpunyapal.dev/tips/git-cherry-pick-single-commit</link>
