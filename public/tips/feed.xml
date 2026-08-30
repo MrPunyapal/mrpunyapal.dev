@@ -73,6 +73,91 @@ $query-&gt;orWhereNotBinary(&#039;token&#039;, $expiredToken);</code></pre>
       <category><![CDATA[MariaDB]]></category>
     </item>
     <item>
+      <title><![CDATA[Monitor Aggregate Queue Metrics with Total Size Helpers in Laravel 13.27]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-queue-total-size-metrics</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-queue-total-size-metrics</guid>
+      <description><![CDATA[Laravel 13.27 adds totalPendingSize(), totalDelayedSize(), and totalReservedSize() to the Queue facade, making it easy to aggregate queue metrics for dashboa...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.27 adds totalPendingSize(), totalDelayedSize(), and totalReservedSize() to the Queue facade, making it easy to aggregate queue metrics for dashboards and health checks.</blockquote>
+<p>When building admin panels, operational dashboards, or custom health-check endpoints, tracking queue volume across your application is a common requirement.</p>
+<p>Prior to Laravel 13.27, `Queue::size($queue)` only reported pending counts for a single named queue. Getting total metrics across multiple queues required manually querying each individual queue and summing the counts in application code.</p>
+<p>**Laravel 13.27 introduces dedicated aggregate size helpers** directly on the `Queue` facade.</p>
+<hr>
+<h3>1. Laravel 13.27 Total Size Helpers</h3>
+<pre><code class="language-php">use Illuminate\Support\Facades\Queue;
+
+$pending = Queue::totalPendingSize();
+// Jobs waiting to be processed.
+
+$delayed = Queue::totalDelayedSize();
+// Jobs intentionally delayed for later.
+
+$reserved = Queue::totalReservedSize();
+// Jobs currently reserved by workers.</code></pre>
+<hr>
+<h3>2. Understanding Each Queue Metric</h3>
+<ul>
+  <li><strong><code>totalPendingSize()</code></strong>: The total count of ready jobs waiting in queues to be claimed by worker processes. A sustained spike indicates worker starvation or backlog accumulation.</li>
+  <li><strong><code>totalDelayedSize()</code></strong>: The total count of jobs scheduled with <code>delay()</code> that are waiting for their release timestamp to expire before becoming pending.</li>
+  <li><strong><code>totalReservedSize()</code></strong>: The total count of jobs currently claimed and actively being executed by worker processes.</li>
+</ul>
+<hr>
+<h3>3. Practical Example: Lightweight Dashboard & Health Endpoints</h3>
+<p>These helpers make it simple to assemble lightweight queue health payloads without setting up heavy external monitoring packages:</p>
+<pre><code class="language-php">namespace App\Http\Controllers;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Queue;
+
+class QueueMetricsController extends Controller
+{
+    public function __invoke(): JsonResponse
+    {
+        $pending  = Queue::totalPendingSize();
+        $delayed  = Queue::totalDelayedSize();
+        $reserved = Queue::totalReservedSize();
+
+        return response()-&gt;json([
+            &#039;status&#039;   =&gt; $pending &gt; 5000 ? &#039;degraded&#039; : &#039;healthy&#039;,
+            &#039;metrics&#039;  =&gt; [
+                &#039;pending&#039;   =&gt; $pending,
+                &#039;delayed&#039;   =&gt; $delayed,
+                &#039;reserved&#039;  =&gt; $reserved,
+                &#039;total&#039;     =&gt; $pending + $delayed + $reserved,
+            ],
+            &#039;timestamp&#039; =&gt; now()-&gt;toIso8601String(),
+        ]);
+    }
+}</code></pre>
+<hr>
+<h3>4. Querying Specific Connections</h3>
+<p>By default, the helpers aggregate metrics across the default queue connection. You can target specific connections when running multiple queue backends (like separate Redis and database queues):</p>
+<pre><code class="language-php">use Illuminate\Support\Facades\Queue;
+
+// Query a dedicated Redis queue connection
+$redisPending = Queue::connection(&#039;redis&#039;)-&gt;totalPendingSize();
+
+// Query a database fallback connection
+$dbDelayed = Queue::connection(&#039;database&#039;)-&gt;totalDelayedSize();</code></pre>
+<p>*(Note: These helpers provide fast aggregate totals for lightweight reporting. For detailed per-job telemetry, throughput graphs, and runtime tags, use Laravel Horizon or Laravel Pulse.)*</p>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li><code>Queue::totalPendingSize()</code> returns all jobs waiting to be processed.</li>
+  <li><code>Queue::totalDelayedSize()</code> returns all delayed jobs awaiting release.</li>
+  <li><code>Queue::totalReservedSize()</code> returns all jobs actively reserved by workers.</li>
+  <li>Avoids manual multi-queue loop-and-sum aggregation.</li>
+  <li>Supports chaining <code>connection(&#39;name&#39;)</code> for multi-backend setups.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Queue]]></category>
+      <category><![CDATA[Monitoring]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[DevOps]]></category>
+    </item>
+    <item>
       <title><![CDATA[Apply Individual Commits Across Branches with Git cherry-pick]]></title>
       <link>https://mrpunyapal.dev/tips/git-cherry-pick-single-commit</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/git-cherry-pick-single-commit</guid>
