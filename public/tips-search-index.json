@@ -1,5 +1,81 @@
 [
   {
+    "slug": "github-actions-cache-playwright-puppeteer",
+    "title": "Cache Playwright and Puppeteer Browsers in GitHub Actions",
+    "category": "Git",
+    "subcategory": "GitHub Actions",
+    "tags": [
+      "Git",
+      "GitHub Actions",
+      "CI/CD",
+      "Playwright",
+      "Puppeteer"
+    ],
+    "created_at": "2026-08-31",
+    "effective_date": "2026-08-31",
+    "date": "2026-08-31",
+    "formatted_date": "Aug 31, 2026",
+    "summary": "Cache browser binaries with actions/cache to avoid downloading 150MB+ on every CI run. Playwright and Puppeteer download full browser binaries (Chromium, Fir...",
+    "readingTime": 3,
+    "badge": {
+      "bg": "bg-emerald-50 dark:bg-emerald-950/50",
+      "text": "text-emerald-700 dark:text-emerald-300",
+      "border": "border-emerald-100 dark:border-emerald-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "github-actions-incremental-file-writing",
+    "title": "Write Files Incrementally in Build Scripts to Avoid Unnecessary Rebuilds",
+    "category": "Git",
+    "subcategory": "GitHub Actions",
+    "tags": [
+      "Git",
+      "GitHub Actions",
+      "CI/CD",
+      "Build Tools"
+    ],
+    "created_at": "2026-08-31",
+    "effective_date": "2026-08-31",
+    "date": "2026-08-31",
+    "formatted_date": "Aug 31, 2026",
+    "summary": "Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds. Build scri...",
+    "readingTime": 3,
+    "badge": {
+      "bg": "bg-emerald-50 dark:bg-emerald-950/50",
+      "text": "text-emerald-700 dark:text-emerald-300",
+      "border": "border-emerald-100 dark:border-emerald-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
+    "slug": "github-actions-skip-steps-with-git-diff",
+    "title": "Skip Expensive CI Steps Using git diff Instead of File Timestamps",
+    "category": "Git",
+    "subcategory": "GitHub Actions",
+    "tags": [
+      "Git",
+      "GitHub Actions",
+      "CI/CD",
+      "Performance"
+    ],
+    "created_at": "2026-08-31",
+    "effective_date": "2026-08-31",
+    "date": "2026-08-31",
+    "formatted_date": "Aug 31, 2026",
+    "summary": "File modification timestamps are unreliable in GitHub Actions. Use git diff to detect actual changes and conditionally skip expensive workflow steps. Many bu...",
+    "readingTime": 4,
+    "badge": {
+      "bg": "bg-emerald-50 dark:bg-emerald-950/50",
+      "text": "text-emerald-700 dark:text-emerald-300",
+      "border": "border-emerald-100 dark:border-emerald-900/60"
+    },
+    "author": "Punyapal Shah",
+    "author_url": "https://x.com/MrPunyapal"
+  },
+  {
     "slug": "laravel-query-builder-where-binary",
     "title": "Precise Binary String Comparisons with whereBinary() in Laravel 13.27",
     "category": "Laravel",

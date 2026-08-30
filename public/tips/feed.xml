@@ -9,9 +9,332 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Mon, 31 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Cache Playwright and Puppeteer Browsers in GitHub Actions]]></title>
+      <link>https://mrpunyapal.dev/tips/github-actions-cache-playwright-puppeteer</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-cache-playwright-puppeteer</guid>
+      <description><![CDATA[Cache browser binaries with actions/cache to avoid downloading 150MB+ on every CI run. Playwright and Puppeteer download full browser binaries (Chromium, Fir...]]></description>
+      <content:encoded><![CDATA[<blockquote>Cache browser binaries with `actions/cache` to avoid downloading 150MB+ on every CI run.</blockquote>
+<p>Playwright and Puppeteer download full browser binaries (Chromium, Firefox, WebKit) during installation. Without caching, every workflow run downloads these binaries from scratch, adding 30-90 seconds of network time depending on the browser set and runner region.</p>
+<h3>Cache Playwright Browsers</h3>
+<pre><code class="language-yaml">jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles(&#039;package-lock.json&#039;) }}
+
+      - name: Install Playwright Chromium
+        if: steps.playwright-cache.outputs.cache-hit != &#039;true&#039;
+        run: npx playwright install chromium
+
+      - name: Install Playwright system deps
+        run: npx playwright install-deps chromium
+
+      - name: Run browser tasks
+        run: node scripts/generate-screenshots.js</code></pre>
+<h4>How This Works</h4>
+<ol>
+  <li><code>actions/cache</code> checks for a cached copy of <code>~/.cache/ms-playwright</code> matching the lock file hash.</li>
+  <li>On a cache hit, browser binaries are restored in ~5 seconds instead of downloaded in ~60 seconds.</li>
+  <li>The <code>install chromium</code> step is skipped entirely on cache hits.</li>
+  <li>System dependencies (<code>install-deps</code>) must run every time because they install OS-level packages (<code>libnss3</code>, <code>libatk1.0</code>, etc.) that are not persisted across runner instances.</li>
+</ol>
+<hr>
+<h3>Cache Puppeteer Browsers</h3>
+<p>Puppeteer stores browsers in a different default location. The pattern is the same with a different cache path:</p>
+<pre><code class="language-yaml">      - name: Cache Puppeteer browsers
+        id: puppeteer-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles(&#039;package-lock.json&#039;) }}
+
+      - name: Install Puppeteer browser
+        if: steps.puppeteer-cache.outputs.cache-hit != &#039;true&#039;
+        run: npx puppeteer browsers install chrome</code></pre>
+<hr>
+<h3>Cache Key Strategy</h3>
+<p>The cache key `playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}` ensures:</p>
+<ul>
+  <li><strong>OS specificity</strong>: Browser binaries are platform-specific. A Linux-cached browser will not work on macOS or Windows runners.</li>
+  <li><strong>Version tracking</strong>: When <code>playwright</code> or <code>puppeteer</code> is upgraded in <code>package-lock.json</code>, the hash changes, and a fresh download is triggered with the correct browser version.</li>
+</ul>
+<p>For monorepos or workspaces with multiple lock files, point `hashFiles` to the relevant lock file:</p>
+<pre><code class="language-yaml">key: playwright-${{ runner.os }}-${{ hashFiles(&#039;apps/web/package-lock.json&#039;) }}</code></pre>
+<hr>
+<h3>Install Only What You Need</h3>
+<p>Both Playwright and Puppeteer support installing individual browsers. If your workflow only needs Chromium, skip the rest:</p>
+<pre><code class="language-bash"># Playwright: install only Chromium (skip Firefox, WebKit)
+npx playwright install chromium
+
+# Puppeteer: install only Chrome
+npx puppeteer browsers install chrome</code></pre>
+<p>Installing all browsers downloads 400MB+ and triples the cache size. Install only what your workflow actually uses.</p>
+<hr>
+<h3>Combining Cache with Conditional Steps</h3>
+<p>If some workflow runs do not need a browser at all, combine caching with conditional execution to skip both the cache restore and the install step:</p>
+<pre><code class="language-yaml">      - name: Detect if screenshots needed
+        id: changes
+        run: |
+          if git diff --name-only HEAD~1 -- &#039;src/content/**&#039; | grep -q .; then
+            echo &quot;needs_browser=true&quot; &gt;&gt; &quot;$GITHUB_OUTPUT&quot;
+          fi
+
+      - name: Cache Playwright browsers
+        if: steps.changes.outputs.needs_browser == &#039;true&#039;
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles(&#039;package-lock.json&#039;) }}
+
+      - name: Install Playwright Chromium
+        if: steps.changes.outputs.needs_browser == &#039;true&#039; &amp;&amp; steps.playwright-cache.outputs.cache-hit != &#039;true&#039;
+        run: npx playwright install chromium</code></pre>
+<p>This avoids restoring a 150MB cache on runs that will never use a browser.</p>
+<hr>
+<h3>Key Points</h3>
+<ul>
+  <li>Browser binaries are often the largest single download in Node.js CI workflows.</li>
+  <li>Cache <code>~/.cache/ms-playwright</code> (Playwright) or <code>~/.cache/puppeteer</code> (Puppeteer) using <code>actions/cache</code>.</li>
+  <li>Include <code>package-lock.json</code> hash in the cache key so version upgrades trigger a fresh download.</li>
+  <li>System dependencies (<code>install-deps</code>) must run on every workflow run, even on cache hits.</li>
+  <li>Install only the specific browsers your workflow uses to minimize download and cache size.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub Actions]]></category>
+      <category><![CDATA[CI/CD]]></category>
+      <category><![CDATA[Playwright]]></category>
+      <category><![CDATA[Puppeteer]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Write Files Incrementally in Build Scripts to Avoid Unnecessary Rebuilds]]></title>
+      <link>https://mrpunyapal.dev/tips/github-actions-incremental-file-writing</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-incremental-file-writing</guid>
+      <description><![CDATA[Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds. Build scri...]]></description>
+      <content:encoded><![CDATA[<blockquote>Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds.</blockquote>
+<p>Build scripts that generate HTML, JSON, XML, or other output files often write the result unconditionally, even when the content has not changed. This creates problems in CI pipelines: unchanged files get new timestamps, `git status` reports false modifications, auto-commit steps push empty diffs, and downstream caches are invalidated for no reason.</p>
+<h3>The Problem</h3>
+<p>A typical build script writes output directly:</p>
+<pre><code class="language-javascript">import fs from &#039;node:fs&#039;;
+
+const html = generatePage(data);
+fs.writeFileSync(&#039;dist/index.html&#039;, html);</code></pre>
+<p>If `generatePage` produces the same HTML as the file already on disk, the write is wasted. Worse, it updates the file's modification timestamp, which can trigger:</p>
+<ul>
+  <li><code>git diff</code> reporting the file as changed (if line endings or encoding differ)</li>
+  <li>Downstream tools rebuilding dependents of that file</li>
+  <li>CI auto-commit steps creating empty or noise-only commits</li>
+  <li>CDN or deployment cache invalidation for files that did not actually change</li>
+</ul>
+<hr>
+<h3>The Fix: Compare Before Writing</h3>
+<p>Read the existing file, compare it with the new content, and skip the write when they match:</p>
+<pre><code class="language-javascript">import fs from &#039;node:fs&#039;;
+import path from &#039;node:path&#039;;
+
+function writeIfChanged(filePath, content) {
+  try {
+    const existing = fs.readFileSync(filePath, &#039;utf-8&#039;);
+    if (existing === content) return false;
+  } catch {
+    // File does not exist yet, proceed with write
+  }
+
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, content);
+  return true;
+}</code></pre>
+<p>Usage in a build script:</p>
+<pre><code class="language-javascript">const pages = generateAllPages(data);
+let written = 0;
+
+for (const [filePath, html] of Object.entries(pages)) {
+  if (writeIfChanged(filePath, html)) {
+    written++;
+  }
+}
+
+console.log(`Wrote ${written}/${Object.keys(pages).length} files (rest unchanged)`);</code></pre>
+<p>On a typical run where 3 out of 300 pages changed, you will see:</p>
+<pre><code>Wrote 3/300 files (rest unchanged)</code></pre>
+<hr>
+<h3>Apply to Every Generated Output</h3>
+<p>This pattern works for any generated file type:</p>
+<pre><code class="language-javascript">// HTML pages
+writeIfChanged(&#039;dist/tips.html&#039;, renderTipsPage(tips));
+
+// JSON search indexes
+writeIfChanged(&#039;public/search-index.json&#039;, JSON.stringify(index));
+
+// XML feeds and sitemaps
+writeIfChanged(&#039;public/feed.xml&#039;, renderRssFeed(posts));
+writeIfChanged(&#039;public/sitemap.xml&#039;, renderSitemap(routes));</code></pre>
+<hr>
+<h3>CI Auto-Commit: Only Commit When Files Actually Changed</h3>
+<p>When your workflow auto-commits generated files, the incremental write pattern prevents empty commits:</p>
+<pre><code class="language-yaml">- name: Generate static assets
+  run: node scripts/build.js
+
+- name: Commit generated files if changed
+  run: |
+    git add -A
+    if git diff --cached --quiet; then
+      echo &quot;No changes to commit&quot;
+    else
+      git commit -m &quot;chore: regenerate static assets&quot;
+      git push
+    fi</code></pre>
+<p>Without incremental writes, `git diff --cached` would always detect changes because every file received a fresh write (and potentially a new timestamp or trailing whitespace difference), leading to commits that contain no meaningful content changes.</p>
+<hr>
+<h3>Key Points</h3>
+<ul>
+  <li>Always compare new content with existing files before writing in build scripts.</li>
+  <li>Skipping unchanged writes prevents false <code>git diff</code> results, unnecessary cache invalidation, and empty auto-commits.</li>
+  <li>The <code>try/catch</code> pattern handles missing files gracefully on first builds.</li>
+  <li>This optimization compounds in projects with hundreds of generated files, where only a few change per commit.</li>
+  <li>Pair with <code>git diff --cached --quiet</code> in CI to avoid committing when nothing actually changed.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub Actions]]></category>
+      <category><![CDATA[CI/CD]]></category>
+      <category><![CDATA[Build Tools]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Skip Expensive CI Steps Using git diff Instead of File Timestamps]]></title>
+      <link>https://mrpunyapal.dev/tips/github-actions-skip-steps-with-git-diff</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-skip-steps-with-git-diff</guid>
+      <description><![CDATA[File modification timestamps are unreliable in GitHub Actions. Use git diff to detect actual changes and conditionally skip expensive workflow steps. Many bu...]]></description>
+      <content:encoded><![CDATA[<blockquote>File modification timestamps are unreliable in GitHub Actions. Use `git diff` to detect actual changes and conditionally skip expensive workflow steps.</blockquote>
+<p>Many build tools use file modification timestamps (`mtime`) to decide what needs rebuilding. This works on local machines because the filesystem tracks when each file was last saved.</p>
+<p>In GitHub Actions, `actions/checkout` resets **every file's timestamp** to the moment of checkout. A project with 500 files will have all 500 stamped with the exact same time, regardless of when each was actually last modified.</p>
+<p>Any script comparing timestamps to decide "has this source changed since the last build?" will answer "yes" for everything, triggering full rebuilds on every single run.</p>
+<h3>The Problem in Practice</h3>
+<p>Consider a build script that skips PDF generation when the output is newer than the source:</p>
+<pre><code class="language-javascript">import fs from &#039;node:fs&#039;;
+
+const srcStat = fs.statSync(&#039;template.html&#039;);
+const outStat = fs.statSync(&#039;output.pdf&#039;);
+
+if (outStat.mtimeMs &gt; srcStat.mtimeMs) {
+  console.log(&#039;PDF is up to date, skipping&#039;);
+  process.exit(0);
+}
+
+// ... expensive PDF generation with Puppeteer</code></pre>
+<p>Locally, this works perfectly. In CI, both files receive the checkout timestamp, so `outStat.mtimeMs` equals `srcStat.mtimeMs`, and the skip condition fails every time.</p>
+<hr>
+<h3>The Fix: Use git diff</h3>
+<p>Git tracks actual content changes regardless of filesystem timestamps. Replace `mtime` checks with `git diff`:</p>
+<pre><code class="language-yaml"># .github/workflows/build.yml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need parent commit for diff
+
+      - name: Detect changed files
+        id: changes
+        run: |
+          if git diff --name-only HEAD~1 -- &#039;src/resume/**&#039; &#039;templates/resume.html&#039; | grep -q .; then
+            echo &quot;resume_changed=true&quot; &gt;&gt; &quot;$GITHUB_OUTPUT&quot;
+          fi
+          if git diff --name-only HEAD~1 -- &#039;src/content/**&#039; | grep -q .; then
+            echo &quot;content_changed=true&quot; &gt;&gt; &quot;$GITHUB_OUTPUT&quot;
+          fi
+
+      - name: Generate PDF Resume
+        if: steps.changes.outputs.resume_changed == &#039;true&#039;
+        run: node scripts/generate-pdf.js
+
+      - name: Generate Screenshots
+        if: steps.changes.outputs.content_changed == &#039;true&#039;
+        run: node scripts/generate-screenshots.js</code></pre>
+<h4>Why fetch-depth: 2?</h4>
+<p>By default, `actions/checkout` performs a shallow clone with `fetch-depth: 1`, which only contains the latest commit. `git diff HEAD~1` requires the parent commit to exist. Setting `fetch-depth: 2` fetches exactly enough history for a single-commit diff.</p>
+<hr>
+<h3>Handling repository_dispatch and workflow_dispatch</h3>
+<p>When workflows are triggered by `repository_dispatch` or `workflow_dispatch`, there is no new commit to diff against. Handle these triggers explicitly:</p>
+<pre><code class="language-yaml">- name: Detect changed files
+  id: changes
+  run: |
+    EVENT=&quot;${{ github.event_name }}&quot;
+
+    # Dispatch events have no associated commit diff
+    if [[ &quot;$EVENT&quot; == &quot;repository_dispatch&quot; || &quot;$EVENT&quot; == &quot;workflow_dispatch&quot; ]]; then
+      echo &quot;content_changed=true&quot; &gt;&gt; &quot;$GITHUB_OUTPUT&quot;
+      exit 0
+    fi
+
+    if git diff --name-only HEAD~1 -- &#039;src/content/**&#039; | grep -q .; then
+      echo &quot;content_changed=true&quot; &gt;&gt; &quot;$GITHUB_OUTPUT&quot;
+    fi</code></pre>
+<p>For `repository_dispatch`, you often know which subsystem triggered the event based on the `event_type`. Use that to set only the relevant flags instead of enabling everything.</p>
+<hr>
+<h3>The Same Pattern Inside Build Scripts</h3>
+<p>You can also move the `git diff` check directly into your build scripts:</p>
+<pre><code class="language-javascript">import { execSync } from &#039;node:child_process&#039;;
+
+function hasSourceChanged(paths) {
+  try {
+    const diff = execSync(
+      `git diff --name-only HEAD~1 -- ${paths.join(&#039; &#039;)}`,
+      { encoding: &#039;utf-8&#039; }
+    ).trim();
+    return diff.length &gt; 0;
+  } catch {
+    // If git diff fails (shallow clone, initial commit), assume changed
+    return true;
+  }
+}
+
+if (!hasSourceChanged([&#039;template.html&#039;, &#039;styles/resume.css&#039;])) {
+  console.log(&#039;No source changes detected, skipping generation&#039;);
+  process.exit(0);
+}
+
+// ... proceed with expensive work</code></pre>
+<p>The `try/catch` fallback is important. On initial commits, force pushes, or misconfigured shallow clones, `git diff HEAD~1` will fail. Defaulting to "changed" ensures the build still runs when change detection is unavailable.</p>
+<hr>
+<h3>Key Points</h3>
+<ul>
+  <li><code>actions/checkout</code> sets all file timestamps to the checkout time, making <code>mtime</code>-based incremental logic unreliable in CI.</li>
+  <li>Use <code>git diff --name-only HEAD~1</code> to detect files that actually changed in the latest commit.</li>
+  <li>Set <code>fetch-depth: 2</code> in <code>actions/checkout</code> so the parent commit is available for diffing.</li>
+  <li>Handle <code>repository_dispatch</code> and <code>workflow_dispatch</code> triggers separately, since they have no associated commit diff.</li>
+  <li>Always fall back to &quot;assume changed&quot; when <code>git diff</code> fails, so builds are never silently skipped due to detection errors.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub Actions]]></category>
+      <category><![CDATA[CI/CD]]></category>
+      <category><![CDATA[Performance]]></category>
+    </item>
     <item>
       <title><![CDATA[Precise Binary String Comparisons with whereBinary() in Laravel 13.27]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-query-builder-where-binary</link>
