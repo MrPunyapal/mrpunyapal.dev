@@ -257,28 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Responsive Door Positioning
-    function positionDoor() {
-        const desktopPlaceholder = document.getElementById('desktop-door-placeholder');
-        const mobilePlaceholder = document.getElementById('mobile-door-placeholder');
-        
-        if (!desktopPlaceholder || !mobilePlaceholder || !doorContainer) return;
 
-        if (window.innerWidth < 768) {
-            // Mobile: Move to bottom placeholder
-            if (doorContainer.parentElement !== mobilePlaceholder) {
-                mobilePlaceholder.appendChild(doorContainer);
-            }
-        } else {
-            // Desktop: Move to about section placeholder
-            if (doorContainer.parentElement !== desktopPlaceholder) {
-                desktopPlaceholder.appendChild(doorContainer);
-            }
-        }
-    }
-
-    positionDoor();
-    window.addEventListener('resize', positionDoor);
 
     function getElephpant() {
         return document.getElementById('runningElephpant');

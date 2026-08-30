@@ -361,6 +361,26 @@ export const criticalGridStyles = `
             position: relative;
         }
 
+        .flex {
+            display: flex;
+        }
+
+        .inline-flex {
+            display: inline-flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
         .max-w-6xl {
             width: 100%;
             max-width: 72rem;
