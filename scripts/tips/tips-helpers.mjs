@@ -349,50 +349,6 @@ export function renderRssHtml(markdownContent) {
 // Critical Grid & Marker Styles exactly matching index.html
 export const criticalGridStyles = `
     <style>
-        /* Stable Core Layout Baseline */
-        main {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .relative {
-            position: relative;
-        }
-
-        .flex {
-            display: flex;
-        }
-
-        .inline-flex {
-            display: inline-flex;
-        }
-
-        .items-center {
-            align-items: center;
-        }
-
-        .justify-between {
-            justify-content: space-between;
-        }
-
-        .w-full {
-            width: 100%;
-        }
-
-        .max-w-6xl {
-            width: 100%;
-            max-width: 72rem;
-            position: relative;
-        }
-
-        .site-nav-tabs {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
         /* Technical Grid Markers */
         .tech-marker {
             position: absolute;
