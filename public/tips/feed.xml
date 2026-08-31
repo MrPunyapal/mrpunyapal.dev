@@ -608,7 +608,7 @@ git cherry-pick abc1234^..def5678</code></pre>
     &#039;mysql&#039; =&gt; [
         // ...
 
-        &#039;mask_bindings_in_exception_messages&#039; =&gt; env(&#039;DB_MASK_BINDINGS&#039;, true),
+        &#039;mask_bindings_in_exception_messages&#039; =&gt; env(&#039;DB_MASK_BINDINGS&#039;, false),
     ],
 ];</code></pre>
 <p>Now the exception message keeps the placeholder instead of interpolating the binding:</p>
@@ -639,7 +639,7 @@ Actual values</code></pre>
 <h3>Takeaway</h3>
 <p>Laravel 13.27 gives you more control over what appears in `QueryException` messages.</p>
 <p>If you don't need actual query bindings embedded in your exception messages, enable:</p>
-<pre><code class="language-php">&#039;mask_bindings_in_exception_messages&#039; =&gt; env(&#039;DB_MASK_BINDINGS&#039;, true),</code></pre>
+<pre><code class="language-php">&#039;mask_bindings_in_exception_messages&#039; =&gt; env(&#039;DB_MASK_BINDINGS&#039;, false),</code></pre>
 <p>You still have access to the bindings separately through `getBindings()`.</p>
 ]]></content:encoded>
       <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
