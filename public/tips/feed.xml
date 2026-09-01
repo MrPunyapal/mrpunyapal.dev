@@ -9,9 +9,182 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Mon, 31 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Tue, 01 Sep 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Simplify Collection Operations with Higher-Order Messages]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages</guid>
+      <description><![CDATA[Laravel Collections support higher-order messages through dynamic properties, allowing operations like each, map, filter, and groupBy to work directly with a...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel Collections support higher-order messages through dynamic properties, allowing operations like each, map, filter, and groupBy to work directly with an item's property or method without writing boilerplate callbacks.</blockquote>
+<p>When manipulating collections in Laravel, developers frequently pass anonymous functions that do nothing more than read a single object property or invoke a single method.</p>
+<p>Writing boilerplate closures for simple property forwarding adds unnecessary visual noise.</p>
+<p>Laravel provides **higher-order messages** via proxy properties on collections, allowing you to access item attributes and methods directly on the collection itself.</p>
+<hr>
+<h3>The Core Concept: Removing Boilerplate Callbacks</h3>
+<p>Consider grouping a collection of orders by their status:</p>
+<h4>Before</h4>
+<pre><code class="language-php">$orders-&gt;groupBy(function (Order $order) {
+    return $order-&gt;status;
+});</code></pre>
+<h4>After</h4>
+<pre><code class="language-php">$orders-&gt;groupBy-&gt;status;</code></pre>
+<p>The closure existed only to access the `status` property. With higher-order messages, Laravel intercepts the property access and applies it to each item in the collection automatically.</p>
+<hr>
+<h3>How Higher-Order Messages Work</h3>
+<p>Higher-order messages are accessed as dynamic properties on the Collection instance (`$collection->methodName->target`).</p>
+<p>Behind the scenes, Laravel returns a `HigherOrderCollectionProxy` instance. When you access a property or call a method on this proxy, Laravel applies that operation to each item during the collection loop:</p>
+<pre><code class="language-text">$collection-&gt;each-&gt;markAsVip()
+         ↓
+HigherOrderCollectionProxy
+         ↓
+Loops items and invokes $item-&gt;markAsVip()</code></pre>
+<hr>
+<h3>Property Access vs. Method Calls</h3>
+<p>Depending on the collection method and what each item exposes, higher-order messages can forward either a **property access** or a **method invocation**:</p>
+<h4>1. Reading an Attribute (Property Access)</h4>
+<p>When accessing model attributes or array keys:</p>
+<pre><code class="language-php">// Sum the total property across all orders
+$totalRevenue = $orders-&gt;sum-&gt;total;
+
+// Group items by category property
+$groupedProducts = $products-&gt;groupBy-&gt;category;
+
+// Sort users by created_at timestamp descending
+$recentUsers = $users-&gt;sortByDesc-&gt;created_at;</code></pre>
+<h4>2. Invoking an Action (Method Call)</h4>
+<p>When running a method on each item in the collection:</p>
+<pre><code class="language-php">// Execute markAsVip() on each User instance
+$users-&gt;each-&gt;markAsVip();
+
+// Filter users where isActive() returns true
+$activeUsers = $users-&gt;filter-&gt;isActive();
+
+// Reject expired subscriptions
+$validSubscriptions = $subscriptions-&gt;reject-&gt;isExpired();</code></pre>
+<hr>
+<h3>Real-World Practical Examples</h3>
+<pre><code class="language-php">namespace App\Services;
+
+use App\Models\Invoice;
+use App\Models\User;
+use Illuminate\Support\Collection;
+
+class BillingService
+{
+    /**
+     * @param Collection&lt;int, User&gt; $users
+     */
+    public function processVipMembers(Collection $users): void
+    {
+        // 1. Filter active users
+        $activeVips = $users-&gt;filter-&gt;isVip();
+
+        // 2. Perform an action on each
+        $activeVips-&gt;each-&gt;sendVipNewsletter();
+    }
+
+    /**
+     * @param Collection&lt;int, Invoice&gt; $invoices
+     */
+    public function summarizeInvoices(Collection $invoices): array
+    {
+        return [
+            // Group invoices by payment status
+            &#039;by_status&#039;     =&gt; $invoices-&gt;groupBy-&gt;status,
+            // Calculate total unpaid balance
+            &#039;unpaid_total&#039;  =&gt; $invoices-&gt;filter-&gt;isUnpaid()-&gt;sum-&gt;amount,
+            // Find highest single invoice
+            &#039;max_invoice&#039;   =&gt; $invoices-&gt;max-&gt;amount,
+            // Extract unique customer IDs
+            &#039;customer_ids&#039;  =&gt; $invoices-&gt;unique-&gt;customer_id-&gt;map-&gt;customer_id,
+        ];
+    }
+}</code></pre>
+<hr>
+<h3>Complete Supported Method Reference</h3>
+<p>Higher-order messages are supported across 23 Collection methods, organized by category:</p>
+<pre><code class="language-php">// -------------------------------------------------------------
+// Left: Aggregation &amp; Iteration
+// -------------------------------------------------------------
+
+// Before: a callback is needed just to return a property.
+$orders-&gt;groupBy(function (Order $order) {
+    return $order-&gt;status;
+});
+
+// After: higher-order messages let Laravel access it directly.
+$orders-&gt;groupBy-&gt;status;
+
+// Aggregation: calculate values from a property or method.
+$collection-&gt;average-&gt;property;
+$collection-&gt;avg-&gt;property;
+$collection-&gt;max-&gt;property;
+$collection-&gt;min-&gt;property;
+$collection-&gt;sum-&gt;property;
+
+// Iteration: call methods or transform items without callbacks.
+$collection-&gt;each-&gt;method();
+$collection-&gt;map-&gt;property;
+$collection-&gt;flatMap-&gt;method();</code></pre>
+<pre><code class="language-php">// -------------------------------------------------------------
+// Right: Filtering, Finding, Grouping, &amp; Sorting
+// -------------------------------------------------------------
+
+// Filtering: keep, remove, or check items using a property or method.
+$collection-&gt;contains-&gt;method();
+$collection-&gt;every-&gt;method();
+$collection-&gt;filter-&gt;method();
+$collection-&gt;reject-&gt;method();
+$collection-&gt;some-&gt;method();
+
+// Finding &amp; grouping: locate, group, partition, or key items.
+$collection-&gt;first-&gt;method();
+$collection-&gt;groupBy-&gt;property;
+$collection-&gt;keyBy-&gt;property;
+$collection-&gt;partition-&gt;method();
+$collection-&gt;unique-&gt;property;
+
+// Sorting: order items using a property or method.
+$collection-&gt;sortBy-&gt;property;
+$collection-&gt;sortByDesc-&gt;property;
+
+// Skipping &amp; taking: include or skip items based on conditions.
+$collection-&gt;skipUntil-&gt;method();
+$collection-&gt;skipWhile-&gt;method();
+$collection-&gt;takeUntil-&gt;method();
+$collection-&gt;takeWhile-&gt;method();</code></pre>
+<hr>
+<h3>When to Keep the Closure</h3>
+<p>Higher-order messages are designed for direct property reads and single method calls. If your callback involves custom logic, comparisons, or multi-step transformations, continue using standard closures:</p>
+<pre><code class="language-php">// Keep a closure when custom business logic or conditionals are needed:
+$orders-&gt;groupBy(function (Order $order) {
+    return $order-&gt;total &gt; 1000 ? &#039;tier_enterprise&#039; : &#039;tier_standard&#039;;
+});
+
+// Keep a closure when multiple arguments or external variables are required:
+$users-&gt;each(function (User $user) use ($notifier, $discountCode) {
+    $notifier-&gt;sendCustomPromotion($user, $discountCode);
+});</code></pre>
+<p>The general rule: **Use higher-order messages when a callback only forwards a property or method; keep a closure when you need logic.**</p>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li>Higher-order messages eliminate boilerplate closures across 23 Laravel Collection methods.</li>
+  <li>Accessed via dynamic properties on the collection (<code>$collection-&gt;filter-&gt;isActive()</code>).</li>
+  <li>Supports both property retrieval (<code>$orders-&gt;sum-&gt;total</code>) and method execution (<code>$users-&gt;each-&gt;delete()</code>).</li>
+  <li>Keeps chained collection pipelines readable and concise without sacrificing clarity.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Collections]]></category>
+      <category><![CDATA[Eloquent]]></category>
+      <category><![CDATA[PHP]]></category>
+      <category><![CDATA[Clean Code]]></category>
+    </item>
     <item>
       <title><![CDATA[Cache Playwright and Puppeteer Browsers in GitHub Actions]]></title>
       <link>https://mrpunyapal.dev/tips/github-actions-cache-playwright-puppeteer</link>

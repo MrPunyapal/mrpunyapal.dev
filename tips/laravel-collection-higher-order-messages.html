@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Laravel &amp; PHP Tip | Punyapal Shah</title>
+    <title>Simplify Collection Operations with Higher-Order Messages - Laravel &amp; PHP Tip | Punyapal Shah</title>
 
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,25 +17,25 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Pass a closure to Laravel Collection&#039;s groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel&#039;s Collection::groupBy...">
+    <meta name="description" content="Laravel Collections support higher-order messages through dynamic properties, allowing operations like each, map, filter, and groupBy to work directly with a...">
     <meta name="author" content="Punyapal Shah">
-    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-collection-groupby-closure">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-collection-groupby-closure">
-    <meta property="og:title" content="Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Pass a closure to Laravel Collection&#039;s groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel&#039;s Collection::groupBy...">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-collection-groupby-closure.png">
-    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-collection-groupby-closure.png">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages">
+    <meta property="og:title" content="Simplify Collection Operations with Higher-Order Messages - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta property="og:description" content="Laravel Collections support higher-order messages through dynamic properties, allowing operations like each, map, filter, and groupBy to work directly with a...">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-collection-higher-order-messages.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-collection-higher-order-messages.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Punyapal Shah">
+    <meta property="og:image:alt" content="Simplify Collection Operations with Higher-Order Messages - Punyapal Shah">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="og:locale" content="en_US">
-    <meta property="article:published_time" content="2023-10-26">
+    <meta property="article:published_time" content="2026-09-01">
     <meta property="article:author" content="https://x.com/MrPunyapal">
     <meta property="article:section" content="Laravel">
 
@@ -43,11 +43,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MrPunyapal">
     <meta name="twitter:creator" content="@MrPunyapal">
-    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-collection-groupby-closure">
-    <meta name="twitter:title" content="Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Pass a closure to Laravel Collection&#039;s groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel&#039;s Collection::groupBy...">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-collection-groupby-closure.png">
-    <meta name="twitter:image:alt" content="Dynamic Date Grouping in Laravel Collections Using Closures in groupBy() - Punyapal Shah">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages">
+    <meta name="twitter:title" content="Simplify Collection Operations with Higher-Order Messages - Laravel &amp; PHP Tip | Punyapal Shah">
+    <meta name="twitter:description" content="Laravel Collections support higher-order messages through dynamic properties, allowing operations like each, map, filter, and groupBy to work directly with a...">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-collection-higher-order-messages.png">
+    <meta name="twitter:image:alt" content="Simplify Collection Operations with Higher-Order Messages - Punyapal Shah">
 
     <!-- Structured Data (JSON-LD TechArticle & Breadcrumbs) -->
     <script type="application/ld+json">
@@ -56,13 +56,13 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "https://mrpunyapal.dev/tips/laravel-collection-groupby-closure#article",
-                "headline": "Dynamic Date Grouping in Laravel Collections Using Closures in groupBy()",
-                "description": "Pass a closure to Laravel Collection's groupBy() method to group models and arrays dynamically by day, week, month, or quarter. Laravel's Collection::groupBy...",
-                "datePublished": "2023-10-26",
+                "@id": "https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages#article",
+                "headline": "Simplify Collection Operations with Higher-Order Messages",
+                "description": "Laravel Collections support higher-order messages through dynamic properties, allowing operations like each, map, filter, and groupBy to work directly with a...",
+                "datePublished": "2026-09-01",
                 "inLanguage": "en",
-                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-collection-groupby-closure",
-                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Collections, PHP, Dates",
+                "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Collections, Eloquent, PHP, Clean Code",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -71,7 +71,7 @@
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "timeRequired": "PT2M",
+                "timeRequired": "PT4M",
                 "articleSection": "Laravel"
             },
             {
@@ -92,8 +92,8 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": "Dynamic Date Grouping in Laravel Collections Using Closures in groupBy()",
-                        "item": "https://mrpunyapal.dev/tips/laravel-collection-groupby-closure"
+                        "name": "Simplify Collection Operations with Higher-Order Messages",
+                        "item": "https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages"
                     }
                 ]
             }
@@ -707,7 +707,7 @@
                 <!-- Title & Meta -->
                 <div>
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
-                        Dynamic Date Grouping in Laravel Collections Using Closures in groupBy()
+                        Simplify Collection Operations with Higher-Order Messages
                     </h1>
 
                     <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -717,18 +717,18 @@
                                 <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors font-semibold">Punyapal Shah</a>
                             </span>
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-                            <time datetime="2023-10-26" class="inline-flex items-center gap-1.5">
+                            <time datetime="2026-09-01" class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
-                                Oct 26, 2023
+                                Sep 1, 2026
                             </time>
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
                             <span class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-clock"/></svg>
-                                2 min read
+                                4 min read
                             </span>
                         </div>
 
-                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/collections/laravel-collection-groupby-closure.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
+                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/collections/laravel-collection-higher-order-messages.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap ml-auto" aria-label="Edit this tip on GitHub">
                             <span>edit this tip</span>
                             <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                         </a>
@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Pass a closure to Laravel Collection&#39;s groupBy() method to group models and arrays dynamically by day, week, month, or quarter.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s <code>Collection::groupBy()</code> method is commonly used with a simple string key (such as <code>-&gt;groupBy(&#39;status&#39;)</code>).</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">However, <code>groupBy()</code> also accepts a closure that receives each item in the collection and returns the dynamic group key. This is especially useful for aggregating records into date intervals such as weeks, quarters, or formatted periods for reporting dashboards.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Grouping Records by Dynamic Time Periods</h3>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel Collections support higher-order messages through dynamic properties, allowing operations like each, map, filter, and groupBy to work directly with an item&#39;s property or method without writing boilerplate callbacks.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When manipulating collections in Laravel, developers frequently pass anonymous functions that do nothing more than read a single object property or invoke a single method.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Writing boilerplate closures for simple property forwarding adds unnecessary visual noise.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel provides <strong>higher-order messages</strong> via proxy properties on collections, allowing you to access item attributes and methods directly on the collection itself.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Core Concept: Removing Boilerplate Callbacks</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Consider grouping a collection of orders by their status:</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Before</h4>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -749,35 +750,8 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use AppModelsOrder;
-use CarbonCarbon;
-use IlluminateSupportCollection;
-
-$orders = Order::query()
-    -&gt;where(&#039;created_at&#039;, &#039;&gt;=&#039;, now()-&gt;subYear())
-    -&gt;get();
-
-$interval = request(&#039;interval&#039;, &#039;week&#039;); // &#039;day&#039;, &#039;week&#039;, &#039;month&#039;, &#039;quarter&#039;, &#039;year&#039;
-
-$groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): string {
-    $date = $order-&gt;created_at;
-
-    return match ($interval) {
-        &#039;day&#039; =&gt; $date-&gt;format(&#039;D d M Y&#039;),
-        // Output: &quot;Sun 01 Jan 2026&quot;
-
-        &#039;week&#039; =&gt; $date-&gt;copy()-&gt;startOfWeek()-&gt;format(&#039;d M Y&#039;) . &#039; - &#039; . $date-&gt;copy()-&gt;endOfWeek()-&gt;format(&#039;d M Y&#039;),
-        // Output: &quot;01 Jan 2026 - 07 Jan 2026&quot;
-
-        &#039;month&#039; =&gt; $date-&gt;format(&#039;M Y&#039;),
-        // Output: &quot;Jan 2026&quot;
-
-        &#039;quarter&#039; =&gt; $date-&gt;copy()-&gt;firstOfQuarter()-&gt;format(&#039;M&#039;) . &#039; - &#039; . $date-&gt;copy()-&gt;lastOfQuarter()-&gt;format(&#039;M Y&#039;),
-        // Output: &quot;Jan - Mar 2026&quot;
-
-        &#039;year&#039; =&gt; $date-&gt;format(&#039;Y&#039;),
-        // Output: &quot;2026&quot;
-    };
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$orders-&gt;groupBy(function (Order $order) {
+    return $order-&gt;status;
 });" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -785,37 +759,10 @@ $groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): st
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">AppModelsOrder</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">CarbonCarbon</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateSupportCollection</span>;
-
-<span class="hljs-variable">$orders</span> = <span class="hljs-title class_">Order</span>::<span class="hljs-title function_ invoke__">query</span>()
-    -&gt;<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-string">&#x27;&gt;=&#x27;</span>, <span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">subYear</span>())
-    -&gt;<span class="hljs-title function_ invoke__">get</span>();
-
-<span class="hljs-variable">$interval</span> = <span class="hljs-title function_ invoke__">request</span>(<span class="hljs-string">&#x27;interval&#x27;</span>, <span class="hljs-string">&#x27;week&#x27;</span>); <span class="hljs-comment">// &#x27;day&#x27;, &#x27;week&#x27;, &#x27;month&#x27;, &#x27;quarter&#x27;, &#x27;year&#x27;</span>
-
-<span class="hljs-variable">$groupedOrders</span> = <span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">groupBy</span>(function (Order <span class="hljs-variable">$order</span>) <span class="hljs-keyword">use</span> ($<span class="hljs-title">interval</span>): <span class="hljs-title">string</span> {
-    $<span class="hljs-title">date</span> = $<span class="hljs-title">order</span>-&gt;<span class="hljs-title">created_at</span>;
-
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">match</span> (<span class="hljs-variable">$interval</span>) {
-        <span class="hljs-string">&#x27;day&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;D d M Y&#x27;</span>),
-        <span class="hljs-comment">// Output: &quot;Sun 01 Jan 2026&quot;</span>
-
-        <span class="hljs-string">&#x27;week&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">startOfWeek</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;d M Y&#x27;</span>) . <span class="hljs-string">&#x27; - &#x27;</span> . <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">endOfWeek</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;d M Y&#x27;</span>),
-        <span class="hljs-comment">// Output: &quot;01 Jan 2026 - 07 Jan 2026&quot;</span>
-
-        <span class="hljs-string">&#x27;month&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;M Y&#x27;</span>),
-        <span class="hljs-comment">// Output: &quot;Jan 2026&quot;</span>
-
-        <span class="hljs-string">&#x27;quarter&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">firstOfQuarter</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;M&#x27;</span>) . <span class="hljs-string">&#x27; - &#x27;</span> . <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">lastOfQuarter</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;M Y&#x27;</span>),
-        <span class="hljs-comment">// Output: &quot;Jan - Mar 2026&quot;</span>
-
-        <span class="hljs-string">&#x27;year&#x27;</span> =&gt; <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">&#x27;Y&#x27;</span>),
-        <span class="hljs-comment">// Output: &quot;2026&quot;</span>
-    };
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">groupBy</span>(function (Order <span class="hljs-variable">$order</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$order</span>-&gt;status;
 });</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Structure of the Resulting Collection</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The returned collection uses the formatted date strings as keys, with each entry containing the subset of matching models:</p>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">After</h4>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -823,23 +770,16 @@ $groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): st
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Example quarter grouping:
-[
-    &quot;Jan - Mar 2026&quot; =&gt; Collection [ Order #101, Order #102 ],
-    &quot;Oct - Dec 2025&quot; =&gt; Collection [ Order #89, Order #90 ],
-]" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$orders-&gt;groupBy-&gt;status;" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Example quarter grouping:</span>
-[
-    <span class="hljs-string">&quot;Jan - Mar 2026&quot;</span> =&gt; Collection [ Order <span class="hljs-comment">#101, Order #102 ],</span>
-    <span class="hljs-string">&quot;Oct - Dec 2025&quot;</span> =&gt; Collection [ Order <span class="hljs-comment">#89, Order #90 ],</span>
-]</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Aggregating Data per Period</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Once grouped, you can chain standard collection operations like <code>map()</code> or <code>sum()</code> to build dashboard statistics:</p>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$orders</span>-&gt;groupBy-&gt;status;</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The closure existed only to access the <code>status</code> property. With higher-order messages, Laravel intercepts the property access and applies it to each item in the collection automatically.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How Higher-Order Messages Work</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Higher-order messages are accessed as dynamic properties on the Collection instance (<code>$collection-&gt;methodName-&gt;target</code>).</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Behind the scenes, Laravel returns a <code>HigherOrderCollectionProxy</code> instance. When you access a property or call a method on this proxy, Laravel applies that operation to each item during the collection loop:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -847,8 +787,318 @@ $groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): st
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$revenueByQuarter = $groupedOrders-&gt;map(function (Collection $orders): float {
-    return $orders-&gt;sum(&#039;total_amount&#039;);
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$collection-&gt;each-&gt;markAsVip()
+         ↓
+HigherOrderCollectionProxy
+         ↓
+Loops items and invokes $item-&gt;markAsVip()" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">$collection-&gt;each-&gt;markAsVip()
+         ↓
+HigherOrderCollectionProxy
+         ↓
+Loops items and invokes $item-&gt;markAsVip()</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Property Access vs. Method Calls</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Depending on the collection method and what each item exposes, higher-order messages can forward either a <strong>property access</strong> or a <strong>method invocation</strong>:</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">1. Reading an Attribute (Property Access)</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When accessing model attributes or array keys:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Sum the total property across all orders
+$totalRevenue = $orders-&gt;sum-&gt;total;
+
+// Group items by category property
+$groupedProducts = $products-&gt;groupBy-&gt;category;
+
+// Sort users by created_at timestamp descending
+$recentUsers = $users-&gt;sortByDesc-&gt;created_at;" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Sum the total property across all orders</span>
+<span class="hljs-variable">$totalRevenue</span> = <span class="hljs-variable">$orders</span>-&gt;sum-&gt;total;
+
+<span class="hljs-comment">// Group items by category property</span>
+<span class="hljs-variable">$groupedProducts</span> = <span class="hljs-variable">$products</span>-&gt;groupBy-&gt;category;
+
+<span class="hljs-comment">// Sort users by created_at timestamp descending</span>
+<span class="hljs-variable">$recentUsers</span> = <span class="hljs-variable">$users</span>-&gt;sortByDesc-&gt;created_at;</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">2. Invoking an Action (Method Call)</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running a method on each item in the collection:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Execute markAsVip() on each User instance
+$users-&gt;each-&gt;markAsVip();
+
+// Filter users where isActive() returns true
+$activeUsers = $users-&gt;filter-&gt;isActive();
+
+// Reject expired subscriptions
+$validSubscriptions = $subscriptions-&gt;reject-&gt;isExpired();" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Execute markAsVip() on each User instance</span>
+<span class="hljs-variable">$users</span>-&gt;each-&gt;<span class="hljs-title function_ invoke__">markAsVip</span>();
+
+<span class="hljs-comment">// Filter users where isActive() returns true</span>
+<span class="hljs-variable">$activeUsers</span> = <span class="hljs-variable">$users</span>-&gt;filter-&gt;<span class="hljs-title function_ invoke__">isActive</span>();
+
+<span class="hljs-comment">// Reject expired subscriptions</span>
+<span class="hljs-variable">$validSubscriptions</span> = <span class="hljs-variable">$subscriptions</span>-&gt;reject-&gt;<span class="hljs-title function_ invoke__">isExpired</span>();</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Real-World Practical Examples</h3>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Services;
+
+use App\Models\Invoice;
+use App\Models\User;
+use Illuminate\Support\Collection;
+
+class BillingService
+{
+    /**
+     * @param Collection&lt;int, User&gt; $users
+     */
+    public function processVipMembers(Collection $users): void
+    {
+        // 1. Filter active users
+        $activeVips = $users-&gt;filter-&gt;isVip();
+
+        // 2. Perform an action on each
+        $activeVips-&gt;each-&gt;sendVipNewsletter();
+    }
+
+    /**
+     * @param Collection&lt;int, Invoice&gt; $invoices
+     */
+    public function summarizeInvoices(Collection $invoices): array
+    {
+        return [
+            // Group invoices by payment status
+            &#039;by_status&#039;     =&gt; $invoices-&gt;groupBy-&gt;status,
+            // Calculate total unpaid balance
+            &#039;unpaid_total&#039;  =&gt; $invoices-&gt;filter-&gt;isUnpaid()-&gt;sum-&gt;amount,
+            // Find highest single invoice
+            &#039;max_invoice&#039;   =&gt; $invoices-&gt;max-&gt;amount,
+            // Extract unique customer IDs
+            &#039;customer_ids&#039;  =&gt; $invoices-&gt;unique-&gt;customer_id-&gt;map-&gt;customer_id,
+        ];
+    }
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Services</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Invoice</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Collection</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BillingService</span>
+</span>{
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@param</span> Collection&lt;int, User&gt; $users
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processVipMembers</span>(<span class="hljs-params">Collection <span class="hljs-variable">$users</span></span>): <span class="hljs-title">void</span>
+    </span>{
+        <span class="hljs-comment">// 1. Filter active users</span>
+        <span class="hljs-variable">$activeVips</span> = <span class="hljs-variable">$users</span>-&gt;filter-&gt;<span class="hljs-title function_ invoke__">isVip</span>();
+
+        <span class="hljs-comment">// 2. Perform an action on each</span>
+        <span class="hljs-variable">$activeVips</span>-&gt;each-&gt;<span class="hljs-title function_ invoke__">sendVipNewsletter</span>();
+    }
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@param</span> Collection&lt;int, Invoice&gt; $invoices
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">summarizeInvoices</span>(<span class="hljs-params">Collection <span class="hljs-variable">$invoices</span></span>): <span class="hljs-title">array</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-comment">// Group invoices by payment status</span>
+            <span class="hljs-string">&#x27;by_status&#x27;</span>     =&gt; <span class="hljs-variable">$invoices</span>-&gt;groupBy-&gt;status,
+            <span class="hljs-comment">// Calculate total unpaid balance</span>
+            <span class="hljs-string">&#x27;unpaid_total&#x27;</span>  =&gt; <span class="hljs-variable">$invoices</span>-&gt;filter-&gt;<span class="hljs-title function_ invoke__">isUnpaid</span>()-&gt;sum-&gt;amount,
+            <span class="hljs-comment">// Find highest single invoice</span>
+            <span class="hljs-string">&#x27;max_invoice&#x27;</span>   =&gt; <span class="hljs-variable">$invoices</span>-&gt;max-&gt;amount,
+            <span class="hljs-comment">// Extract unique customer IDs</span>
+            <span class="hljs-string">&#x27;customer_ids&#x27;</span>  =&gt; <span class="hljs-variable">$invoices</span>-&gt;unique-&gt;customer_id-&gt;map-&gt;customer_id,
+        ];
+    }
+}</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Complete Supported Method Reference</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Higher-order messages are supported across 23 Collection methods, organized by category:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// -------------------------------------------------------------
+// Left: Aggregation &amp; Iteration
+// -------------------------------------------------------------
+
+// Before: a callback is needed just to return a property.
+$orders-&gt;groupBy(function (Order $order) {
+    return $order-&gt;status;
+});
+
+// After: higher-order messages let Laravel access it directly.
+$orders-&gt;groupBy-&gt;status;
+
+// Aggregation: calculate values from a property or method.
+$collection-&gt;average-&gt;property;
+$collection-&gt;avg-&gt;property;
+$collection-&gt;max-&gt;property;
+$collection-&gt;min-&gt;property;
+$collection-&gt;sum-&gt;property;
+
+// Iteration: call methods or transform items without callbacks.
+$collection-&gt;each-&gt;method();
+$collection-&gt;map-&gt;property;
+$collection-&gt;flatMap-&gt;method();" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// -------------------------------------------------------------</span>
+<span class="hljs-comment">// Left: Aggregation &amp; Iteration</span>
+<span class="hljs-comment">// -------------------------------------------------------------</span>
+
+<span class="hljs-comment">// Before: a callback is needed just to return a property.</span>
+<span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">groupBy</span>(function (Order <span class="hljs-variable">$order</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$order</span>-&gt;status;
+});
+
+<span class="hljs-comment">// After: higher-order messages let Laravel access it directly.</span>
+<span class="hljs-variable">$orders</span>-&gt;groupBy-&gt;status;
+
+<span class="hljs-comment">// Aggregation: calculate values from a property or method.</span>
+<span class="hljs-variable">$collection</span>-&gt;average-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;avg-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;max-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;min-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;sum-&gt;property;
+
+<span class="hljs-comment">// Iteration: call methods or transform items without callbacks.</span>
+<span class="hljs-variable">$collection</span>-&gt;each-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;map-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;flatMap-&gt;<span class="hljs-title function_ invoke__">method</span>();</code></pre>
+</div>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// -------------------------------------------------------------
+// Right: Filtering, Finding, Grouping, &amp; Sorting
+// -------------------------------------------------------------
+
+// Filtering: keep, remove, or check items using a property or method.
+$collection-&gt;contains-&gt;method();
+$collection-&gt;every-&gt;method();
+$collection-&gt;filter-&gt;method();
+$collection-&gt;reject-&gt;method();
+$collection-&gt;some-&gt;method();
+
+// Finding &amp; grouping: locate, group, partition, or key items.
+$collection-&gt;first-&gt;method();
+$collection-&gt;groupBy-&gt;property;
+$collection-&gt;keyBy-&gt;property;
+$collection-&gt;partition-&gt;method();
+$collection-&gt;unique-&gt;property;
+
+// Sorting: order items using a property or method.
+$collection-&gt;sortBy-&gt;property;
+$collection-&gt;sortByDesc-&gt;property;
+
+// Skipping &amp; taking: include or skip items based on conditions.
+$collection-&gt;skipUntil-&gt;method();
+$collection-&gt;skipWhile-&gt;method();
+$collection-&gt;takeUntil-&gt;method();
+$collection-&gt;takeWhile-&gt;method();" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// -------------------------------------------------------------</span>
+<span class="hljs-comment">// Right: Filtering, Finding, Grouping, &amp; Sorting</span>
+<span class="hljs-comment">// -------------------------------------------------------------</span>
+
+<span class="hljs-comment">// Filtering: keep, remove, or check items using a property or method.</span>
+<span class="hljs-variable">$collection</span>-&gt;contains-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;every-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;filter-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;reject-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;some-&gt;<span class="hljs-title function_ invoke__">method</span>();
+
+<span class="hljs-comment">// Finding &amp; grouping: locate, group, partition, or key items.</span>
+<span class="hljs-variable">$collection</span>-&gt;first-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;groupBy-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;keyBy-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;partition-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;unique-&gt;property;
+
+<span class="hljs-comment">// Sorting: order items using a property or method.</span>
+<span class="hljs-variable">$collection</span>-&gt;sortBy-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;sortByDesc-&gt;property;
+
+<span class="hljs-comment">// Skipping &amp; taking: include or skip items based on conditions.</span>
+<span class="hljs-variable">$collection</span>-&gt;skipUntil-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;skipWhile-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;takeUntil-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;takeWhile-&gt;<span class="hljs-title function_ invoke__">method</span>();</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">When to Keep the Closure</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Higher-order messages are designed for direct property reads and single method calls. If your callback involves custom logic, comparisons, or multi-step transformations, continue using standard closures:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Keep a closure when custom business logic or conditionals are needed:
+$orders-&gt;groupBy(function (Order $order) {
+    return $order-&gt;total &gt; 1000 ? &#039;tier_enterprise&#039; : &#039;tier_standard&#039;;
+});
+
+// Keep a closure when multiple arguments or external variables are required:
+$users-&gt;each(function (User $user) use ($notifier, $discountCode) {
+    $notifier-&gt;sendCustomPromotion($user, $discountCode);
 });" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -856,15 +1106,22 @@ $groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): st
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$revenueByQuarter</span> = <span class="hljs-variable">$groupedOrders</span>-&gt;<span class="hljs-title function_ invoke__">map</span>(function (Collection <span class="hljs-variable">$orders</span>): <span class="hljs-keyword">float</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">sum</span>(<span class="hljs-string">&#x27;total_amount&#x27;</span>);
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Keep a closure when custom business logic or conditionals are needed:</span>
+<span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">groupBy</span>(function (Order <span class="hljs-variable">$order</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$order</span>-&gt;total &gt; <span class="hljs-number">1000</span> ? <span class="hljs-string">&#x27;tier_enterprise&#x27;</span> : <span class="hljs-string">&#x27;tier_standard&#x27;</span>;
+});
+
+<span class="hljs-comment">// Keep a closure when multiple arguments or external variables are required:</span>
+<span class="hljs-variable">$users</span>-&gt;<span class="hljs-title function_ invoke__">each</span>(function (User <span class="hljs-variable">$user</span>) <span class="hljs-keyword">use</span> ($<span class="hljs-title">notifier</span>, $<span class="hljs-title">discountCode</span>) {
+    $<span class="hljs-title">notifier</span>-&gt;<span class="hljs-title">sendCustomPromotion</span>($<span class="hljs-title">user</span>, $<span class="hljs-title">discountCode</span>);
 });</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Pass a closure to <code>Collection::groupBy()</code> for dynamic, computed grouping criteria.</span></li><li class="leading-relaxed"><span class="align-middle">Pair with Carbon&#39;s period helpers (<code>startOfWeek()</code>, <code>firstOfQuarter()</code>) to group data into reporting intervals.</span></li><li class="leading-relaxed"><span class="align-middle">Chain <code>map()</code> and <code>sum()</code> on grouped collections to calculate interval metrics effortlessly.</span></li></ul>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The general rule: <strong>Use higher-order messages when a callback only forwards a property or method; keep a closure when you need logic.</strong></p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Higher-order messages eliminate boilerplate closures across 23 Laravel Collection methods.</span></li><li class="leading-relaxed"><span class="align-middle">Accessed via dynamic properties on the collection (<code>$collection-&gt;filter-&gt;isActive()</code>).</span></li><li class="leading-relaxed"><span class="align-middle">Supports both property retrieval (<code>$orders-&gt;sum-&gt;total</code>) and method execution (<code>$users-&gt;each-&gt;delete()</code>).</span></li><li class="leading-relaxed"><span class="align-middle">Keeps chained collection pipelines readable and concise without sacrificing clarity.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->
                 <div class="mt-8 flex justify-end">
-                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/collections/laravel-collection-groupby-closure.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/collections/laravel-collection-higher-order-messages.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group whitespace-nowrap" aria-label="Edit this tip on GitHub">
                         <span>edit this tip</span>
                         <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
                     </a>
@@ -877,11 +1134,11 @@ $groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): st
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Collections</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">PHP</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Dates</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Collections</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Eloquent</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">PHP</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Clean Code</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Dynamic%20Date%20Grouping%20in%20Laravel%20Collections%20Using%20Closures%20in%20groupBy()%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-collection-groupby-closure" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
+                        <a href="https://twitter.com/intent/tweet?text=Simplify%20Collection%20Operations%20with%20Higher-Order%20Messages%20by%20%40MrPunyapal&url=https%3A%2F%2Fmrpunyapal.dev%2Ftips%2Flaravel-collection-higher-order-messages" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors text-[11px] font-bold uppercase tracking-wider" aria-label="Share this tip on X">
                             <svg class="icon text-[11px]" width="11" height="11" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
                             <span>Share on X</span>
                         </a>
@@ -898,28 +1155,6 @@ $groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): st
             <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4">Related Tips</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                 
-                <a href="/tips/laravel-collection-higher-order-messages" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
-                    <!-- Corner Crosshairs -->
-                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
-                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </div>
-
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
-                        Simplify Collection Operations with Higher-Order Messages
-                    </h3>
-                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </span>
-                </a>
                 <a href="/tips/laravel-mariadb-vector-distance-queries" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
                     <!-- Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -937,6 +1172,28 @@ $groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): st
 
                     <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
                         Query AI Embeddings with MariaDB Vector Distance in Laravel 13.27
+                    </h3>
+                    <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                <a href="/tips/laravel-query-builder-where-binary" class="group relative p-5 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex items-center justify-between gap-3">
+                    <!-- Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden sm:block">
+                        <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug tracking-tight">
+                        Precise Binary String Comparisons with whereBinary() in Laravel 13.27
                     </h3>
                     <span class="text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -962,7 +1219,7 @@ $groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): st
 
     <!-- Copy Link & Code helper script -->
     <script>
-        const OTHER_TIP_SLUGS = ["laravel-collection-higher-order-messages","github-actions-cache-playwright-puppeteer","github-actions-incremental-file-writing","github-actions-skip-steps-with-git-diff","laravel-mariadb-vector-distance-queries","laravel-query-builder-where-binary","laravel-queue-total-size-metrics","git-cherry-pick-single-commit","mask-query-bindings-in-exception-messages","laravel-refresh-for-update-pessimistic-locking","laravel-wherepivot-closure-scopes","git-local-ignore-info-exclude","laravel-process-idle-timeout-fake-assertions","laravel-stream-csv-downloads-without-temporary-files","laravel-queue-debounced-event-listeners","laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-move-global-search-sidebar","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","php-predefined-constants-cheat-sheet","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-rector-remove-unnecessary-comments","laravel-cache-flexible-stale-while-revalidate","laravel-validation-current-password-rule","laravel-validation-rule-image-dimensions","laravel-testing-queue-fake-job-assertions","laravel-testing-event-fake-except-selective","php-blank-filled-over-empty","laravel-request-expects-json-content-negotiation","php-match-arm-multiple-values","laravel-routing-force-https-scheme","laravel-queue-bulk-dispatch-batches-and-chains","laravel-squash-migrations-workflow","laravel-queue-delete-when-missing-models","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-without-relations-serialization","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","laravel-eloquent-where-year-vs-date-between-index","php-null-coalescing-assignment-operator","laravel-eloquent-latest-and-oldest-ordering","laravel-cache-memo-driver-in-memory","laravel-eloquent-first-or-fallback-closure","laravel-database-generated-virtual-columns","laravel-eloquent-find-many-keys","laravel-pint-use-arrow-functions-rule","laravel-str-deduplicate-consecutive-characters","alpinejs-multiple-data-objects-xdata","laravel-eloquent-collection-to-query","laravel-real-time-facades","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","laravel-validation-bail-rule-first-failure","pest-only-method-test-focus","laravel-model-touch-timestamp-update","laravel-eloquent-get-original-and-is-dirty","php-early-returns-guard-clauses","php-timeout-guard-ticks-without-pcntl","laravel-mailable-preview-in-browser-routes","laravel-eloquent-without-timestamps-modifier","laravel-collection-times-numeric-ranges","laravel-migration-foreign-id-for-model","laravel-str-is-url-validation","laravel-db-when-querying-for-longer-than","laravel-eloquent-where-morphed-to-polymorphic","laravel-container-app-optimizes-deployment","laravel-tappable-scopes-eloquent-scout","laravel-database-raw-ddl-statements","laravel-container-contextual-attributes","laravel-testing-faker-valid-modifier","laravel-job-dispatch-new-instance","laravel-collection-when-not-empty-transformations","laravel-factory-custom-state-modifiers","laravel-collection-zip-combine-arrays","tall-stack-filament-admin-panel","laravel-artisan-closure-commands-console-routes","laravel-collection-every-predicate-check","laravel-eloquent-date-casting-and-carbon-accessors","laravel-eloquent-without-events-mute-observers","laravel-collection-dot-and-undot-arrays","laravel-test-time-travel-freeze","laravel-clean-code-enums-and-config-constants","php-backed-integer-enums-indexing","laravel-request-fingerprint-unique-identification","laravel-collection-contains-one-item","laravel-config-helper-get-set","laravel-eloquent-convention-over-configuration","laravel-collection-pipe-custom-transforms","php-type-system-cheat-sheet","php-array-shapes-phpdoc","php-generics-phpdoc-template","phpstan-static-analysis-levels-guide","laravel-gate-deny-as-not-found-security","laravel-architecture-skinny-controllers-invokable-actions","laravel-pint-single-line-empty-constructors","laravel-pipeline-send-multi-step-workflows","laravel-auth-logout-other-devices","laravel-architecture-naming-conventions-reference","laravel-eloquent-prevent-lazy-loading-strict-mode","php-strict-types-property-declarations","php-rector-refactor-enums-pascal-case","laravel-http-with-token-bearer-authentication","laravel-str-headline-human-readable-titles","laravel-http-pool-concurrent-requests","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-str-password-secure-generation","laravel-eloquent-reorder-query-builder","laravel-schema-has-table-column-checks","laravel-single-action-invokable-controllers","laravel-view-share-global-template-data","laravel-broadcast-database-notifications-instantly","laravel-blade-conditional-include-directives","laravel-eloquent-when-and-unless-conditional-queries","laravel-blade-loop-variable-helpers","laravel-cast-enum-json-array-key","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-blade-checked-and-selected-directives","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","laravel-enum-has-label-trait","laravel-on-demand-notifications-anonymous","livewire-teleport-blade-view-cache-directive-fix","laravel-gate-inspect-authorization-response","laravel-gate-before-super-admin-bypass","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-context-facade-metadata-correlation","laravel-eloquent-order-by-subquery","laravel-can-route-middleware-authorization","laravel-queue-job-rate-limiting","laravel-redirect-away-external-domains","laravel-activity-log-event-subscriber","laravel-generate-unique-slug-without-looping","laravel-mailable-in-memory-attach-data","php-str-increment-decrement","laravel-carbon-set-test-now-time-manipulation","laravel-str-plural-singular-inflections","laravel-validation-rule-prohibited-if","laravel-migration-column-comments-schema","laravel-eloquent-batch-upsert-queries","laravel-production-deployment-commands","laravel-request-merge-if-missing-defaults","laravel-artisan-call-programmatic-execution","livewire-renderless-export-csv-reports","laravel-belongs-to-team-multitenancy-trait","laravel-migration-after-column-positioning","laravel-eloquent-where-json-contains","laravel-custom-wherelike-macro","laravel-migration-use-current-timestamps","laravel-route-singleton-resource-endpoints","laravel-collection-duplicates-detection","laravel-collection-map-with-keys","laravel-database-anonymous-migrations","laravel-testing-lazily-refresh-database","laravel-collection-partition-array-split","laravel-collection-sliding-window","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","laravel-eloquent-custom-model-casts","laravel-factory-recycle-existing-models","mysql-subquery-same-table-update-restriction","laravel-blade-style-directive-inline-css","laravel-collection-when-conditional-pipelines","laravel-load-missing-conditional-eager-loading","laravel-http-fake-prevent-stray-requests","laravel-mailable-browser-preview","laravel-blade-class-directive-conditional-styling","laravel-temporary-signed-urls-security","laravel-tailwind-utility-css-workflow","laravel-eloquent-to-base-query-builder","laravel-update-existing-pivot-records","laravel-blade-component-short-attribute-syntax","laravel-custom-rate-limiting-api-endpoints","laravel-eloquent-touching-parent-timestamps","laravel-where-has-multiple-database-connections","laravel-route-fallback-custom-404","laravel-validation-array-wildcards","laravel-eloquent-where-all-and-where-any","laravel-http-client-throw-exception-handling","laravel-route-model-binding-custom-column","laravel-custom-invokable-validation-rules","laravel-eloquent-insert-or-ignore-queries","laravel-http-client-retry-exponential-backoff","laravel-route-resource-with-trashed-binding","laravel-artisan-table-output-formatting","laravel-db-scalar-single-value-queries","laravel-eloquent-first-where-query-shorthand","laravel-nested-resource-controllers-shallow-nesting","laravel-soft-deletes-restore-multiple-records","laravel-artisan-command-confirm-prompts","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-doesnt-have-relationships","laravel-eloquent-merge-casts-dynamic","laravel-with-count-conditional-queries","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","laravel-query-doesnt-exist-method","laravel-api-resource-conditional-attributes","laravel-eloquent-where-key-primary-lookup","laravel-data-get-nested-array-traversal","laravel-where-relation-query-shorthand","laravel-api-resource-when-loaded-relationships","laravel-eloquent-with-exists-subquery","laravel-gate-any-and-none-multiple-permissions","laravel-api-no-content-204-response","laravel-validator-sometimes-conditional-rules","laravel-auth-once-stateless-authentication","laravel-str-words-and-limit-truncation","laravel-form-request-after-validation-hooks","laravel-str-markdown-rendering","laravel-str-swap-multiple-string-replacement","laravel-scheduler-environment-constraints","laravel-password-defaults-security-rules","laravel-logging-with-context-request-tracing","laravel-str-chop-start-and-chop-end","laravel-session-pull-retrieve-and-forget","laravel-validation-rule-unique-ignore-soft-deletes","laravel-factory-has-and-for-relationships","laravel-number-file-size-human-readable","laravel-str-squish-whitespace-cleanup","laravel-conditional-validation-rules-when-exclude-if","laravel-factory-sequence-and-state-definitions","laravel-number-utility-currency-and-percentages","laravel-route-without-middleware-exclusion","laravel-prepare-for-validation-data-sanitization","laravel-sleep-helper-testable-delays","laravel-testing-assert-model-exists-and-missing","css-container-queries-responsive-components","laravel-model-is-and-is-not-comparison","laravel-lottery-probabilistic-execution","laravel-tap-helper-fluent-mutations","laravel-model-should-be-strict-dev-mode","laravel-route-parameter-regex-constraints","laravel-db-listen-slow-query-logging","laravel-throw-if-and-throw-unless-exceptions","laravel-save-quietly-without-events","laravel-route-controller-groups","laravel-benchmark-measure-code-performance","laravel-rescue-helper-exception-handling","laravel-pagination-through-transformation","laravel-prunable-models-automatic-cleanup","laravel-replicate-clone-model-attributes","laravel-request-when-filled-and-when-has","laravel-update-or-create-vs-first-or-create","laravel-request-date-carbon-retrieval","laravel-where-column-database-comparison","laravel-to-route-redirect-helper","laravel-belongs-to-with-default-model","laravel-conditionable-trait-custom-classes","laravel-has-one-latest-of-many-relationships","laravel-str-mask-sensitive-data","laravel-where-belongs-to-query-filtering"];
+        const OTHER_TIP_SLUGS = ["github-actions-cache-playwright-puppeteer","github-actions-incremental-file-writing","github-actions-skip-steps-with-git-diff","laravel-mariadb-vector-distance-queries","laravel-query-builder-where-binary","laravel-queue-total-size-metrics","git-cherry-pick-single-commit","mask-query-bindings-in-exception-messages","laravel-refresh-for-update-pessimistic-locking","laravel-wherepivot-closure-scopes","git-local-ignore-info-exclude","laravel-process-idle-timeout-fake-assertions","laravel-stream-csv-downloads-without-temporary-files","laravel-queue-debounced-event-listeners","laravel-filesystem-read-through-disk","laravel-http-client-macros","laravel-migration-default-expression","laravel-request-all-input-file-precedence","laravel-queue-forward-reroute-infrastructure","php-docsmith-static-documentation-generator","css-view-transition-cross-document-shared-elements","laravel-cache-short-lived-tokens-over-database","laravel-artisan-dev-multiplex-terminal-ui","laravel-global-queue-pause-resume","laravel-queueable-anonymous-event-listeners","laravel-avoid-env-outside-config-pest-arch","laravel-schema-state-load-seeding","laravel-image-stream-format-response","laravel-detect-model-changes-isdirty-waschanged","laravel-uniquejobskipped-queue-event","laravel-foreignulidfor-schema-helper","css-prevent-navigation-layout-shift-flicker","github-actions-cross-repo-workflow-dispatch","laravel-blueprint-macro-reusable-schema-audit-fields","laravel-builder-macro-registration","laravel-livewire-flux-error-handling","laravel-validation-wildcard-array-performance","php-never-return-in-finally-block","laravel-dominant-color-heic-avif","laravel-model-keys-eloquent-builder","laravel-array-keys-validation","filament-move-global-search-sidebar","pest-enable-tia-plugin-by-default","php-rector-automate-readonly-classes","laravel-bindwhen-conditional-binding","laravel-pint-blade-formatter","laravel-monthly-log-channel","laravel-sole-vs-firstorfail","laravel-prohibitable-custom-commands-agents","laravel-agent-detector-pao","laravel-gate-define-authorize-pattern","laravel-cursor-vs-lazy-collections","laravel-collection-each-vs-map","laravel-chunk-vs-lazy-by-id","laravel-lazy-collection-streaming","laravel-select-columns-relationship-foreign-keys","laravel-security-ui-vs-policy-enforcement","laravel-pluck-value-over-full-models","laravel-db-after-commit-transaction-jobs","laravel-withwherehas-relationship-query","laravel-updating-chunk-by-id-prevention","laravel-request-validated-over-all","laravel-withaggregate-subquery-optimization","laravel-assert-database-has-json-enums","laravel-extended-commands-scaffold-patterns","pest-tia-plugin-workflow","laravel-prohibitable-destructive-commands","laravel-carbon-diffforhumans-syntax-options","php-security-strip-tags-vs-htmlpurifier","laravel-higher-order-collection-messages","laravel-pipeline-pattern-complex-workflows","laravel-custom-responsable-classes","php-predefined-constants-cheat-sheet","laravel-wheredate-index-performance","laravel-without-relation-eloquent-builder","php-rector-remove-unnecessary-comments","laravel-cache-flexible-stale-while-revalidate","laravel-validation-current-password-rule","laravel-validation-rule-image-dimensions","laravel-testing-queue-fake-job-assertions","laravel-testing-event-fake-except-selective","php-blank-filled-over-empty","laravel-request-expects-json-content-negotiation","php-match-arm-multiple-values","laravel-routing-force-https-scheme","laravel-queue-bulk-dispatch-batches-and-chains","laravel-squash-migrations-workflow","laravel-queue-delete-when-missing-models","php-constructor-property-promotion","laravel-http-client-after-response-middleware","laravel-date-validation-rule-helpers","pest-compact-printer-output","laravel-queue-without-relations-serialization","laravel-queue-job-model-relationships","pest-clean-test-setup-configuration","laravel-queue-worker-polling-optimization","php-array-unpacking-square-brackets","laravel-queue-worker-stop-when-empty-for","laravel-eloquent-where-year-vs-date-between-index","php-null-coalescing-assignment-operator","laravel-eloquent-latest-and-oldest-ordering","laravel-cache-memo-driver-in-memory","laravel-eloquent-first-or-fallback-closure","laravel-database-generated-virtual-columns","laravel-eloquent-find-many-keys","laravel-pint-use-arrow-functions-rule","laravel-str-deduplicate-consecutive-characters","alpinejs-multiple-data-objects-xdata","laravel-eloquent-collection-to-query","laravel-real-time-facades","php-cli-syntax-check-linting","laravel-queue-fake-except-for-testing","laravel-validation-bail-rule-first-failure","pest-only-method-test-focus","laravel-model-touch-timestamp-update","laravel-eloquent-get-original-and-is-dirty","php-early-returns-guard-clauses","php-timeout-guard-ticks-without-pcntl","laravel-mailable-preview-in-browser-routes","laravel-eloquent-without-timestamps-modifier","laravel-collection-times-numeric-ranges","laravel-migration-foreign-id-for-model","laravel-str-is-url-validation","laravel-db-when-querying-for-longer-than","laravel-eloquent-where-morphed-to-polymorphic","laravel-container-app-optimizes-deployment","laravel-tappable-scopes-eloquent-scout","laravel-database-raw-ddl-statements","laravel-container-contextual-attributes","laravel-testing-faker-valid-modifier","laravel-job-dispatch-new-instance","laravel-collection-when-not-empty-transformations","laravel-factory-custom-state-modifiers","laravel-collection-zip-combine-arrays","tall-stack-filament-admin-panel","laravel-artisan-closure-commands-console-routes","laravel-collection-every-predicate-check","laravel-eloquent-date-casting-and-carbon-accessors","laravel-eloquent-without-events-mute-observers","laravel-collection-dot-and-undot-arrays","laravel-test-time-travel-freeze","laravel-clean-code-enums-and-config-constants","php-backed-integer-enums-indexing","laravel-request-fingerprint-unique-identification","laravel-collection-contains-one-item","laravel-config-helper-get-set","laravel-eloquent-convention-over-configuration","laravel-collection-pipe-custom-transforms","php-type-system-cheat-sheet","php-array-shapes-phpdoc","php-generics-phpdoc-template","phpstan-static-analysis-levels-guide","laravel-gate-deny-as-not-found-security","laravel-architecture-skinny-controllers-invokable-actions","laravel-pint-single-line-empty-constructors","laravel-pipeline-send-multi-step-workflows","laravel-auth-logout-other-devices","laravel-architecture-naming-conventions-reference","laravel-eloquent-prevent-lazy-loading-strict-mode","php-strict-types-property-declarations","php-rector-refactor-enums-pascal-case","laravel-http-with-token-bearer-authentication","laravel-str-headline-human-readable-titles","laravel-http-pool-concurrent-requests","laravel-eloquent-with-attribute-proposal","laravel-rector-automate-casts-method-upgrade","laravel-artisan-stubs-custom-namespaces","laravel-model-attribute-backed-enums","laravel-str-password-secure-generation","laravel-eloquent-reorder-query-builder","laravel-schema-has-table-column-checks","laravel-single-action-invokable-controllers","laravel-view-share-global-template-data","laravel-broadcast-database-notifications-instantly","laravel-blade-conditional-include-directives","laravel-eloquent-when-and-unless-conditional-queries","laravel-blade-loop-variable-helpers","laravel-cast-enum-json-array-key","laravel-custom-casts-enum-json","laravel-artisan-queue-background-commands","laravel-blade-checked-and-selected-directives","laravel-wherejsonlength-eloquent","laravel-query-insertusing-table-copy","laravel-enum-has-label-trait","laravel-on-demand-notifications-anonymous","livewire-teleport-blade-view-cache-directive-fix","laravel-gate-inspect-authorization-response","laravel-gate-before-super-admin-bypass","javascript-tailwind-dropdown-next-element-sibling","laravel-blade-use-directive-array-imports","laravel-context-facade-metadata-correlation","laravel-eloquent-order-by-subquery","laravel-can-route-middleware-authorization","laravel-queue-job-rate-limiting","laravel-redirect-away-external-domains","laravel-activity-log-event-subscriber","laravel-generate-unique-slug-without-looping","laravel-mailable-in-memory-attach-data","php-str-increment-decrement","laravel-carbon-set-test-now-time-manipulation","laravel-str-plural-singular-inflections","laravel-validation-rule-prohibited-if","laravel-migration-column-comments-schema","laravel-eloquent-batch-upsert-queries","laravel-production-deployment-commands","laravel-request-merge-if-missing-defaults","laravel-artisan-call-programmatic-execution","livewire-renderless-export-csv-reports","laravel-belongs-to-team-multitenancy-trait","laravel-migration-after-column-positioning","laravel-eloquent-where-json-contains","laravel-custom-wherelike-macro","laravel-collection-groupby-closure","laravel-migration-use-current-timestamps","laravel-route-singleton-resource-endpoints","laravel-collection-duplicates-detection","laravel-collection-map-with-keys","laravel-database-anonymous-migrations","laravel-testing-lazily-refresh-database","laravel-collection-partition-array-split","laravel-collection-sliding-window","laravel-listeners-decouple-auth-session","laravel-dispatch-vs-dispatch-sync","laravel-eloquent-custom-model-casts","laravel-factory-recycle-existing-models","mysql-subquery-same-table-update-restriction","laravel-blade-style-directive-inline-css","laravel-collection-when-conditional-pipelines","laravel-load-missing-conditional-eager-loading","laravel-http-fake-prevent-stray-requests","laravel-mailable-browser-preview","laravel-blade-class-directive-conditional-styling","laravel-temporary-signed-urls-security","laravel-tailwind-utility-css-workflow","laravel-eloquent-to-base-query-builder","laravel-update-existing-pivot-records","laravel-blade-component-short-attribute-syntax","laravel-custom-rate-limiting-api-endpoints","laravel-eloquent-touching-parent-timestamps","laravel-where-has-multiple-database-connections","laravel-route-fallback-custom-404","laravel-validation-array-wildcards","laravel-eloquent-where-all-and-where-any","laravel-http-client-throw-exception-handling","laravel-route-model-binding-custom-column","laravel-custom-invokable-validation-rules","laravel-eloquent-insert-or-ignore-queries","laravel-http-client-retry-exponential-backoff","laravel-route-resource-with-trashed-binding","laravel-artisan-table-output-formatting","laravel-db-scalar-single-value-queries","laravel-eloquent-first-where-query-shorthand","laravel-nested-resource-controllers-shallow-nesting","laravel-soft-deletes-restore-multiple-records","laravel-artisan-command-confirm-prompts","laravel-file-downloads-streamed-responses","laravel-custom-missing-model-binding-behavior","laravel-trim-strings-convert-empty-strings-middleware","laravel-collection-flatmap-transformation","php-numeric-literal-separators","laravel-eager-load-nested-dot-notation","laravel-eloquent-doesnt-have-relationships","laravel-eloquent-merge-casts-dynamic","laravel-with-count-conditional-queries","laravel-array-column-relationships-hasmanyarraycolumn","laravel-arr-query-build-url-params","laravel-localization-json-translation-keys","laravel-pagination-oneachside-links","laravel-query-doesnt-exist-method","laravel-api-resource-conditional-attributes","laravel-eloquent-where-key-primary-lookup","laravel-data-get-nested-array-traversal","laravel-where-relation-query-shorthand","laravel-api-resource-when-loaded-relationships","laravel-eloquent-with-exists-subquery","laravel-gate-any-and-none-multiple-permissions","laravel-api-no-content-204-response","laravel-validator-sometimes-conditional-rules","laravel-auth-once-stateless-authentication","laravel-str-words-and-limit-truncation","laravel-form-request-after-validation-hooks","laravel-str-markdown-rendering","laravel-str-swap-multiple-string-replacement","laravel-scheduler-environment-constraints","laravel-password-defaults-security-rules","laravel-logging-with-context-request-tracing","laravel-str-chop-start-and-chop-end","laravel-session-pull-retrieve-and-forget","laravel-validation-rule-unique-ignore-soft-deletes","laravel-factory-has-and-for-relationships","laravel-number-file-size-human-readable","laravel-str-squish-whitespace-cleanup","laravel-conditional-validation-rules-when-exclude-if","laravel-factory-sequence-and-state-definitions","laravel-number-utility-currency-and-percentages","laravel-route-without-middleware-exclusion","laravel-prepare-for-validation-data-sanitization","laravel-sleep-helper-testable-delays","laravel-testing-assert-model-exists-and-missing","css-container-queries-responsive-components","laravel-model-is-and-is-not-comparison","laravel-lottery-probabilistic-execution","laravel-tap-helper-fluent-mutations","laravel-model-should-be-strict-dev-mode","laravel-route-parameter-regex-constraints","laravel-db-listen-slow-query-logging","laravel-throw-if-and-throw-unless-exceptions","laravel-save-quietly-without-events","laravel-route-controller-groups","laravel-benchmark-measure-code-performance","laravel-rescue-helper-exception-handling","laravel-pagination-through-transformation","laravel-prunable-models-automatic-cleanup","laravel-replicate-clone-model-attributes","laravel-request-when-filled-and-when-has","laravel-update-or-create-vs-first-or-create","laravel-request-date-carbon-retrieval","laravel-where-column-database-comparison","laravel-to-route-redirect-helper","laravel-belongs-to-with-default-model","laravel-conditionable-trait-custom-classes","laravel-has-one-latest-of-many-relationships","laravel-str-mask-sensitive-data","laravel-where-belongs-to-query-filtering"];
         document.addEventListener('DOMContentLoaded', () => {
             const randomTipBtn = document.getElementById('random-tip-btn');
             if (randomTipBtn && OTHER_TIP_SLUGS.length > 0) {
