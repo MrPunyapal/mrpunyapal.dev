@@ -13,6 +13,152 @@
     <lastBuildDate>Tue, 01 Sep 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title><![CDATA[Git Submodule vs. Git Subtree: Which Should You Use?]]></title>
+      <link>https://mrpunyapal.dev/tips/git-submodule-vs-git-subtree</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/git-submodule-vs-git-subtree</guid>
+      <description><![CDATA[A practical comparison of Git Submodules and Git Subtrees to help you choose the right strategy for embedding one repository inside another. When managing pr...]]></description>
+      <content:encoded><![CDATA[<blockquote>A practical comparison of Git Submodules and Git Subtrees to help you choose the right strategy for embedding one repository inside another.</blockquote>
+<p>When managing projects that share common libraries, documentation sets, microservices, or reusable UI components, you frequently need to embed one Git repository inside another.</p>
+<p>Git provides two distinct mechanisms to handle this:</p>
+<ul>
+  <li><strong>Git Submodules</strong>: Keep the external repository strictly independent; the parent repository only stores a pointer to a specific commit SHA.</li>
+  <li><strong>Git Subtrees</strong>: Merge the external repository files and commit history directly into a subdirectory of the parent repository.</li>
+</ul>
+<hr>
+<h3>1. Git Submodules: Independent Pointer</h3>
+<p>With submodules, the external project remains an entirely separate repository. The parent repository does not store the files directly; it only tracks the submodule URL and a commit hash in `.gitmodules`.</p>
+<pre><code class="language-text">Main Repository
+├── app/
+├── config/
+└── packages/shared-lib/  → [Pointer to Commit abc1234 in external repo]</code></pre>
+<h4>Adding a Submodule</h4>
+<pre><code class="language-bash"># Add external repo into packages/shared-lib
+git submodule add https://github.com/example/shared-lib.git packages/shared-lib
+
+# Stage and commit the .gitmodules and submodule reference
+git commit -m &quot;Add shared-lib submodule&quot;</code></pre>
+<h4>Cloning a Repository with Submodules</h4>
+<p>When team members clone a repository containing submodules, standard `git clone` leaves submodule directories empty. They must pass the `--recurse-submodules` flag:</p>
+<pre><code class="language-bash"># Clone parent and initialize all nested submodules
+git clone --recurse-submodules https://github.com/example/main-app.git
+
+# Or initialize submodules in an existing clone
+git submodule update --init --recursive</code></pre>
+<h4>Updating a Submodule</h4>
+<p>To pull the latest changes from the submodule remote branch and update the parent commit pointer:</p>
+<pre><code class="language-bash">git submodule update --remote packages/shared-lib
+git add packages/shared-lib
+git commit -m &quot;Update shared-lib to latest commit&quot;</code></pre>
+<hr>
+<h3>2. Git Subtrees: In-Tree Merged History</h3>
+<p>With subtrees, the external repository's files are committed directly into your repository. Collaborators can clone, pull, and edit files normally without needing extra Git flags or submodule commands.</p>
+<pre><code class="language-text">Main Repository
+├── app/
+├── config/
+└── packages/shared-lib/  → [Real files + merged commit history]</code></pre>
+<h4>Adding a Subtree</h4>
+<pre><code class="language-bash"># 1. Add the external repository as a remote
+git remote add shared-lib https://github.com/example/shared-lib.git
+
+# 2. Add the subtree into packages/shared-lib using --squash
+git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pre>
+<h4>Pulling Upstream Updates</h4>
+<p>When the external repository publishes new commits, pull them into the parent project:</p>
+<pre><code class="language-bash">git subtree pull --prefix=packages/shared-lib shared-lib main --squash</code></pre>
+<h4>Pushing Local Changes Upstream</h4>
+<p>If you make modifications inside `packages/shared-lib` within the parent repo and want to push those commits back to the original repository:</p>
+<pre><code class="language-bash">git subtree push --prefix=packages/shared-lib shared-lib main</code></pre>
+<hr>
+<h3>3. Side-by-Side Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Git Submodule</th>
+<th>Git Subtree</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Storage in Parent Repo</strong></td>
+<td>Only commit SHA reference (<code>.gitmodules</code>)</td>
+<td>Full file contents and history</td>
+</tr>
+<tr>
+<td><strong>Cloning Experience</strong></td>
+<td>Requires <code>--recurse-submodules</code></td>
+<td>Normal <code>git clone</code> (no extra flags)</td>
+</tr>
+<tr>
+<td><strong>Developer Complexity</strong></td>
+<td>Higher (requires submodule workflow knowledge)</td>
+<td>Lower (files behave like normal code)</td>
+</tr>
+<tr>
+<td><strong>History Isolation</strong></td>
+<td>Completely separate Git trees</td>
+<td>Merged into the parent repository tree</td>
+</tr>
+<tr>
+<td><strong>Locking Exact Versions</strong></td>
+<td>Strict (pinned to exact commit hash)</td>
+<td>Flexible (updated on demand via pull)</td>
+</tr>
+<tr>
+<td><strong>Pushing Changes Back</strong></td>
+<td>Direct commits inside submodule directory</td>
+<td>Requires <code>git subtree push</code> command</td>
+</tr>
+<tr>
+<td><strong>Third-Party Dependencies</strong></td>
+<td>Ideal for external code you rarely modify</td>
+<td>Ideal for shared code you actively edit</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>4. Which One Should You Choose?</h3>
+<h4>Choose Git Submodules if:</h4>
+<ul>
+  <li>The embedded repository has its own strict release cycle and version tags.</li>
+  <li>You want the parent repository to lock onto an exact commit hash.</li>
+  <li>Team members and CI pipelines are comfortable initializing submodules (<code>--recurse-submodules</code>).</li>
+  <li>The embedded project is large and you want to keep repository clone sizes small.</li>
+</ul>
+<h4>Choose Git Subtrees if:</h4>
+<ul>
+  <li>You want a friction-free clone experience for team members and contributors.</li>
+  <li>You want the external code to behave like ordinary files inside the repository.</li>
+  <li>You frequently edit the embedded files directly alongside your application code.</li>
+  <li>You want to avoid detached HEAD states and submodule initialization errors in CI.</li>
+</ul>
+<hr>
+<h3>5. Common Gotchas</h3>
+<h4>Submodule Gotchas:</h4>
+<ul>
+  <li><strong>Empty Folders on Clone</strong>: Forgetting <code>--recurse-submodules</code> leaves submodule folders blank.</li>
+  <li><strong>Uncommitted Pointer Updates</strong>: Making changes inside the submodule folder without committing the updated reference in the parent repository causes inconsistent states between team members.</li>
+  <li><strong>Detached HEAD</strong>: By default, submodules check out detached commits rather than tracking branches.</li>
+</ul>
+<h4>Subtree Gotchas:</h4>
+<ul>
+  <li><strong>Longer Commands</strong>: Subtree syntax (<code>--prefix</code>, <code>--squash</code>, remote names) requires precise terminal commands.</li>
+  <li><strong>Repo Bloat</strong>: Importing large repositories with long commit histories increases the size of your parent repository.</li>
+</ul>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li>Use <strong>Git Submodules</strong> when you need strict commit pinning and want the dependency to remain an isolated external project.</li>
+  <li>Use <strong>Git Subtrees</strong> when you want shared code to live directly in your repository with seamless cloning for collaborators.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[Workflow]]></category>
+      <category><![CDATA[Version Control]]></category>
+      <category><![CDATA[DevOps]]></category>
+      <category><![CDATA[Monorepo]]></category>
+    </item>
+    <item>
       <title><![CDATA[Simplify Collection Operations with Higher-Order Messages]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-collection-higher-order-messages</guid>
