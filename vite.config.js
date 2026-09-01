@@ -46,6 +46,19 @@ function getTipInputs() {
   return inputs;
 }
 
+function getLaravelblrInputs() {
+  const laravelblrDir = resolve(__dirname, 'laravelblr');
+  const inputs = {};
+  if (fs.existsSync(laravelblrDir)) {
+    const files = fs.readdirSync(laravelblrDir).filter(f => f.endsWith('.html'));
+    for (const file of files) {
+      const key = `laravelblr/${file.replace(/\.html$/, '')}`;
+      inputs[key] = resolve(laravelblrDir, file);
+    }
+  }
+  return inputs;
+}
+
 export default defineConfig({
   plugins: [
     tipsAutoGeneratorPlugin(),
@@ -66,6 +79,7 @@ export default defineConfig({
         opensource: resolve(__dirname, 'opensource.html'),
         tips: resolve(__dirname, 'tips.html'),
         ...getTipInputs(),
+        ...getLaravelblrInputs(),
       },
     },
   },

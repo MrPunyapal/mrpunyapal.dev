@@ -1,0 +1,2254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>From User to Maintainer: The Open Source Journey | Punyapal Shah</title>
+  <meta name="description" content="Interactive Keynote: From User to Maintainer - The Open Source Journey by Punyapal Shah.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #06090F;
+      --bg-slide: #0A0E14;
+      --bg-card: #0F172A;
+      --bg-card-hover: #162036;
+      
+      --border-card: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      
+      /* Vivid Accent Palette */
+      --c-orange: #FF5722;
+      
+      --c-blue: #3B82F6;
+      
+      --c-green: #10B981;
+      
+      --c-yellow: #F59E0B;
+      
+      --c-purple: #A855F7;
+      
+      --c-pink: #EC4899;
+      
+      
+      --text-white: #FFFFFF;
+      --text-gray: #94A3B8;
+      --text-dim: #64748B;
+      --text-dark: #475569;
+      
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      
+      --deck-scale: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: var(--bg-canvas);
+      color: var(--text-white);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      user-select: none;
+    }
+
+        /* Native View Transitions API (Zero-Flicker Setup) */
+    ::view-transition-group(root),
+    ::view-transition-image-pair(root),
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      overflow: hidden !important;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.18s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      mix-blend-mode: normal !important;
+      background-color: var(--bg-slide);
+    }
+
+    @keyframes vt-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes vt-fade-out {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    ::view-transition-old(root) {
+      animation-name: vt-fade-out;
+    }
+
+    ::view-transition-new(root) {
+      animation-name: vt-fade-in;
+    }
+
+    /* Full-Screen Presentation Stage */
+    .deck-viewport {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background-color: var(--bg-canvas);
+      cursor: default;
+    }
+
+    /* 16:9 Canvas (1280x720 base) */
+    .slide-frame {
+      width: 1280px;
+      height: 720px;
+      transform: scale(var(--deck-scale, 1));
+      transform-origin: center center;
+      position: absolute;
+      background-color: var(--bg-slide);
+      overflow: hidden;
+      
+    }
+
+    /* Slide Structure: Header, Body, True Footer */
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 1280px;
+      height: 720px;
+      padding: 46px 72px 34px 72px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--bg-slide);
+    }
+
+    .slide.active {
+      display: flex;
+      z-index: 10;
+    }
+
+    .slide.slide-prev {
+      display: none;
+    }
+
+    
+        /* Stage Transition Zoom Slides */
+    .stage-transition-slide {
+      position: absolute;
+      inset: 0;
+      width: 1280px;
+      height: 720px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-slide);
+    }
+
+    .stage-transition-slide.active {
+      display: flex;
+      z-index: 10;
+    }
+
+    .stage-hero-tracker {
+      font-family: 'Fira Code', monospace;
+      font-size: 28px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      view-transition-name: slide-tracker;
+      padding: 24px 36px;
+    }
+
+    .stage-hero-tracker span {
+      transition: color 0.35s ease, opacity 0.35s ease;
+    }
+
+    .stage-hero-tracker .st-done {
+      color: #94A3B8;
+    }
+
+    .stage-hero-tracker .st-active-user {
+      color: var(--c-blue);
+      font-weight: 700;
+    }
+
+    .stage-hero-tracker .st-active-contributor {
+      color: var(--c-green);
+      font-weight: 700;
+    }
+
+    .stage-hero-tracker .st-active-author {
+      color: var(--c-yellow);
+      font-weight: 700;
+    }
+
+    .stage-hero-tracker .st-active-maintainer {
+      color: var(--c-orange);
+      font-weight: 700;
+    }
+
+    .stage-morph-node {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stage-morph-node .morph-prev {
+      transition: opacity 0.35s ease;
+      opacity: 1;
+    }
+
+    .stage-morph-node .morph-next {
+      position: absolute;
+      inset: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.35s ease;
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .stage-morph-node .morph-next.revealed {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .stage-morph-node.has-revealed .morph-prev {
+      opacity: 0;
+    }
+
+    /* Slide Header */
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+      flex-shrink: 0;
+      view-transition-name: slide-header;
+    }
+
+    .slide-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .title-accent-bar {
+      width: 4px;
+      height: 36px;
+      background: var(--c-orange);
+      border-radius: 2px;
+      flex-shrink: 0;
+      
+    }
+
+    .slide-title {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    /* Top Right Tracker with Morph Glow */
+    .slide-tracker {
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      view-transition-name: slide-tracker;
+    }
+
+    .slide-tracker span {
+      transition: color 0.3s ease;
+    }
+
+    .slide-tracker .st-done {
+      color: #94A3B8;
+    }
+
+    .slide-tracker .st-active-user {
+      color: var(--c-blue);
+      font-weight: 700;
+      
+    }
+
+    .slide-tracker .st-active-contributor {
+      color: var(--c-green);
+      font-weight: 700;
+      
+    }
+
+    .slide-tracker .st-active-author {
+      color: var(--c-yellow);
+      font-weight: 700;
+      
+    }
+
+    .slide-tracker .st-active-maintainer {
+      color: var(--c-orange);
+      font-weight: 700;
+      
+    }
+
+    /* Slide Body (Middle Content) */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Slide Footer (Anchored at Bottom of the Slide) */
+    .slide-footer {
+      flex-shrink: 0;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+      width: 100%;
+    }
+
+    /* Step-by-Step Progressive Reveal Fragments */
+    .step-item {
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .step-item.revealed {
+      opacity: 1;
+    }
+
+    /* SVG Timeline Animation */
+    .timeline-line-anim {
+      stroke-dasharray: 1040;
+      stroke-dashoffset: 1040;
+      transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .timeline-line-anim.revealed {
+      stroke-dashoffset: 0;
+    }
+
+    .node-dot-anim {
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .node-dot-anim.revealed {
+      opacity: 1;
+    }
+
+    /* Vertical Accent Bar: Full Height as Content */
+    .content-box {
+      display: flex;
+      gap: 32px;
+      align-items: stretch; /* Stretches line to exact content height */
+    }
+
+    .content-accent-bar {
+      width: 4px;
+      border-radius: 2px;
+      flex-shrink: 0;
+      align-self: stretch;
+      margin-top: -16px;
+      margin-bottom: -16px;
+    }
+
+    .bar-green { background: var(--c-green);  }
+    .bar-yellow { background: var(--c-yellow);  }
+    .bar-orange { background: var(--c-orange);  }
+    .bar-blue { background: var(--c-blue);  }
+    .bar-purple { background: var(--c-purple);  }
+
+    .content-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Pill Badges */
+    .pill-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      margin-bottom: 20px;
+    }
+
+    .tag-orange {
+      color: var(--c-orange);
+      background: rgba(255, 87, 34, 0.12);
+      border: 1px solid rgba(255, 87, 34, 0.4);
+    }
+
+    .tag-green {
+      color: var(--c-green);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .tag-yellow {
+      color: var(--c-yellow);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .tag-blue {
+      color: var(--c-blue);
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .tag-purple {
+      color: var(--c-purple);
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    /* Typography */
+    .main-heading {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.35;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .main-desc {
+      font-size: 19px;
+      line-height: 1.65;
+      color: var(--text-gray);
+      max-width: 940px;
+    }
+
+    /* Clean Dash List with Breathing Room */
+    .dash-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 6px;
+    }
+
+    .dash-item {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      font-size: 19px;
+      line-height: 1.5;
+      color: #E2E8F0;
+    }
+
+    .dash-symbol {
+      color: var(--c-green);
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+
+    .dash-symbol.dash-orange { color: var(--c-orange); }
+    .dash-symbol.dash-yellow { color: var(--c-yellow); }
+    .dash-symbol.dash-blue { color: var(--c-blue); }
+    .dash-symbol.dash-purple { color: var(--c-purple); }
+
+    /* Slide 1: Hero Keynote */
+    .hero-layout {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 0 20px;
+    }
+
+    .hero-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--c-orange);
+      background: rgba(255, 87, 34, 0.09);
+      border: 1px solid rgba(255, 87, 34, 0.45);
+      padding: 7px 16px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-bottom: 26px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      
+    }
+
+    .hero-title-1 {
+      font-size: 58px;
+      font-weight: 800;
+      color: var(--text-white);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+    }
+
+    .hero-title-2 {
+      font-size: 58px;
+      font-weight: 800;
+      color: var(--c-orange);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-top: 4px;
+      
+    }
+
+    .hero-author-wrap {
+      margin-top: 36px;
+    }
+
+    .hero-author {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text-gray);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-badges-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .hero-team-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.04em;
+    }
+
+    .badge-pest {
+      color: #60A5FA;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .badge-pinkary {
+      color: #34D399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .badge-artisans {
+      color: #FBBF24;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    /* Vector Timeline System */
+    .timeline-wrap-rocksolid {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      margin: 0 auto;
+    }
+
+    .timeline-cards-grid-4 {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      z-index: 3;
+    }
+
+    .timeline-cards-grid-5 {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      z-index: 3;
+    }
+
+    .t-cell {
+      position: relative;
+      height: 100%;
+    }
+
+    .t-unit {
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .t-unit.t-top {
+      bottom: calc(50% + 20px);
+    }
+
+    .t-unit.t-bottom {
+      top: calc(50% + 20px);
+    }
+
+    .t-card-box {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--text-gray);
+      text-align: center;
+    }
+
+        .node-tag-pill {
+      font-family: 'Fira Code', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .tag-pill-blue {
+      color: #60A5FA;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .tag-pill-green {
+      color: #34D399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .tag-pill-yellow {
+      color: #FBBF24;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .tag-pill-orange {
+      color: #FF5722;
+      background: rgba(255, 87, 34, 0.12);
+      border: 1px solid rgba(255, 87, 34, 0.4);
+    }
+
+    .tag-pill-purple {
+      color: #C084FC;
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .footer-quote {
+      text-align: center;
+      font-size: 16px;
+      color: var(--text-gray);
+    }
+
+    .footer-quote-box {
+      font-family: 'Fira Code', monospace;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-card);
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    /* Slide 6: Real World Proof Image Stack */
+    .proof-stack-container {
+      position: relative;
+      width: 100%;
+      max-width: 1020px;
+      height: 480px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .proof-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .proof-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: block;
+    }
+
+    /* Slide 7: Clean 2-Column Bug Reports */
+    .clean-2col-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+    }
+
+    .clean-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .clean-quote {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.4;
+      margin: 20px 0 12px 0;
+    }
+
+    .clean-subtext {
+      font-size: 16px;
+      color: var(--text-gray);
+      line-height: 1.55;
+    }
+
+    
+        /* Slide 8: Table Container & Badges */
+    .table-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    /* Disable any transform on table rows to prevent layout distortion */
+    tr.step-item {
+      transform: none !important;
+    }
+
+    .commits-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    .commits-table th {
+      text-align: left;
+      padding: 18px 26px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Fira Code', monospace;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border-card);
+      background: rgba(255, 255, 255, 0.02);
+      letter-spacing: 0.05em;
+      vertical-align: middle !important;
+      height: 54px;
+    }
+
+    .commits-table td {
+      padding: 18px 26px;
+      border-bottom: 1px solid var(--border-card);
+      color: var(--text-white);
+      vertical-align: middle !important;
+      height: 60px;
+    }
+
+    .commits-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .prefix-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      vertical-align: middle;
+      letter-spacing: 0.05em;
+    }
+
+    .p-feat {
+      color: #34D399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .p-fix {
+      color: #F87171;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .p-chore {
+      color: #FBBF24;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .p-docs {
+      color: #60A5FA;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .p-refactor {
+      color: #C084FC;
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .code-msg {
+      font-family: 'Fira Code', monospace;
+      font-size: 14.5px;
+      color: var(--text-gray);
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    /* SVG Timeline Track & Circles (Exact Vertical Centering) */
+    .timeline-wrap-rocksolid {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      margin: 8px 0;
+    }
+
+    .timeline-svg-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .timeline-line-anim {
+      stroke-dasharray: 1040;
+      stroke-dashoffset: 1040;
+      transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .timeline-line-anim.revealed {
+      stroke-dashoffset: 0;
+    }
+
+    .node-dot-anim {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .node-dot-anim.revealed {
+      opacity: 1;
+    }
+
+
+    /* Slide 13: Author vs Maintainer Divided Columns */
+    .divided-2col {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 52px;
+      align-items: stretch;
+    }
+
+    .divider-line {
+      background: var(--border-card);
+      width: 1px;
+    }
+
+    /* Slide 21: 4 Cards with Large Centered Icons */
+    .cycle-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .cycle-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 32px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.25s ease,
+                  box-shadow 0.25s ease;
+    }
+
+    .cycle-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.25);
+      
+    }
+
+    .cycle-icon-wrap {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .cycle-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 10px;
+    }
+
+    .cycle-subtext {
+      font-size: 15px;
+      color: var(--text-gray);
+    }
+
+    /* Giant Stat Number (e.g. 3×, No.) */
+    .giant-text {
+      font-size: 130px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .gt-yellow { color: var(--c-yellow);  }
+    .gt-orange { color: var(--c-orange);  }
+
+    /* SemVer Footer Bar */
+    .semver-footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      width: 100%;
+    }
+
+    .semver-foot-item {
+      color: var(--text-dark);
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .semver-foot-item.active-major {
+      color: var(--c-orange);
+      font-weight: 700;
+      
+    }
+
+    .semver-foot-item.active-minor {
+      color: var(--c-blue);
+      font-weight: 700;
+      
+    }
+
+    .semver-foot-item.active-patch {
+      color: var(--c-green);
+      font-weight: 700;
+      
+    }
+
+    /* Slide 23: Thank You & Original Pinkary QR Image */
+    .qr-card-box {
+      width: 320px;
+      height: 320px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    
+
+    .qr-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+    }
+
+        .social-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Fira Code', monospace;
+      font-size: 19px;
+      color: #fff;
+    }
+
+    .social-icon-box {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .general-footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Fira Code', monospace;
+      font-size: 12.5px;
+      color: var(--text-dark);
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Responsive Scaled Presentation Frame -->
+  <div class="deck-viewport" id="deckViewport">
+    <div class="slide-frame" id="slideFrame">
+
+      <!-- SLIDE 1: TITLE -->
+      <section class="slide active" data-index="1"    data-slide-name="title">
+        <div class="hero-layout">
+          <div class="step-item revealed" data-step="1">
+            <span class="hero-tag">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" style="flex-shrink: 0; margin-right: 2px;">
+                <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"></path>
+              </svg>
+              <span>LARAVEL BENGALURU</span>
+            </span>
+            <h1 class="hero-title-1">From User to Maintainer:</h1>
+            <h2 class="hero-title-2">The Open Source Journey</h2>
+          </div>
+          <div class="hero-author-wrap step-item" data-step="2">
+            <p class="hero-author">Punyapal Shah</p>
+            <div class="hero-badges-row step-item" data-step="3">
+              <span class="hero-team-badge badge-pest">PEST CORE TEAM</span>
+              <span class="hero-team-badge badge-pinkary">PINKARY CORE TEAM</span>
+              <span class="hero-team-badge badge-artisans">LARAVEL ARTISANS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+                        <!-- SLIDE 2: THE EVOLUTION -->
+      <section class="slide" data-index="2" data-slide-name="evolution">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Evolution</h2>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="timeline-wrap-rocksolid">
+            <!-- Animated SVG Track Line + Circles -->
+            <svg class="timeline-svg-track" viewBox="0 0 1040 400" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="grad-s2-1" gradientUnits="userSpaceOnUse" x1="30" y1="200" x2="390" y2="200">
+                  <stop offset="0%" stop-color="#3B82F6" />
+                  <stop offset="100%" stop-color="#10B981" />
+                </linearGradient>
+                <linearGradient id="grad-s2-2" gradientUnits="userSpaceOnUse" x1="390" y1="200" x2="650" y2="200">
+                  <stop offset="0%" stop-color="#10B981" />
+                  <stop offset="100%" stop-color="#F59E0B" />
+                </linearGradient>
+                <linearGradient id="grad-s2-3" gradientUnits="userSpaceOnUse" x1="650" y1="200" x2="910" y2="200">
+                  <stop offset="0%" stop-color="#F59E0B" />
+                  <stop offset="100%" stop-color="#FF5722" />
+                </linearGradient>
+              </defs>
+              <line class="timeline-line-anim step-item" data-step="1" x1="30" y1="200" x2="390" y2="200" stroke="url(#grad-s2-1)" stroke-width="4" stroke-linecap="round" />
+              <line class="timeline-line-anim step-item" data-step="2" x1="390" y1="200" x2="650" y2="200" stroke="url(#grad-s2-2)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="3" x1="650" y1="200" x2="910" y2="200" stroke="url(#grad-s2-3)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="4" x1="910" y1="200" x2="1010" y2="200" stroke="#FF5722" stroke-width="4" stroke-linecap="round" />
+              
+              <circle class="node-dot-anim step-item" data-step="1" cx="130" cy="200" r="11" fill="#06090F" stroke="#3B82F6" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="2" cx="390" cy="200" r="11" fill="#06090F" stroke="#10B981" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="3" cx="650" cy="200" r="11" fill="#06090F" stroke="#F59E0B" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="4" cx="910" cy="200" r="11" fill="#06090F" stroke="#FF5722" stroke-width="4" />
+            </svg>
+
+            <!-- 4 Cards positioned over their respective nodes -->
+            <div class="timeline-cards-grid-4">
+              <!-- Node 1: User (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="1">
+                  <span class="node-tag-pill tag-pill-blue">01 • USER</span>
+                  <div class="t-card-box">Builds real products, relies on tools, and discovers edge cases in production.</div>
+                </div>
+              </div>
+
+              <!-- Node 2: Contributor (Bottom) -->
+              <div class="t-cell">
+                <div class="t-unit t-bottom step-item" data-step="2">
+                  <span class="node-tag-pill tag-pill-green">02 • CONTRIBUTOR</span>
+                  <div class="t-card-box">Submits reproduction repos, docs clarifications, and failing regression tests.</div>
+                </div>
+              </div>
+
+              <!-- Node 3: Author (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="3">
+                  <span class="node-tag-pill tag-pill-yellow">03 • AUTHOR</span>
+                  <div class="t-card-box">Extracts tools proven across 3 real projects instead of speculative guessing.</div>
+                </div>
+              </div>
+
+              <!-- Node 4: Maintainer (Bottom) -->
+              <div class="t-cell">
+                <div class="t-unit t-bottom step-item" data-step="4">
+                  <span class="node-tag-pill tag-pill-orange">04 • MAINTAINER</span>
+                  <div class="t-card-box">Triages issues, protects backward compatibility, and defends library scope.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="footer-quote">Every maintainer started by reading someone else's source code and finding an edge case.</div>
+        </div>
+      </section>
+
+      <!-- TRANSITION: USER -->
+      <section class="slide stage-transition-slide" data-index="3"  data-slide-name="stage-user">
+        <div class="stage-hero-tracker">
+          <span class="stage-morph-node">
+            <span class="morph-prev">○ User</span>
+            <span class="morph-next st-active-user step-item" data-step="1">● User</span>
+          </span>
+          <span>○ Contributor</span>
+          <span>○ Author</span>
+          <span>○ Maintainer</span>
+        </div>
+      </section>
+
+                  <!-- TRANSITION: CONTRIBUTOR -->
+      <section class="slide stage-transition-slide" data-index="4"   data-slide-name="stage-contributor">
+        <div class="stage-hero-tracker">
+          <span class="stage-morph-node">
+            <span class="morph-prev st-active-user">● User</span>
+            <span class="morph-next st-done step-item" data-step="1">✓ User</span>
+          </span>
+          <span class="stage-morph-node">
+            <span class="morph-prev">○ Contributor</span>
+            <span class="morph-next st-active-contributor step-item" data-step="1">● Contributor</span>
+          </span>
+          <span>○ Author</span>
+          <span>○ Maintainer</span>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: THE FOUNDATION: WHY -->
+      <section class="slide" data-index="5"    data-slide-name="foundation-why">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Foundation: Why</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-active-user">● User</span>
+            <span>○ Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-green"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-green">WHY CONTRIBUTE</span>
+                <h3 class="main-heading">Career Proof and Real Experience</h3>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Public proof of how you write and test code</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Learn production architecture from popular packages</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Real work speaks louder than a resume</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: THE FOUNDATION: WHAT -->
+      <section class="slide" data-index="6"    data-slide-name="foundation-what">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Foundation: What</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-green"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-green">CONTRIBUTION TYPES</span>
+                <h3 class="main-heading">Contribution is Not Just Writing New Features</h3>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Fixing wrong documentation and outdated examples</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Creating a small repo that easily reproduces a bug</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Adding failing tests for edge cases you faced</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            <!-- SLIDE 5: THE FOUNDATION: HOW -->
+      <section class="slide" data-index="7"    data-slide-name="foundation-how">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Foundation: How</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="timeline-wrap-rocksolid">
+            <!-- Animated SVG Track Line + Circles -->
+            <svg class="timeline-svg-track" viewBox="0 0 1040 400" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="grad-s5-1" gradientUnits="userSpaceOnUse" x1="20" y1="200" x2="312" y2="200">
+                  <stop offset="0%" stop-color="#FF5722" />
+                  <stop offset="100%" stop-color="#F59E0B" />
+                </linearGradient>
+                <linearGradient id="grad-s5-2" gradientUnits="userSpaceOnUse" x1="312" y1="200" x2="520" y2="200">
+                  <stop offset="0%" stop-color="#F59E0B" />
+                  <stop offset="100%" stop-color="#3B82F6" />
+                </linearGradient>
+                <linearGradient id="grad-s5-3" gradientUnits="userSpaceOnUse" x1="520" y1="200" x2="728" y2="200">
+                  <stop offset="0%" stop-color="#3B82F6" />
+                  <stop offset="100%" stop-color="#10B981" />
+                </linearGradient>
+                <linearGradient id="grad-s5-4" gradientUnits="userSpaceOnUse" x1="728" y1="200" x2="936" y2="200">
+                  <stop offset="0%" stop-color="#10B981" />
+                  <stop offset="100%" stop-color="#A855F7" />
+                </linearGradient>
+              </defs>
+              <line class="timeline-line-anim step-item" data-step="1" x1="20" y1="200" x2="312" y2="200" stroke="url(#grad-s5-1)" stroke-width="4" stroke-linecap="round" />
+              <line class="timeline-line-anim step-item" data-step="2" x1="312" y1="200" x2="520" y2="200" stroke="url(#grad-s5-2)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="3" x1="520" y1="200" x2="728" y2="200" stroke="url(#grad-s5-3)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="4" x1="728" y1="200" x2="936" y2="200" stroke="url(#grad-s5-4)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="5" x1="936" y1="200" x2="1020" y2="200" stroke="#A855F7" stroke-width="4" stroke-linecap="round" />
+              
+              <circle class="node-dot-anim step-item" data-step="1" cx="104" cy="200" r="11" fill="#06090F" stroke="#FF5722" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="2" cx="312" cy="200" r="11" fill="#06090F" stroke="#F59E0B" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="3" cx="520" cy="200" r="11" fill="#06090F" stroke="#3B82F6" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="4" cx="728" cy="200" r="11" fill="#06090F" stroke="#10B981" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="5" cx="936" cy="200" r="11" fill="#06090F" stroke="#A855F7" stroke-width="4" />
+            </svg>
+
+            <!-- 5 Cards positioned over their respective nodes -->
+            <div class="timeline-cards-grid-5">
+              <!-- Node 1: Fork (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="1">
+                  <span class="node-tag-pill tag-pill-orange">01 • FORK</span>
+                  <div class="t-card-box">Fork upstream repository to your personal account.</div>
+                </div>
+              </div>
+
+              <!-- Node 2: Clone (Bottom) -->
+              <div class="t-cell">
+                <div class="t-unit t-bottom step-item" data-step="2">
+                  <span class="node-tag-pill tag-pill-yellow">02 • CLONE</span>
+                  <div class="t-card-box">Clone repo locally and run composer install.</div>
+                </div>
+              </div>
+
+              <!-- Node 3: Branch (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="3">
+                  <span class="node-tag-pill tag-pill-blue">03 • BRANCH</span>
+                  <div class="t-card-box">Create a dedicated atomic git branch for your fix.</div>
+                </div>
+              </div>
+
+              <!-- Node 4: Test (Bottom) -->
+              <div class="t-cell">
+                <div class="t-unit t-bottom step-item" data-step="4">
+                  <span class="node-tag-pill tag-pill-green">04 • TEST</span>
+                  <div class="t-card-box">Write tests and ensure all test suites pass locally.</div>
+                </div>
+              </div>
+
+              <!-- Node 5: PR (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="5">
+                  <span class="node-tag-pill tag-pill-purple">05 • PR</span>
+                  <div class="t-card-box">Submit clean PR with clear before/after context.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="footer-quote">
+            Always start by reading the repository file: <span class="footer-quote-box">CONTRIBUTING.md</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: REAL WORLD PROOF (4-STEP PROGRESSIVE IMAGE STACK) -->
+      <section class="slide" data-index="8"    data-slide-name="real-world-proof">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Real World Proof</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body" style="align-items: center;">
+          <div class="proof-stack-container">
+            <div class="proof-layer step-item revealed" data-step="1">
+              <img src="media/proof_1.png" alt="Real World Proof 1" class="proof-img" />
+            </div>
+            <div class="proof-layer step-item" data-step="2">
+              <img src="media/proof_2.png" alt="Real World Proof 2" class="proof-img" />
+            </div>
+            <div class="proof-layer step-item" data-step="3">
+              <img src="media/proof_3.png" alt="Real World Proof 3" class="proof-img" />
+            </div>
+            <div class="proof-layer step-item" data-step="4">
+              <img src="media/proof_4.png" alt="Real World Proof 4" class="proof-img" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: BUG REPORTS THAT MATTER -->
+      <section class="slide" data-index="9"    data-slide-name="bug-reports">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Bug Reports That Matter</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="divided-2col">
+            <div class="clean-col step-item revealed" data-step="1">
+              <span class="pill-tag tag-orange">INCOMPLETE REPORT</span>
+              <p class="clean-quote">"Package breaks when using array filters. Fix immediately."</p>
+              <p class="clean-subtext">No stack trace. No test. Maintainer cannot reproduce.</p>
+            </div>
+            <div class="divider-line"></div>
+            <div class="clean-col step-item" data-step="2">
+              <span class="pill-tag tag-green">MINIMAL REPRO REPO</span>
+              <p class="clean-quote">"Created a clean repo with 1 failing Pest test."</p>
+              <p class="clean-subtext" style="color: var(--c-green);">Pinpoints the exact bug. Maintainer can clone and fix quickly.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: CONVENTIONAL COMMITS -->
+      <section class="slide" data-index="10"    data-slide-name="conventional-commits">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Conventional Commits</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="table-box">
+            <table class="commits-table">
+              <thead>
+                <tr>
+                  <th>PREFIX</th>
+                  <th>MEANING</th>
+                  <th>STANDARD MESSAGE EXAMPLE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="step-item revealed" data-step="1">
+                  <td><span class="prefix-badge p-feat">FEAT</span></td>
+                  <td>New feature</td>
+                  <td><span class="code-msg">feat: add support for social login</span></td>
+                </tr>
+                <tr class="step-item" data-step="2">
+                  <td><span class="prefix-badge p-fix">FIX</span></td>
+                  <td>Bug fix</td>
+                  <td><span class="code-msg">fix: resolve redirect loop issue</span></td>
+                </tr>
+                <tr class="step-item" data-step="3">
+                  <td><span class="prefix-badge p-chore">CHORE</span></td>
+                  <td>Maintenance</td>
+                  <td><span class="code-msg">chore: bump composer dependencies</span></td>
+                </tr>
+                <tr class="step-item" data-step="4">
+                  <td><span class="prefix-badge p-docs">DOCS</span></td>
+                  <td>Documentation</td>
+                  <td><span class="code-msg">docs: update contributor setup guide</span></td>
+                </tr>
+                <tr class="step-item" data-step="5">
+                  <td><span class="prefix-badge p-refactor">REFACTOR</span></td>
+                  <td>Code cleanup</td>
+                  <td><span class="code-msg">refactor: simplify container binding logic</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9: PULL REQUEST DO'S -->
+      <section class="slide" data-index="11"    data-slide-name="pr-dos">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Pull Request Do's</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-green"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-green">BEST PRACTICES</span>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Check CONTRIBUTING.md before writing code</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Keep your PR small, clear, and focused on one issue</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Always add test cases for what you changed</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Match the code style of the repository</span></div>
+                <div class="dash-item step-item" data-step="6"><span class="dash-symbol">—</span><span>Explain clearly why this change is needed</span></div>
+                <div class="dash-item step-item" data-step="7"><span class="dash-symbol">—</span><span>Test locally on supported PHP and Laravel versions</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10: PULL REQUEST DON'TS -->
+      <section class="slide" data-index="12"    data-slide-name="pr-donts">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Pull Request Don'ts</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-orange"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-orange">COMMON MISTAKES</span>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">—</span><span>Don't format unrelated files in the same PR</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Don't rewrite entire files without discussing first</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Don't club 3 different bug fixes into a single PR</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Don't take code review comments personally</span></div>
+                <div class="dash-item step-item" data-step="6"><span class="dash-symbol dash-orange">—</span><span>Don't tag maintainers on Twitter/LinkedIn for quick reviews</span></div>
+                <div class="dash-item step-item" data-step="7"><span class="dash-symbol dash-orange">—</span><span>Don't open a PR without running tests locally</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+                  <!-- TRANSITION: AUTHOR -->
+      <section class="slide stage-transition-slide" data-index="13"   data-slide-name="stage-author">
+        <div class="stage-hero-tracker">
+          <span class="st-done">✓ User</span>
+          <span class="stage-morph-node">
+            <span class="morph-prev st-active-contributor">● Contributor</span>
+            <span class="morph-next st-done step-item" data-step="1">✓ Contributor</span>
+          </span>
+          <span class="stage-morph-node">
+            <span class="morph-prev">○ Author</span>
+            <span class="morph-next st-active-author step-item" data-step="1">● Author</span>
+          </span>
+          <span>○ Maintainer</span>
+        </div>
+      </section>
+
+      <!-- SLIDE 11: WHEN TO BUILD A PACKAGE? -->
+      <section class="slide" data-index="14"    data-slide-name="when-to-build">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">When to Build a Package?</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-active-author">● Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;">
+            <div class="content-box step-item" data-step="2">
+              <div class="content-accent-bar bar-yellow"></div>
+              <div class="content-main">
+                <span class="pill-tag tag-yellow">EXTRACTION RULE</span>
+                <h3 class="main-heading">The 3× Rule</h3>
+                <p class="main-desc">If you have written the exact same helper or utility across 3 different client projects, extract it into a package.</p>
+              </div>
+            </div>
+            <div class="step-item revealed" data-step="1" style="padding-right: 48px;">
+              <div class="giant-text gt-yellow">3×</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12: PACKAGE IDEATION -->
+      <section class="slide" data-index="15"    data-slide-name="package-ideation">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Package Ideation</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-active-author">● Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-yellow"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-yellow">PROBLEM-FIRST DESIGN</span>
+                <h3 class="main-heading" style="font-size: 34px;">Solve your own daily headache first.</h3>
+              </div>
+              <p class="main-desc step-item" data-step="2" style="font-size: 20px;">The best packages are created because the author needed them for daily work, not because they sat down to brainstorm an imaginary idea.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13: AUTHOR VS MAINTAINER -->
+      <section class="slide" data-index="16"    data-slide-name="author-vs-maintainer">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Author vs Maintainer</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-active-author">● Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="divided-2col">
+            <div>
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-blue">PACKAGE AUTHOR</span>
+              </div>
+              <div class="dash-list" style="margin-top: 16px;">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Writes the initial code and features</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>Publishes v1.0.0 and sets up Packagist</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>Solves their immediate project requirement</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-blue">—</span><span>Focus is mostly on getting it out there</span></div>
+              </div>
+            </div>
+            <div class="divider-line"></div>
+            <div>
+              <div class="step-item" data-step="6">
+                <span class="pill-tag tag-green">PACKAGE MAINTAINER</span>
+              </div>
+              <div class="dash-list" style="margin-top: 16px;">
+                <div class="dash-item step-item" data-step="7"><span class="dash-symbol">—</span><span>Reviews community issues and incoming PRs</span></div>
+                <div class="dash-item step-item" data-step="8"><span class="dash-symbol">—</span><span>Updates support for new PHP and Laravel versions</span></div>
+                <div class="dash-item step-item" data-step="9"><span class="dash-symbol">—</span><span>Prevents breaking changes and scope creep</span></div>
+                <div class="dash-item step-item" data-step="10"><span class="dash-symbol">—</span><span>Maintains CI test pipelines and security patches</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+                  <!-- TRANSITION: MAINTAINER -->
+      <section class="slide stage-transition-slide" data-index="17"   data-slide-name="stage-maintainer">
+        <div class="stage-hero-tracker">
+          <span class="st-done">✓ User</span>
+          <span class="st-done">✓ Contributor</span>
+          <span class="stage-morph-node">
+            <span class="morph-prev st-active-author">● Author</span>
+            <span class="morph-next st-done step-item" data-step="1">✓ Author</span>
+          </span>
+          <span class="stage-morph-node">
+            <span class="morph-prev">○ Maintainer</span>
+            <span class="morph-next st-active-maintainer step-item" data-step="1">● Maintainer</span>
+          </span>
+        </div>
+      </section>
+
+      <!-- SLIDE 14: THE HARDEST WORD IN OSS -->
+      <section class="slide" data-index="18"    data-slide-name="hardest-word">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Hardest Word in OSS</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;">
+            <div class="content-box step-item" data-step="2">
+              <div class="content-accent-bar bar-orange"></div>
+              <div class="content-main">
+                <span class="pill-tag tag-orange">PROTECTING YOUR TIME</span>
+                <h3 class="main-heading">Protecting Your Time</h3>
+                <p class="main-desc">Every PR you merge is code you have to maintain for the next 5 years. Learn to say "No" politely to keep the project clean and focused.</p>
+              </div>
+            </div>
+            <div class="step-item revealed" data-step="1" style="padding-right: 48px;">
+              <div class="giant-text gt-orange">No.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15: DO NOT FORCE OPEN SOURCE -->
+      <section class="slide" data-index="19"    data-slide-name="ethics">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Do Not Force Open Source</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-orange"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-orange">ETHICS & INTENT</span>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">—</span><span>Don't contribute just to add your name to a repo or chase clout</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Fix things because you use the package daily and hit a real bug</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Never use AI to search for fake issues and spam maintainers with AI PRs</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Contribute because you genuinely want to give back to the community</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16: SEMANTIC VERSIONING: MAJOR -->
+      <section class="slide" data-index="20"    data-slide-name="semver-major">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Semantic Versioning</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-orange"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-orange" style="margin-bottom: 8px;">MAJOR RELEASE</span>
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 54px; font-weight: 800; color: var(--c-orange); letter-spacing: 0.05em; margin: 4px 0 14px 0;">v2.0.0</div>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">—</span><span>Breaking API changes</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Dropping old PHP or Laravel versions</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Requires a step-by-step upgrade guide</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="semver-footer-bar">
+            <div class="semver-foot-item active-major">[ 1 / 3 ] MAJOR [X.0.0] ➔ Breaking Changes</div>
+            <div class="semver-foot-item">MINOR [x.X.0]</div>
+            <div class="semver-foot-item">PATCH [x.x.X]</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 17: SEMANTIC VERSIONING: MINOR -->
+      <section class="slide" data-index="21"    data-slide-name="semver-minor">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Semantic Versioning</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-blue"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-blue" style="margin-bottom: 8px;">MINOR RELEASE</span>
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 54px; font-weight: 800; color: var(--c-blue); letter-spacing: 0.05em; margin: 4px 0 14px 0;">v1.3.0</div>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>New features added</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>100% backwards compatible</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>No manual code changes needed by users</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="semver-footer-bar">
+            <div class="semver-foot-item">MAJOR [X.0.0]</div>
+            <div class="semver-foot-item active-minor">[ 2 / 3 ] MINOR [x.X.0] ➔ Features Added</div>
+            <div class="semver-foot-item">PATCH [x.x.X]</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 18: SEMANTIC VERSIONING: PATCH -->
+      <section class="slide" data-index="22"    data-slide-name="semver-patch">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Semantic Versioning</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-green"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-green" style="margin-bottom: 8px;">PATCH RELEASE</span>
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 54px; font-weight: 800; color: var(--c-green); letter-spacing: 0.05em; margin: 4px 0 14px 0;">v1.2.4</div>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Bug fixes and security patches</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>No new public features</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Safe for automatic <code style="font-family:'Fira Code'; color:#34D399;">composer update</code></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="semver-footer-bar">
+            <div class="semver-foot-item">MAJOR [X.0.0]</div>
+            <div class="semver-foot-item">MINOR [x.X.0]</div>
+            <div class="semver-foot-item active-patch">[ 3 / 3 ] PATCH [x.x.X] ➔ Bug Fixes</div>
+          </div>
+        </div>
+      </section>
+
+            <!-- SLIDE 19: MAINTAINER TOOLING -->
+      <section class="slide" data-index="23"    data-slide-name="tooling">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Maintainer Tooling</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-blue"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-blue" style="margin-bottom: 12px;">GITHUB ACTIONS</span>
+                <h3 class="main-heading">Automate All Repetitive Work</h3>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Test matrix running across PHP (8.2, 8.3, 8.4, 8.5) & Laravel (10, 11, 12, 13)</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>Automated static analysis using PHPStan / Larastan</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>Automated code styling using Laravel Pint</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 20: EARNING MAINTAINER TRUST -->
+      <section class="slide" data-index="24"    data-slide-name="trust">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Earning Maintainer Trust</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-blue"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-blue">COMMUNITY ADVANCEMENT</span>
+                <h3 class="main-heading" style="font-size: 34px;">Trust is earned through consistency.</h3>
+              </div>
+              <p class="main-desc step-item" data-step="2" style="font-size: 20px;">Reviewing other people's PRs, helping debug community issues, and writing thorough tests is how contributors naturally become core maintainers.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 21: THE COMPLETE CYCLE -->
+      <section class="slide" data-index="25"    data-slide-name="complete-cycle">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Complete Cycle</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="cycle-grid">
+            <!-- 01: User -->
+            <div class="cycle-card step-item revealed" data-step="1">
+              <div class="cycle-icon-wrap">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--c-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <h4 class="cycle-title">User</h4>
+              <div class="cycle-subtext">Builds with tools</div>
+            </div>
+
+            <!-- 02: Contributor -->
+            <div class="cycle-card step-item" data-step="2">
+              <div class="cycle-icon-wrap">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--c-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M13 6h3a2 2 0 0 1 2 2v7"></path><line x1="6" y1="9" x2="6" y2="21"></line></svg>
+              </div>
+              <h4 class="cycle-title">Contributor</h4>
+              <div class="cycle-subtext">Fixes issues & tests</div>
+            </div>
+
+            <!-- 03: Author -->
+            <div class="cycle-card step-item" data-step="3">
+              <div class="cycle-icon-wrap">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="var(--c-yellow)" stroke="none"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9zM12 4.15L6.04 7.5 12 10.85l5.96-3.35L12 4.15z"></path></svg>
+              </div>
+              <h4 class="cycle-title">Author</h4>
+              <div class="cycle-subtext">Creates new tools</div>
+            </div>
+
+            <!-- 04: Maintainer -->
+            <div class="cycle-card step-item" data-step="4">
+              <div class="cycle-icon-wrap">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="var(--c-orange)" stroke="none"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"></path></svg>
+              </div>
+              <h4 class="cycle-title">Maintainer</h4>
+              <div class="cycle-subtext">Protects ecosystem</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 22: YOUR NEXT STEP -->
+      <section class="slide" data-index="26"    data-slide-name="next-step">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Your Next Step</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-active-maintainer">● Action Item</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-orange"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-orange">HOW TO START THIS WEEK</span>
+                <h3 class="main-heading">How to start this week:</h3>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">1.</span><span>Pick one package you use at work every single day</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">2.</span><span>Look at its GitHub issues for reproducible bugs</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">3.</span><span>Submit a failing test or a documentation improvement</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            <!-- SLIDE 27: THANK YOU & PINKARY QR -->
+      <section class="slide" data-index="27" data-slide-name="thank-you">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Questions & Discussion</h2>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="divided-2col" style="width: 100%; height: 100%; align-items: stretch;">
+            <!-- Left: Thank You & Social handles -->
+            <div class="content-box" style="align-items: stretch;">
+              <div class="content-accent-bar bar-orange"></div>
+              <div class="content-main" style="justify-content: center;">
+                <div class="step-item revealed" data-step="1">
+                  <h2 style="font-size: 58px; font-weight: 800; color: #fff; margin-bottom: 28px; line-height: 1.1;">Thank You!</h2>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                  <div class="social-item step-item" data-step="2">
+                    <span class="social-icon-box" style="color: #60A5FA;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
+                    </span>
+                    <span>@mrpunyapal</span>
+                  </div>
+                  <div class="social-item step-item" data-step="3">
+                    <span class="social-icon-box" style="color: #34D399;">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                      </svg>
+                    </span>
+                    <span>mrpunyapal</span>
+                  </div>
+                  <div class="social-item step-item" data-step="4">
+                    <span class="social-icon-box" style="color: #60A5FA;">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                      </svg>
+                    </span>
+                    <span>mrpunyapal.dev</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Middle: Vertical Divider Line -->
+            <div class="divider-line"></div>
+
+            <!-- Right: Centered, Enlarged Pinkary QR Card -->
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+              <div class="qr-card-box step-item" data-step="5">
+                <img src="media/pinkary_qr.png" alt="Pinkary QR Code" class="qr-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="general-footer-bar">
+            <div>Laravel Bengaluru 2026 • Punyapal Shah</div>
+            <div>From User to Maintainer</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentSlide = 1;
+    let currentStep = 1;
+
+    // Proportional Viewport Scaling
+    function updateResponsiveScale() {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const scale = Math.min(vw / 1280, vh / 720);
+      document.documentElement.style.setProperty('--deck-scale', scale);
+    }
+    window.addEventListener('resize', updateResponsiveScale);
+    window.addEventListener('orientationchange', updateResponsiveScale);
+    updateResponsiveScale();
+
+    function getMaxSteps(slideEl) {
+      const steps = slideEl.querySelectorAll('.step-item[data-step]');
+      let max = 0;
+      steps.forEach(el => {
+        const s = parseInt(el.getAttribute('data-step'), 10);
+        if (s > max) max = s;
+      });
+      return max;
+    }
+
+    function applyStepVisibility(slideEl, step) {
+      const steps = slideEl.querySelectorAll('.step-item[data-step]');
+      steps.forEach(el => {
+        const s = parseInt(el.getAttribute('data-step'), 10);
+        if (s <= step) {
+          el.classList.add('revealed');
+        } else {
+          el.classList.remove('revealed');
+        }
+      });
+
+      // Update morph node parent state
+      const morphNodes = slideEl.querySelectorAll('.stage-morph-node');
+      morphNodes.forEach(node => {
+        const hasRev = node.querySelector('.morph-next.revealed');
+        if (hasRev) {
+          node.classList.add('has-revealed');
+        } else {
+          node.classList.remove('has-revealed');
+        }
+      });
+    }
+
+    function executeSlideDOMUpdate(targetIndex, targetStep) {
+      currentSlide = targetIndex;
+
+      slides.forEach((slide, idx) => {
+        const slideNum = idx + 1;
+        const isActive = slideNum === currentSlide;
+        const isPrev = slideNum < currentSlide;
+        
+        slide.classList.toggle('active', isActive);
+        slide.classList.toggle('slide-prev', isPrev);
+        
+        if (isActive) {
+          currentStep = targetStep;
+          applyStepVisibility(slide, currentStep);
+        }
+      });
+
+      history.replaceState(null, '', '#' + currentSlide);
+    }
+
+    function updateSlide(index, targetStep = 0) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      if (index === currentSlide && targetStep === currentStep) return;
+
+      const isSlideChange = (index !== currentSlide);
+
+      if (isSlideChange && document.startViewTransition) {
+        document.startViewTransition(() => {
+          executeSlideDOMUpdate(index, targetStep);
+        });
+      } else {
+        executeSlideDOMUpdate(index, targetStep);
+      }
+    }
+
+    function jumpToSlide(index) {
+      updateSlide(index, 0);
+    }
+
+    function nextAction() {
+      const activeSlideEl = slides[currentSlide - 1];
+      const maxSteps = getMaxSteps(activeSlideEl);
+
+      if (currentStep < maxSteps) {
+        currentStep++;
+        applyStepVisibility(activeSlideEl, currentStep);
+      } else {
+        if (currentSlide < totalSlides) {
+          updateSlide(currentSlide + 1, 0);
+        }
+      }
+    }
+
+    function prevAction() {
+      const activeSlideEl = slides[currentSlide - 1];
+
+      if (currentStep > 0) {
+        currentStep--;
+        applyStepVisibility(activeSlideEl, currentStep);
+      } else {
+        if (currentSlide > 1) {
+          const prevSlideEl = slides[currentSlide - 2];
+          const prevMax = getMaxSteps(prevSlideEl);
+          updateSlide(currentSlide - 1, prevMax);
+        }
+      }
+    }
+
+    // Click / Clicker Handler
+    window.addEventListener('click', (e) => {
+      if (window.getSelection().toString().length > 0) return;
+      nextAction();
+    });
+
+    window.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      prevAction();
+    });
+
+    // Keyboard & Presentation Remote Clicker Handler
+    window.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        // Next: Right, Down, Space, Enter, PageDown, N
+        case 'ArrowRight':
+        case 'ArrowDown':
+        case ' ':
+        case 'Enter':
+        case 'PageDown':
+        case 'n':
+        case 'N':
+          e.preventDefault();
+          nextAction();
+          break;
+
+        // Previous: Left, Up, Backspace, PageUp, P
+        case 'ArrowLeft':
+        case 'ArrowUp':
+        case 'Backspace':
+        case 'PageUp':
+        case 'p':
+        case 'P':
+          e.preventDefault();
+          prevAction();
+          break;
+
+        // Jump to Start / End
+        case 'Home':
+          e.preventDefault();
+          jumpToSlide(1);
+          break;
+        case 'End':
+          e.preventDefault();
+          jumpToSlide(totalSlides);
+          break;
+
+        // Toggle Fullscreen
+        case 'f':
+        case 'F':
+          e.preventDefault();
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+          } else {
+            document.exitFullscreen().catch(() => {});
+          }
+          break;
+      }
+    });
+
+    // Hash URL handling
+    if (window.location.hash) {
+      const initial = parseInt(window.location.hash.replace('#', ''), 10);
+      if (!isNaN(initial)) jumpToSlide(initial);
+    }
+  </script>
+</body>
+</html>
