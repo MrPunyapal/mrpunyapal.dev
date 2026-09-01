@@ -962,18 +962,7 @@ class BillingService
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// -------------------------------------------------------------
-// Left: Aggregation &amp; Iteration
-// -------------------------------------------------------------
-
-// Before: a callback is needed just to return a property.
-$orders-&gt;groupBy(function (Order $order) {
-    return $order-&gt;status;
-});
-
-// After: higher-order messages let Laravel access it directly.
-$orders-&gt;groupBy-&gt;status;
-
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="
 // Aggregation: calculate values from a property or method.
 $collection-&gt;average-&gt;property;
 $collection-&gt;avg-&gt;property;
@@ -984,47 +973,7 @@ $collection-&gt;sum-&gt;property;
 // Iteration: call methods or transform items without callbacks.
 $collection-&gt;each-&gt;method();
 $collection-&gt;map-&gt;property;
-$collection-&gt;flatMap-&gt;method();" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// -------------------------------------------------------------</span>
-<span class="hljs-comment">// Left: Aggregation &amp; Iteration</span>
-<span class="hljs-comment">// -------------------------------------------------------------</span>
-
-<span class="hljs-comment">// Before: a callback is needed just to return a property.</span>
-<span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">groupBy</span>(function (Order <span class="hljs-variable">$order</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-variable">$order</span>-&gt;status;
-});
-
-<span class="hljs-comment">// After: higher-order messages let Laravel access it directly.</span>
-<span class="hljs-variable">$orders</span>-&gt;groupBy-&gt;status;
-
-<span class="hljs-comment">// Aggregation: calculate values from a property or method.</span>
-<span class="hljs-variable">$collection</span>-&gt;average-&gt;property;
-<span class="hljs-variable">$collection</span>-&gt;avg-&gt;property;
-<span class="hljs-variable">$collection</span>-&gt;max-&gt;property;
-<span class="hljs-variable">$collection</span>-&gt;min-&gt;property;
-<span class="hljs-variable">$collection</span>-&gt;sum-&gt;property;
-
-<span class="hljs-comment">// Iteration: call methods or transform items without callbacks.</span>
-<span class="hljs-variable">$collection</span>-&gt;each-&gt;<span class="hljs-title function_ invoke__">method</span>();
-<span class="hljs-variable">$collection</span>-&gt;map-&gt;property;
-<span class="hljs-variable">$collection</span>-&gt;flatMap-&gt;<span class="hljs-title function_ invoke__">method</span>();</code></pre>
-</div>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// -------------------------------------------------------------
-// Right: Filtering, Finding, Grouping, &amp; Sorting
-// -------------------------------------------------------------
+$collection-&gt;flatMap-&gt;method();
 
 // Filtering: keep, remove, or check items using a property or method.
 $collection-&gt;contains-&gt;method();
@@ -1055,9 +1004,18 @@ $collection-&gt;takeWhile-&gt;method();" aria-label="Copy code to clipboard">
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// -------------------------------------------------------------</span>
-<span class="hljs-comment">// Right: Filtering, Finding, Grouping, &amp; Sorting</span>
-<span class="hljs-comment">// -------------------------------------------------------------</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php">
+<span class="hljs-comment">// Aggregation: calculate values from a property or method.</span>
+<span class="hljs-variable">$collection</span>-&gt;average-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;avg-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;max-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;min-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;sum-&gt;property;
+
+<span class="hljs-comment">// Iteration: call methods or transform items without callbacks.</span>
+<span class="hljs-variable">$collection</span>-&gt;each-&gt;<span class="hljs-title function_ invoke__">method</span>();
+<span class="hljs-variable">$collection</span>-&gt;map-&gt;property;
+<span class="hljs-variable">$collection</span>-&gt;flatMap-&gt;<span class="hljs-title function_ invoke__">method</span>();
 
 <span class="hljs-comment">// Filtering: keep, remove, or check items using a property or method.</span>
 <span class="hljs-variable">$collection</span>-&gt;contains-&gt;<span class="hljs-title function_ invoke__">method</span>();
