@@ -749,9 +749,9 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use AppModelsOrder;
-use CarbonCarbon;
-use IlluminateSupportCollection;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\Order;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 $orders = Order::query()
     -&gt;where(&#039;created_at&#039;, &#039;&gt;=&#039;, now()-&gt;subYear())
@@ -785,9 +785,9 @@ $groupedOrders = $orders-&gt;groupBy(function (Order $order) use ($interval): st
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">AppModelsOrder</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">CarbonCarbon</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateSupportCollection</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Order</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">Carbon</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Collection</span>;
 
 <span class="hljs-variable">$orders</span> = <span class="hljs-title class_">Order</span>::<span class="hljs-title function_ invoke__">query</span>()
     -&gt;<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-string">&#x27;&gt;=&#x27;</span>, <span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">subYear</span>())

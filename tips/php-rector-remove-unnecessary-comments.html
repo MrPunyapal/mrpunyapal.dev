@@ -749,14 +749,14 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace AppRector;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Rector;
 
-use PhpParserComment;
-use PhpParserCommentDoc;
-use PhpParserNode;
-use RectorRectorAbstractRector;
-use SymplifyRuleDocGeneratorValueObjectCodeSampleCodeSample;
-use SymplifyRuleDocGeneratorValueObjectRuleDefinition;
+use PhpParser\Comment;
+use PhpParser\Comment\Doc;
+use PhpParser\Node;
+use Rector\Rector\AbstractRector;
+use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class RemoveUnnecessaryCommentsRector extends AbstractRector
 {
@@ -872,14 +872,14 @@ final class RemoveUnnecessaryCommentsRector extends AbstractRector
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">AppRector</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Rector</span>;
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParserComment</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParserCommentDoc</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParserNode</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">RectorRectorAbstractRector</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">SymplifyRuleDocGeneratorValueObjectCodeSampleCodeSample</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">SymplifyRuleDocGeneratorValueObjectRuleDefinition</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParser</span>\<span class="hljs-title">Comment</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParser</span>\<span class="hljs-title">Comment</span>\<span class="hljs-title">Doc</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParser</span>\<span class="hljs-title">Node</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Rector</span>\<span class="hljs-title">Rector</span>\<span class="hljs-title">AbstractRector</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Symplify</span>\<span class="hljs-title">RuleDocGenerator</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">CodeSample</span>\<span class="hljs-title">CodeSample</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Symplify</span>\<span class="hljs-title">RuleDocGenerator</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">RuleDefinition</span>;
 
 <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RemoveUnnecessaryCommentsRector</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractRector</span>
 </span>{
@@ -997,8 +997,8 @@ final class RemoveUnnecessaryCommentsRector extends AbstractRector
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use AppRectorRemoveUnnecessaryCommentsRector;
-use RectorConfigRectorConfig;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Rector\RemoveUnnecessaryCommentsRector;
+use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
     -&gt;withRules([
@@ -1010,8 +1010,8 @@ return RectorConfig::configure()
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">AppRectorRemoveUnnecessaryCommentsRector</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">RectorConfigRectorConfig</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Rector</span>\<span class="hljs-title">RemoveUnnecessaryCommentsRector</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Rector</span>\<span class="hljs-title">Config</span>\<span class="hljs-title">RectorConfig</span>;
 
 <span class="hljs-keyword">return</span> <span class="hljs-title class_">RectorConfig</span>::<span class="hljs-title function_ invoke__">configure</span>()
     -&gt;<span class="hljs-title function_ invoke__">withRules</span>([

@@ -153,7 +153,7 @@
                         "@type": "ListItem",
                         "position": 13,
                         "url": "https://mrpunyapal.dev/tips/laravel-refresh-for-update-pessimistic-locking",
-                        "name": "Refresh and Lock an Existing Eloquent Model with refreshForUpdate()"
+                        "name": "Refresh and Pessimistically Lock Models with refreshForUpdate() in Laravel 13.27"
                     },
                     {
                         "@type": "ListItem",
@@ -3560,8 +3560,8 @@
                 data-category="Laravel"
                 data-subcategory="eloquent"
                 data-tags="laravel eloquent database transactions"
-                data-title="refresh and lock an existing eloquent model with refreshforupdate()"
-                data-summary="laravel 13.27 adds refreshforupdate(), making it easier to refresh an existing eloquent model with the latest database state while locking its row for update...">
+                data-title="refresh and pessimistically lock models with refreshforupdate() in laravel 13.27"
+                data-summary="laravel 13.27 adds refreshforupdate(), reloading an existing model instance in-place with fresh database attributes while acquiring an exclusive for update r...">
                 
                 <!-- 4-Corner Crosshair SVG Markers -->
                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -3590,11 +3590,11 @@
                     </div>
                     <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2 tracking-tight">
                         <a href="/tips/laravel-refresh-for-update-pessimistic-locking" class="after:absolute after:inset-0 focus:outline-none">
-                            Refresh and Lock an Existing Eloquent Model with refreshForUpdate()
+                            Refresh and Pessimistically Lock Models with refreshForUpdate() in Laravel 13.27
                         </a>
                     </h2>
                     <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
-                        Laravel 13.27 adds refreshForUpdate(), making it easier to refresh an existing Eloquent model with the latest database state while locking its row for update...
+                        Laravel 13.27 adds refreshForUpdate(), reloading an existing model instance in-place with fresh database attributes while acquiring an exclusive FOR UPDATE r...
                     </p>
                 </div>
 
@@ -3602,7 +3602,7 @@
                     <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <time datetime="2026-08-27">Aug 27, 2026</time>
                         <span aria-hidden="true">·</span>
-                        <span>5 min read</span>
+                        <span>2 min read</span>
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
@@ -3617,7 +3617,7 @@
                 data-subcategory="eloquent"
                 data-tags="laravel eloquent relationships database clean code"
                 data-title="scope pivot table queries with closures in wherepivot() in laravel 13.26"
-                data-summary="laravel 13.26 allows wherepivot() and orwherepivot() to accept closures, enabling direct reuse of local scopes defined on custom pivot models. in many-to-man...">
+                data-summary="laravel 13.26 allows wherepivot() and orwherepivot() to accept closures, enabling direct reuse of local scopes defined on custom pivot models. when querying...">
                 
                 <!-- 4-Corner Crosshair SVG Markers -->
                 <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -3650,7 +3650,7 @@
                         </a>
                     </h2>
                     <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
-                        Laravel 13.26 allows wherePivot() and orWherePivot() to accept closures, enabling direct reuse of local scopes defined on custom Pivot models. In many-to-man...
+                        Laravel 13.26 allows wherePivot() and orWherePivot() to accept closures, enabling direct reuse of local scopes defined on custom Pivot models. When querying...
                     </p>
                 </div>
 
@@ -3658,7 +3658,7 @@
                     <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <time datetime="2026-08-23">Aug 23, 2026</time>
                         <span aria-hidden="true">·</span>
-                        <span>3 min read</span>
+                        <span>2 min read</span>
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
@@ -3826,7 +3826,7 @@
                     <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <time datetime="2026-08-21">Aug 21, 2026</time>
                         <span aria-hidden="true">·</span>
-                        <span>4 min read</span>
+                        <span>2 min read</span>
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
@@ -3882,7 +3882,7 @@
                     <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <time datetime="2026-08-21">Aug 21, 2026</time>
                         <span aria-hidden="true">·</span>
-                        <span>4 min read</span>
+                        <span>2 min read</span>
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
@@ -3938,7 +3938,7 @@
                     <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <time datetime="2026-08-21">Aug 21, 2026</time>
                         <span aria-hidden="true">·</span>
-                        <span>4 min read</span>
+                        <span>2 min read</span>
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
@@ -3994,7 +3994,7 @@
                     <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <time datetime="2026-08-20">Aug 20, 2026</time>
                         <span aria-hidden="true">·</span>
-                        <span>3 min read</span>
+                        <span>2 min read</span>
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
@@ -4050,7 +4050,7 @@
                     <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <time datetime="2026-08-19">Aug 19, 2026</time>
                         <span aria-hidden="true">·</span>
-                        <span>4 min read</span>
+                        <span>2 min read</span>
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>
@@ -4162,7 +4162,7 @@
                     <div class="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <time datetime="2026-08-19">Aug 19, 2026</time>
                         <span aria-hidden="true">·</span>
-                        <span>3 min read</span>
+                        <span>2 min read</span>
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1">
                         <span>READ</span>

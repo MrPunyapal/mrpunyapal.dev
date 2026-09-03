@@ -749,10 +749,10 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace AppModelsScopes;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Models\Scopes;
 
-use AppModelsUser;
-use IlluminateDatabaseEloquentBuilder;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use LaravelScoutBuilder as ScoutBuilder;
 
 final class PublishedScope
@@ -774,10 +774,10 @@ final class PublishedScope
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">AppModelsScopes</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Models</span>\<span class="hljs-title class_">Scopes</span>;
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">AppModelsUser</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateDatabaseEloquentBuilder</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Builder</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">LaravelScoutBuilder</span> <span class="hljs-keyword">as</span> <span class="hljs-title">ScoutBuilder</span>;
 
 <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PublishedScope</span>
@@ -801,12 +801,12 @@ final class PublishedScope
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace AppModels;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Models;
 
-use AppModelsScopesPublishedScope;
-use IlluminateDatabaseEloquentBuilder;
-use IlluminateDatabaseEloquentModel;
-use LaravelScoutSearchable;
+use App\Models\Scopes\PublishedScope;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
@@ -823,12 +823,12 @@ class Post extends Model
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">AppModels</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Models</span>;
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">AppModelsScopesPublishedScope</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateDatabaseEloquentBuilder</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateDatabaseEloquentModel</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">LaravelScoutSearchable</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Scopes</span>\<span class="hljs-title">PublishedScope</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Builder</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Laravel</span>\<span class="hljs-title">Scout</span>\<span class="hljs-title">Searchable</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
 </span>{
@@ -847,8 +847,8 @@ class Post extends Model
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use AppModelsPost;
-use AppModelsScopesPublishedScope;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\Post;
+use App\Models\Scopes\PublishedScope;
 
 // Search posts with the same publishing constraints applied
 $results = Post::search($searchTerm)
@@ -860,14 +860,14 @@ $results = Post::search($searchTerm)
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">AppModelsPost</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AppModelsScopesPublishedScope</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Post</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Scopes</span>\<span class="hljs-title">PublishedScope</span>;
 
 <span class="hljs-comment">// Search posts with the same publishing constraints applied</span>
 <span class="hljs-variable">$results</span> = <span class="hljs-title class_">Post</span>::<span class="hljs-title function_ invoke__">search</span>(<span class="hljs-variable">$searchTerm</span>)
     -&gt;<span class="hljs-title function_ invoke__">tap</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PublishedScope</span>(<span class="hljs-title function_ invoke__">auth</span>()-&gt;<span class="hljs-title function_ invoke__">user</span>()))
     -&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Why Use Tappable Scopes?</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Dual Compatibility</strong>: Operates seamlessly across both standard Eloquent queries and Laravel Scout search pipelines.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Cross-Model Reuse</strong>: Share identical filtering rules across multiple models (e.g. <code>Post</code>, <code>Article</code>, <code>Video</code>) without bloated traits.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Cleaner Models</strong>: Keeps model files lightweight by extracting complex filtering criteria into dedicated, testable classes.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use invokable scope classes paired with <code>-&gt;tap()</code> to share query logic between Eloquent and Scout.</span></li><li class="leading-relaxed"><span class="align-middle">Keeps search filtering synchronized with database query scopes.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates duplicate query logic and keeps model classes lean.</span></li></ul>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Why Use Tappable Scopes?</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Dual Compatibility</strong>: Operates directly across both standard Eloquent queries and Laravel Scout search pipelines.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Cross-Model Reuse</strong>: Share identical filtering rules across multiple models (e.g. <code>Post</code>, <code>Article</code>, <code>Video</code>) without bloated traits.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Cleaner Models</strong>: Keeps model files lightweight by extracting complex filtering criteria into dedicated, testable classes.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use invokable scope classes paired with <code>-&gt;tap()</code> to share query logic between Eloquent and Scout.</span></li><li class="leading-relaxed"><span class="align-middle">Keeps search filtering synchronized with database query scopes.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates duplicate query logic and keeps model classes lean.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

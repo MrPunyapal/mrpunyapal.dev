@@ -71,7 +71,7 @@
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "timeRequired": "PT4M",
+                "timeRequired": "PT2M",
                 "articleSection": "Laravel"
             },
             {
@@ -724,7 +724,7 @@
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
                             <span class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-clock"/></svg>
-                                4 min read
+                                2 min read
                             </span>
                         </div>
 
@@ -741,43 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.26 extends the #[DebounceFor] attribute to queued event listeners, collapsing bursts of repeated events into a single execution based on the latest resource state.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In event-driven architectures, certain domain events fire repeatedly within a short window. For example, editing product details, autosaving a document, updating bulk inventory, or changing user profile attributes can trigger multiple <code>ProductUpdated</code> or <code>DocumentSaved</code> events in rapid succession.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If an event triggers expensive asynchronous work (such as rebuilding a full-text search index, generating document thumbnails, or warming cache stores), running the queued listener for every single intermediate event creates unnecessary queue churn and database load.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">While Laravel already supports <code>#[DebounceFor]</code> for standard queued jobs, <strong>Laravel 13.26 extends <code>#[DebounceFor]</code> directly to queued event listeners</strong>.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Debounce Flow</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Rather than queuing a separate listener execution for each event occurrence, debouncing pauses execution until activity for that specific resource settles:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="Product #42 updated
-       ↓
-Product #42 updated
-       ↓
-Product #42 updated
-       ↓
-30-second debounce window settles
-       ↓
-Single listener execution
-       ↓
-Indexes latest product state" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">Product #42 updated
-       ↓
-Product #42 updated
-       ↓
-Product #42 updated
-       ↓
-30-second debounce window settles
-       ↓
-Single listener execution
-       ↓
-Indexes latest product state</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Intermediate dispatches are collapsed during the debounce window, ensuring the listener runs only once using the latest state.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Implementation Example</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To debounce a queued listener, add the <code>#[DebounceFor]</code> attribute to your listener class and implement the <code>debounceId()</code> method:</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.26 extends the #[DebounceFor] attribute to queued event listeners, collapsing bursts of repeated events into a single execution based on the latest resource state.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In event-driven applications, domain events like <code>ProductUpdated</code> or <code>DocumentSaved</code> can fire dozens of times in rapid succession during bulk updates or autosaves.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Running expensive queued listeners (such as rebuilding search indexes or regenerating thumbnails) for every intermediate event creates severe queue churn. Laravel 13.26 extends <code>#[DebounceFor]</code> to queued event listeners to delay execution until activity settles.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Implementation Example</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Add <code>#[DebounceFor]</code> to your listener and define <code>debounceId()</code> to isolate debounce windows per resource entity:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -794,7 +759,7 @@ use Illuminate\Queue\Attributes\DebounceFor;
 #[DebounceFor(30, maxWait: 120)]
 class UpdateProductSearchIndex implements ShouldQueue
 {
-    // Scope debouncing per product ID so different products process independently
+    // Scope debouncing per model ID so different products process independently
     public function debounceId(ProductUpdated $event): string
     {
         return (string) $event-&gt;product-&gt;getKey();
@@ -802,7 +767,7 @@ class UpdateProductSearchIndex implements ShouldQueue
 
     public function handle(ProductUpdated $event): void
     {
-        // Executes with the latest product data once the window settles
+        // Runs once with the latest database state after updates settle
         $event-&gt;product-&gt;searchable();
     }
 }" aria-label="Copy code to clipboard">
@@ -821,7 +786,7 @@ class UpdateProductSearchIndex implements ShouldQueue
 <span class="hljs-meta">#[DebounceFor</span>(<span class="hljs-number">30</span>, <span class="hljs-attr">maxWait</span>: <span class="hljs-number">120</span>)<span class="hljs-meta">]</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UpdateProductSearchIndex</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ShouldQueue</span>
 </span>{
-    <span class="hljs-comment">// Scope debouncing per product ID so different products process independently</span>
+    <span class="hljs-comment">// Scope debouncing per model ID so different products process independently</span>
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounceId</span>(<span class="hljs-params">ProductUpdated <span class="hljs-variable">$event</span></span>): <span class="hljs-title">string</span>
     </span>{
         <span class="hljs-keyword">return</span> (<span class="hljs-keyword">string</span>) <span class="hljs-variable">$event</span>-&gt;product-&gt;<span class="hljs-title function_ invoke__">getKey</span>();
@@ -829,67 +794,12 @@ class UpdateProductSearchIndex implements ShouldQueue
 
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span>(<span class="hljs-params">ProductUpdated <span class="hljs-variable">$event</span></span>): <span class="hljs-title">void</span>
     </span>{
-        <span class="hljs-comment">// Executes with the latest product data once the window settles</span>
+        <span class="hljs-comment">// Runs once with the latest database state after updates settle</span>
         <span class="hljs-variable">$event</span>-&gt;product-&gt;<span class="hljs-title function_ invoke__">searchable</span>();
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How debounceId() Scopes Dispatches</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The <code>debounceId()</code> method is crucial because it isolates debounce windows by resource key:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="Product #42 events → Debounce group &quot;42&quot; (settles in 30s)
-Product #99 events → Debounce group &quot;99&quot; (settles independently)" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">Product #42 events → Debounce group &quot;42&quot; (settles in 30s)
-Product #99 events → Debounce group &quot;99&quot; (settles independently)</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Without a unique <code>debounceId()</code>, all incoming <code>ProductUpdated</code> events would share a global debounce window, inadvertently delaying indexing for unrelated products.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Preventing Indefinite Delays with maxWait</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If an active user or automated process continuously modifies a record every 10 seconds, a standard 30-second debounce window would continually reset and postpone execution indefinitely.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The <code>maxWait</code> parameter sets a hard ceiling on total delay:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="#[DebounceFor(30, maxWait: 120)]" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-meta">#[DebounceFor</span>(<span class="hljs-number">30</span>, <span class="hljs-attr">maxWait</span>: <span class="hljs-number">120</span>)<span class="hljs-meta">]</span></code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong><code>30</code></strong>: The idle settling window (waits for 30 seconds of inactivity).</span></li><li class="leading-relaxed"><span class="align-middle"><strong><code>maxWait: 120</code></strong>: Forces execution after 120 seconds regardless of ongoing events.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Listener-Specific Isolation</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Debounce attributes apply strictly to the specific listener where they are declared, not globally to the event itself:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="ProductUpdated Event
-├── UpdateProductSearchIndex (#[DebounceFor(30)]) → Debounced (runs once)
-├── SendAuditNotification                       → Runs immediately on dispatch
-└── IncrementMetricCounters                      → Runs immediately on dispatch" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">ProductUpdated Event
-├── UpdateProductSearchIndex (#[DebounceFor(30)]) → Debounced (runs once)
-├── SendAuditNotification                       → Runs immediately on dispatch
-└── IncrementMetricCounters                      → Runs immediately on dispatch</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Other listeners listening to <code>ProductUpdated</code> continue processing every dispatch normally.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Important Constraint: Incompatible with ShouldBeUnique</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A debounced listener cannot implement <code>ShouldBeUnique</code>. Combining <code>#[DebounceFor]</code> with <code>ShouldBeUnique</code> causes Laravel to throw a <code>LogicException</code>:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong><code>ShouldBeUnique</code></strong>: Locks and rejects subsequent dispatches, preserving only the <strong>first</strong> job.</span></li><li class="leading-relaxed"><span class="align-middle"><strong><code>#[DebounceFor]</code></strong>: Collects intermediate dispatches and executes the <strong>latest</strong> dispatch once activity settles.</span></li></ul><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Because their execution semantics conflict, choose <code>#[DebounceFor]</code> when you need the freshest state after a burst of activity, and <code>ShouldBeUnique</code> when preventing duplicate concurrent execution of identical tasks.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">When to Debounce vs Process Every Event</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Good Candidates for Debouncing</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Search Indexing</strong>: Re-indexing models where only the final record state matters.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Cache Invalidation &amp; Warmup</strong>: Rebuilding expensive cache fragments after bulk updates.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Asset Processing</strong>: Regenerating PDF previews, video thumbnails, or computed summaries for frequently saved drafts.</span></li></ul><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">When NOT to Debounce</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Financial Transactions</strong>: Ledgers, payment captures, or balance changes where every event represents an immutable financial record.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Audit Logs</strong>: Security tracking and compliance logs where every individual action must be preserved.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Direct Notifications</strong>: Customer emails or transactional SMS alerts that correspond to explicit user actions.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Laravel 13.26 extends <code>#[DebounceFor]</code> to queued event listeners (<code>implements ShouldQueue</code>).</span></li><li class="leading-relaxed"><span class="align-middle">Use <code>debounceId()</code> to isolate debounce windows per resource entity.</span></li><li class="leading-relaxed"><span class="align-middle">Configure <code>maxWait</code> to ensure continuously updated resources execute within a bounded timeframe.</span></li><li class="leading-relaxed"><span class="align-middle">Reserve debouncing for tasks where intermediate updates are safely superseded by the latest state.</span></li></ul>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Rules &amp; Parameters</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong><code>debounceId()</code></strong>: Returns the scoping identifier (such as the model ID). Without this, all incoming <code>ProductUpdated</code> events would share a global debounce window across the entire application.</span></li><li class="leading-relaxed"><span class="align-middle"><strong><code>maxWait: 120</code></strong>: Sets a hard upper boundary. If a resource receives continuous events, execution is forced at 120 seconds rather than resetting indefinitely.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Listener-Specific</strong>: <code>#[DebounceFor]</code> applies only to the specific listener where it is declared. Other listeners on the same event still run immediately upon dispatch.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Incompatible with <code>ShouldBeUnique</code></strong>: A listener cannot combine <code>#[DebounceFor]</code> and <code>ShouldBeUnique</code>. <code>ShouldBeUnique</code> preserves only the first dispatch and ignores the rest, whereas <code>#[DebounceFor]</code> collects bursts to execute the latest state.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

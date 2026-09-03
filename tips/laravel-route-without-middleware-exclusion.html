@@ -750,7 +750,7 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
         <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Http\Controllers\WebhookController;
-use AppHttpMiddlewareVerifyCsrfToken;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([&#039;web&#039;, &#039;auth&#039;])-&gt;group(function () {
@@ -768,7 +768,7 @@ Route::middleware([&#039;web&#039;, &#039;auth&#039;])-&gt;group(function () {
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">WebhookController</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AppHttpMiddlewareVerifyCsrfToken</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Middleware</span>\<span class="hljs-title">VerifyCsrfToken</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Route</span>;
 
 <span class="hljs-title class_">Route</span>::<span class="hljs-title function_ invoke__">middleware</span>([<span class="hljs-string">&#x27;web&#x27;</span>, <span class="hljs-string">&#x27;auth&#x27;</span>])-&gt;<span class="hljs-title function_ invoke__">group</span>(function () {

@@ -71,7 +71,7 @@
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "timeRequired": "PT3M",
+                "timeRequired": "PT2M",
                 "articleSection": "Laravel"
             },
             {
@@ -724,7 +724,7 @@
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
                             <span class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-clock"/></svg>
-                                3 min read
+                                2 min read
                             </span>
                         </div>
 
@@ -741,97 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When interacting with external APIs in a Laravel application, developers often repeat identical HTTP setup (such as API keys, base URLs, timeouts, and JSON headers) across multiple controllers, jobs, and service classes:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Repeated across multiple call sites
-$customer = Http::withToken(config(&#039;services.payments.secret&#039;))
-    -&gt;baseUrl(config(&#039;services.payments.url&#039;))
-    -&gt;acceptJson()
-    -&gt;timeout(10)
-    -&gt;get(&quot;/customers/{$customerId}&quot;);
-
-$refund = Http::withToken(config(&#039;services.payments.secret&#039;))
-    -&gt;baseUrl(config(&#039;services.payments.url&#039;))
-    -&gt;acceptJson()
-    -&gt;timeout(10)
-    -&gt;post(&#039;/refunds&#039;, [&#039;payment_id&#039; =&gt; $paymentId]);" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Repeated across multiple call sites</span>
-<span class="hljs-variable">$customer</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withToken</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.secret&#x27;</span>))
-    -&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.url&#x27;</span>))
-    -&gt;<span class="hljs-title function_ invoke__">acceptJson</span>()
-    -&gt;<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">10</span>)
-    -&gt;<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&quot;/customers/<span class="hljs-subst">{$customerId}</span>&quot;</span>);
-
-<span class="hljs-variable">$refund</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withToken</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.secret&#x27;</span>))
-    -&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.url&#x27;</span>))
-    -&gt;<span class="hljs-title function_ invoke__">acceptJson</span>()
-    -&gt;<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">10</span>)
-    -&gt;<span class="hljs-title function_ invoke__">post</span>(<span class="hljs-string">&#x27;/refunds&#x27;</span>, [<span class="hljs-string">&#x27;payment_id&#x27;</span> =&gt; <span class="hljs-variable">$paymentId</span>]);</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Repeating this configuration creates duplication, increases the risk of inconsistent headers or timeouts, and makes updating credentials or URLs tedious.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s HTTP client supports macros via <code>Http::macro()</code>, allowing you to define your service setup once and reuse the pre-configured client anywhere.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Define Once, Reuse Anywhere</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">An HTTP macro does not need to execute the request immediately. Instead, the macro can return a configured <code>PendingRequest</code> instance that callers can continue chaining with standard methods (<code>get()</code>, <code>post()</code>, <code>withHeaders()</code>, etc.):</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Http;
-
-// Define the API setup once (e.g. in AppServiceProvider)
-Http::macro(&#039;payments&#039;, function () {
-    return Http::withToken(config(&#039;services.payments.secret&#039;))
-        -&gt;baseUrl(config(&#039;services.payments.url&#039;))
-        -&gt;acceptJson()
-        -&gt;timeout(10);
-});
-
-// Reuse the configured client anywhere in your application
-$customer = Http::payments()
-    -&gt;get(&quot;/customers/{$customerId}&quot;);
-
-$refund = Http::payments()
-    -&gt;post(&#039;/refunds&#039;, [
-        &#039;payment_id&#039; =&gt; $paymentId,
-        &#039;amount&#039;     =&gt; 4900,
-    ]);" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Http</span>;
-
-<span class="hljs-comment">// Define the API setup once (e.g. in AppServiceProvider)</span>
-<span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;payments&#x27;</span>, function () {
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withToken</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.secret&#x27;</span>))
-        -&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.url&#x27;</span>))
-        -&gt;<span class="hljs-title function_ invoke__">acceptJson</span>()
-        -&gt;<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">10</span>);
-});
-
-<span class="hljs-comment">// Reuse the configured client anywhere in your application</span>
-<span class="hljs-variable">$customer</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">payments</span>()
-    -&gt;<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&quot;/customers/<span class="hljs-subst">{$customerId}</span>&quot;</span>);
-
-<span class="hljs-variable">$refund</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">payments</span>()
-    -&gt;<span class="hljs-title function_ invoke__">post</span>(<span class="hljs-string">&#x27;/refunds&#x27;</span>, [
-        <span class="hljs-string">&#x27;payment_id&#x27;</span> =&gt; <span class="hljs-variable">$paymentId</span>,
-        <span class="hljs-string">&#x27;amount&#x27;</span>     =&gt; <span class="hljs-number">4900</span>,
-    ]);</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Centralized Registration in Service Providers</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Register your HTTP macros centrally within your application&#39;s service provider boot lifecycle:</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When interacting with external APIs, developers often repeat identical HTTP setup (such as API tokens, base URLs, timeouts, and JSON headers) across multiple controllers and jobs.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Using <code>Http::macro()</code>, you can register pre-configured HTTP clients once and reuse them anywhere with full method chaining.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Centralized Registration</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Register macros in <code>AppServiceProvider::boot()</code> and return the configured <code>PendingRequest</code>:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -851,12 +762,12 @@ class AppServiceProvider extends ServiceProvider
         Http::macro(&#039;payments&#039;, fn () =&gt; Http::withToken(config(&#039;services.payments.secret&#039;))
             -&gt;baseUrl(config(&#039;services.payments.url&#039;))
             -&gt;acceptJson()
-            -&gt;timeout(10));
+            -&gt;timeout(10)
+            -&gt;retry(3, 100));
 
-        Http::macro(&#039;shipping&#039;, fn () =&gt; Http::withHeaders([
-            &#039;X-API-Key&#039; =&gt; config(&#039;services.shipping.key&#039;),
-            &#039;X-Account-ID&#039; =&gt; config(&#039;services.shipping.account_id&#039;),
-        ])-&gt;baseUrl(config(&#039;services.shipping.url&#039;))-&gt;acceptJson());
+        Http::macro(&#039;github&#039;, fn () =&gt; Http::withToken(config(&#039;services.github.token&#039;))
+            -&gt;baseUrl(&#039;https://api.github.com&#039;)
+            -&gt;withHeaders([&#039;User-Agent&#039; =&gt; &#039;MyLaravelApp&#039;]));
     }
 }" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -877,24 +788,49 @@ class AppServiceProvider extends ServiceProvider
         <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;payments&#x27;</span>, fn () =&gt; <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withToken</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.secret&#x27;</span>))
             -&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.payments.url&#x27;</span>))
             -&gt;<span class="hljs-title function_ invoke__">acceptJson</span>()
-            -&gt;<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">10</span>));
+            -&gt;<span class="hljs-title function_ invoke__">timeout</span>(<span class="hljs-number">10</span>)
+            -&gt;<span class="hljs-title function_ invoke__">retry</span>(<span class="hljs-number">3</span>, <span class="hljs-number">100</span>));
 
-        <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;shipping&#x27;</span>, fn () =&gt; <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withHeaders</span>([
-            <span class="hljs-string">&#x27;X-API-Key&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.shipping.key&#x27;</span>),
-            <span class="hljs-string">&#x27;X-Account-ID&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.shipping.account_id&#x27;</span>),
-        ])-&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.shipping.url&#x27;</span>))-&gt;<span class="hljs-title function_ invoke__">acceptJson</span>());
+        <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;github&#x27;</span>, fn () =&gt; <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">withToken</span>(<span class="hljs-title function_ invoke__">config</span>(<span class="hljs-string">&#x27;services.github.token&#x27;</span>))
+            -&gt;<span class="hljs-title function_ invoke__">baseUrl</span>(<span class="hljs-string">&#x27;https://api.github.com&#x27;</span>)
+            -&gt;<span class="hljs-title function_ invoke__">withHeaders</span>([<span class="hljs-string">&#x27;User-Agent&#x27;</span> =&gt; <span class="hljs-string">&#x27;MyLaravelApp&#x27;</span>]));
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">What Belongs in the Macro vs Call Site</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To keep macros clean and flexible, separate shared infrastructure configuration from request-specific logic:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Inside the Macro</strong>:
-- Base URL (<code>baseUrl()</code>)
-- Authentication tokens or API keys (<code>withToken()</code>, <code>withBasicAuth()</code>)
-- Shared headers (<code>acceptJson()</code>, custom organizational headers)
-- Default connection timeouts or retry policies (<code>timeout()</code>, <code>retry()</code>)
-</span></li><li class="leading-relaxed"><span class="align-middle"><strong>At the Call Site</strong>:
-- Specific endpoints and path parameters (<code>/orders/{id}</code>)
-- HTTP verbs (<code>get()</code>, <code>post()</code>, <code>put()</code>, <code>delete()</code>)
-- Request payloads and query parameters
-- Contextual error handling (<code>throw()</code>, <code>onError()</code>)</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Macros vs Dedicated Service Classes</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">HTTP macros provide a lightweight abstraction that avoids boilerplate for small to medium third-party integrations. However, consider the scope of your integration:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Use HTTP Macros when</strong>: You need consistent credentials, base URLs, and headers across a few endpoints, and standard HTTP response methods (<code>$response-&gt;json()</code>, <code>$response-&gt;successful()</code>) are sufficient.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Use Dedicated Service Classes when</strong>: The integration requires complex domain logic, custom data transfer objects (DTOs), webhook verification, or multi-step token exchange workflows.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <code>Http::macro()</code> to centralize repeated API connection setup into named, fluent methods.</span></li><li class="leading-relaxed"><span class="align-middle">Return the configured <code>Http</code> instance from the macro closure so calling code retains full HTTP client chaining capabilities.</span></li><li class="leading-relaxed"><span class="align-middle">Keep credentials and URLs in <code>config/services.php</code> rather than hardcoding them inside the macro.</span></li></ul>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Application Usage</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Call the macro as a method directly on the <code>Http</code> facade:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Http;
+
+// Macro methods retain full fluent HTTP client chaining
+$customer = Http::payments()-&gt;get(&quot;/customers/{$id}&quot;)-&gt;throw()-&gt;json();
+
+$charge = Http::payments()-&gt;post(&#039;/charges&#039;, [
+    &#039;amount&#039;   =&gt; 4900,
+    &#039;currency&#039; =&gt; &#039;usd&#039;,
+]);" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Http</span>;
+
+<span class="hljs-comment">// Macro methods retain full fluent HTTP client chaining</span>
+<span class="hljs-variable">$customer</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">payments</span>()-&gt;<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&quot;/customers/<span class="hljs-subst">{$id}</span>&quot;</span>)-&gt;<span class="hljs-keyword">throw</span>()-&gt;<span class="hljs-title function_ invoke__">json</span>();
+
+<span class="hljs-variable">$charge</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">payments</span>()-&gt;<span class="hljs-title function_ invoke__">post</span>(<span class="hljs-string">&#x27;/charges&#x27;</span>, [
+    <span class="hljs-string">&#x27;amount&#x27;</span>   =&gt; <span class="hljs-number">4900</span>,
+    <span class="hljs-string">&#x27;currency&#x27;</span> =&gt; <span class="hljs-string">&#x27;usd&#x27;</span>,
+]);</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Practical Guidelines</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Return the Client</strong>: Always return the pending request from the macro closure so callers can chain standard HTTP verbs (<code>get()</code>, <code>post()</code>), query params, or error handlers (<code>throw()</code>).</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Configuration Boundary</strong>: Read credentials from <code>config(&#39;services...&#39;)</code> rather than <code>env()</code>.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Testing</strong>: Macros integrate with <code>Http::fake()</code>, allowing you to mock endpoints without altering macro definitions.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

@@ -306,7 +306,7 @@ git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pr
 <h3>Summary</h3>
 <ul>
   <li>Use <strong>Git Submodules</strong> when you need strict commit pinning and want the dependency to remain an isolated external project.</li>
-  <li>Use <strong>Git Subtrees</strong> when you want shared code to live directly in your repository with seamless cloning for collaborators.</li>
+  <li>Use <strong>Git Subtrees</strong> when you want shared code to live directly in your repository with direct cloning for collaborators.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
@@ -639,7 +639,7 @@ for (const [filePath, html] of Object.entries(pages)) {
 
 console.log(`Wrote ${written}/${Object.keys(pages).length} files (rest unchanged)`);</code></pre>
 <p>On a typical run where 3 out of 300 pages changed, you will see:</p>
-<pre><code>Wrote 3/300 files (rest unchanged)</code></pre>
+<pre><code class="language-text">Wrote 3/300 files (rest unchanged)</code></pre>
 <hr>
 <h3>Apply to Every Generated Output</h3>
 <p>This pattern works for any generated file type:</p>
@@ -880,17 +880,25 @@ class ArticleSearchController extends Controller
 <ul>
   <li><strong>MariaDB Version</strong>: Requires <strong>MariaDB 11.7+</strong>, which introduces native <code>VECTOR</code> data types and vector distance functions.</li>
   <li><strong>Column Definition</strong>: The target column in your migration should be configured to store vector data:
-<code>php Schema::create(&#39;documents&#39;, function (Blueprint $table) {     $table-&gt;id();     $table-&gt;string(&#39;title&#39;);     $table-&gt;text(&#39;content&#39;);     $table-&gt;vector(&#39;embedding&#39;, dimensions: 1536);     $table-&gt;timestamps(); }); </code></li>
+```php
+Schema::create(&#39;documents&#39;, function (Blueprint $table) {
+    $table-&gt;id();
+    $table-&gt;string(&#39;title&#39;);
+    $table-&gt;text(&#39;content&#39;);
+    $table-&gt;vector(&#39;embedding&#39;, dimensions: 1536);
+    $table-&gt;timestamps();
+});</li>
 </ul>
-<hr>
-<h3>Summary</h3>
-<ul>
-  <li>Laravel 13.27 brings first-class vector query builder methods to MariaDB 11.7+.</li>
-  <li><code>whereVectorDistanceLessThan()</code> filters rows based on distance thresholds.</li>
-  <li><code>orderByVectorDistance()</code> sorts records by nearest similarity.</li>
-  <li><code>selectVectorDistance()</code> selects the computed score as a model attribute.</li>
-  <li>Replaces raw <code>VEC_DISTANCE_*</code> SQL clauses with clean, fluent Eloquent methods.</li>
-</ul>
+<pre><code>
+---
+
+## Summary
+
+- Laravel 13.27 brings first-class vector query builder methods to MariaDB 11.7+.
+- `whereVectorDistanceLessThan()` filters rows based on distance thresholds.
+- `orderByVectorDistance()` sorts records by nearest similarity.
+- `selectVectorDistance()` selects the computed score as a model attribute.
+- Replaces raw `VEC_DISTANCE_*` SQL clauses with clean, fluent Eloquent methods.</code></pre>
 ]]></content:encoded>
       <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
@@ -1215,131 +1223,45 @@ Actual values</code></pre>
       <category><![CDATA[Exceptions]]></category>
     </item>
     <item>
-      <title><![CDATA[Refresh and Lock an Existing Eloquent Model with refreshForUpdate()]]></title>
+      <title><![CDATA[Refresh and Pessimistically Lock Models with refreshForUpdate() in Laravel 13.27]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-refresh-for-update-pessimistic-locking</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-refresh-for-update-pessimistic-locking</guid>
-      <description><![CDATA[Laravel 13.27 adds refreshForUpdate(), making it easier to refresh an existing Eloquent model with the latest database state while locking its row for update...]]></description>
-      <content:encoded><![CDATA[<blockquote>Laravel 13.27 adds refreshForUpdate(), making it easier to refresh an existing Eloquent model with the latest database state while locking its row for update.</blockquote>
-<p>A model is often loaded before a transaction starts.</p>
-<p>For example, route model binding may already give you a Product instance:</p>
-<pre><code class="language-php">public function purchase(Product $product): Response
+      <description><![CDATA[Laravel 13.27 adds refreshForUpdate(), reloading an existing model instance in-place with fresh database attributes while acquiring an exclusive FOR UPDATE r...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.27 adds refreshForUpdate(), reloading an existing model instance in-place with fresh database attributes while acquiring an exclusive FOR UPDATE row lock.</blockquote>
+<p>When an Eloquent model is loaded before a transaction begins (such as through route model binding or an earlier service method), its memory state can drift from the database before you mutate it.</p>
+<p>Previously, refreshing and locking an existing model instance required re-querying the table and reassigning the variable. Laravel 13.27 provides `refreshForUpdate()` to handle this directly on the existing instance.</p>
+<hr>
+<h3>Before & After</h3>
+<pre><code class="language-php">use App\Models\Product;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+
+public function purchase(Product $product): Response
 {
     DB::transaction(function () use ($product) {
-        // ...
-    });
-}</code></pre>
-<p>If you need the latest database state and a pessimistic lock before modifying the row, the traditional approach was to query the model again.</p>
-<h3>Before Laravel 13.27</h3>
-<p>You would typically need to create another query, find the model by its primary key, and replace the existing instance:</p>
-<pre><code class="language-php">public function purchase(Product $product): Response
-{
-    DB::transaction(function () use ($product) {
-        $product = Product::query()
-            -&gt;lockForUpdate()
-            -&gt;findOrFail($product-&gt;getKey());
+        // Before Laravel 13.27: manual query lookup and reassignment
+        // $product = Product::lockForUpdate()-&gt;findOrFail($product-&gt;getKey());
 
-        if ($product-&gt;stock === 0) {
-            throw new RuntimeException(&#039;The product is out of stock.&#039;);
-        }
-
-        $product-&gt;decrement(&#039;stock&#039;);
-    });
-
-    // ...
-}</code></pre>
-<p>The model was already available, but we still needed another query and had to reassign the result.</p>
-<h3>Laravel 13.27: refreshForUpdate()</h3>
-<p>Laravel 13.27 adds a simpler way to do the same thing:</p>
-<pre><code class="language-php">public function purchase(Product $product): Response
-{
-    DB::transaction(function () use ($product) {
+        // Laravel 13.27+: refreshes attributes in place with a row lock
         $product-&gt;refreshForUpdate();
 
-        if ($product-&gt;stock === 0) {
+        if ($product-&gt;stock &lt; 1) {
             throw new RuntimeException(&#039;The product is out of stock.&#039;);
         }
 
         $product-&gt;decrement(&#039;stock&#039;);
     });
 
-    // ...
+    return response()-&gt;noContent();
 }</code></pre>
-<p>refreshForUpdate() reloads the existing model from the database while applying lockForUpdate() to the query used to refresh it.</p>
-<p>The existing model instance is updated in place, so there is no need to query the model again and reassign it.</p>
-<h3>refresh() vs refreshForUpdate()</h3>
-<p>The two methods are similar, but refreshForUpdate() also applies a row lock to the refresh query.</p>
-<pre><code class="language-php">$product-&gt;refresh();</code></pre>
-<p>Reloads the model with fresh attributes from the database.</p>
-<pre><code class="language-php">$product-&gt;refreshForUpdate();</code></pre>
-<p>Reloads the model with fresh attributes and applies lockForUpdate() to the query.</p>
-<p>So when you already have an Eloquent model and need a fresh, locked version of that same instance, refreshForUpdate() expresses that intent directly.</p>
-<h3>A practical stock example</h3>
-<p>Imagine a product has limited stock and multiple requests can attempt to purchase it at the same time.</p>
-<p>The model may have been loaded before the transaction starts, so its current attributes may no longer represent the latest database state.</p>
-<p>Refresh and lock the row before checking the current stock:</p>
-<pre><code class="language-php">DB::transaction(function () use ($product) {
-    $product-&gt;refreshForUpdate();
-
-    if ($product-&gt;stock &lt; 1) {
-        throw new RuntimeException(&#039;The product is out of stock.&#039;);
-    }
-
-    $product-&gt;decrement(&#039;stock&#039;);
-});</code></pre>
-<p>The stock check now uses the freshly loaded database state after the row has been locked for update.</p>
-<h3>The model stays the same instance</h3>
-<p>refreshForUpdate() refreshes the existing model instance rather than returning a different model that you need to assign.</p>
-<pre><code class="language-php">DB::transaction(function () use ($product) {
-    $result = $product-&gt;refreshForUpdate();
-
-    // $result and $product refer to the same model instance.
-});</code></pre>
-<p>The model's attributes are refreshed from the database, and its dirty state is synchronized with those fresh attributes.</p>
-<p>You can simply continue using $product after calling the method.</p>
-<h3>Why this is useful with route model binding</h3>
-<p>A common flow looks like this:</p>
-<pre><code class="language-text">Route model binding
-        ↓
-Product instance already exists
-        ↓
-Transaction starts
-        ↓
-refreshForUpdate()
-        ↓
-Fresh database attributes + row lock
-        ↓
-Continue using the same Product instance</code></pre>
-<p>This is where the new method removes a small but repetitive piece of Eloquent code.</p>
-<p>Instead of looking up the model again by its primary key, you can simply do:</p>
-<pre><code class="language-php">$product-&gt;refreshForUpdate();</code></pre>
-<h3>Keep it inside the transaction</h3>
-<p>refreshForUpdate() is intended for situations where the row needs to be locked while the transaction performs its work:</p>
-<pre><code class="language-php">DB::transaction(function () use ($product) {
-    $product-&gt;refreshForUpdate();
-
-    // Read the current state...
-    // Perform the required changes...
-});</code></pre>
-<p>The method does not replace the transaction itself.</p>
-<p>The row lock is part of the database transaction, so the refresh and the work that depends on that lock should be performed within the same transaction.</p>
-<h3>What happens under the hood?</h3>
-<p>refreshForUpdate() uses the same refresh flow as refresh(), but builds the query with lockForUpdate():</p>
-<pre><code class="language-php">$this-&gt;newQueryWithoutScopes()
-    -&gt;lockForUpdate();</code></pre>
-<p>Laravel then uses that query to reload the current model by its existing primary key.</p>
-<p>This means the feature is not a completely different way of refreshing a model. It is the existing refresh behavior with the update lock applied to the refresh query.</p>
-<h3>Summary</h3>
+<hr>
+<h3>Key Takeaways</h3>
 <ul>
-  <li>refreshForUpdate() was added in Laravel 13.27.</li>
-  <li>It reloads the existing Eloquent model with fresh database attributes.</li>
-  <li>The refresh query uses lockForUpdate().</li>
-  <li>The existing model instance is refreshed in place.</li>
-  <li>You no longer need to query and reassign an already-loaded model just to refresh it with a row lock.</li>
-  <li>It is particularly useful when a model was loaded before a transaction, such as through route model binding.</li>
-  <li>Use it inside the transaction where the locked row needs to be read or modified.</li>
-  <li>It does not eliminate the database query. It provides a cleaner API for refreshing and locking the existing model.</li>
+  <li><strong>In-Place Mutation</strong>: Refreshes the existing model object and syncs its original attributes without requiring variable reassignment.</li>
+  <li><strong>Under the Hood</strong>: Uses <code>$this-&gt;newQueryWithoutScopes()-&gt;lockForUpdate()</code> targeting the model&#39;s primary key.</li>
+  <li><strong>Transaction Requirement</strong>: Must be called inside <code>DB::transaction()</code> or an active transaction block for the database engine to maintain the row lock.</li>
+  <li><strong>Common Use Cases</strong>: Prevents race conditions during inventory decrements, wallet balances, or seat reservations when models originate from route model binding.</li>
 </ul>
-<p>If you already have the Eloquent model, Laravel 13.27 gives you a cleaner way to refresh it and lock it for update.</p>
 ]]></content:encoded>
       <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
@@ -1352,31 +1274,12 @@ Continue using the same Product instance</code></pre>
       <title><![CDATA[Scope Pivot Table Queries with Closures in wherePivot() in Laravel 13.26]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-wherepivot-closure-scopes</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-wherepivot-closure-scopes</guid>
-      <description><![CDATA[Laravel 13.26 allows wherePivot() and orWherePivot() to accept closures, enabling direct reuse of local scopes defined on custom Pivot models. In many-to-man...]]></description>
+      <description><![CDATA[Laravel 13.26 allows wherePivot() and orWherePivot() to accept closures, enabling direct reuse of local scopes defined on custom Pivot models. When querying...]]></description>
       <content:encoded><![CDATA[<blockquote>Laravel 13.26 allows wherePivot() and orWherePivot() to accept closures, enabling direct reuse of local scopes defined on custom Pivot models.</blockquote>
-<p>In many-to-many Eloquent relationships (`belongsToMany`), pivot tables frequently store meaningful domain state (such as subscription statuses, membership roles, notification toggles, or expiration dates).</p>
-<p>While Laravel has always supported filtering pivot columns using scalar values (such as `wherePivot('is_active', true)`), expressing multi-column business conditions across multiple controllers often leads to duplicated filtering logic.</p>
-<p>**Laravel 13.26 enhances `wherePivot()` and `orWherePivot()` to accept a closure**, providing a builder instance that can invoke local scopes defined directly on your custom pivot model.</p>
+<p>When querying `belongsToMany` relationships, filtering pivot columns traditionally required repeating raw column checks (`->wherePivot('is_active', true)->wherePivot('is_muted', false)`) wherever the relationship was called.</p>
+<p>Laravel 13.26 enhances `wherePivot()` and `orWherePivot()` to accept closures, letting you invoke local scopes declared directly on your custom `Pivot` class.</p>
 <hr>
-<h3>1. The Traditional Approach: Repeated Scalar Conditions</h3>
-<p>Consider a `Project` model with a many-to-many `subscribers` relationship:</p>
-<pre><code class="language-php">// Project.php
-public function subscribers(): BelongsToMany
-{
-    return $this-&gt;belongsToMany(User::class, &#039;project_subscribers&#039;)
-        -&gt;using(ProjectSubscriber::class)
-        -&gt;withPivot([&#039;is_active&#039;, &#039;is_muted&#039;, &#039;role&#039;]);
-}</code></pre>
-<p>Prior to Laravel 13.26, filtering active, unmuted subscribers required repeating raw column checks wherever the relationship was queried:</p>
-<pre><code class="language-php">// Filtering active, non-muted subscribers
-$activeSubscribers = $project-&gt;subscribers()
-    -&gt;wherePivot(&#039;is_active&#039;, true)
-    -&gt;wherePivot(&#039;is_muted&#039;, false)
-    -&gt;get();</code></pre>
-<p>While functional, this approach scatters internal pivot schema details across your application and duplicates logic whenever those business rules are queried.</p>
-<hr>
-<h3>2. Defining Scopes on the Custom Pivot Model</h3>
-<p>With custom pivot models extending `Illuminate\Database\Eloquent\Relations\Pivot`, you can encapsulate business rules as standard Eloquent local scopes:</p>
+<h3>1. Define Local Scopes on the Custom Pivot Model</h3>
 <pre><code class="language-php">namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -1393,59 +1296,29 @@ class ProjectSubscriber extends Pivot
     {
         return $query-&gt;where(&#039;is_muted&#039;, false);
     }
-
-    public function scopeAdmins(Builder $query): Builder
-    {
-        return $query-&gt;where(&#039;role&#039;, &#039;admin&#039;);
-    }
 }</code></pre>
 <hr>
-<h3>3. Laravel 13.26: Passing Closures to `wherePivot()`</h3>
-<p>In Laravel 13.26, you can pass a closure to `wherePivot()`. The closure receives a builder scoped to the custom pivot model, allowing you to chain your pivot model's local scopes directly:</p>
-<pre><code class="language-php">// Query using custom pivot scopes directly
+<h3>2. Chain Scopes Directly in wherePivot()</h3>
+<p>The closure receives a builder instance bound to your custom pivot model:</p>
+<pre><code class="language-php">// Project model relationship:
+// $project-&gt;belongsToMany(User::class)-&gt;using(ProjectSubscriber::class);
+
+// Query active, non-muted subscribers using pivot scopes
 $subscribers = $project-&gt;subscribers()
-    -&gt;wherePivot(fn ($query) =&gt; $query
-        -&gt;active()
-        -&gt;notMuted()
-    )
-    -&gt;get();</code></pre>
-<h4>Before vs. After</h4>
-<ul>
-  <li><strong>Before</strong>: Relationship queries explicitly specify raw column conditions (<code>-&gt;wherePivot(&#39;is_active&#39;, true)-&gt;wherePivot(&#39;is_muted&#39;, false)</code>).</li>
-  <li><strong>After</strong>: Relationship queries express domain intent (<code>-&gt;wherePivot(fn ($q) =&gt; $q-&gt;active()-&gt;notMuted())</code>), while the implementation rules reside inside the <code>ProjectSubscriber</code> pivot class.</li>
-</ul>
-<hr>
-<h3>4. Reusing Pivot Scopes Across Queries</h3>
-<p>Because the query logic lives inside the custom pivot class, changes to what constitutes an "active" subscription (such as adding an expiration check) only need to be updated in one place:</p>
-<pre><code class="language-php">// Active subscribers
-$active = $project-&gt;subscribers()
-    -&gt;wherePivot(fn ($query) =&gt; $query-&gt;active())
+    -&gt;wherePivot(fn ($query) =&gt; $query-&gt;active()-&gt;notMuted())
     -&gt;get();
 
-// Active admins
-$admins = $project-&gt;subscribers()
-    -&gt;wherePivot(fn ($query) =&gt; $query-&gt;active()-&gt;admins())
-    -&gt;get();</code></pre>
-<hr>
-<h3>5. Companion Support in `orWherePivot()`</h3>
-<p>The same closure capability is available on `orWherePivot()` for alternative conditions:</p>
-<pre><code class="language-php">$eligibleUsers = $project-&gt;subscribers()
+// Also works directly with orWherePivot()
+$eligible = $project-&gt;subscribers()
     -&gt;wherePivot(fn ($query) =&gt; $query-&gt;active())
-    -&gt;orWherePivot(fn ($query) =&gt; $query-&gt;admins())
+    -&gt;orWherePivot(fn ($query) =&gt; $query-&gt;where(&#039;role&#039;, &#039;admin&#039;))
     -&gt;get();</code></pre>
 <hr>
-<h3>What This Feature Is Not</h3>
+<h3>Key Benefits</h3>
 <ul>
-  <li><code>wherePivot()</code> itself is not new; Laravel 13.26 simply adds closure and pivot-scope resolution.</li>
-  <li>It does not replace custom pivot models, but instead gives them greater utility within relationship chains.</li>
-  <li>Scalar <code>wherePivot(&#39;column&#39;, $value)</code> syntax remains fully supported for simple one-off checks.</li>
-</ul>
-<hr>
-<h3>Summary</h3>
-<ul>
-  <li>Laravel 13.26 allows <code>wherePivot()</code> and <code>orWherePivot()</code> to accept closures.</li>
-  <li>Closures receive a builder instance configured for the relationship&#39;s custom pivot model.</li>
-  <li>Encapsulates pivot filtering logic into reusable local scopes on the pivot class instead of repeating raw column checks.</li>
+  <li><strong>Encapsulation</strong>: Keeps pivot schema details inside the <code>Pivot</code> class rather than scattering raw column names throughout controllers.</li>
+  <li><strong>Reusability</strong>: Updating the definition of an &quot;active&quot; subscription updates all pivot queries across the entire application.</li>
+  <li><strong>Backwards Compatible</strong>: Standard scalar syntax (<code>wherePivot(&#39;is_active&#39;, true)</code>) remains fully supported for simple checks.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sun, 23 Aug 2026 00:00:00 GMT</pubDate>
@@ -1659,15 +1532,10 @@ test(&#039;inspects specific command payloads&#039;, function () {
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-stream-csv-downloads-without-temporary-files</guid>
       <description><![CDATA[Combine response()-streamDownload(), php://output, and query chunking to stream CSV exports directly to the browser without writing temporary files to disk....]]></description>
       <content:encoded><![CDATA[<blockquote>Combine response()->streamDownload(), php://output, and query chunking to stream CSV exports directly to the browser without writing temporary files to disk.</blockquote>
-<p>When building CSV export features, a common approach is to query records from the database, format them, save them to a temporary file on the server disk (`storage_path('app/temp.csv')`), and then return a download response:</p>
-<pre><code class="language-text">Traditional approach:
-Query database → Save temporary CSV on disk → Send download → Delete temporary file</code></pre>
-<p>This workflow introduces unnecessary disk I/O, requires server cleanup routines to purge orphan files, and can overwhelm server memory if large record sets are loaded upfront.</p>
-<p>Laravel allows you to stream CSV responses directly to the client as they are generated, eliminating the need for intermediate files entirely.</p>
-<pre><code class="language-text">Streamed approach:
-Query database in chunks → Write CSV rows directly to php://output → Stream download</code></pre>
-<h3>A Complete Laravel Example</h3>
-<p>Using a single-action invokable controller, you can combine `response()->streamDownload()`, `php://output`, and Eloquent query chunking:</p>
+<p>Generating CSV exports often involves writing a temporary file to disk (`storage_path('app/temp.csv')`), returning a download response, and cleaning up the file afterward. This introduces unnecessary disk I/O and risk of disk space exhaustion.</p>
+<p>Using `response()->streamDownload()`, you can write CSV rows directly to `php://output` in chunked database batches with minimal memory consumption and zero disk usage.</p>
+<hr>
+<h3>Invokable Controller Example</h3>
 <pre><code class="language-php">namespace App\Http\Controllers;
 
 use App\Models\Product;
@@ -1680,18 +1548,17 @@ class ExportProductsController
         return response()-&gt;streamDownload(function (): void {
             $output = fopen(&#039;php://output&#039;, &#039;w&#039;);
 
-            // Write CSV column headers
-            fputcsv($output, [&#039;SKU&#039;, &#039;Name&#039;, &#039;Description&#039;, &#039;Price&#039;]);
+            // Header row
+            fputcsv($output, [&#039;SKU&#039;, &#039;Name&#039;, &#039;Price&#039;]);
 
-            // Process records in chunks to control memory consumption
+            // Stream records in batches using primary-key pagination
             Product::query()
-                -&gt;select([&#039;sku&#039;, &#039;name&#039;, &#039;description&#039;, &#039;price&#039;])
-                -&gt;chunk(500, function ($products) use ($output): void {
+                -&gt;select([&#039;id&#039;, &#039;sku&#039;, &#039;name&#039;, &#039;price&#039;])
+                -&gt;chunkById(500, function ($products) use ($output): void {
                     foreach ($products as $product) {
                         fputcsv($output, [
                             $product-&gt;sku,
                             $product-&gt;name,
-                            $product-&gt;description,
                             $product-&gt;price,
                         ]);
                     }
@@ -1703,57 +1570,13 @@ class ExportProductsController
         ]);
     }
 }</code></pre>
-<p>Expose the controller in your routes:</p>
-<pre><code class="language-php">use App\Http\Controllers\ExportProductsController;
-use Illuminate\Support\Facades\Route;
-
-Route::get(&#039;/products/export&#039;, ExportProductsController::class)
-    -&gt;middleware(&#039;auth&#039;);</code></pre>
-<h3>How the Components Work Together</h3>
-<h4>1. `response()->streamDownload()`</h4>
-<p>Instead of taking a file path on disk, `streamDownload()` accepts a callback and immediately sends streaming HTTP headers (`Content-Disposition: attachment; filename="products.csv"`). Output produced inside the callback is sent directly through the HTTP response buffer to the client.</p>
-<h4>2. `php://output` and `fputcsv()`</h4>
-<p>Opening `fopen('php://output', 'w')` provides a writable PHP output stream. Passing this resource to PHP's built-in `fputcsv()` ensures that values containing commas, quotes, or newlines are properly escaped and written straight to the response stream without ever touching physical storage.</p>
-<h4>3. Query Chunking (`chunk()` and `chunkById()`)</h4>
-<p>Streaming alone does not prevent high memory usage if you load all records with `Product::all()`. </p>
-<p>Using `chunk(500, ...)` limits database query results to 500 hydrated models at a time, recycling memory after each batch is written to the output stream.</p>
-<h3>`chunk()` vs `chunkById()`</h3>
+<hr>
+<h3>Key Technical Details</h3>
 <ul>
-  <li><strong>Use <code>chunk()</code></strong>: For read-only queries with stable ordering or where data is not being inserted or modified concurrently during the export.</li>
-  <li><strong>Use <code>chunkById()</code></strong>: For large datasets on active systems where new records might be added or modified while the download is streaming. <code>chunkById()</code> uses primary key pagination (<code>where id &gt; last_seen_id</code>) instead of SQL offsets (<code>OFFSET 500</code>), preventing missed or duplicate records.</li>
-</ul>
-<pre><code class="language-php">Product::query()
-    -&gt;select([&#039;id&#039;, &#039;sku&#039;, &#039;name&#039;, &#039;description&#039;, &#039;price&#039;])
-    -&gt;chunkById(500, function ($products) use ($output): void {
-        foreach ($products as $product) {
-            fputcsv($output, [
-                $product-&gt;sku,
-                $product-&gt;name,
-                $product-&gt;description,
-                $product-&gt;price,
-            ]);
-        }
-    });</code></pre>
-<h3>When to Use Native Streaming vs Export Packages</h3>
-<p>For straightforward tabular CSV exports (such as downloading order lists, user reports, or product catalogs), native PHP streams and Laravel responses provide a zero-dependency solution.</p>
-<p>However, consider dedicated export packages (such as Laravel Excel or Spatie Simple Excel) when your requirements involve:</p>
-<ul>
-  <li>Multi-sheet Excel workbooks (<code>.xlsx</code>)</li>
-  <li>Custom cell styling, formulas, or formatting</li>
-  <li>Generating exports asynchronously via background queue jobs with email notifications</li>
-  <li>Complex imports and validation pipelines</li>
-</ul>
-<h3>Production Considerations</h3>
-<ul>
-  <li><strong>Authorization</strong>: Always protect export endpoints behind appropriate authorization gates or policies before streaming sensitive data.</li>
-  <li><strong>Chunk Sizing</strong>: A chunk size between 200 and 1,000 records typically provides a good balance between database roundtrips and memory efficiency.</li>
-  <li><strong>Column Selection</strong>: Use <code>select([...])</code> to retrieve only the specific database columns required for the CSV rather than hydrating full models with unused attributes.</li>
-</ul>
-<h3>Summary</h3>
-<ul>
-  <li>Use <code>response()-&gt;streamDownload()</code> with <code>php://output</code> to send CSV data directly to the user without writing temporary files to disk.</li>
-  <li>Combine streaming with <code>chunk()</code> or <code>chunkById()</code> to process large datasets without exhausting PHP memory limits.</li>
-  <li>Rely on native PHP <code>fputcsv()</code> for zero-dependency escaping and formatting of simple CSV downloads.</li>
+  <li><strong><code>php://output</code></strong>: A write-only output stream wrapper that writes directly into PHP&#39;s output buffer sent to the HTTP client.</li>
+  <li><strong><code>fputcsv()</code></strong>: Handles escaping of commas, quotes, and newlines natively in PHP.</li>
+  <li><strong><code>chunkById()</code></strong>: Paginates by <code>WHERE id &gt; last_seen_id</code> rather than SQL <code>OFFSET</code>, preventing duplicate or skipped records if the table receives new rows during the export.</li>
+  <li><strong>Selective Columns</strong>: Always pair <code>chunkById()</code> with explicit <code>select([&#39;id&#39;, ...])</code> to hydrate only necessary columns instead of full model instances.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
@@ -1771,25 +1594,11 @@ Route::get(&#039;/products/export&#039;, ExportProductsController::class)
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-queue-debounced-event-listeners</guid>
       <description><![CDATA[Laravel 13.26 extends the #[DebounceFor] attribute to queued event listeners, collapsing bursts of repeated events into a single execution based on the lates...]]></description>
       <content:encoded><![CDATA[<blockquote>Laravel 13.26 extends the #[DebounceFor] attribute to queued event listeners, collapsing bursts of repeated events into a single execution based on the latest resource state.</blockquote>
-<p>In event-driven architectures, certain domain events fire repeatedly within a short window. For example, editing product details, autosaving a document, updating bulk inventory, or changing user profile attributes can trigger multiple `ProductUpdated` or `DocumentSaved` events in rapid succession.</p>
-<p>If an event triggers expensive asynchronous work (such as rebuilding a full-text search index, generating document thumbnails, or warming cache stores), running the queued listener for every single intermediate event creates unnecessary queue churn and database load.</p>
-<p>While Laravel already supports `#[DebounceFor]` for standard queued jobs, **Laravel 13.26 extends `#[DebounceFor]` directly to queued event listeners**.</p>
-<h3>The Debounce Flow</h3>
-<p>Rather than queuing a separate listener execution for each event occurrence, debouncing pauses execution until activity for that specific resource settles:</p>
-<pre><code class="language-text">Product #42 updated
-       ↓
-Product #42 updated
-       ↓
-Product #42 updated
-       ↓
-30-second debounce window settles
-       ↓
-Single listener execution
-       ↓
-Indexes latest product state</code></pre>
-<p>Intermediate dispatches are collapsed during the debounce window, ensuring the listener runs only once using the latest state.</p>
+<p>In event-driven applications, domain events like `ProductUpdated` or `DocumentSaved` can fire dozens of times in rapid succession during bulk updates or autosaves.</p>
+<p>Running expensive queued listeners (such as rebuilding search indexes or regenerating thumbnails) for every intermediate event creates severe queue churn. Laravel 13.26 extends `#[DebounceFor]` to queued event listeners to delay execution until activity settles.</p>
+<hr>
 <h3>Implementation Example</h3>
-<p>To debounce a queued listener, add the `#[DebounceFor]` attribute to your listener class and implement the `debounceId()` method:</p>
+<p>Add `#[DebounceFor]` to your listener and define `debounceId()` to isolate debounce windows per resource entity:</p>
 <pre><code class="language-php">namespace App\Listeners;
 
 use App\Events\ProductUpdated;
@@ -1799,7 +1608,7 @@ use Illuminate\Queue\Attributes\DebounceFor;
 #[DebounceFor(30, maxWait: 120)]
 class UpdateProductSearchIndex implements ShouldQueue
 {
-    // Scope debouncing per product ID so different products process independently
+    // Scope debouncing per model ID so different products process independently
     public function debounceId(ProductUpdated $event): string
     {
         return (string) $event-&gt;product-&gt;getKey();
@@ -1807,56 +1616,17 @@ class UpdateProductSearchIndex implements ShouldQueue
 
     public function handle(ProductUpdated $event): void
     {
-        // Executes with the latest product data once the window settles
+        // Runs once with the latest database state after updates settle
         $event-&gt;product-&gt;searchable();
     }
 }</code></pre>
-<h3>How debounceId() Scopes Dispatches</h3>
-<p>The `debounceId()` method is crucial because it isolates debounce windows by resource key:</p>
-<pre><code class="language-text">Product #42 events → Debounce group &quot;42&quot; (settles in 30s)
-Product #99 events → Debounce group &quot;99&quot; (settles independently)</code></pre>
-<p>Without a unique `debounceId()`, all incoming `ProductUpdated` events would share a global debounce window, inadvertently delaying indexing for unrelated products.</p>
-<h3>Preventing Indefinite Delays with maxWait</h3>
-<p>If an active user or automated process continuously modifies a record every 10 seconds, a standard 30-second debounce window would continually reset and postpone execution indefinitely.</p>
-<p>The `maxWait` parameter sets a hard ceiling on total delay:</p>
-<pre><code class="language-php">#[DebounceFor(30, maxWait: 120)]</code></pre>
+<hr>
+<h3>Key Rules & Parameters</h3>
 <ul>
-  <li><strong><code>30</code></strong>: The idle settling window (waits for 30 seconds of inactivity).</li>
-  <li><strong><code>maxWait: 120</code></strong>: Forces execution after 120 seconds regardless of ongoing events.</li>
-</ul>
-<h3>Listener-Specific Isolation</h3>
-<p>Debounce attributes apply strictly to the specific listener where they are declared, not globally to the event itself:</p>
-<pre><code class="language-text">ProductUpdated Event
-├── UpdateProductSearchIndex (#[DebounceFor(30)]) → Debounced (runs once)
-├── SendAuditNotification                       → Runs immediately on dispatch
-└── IncrementMetricCounters                      → Runs immediately on dispatch</code></pre>
-<p>Other listeners listening to `ProductUpdated` continue processing every dispatch normally.</p>
-<h3>Important Constraint: Incompatible with ShouldBeUnique</h3>
-<p>A debounced listener cannot implement `ShouldBeUnique`. Combining `#[DebounceFor]` with `ShouldBeUnique` causes Laravel to throw a `LogicException`:</p>
-<ul>
-  <li><strong><code>ShouldBeUnique</code></strong>: Locks and rejects subsequent dispatches, preserving only the <strong>first</strong> job.</li>
-  <li><strong><code>#[DebounceFor]</code></strong>: Collects intermediate dispatches and executes the <strong>latest</strong> dispatch once activity settles.</li>
-</ul>
-<p>Because their execution semantics conflict, choose `#[DebounceFor]` when you need the freshest state after a burst of activity, and `ShouldBeUnique` when preventing duplicate concurrent execution of identical tasks.</p>
-<h3>When to Debounce vs Process Every Event</h3>
-<h4>Good Candidates for Debouncing</h4>
-<ul>
-  <li><strong>Search Indexing</strong>: Re-indexing models where only the final record state matters.</li>
-  <li><strong>Cache Invalidation &amp; Warmup</strong>: Rebuilding expensive cache fragments after bulk updates.</li>
-  <li><strong>Asset Processing</strong>: Regenerating PDF previews, video thumbnails, or computed summaries for frequently saved drafts.</li>
-</ul>
-<h4>When NOT to Debounce</h4>
-<ul>
-  <li><strong>Financial Transactions</strong>: Ledgers, payment captures, or balance changes where every event represents an immutable financial record.</li>
-  <li><strong>Audit Logs</strong>: Security tracking and compliance logs where every individual action must be preserved.</li>
-  <li><strong>Direct Notifications</strong>: Customer emails or transactional SMS alerts that correspond to explicit user actions.</li>
-</ul>
-<h3>Summary</h3>
-<ul>
-  <li>Laravel 13.26 extends <code>#[DebounceFor]</code> to queued event listeners (<code>implements ShouldQueue</code>).</li>
-  <li>Use <code>debounceId()</code> to isolate debounce windows per resource entity.</li>
-  <li>Configure <code>maxWait</code> to ensure continuously updated resources execute within a bounded timeframe.</li>
-  <li>Reserve debouncing for tasks where intermediate updates are safely superseded by the latest state.</li>
+  <li><strong><code>debounceId()</code></strong>: Returns the scoping identifier (such as the model ID). Without this, all incoming <code>ProductUpdated</code> events would share a global debounce window across the entire application.</li>
+  <li><strong><code>maxWait: 120</code></strong>: Sets a hard upper boundary. If a resource receives continuous events, execution is forced at 120 seconds rather than resetting indefinitely.</li>
+  <li><strong>Listener-Specific</strong>: <code>#[DebounceFor]</code> applies only to the specific listener where it is declared. Other listeners on the same event still run immediately upon dispatch.</li>
+  <li><strong>Incompatible with <code>ShouldBeUnique</code></strong>: A listener cannot combine <code>#[DebounceFor]</code> and <code>ShouldBeUnique</code>. <code>ShouldBeUnique</code> preserves only the first dispatch and ignores the rest, whereas <code>#[DebounceFor]</code> collects bursts to execute the latest state.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
@@ -1873,98 +1643,56 @@ Product #99 events → Debounce group &quot;99&quot; (settles independently)</co
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-filesystem-read-through-disk</guid>
       <description><![CDATA[Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested. Migr...]]></description>
       <content:encoded><![CDATA[<blockquote>Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested.</blockquote>
-<p>Migrating large file storage backends (such as transitioning terabytes of user uploads from an expensive legacy S3 bucket to Cloudflare R2 or MinIO) is traditionally an operational headache. A full upfront migration requires batch copy scripts, handling synchronization delays, and coordinating downtime before updating application disk configurations.</p>
-<p>Laravel 13.26 introduces the `read-through` filesystem driver. It pairs a **primary disk** with a **fallback disk**, allowing applications to serve existing files from the fallback storage while automatically promoting requested files to the primary storage on demand.</p>
-<h3>How the Read-Through Flow Works</h3>
-<p>When an application reads a file through a read-through disk, Laravel resolves the request through a tiered lookup:</p>
-<pre><code class="language-text">Read requested
-      ↓
-Check primary disk
-   ↙       ↘
-found     missing
-  ↓          ↓
-serve    read from fallback
-             ↓
-       promote/copy to primary
-             ↓
-           serve</code></pre>
-<ol>
-  <li><strong>Check Primary</strong>: Laravel checks whether the file exists on the primary disk. If found, it is served immediately.</li>
-  <li><strong>Fallback Read</strong>: If missing from primary, Laravel reads the file stream from the fallback disk.</li>
-  <li><strong>Lazy Promotion</strong>: By default, the file is automatically copied/promoted to the primary disk.</li>
-  <li><strong>Response</strong>: The file content is returned to the application.</li>
-</ol>
-<p>Subsequent reads for the same path hit the primary disk directly without touching the fallback storage.</p>
+<p>Migrating large file storage backends (such as moving terabytes of user uploads from an expensive legacy S3 bucket to Cloudflare R2) usually requires batch copy scripts and synchronized downtime.</p>
+<p>Laravel 13.26 adds the `read-through` filesystem driver. It pairs a **primary disk** with a **fallback disk**, serving existing files from fallback storage while automatically promoting requested files to the primary storage on demand.</p>
+<hr>
 <h3>Configuration</h3>
 <p>Define a `read-through` disk in `config/filesystems.php` referencing your primary and fallback disks:</p>
 <pre><code class="language-php">// config/filesystems.php
 &#039;disks&#039; =&gt; [
 
     &#039;r2&#039; =&gt; [
-        &#039;driver&#039; =&gt; &#039;s3&#039;,
-        &#039;key&#039; =&gt; env(&#039;CLOUDFLARE_R2_KEY&#039;),
-        &#039;secret&#039; =&gt; env(&#039;CLOUDFLARE_R2_SECRET&#039;),
-        &#039;bucket&#039; =&gt; env(&#039;CLOUDFLARE_R2_BUCKET&#039;),
+        &#039;driver&#039;   =&gt; &#039;s3&#039;,
+        &#039;key&#039;      =&gt; env(&#039;CLOUDFLARE_R2_KEY&#039;),
+        &#039;secret&#039;   =&gt; env(&#039;CLOUDFLARE_R2_SECRET&#039;),
+        &#039;bucket&#039;   =&gt; env(&#039;CLOUDFLARE_R2_BUCKET&#039;),
         &#039;endpoint&#039; =&gt; env(&#039;CLOUDFLARE_R2_ENDPOINT&#039;),
     ],
 
     &#039;legacy-s3&#039; =&gt; [
         &#039;driver&#039; =&gt; &#039;s3&#039;,
-        &#039;key&#039; =&gt; env(&#039;AWS_ACCESS_KEY_ID&#039;),
+        &#039;key&#039;    =&gt; env(&#039;AWS_ACCESS_KEY_ID&#039;),
         &#039;secret&#039; =&gt; env(&#039;AWS_SECRET_ACCESS_KEY&#039;),
         &#039;bucket&#039; =&gt; env(&#039;AWS_BUCKET&#039;),
         &#039;region&#039; =&gt; env(&#039;AWS_DEFAULT_REGION&#039;),
     ],
 
     &#039;assets&#039; =&gt; [
-        &#039;driver&#039; =&gt; &#039;read-through&#039;,
-        &#039;primary&#039; =&gt; &#039;r2&#039;,
+        &#039;driver&#039;   =&gt; &#039;read-through&#039;,
+        &#039;primary&#039;  =&gt; &#039;r2&#039;,
         &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
+        // &#039;copy&#039;  =&gt; false, // Optional: read fallback without promoting to primary
+        // &#039;throw_on_promotion_failure&#039; =&gt; true, // Optional: throw on copy failure
     ],
 
 ],</code></pre>
-<p>Application code reads and writes through the composite `assets` disk as usual:</p>
+<hr>
+<h3>How It Operates</h3>
 <pre><code class="language-php">use Illuminate\Support\Facades\Storage;
 
-// Reads check &#039;r2&#039; first, fall back to &#039;legacy-s3&#039;, and promote to &#039;r2&#039;
-$avatar = Storage::disk(&#039;assets&#039;)-&gt;get(&#039;avatars/user-102.jpg&#039;);</code></pre>
-<h3>Writes, Deletes, and Directory Listings</h3>
-<p>The `read-through` driver is specifically designed for read fallback and lazy promotion. All write and state operations route strictly to the **primary disk**:</p>
+// Reads check &#039;r2&#039; first; if missing, reads from &#039;legacy-s3&#039; and promotes to &#039;r2&#039;
+$avatar = Storage::disk(&#039;assets&#039;)-&gt;get(&#039;avatars/user-102.jpg&#039;);
+
+// Writes always target the primary disk (&#039;r2&#039;) directly
+Storage::disk(&#039;assets&#039;)-&gt;put(&#039;avatars/user-103.jpg&#039;, $contents);</code></pre>
+<hr>
+<h3>Operational Mechanics</h3>
 <ul>
-  <li><strong>Writes (<code>put</code>, <code>writeStream</code>)</strong>: Saved directly to the primary disk. The fallback disk is not modified.</li>
-  <li><strong>Deletes (<code>delete</code>, <code>deleteDirectory</code>)</strong>: Removed from the primary disk. The fallback disk is untouched.</li>
-  <li><strong>Directory Listings (<code>files</code>, <code>allFiles</code>, <code>directories</code>)</strong>: Scanned exclusively from the primary disk.</li>
-</ul>
-<h3>Disabling Promotion with No-Copy Mode</h3>
-<p>If you want to read legacy files without writing them to the primary disk, disable automatic promotion using the `copy` option:</p>
-<pre><code class="language-php">&#039;assets&#039; =&gt; [
-    &#039;driver&#039; =&gt; &#039;read-through&#039;,
-    &#039;primary&#039; =&gt; &#039;r2&#039;,
-    &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
-    &#039;copy&#039; =&gt; false,
-],</code></pre>
-<p>This no-copy mode is particularly useful in local development or staging environments where you want to read production files from a shared backup without populating your local disk or incurring write costs.</p>
-<h3>Handling Promotion Failures</h3>
-<p>By default, if promoting a file to the primary disk fails (e.g. due to network timeouts or temporary permission errors), Laravel swallows the copy error and returns the file from the fallback so the user request does not break.</p>
-<p>If you prefer to strictly enforce promotion and surface any write issues immediately, enable `throw_on_promotion_failure`:</p>
-<pre><code class="language-php">&#039;assets&#039; =&gt; [
-    &#039;driver&#039; =&gt; &#039;read-through&#039;,
-    &#039;primary&#039; =&gt; &#039;r2&#039;,
-    &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
-    &#039;throw_on_promotion_failure&#039; =&gt; true,
-],</code></pre>
-<h3>Important Considerations</h3>
-<ul>
-  <li><strong>Lazy vs Bulk Migration</strong>: A read-through disk does not automatically migrate an entire storage bucket in the background. It promotes individual files only when they are accessed.</li>
-  <li><strong>Unrequested Files</strong>: Seldom-used or archived files that are never requested will remain solely on the fallback disk until accessed or purged.</li>
-  <li><strong>Independent Credentials</strong>: Both primary and fallback disks must have valid driver configurations and accessible permissions.</li>
-</ul>
-<h3>Summary</h3>
-<ul>
-  <li>Use the <code>read-through</code> driver in Laravel 13.26 to pair a primary storage disk with a fallback storage disk.</li>
-  <li>Reads check the primary disk first, retrieve missing files from the fallback disk, and promote them to primary storage lazily.</li>
-  <li>Writes, deletes, and directory listings always operate on the primary disk.</li>
-  <li>Configure <code>copy =&gt; false</code> for read-only fallback, and <code>throw_on_promotion_failure =&gt; true</code> to surface copy errors.</li>
+  <li><strong>Lazy Promotion</strong>: Files are copied to the primary disk only when accessed. Unrequested files remain on the fallback disk until accessed or purged.</li>
+  <li><strong>Writes &amp; Deletes</strong>: Operations such as <code>put()</code>, <code>writeStream()</code>, <code>delete()</code>, and <code>deleteDirectory()</code> target the primary disk exclusively.</li>
+  <li><strong>Directory Scans</strong>: <code>files()</code> and <code>directories()</code> inspect the primary disk only.</li>
+  <li><strong>Read-Only Fallback (<code>copy =&gt; false</code>)</strong>: Disables automatic promotion. Useful in local or staging environments to read production buckets without incurring write costs or populating local disks.</li>
+  <li><strong>Fault Tolerance</strong>: By default, if promoting a file to the primary disk fails, Laravel returns the fallback stream so the user request does not break. Set <code>&#39;throw_on_promotion_failure&#39; =&gt; true</code> to catch write errors in testing.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
@@ -1981,44 +1709,11 @@ $avatar = Storage::disk(&#039;assets&#039;)-&gt;get(&#039;avatars/user-102.jpg&#
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-http-client-macros</guid>
       <description><![CDATA[Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application. When int...]]></description>
       <content:encoded><![CDATA[<blockquote>Use Http::macro() to encapsulate repeated authentication, base URLs, and shared headers into reusable HTTP client instances across your application.</blockquote>
-<p>When interacting with external APIs in a Laravel application, developers often repeat identical HTTP setup (such as API keys, base URLs, timeouts, and JSON headers) across multiple controllers, jobs, and service classes:</p>
-<pre><code class="language-php">// Repeated across multiple call sites
-$customer = Http::withToken(config(&#039;services.payments.secret&#039;))
-    -&gt;baseUrl(config(&#039;services.payments.url&#039;))
-    -&gt;acceptJson()
-    -&gt;timeout(10)
-    -&gt;get(&quot;/customers/{$customerId}&quot;);
-
-$refund = Http::withToken(config(&#039;services.payments.secret&#039;))
-    -&gt;baseUrl(config(&#039;services.payments.url&#039;))
-    -&gt;acceptJson()
-    -&gt;timeout(10)
-    -&gt;post(&#039;/refunds&#039;, [&#039;payment_id&#039; =&gt; $paymentId]);</code></pre>
-<p>Repeating this configuration creates duplication, increases the risk of inconsistent headers or timeouts, and makes updating credentials or URLs tedious.</p>
-<p>Laravel's HTTP client supports macros via `Http::macro()`, allowing you to define your service setup once and reuse the pre-configured client anywhere.</p>
-<h3>Define Once, Reuse Anywhere</h3>
-<p>An HTTP macro does not need to execute the request immediately. Instead, the macro can return a configured `PendingRequest` instance that callers can continue chaining with standard methods (`get()`, `post()`, `withHeaders()`, etc.):</p>
-<pre><code class="language-php">use Illuminate\Support\Facades\Http;
-
-// Define the API setup once (e.g. in AppServiceProvider)
-Http::macro(&#039;payments&#039;, function () {
-    return Http::withToken(config(&#039;services.payments.secret&#039;))
-        -&gt;baseUrl(config(&#039;services.payments.url&#039;))
-        -&gt;acceptJson()
-        -&gt;timeout(10);
-});
-
-// Reuse the configured client anywhere in your application
-$customer = Http::payments()
-    -&gt;get(&quot;/customers/{$customerId}&quot;);
-
-$refund = Http::payments()
-    -&gt;post(&#039;/refunds&#039;, [
-        &#039;payment_id&#039; =&gt; $paymentId,
-        &#039;amount&#039;     =&gt; 4900,
-    ]);</code></pre>
-<h3>Centralized Registration in Service Providers</h3>
-<p>Register your HTTP macros centrally within your application's service provider boot lifecycle:</p>
+<p>When interacting with external APIs, developers often repeat identical HTTP setup (such as API tokens, base URLs, timeouts, and JSON headers) across multiple controllers and jobs.</p>
+<p>Using `Http::macro()`, you can register pre-configured HTTP clients once and reuse them anywhere with full method chaining.</p>
+<hr>
+<h3>Centralized Registration</h3>
+<p>Register macros in `AppServiceProvider::boot()` and return the configured `PendingRequest`:</p>
 <pre><code class="language-php">namespace App\Providers;
 
 use Illuminate\Support\Facades\Http;
@@ -2031,40 +1726,32 @@ class AppServiceProvider extends ServiceProvider
         Http::macro(&#039;payments&#039;, fn () =&gt; Http::withToken(config(&#039;services.payments.secret&#039;))
             -&gt;baseUrl(config(&#039;services.payments.url&#039;))
             -&gt;acceptJson()
-            -&gt;timeout(10));
+            -&gt;timeout(10)
+            -&gt;retry(3, 100));
 
-        Http::macro(&#039;shipping&#039;, fn () =&gt; Http::withHeaders([
-            &#039;X-API-Key&#039; =&gt; config(&#039;services.shipping.key&#039;),
-            &#039;X-Account-ID&#039; =&gt; config(&#039;services.shipping.account_id&#039;),
-        ])-&gt;baseUrl(config(&#039;services.shipping.url&#039;))-&gt;acceptJson());
+        Http::macro(&#039;github&#039;, fn () =&gt; Http::withToken(config(&#039;services.github.token&#039;))
+            -&gt;baseUrl(&#039;https://api.github.com&#039;)
+            -&gt;withHeaders([&#039;User-Agent&#039; =&gt; &#039;MyLaravelApp&#039;]));
     }
 }</code></pre>
-<h3>What Belongs in the Macro vs Call Site</h3>
-<p>To keep macros clean and flexible, separate shared infrastructure configuration from request-specific logic:</p>
+<hr>
+<h3>Application Usage</h3>
+<p>Call the macro as a method directly on the `Http` facade:</p>
+<pre><code class="language-php">use Illuminate\Support\Facades\Http;
+
+// Macro methods retain full fluent HTTP client chaining
+$customer = Http::payments()-&gt;get(&quot;/customers/{$id}&quot;)-&gt;throw()-&gt;json();
+
+$charge = Http::payments()-&gt;post(&#039;/charges&#039;, [
+    &#039;amount&#039;   =&gt; 4900,
+    &#039;currency&#039; =&gt; &#039;usd&#039;,
+]);</code></pre>
+<hr>
+<h3>Practical Guidelines</h3>
 <ul>
-  <li><strong>Inside the Macro</strong>:
-- Base URL (<code>baseUrl()</code>)
-- Authentication tokens or API keys (<code>withToken()</code>, <code>withBasicAuth()</code>)
-- Shared headers (<code>acceptJson()</code>, custom organizational headers)
-- Default connection timeouts or retry policies (<code>timeout()</code>, <code>retry()</code>)
-</li>
-  <li><strong>At the Call Site</strong>:
-- Specific endpoints and path parameters (<code>/orders/{id}</code>)
-- HTTP verbs (<code>get()</code>, <code>post()</code>, <code>put()</code>, <code>delete()</code>)
-- Request payloads and query parameters
-- Contextual error handling (<code>throw()</code>, <code>onError()</code>)</li>
-</ul>
-<h3>Macros vs Dedicated Service Classes</h3>
-<p>HTTP macros provide a lightweight abstraction that avoids boilerplate for small to medium third-party integrations. However, consider the scope of your integration:</p>
-<ul>
-  <li><strong>Use HTTP Macros when</strong>: You need consistent credentials, base URLs, and headers across a few endpoints, and standard HTTP response methods (<code>$response-&gt;json()</code>, <code>$response-&gt;successful()</code>) are sufficient.</li>
-  <li><strong>Use Dedicated Service Classes when</strong>: The integration requires complex domain logic, custom data transfer objects (DTOs), webhook verification, or multi-step token exchange workflows.</li>
-</ul>
-<h3>Summary</h3>
-<ul>
-  <li>Use <code>Http::macro()</code> to centralize repeated API connection setup into named, fluent methods.</li>
-  <li>Return the configured <code>Http</code> instance from the macro closure so calling code retains full HTTP client chaining capabilities.</li>
-  <li>Keep credentials and URLs in <code>config/services.php</code> rather than hardcoding them inside the macro.</li>
+  <li><strong>Return the Client</strong>: Always return the pending request from the macro closure so callers can chain standard HTTP verbs (<code>get()</code>, <code>post()</code>), query params, or error handlers (<code>throw()</code>).</li>
+  <li><strong>Configuration Boundary</strong>: Read credentials from <code>config(&#39;services...&#39;)</code> rather than <code>env()</code>.</li>
+  <li><strong>Testing</strong>: Macros integrate with <code>Http::fake()</code>, allowing you to mock endpoints without altering macro definitions.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
@@ -2081,101 +1768,41 @@ class AppServiceProvider extends ServiceProvider
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-migration-default-expression</guid>
       <description><![CDATA[Pass an Expression instance to Laravel's migration default() method to define raw SQL functions, dynamic timestamps, and calculated defaults directly in your...]]></description>
       <content:encoded><![CDATA[<blockquote>Pass an Expression instance to Laravel's migration default() method to define raw SQL functions, dynamic timestamps, and calculated defaults directly in your database schema.</blockquote>
-<p>In Laravel migrations, the `default()` method is commonly used to assign static fallback values to newly inserted database columns:</p>
-<pre><code class="language-php">$table-&gt;string(&#039;status&#039;)-&gt;default(&#039;pending&#039;);
-$table-&gt;unsignedInteger(&#039;retry_count&#039;)-&gt;default(0);
-$table-&gt;boolean(&#039;is_active&#039;)-&gt;default(true);</code></pre>
-<p>When passing a scalar value (such as a string, integer, or boolean), Laravel's schema grammar quotes and escapes the value as a literal in the generated `DEFAULT '...'` SQL clause.</p>
-<p>However, database engines also support native SQL functions, dynamic timestamps, and calculated expressions for column defaults. To pass a raw SQL expression instead of a literal string, wrap the value in an `Illuminate\Database\Query\Expression` object.</p>
-<h3>Literal Values vs Database Expressions</h3>
-<p>Passing a literal string quotes the value, which causes syntax errors or unexpected behavior when attempting to invoke SQL functions:</p>
+<p>In Laravel migrations, passing a scalar string to `default()` treats the value as a literal string in the generated SQL clause (`DEFAULT 'CURRENT_TIMESTAMP'`), causing syntax errors when attempting to call SQL functions.</p>
+<p>To instruct the database engine to evaluate an SQL function upon insertion, wrap the value in an `Illuminate\Database\Query\Expression`.</p>
+<hr>
+<h3>Literal vs Expression</h3>
 <pre><code class="language-php">use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Query\Expression;
+use Illuminate\Support\Facades\Schema;
 
 Schema::create(&#039;orders&#039;, function (Blueprint $table) {
     $table-&gt;id();
 
-    // Standard static defaults (strings, integers, booleans)
+    // Static literal (escaped as a string)
     $table-&gt;string(&#039;status&#039;)-&gt;default(&#039;pending&#039;);
-    $table-&gt;unsignedInteger(&#039;retry_count&#039;)-&gt;default(0);
 
-    // ❌ Literal string: Generates DEFAULT &#039;CURRENT_TIMESTAMP&#039;
-    $table-&gt;timestamp(&#039;placed_at&#039;)-&gt;default(&#039;CURRENT_TIMESTAMP&#039;);
+    // ❌ Quotes literal string: DEFAULT &#039;CURRENT_TIMESTAMP&#039;
+    // $table-&gt;timestamp(&#039;placed_at&#039;)-&gt;default(&#039;CURRENT_TIMESTAMP&#039;);
 
-    // ✅ Expression object: Generates DEFAULT CURRENT_TIMESTAMP
+    // ✅ Unquoted SQL expression: DEFAULT CURRENT_TIMESTAMP
     $table-&gt;timestamp(&#039;placed_at&#039;)-&gt;default(new Expression(&#039;CURRENT_TIMESTAMP&#039;));
 
-    // ✅ Database-generated JSON default in MySQL: Generates DEFAULT (JSON_OBJECT())
+    // MySQL 8.0+ expressions require enclosing parentheses
+    $table-&gt;uuid(&#039;uuid&#039;)-&gt;default(new Expression(&#039;(UUID())&#039;));
     $table-&gt;json(&#039;settings&#039;)-&gt;default(new Expression(&#039;(JSON_OBJECT())&#039;));
 
-    // ✅ Database-generated UUID default: Generates DEFAULT (UUID())
-    $table-&gt;uuid(&#039;order_uuid&#039;)-&gt;default(new Expression(&#039;(UUID())&#039;));
+    // PostgreSQL expressions
+    // $table-&gt;uuid(&#039;id&#039;)-&gt;primary()-&gt;default(new Expression(&#039;gen_random_uuid()&#039;));
+    // $table-&gt;jsonb(&#039;preferences&#039;)-&gt;default(new Expression(&quot;&#039;{}&#039;::jsonb&quot;));
 });</code></pre>
-<p>The difference is structural:</p>
+<hr>
+<h3>Key Considerations</h3>
 <ul>
-  <li><strong>Literal default</strong>: Laravel escapes the value as a static string literal.</li>
-  <li><strong>Database expression</strong>: Laravel emits the expression unquoted, instructing the database engine to evaluate it upon insert.</li>
-</ul>
-<h3>Useful Examples</h3>
-<h4>1. Database-Generated Timestamps</h4>
-<p>Allow the database server to assign timestamps directly upon record creation:</p>
-<pre><code class="language-php">// Standard SQL timestamp default
-$table-&gt;timestamp(&#039;published_at&#039;)-&gt;default(new Expression(&#039;CURRENT_TIMESTAMP&#039;));
-
-// PostgreSQL current date default
-$table-&gt;date(&#039;active_since&#039;)-&gt;default(new Expression(&#039;CURRENT_DATE&#039;));</code></pre>
-<h4>2. Database-Generated JSON Defaults</h4>
-<p>Database systems require valid JSON functions or typed literals for column defaults:</p>
-<pre><code class="language-php">// MySQL 8.0+ JSON constructor functions
-$table-&gt;json(&#039;settings&#039;)-&gt;default(new Expression(&#039;(JSON_OBJECT())&#039;));
-$table-&gt;json(&#039;tags&#039;)-&gt;default(new Expression(&#039;(JSON_ARRAY())&#039;));
-
-// PostgreSQL JSONB typed literal
-$table-&gt;jsonb(&#039;preferences&#039;)-&gt;default(new Expression(&quot;&#039;{}&#039;::jsonb&quot;));</code></pre>
-<h4>3. Native UUID Generation</h4>
-<p>When the database should generate unique identifiers automatically without requiring PHP-side generation:</p>
-<pre><code class="language-php">// PostgreSQL UUID generation
-$table-&gt;uuid(&#039;id&#039;)-&gt;primary()-&gt;default(new Expression(&#039;gen_random_uuid()&#039;));
-
-// MySQL 8.0+ UUID generation (enclosed in parentheses)
-$table-&gt;uuid(&#039;tracking_code&#039;)-&gt;default(new Expression(&#039;(UUID())&#039;));</code></pre>
-<h4>4. Calculated and Conditional Expressions</h4>
-<p>Some database systems support conditional logic or computed expressions for default column values:</p>
-<pre><code class="language-php">// MySQL 8.0+ conditional default expression
-$table-&gt;integer(&#039;discount_rate&#039;)-&gt;default(new Expression(
-    &#039;(CASE WHEN quantity &gt;= 10 THEN 10 ELSE 0 END)&#039;
-));</code></pre>
-<p>*(Note: Complex calculated expressions are database-specific and require engine-level support).*</p>
-<h3>Why Use the Database for Defaults?</h3>
-<p>Defining dynamic defaults at the schema level provides several advantages:</p>
-<ul>
-  <li><strong>Consistency outside Eloquent</strong>: Records created via raw SQL queries, bulk insert statements, database seeders, or third-party tools automatically receive valid default values.</li>
-  <li><strong>Centralized authority</strong>: Timestamps and UUIDs are generated directly by the database server, avoiding clock drift between application servers.</li>
-  <li><strong>Reduced application logic</strong>: Eliminates the need for model event hooks (<code>creating</code>) just to populate basic initial state.</li>
-</ul>
-<h3>Database Compatibility Considerations</h3>
-<p>Database expressions are inherently driver-dependent and version-specific:</p>
-<ul>
-  <li><strong>MySQL 8.0+</strong>: Functional default expressions must be enclosed in parentheses (for example, <code>(JSON_ARRAY())</code>, <code>(JSON_OBJECT())</code>, or <code>(UUID())</code>).</li>
-  <li><strong>PostgreSQL</strong>: Accepts native SQL functions directly (such as <code>gen_random_uuid()</code> or <code>CURRENT_TIMESTAMP</code>) and typed string literals (such as <code>&#39;{}&#39;::jsonb</code>).</li>
-  <li><strong>SQLite &amp; SQL Server</strong>: Syntax and function availability vary significantly between versions.</li>
-</ul>
-<p>Laravel passes the raw SQL string directly to the active database connection without translating syntax between engines. Always verify that your default expression is supported by your target database system and version.</p>
-<h3>When NOT to Use Expression</h3>
-<p>Do not wrap standard static values in an `Expression`:</p>
-<pre><code class="language-php">// ❌ Unnecessary: loses type safety and cross-database portability
-$table-&gt;string(&#039;status&#039;)-&gt;default(new Expression(&quot;&#039;pending&#039;&quot;));
-
-// ✅ Preferred: clear, portable, and handled automatically by Laravel
-$table-&gt;string(&#039;status&#039;)-&gt;default(&#039;pending&#039;);</code></pre>
-<p>Use normal `default()` values for static scalars, and reserve `Expression` strictly for when you need database-level evaluation.</p>
-<h3>Summary</h3>
-<ul>
-  <li>Use standard <code>default(&#39;value&#39;)</code> for static strings, numbers, and booleans.</li>
-  <li>Use <code>default(new Expression(&#39;...&#39;))</code> when the database engine must evaluate an SQL function, timestamp, or dynamic expression upon insertion.</li>
-  <li>Verify expression syntax against your target database engine, keeping in mind engine-specific rules like MySQL&#39;s requirement for enclosing parentheses.</li>
+  <li><strong>Engine Evaluation</strong>: Defaults set via <code>Expression</code> are evaluated directly by the database engine, ensuring valid fallback values even during raw SQL queries, external ETL scripts, or bulk inserts outside Eloquent.</li>
+  <li><strong>MySQL 8.0+ Syntax</strong>: Functional default expressions in MySQL must be enclosed in parentheses (e.g. <code>(UUID())</code> or <code>(JSON_ARRAY())</code>).</li>
+  <li><strong>Portability</strong>: Normal static values (<code>&#39;pending&#39;</code>, <code>0</code>, <code>true</code>) should use standard <code>default(&#39;pending&#39;)</code> to maintain database-agnostic portability.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
@@ -2259,42 +1886,11 @@ $request-&gt;file(&#039;profile.name&#039;);
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-queue-forward-reroute-infrastructure</guid>
       <description><![CDATA[Laravel 13.26 introduces Queue::forward() to reroute queued jobs to new queue names, different connections, or both without modifying job classes or dispatch...]]></description>
       <content:encoded><![CDATA[<blockquote>Laravel 13.26 introduces Queue::forward() to reroute queued jobs to new queue names, different connections, or both without modifying job classes or dispatch sites.</blockquote>
-<p>As applications scale and infrastructure requirements change, you frequently need to re-architect queue backends. For example, you might need to move heavy background workloads from a shared Redis connection to a dedicated Amazon SQS FIFO queue, or rename legacy queue channels across your application.</p>
-<p>Previously, redirecting queue traffic required finding and updating every job dispatch call (`->onQueue(...)`, `->onConnection(...)`) or updating individual job class properties.</p>
-<p>Laravel 13.26 introduces `Queue::forward()`, providing a centralized routing layer to redirect queue destinations without modifying application dispatch code.</p>
-<h3>How Queue::forward() Works</h3>
-<p>You can configure queue forwarding across individual queues or bulk mappings:</p>
-<pre><code class="language-php">use Illuminate\Support\Facades\Queue;
-
-// Move a queue to a new queue name and a different connection
-Queue::forward(&#039;reports&#039;, &#039;reports.fifo&#039;, &#039;cloud&#039;);
-
-// Move a queue to another connection while keeping the same queue name
-Queue::forward(&#039;payments&#039;, connection: &#039;cloud&#039;);
-
-// Rename a queue on the current connection
-Queue::forward(&#039;updates&#039;, &#039;notifications&#039;);
-
-// Forward multiple queues together using an array mapping
-Queue::forward([
-    &#039;reports&#039; =&gt; &#039;reports.fifo&#039;,
-    &#039;emails&#039; =&gt; &#039;emails.fifo&#039;,
-], connection: &#039;cloud&#039;);</code></pre>
-<h3>Forwarding Variations</h3>
-<h4>1. Changing Both Queue Name and Connection</h4>
-<p>When migrating to services like Amazon SQS FIFO, both the queue name (requiring a `.fifo` suffix) and the connection driver need to change:</p>
-<pre><code class="language-php">// Jobs targeting &#039;reports&#039; are sent to &#039;reports.fifo&#039; on the &#039;sqs-fifo&#039; connection
-Queue::forward(&#039;reports&#039;, &#039;reports.fifo&#039;, &#039;sqs-fifo&#039;);</code></pre>
-<h4>2. Moving Only the Connection</h4>
-<p>If you only need to shift traffic to a dedicated worker pool or separate queue driver without renaming the queue:</p>
-<pre><code class="language-php">// Jobs targeting &#039;payments&#039; stay on the &#039;payments&#039; queue but route to the &#039;cloud&#039; connection
-Queue::forward(&#039;payments&#039;, connection: &#039;cloud&#039;);</code></pre>
-<h4>3. Renaming on the Same Connection</h4>
-<p>When standardizing naming conventions across internal queues:</p>
-<pre><code class="language-php">// Jobs targeting &#039;updates&#039; are transparently routed to &#039;notifications&#039;
-Queue::forward(&#039;updates&#039;, &#039;notifications&#039;);</code></pre>
-<h3>Centralized Configuration in Service Providers</h3>
-<p>`Queue::forward()` is designed to be registered centrally within your application's service provider boot lifecycle:</p>
+<p>Rerouting background job traffic (such as moving high-throughput workloads from a shared Redis worker pool to dedicated Amazon SQS FIFO queues) traditionally required updating every job class property and manual dispatch call (`->onQueue(...)`, `->onConnection(...)`).</p>
+<p>Laravel 13.26 adds `Queue::forward()`, allowing you to centrally intercept and redirect queue traffic at the application boot layer.</p>
+<hr>
+<h3>Centralized Configuration</h3>
+<p>Register forwarding rules centrally in your `AppServiceProvider::boot()` method:</p>
 <pre><code class="language-php">namespace App\Providers;
 
 use Illuminate\Support\Facades\Queue;
@@ -2304,34 +1900,28 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        // Centralized queue routing rules
-        Queue::forward([
-            &#039;reports&#039; =&gt; &#039;reports.fifo&#039;,
-            &#039;emails&#039; =&gt; &#039;emails.fifo&#039;,
-        ], connection: &#039;sqs-fifo&#039;);
+        // 1. Reroute both queue name and connection (e.g. migrating to SQS FIFO)
+        Queue::forward(&#039;reports&#039;, &#039;reports.fifo&#039;, connection: &#039;sqs-fifo&#039;);
 
+        // 2. Shift connection driver while retaining the original queue name
         Queue::forward(&#039;payments&#039;, connection: &#039;stripe-workers&#039;);
+
+        // 3. Rename a queue channel on the default connection
+        Queue::forward(&#039;legacy-updates&#039;, &#039;notifications&#039;);
+
+        // 4. Batch forward multiple queues to another connection
+        Queue::forward([
+            &#039;emails&#039;    =&gt; &#039;emails.fifo&#039;,
+            &#039;webhooks&#039;  =&gt; &#039;webhooks.fifo&#039;,
+        ], connection: &#039;sqs-fifo&#039;);
     }
 }</code></pre>
-<p>Because forwarding resolves internally through Laravel's queue routing pipeline (the same mechanism used by `Queue::route()`), the rerouting rules apply consistently across all dispatched jobs.</p>
-<h3>What Stays Unchanged</h3>
-<p>The main advantage of `Queue::forward()` is decoupling infrastructure topology from application code. Your existing job classes and dispatch sites remain untouched:</p>
-<pre><code class="language-php">// Application dispatch code remains completely unchanged
-GenerateMonthlyReport::dispatch($report)
-    -&gt;onQueue(&#039;reports&#039;);
-
-ProcessCustomerPayment::dispatch($payment)
-    -&gt;onQueue(&#039;payments&#039;);</code></pre>
-<p>Even though `GenerateMonthlyReport` explicitly targets `reports`, Laravel intercepts the dispatch and routes it to `reports.fifo` on the configured connection.</p>
-<h3>Practical Use Cases</h3>
-<ul>
-  <li><strong>Queue Infrastructure Migrations</strong>: Transition high-throughput queues from Redis or MySQL queue drivers to AWS SQS or RabbitMQ without mass refactoring.</li>
-  <li><strong>SQS FIFO Adoption</strong>: Add <code>.fifo</code> suffixes and dedicated connections to existing workloads that require strict message ordering.</li>
-  <li><strong>Gradual Architecture Reorganization</strong>: Consolidate scattered legacy queues into unified processing pipelines centrally.</li>
-  <li><strong>Environment-Specific Routing</strong>: Route specific queues to local sync/database connections in development while forwarding them to dedicated cloud workers in production.</li>
-</ul>
-<h3>Summary</h3>
-<p>`Queue::forward()` provides a centralized way to reroute existing queue traffic to new queues or connections without modifying the jobs or dispatch sites that produce them.</p>
+<hr>
+<h3>Dispatch Code Remains Unchanged</h3>
+<p>Application dispatch sites and job classes continue referencing their original queue names:</p>
+<pre><code class="language-php">// Dispatch code remains completely untouched
+GenerateMonthlyReport::dispatch($report)-&gt;onQueue(&#039;reports&#039;);</code></pre>
+<p>Laravel resolves forwarding through its internal queue routing pipeline, transparently redirecting the job to `reports.fifo` on the `sqs-fifo` connection.</p>
 ]]></content:encoded>
       <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
@@ -3445,28 +3035,13 @@ jobs:
       <title><![CDATA[Reusable Migration Fields with Custom Blueprint Macros]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields</guid>
-      <description><![CDATA[Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations. Database migrations often requ...]]></description>
+      <description><![CDATA[Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations. Database migrations frequently...]]></description>
       <content:encoded><![CDATA[<blockquote>Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations.</blockquote>
-<p>Database migrations often require repeating the same group of audit columns across multiple tables. Repeating these field definitions across dozens of migrations creates maintenance overhead and inconsistencies.</p>
-<h3>The Problem: Repetitive Schema Definitions</h3>
-<p>When multiple tables require tracking creation, updates, soft deletions, and restoration details, a standard migration file quickly becomes verbose:</p>
-<pre><code class="language-php">Schema::create(&#039;posts&#039;, function (Blueprint $table) {
-    $table-&gt;id();
-    $table-&gt;string(&#039;title&#039;);
-    $table-&gt;text(&#039;content&#039;);
-
-    // Repeated audit columns
-    $table-&gt;timestamps();
-    $table-&gt;softDeletes();
-    $table-&gt;timestamp(&#039;restored_at&#039;)-&gt;nullable();
-    $table-&gt;unsignedBigInteger(&#039;created_by&#039;)-&gt;nullable();
-    $table-&gt;unsignedBigInteger(&#039;updated_by&#039;)-&gt;nullable();
-    $table-&gt;unsignedBigInteger(&#039;deleted_by&#039;)-&gt;nullable();
-    $table-&gt;unsignedBigInteger(&#039;restored_by&#039;)-&gt;nullable();
-});</code></pre>
-<p>Duplicating these 8 lines across every new table definition increases boilerplate code and makes project-wide schema changes tedious.</p>
-<h3>Registering a Custom Blueprint Macro</h3>
-<p>Laravel's `Illuminate\Database\Schema\Blueprint` class can be extended using macros. Registering a custom macro allows you to bundle related column definitions into a single helper method inside `AppServiceProvider`:</p>
+<p>Database migrations frequently repeat the same cluster of audit columns (such as created/updated timestamps, soft deletes, and user foreign keys) across multiple tables.</p>
+<p>Using `Blueprint::macro()`, you can bundle these columns into a single reusable helper method.</p>
+<hr>
+<h3>Register the Macro</h3>
+<p>Define your custom macro inside `AppServiceProvider::boot()`:</p>
 <pre><code class="language-php">namespace App\Providers;
 
 use Illuminate\Database\Schema\Blueprint;
@@ -3476,47 +3051,21 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        Blueprint::macro(&#039;auditFields&#039;, function () {
+        Blueprint::macro(&#039;auditFields&#039;, function (bool $softDeletes = true) {
             $this-&gt;timestamps();
-            $this-&gt;softDeletes();
 
-            $this-&gt;timestamp(&#039;restored_at&#039;)-&gt;nullable();
+            if ($softDeletes) {
+                $this-&gt;softDeletes();
+            }
 
-            $this-&gt;unsignedBigInteger(&#039;created_by&#039;)-&gt;nullable();
-            $this-&gt;unsignedBigInteger(&#039;updated_by&#039;)-&gt;nullable();
-            $this-&gt;unsignedBigInteger(&#039;deleted_by&#039;)-&gt;nullable();
-            $this-&gt;unsignedBigInteger(&#039;restored_by&#039;)-&gt;nullable();
+            $this-&gt;foreignId(&#039;created_by&#039;)-&gt;nullable()-&gt;constrained(&#039;users&#039;);
+            $this-&gt;foreignId(&#039;updated_by&#039;)-&gt;nullable()-&gt;constrained(&#039;users&#039;);
         });
     }
 }</code></pre>
-<h4>What These Fields Represent</h4>
-<ul>
-  <li><code>timestamps()</code>: Adds standard <code>created_at</code> and <code>updated_at</code> timestamps.</li>
-  <li><code>softDeletes()</code>: Adds a nullable <code>deleted_at</code> timestamp for soft deletion.</li>
-  <li><code>restored_at</code>: Tracks the precise timestamp when a soft-deleted record is restored.</li>
-  <li><code>created_by</code>, <code>updated_by</code>, <code>deleted_by</code>, <code>restored_by</code>: Store the user IDs of the accounts responsible for each state change.</li>
-</ul>
-<h3>Reusing the Macro Across Migrations</h3>
-<p>Once registered, the `auditFields()` macro is available on `$table` instances in any migration file.</p>
-<h4>Users Migration</h4>
-<pre><code class="language-php">use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
-{
-    public function up(): void
-    {
-        Schema::create(&#039;users&#039;, function (Blueprint $table) {
-            $table-&gt;id();
-            $table-&gt;string(&#039;name&#039;);
-            $table-&gt;string(&#039;email&#039;)-&gt;unique();
-
-            $table-&gt;auditFields();
-        });
-    }
-};</code></pre>
-<h4>Posts Migration</h4>
+<hr>
+<h3>Use Across Migrations</h3>
+<p>Call the macro directly on `$table` in any migration:</p>
 <pre><code class="language-php">use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -3530,16 +3079,18 @@ return new class extends Migration
             $table-&gt;string(&#039;title&#039;);
             $table-&gt;text(&#039;content&#039;);
 
+            // Injects timestamps, softDeletes, and audit user IDs
             $table-&gt;auditFields();
         });
     }
 };</code></pre>
-<p>Both tables receive identical audit field structures while keeping migration files concise.</p>
-<h3>Customizing Project Conventions</h3>
-<p>Macros can be tailored to fit your application's specific conventions. If a project requires additional metadata columns, tenant identifiers, or custom status attributes across multiple tables, they can be defined within the macro body.</p>
-<h3>Why This Is Useful</h3>
-<p>Defining schema macros centralizes multi-column definitions into a single location in your codebase. If your application conventions expand to include additional columns, updating the macro definition ensures future migrations include the new standard structure.</p>
-<p>Note that registering or modifying a macro does not alter existing database tables or retroactively update past migrations. Macros expand to standard column definitions only when executed during active migration runs.</p>
+<hr>
+<h3>Key Points</h3>
+<ul>
+  <li><strong>Consistency</strong>: Guarantees identical column types, nullability, and foreign key constraints across all audited tables.</li>
+  <li><strong>Execution Timing</strong>: Macros expand into standard column definitions when <code>php artisan migrate</code> runs; they do not retroactively alter already-migrated tables.</li>
+  <li><strong>Parametric Flexibility</strong>: Add arguments to your macro closure (like <code>$softDeletes = true</code>) to adapt column inclusion per table.</li>
+</ul>
 ]]></content:encoded>
       <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
@@ -3578,7 +3129,7 @@ $orders = Order::query()
 </ul>
 ]]></content:encoded>
       <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
-      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <dc:creator><![CDATA[Vasile Papuc]]></dc:creator>
       <category><![CDATA[Laravel]]></category>
       <category><![CDATA[Eloquent]]></category>
       <category><![CDATA[Macros]]></category>
@@ -3903,14 +3454,27 @@ class StripeGateway implements PaymentGateway {}
       <title><![CDATA[Format Blade Templates with Laravel Pint v1.30.0]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-pint-blade-formatter</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-pint-blade-formatter</guid>
-      <description><![CDATA[Laravel Pint v1.30.0 adds native Blade template formatting via the Pint/laravelblade rule, using Prettier under the hood. Blade gets opinionated formatting i...]]></description>
+      <description><![CDATA[Laravel Pint v1.30.0 adds native Blade template formatting via the Pint/laravelblade rule, using Prettier under the hood. Laravel Pint can format your .blade...]]></description>
       <content:encoded><![CDATA[<blockquote>Laravel Pint v1.30.0 adds native Blade template formatting via the Pint/laravel_blade rule, using Prettier under the hood.</blockquote>
-<p>Blade gets opinionated formatting in Pint, keeping your markup consistent without manual tweaking.</p>
+<p>Laravel Pint can format your `.blade.php` views alongside PHP files, keeping template indentation and directive styling consistent across your team.</p>
+<hr>
+<h3>1. Format via CLI</h3>
+<p>Format Blade files on demand with the `--blade` flag:</p>
 <pre><code class="language-bash">./vendor/bin/pint --blade</code></pre>
+<hr>
+<h3>2. Enable Permanently in pint.json</h3>
+<p>To make Blade formatting the default whenever `pint` runs (including in CI pipelines), enable the rule in `pint.json`:</p>
+<pre><code class="language-json">{
+    &quot;rules&quot;: {
+        &quot;Pint/laravel_blade&quot;: true
+    }
+}</code></pre>
+<hr>
+<h3>Requirements & Mechanics</h3>
 <ul>
-  <li>Requires Node.js (Prettier runs under the hood)</li>
-  <li>Pint auto-detects package manager for dependency installation</li>
-  <li>Blade formatting is opinionated: consistent output, zero config debates</li>
+  <li><strong>Prettier Engine</strong>: Pint invokes Prettier under the hood. Node.js must be available on the machine.</li>
+  <li><strong>Auto-Installation</strong>: Pint auto-detects your package manager (<code>npm</code>, <code>pnpm</code>, <code>yarn</code>, <code>bun</code>) to install necessary Prettier dependencies when first run.</li>
+  <li><strong>Zero Config Arguments</strong>: Opinionated defaults format loops, components, and directives consistently without configuration arguments.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate>
@@ -3973,15 +3537,54 @@ $user = User::where(&#039;verification_token&#039;, $token)-&gt;sole();</code></
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-prohibitable-custom-commands-agents</guid>
       <description><![CDATA[Use Laravel's Prohibitable trait on custom Artisan commands to selectively block AI agents from running destructive domain operations. While DB::prohibitDest...]]></description>
       <content:encoded><![CDATA[<blockquote>Use Laravel's Prohibitable trait on custom Artisan commands to selectively block AI agents from running destructive domain operations.</blockquote>
-<p>While DB::prohibitDestructiveCommands guards core migrations, custom commands need explicit checks so AI agents don't accidentally run destructive domain actions.</p>
-<pre><code class="language-php">use App\Console\Commands\DeleteInactiveUsersCommand;
+<p>While `DB::prohibitDestructiveCommands()` protects core database migrations, custom Artisan commands (such as purging inactive tenants or deleting old records) require their own guard so AI coding agents do not execute them automatically.</p>
+<hr>
+<h3>1. Add Prohibitable to the Command Class</h3>
+<p>Add the `Illuminate\Console\Prohibitable` trait to your custom command:</p>
+<pre><code class="language-php">namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Console\Prohibitable;
+
+class DeleteInactiveUsersCommand extends Command
+{
+    use Prohibitable;
+
+    protected $signature = &#039;users:purge-inactive&#039;;
+
+    public function handle(): int
+    {
+        if ($this-&gt;isProhibited()) {
+            $this-&gt;error(&#039;This command is prohibited in this environment.&#039;);
+            return Command::FAILURE;
+        }
+
+        // Execution logic...
+        return Command::SUCCESS;
+    }
+}</code></pre>
+<hr>
+<h3>2. Prohibit in AppServiceProvider</h3>
+<p>Prohibit execution when an AI coding agent is detected:</p>
+<pre><code class="language-php">namespace App\Providers;
+
+use App\Console\Commands\DeleteInactiveUsersCommand;
+use Illuminate\Support\ServiceProvider;
 use Laravel\AgentDetector\Facades\AgentDetector;
 
-DeleteInactiveUsersCommand::prohibit(AgentDetector::detect()-&gt;isAgent);</code></pre>
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        // Humans can run locally; AI agents are blocked
+        DeleteInactiveUsersCommand::prohibit(AgentDetector::detect()-&gt;isAgent);
+    }
+}</code></pre>
+<hr>
+<h3>Key Points</h3>
 <ul>
-  <li>Prohibitable trait adds ::prohibit() and -&gt;isProhibited() to Artisan commands</li>
-  <li>Combine with AgentDetector to let humans run commands while blocking AI agents</li>
-  <li>Protects application-specific operations beyond database migrations</li>
+  <li><strong>Trait Mechanics</strong>: Adding <code>use Prohibitable;</code> provides both the static <code>::prohibit()</code> configuration method and the instance <code>-&gt;isProhibited()</code> check.</li>
+  <li><strong>Granular Control</strong>: Protects destructive application-specific commands without blanket blocking all Artisan tools.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Thu, 16 Jul 2026 00:00:00 GMT</pubDate>
@@ -4422,15 +4025,28 @@ $posts = Post::withAggregate(&#039;user&#039;, &#039;name&#039;)-&gt;get();</cod
       <title><![CDATA[Scaffold Actions, Builders, and Collections with Artisan]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-extended-commands-scaffold-patterns</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-extended-commands-scaffold-patterns</guid>
-      <description><![CDATA[Extend your generator commands to scaffold common domain patterns like Actions, Custom Query Builders, or Collections. Pushing business logic into Action cla...]]></description>
-      <content:encoded><![CDATA[<blockquote>Extend your generator commands to scaffold common domain patterns like Actions, Custom Query Builders, or Collections.</blockquote>
-<p>Pushing business logic into Action classes or custom Query Builders keeps controllers and models skinny. Use generator commands to scaffold these structural patterns instantly.</p>
-<pre><code class="language-bash">php artisan make:builder UserBuilder
-php artisan make:action CreateOrderAction</code></pre>
+      <description><![CDATA[Extend your generator commands to scaffold common domain patterns like Actions, Custom Query Builders, and Collections directly via Artisan. Pushing domain l...]]></description>
+      <content:encoded><![CDATA[<blockquote>Extend your generator commands to scaffold common domain patterns like Actions, Custom Query Builders, and Collections directly via Artisan.</blockquote>
+<p>Pushing domain logic into single-purpose Action classes or custom Eloquent Query Builders keeps controllers and models lean.</p>
+<p>Using `mrpunyapal/laravel-extended-commands`, you can scaffold these patterns directly from the CLI.</p>
+<hr>
+<h3>Installation & CLI Usage</h3>
+<pre><code class="language-bash">composer require --dev mrpunyapal/laravel-extended-commands
+
+# Scaffold a custom Eloquent Query Builder
+php artisan make:builder UserBuilder
+
+# Scaffold a single-action class
+php artisan make:action CreateOrderAction
+
+# Scaffold a custom Eloquent Collection
+php artisan make:collection OrderCollection</code></pre>
+<hr>
+<h3>Why Use Dedicated Generators</h3>
 <ul>
-  <li>Custom Builders encapsulate complex query scopes away from models</li>
-  <li>Action classes provide single-responsibility execution for business operations</li>
-  <li>Keeps directory structure predictable across team members</li>
+  <li><strong>Custom Builders</strong>: Encapsulates complex query scopes into a dedicated builder class (<code>app/Builders/UserBuilder.php</code>) instead of bloating the Model.</li>
+  <li><strong>Action Classes</strong>: Generates invokable, single-responsibility classes (<code>app/Actions/CreateOrderAction.php</code>) for business transactions.</li>
+  <li><strong>Team Consistency</strong>: Enforces predictable directory structures and namespaces across the entire development team.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
@@ -4468,15 +4084,40 @@ php artisan make:action CreateOrderAction</code></pre>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-prohibitable-destructive-commands</guid>
       <description><![CDATA[Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel's Prohibitable trait and DB::prohibitDestructiveCommands(). Accident...]]></description>
       <content:encoded><![CDATA[<blockquote>Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel's Prohibitable trait and DB::prohibitDestructiveCommands().</blockquote>
-<p>Accidentally running migrate:fresh on production is every team's nightmare. Laravel provides DB::prohibitDestructiveCommands() to disallow destructive commands in production.</p>
-<pre><code class="language-php">public function boot(): void
+<p>Accidentally running `migrate:fresh` or `db:wipe` on a production database is catastrophic.</p>
+<p>Laravel provides `DB::prohibitDestructiveCommands()` to block dangerous commands when running in production.</p>
+<hr>
+<h3>AppServiceProvider Configuration</h3>
+<p>Add the call inside your `AppServiceProvider::boot()` method:</p>
+<pre><code class="language-php">namespace App\Providers;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
 {
-    DB::prohibitDestructiveCommands($this-&gt;app-&gt;isProduction());
+    public function boot(): void
+    {
+        // Block destructive migration commands when in production
+        DB::prohibitDestructiveCommands(
+            $this-&gt;app-&gt;isProduction()
+        );
+    }
 }</code></pre>
+<hr>
+<h3>Commands Protected</h3>
+<p>When prohibited, attempts to run the following commands fail with an exit error code:</p>
 <ul>
-  <li>Guards migrate:fresh, migrate:refresh, migrate:reset, and db:wipe</li>
-  <li>Configured once in AppServiceProvider::boot()</li>
-  <li>Throws command failure exit code if executed in production</li>
+  <li><code>php artisan db:wipe</code></li>
+  <li><code>php artisan migrate:fresh</code></li>
+  <li><code>php artisan migrate:refresh</code></li>
+  <li><code>php artisan migrate:reset</code></li>
+</ul>
+<hr>
+<h3>Key Points</h3>
+<ul>
+  <li><strong>Zero Accidental Overrides</strong>: Even passing the <code>--force</code> flag cannot bypass a prohibited command.</li>
+  <li><strong>Environment Driven</strong>: Passing <code>$this-&gt;app-&gt;isProduction()</code> keeps local, staging, and automated testing environments fully functional.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
@@ -4581,16 +4222,49 @@ $total = $orders-&gt;sum-&gt;total;</code></pre>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-pipeline-pattern-complex-workflows</guid>
       <description><![CDATA[Process complex data sequences or multi-stage order checks through Laravel's built-in Pipeline facade to replace massive controller methods. When processing...]]></description>
       <content:encoded><![CDATA[<blockquote>Process complex data sequences or multi-stage order checks through Laravel's built-in Pipeline facade to replace massive controller methods.</blockquote>
-<p>When processing multi-stage workflows (like order checkout validation or user onboarding steps), controllers accumulate giant if blocks. Laravel's Pipeline facade passes objects sequentially through pipe classes.</p>
-<pre><code class="language-php">use Illuminate\Support\Facades\Pipeline;
+<p>When processing multi-stage workflows (such as order checkout validation or user onboarding steps), controller actions frequently accumulate deeply nested `if` statements.</p>
+<p>Laravel's `Pipeline` facade passes an object sequentially through dedicated pipe classes.</p>
+<hr>
+<h3>The Pipeline Runner</h3>
+<pre><code class="language-php">use App\Models\Order;
+use App\Pipes\ApplyCoupon;
+use App\Pipes\CalculateTax;
+use App\Pipes\VerifyStock;
+use Illuminate\Support\Facades\Pipeline;
 
 $order = Pipeline::send($draftOrder)
-    -&gt;through([VerifyStock::class, ApplyDiscountCode::class])
+    -&gt;through([
+        VerifyStock::class,
+        ApplyCoupon::class,
+        CalculateTax::class,
+    ])
     -&gt;thenReturn();</code></pre>
+<hr>
+<h3>Anatomy of a Pipe Class</h3>
+<p>Each pipe implements a `handle()` method accepting the passable object and a `$next` closure:</p>
+<pre><code class="language-php">namespace App\Pipes;
+
+use App\Models\Order;
+use Closure;
+
+class ApplyCoupon
+{
+    public function handle(Order $order, Closure $next)
+    {
+        if ($order-&gt;coupon_code) {
+            $order-&gt;discount = 15.00;
+        }
+
+        // Pass the modified object to the next pipe in sequence
+        return $next($order);
+    }
+}</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Each pipe is a single-responsibility class with a handle() signature</li>
-  <li>Easily add, remove, or reorder pipeline stages</li>
-  <li>Each step can be unit tested independently</li>
+  <li><strong>Single Responsibility</strong>: Each step is an isolated class with one clear focus.</li>
+  <li><strong>Easy Reordering</strong>: Add, remove, or reorder pipeline stages without touching adjacent logic.</li>
+  <li><strong>Testability</strong>: Test individual pipeline steps independently with unit tests.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sun, 05 Apr 2026 00:00:00 GMT</pubDate>
@@ -5024,14 +4698,14 @@ $post-&gt;unsetRelation(&#039;comments&#039;);</code></pre>
 <p>Codebases often accumulate redundant comments over time: commented-out legacy code, obvious explanations (`// set user name`), or empty boilerplate docblocks generated by older IDE templates.</p>
 <p>Manually reviewing and removing thousands of stale comments across hundreds of files is time-consuming. Using Rector, you can define an AbstractRector rule that strips non-essential comments while retaining critical PHPDoc annotations such as `@param`, `@return`, and `@throws`.</p>
 <h3>The Rector Implementation</h3>
-<pre><code class="language-php">namespace AppRector;
+<pre><code class="language-php">namespace App\Rector;
 
-use PhpParserComment;
-use PhpParserCommentDoc;
-use PhpParserNode;
-use RectorRectorAbstractRector;
-use SymplifyRuleDocGeneratorValueObjectCodeSampleCodeSample;
-use SymplifyRuleDocGeneratorValueObjectRuleDefinition;
+use PhpParser\Comment;
+use PhpParser\Comment\Doc;
+use PhpParser\Node;
+use Rector\Rector\AbstractRector;
+use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class RemoveUnnecessaryCommentsRector extends AbstractRector
 {
@@ -5143,8 +4817,8 @@ final class RemoveUnnecessaryCommentsRector extends AbstractRector
 }</code></pre>
 <h3>Registering in `rector.php`</h3>
 <p>Add the custom rule to your project's Rector configuration:</p>
-<pre><code class="language-php">use AppRectorRemoveUnnecessaryCommentsRector;
-use RectorConfigRectorConfig;
+<pre><code class="language-php">use App\Rector\RemoveUnnecessaryCommentsRector;
+use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
     -&gt;withRules([
@@ -5384,17 +5058,35 @@ test(&#039;order placement generates invoice but fakes email notifications&#039;
       <title><![CDATA[Use blank() and filled() Instead of empty() in Laravel]]></title>
       <link>https://mrpunyapal.dev/tips/php-blank-filled-over-empty</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-blank-filled-over-empty</guid>
-      <description><![CDATA[PHP's empty() treats 0, '0', and false as empty. Laravel's blank() and filled() helpers handle these values intuitively without silent bugs. PHP's empty() is...]]></description>
+      <description><![CDATA[PHP's empty() treats 0, '0', and false as empty. Laravel's blank() and filled() helpers handle these values intuitively without silent bugs. PHP's native emp...]]></description>
       <content:encoded><![CDATA[<blockquote>PHP's empty() treats 0, '0', and false as empty. Laravel's blank() and filled() helpers handle these values intuitively without silent bugs.</blockquote>
-<p>PHP's empty() is notoriously loose: it considers 0 and '0' empty. Laravel provides blank() and filled() as safer alternatives.</p>
-<pre><code class="language-php">if (blank($request-&gt;input(&#039;quantity&#039;))) {
-    return &#039;Quantity is required&#039;;
+<p>PHP's native `empty()` is notoriously loose: it considers `0`, `'0'`, and `false` as empty, causing subtle bugs when validating quantities, scores, or boolean toggles.</p>
+<p>Laravel provides `blank()` and `filled()` as intuitive, string-trimmed alternatives.</p>
+<hr>
+<h3>Comparison Matrix</h3>
+<pre><code class="language-php">// PHP empty() pitfalls:
+empty(0);       // true  (oops: 0 is a valid quantity!)
+empty(&#039;0&#039;);     // true  (oops: &#039;0&#039; is a valid string!)
+empty(&#039;   &#039;);   // false (whitespace is NOT considered empty by PHP)
+
+// Laravel blank():
+blank(0);       // false (0 is a real value)
+blank(&#039;0&#039;);     // false (&#039;0&#039; is a real value)
+blank(&#039;   &#039;);   // true  (automatically trims whitespace)
+blank(&#039;&#039;);      // true
+blank(null);    // true
+blank([]);      // true
+
+// Laravel filled() (exact inverse of blank()):
+filled(0);      // true
+filled(&#039;hello&#039;);// true
+filled(&#039;   &#039;);  // false</code></pre>
+<hr>
+<h3>Usage in Controllers</h3>
+<pre><code class="language-php">// Clean validation without false positives on 0
+if (blank($request-&gt;input(&#039;score&#039;))) {
+    return response()-&gt;json([&#039;error&#039; =&gt; &#039;Score is required&#039;], 422);
 }</code></pre>
-<ul>
-  <li>blank() treats 0 and &#39;0&#39; as filled values, not blank</li>
-  <li>filled() is the exact inverse of blank()</li>
-  <li>Handles whitespace-only strings correctly</li>
-</ul>
 ]]></content:encoded>
       <pubDate>Fri, 20 Feb 2026 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
@@ -6245,17 +5937,31 @@ $products = Product::find([10, 25, 42]);</code></pre>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-pint-use-arrow-functions-rule</guid>
       <description><![CDATA[Enable the usearrowfunctions rule in pint.json to automatically refactor single-line closures into arrow functions. Manually converting single-line function...]]></description>
       <content:encoded><![CDATA[<blockquote>Enable the use_arrow_functions rule in pint.json to automatically refactor single-line closures into arrow functions.</blockquote>
-<p>Manually converting single-line function () use ($var) callbacks to fn () arrow functions across codebases takes time. Laravel Pint's use_arrow_functions rule automates this conversion.</p>
-<pre><code class="language-json">// pint.json
-{
+<p>Manually converting single-line `function () use ($var)` callbacks to `fn ()` arrow functions across an entire project takes time.</p>
+<p>Laravel Pint's `use_arrow_functions` rule automates this refactoring across your codebase.</p>
+<hr>
+<h3>Configuration</h3>
+<p>Enable the rule in your `pint.json`:</p>
+<pre><code class="language-json">{
     &quot;rules&quot;: {
         &quot;use_arrow_functions&quot;: true
     }
 }</code></pre>
+<hr>
+<h3>What It Automatically Refactors</h3>
+<pre><code class="language-php">// Before Pint:
+$active = array_filter($users, function ($user) use ($role) {
+    return $user-&gt;hasRole($role);
+});
+
+// After Pint:
+$active = array_filter($users, fn ($user) =&gt; $user-&gt;hasRole($role));</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Converts single-line closures to short arrow functions fn () automatically</li>
-  <li>Auto-captures outer scope variables without explicit use () bindings</li>
-  <li>Enforces modern short closure conventions across your codebase</li>
+  <li><strong>No Manual <code>use</code> Bindings</strong>: Arrow functions automatically capture variables from the parent scope by value.</li>
+  <li><strong>Consistent Syntax</strong>: Enforces modern PHP short closure syntax across all collection pipelines, array functions, and service providers.</li>
+  <li><strong>Safe Transformation</strong>: Applies only to single-line return statements; complex multi-line closures remain untouched.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Mon, 11 Aug 2025 00:00:00 GMT</pubDate>
@@ -6534,19 +6240,44 @@ test(&#039;another test&#039;, function () {
       <title><![CDATA[Use $model->touch() Instead of Manual Timestamp Updates]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-model-touch-timestamp-update</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-model-touch-timestamp-update</guid>
-      <description><![CDATA[Use the built-in touch() method to update updatedat timestamps on Eloquent records cleanly. Manually assigning $model-updatedat = now(); $model-save(); is re...]]></description>
-      <content:encoded><![CDATA[<blockquote>Use the built-in touch() method to update updated_at timestamps on Eloquent records cleanly.</blockquote>
-<p>Manually assigning $model->updated_at = now(); $model->save(); is repetitive. Calling $model->touch() updates timestamps and persists changes in a single line.</p>
+      <description><![CDATA[Use the built-in touch() method to update updatedat or custom timestamp columns on Eloquent records cleanly. Manually writing $model-updatedat = now(); $mode...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use the built-in touch() method to update updated_at or custom timestamp columns on Eloquent records cleanly.</blockquote>
+<p>Manually writing `$model->updated_at = now(); $model->save();` is repetitive and clutters model workflows.</p>
+<p>Calling `$model->touch()` updates the timestamp and saves the record in a single operation.</p>
+<hr>
+<h3>Standard & Custom Column Usage</h3>
 <pre><code class="language-php">use App\Models\Post;
 
-$post = Post::find($id);
+$post = Post::findOrFail($id);
 
-// Replaces $post-&gt;updated_at = now(); $post-&gt;save();
-$post-&gt;touch();</code></pre>
+// 1. Update the default &#039;updated_at&#039; timestamp
+$post-&gt;touch();
+
+// 2. Update a custom timestamp column
+$post-&gt;touch(&#039;last_viewed_at&#039;);</code></pre>
+<hr>
+<h3>Cascading to Parent Relationships</h3>
+<p>To touch parent models whenever a child is updated, define the `$touches` property on the child model:</p>
+<pre><code class="language-php">namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Comment extends Model
+{
+    // Automatically touch parent Post&#039;s updated_at when a comment changes
+    protected $touches = [&#039;post&#039;];
+
+    public function post()
+    {
+        return $this-&gt;belongsTo(Post::class);
+    }
+}</code></pre>
+<hr>
+<h3>Key Points</h3>
 <ul>
-  <li>Updates updated_at column to current timestamp and saves model</li>
-  <li>Triggers cascading timestamp touches defined on $touches parent relations</li>
-  <li>Fires model saving and saved event listeners</li>
+  <li><strong>Atomic Update</strong>: Sets the timestamp to current time and saves the model immediately.</li>
+  <li><strong>Custom Columns</strong>: Pass any datetime column name as the first argument to update custom tracking fields.</li>
+  <li><strong>Cache Invalidation</strong>: Triggers parent timestamp updates configured via <code>$touches</code>, useful for cache busting parent models.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Fri, 20 Jun 2025 00:00:00 GMT</pubDate>
@@ -6909,7 +6640,7 @@ $isWeb = Str::isUrl($input, [&#039;http&#039;, &#039;https&#039;]);</code></pre>
 }</code></pre>
 <h3>Summary</h3>
 <ul>
-  <li>Uses robust native URL parsing under the hood.</li>
+  <li>Uses reliable native URL parsing under the hood.</li>
   <li>Protocol filtering prevents dangerous schemes like <code>javascript:</code> or <code>data:</code>.</li>
   <li>Replaces custom regex validation.</li>
 </ul>
@@ -7054,10 +6785,10 @@ class AppServiceProvider extends ServiceProvider
 <p>By creating invokable "Tappable Scope" classes, you can share identical query constraints across both database queries and full-text search pipelines without duplicating logic.</p>
 <h3>1. Create the Invokable Scope Class</h3>
 <p>Create a dedicated scope class that accepts either an Eloquent `Builder` or a Scout `Builder`:</p>
-<pre><code class="language-php">namespace AppModelsScopes;
+<pre><code class="language-php">namespace App\Models\Scopes;
 
-use AppModelsUser;
-use IlluminateDatabaseEloquentBuilder;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use LaravelScoutBuilder as ScoutBuilder;
 
 final class PublishedScope
@@ -7075,12 +6806,12 @@ final class PublishedScope
 }</code></pre>
 <h3>2. Using in Model Local Scopes</h3>
 <p>Apply the scope class inside your model's local scope using `$query->tap()`:</p>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
-use AppModelsScopesPublishedScope;
-use IlluminateDatabaseEloquentBuilder;
-use IlluminateDatabaseEloquentModel;
-use LaravelScoutSearchable;
+use App\Models\Scopes\PublishedScope;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
@@ -7093,8 +6824,8 @@ class Post extends Model
 }</code></pre>
 <h3>3. Using in Laravel Scout Search Queries</h3>
 <p>The same scope class can be piped directly into Scout search queries via `->tap()`:</p>
-<pre><code class="language-php">use AppModelsPost;
-use AppModelsScopesPublishedScope;
+<pre><code class="language-php">use App\Models\Post;
+use App\Models\Scopes\PublishedScope;
 
 // Search posts with the same publishing constraints applied
 $results = Post::search($searchTerm)
@@ -7102,7 +6833,7 @@ $results = Post::search($searchTerm)
     -&gt;get();</code></pre>
 <h3>Why Use Tappable Scopes?</h3>
 <ul>
-  <li><strong>Dual Compatibility</strong>: Operates seamlessly across both standard Eloquent queries and Laravel Scout search pipelines.</li>
+  <li><strong>Dual Compatibility</strong>: Operates directly across both standard Eloquent queries and Laravel Scout search pipelines.</li>
   <li><strong>Cross-Model Reuse</strong>: Share identical filtering rules across multiple models (e.g. <code>Post</code>, <code>Article</code>, <code>Video</code>) without bloated traits.</li>
   <li><strong>Cleaner Models</strong>: Keeps model files lightweight by extracting complex filtering criteria into dedicated, testable classes.</li>
 </ul>
@@ -7545,7 +7276,7 @@ $allTrue = $flags-&gt;every(); // true</code></pre>
 <p>Parsing date strings repeatedly inside Blade views with manual `Carbon::parse($order->ordered_at)->format('M d, Y')` calls is slow, repetitive, and fails if the column value is null.</p>
 <p>Eloquent date casting automatically converts database timestamp strings into immutable Carbon instances upon retrieval.</p>
 <h3>Defining Date Casts on Models</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -7741,7 +7472,7 @@ enum OrderStatus: string
     }
 }</code></pre>
 <h3>Casting in Eloquent Models</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
 use App\Enums\OrderStatus;
 use Illuminate\Database\Eloquent\Model;
@@ -7926,7 +7657,7 @@ config([&#039;services.stripe.key&#039; =&gt; &#039;pk_test_12345&#039;]);</code
 <p>Declaring explicit overrides for standard default behaviors adds noise to Eloquent model definitions.</p>
 <p>Laravel relies on convention over configuration: if your database table follows standard naming rules, zero configuration properties are required.</p>
 <h3>Over-Configured Model (Anti-Pattern)</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -7946,7 +7677,7 @@ class Article extends Model
     public $timestamps = true;
 }</code></pre>
 <h3>Clean Eloquent Model (Recommended)</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8024,7 +7755,7 @@ $analytics = $sales
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-type-system-cheat-sheet</guid>
       <description><![CDATA[A reference guide to scalar, compound, special, user-defined, union, and intersection types in modern PHP. PHP features a gradual and expressive type system....]]></description>
       <content:encoded><![CDATA[<blockquote>A reference guide to scalar, compound, special, user-defined, union, and intersection types in modern PHP.</blockquote>
-<p>PHP features a gradual and expressive type system. From scalar type declarations introduced in PHP 7 to union types in PHP 8.0, intersection types in PHP 8.1, and standalone `true`, `false`, and `null` types in PHP 8.2, PHP provides robust type safety at runtime and compile time.</p>
+<p>PHP features a gradual and expressive type system. From scalar type declarations introduced in PHP 7 to union types in PHP 8.0, intersection types in PHP 8.1, and standalone `true`, `false`, and `null` types in PHP 8.2, PHP provides reliable type safety at runtime and compile time.</p>
 <hr>
 <h3>1. Atomic and Scalar Types</h3>
 <p>Scalar types represent basic primitive values:</p>
@@ -8156,7 +7887,7 @@ function processBatch(iterable $items): void
   <li>Use <code>void</code> when no value is returned, and <code>never</code> for methods that always terminate or throw.</li>
   <li>Use <code>static</code> return types for fluent chaining and late static binding in parent classes.</li>
   <li>Use Union types (<code>int|string</code>) and Intersection types (<code>InterfaceA&amp;InterfaceB</code>) for precise polymorphic contracts.</li>
-  <li>Use <code>iterable</code> to accept both arrays and <code>Traversable</code> collections seamlessly.</li>
+  <li>Use <code>iterable</code> to accept both arrays and <code>Traversable</code> collections directly.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Thu, 25 Jul 2024 00:00:00 GMT</pubDate>
@@ -9168,16 +8899,16 @@ class TaxCalculator
 <p>When PHP 8.1 backed enums were introduced, many projects originally named enum cases in uppercase snake case (`case PENDING_REVIEW;`), matching older class constant conventions. Modern PHP and Laravel coding style standards (including PER-CS and Laravel Pint) recommend PascalCase for enum cases (`case PendingReview;`).</p>
 <p>Renaming enum cases across a large production application manually is error-prone. By combining a custom Rector rule with an Artisan Blade updater, you can refactor all enum declarations, references, and Blade view usages automatically.</p>
 <h3>1. Custom Rector Rule for Enum Cases</h3>
-<pre><code class="language-php">namespace AppRector;
+<pre><code class="language-php">namespace App\Rector;
 
-use PhpParserNode;
-use PhpParserNodeExprClassConstFetch;
-use PhpParserNodeIdentifier;
-use PhpParserNodeStmtEnumCase;
-use PHPStanReflectionReflectionProvider;
-use RectorRectorAbstractRector;
-use SymplifyRuleDocGeneratorValueObjectCodeSampleCodeSample;
-use SymplifyRuleDocGeneratorValueObjectRuleDefinition;
+use PhpParser\Node;
+use PhpParser\Node\Expr\ClassConstFetch;
+use PhpParser\Node\Identifier;
+use PhpParser\Node\Stmt\EnumCase;
+use PHPStan\Reflection\ReflectionProvider;
+use Rector\Rector\AbstractRector;
+use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class RenameEnumCasesToPascalCaseRector extends AbstractRector
 {
@@ -9253,10 +8984,10 @@ final class RenameEnumCasesToPascalCaseRector extends AbstractRector
 }</code></pre>
 <h3>2. Refactoring Blade Templates</h3>
 <p>Because Rector parses PHP files rather than Blade templates, use an Artisan command to update enum case usages inside `resources/views/**/*.blade.php`:</p>
-<pre><code class="language-php">namespace AppConsoleCommands;
+<pre><code class="language-php">namespace App\Console\Commands;
 
-use IlluminateConsoleCommand;
-use IlluminateSupportFacadesFile;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class RefactorBladeEnumsCommand extends Command
 {
@@ -9785,11 +9516,11 @@ class AppServiceProvider extends ServiceProvider
 <p>Laravel's notification system supports both database persistence (`via: ['database']`) and real-time broadcasting (`via: ['broadcast']`). However, configuring notifications to broadcast simultaneously often duplicates payload formatting and requires configuring separate broadcast channels for each notification class.</p>
 <p>By attaching an observer to Laravel's underlying `DatabaseNotification` model, you can automatically broadcast every database notification in real time over private channels with zero per-notification boilerplate.</p>
 <h3>1. Register the Observer in AppServiceProvider</h3>
-<pre><code class="language-php">namespace AppProviders;
+<pre><code class="language-php">namespace App\Providers;
 
-use IlluminateBroadcastingPrivateChannel;
-use IlluminateNotificationsDatabaseNotification;
-use IlluminateSupportServiceProvider;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -9827,10 +9558,10 @@ class AppServiceProvider extends ServiceProvider
     });</code></pre>
 <h3>3. Listening in Livewire Components</h3>
 <p>In Livewire 3 components, use the `#[On]` attribute:</p>
-<pre><code class="language-php">namespace AppLivewire;
+<pre><code class="language-php">namespace App\Livewire;
 
-use LivewireAttributesOn;
-use LivewireComponent;
+use Livewire\Attributes\On;
+use Livewire\Component;
 
 class NotificationBell extends Component
 {
@@ -9844,7 +9575,7 @@ class NotificationBell extends Component
 <ul>
   <li>Observe <code>DatabaseNotification::created</code> to automatically broadcast real-time events for every stored database notification.</li>
   <li>Eliminates the need to duplicate broadcast payload definitions in individual notification classes.</li>
-  <li>Seamlessly integrates with Laravel Echo, Livewire, and Vue/React frontend architectures.</li>
+  <li>Directly integrates with Laravel Echo, Livewire, and Vue/React frontend architectures.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sun, 11 Feb 2024 00:00:00 GMT</pubDate>
@@ -10022,11 +9753,11 @@ $users = User::query()
 <p>However, when an enum value is stored inside a nested JSON object or array column (such as `options->status` or `settings['status']`), Laravel's default column casting casts the entire column to an array, leaving the nested enum value as a raw string or integer.</p>
 <p>Using Eloquent's `Attribute` accessor and mutator, you can automatically hydrate and serialize nested enum instances.</p>
 <h3>Implementing the Nested Enum Cast</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
-use AppEnumsPostStatus;
-use IlluminateDatabaseEloquentCastsAttribute;
-use IlluminateDatabaseEloquentModel;
+use App\Enums\PostStatus;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
@@ -10250,7 +9981,7 @@ DB::table(&#039;archived_orders&#039;)-&gt;insertUsing(
 <p>When using backed Enums in Laravel models and Blade views, you often need a formatted, user-friendly label (such as displaying `"Partially Paid and Refunded"` for `PaymentStatus::PartiallyPaidAndRefunded`).</p>
 <p>Maintaining manual `match ($this)` methods across dozens of application enums is repetitive. A lightweight trait can derive clean titles automatically while allowing custom overrides when needed.</p>
 <h3>The HasLabel Trait</h3>
-<pre><code class="language-php">namespace AppTraits;
+<pre><code class="language-php">namespace App\Traits;
 
 trait HasLabel
 {
@@ -10266,9 +9997,9 @@ trait HasLabel
     }
 }</code></pre>
 <h3>Applying the Trait to Enums</h3>
-<pre><code class="language-php">namespace AppEnums;
+<pre><code class="language-php">namespace App\Enums;
 
-use AppTraitsHasLabel;
+use App\Traits\HasLabel;
 
 enum PaymentStatus: int
 {
@@ -10283,7 +10014,7 @@ enum PaymentStatus: int
     case PARTIALLY_PAID_AND_REFUNDED = 7;
 }</code></pre>
 <h3>Usage in Controllers and Blade Views</h3>
-<pre><code class="language-php">use AppEnumsPaymentStatus;
+<pre><code class="language-php">use App\Enums\PaymentStatus;
 
 PaymentStatus::PENDING-&gt;label();
 // Output: &quot;Pending&quot;
@@ -10378,10 +10109,10 @@ Notification::route(&#039;mail&#039;, [&#039;admin@example.com&#039; =&gt; &#039
 <p>You can ensure consistent, error-free view compilation by registering custom Blade compiler directives for `@teleport` and `@endteleport`.</p>
 <h3>The Fix in AppServiceProvider</h3>
 <p>Add the custom directive registration inside your `AppServiceProvider::register()` or `boot()` method:</p>
-<pre><code class="language-php">namespace AppProviders;
+<pre><code class="language-php">namespace App\Providers;
 
-use IlluminateSupportFacadesBlade;
-use IlluminateSupportServiceProvider;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -10613,7 +10344,7 @@ class AppServiceProvider extends ServiceProvider
 <pre><code class="language-php">namespace App\Http\Middleware;
 
 use Closure;
-use IlluminateHttpRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Context;
 use Illuminate\Support\Str;
 
@@ -10748,11 +10479,11 @@ Route::post(&#039;/posts&#039;, [PostController::class, &#039;store&#039;])
 <p>Laravel provides rate limiting middleware directly for queued jobs.</p>
 <h3>Defining Rate Limiters for Jobs</h3>
 <p>In `AppServiceProvider::boot()`:</p>
-<pre><code class="language-php">namespace AppProviders;
+<pre><code class="language-php">namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
-use IlluminateSupportServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -10767,10 +10498,10 @@ class AppServiceProvider extends ServiceProvider
 <h3>Applying Middleware in Queue Jobs</h3>
 <pre><code class="language-php">namespace App\Jobs;
 
-use IlluminateBusQueueable;
-use IlluminateContractsQueueShouldQueue;
-use IlluminateFoundationBusDispatchable;
-use IlluminateQueueInteractsWithQueue;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\RateLimited;
 
 class SyncShopifyOrdersJob implements ShouldQueue
@@ -10848,13 +10579,13 @@ public function redirectToGateway(): RedirectResponse
       <content:encoded><![CDATA[<blockquote>Capture HTTP requests, Artisan CLI commands, and outgoing API responses into a unified audit trail using a single Laravel Event Subscriber.</blockquote>
 <p>Applications frequently need to log key lifecycle actions for debugging and compliance. Instead of scattering logging logic across various middleware, commands, and service classes, Laravel Event Subscribers let you listen to multiple framework events from a single centralized class.</p>
 <h3>The ActivityLogEventSubscriber</h3>
-<pre><code class="language-php">namespace AppListeners;
+<pre><code class="language-php">namespace App\Listeners;
 
-use IlluminateConsoleEventsCommandFinished;
-use IlluminateEventsDispatcher;
-use IlluminateFoundationHttpEventsRequestHandled;
-use IlluminateHttpClientEventsResponseReceived;
-use IlluminateSupportFacadesLog;
+use Illuminate\Console\Events\CommandFinished;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Foundation\Http\Events\RequestHandled;
+use Illuminate\Http\Client\Events\ResponseReceived;
+use Illuminate\Support\Facades\Log;
 
 class ActivityLogEventSubscriber
 {
@@ -10900,11 +10631,11 @@ class ActivityLogEventSubscriber
 }</code></pre>
 <h3>Registering the Subscriber</h3>
 <p>In Laravel 11+, register the subscriber inside your `AppServiceProvider::boot()` method (or `EventServiceProvider` in earlier versions):</p>
-<pre><code class="language-php">namespace AppProviders;
+<pre><code class="language-php">namespace App\Providers;
 
-use AppListenersActivityLogEventSubscriber;
-use IlluminateSupportFacadesEvent;
-use IlluminateSupportServiceProvider;
+use App\Listeners\ActivityLogEventSubscriber;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -10938,10 +10669,10 @@ class AppServiceProvider extends ServiceProvider
 <p>A frequent implementation uses a `while` loop that repeatedly queries the database (`post-1`, `post-2`, `post-3`, ...) until an available slug is found. On busy applications with many duplicate titles, this pattern generates dozens of sequential database roundtrips for a single record creation.</p>
 <p>You can determine the next unique slug in a single query by inspecting the maximum numeric suffix using SQL functions.</p>
 <h3>The Efficient Implementation</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
-use IlluminateDatabaseEloquentModel;
-use IlluminateSupportFacadesDB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Article extends Model
 {
@@ -11150,7 +10881,7 @@ str_decrement(&#039;a&#039;);      // Throws ValueError: &#039;a&#039; cannot be
 <p>When writing unit tests or developing features that rely on temporal calculations (such as subscription renewals, birthday promotions, trial expirations, or grace periods), relying on real system time creates flaky tests that fail depending on the time of day or month.</p>
 <p>Carbon provides `setTestNow()` to lock time to a specific instant, alongside `hasTestNow()` to verify whether the temporal state is currently mocked.</p>
 <h3>Freezing Time in Feature Logic</h3>
-<pre><code class="language-php">use CarbonCarbon;
+<pre><code class="language-php">use Carbon\Carbon;
 
 function isBirthdayOfferActive(Carbon $birthday): bool
 {
@@ -11170,7 +10901,7 @@ isBirthdayOfferActive($userBirthday); // Returns true!
 Carbon::setTestNow(null);</code></pre>
 <h3>Checking if Mock Time is Active with `hasTestNow()`</h3>
 <p>In custom debug bars, health checks, or safety middleware, you can inspect whether the application is running under a simulated timestamp:</p>
-<pre><code class="language-php">use CarbonCarbon;
+<pre><code class="language-php">use Carbon\Carbon;
 
 if (Carbon::hasTestNow()) {
     logger()-&gt;warning(&#039;Application running with mocked Carbon time: &#039; . Carbon::now()-&gt;toDateTimeString());
@@ -11511,12 +11242,12 @@ Artisan::queue(&#039;reports:generate-annual-pdf&#039;, [
 <p>If your `render()` method executes complex database queries or chart calculations, running `render()` during a binary file download wastes server CPU and memory since the HTML response is discarded in favor of the download stream.</p>
 <p>Livewire 3 provides the `#[Renderless]` attribute to execute an action without invoking `render()`.</p>
 <h3>The Livewire Component</h3>
-<pre><code class="language-php">namespace AppLivewire;
+<pre><code class="language-php">namespace App\Livewire;
 
-use AppModelsReport;
-use LivewireAttributesRenderless;
-use LivewireComponent;
-use SymfonyComponentHttpFoundationStreamedResponse;
+use App\Models\Report;
+use Livewire\Attributes\Renderless;
+use Livewire\Component;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class TransactionReports extends Component
 {
@@ -11589,11 +11320,11 @@ class TransactionReports extends Component
 <p>In multi-tenant or team-based SaaS applications, models (such as projects, invoices, and documents) must belong to a specific team, and users must only access records belonging to their active team.</p>
 <p>Instead of writing repetitive query scopes and `$model->team_id = auth()->user()->team_id` assignments in every controller, you can encapsulate multi-tenant behavior in a reusable model trait.</p>
 <h3>The BelongsToTeam Trait</h3>
-<pre><code class="language-php">namespace AppTraitsModels;
+<pre><code class="language-php">namespace App\Traits\Models;
 
-use AppModelsTeam;
-use IlluminateDatabaseEloquentBuilder;
-use IlluminateDatabaseEloquentRelationsBelongsTo;
+use App\Models\Team;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait BelongsToTeam
 {
@@ -11640,10 +11371,10 @@ trait BelongsToTeam
     }
 }</code></pre>
 <h3>Using the Trait on Models</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
-use AppTraitsModelsBelongsToTeam;
-use IlluminateDatabaseEloquentModel;
+use App\Traits\Models\BelongsToTeam;
+use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
@@ -11858,9 +11589,9 @@ $posts = Post::query()
 <p>Laravel's `Collection::groupBy()` method is commonly used with a simple string key (such as `->groupBy('status')`).</p>
 <p>However, `groupBy()` also accepts a closure that receives each item in the collection and returns the dynamic group key. This is especially useful for aggregating records into date intervals such as weeks, quarters, or formatted periods for reporting dashboards.</p>
 <h3>Grouping Records by Dynamic Time Periods</h3>
-<pre><code class="language-php">use AppModelsOrder;
-use CarbonCarbon;
-use IlluminateSupportCollection;
+<pre><code class="language-php">use App\Models\Order;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 $orders = Order::query()
     -&gt;where(&#039;created_at&#039;, &#039;&gt;=&#039;, now()-&gt;subYear())
@@ -12371,7 +12102,7 @@ class MoneyCast implements CastsAttributes
     }
 }</code></pre>
 <h3>Applying to Models</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
 use App\Casts\MoneyCast;
 use Illuminate\Database\Eloquent\Model;
@@ -12985,10 +12716,10 @@ Route::post(&#039;/login&#039;, [AuthController::class, &#039;login&#039;])
 <p>When caching parent model data or HTTP responses (such as caching a `Post` with its `Comments`), adding or updating a comment leaves the parent post's `updated_at` timestamp unchanged, resulting in stale cache hits.</p>
 <p>Defining `$touches` on the child model updates parent timestamps automatically.</p>
 <h3>Configuring $touches on Child Models</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
-use IlluminateDatabaseEloquentModel;
-use IlluminateDatabaseEloquentRelationsBelongsTo;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
@@ -13029,7 +12760,7 @@ $comment-&gt;update([&#039;content&#039; =&gt; &#039;Updated comment text.&#039;
 <p>When your application partitions data across multiple database connections (such as separating analytics logs, multi-tenant tenants, or payment microservices onto different database servers), standard SQL joins between connection tables fail.</p>
 <p>Eloquent's `whereHas()` directly handles relations across different database connections.</p>
 <h3>Defining Models on Separate Connections</h3>
-<pre><code class="language-php">namespace AppModels;
+<pre><code class="language-php">namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14019,7 +13750,7 @@ $users = User::withCount([
       <description><![CDATA[Define relationships on models where foreign keys are stored as JSON arrays or comma-separated lists rather than traditional single-id foreign keys. When dea...]]></description>
       <content:encoded><![CDATA[<blockquote>Define relationships on models where foreign keys are stored as JSON arrays or comma-separated lists rather than traditional single-id foreign keys.</blockquote>
 <p>When dealing with legacy schemas or denormalized database designs where a model stores multiple related IDs inside a JSON array column (e.g. `[1, 2, 5]`), standard Eloquent relationships fail.</p>
-<p>Using array column relationship packages or custom query scope join helpers allows seamless querying:</p>
+<p>Using array column relationship packages or custom query scope join helpers allows direct querying:</p>
 <pre><code class="language-php">use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14548,7 +14279,7 @@ public function destroy(Post $post): Response
 ]);</code></pre>
 <h3>Dynamic Conditionals via Closure</h3>
 <p>To validate a field based on dynamic runtime logic, invoke `sometimes()` on the validator instance:</p>
-<pre><code class="language-php">use IlluminateSupportFacadesValidator;
+<pre><code class="language-php">use Illuminate\Support\Facades\Validator;
 use IlluminateValidationValidator as ValidatorInstance;
 
 $validator = Validator::make($request-&gt;all(), [
@@ -14747,7 +14478,7 @@ $html = Str::markdown($markdown);
 &lt;/article&gt;</code></pre>
 <h3>Summary</h3>
 <ul>
-  <li>Powered by the robust <code>league/commonmark</code> parser.</li>
+  <li>Powered by the reliable <code>league/commonmark</code> parser.</li>
   <li>Supports security options to strip unsafe raw HTML and malicious JavaScript links.</li>
   <li>Available as a static method (<code>Str::markdown</code>) and fluent string helper (<code>str()-&gt;markdown()</code>).</li>
 </ul>
@@ -14917,7 +14648,7 @@ public function rules(): array
 <pre><code class="language-php">namespace App\Http\Middleware;
 
 use Closure;
-use IlluminateHttpRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -15413,7 +15144,7 @@ echo Number::ordinal(3);
 <p>Instead of breaking routes into separate fragmented group blocks, Laravel provides the `withoutMiddleware()` method.</p>
 <h3>Excluding Middleware on Individual Routes</h3>
 <pre><code class="language-php">use App\Http\Controllers\WebhookController;
-use AppHttpMiddlewareVerifyCsrfToken;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([&#039;web&#039;, &#039;auth&#039;])-&gt;group(function () {
@@ -15871,11 +15602,11 @@ Route::get(&#039;/{locale}/about&#039;, [AboutController::class, &#039;show&#039
 <p>Laravel provides `DB::listen()` to register a callback executed after every database query.</p>
 <h3>Logging Slow Queries in Development</h3>
 <p>Add the listener inside `AppServiceProvider::boot()`:</p>
-<pre><code class="language-php">namespace AppProviders;
+<pre><code class="language-php">namespace App\Providers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use IlluminateSupportServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16219,7 +15950,7 @@ class TempUpload extends Model
 }</code></pre>
 <h3>Scheduling Pruning</h3>
 <p>Register the `model:prune` command in your application scheduler:</p>
-<pre><code class="language-php">use IlluminateSupportFacadesSchedule;
+<pre><code class="language-php">use Illuminate\Support\Facades\Schedule;
 
 Schedule::command(&#039;model:prune&#039;)-&gt;daily();</code></pre>
 <h3>Summary</h3>
