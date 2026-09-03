@@ -16,31 +16,16 @@
       <title><![CDATA[Use Immutable Dates by Default in Laravel]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates</guid>
-      <description><![CDATA[Laravel uses Carbon for date and time handling. By default, Carbon is mutable, so methods such as addDay() modify the original date instance. For application...]]></description>
-      <content:encoded><![CDATA[<p>Laravel uses Carbon for date and time handling. By default, Carbon is mutable, so methods such as `addDay()` modify the original date instance.</p>
-<p>For applications that reuse dates across multiple calculations, this can lead to unexpected results.</p>
-<p>Laravel lets you configure `CarbonImmutable` as the default date implementation.</p>
-<h3>Mutable Dates Can Change the Original Value</h3>
-<p>With the default mutable Carbon implementation, modifying a date also changes the original instance:</p>
+      <description><![CDATA[Make Laravel use CarbonImmutable by default so date calculations don't unexpectedly modify the original date. Carbon dates are mutable by default, so date op...]]></description>
+      <content:encoded><![CDATA[<blockquote>Make Laravel use `CarbonImmutable` by default so date calculations don't unexpectedly modify the original date.</blockquote>
+<p>Carbon dates are mutable by default, so date operations can unexpectedly change the original instance.</p>
 <pre><code class="language-php">$date = now();
 
 $tomorrow = $date-&gt;addDay();
 
 echo $date-&gt;toDateString();      // 2026-09-04
 echo $tomorrow-&gt;toDateString();  // 2026-09-04</code></pre>
-<p>Both variables now contain the modified date because `addDay()` changed `$date`.</p>
-<p>This becomes more noticeable when the same date is used for multiple calculations:</p>
-<pre><code class="language-php">$start = now();
-
-$end = $start-&gt;addDays(7);
-$reminder = $start-&gt;addDay();
-
-echo $start-&gt;toDateString();     // 2026-09-11
-echo $end-&gt;toDateString();       // 2026-09-11
-echo $reminder-&gt;toDateString();  // 2026-09-12</code></pre>
-<p>The original `$start` was changed by the first calculation.</p>
-<h3>CarbonImmutable Keeps the Original Date</h3>
-<p>`CarbonImmutable` returns a new instance when a date is modified:</p>
+<p>`CarbonImmutable` returns a new instance instead:</p>
 <pre><code class="language-php">use Carbon\CarbonImmutable;
 
 $date = CarbonImmutable::now();
@@ -49,112 +34,51 @@ $tomorrow = $date-&gt;addDay();
 
 echo $date-&gt;toDateString();      // 2026-09-03
 echo $tomorrow-&gt;toDateString();  // 2026-09-04</code></pre>
-<p>Now `$date` remains unchanged.</p>
-<p>Multiple calculations can safely use the same starting point:</p>
-<pre><code class="language-php">$start = CarbonImmutable::now();
-
-$end = $start-&gt;addDays(7);
-$reminder = $start-&gt;addDay();
-
-echo $start-&gt;toDateString();     // 2026-09-03
-echo $end-&gt;toDateString();       // 2026-09-10
-echo $reminder-&gt;toDateString();  // 2026-09-04</code></pre>
-<p>Each operation creates a new date instead of modifying `$start`.</p>
-<h3>Make CarbonImmutable the Default</h3>
-<p>You do not need to replace every `now()` call with `CarbonImmutable::now()`.</p>
-<p>Laravel's `Date` facade can configure the date implementation used by its date factory.</p>
-<p>Add this to `AppServiceProvider`:</p>
-<pre><code class="language-php">namespace App\Providers;
-
-use Carbon\CarbonImmutable;
+<h3>Make It the Laravel Default</h3>
+<p>You can configure Laravel's date factory to use `CarbonImmutable`:</p>
+<pre><code class="language-php">use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
-use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
-{
-    public function boot(): void
-    {
-        Date::use(CarbonImmutable::class);
-    }
-}</code></pre>
-<p>Now existing Laravel date helpers can continue to be used normally:</p>
+Date::use(CarbonImmutable::class);</code></pre>
+<p>Now existing helpers such as `now()` use immutable dates:</p>
 <pre><code class="language-php">$date = now();
 
 $tomorrow = $date-&gt;addDay();
 
 echo $date-&gt;toDateString();      // 2026-09-03
 echo $tomorrow-&gt;toDateString();  // 2026-09-04</code></pre>
-<p>The application now gets immutable dates by default.</p>
-<h3>Mutations Become Explicit</h3>
-<p>With mutable Carbon, this changes the existing object:</p>
+<p>This means you can keep using Laravel's normal date helpers without manually calling `CarbonImmutable::now()` everywhere.</p>
+<h3>Migrating an Existing Codebase</h3>
+<p>When moving an existing application to immutable dates, look for code that relies on Carbon mutating the original instance.</p>
 <pre><code class="language-php">$date = now();
 
 $date-&gt;addDay();
 
-echo $date-&gt;toDateString();  // 2026-09-04</code></pre>
-<p>With immutable dates, the result needs to be assigned if you want to update the variable:</p>
+echo $date-&gt;toDateString();  // Mutable: 2026-09-04</code></pre>
+<p>With immutable dates, assign the returned instance when you want to change the variable:</p>
 <pre><code class="language-php">$date = now();
 
 $date = $date-&gt;addDay();
 
 echo $date-&gt;toDateString();  // 2026-09-04</code></pre>
-<p>The difference is that the second version creates a new date rather than modifying the original instance.</p>
-<p>You can also keep both values:</p>
-<pre><code class="language-php">$publishedAt = now();
-
-$expiresAt = $publishedAt-&gt;addDays(30);
-
-echo $publishedAt-&gt;toDateString();  // 2026-09-03
-echo $expiresAt-&gt;toDateString();    // 2026-10-03</code></pre>
-<h3>Prefer CarbonInterface in Reusable Code</h3>
-<p>If a method only needs to work with a Carbon date, avoid unnecessarily requiring the mutable `Carbon` class.</p>
-<p>Prefer `CarbonInterface`:</p>
+<p>For reusable code, prefer `CarbonInterface` when you do not specifically need mutable `Carbon`:</p>
 <pre><code class="language-php">use Carbon\CarbonInterface;
 
 function processDate(CarbonInterface $date): void
 {
     // ...
 }</code></pre>
-<p>This allows the method to accept both mutable and immutable Carbon implementations.</p>
-<p>This is especially important for reusable packages and application code that may run in projects using different Carbon implementations.</p>
-<h3>Check Existing Code Before Switching</h3>
-<p>Making immutable dates the default changes date mutation behavior.</p>
-<p>Before enabling it in an existing application, look for code that relies on modifying a date without assigning the returned value:</p>
-<pre><code class="language-php">$date = now();
-
-$date-&gt;addDay();
-$date-&gt;addWeek();
-
-echo $date-&gt;toDateString();</code></pre>
-<p>With mutable Carbon, this produces:</p>
-<pre><code class="language-text">2026-09-11</code></pre>
-<p>With immutable Carbon, the original `$date` does not change.</p>
-<p>The equivalent immutable code is:</p>
-<pre><code class="language-php">$date = now();
-
-$date = $date-&gt;addDay();
-$date = $date-&gt;addWeek();
-
-echo $date-&gt;toDateString();  // 2026-09-11</code></pre>
-<p>Also check application and package code that explicitly type-hints `Carbon` instead of `CarbonInterface`.</p>
-<h3>When Immutable Dates Make Sense</h3>
-<p>Immutable dates are particularly useful when:</p>
+<h4>Using Rector</h4>
+<p>If you are migrating a large codebase, Rector can help with automated refactoring, but the exact Carbon migration rule should be checked against the Rector version installed in the project rather than assuming a rule name.</p>
+<p>You can inspect the rules available to your project with:</p>
+<pre><code class="language-bash">vendor/bin/rector list-rules</code></pre>
+<p>Rector also provides an online rule finder for discovering and verifying available rules.</p>
+<p>The important distinction is:</p>
 <ul>
-  <li>The same date is reused for multiple calculations.</li>
-  <li>Dates are passed between services or methods.</li>
-  <li>Date transformations should be explicit.</li>
-  <li>You want to reduce accidental mutation.</li>
-  <li>Dates are treated as values rather than mutable state.</li>
+  <li><strong>Rector</strong> can help automate repetitive migration work.</li>
+  <li><strong><code>Date::use(CarbonImmutable::class)</code></strong> makes immutable dates the Laravel default.</li>
 </ul>
-<p>For existing applications, review the codebase first because some application code or packages may rely on mutable Carbon behavior.</p>
-<h3>The Setup</h3>
-<p>The configuration itself is small:</p>
-<pre><code class="language-php">use Carbon\CarbonImmutable;
-use Illuminate\Support\Facades\Date;
-
-Date::use(CarbonImmutable::class);</code></pre>
-<p>After this, Laravel can use `CarbonImmutable` by default while you continue using familiar helpers such as `now()`.</p>
-<p>The main benefit is that date calculations no longer silently change the date instance you started with.</p>
+<p>Before enabling this globally, check application and package code that depends on mutable Carbon behavior.</p>
 ]]></content:encoded>
       <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
