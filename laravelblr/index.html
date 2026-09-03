@@ -753,8 +753,8 @@
     
         /* Slide 8: Table Container & Badges */
     .table-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
+      background: #070B11;
+      border: 1px solid rgba(255, 255, 255, 0.09);
       border-radius: var(--radius-md);
       overflow: hidden;
     }
@@ -778,7 +778,7 @@
       font-family: 'Fira Code', monospace;
       color: var(--text-dim);
       border-bottom: 1px solid var(--border-card);
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.035);
       letter-spacing: 0.05em;
       vertical-align: middle !important;
       height: 54px;
@@ -1130,7 +1130,7 @@
               <div class="t-cell">
                 <div class="t-unit t-bottom step-item" data-step="2">
                   <span class="node-tag-pill tag-pill-green">02 • CONTRIBUTOR</span>
-                  <div class="t-card-box">Submits reproduction repos, docs clarifications, and failing regression tests.</div>
+                  <div class="t-card-box">Submits reproduction repos, docs clarifications, failing regression tests, or bug fixes.</div>
                 </div>
               </div>
 
@@ -1196,6 +1196,7 @@
                 <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Public proof of how you write and test code</span></div>
                 <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Learn production architecture from popular packages</span></div>
                 <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Real work speaks louder than a resume</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Give back to the tools and community you rely on daily</span></div>
               </div>
             </div>
           </div>
@@ -1228,6 +1229,7 @@
                 <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Fixing wrong documentation and outdated examples</span></div>
                 <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Creating a small repo that easily reproduces a bug</span></div>
                 <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Adding failing tests for edge cases you faced</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Submitting targeted bug fixes for reported issues</span></div>
               </div>
             </div>
           </div>
@@ -1612,7 +1614,7 @@
         </div>
       </section>
 
-      <!-- SLIDE 13: AUTHOR VS MAINTAINER -->
+                  <!-- SLIDE 13: AUTHOR VS MAINTAINER -->
       <section class="slide" data-index="16"    data-slide-name="author-vs-maintainer">
         <div class="slide-header">
           <div class="slide-title-wrap">
@@ -1623,32 +1625,36 @@
             <span class="st-done">✓ User</span>
             <span class="st-done">✓ Contributor</span>
             <span class="st-active-author">● Author</span>
-            <span class="st-active-maintainer">● Maintainer</span>
+            <span>○ Maintainer</span>
           </div>
         </div>
         <div class="slide-body">
           <div class="divided-2col">
+            <!-- Left: Author -->
             <div>
               <div class="step-item revealed" data-step="1">
                 <span class="pill-tag tag-blue">PACKAGE AUTHOR</span>
               </div>
               <div class="dash-list" style="margin-top: 16px;">
-                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Writes the initial code and features</span></div>
-                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>Publishes v1.0.0 and sets up Packagist</span></div>
-                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>Solves their immediate project requirement</span></div>
-                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-blue">—</span><span>Focus is mostly on getting it out there</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Writes initial code and features</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>Solves their own immediate problem</span></div>
+                <div class="dash-item step-item" data-step="6"><span class="dash-symbol dash-blue">—</span><span>Publishes v1.0.0 and tags releases</span></div>
+                <div class="dash-item step-item" data-step="8"><span class="dash-symbol dash-blue">—</span><span>Focuses on moving fast and shipping</span></div>
+                <div class="dash-item step-item" data-step="10"><span class="dash-symbol dash-blue">—</span><span>Often moves on once the code works</span></div>
               </div>
             </div>
             <div class="divider-line"></div>
+            <!-- Right: Maintainer -->
             <div>
-              <div class="step-item" data-step="6">
+              <div class="step-item revealed" data-step="1">
                 <span class="pill-tag tag-green">PACKAGE MAINTAINER</span>
               </div>
               <div class="dash-list" style="margin-top: 16px;">
-                <div class="dash-item step-item" data-step="7"><span class="dash-symbol">—</span><span>Reviews community issues and incoming PRs</span></div>
-                <div class="dash-item step-item" data-step="8"><span class="dash-symbol">—</span><span>Updates support for new PHP and Laravel versions</span></div>
-                <div class="dash-item step-item" data-step="9"><span class="dash-symbol">—</span><span>Prevents breaking changes and scope creep</span></div>
-                <div class="dash-item step-item" data-step="10"><span class="dash-symbol">—</span><span>Maintains CI test pipelines and security patches</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Reviews issues and other people's PRs</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Protects stability for the wider ecosystem</span></div>
+                <div class="dash-item step-item" data-step="7"><span class="dash-symbol">—</span><span>Manages upgrade matrices and SemVer</span></div>
+                <div class="dash-item step-item" data-step="9"><span class="dash-symbol">—</span><span>Focuses on backwards compatibility</span></div>
+                <div class="dash-item step-item" data-step="11"><span class="dash-symbol">—</span><span>Commits to long-term trust and maintenance</span></div>
               </div>
             </div>
           </div>
