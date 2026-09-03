@@ -7,13 +7,15 @@
     "tags": [
       "Laravel",
       "Carbon",
-      "Dates"
+      "Dates",
+      "Rector",
+      "Refactoring"
     ],
     "created_at": "2026-09-03",
     "effective_date": "2026-09-03",
     "date": "2026-09-03",
     "formatted_date": "Sep 3, 2026",
-    "summary": "Make Laravel use CarbonImmutable by default so date calculations don't unexpectedly modify the original date. Carbon dates are mutable by default, so date op...",
+    "summary": "Configure Laravel's Date facade to use CarbonImmutable by default, and automate migrating legacy Carbon calls with Rector. By default, Carbon instances in PH...",
     "readingTime": 2,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -1332,7 +1334,7 @@
     "effective_date": "2026-07-15",
     "date": "2026-07-15",
     "formatted_date": "Jul 15, 2026",
-    "summary": "Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI agents are part of moder...",
+    "summary": "Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI coding agents (Cursor, C...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -1645,7 +1647,7 @@
     "date": "2026-06-20",
     "formatted_date": "Jun 20, 2026",
     "summary": "Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances. When you need a single a...",
-    "readingTime": 1,
+    "readingTime": 2,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
       "text": "text-red-700 dark:text-red-300",
@@ -1717,8 +1719,8 @@
     "effective_date": "2026-05-18",
     "date": "2026-05-18",
     "formatted_date": "May 18, 2026",
-    "summary": "Enable Test Impact Analysis (TIA) in Pest to only run tests directly covering code that changed since the last commit. Running full test suites on every tiny...",
-    "readingTime": 1,
+    "summary": "Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests. Running full tes...",
+    "readingTime": 2,
     "badge": {
       "bg": "bg-purple-50 dark:bg-purple-950/50",
       "text": "text-purple-700 dark:text-purple-300",
@@ -2354,7 +2356,7 @@
     "effective_date": "2025-12-28",
     "date": "2025-12-28",
     "formatted_date": "Dec 28, 2025",
-    "summary": "Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators. When running large test suites with hun...",
+    "summary": "Use the --compact flag or set it in your composer.json test script for minimal single-character test progress indicators. When running large test suites with...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-purple-50 dark:bg-purple-950/50",
@@ -2795,7 +2797,7 @@
     "effective_date": "2025-07-12",
     "date": "2025-07-12",
     "formatted_date": "Jul 12, 2025",
-    "summary": "Prefix any application class import with Facades\\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal services...",
+    "summary": "Prefix any application class import with Facades\\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal applicati...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -4280,7 +4282,7 @@
     "effective_date": "2024-03-07",
     "date": "2024-03-07",
     "formatted_date": "Mar 7, 2024",
-    "summary": "Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...",
+    "summary": "Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When working with base query scopes or reposito...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -4529,7 +4531,7 @@
     "effective_date": "2024-01-29",
     "date": "2024-01-29",
     "formatted_date": "Jan 29, 2024",
-    "summary": "Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands like databa...",
+    "summary": "Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands (such as ge...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -6465,7 +6467,7 @@
     "effective_date": "2023-06-26",
     "date": "2023-06-26",
     "formatted_date": "Jun 26, 2023",
-    "summary": "Laravel automatically trims request strings and converts empty string inputs to null via default global middleware. Laravel includes TrimStrings and ConvertE...",
+    "summary": "Laravel automatically trims request strings and converts empty string inputs to null via default global middleware. Laravel includes string trimming and empt...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",
@@ -6586,7 +6588,7 @@
     "effective_date": "2023-06-21",
     "date": "2023-06-21",
     "formatted_date": "Jun 21, 2023",
-    "summary": "Use mergeCasts() to dynamically append attribute casting rules to Eloquent model instances at runtime. When working with dynamic attributes or traits on mode...",
+    "summary": "Use mergeCasts() to dynamically append attribute casting rules to Eloquent model instances or inside reusable model traits. When developing reusable model tr...",
     "readingTime": 1,
     "badge": {
       "bg": "bg-red-50 dark:bg-red-950/50",

@@ -17,7 +17,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands like databa...">
+    <meta name="description" content="Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands (such as ge...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-artisan-queue-background-commands">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
@@ -26,7 +26,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-artisan-queue-background-commands">
     <meta property="og:title" content="Queue Heavy Artisan Commands with Artisan::queue() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands like databa...">
+    <meta property="og:description" content="Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands (such as ge...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-artisan-queue-background-commands.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-artisan-queue-background-commands.png">
     <meta property="og:image:type" content="image/png">
@@ -45,7 +45,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-artisan-queue-background-commands">
     <meta name="twitter:title" content="Queue Heavy Artisan Commands with Artisan::queue() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands like databa...">
+    <meta name="twitter:description" content="Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands (such as ge...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-artisan-queue-background-commands.png">
     <meta name="twitter:image:alt" content="Queue Heavy Artisan Commands with Artisan::queue() - Punyapal Shah">
 
@@ -58,7 +58,7 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/laravel-artisan-queue-background-commands#article",
                 "headline": "Queue Heavy Artisan Commands with Artisan::queue()",
-                "description": "Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands like databa...",
+                "description": "Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands (such as ge...",
                 "datePublished": "2024-01-29",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-artisan-queue-background-commands",
@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Running heavy Artisan commands like database backups or report generators inside HTTP controller requests blocks the user web server thread. Artisan::queue() dispatches the command to queue workers.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Running heavy Artisan commands (such as generating bulk reports, clearing large cache stores, or sending system audits) inside HTTP controller requests blocks the user web server thread.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code>Artisan::queue()</code> dispatches the command directly to background queue workers.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Code Example</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -751,10 +752,15 @@
         </div>
         <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Artisan;
 
-// Pushes Artisan command execution to default background queue
+// 1. Pushes command execution to default background queue
 Artisan::queue(&#039;reports:generate&#039;, [
     &#039;--user&#039; =&gt; $user-&gt;id,
-]);" aria-label="Copy code to clipboard">
+]);
+
+// 2. Specify dedicated connection and queue worker
+Artisan::queue(&#039;reports:generate&#039;, [&#039;--user&#039; =&gt; $user-&gt;id])
+    -&gt;onConnection(&#039;redis&#039;)
+    -&gt;onQueue(&#039;exports&#039;);" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
@@ -763,11 +769,17 @@ Artisan::queue(&#039;reports:generate&#039;, [
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Artisan</span>;
 
-<span class="hljs-comment">// Pushes Artisan command execution to default background queue</span>
+<span class="hljs-comment">// 1. Pushes command execution to default background queue</span>
 <span class="hljs-title class_">Artisan</span>::<span class="hljs-title function_ invoke__">queue</span>(<span class="hljs-string">&#x27;reports:generate&#x27;</span>, [
     <span class="hljs-string">&#x27;--user&#x27;</span> =&gt; <span class="hljs-variable">$user</span>-&gt;id,
-]);</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Dispatches command execution as a background queue job</span></li><li class="leading-relaxed"><span class="align-middle">Prevents HTTP request timeouts during long-running tasks</span></li><li class="leading-relaxed"><span class="align-middle">Accepts command arguments and option arrays</span></li></ul>
+]);
+
+<span class="hljs-comment">// 2. Specify dedicated connection and queue worker</span>
+<span class="hljs-title class_">Artisan</span>::<span class="hljs-title function_ invoke__">queue</span>(<span class="hljs-string">&#x27;reports:generate&#x27;</span>, [<span class="hljs-string">&#x27;--user&#x27;</span> =&gt; <span class="hljs-variable">$user</span>-&gt;id])
+    -&gt;<span class="hljs-title function_ invoke__">onConnection</span>(<span class="hljs-string">&#x27;redis&#x27;</span>)
+    -&gt;<span class="hljs-title function_ invoke__">onQueue</span>(<span class="hljs-string">&#x27;exports&#x27;</span>);</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Non-Blocking</strong>: Prevents HTTP timeouts by running commands asynchronously in background queue workers.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Routing Control</strong>: Chain <code>onConnection()</code> and <code>onQueue()</code> to route tasks to dedicated worker pools.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Argument Support</strong>: Accepts command arguments and flag options in standard key-value arrays.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

@@ -17,7 +17,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...">
+    <meta name="description" content="Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When working with base query scopes or reposito...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
@@ -26,7 +26,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder">
     <meta property="og:title" content="Clear Query Order Constraints with reorder() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...">
+    <meta property="og:description" content="Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When working with base query scopes or reposito...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-eloquent-reorder-query-builder.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-eloquent-reorder-query-builder.png">
     <meta property="og:image:type" content="image/png">
@@ -45,7 +45,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder">
     <meta name="twitter:title" content="Clear Query Order Constraints with reorder() - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...">
+    <meta name="twitter:description" content="Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When working with base query scopes or reposito...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-eloquent-reorder-query-builder.png">
     <meta name="twitter:image:alt" content="Clear Query Order Constraints with reorder() - Punyapal Shah">
 
@@ -58,7 +58,7 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder#article",
                 "headline": "Clear Query Order Constraints with reorder()",
-                "description": "Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...",
+                "description": "Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When working with base query scopes or reposito...",
                 "datePublished": "2024-03-07",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder",
@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When modifying existing query builders or model scopes that already contain orderBy clauses, appending another orderBy appends a secondary sort. reorder() strips existing ordering rules.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When working with base query scopes or repository methods that already include an <code>orderBy</code> clause, calling <code>orderBy()</code> again appends a secondary sort rather than replacing the primary sort.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code>reorder()</code> removes previously assigned order clauses cleanly.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Code Examples</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -751,10 +752,15 @@
         </div>
         <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\User;
 
+// Base query has default alphabetical ordering
 $query = User::orderBy(&#039;name&#039;, &#039;asc&#039;);
 
-// Replaces &#039;name&#039; sorting with &#039;created_at&#039; sorting
-$users = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();" aria-label="Copy code to clipboard">
+// 1. Completely remove all ORDER BY clauses (runs without order constraints)
+$unordered = (clone $query)-&gt;reorder()-&gt;get();
+
+// 2. Clear previous sort and apply new ordering
+$recentUsers = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();
+// SQL: select * from `users` order by `created_at` desc" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
@@ -763,11 +769,17 @@ $users = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
 
+<span class="hljs-comment">// Base query has default alphabetical ordering</span>
 <span class="hljs-variable">$query</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">orderBy</span>(<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;asc&#x27;</span>);
 
-<span class="hljs-comment">// Replaces &#x27;name&#x27; sorting with &#x27;created_at&#x27; sorting</span>
-<span class="hljs-variable">$users</span> = <span class="hljs-variable">$query</span>-&gt;<span class="hljs-title function_ invoke__">reorder</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-string">&#x27;desc&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Strips all existing orderBy clauses from the query builder</span></li><li class="leading-relaxed"><span class="align-middle">Accepts optional new column and direction arguments to re-apply sorting</span></li><li class="leading-relaxed"><span class="align-middle">Essential when overriding default sorting rules defined in model scopes</span></li></ul>
+<span class="hljs-comment">// 1. Completely remove all ORDER BY clauses (runs without order constraints)</span>
+<span class="hljs-variable">$unordered</span> = (<span class="hljs-keyword">clone</span> <span class="hljs-variable">$query</span>)-&gt;<span class="hljs-title function_ invoke__">reorder</span>()-&gt;<span class="hljs-title function_ invoke__">get</span>();
+
+<span class="hljs-comment">// 2. Clear previous sort and apply new ordering</span>
+<span class="hljs-variable">$recentUsers</span> = <span class="hljs-variable">$query</span>-&gt;<span class="hljs-title function_ invoke__">reorder</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-string">&#x27;desc&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>();
+<span class="hljs-comment">// SQL: select * from `users` order by `created_at` desc</span></code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Scope Overrides</strong>: Safely override hardcoded sorting rules defined in model global or local query scopes.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Clean Reset</strong>: Calling <code>-&gt;reorder()</code> without arguments resets the query&#39;s internal <code>$orders</code> array to empty.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Direction Flexibility</strong>: Accepts new column and direction arguments (<code>&#39;asc&#39;</code> or <code>&#39;desc&#39;</code>) in a single fluent call.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

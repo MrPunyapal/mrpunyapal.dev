@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Testing JSON attributes or PHP backed enums requires no manual casting or encoding. assertDatabaseHas() supports arrow syntax and serializes enums automatically.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Testing JSON attributes or PHP backed enums in database assertions requires no manual casting, JSON encoding, or <code>-&gt;value</code> calls.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code>assertDatabaseHas()</code> natively serializes backed enums and translates arrow notation into database JSON queries.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Code Examples</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -749,7 +750,17 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$this-&gt;assertDatabaseHas(&#039;users&#039;, [
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Enums\UserRole;
+
+// In Pest tests:
+assertDatabaseHas(&#039;users&#039;, [
+    &#039;role&#039; =&gt; UserRole::Maintainer, // Serializes backed enum automatically
+    &#039;settings-&gt;theme&#039; =&gt; &#039;dark&#039;,    // Queries nested JSON key
+    &#039;settings-&gt;notifications-&gt;email&#039; =&gt; true,
+]);
+
+// In PHPUnit tests:
+$this-&gt;assertDatabaseHas(&#039;users&#039;, [
     &#039;role&#039; =&gt; UserRole::Maintainer,
     &#039;settings-&gt;theme&#039; =&gt; &#039;dark&#039;,
 ]);" aria-label="Copy code to clipboard">
@@ -759,11 +770,22 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">assertDatabaseHas</span>(<span class="hljs-string">&#x27;users&#x27;</span>, [
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Enums</span>\<span class="hljs-title">UserRole</span>;
+
+<span class="hljs-comment">// In Pest tests:</span>
+<span class="hljs-title function_ invoke__">assertDatabaseHas</span>(<span class="hljs-string">&#x27;users&#x27;</span>, [
+    <span class="hljs-string">&#x27;role&#x27;</span> =&gt; <span class="hljs-title class_">UserRole</span>::<span class="hljs-variable constant_">Maintainer</span>, // Serializes backed <span class="hljs-keyword">enum</span> automatically
+    <span class="hljs-string">&#x27;settings-&gt;theme&#x27;</span> =&gt; <span class="hljs-string">&#x27;dark&#x27;</span>,    // Queries nested JSON key
+    <span class="hljs-string">&#x27;settings-&gt;notifications-&gt;email&#x27;</span> =&gt; <span class="hljs-literal">true</span>,
+]);
+
+<span class="hljs-comment">// In PHPUnit tests:</span>
+<span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">assertDatabaseHas</span>(<span class="hljs-string">&#x27;users&#x27;</span>, [
     <span class="hljs-string">&#x27;role&#x27;</span> =&gt; <span class="hljs-title class_">UserRole</span>::<span class="hljs-variable constant_">Maintainer</span>,
     <span class="hljs-string">&#x27;settings-&gt;theme&#x27;</span> =&gt; <span class="hljs-string">&#x27;dark&#x27;</span>,
 ]);</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Handles Backed Enums directly without -&gt;value casting</span></li><li class="leading-relaxed"><span class="align-middle">Queries nested JSON keys using arrow notation</span></li><li class="leading-relaxed"><span class="align-middle">Works out of the box with Pest and PHPUnit assertions</span></li></ul>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Enum Serialization</strong>: Passes backed enum instances directly without manual <code>-&gt;value</code> extraction.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Nested JSON Traversal</strong>: Arrow syntax (<code>settings-&gt;theme</code>) queries database JSON paths across MySQL, PostgreSQL, and SQLite.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Framework Agnostic</strong>: Works identically in both Pest test functions and PHPUnit test cases.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use FilamentPHP to build full-featured administrative panels, forms, and tables using Livewire and Alpine.js.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Building custom admin dashboards from scratch requires writing repetitive Blade components, Livewire tables, and form validation. Filament provides pre-built TALL stack components out of the box.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use FilamentPHP to build full-featured administrative panels, forms, and tables using Livewire and Alpine.js.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Building custom admin dashboards from scratch requires writing repetitive Blade components, Livewire tables, and form validation.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Filament provides pre-built, production-ready TALL stack components out of the box.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Form Schema Example</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Define typed form schemas inside your Filament Resource classes:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -749,17 +750,25 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Filament\Forms\Components\TextInput;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Filament\Resources;
+
+use Filament\Forms\Form;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 
 public static function form(Form $form): Form
 {
     return $form-&gt;schema([
-        TextInput::make(&#039;name&#039;)-&gt;required(),
-        Select::make(&#039;role&#039;)-&gt;options([
-            &#039;admin&#039; =&gt; &#039;Admin&#039;,
-            &#039;editor&#039; =&gt; &#039;Editor&#039;,
-        ]),
+        TextInput::make(&#039;name&#039;)
+            -&gt;required()
+            -&gt;maxLength(255),
+
+        Select::make(&#039;role&#039;)
+            -&gt;options([
+                &#039;admin&#039;  =&gt; &#039;Administrator&#039;,
+                &#039;editor&#039; =&gt; &#039;Editor&#039;,
+            ])
+            -&gt;required(),
     ]);
 }" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -768,20 +777,29 @@ public static function form(Form $form): Form
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Filament</span>\<span class="hljs-title">Forms</span>\<span class="hljs-title">Components</span>\<span class="hljs-title">TextInput</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Filament</span>\<span class="hljs-title class_">Resources</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Filament</span>\<span class="hljs-title">Forms</span>\<span class="hljs-title">Form</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Filament</span>\<span class="hljs-title">Forms</span>\<span class="hljs-title">Components</span>\<span class="hljs-title">TextInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Filament</span>\<span class="hljs-title">Forms</span>\<span class="hljs-title">Components</span>\<span class="hljs-title">Select</span>;
 
 <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">form</span>(<span class="hljs-params">Form <span class="hljs-variable">$form</span></span>): <span class="hljs-title">Form</span>
 </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-variable">$form</span>-&gt;<span class="hljs-title function_ invoke__">schema</span>([
-        <span class="hljs-title class_">TextInput</span>::<span class="hljs-title function_ invoke__">make</span>(<span class="hljs-string">&#x27;name&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">required</span>(),
-        <span class="hljs-title class_">Select</span>::<span class="hljs-title function_ invoke__">make</span>(<span class="hljs-string">&#x27;role&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">options</span>([
-            <span class="hljs-string">&#x27;admin&#x27;</span> =&gt; <span class="hljs-string">&#x27;Admin&#x27;</span>,
-            <span class="hljs-string">&#x27;editor&#x27;</span> =&gt; <span class="hljs-string">&#x27;Editor&#x27;</span>,
-        ]),
+        <span class="hljs-title class_">TextInput</span>::<span class="hljs-title function_ invoke__">make</span>(<span class="hljs-string">&#x27;name&#x27;</span>)
+            -&gt;<span class="hljs-title function_ invoke__">required</span>()
+            -&gt;<span class="hljs-title function_ invoke__">maxLength</span>(<span class="hljs-number">255</span>),
+
+        <span class="hljs-title class_">Select</span>::<span class="hljs-title function_ invoke__">make</span>(<span class="hljs-string">&#x27;role&#x27;</span>)
+            -&gt;<span class="hljs-title function_ invoke__">options</span>([
+                <span class="hljs-string">&#x27;admin&#x27;</span>  =&gt; <span class="hljs-string">&#x27;Administrator&#x27;</span>,
+                <span class="hljs-string">&#x27;editor&#x27;</span> =&gt; <span class="hljs-string">&#x27;Editor&#x27;</span>,
+            ])
+            -&gt;<span class="hljs-title function_ invoke__">required</span>(),
     ]);
 }</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">First-party TALL stack admin framework built on Livewire and Alpine.js</span></li><li class="leading-relaxed"><span class="align-middle">Includes form builders, data tables, notifications, and dashboard widgets</span></li><li class="leading-relaxed"><span class="align-middle">Extremely extensible via custom Livewire components</span></li></ul>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Core Features</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>TALL Stack Native</strong>: Built directly on Livewire, Alpine.js, Tailwind CSS, and Laravel.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Pre-Built Primitives</strong>: Ships with form builders, interactive data tables, notifications, modal drawers, and chart widgets.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Extensible</strong>: Easily embed custom Livewire components and Blade views inside any Filament page.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

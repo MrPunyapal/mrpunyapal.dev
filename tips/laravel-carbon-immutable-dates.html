@@ -17,7 +17,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Make Laravel use CarbonImmutable by default so date calculations don&#039;t unexpectedly modify the original date. Carbon dates are mutable by default, so date op...">
+    <meta name="description" content="Configure Laravel&#039;s Date facade to use CarbonImmutable by default, and automate migrating legacy Carbon calls with Rector. By default, Carbon instances in PH...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
@@ -26,7 +26,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates">
     <meta property="og:title" content="Use Immutable Dates by Default in Laravel - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Make Laravel use CarbonImmutable by default so date calculations don&#039;t unexpectedly modify the original date. Carbon dates are mutable by default, so date op...">
+    <meta property="og:description" content="Configure Laravel&#039;s Date facade to use CarbonImmutable by default, and automate migrating legacy Carbon calls with Rector. By default, Carbon instances in PH...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-carbon-immutable-dates.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-carbon-immutable-dates.png">
     <meta property="og:image:type" content="image/png">
@@ -45,7 +45,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates">
     <meta name="twitter:title" content="Use Immutable Dates by Default in Laravel - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Make Laravel use CarbonImmutable by default so date calculations don&#039;t unexpectedly modify the original date. Carbon dates are mutable by default, so date op...">
+    <meta name="twitter:description" content="Configure Laravel&#039;s Date facade to use CarbonImmutable by default, and automate migrating legacy Carbon calls with Rector. By default, Carbon instances in PH...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-carbon-immutable-dates.png">
     <meta name="twitter:image:alt" content="Use Immutable Dates by Default in Laravel - Punyapal Shah">
 
@@ -58,11 +58,11 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates#article",
                 "headline": "Use Immutable Dates by Default in Laravel",
-                "description": "Make Laravel use CarbonImmutable by default so date calculations don't unexpectedly modify the original date. Carbon dates are mutable by default, so date op...",
+                "description": "Configure Laravel's Date facade to use CarbonImmutable by default, and automate migrating legacy Carbon calls with Rector. By default, Carbon instances in PH...",
                 "datePublished": "2026-09-03",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates",
-                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Carbon, Dates",
+                "keywords": "Laravel, PHP tips, Laravel tips, Laravel, Carbon, Dates, Rector, Refactoring",
                 "author": {
                     "@type": "Person",
                     "name": "Punyapal Shah",
@@ -741,7 +741,7 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Make Laravel use <code>CarbonImmutable</code> by default so date calculations don&#39;t unexpectedly modify the original date.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Carbon dates are mutable by default, so date operations can unexpectedly change the original instance.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Configure Laravel&#39;s Date facade to use CarbonImmutable by default, and automate migrating legacy Carbon calls with Rector.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">By default, Carbon instances in PHP are mutable. Modifying a date instance unexpectedly alters the original variable:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -753,8 +753,9 @@
 
 $tomorrow = $date-&gt;addDay();
 
-echo $date-&gt;toDateString();      // 2026-09-04
-echo $tomorrow-&gt;toDateString();  // 2026-09-04" aria-label="Copy code to clipboard">
+// Both variables now point to tomorrow!
+echo $date-&gt;toDateString();     // 2026-09-04
+echo $tomorrow-&gt;toDateString(); // 2026-09-04" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
@@ -765,9 +766,11 @@ echo $tomorrow-&gt;toDateString();  // 2026-09-04" aria-label="Copy code to clip
 
 <span class="hljs-variable">$tomorrow</span> = <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">addDay</span>();
 
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();      <span class="hljs-comment">// 2026-09-04</span>
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$tomorrow</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();  <span class="hljs-comment">// 2026-09-04</span></code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code>CarbonImmutable</code> returns a new instance instead:</p>
+<span class="hljs-comment">// Both variables now point to tomorrow!</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();     <span class="hljs-comment">// 2026-09-04</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$tomorrow</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>(); <span class="hljs-comment">// 2026-09-04</span></code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Configure the Date Facade</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In <code>AppServiceProvider::boot()</code>, instruct Laravel&#39;s <code>Date</code> factory to generate <code>CarbonImmutable</code> instances:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -775,137 +778,18 @@ echo $tomorrow-&gt;toDateString();  // 2026-09-04" aria-label="Copy code to clip
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Carbon\CarbonImmutable;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Providers;
 
-$date = CarbonImmutable::now();
-
-$tomorrow = $date-&gt;addDay();
-
-echo $date-&gt;toDateString();      // 2026-09-03
-echo $tomorrow-&gt;toDateString();  // 2026-09-04" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">CarbonImmutable</span>;
-
-<span class="hljs-variable">$date</span> = <span class="hljs-title class_">CarbonImmutable</span>::<span class="hljs-title function_ invoke__">now</span>();
-
-<span class="hljs-variable">$tomorrow</span> = <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">addDay</span>();
-
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();      <span class="hljs-comment">// 2026-09-03</span>
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$tomorrow</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();  <span class="hljs-comment">// 2026-09-04</span></code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Make It the Laravel Default</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">You can configure Laravel&#39;s date factory to use <code>CarbonImmutable</code>:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Carbon\CarbonImmutable;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\ServiceProvider;
 
-Date::use(CarbonImmutable::class);" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">CarbonImmutable</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Date</span>;
-
-<span class="hljs-title class_">Date</span>::<span class="hljs-keyword">use</span>(<span class="hljs-title">CarbonImmutable</span>::<span class="hljs-title">class</span>);</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Now existing helpers such as <code>now()</code> use immutable dates:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$date = now();
-
-$tomorrow = $date-&gt;addDay();
-
-echo $date-&gt;toDateString();      // 2026-09-03
-echo $tomorrow-&gt;toDateString();  // 2026-09-04" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$date</span> = <span class="hljs-title function_ invoke__">now</span>();
-
-<span class="hljs-variable">$tomorrow</span> = <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">addDay</span>();
-
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();      <span class="hljs-comment">// 2026-09-03</span>
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$tomorrow</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();  <span class="hljs-comment">// 2026-09-04</span></code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This means you can keep using Laravel&#39;s normal date helpers without manually calling <code>CarbonImmutable::now()</code> everywhere.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Migrating an Existing Codebase</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When moving an existing application to immutable dates, look for code that relies on Carbon mutating the original instance.</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$date = now();
-
-$date-&gt;addDay();
-
-echo $date-&gt;toDateString();  // Mutable: 2026-09-04" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$date</span> = <span class="hljs-title function_ invoke__">now</span>();
-
-<span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">addDay</span>();
-
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();  <span class="hljs-comment">// Mutable: 2026-09-04</span></code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">With immutable dates, assign the returned instance when you want to change the variable:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$date = now();
-
-$date = $date-&gt;addDay();
-
-echo $date-&gt;toDateString();  // 2026-09-04" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$date</span> = <span class="hljs-title function_ invoke__">now</span>();
-
-<span class="hljs-variable">$date</span> = <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">addDay</span>();
-
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();  <span class="hljs-comment">// 2026-09-04</span></code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">For reusable code, prefer <code>CarbonInterface</code> when you do not specifically need mutable <code>Carbon</code>:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Carbon\CarbonInterface;
-
-function processDate(CarbonInterface $date): void
+class AppServiceProvider extends ServiceProvider
 {
-    // ...
+    public function boot(): void
+    {
+        Date::use(CarbonImmutable::class);
+    }
 }" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -913,13 +797,20 @@ function processDate(CarbonInterface $date): void
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">CarbonInterface</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Providers</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processDate</span>(<span class="hljs-params">CarbonInterface <span class="hljs-variable">$date</span></span>): <span class="hljs-title">void</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">CarbonImmutable</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Date</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppServiceProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
 </span>{
-    <span class="hljs-comment">// ...</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boot</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
+    </span>{
+        <span class="hljs-title class_">Date</span>::<span class="hljs-keyword">use</span>(<span class="hljs-title">CarbonImmutable</span>::<span class="hljs-title">class</span>);
+    }
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Using Rector</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If you are migrating a large codebase, Rector can help with automated refactoring, but the exact Carbon migration rule should be checked against the Rector version installed in the project rather than assuming a rule name.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">You can inspect the rules available to your project with:</p>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Once configured, all calls through the <code>Date</code> facade as well as Laravel helpers (<code>now()</code>, <code>today()</code>) return immutable instances:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -927,15 +818,138 @@ function processDate(CarbonInterface $date): void
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="vendor/bin/rector list-rules" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$date = now();
+
+$tomorrow = $date-&gt;addDay();
+
+echo $date-&gt;toDateString();     // 2026-09-03 (original remains unchanged)
+echo $tomorrow-&gt;toDateString(); // 2026-09-04" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash">vendor/bin/rector list-rules</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Rector also provides an online rule finder for discovering and verifying available rules.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The important distinction is:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Rector</strong> can help automate repetitive migration work.</span></li><li class="leading-relaxed"><span class="align-middle"><strong><code>Date::use(CarbonImmutable::class)</code></strong> makes immutable dates the Laravel default.</span></li></ul><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Before enabling this globally, check application and package code that depends on mutable Carbon behavior.</p>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$date</span> = <span class="hljs-title function_ invoke__">now</span>();
+
+<span class="hljs-variable">$tomorrow</span> = <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">addDay</span>();
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();     <span class="hljs-comment">// 2026-09-03 (original remains unchanged)</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$tomorrow</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>(); <span class="hljs-comment">// 2026-09-04</span></code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. The Direct Carbon Trap</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">While <code>Date::use(CarbonImmutable::class)</code> secures <code>now()</code>, <code>today()</code>, and <code>Date::now()</code>, any code directly calling <code>Carbon::now()</code> or <code>Carbon::parse()</code> bypasses Laravel&#39;s date factory and remains mutable:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Carbon\Carbon;
+
+// ❌ Bypasses Laravel&#039;s Date factory; remains mutable
+$date = Carbon::parse(&#039;2026-09-03&#039;);
+
+// ✅ Routes through Date factory; returns CarbonImmutable
+$date = Date::parse(&#039;2026-09-03&#039;);" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">Carbon</span>;
+
+<span class="hljs-comment">// ❌ Bypasses Laravel&#x27;s Date factory; remains mutable</span>
+<span class="hljs-variable">$date</span> = <span class="hljs-title class_">Carbon</span>::<span class="hljs-title function_ invoke__">parse</span>(<span class="hljs-string">&#x27;2026-09-03&#x27;</span>);
+
+<span class="hljs-comment">// ✅ Routes through Date factory; returns CarbonImmutable</span>
+<span class="hljs-variable">$date</span> = <span class="hljs-title class_">Date</span>::<span class="hljs-title function_ invoke__">parse</span>(<span class="hljs-string">&#x27;2026-09-03&#x27;</span>);</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">3. Automate Codebase Migration with Rector</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To migrate an existing codebase so all static Carbon calls route through Laravel&#39;s <code>Date</code> facade, use <a href="https://getrector.com/rule-detail/carbon-to-date-facade-rector" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline font-semibold">`CarbonToDateFacadeRector`</a> from <code>rector-laravel</code>:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="composer require --dev driftingly/rector-laravel" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash">composer require --dev driftingly/rector-laravel</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Register the rule in <code>rector.php</code>:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// rector.php
+use Rector\Config\RectorConfig;
+use RectorLaravel\Rector\StaticCall\CarbonToDateFacadeRector;
+
+return RectorConfig::configure()
+    -&gt;withRules([
+        CarbonToDateFacadeRector::class,
+    ]);" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// rector.php</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">Rector</span>\<span class="hljs-title">Config</span>\<span class="hljs-title">RectorConfig</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">RectorLaravel</span>\<span class="hljs-title">Rector</span>\<span class="hljs-title">StaticCall</span>\<span class="hljs-title">CarbonToDateFacadeRector</span>;
+
+<span class="hljs-keyword">return</span> <span class="hljs-title class_">RectorConfig</span>::<span class="hljs-title function_ invoke__">configure</span>()
+    -&gt;<span class="hljs-title function_ invoke__">withRules</span>([
+        <span class="hljs-title class_">CarbonToDateFacadeRector</span>::<span class="hljs-variable language_">class</span>,
+    ]);</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">What Rector Automatically Transforms</h4>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="// Before Rector:
+use Carbon\Carbon;
+
+$now = Carbon::now();
+$date = Carbon::parse(&#039;2026-01-01&#039;);
+
+// After Rector:
+use Illuminate\Support\Facades\Date;
+
+$now = Date::now();
+$date = Date::parse(&#039;2026-01-01&#039;);" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Before Rector:</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">Carbon</span>;
+
+<span class="hljs-variable">$now</span> = <span class="hljs-title class_">Carbon</span>::<span class="hljs-title function_ invoke__">now</span>();
+<span class="hljs-variable">$date</span> = <span class="hljs-title class_">Carbon</span>::<span class="hljs-title function_ invoke__">parse</span>(<span class="hljs-string">&#x27;2026-01-01&#x27;</span>);
+
+<span class="hljs-comment">// After Rector:</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Date</span>;
+
+<span class="hljs-variable">$now</span> = <span class="hljs-title class_">Date</span>::<span class="hljs-title function_ invoke__">now</span>();
+<span class="hljs-variable">$date</span> = <span class="hljs-title class_">Date</span>::<span class="hljs-title function_ invoke__">parse</span>(<span class="hljs-string">&#x27;2026-01-01&#x27;</span>);</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Predictable Date Math</strong>: Operations like <code>addDay()</code> or <code>subMonth()</code> always return new instances without mutating source dates.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Framework Uniformity</strong>: Using <code>Date::use(CarbonImmutable::class)</code> guarantees all Eloquent timestamps, cast dates, and helpers share the same immutable behavior.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Automated Modernization</strong>: <code>CarbonToDateFacadeRector</code> removes manual search-and-replace across legacy controllers and services.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->
@@ -953,7 +967,7 @@ function processDate(CarbonInterface $date): void
                             <svg class="icon text-xs" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-tag"/></svg>
                             Tags:
                         </span>
-                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Carbon</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Dates</span>
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Laravel</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Carbon</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Dates</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Rector</span> <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-900/60">Refactoring</span>
                     </div>
 
                     <div class="flex items-center gap-2">

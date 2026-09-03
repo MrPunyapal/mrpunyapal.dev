@@ -16,69 +16,81 @@
       <title><![CDATA[Use Immutable Dates by Default in Laravel]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates</guid>
-      <description><![CDATA[Make Laravel use CarbonImmutable by default so date calculations don't unexpectedly modify the original date. Carbon dates are mutable by default, so date op...]]></description>
-      <content:encoded><![CDATA[<blockquote>Make Laravel use `CarbonImmutable` by default so date calculations don't unexpectedly modify the original date.</blockquote>
-<p>Carbon dates are mutable by default, so date operations can unexpectedly change the original instance.</p>
+      <description><![CDATA[Configure Laravel's Date facade to use CarbonImmutable by default, and automate migrating legacy Carbon calls with Rector. By default, Carbon instances in PH...]]></description>
+      <content:encoded><![CDATA[<blockquote>Configure Laravel's Date facade to use CarbonImmutable by default, and automate migrating legacy Carbon calls with Rector.</blockquote>
+<p>By default, Carbon instances in PHP are mutable. Modifying a date instance unexpectedly alters the original variable:</p>
 <pre><code class="language-php">$date = now();
 
 $tomorrow = $date-&gt;addDay();
 
-echo $date-&gt;toDateString();      // 2026-09-04
-echo $tomorrow-&gt;toDateString();  // 2026-09-04</code></pre>
-<p>`CarbonImmutable` returns a new instance instead:</p>
-<pre><code class="language-php">use Carbon\CarbonImmutable;
+// Both variables now point to tomorrow!
+echo $date-&gt;toDateString();     // 2026-09-04
+echo $tomorrow-&gt;toDateString(); // 2026-09-04</code></pre>
+<hr>
+<h3>1. Configure the Date Facade</h3>
+<p>In `AppServiceProvider::boot()`, instruct Laravel's `Date` factory to generate `CarbonImmutable` instances:</p>
+<pre><code class="language-php">namespace App\Providers;
 
-$date = CarbonImmutable::now();
+use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Date::use(CarbonImmutable::class);
+    }
+}</code></pre>
+<p>Once configured, all calls through the `Date` facade as well as Laravel helpers (`now()`, `today()`) return immutable instances:</p>
+<pre><code class="language-php">$date = now();
 
 $tomorrow = $date-&gt;addDay();
 
-echo $date-&gt;toDateString();      // 2026-09-03
-echo $tomorrow-&gt;toDateString();  // 2026-09-04</code></pre>
-<h3>Make It the Laravel Default</h3>
-<p>You can configure Laravel's date factory to use `CarbonImmutable`:</p>
-<pre><code class="language-php">use Carbon\CarbonImmutable;
+echo $date-&gt;toDateString();     // 2026-09-03 (original remains unchanged)
+echo $tomorrow-&gt;toDateString(); // 2026-09-04</code></pre>
+<hr>
+<h3>2. The Direct Carbon Trap</h3>
+<p>While `Date::use(CarbonImmutable::class)` secures `now()`, `today()`, and `Date::now()`, any code directly calling `Carbon::now()` or `Carbon::parse()` bypasses Laravel's date factory and remains mutable:</p>
+<pre><code class="language-php">use Carbon\Carbon;
+
+// ❌ Bypasses Laravel&#039;s Date factory; remains mutable
+$date = Carbon::parse(&#039;2026-09-03&#039;);
+
+// ✅ Routes through Date factory; returns CarbonImmutable
+$date = Date::parse(&#039;2026-09-03&#039;);</code></pre>
+<hr>
+<h3>3. Automate Codebase Migration with Rector</h3>
+<p>To migrate an existing codebase so all static Carbon calls route through Laravel's `Date` facade, use [`CarbonToDateFacadeRector`](https://getrector.com/rule-detail/carbon-to-date-facade-rector) from `rector-laravel`:</p>
+<pre><code class="language-bash">composer require --dev driftingly/rector-laravel</code></pre>
+<p>Register the rule in `rector.php`:</p>
+<pre><code class="language-php">// rector.php
+use Rector\Config\RectorConfig;
+use RectorLaravel\Rector\StaticCall\CarbonToDateFacadeRector;
+
+return RectorConfig::configure()
+    -&gt;withRules([
+        CarbonToDateFacadeRector::class,
+    ]);</code></pre>
+<h4>What Rector Automatically Transforms</h4>
+<pre><code class="language-php">// Before Rector:
+use Carbon\Carbon;
+
+$now = Carbon::now();
+$date = Carbon::parse(&#039;2026-01-01&#039;);
+
+// After Rector:
 use Illuminate\Support\Facades\Date;
 
-Date::use(CarbonImmutable::class);</code></pre>
-<p>Now existing helpers such as `now()` use immutable dates:</p>
-<pre><code class="language-php">$date = now();
-
-$tomorrow = $date-&gt;addDay();
-
-echo $date-&gt;toDateString();      // 2026-09-03
-echo $tomorrow-&gt;toDateString();  // 2026-09-04</code></pre>
-<p>This means you can keep using Laravel's normal date helpers without manually calling `CarbonImmutable::now()` everywhere.</p>
-<h3>Migrating an Existing Codebase</h3>
-<p>When moving an existing application to immutable dates, look for code that relies on Carbon mutating the original instance.</p>
-<pre><code class="language-php">$date = now();
-
-$date-&gt;addDay();
-
-echo $date-&gt;toDateString();  // Mutable: 2026-09-04</code></pre>
-<p>With immutable dates, assign the returned instance when you want to change the variable:</p>
-<pre><code class="language-php">$date = now();
-
-$date = $date-&gt;addDay();
-
-echo $date-&gt;toDateString();  // 2026-09-04</code></pre>
-<p>For reusable code, prefer `CarbonInterface` when you do not specifically need mutable `Carbon`:</p>
-<pre><code class="language-php">use Carbon\CarbonInterface;
-
-function processDate(CarbonInterface $date): void
-{
-    // ...
-}</code></pre>
-<h4>Using Rector</h4>
-<p>If you are migrating a large codebase, Rector can help with automated refactoring, but the exact Carbon migration rule should be checked against the Rector version installed in the project rather than assuming a rule name.</p>
-<p>You can inspect the rules available to your project with:</p>
-<pre><code class="language-bash">vendor/bin/rector list-rules</code></pre>
-<p>Rector also provides an online rule finder for discovering and verifying available rules.</p>
-<p>The important distinction is:</p>
+$now = Date::now();
+$date = Date::parse(&#039;2026-01-01&#039;);</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li><strong>Rector</strong> can help automate repetitive migration work.</li>
-  <li><strong><code>Date::use(CarbonImmutable::class)</code></strong> makes immutable dates the Laravel default.</li>
+  <li><strong>Predictable Date Math</strong>: Operations like <code>addDay()</code> or <code>subMonth()</code> always return new instances without mutating source dates.</li>
+  <li><strong>Framework Uniformity</strong>: Using <code>Date::use(CarbonImmutable::class)</code> guarantees all Eloquent timestamps, cast dates, and helpers share the same immutable behavior.</li>
+  <li><strong>Automated Modernization</strong>: <code>CarbonToDateFacadeRector</code> removes manual search-and-replace across legacy controllers and services.</li>
 </ul>
-<p>Before enabling this globally, check application and package code that depends on mutable Carbon behavior.</p>
 ]]></content:encoded>
       <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
       <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
@@ -86,6 +98,8 @@ function processDate(CarbonInterface $date): void
       <category><![CDATA[Utilities]]></category>
       <category><![CDATA[Carbon]]></category>
       <category><![CDATA[Dates]]></category>
+      <category><![CDATA[Rector]]></category>
+      <category><![CDATA[Refactoring]]></category>
     </item>
     <item>
       <title><![CDATA[Harden Filesystem Operations with Storage::path() Traversal Protection in Laravel 13.30]]></title>
@@ -3262,15 +3276,23 @@ function processOrderClean(): bool
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-dominant-color-heic-avif</guid>
       <description><![CDATA[Laravel 13.24 adds dominantColor() to the Image API for extracting the primary color of an image, plus native support for HEIC and AVIF formats. Extracting a...]]></description>
       <content:encoded><![CDATA[<blockquote>Laravel 13.24 adds dominantColor() to the Image API for extracting the primary color of an image, plus native support for HEIC and AVIF formats.</blockquote>
-<p>Extracting a dominant color for placeholders or UI backgrounds is now built directly into Laravel's Image API. Laravel 13.24 also adds native support for HEIC and AVIF uploads out of the box.</p>
+<p>Extracting a dominant color for UI placeholders or background tints is built directly into Laravel's Image API. Laravel 13.24 also adds native decoding for Apple HEIC and modern AVIF images out of the box.</p>
+<hr>
+<h3>Code Example</h3>
 <pre><code class="language-php">use Illuminate\Support\Facades\Image;
 
+// 1. Extract dominant color (returns hex string like &#039;#8a6f4c&#039;)
 $color = Image::read($path)-&gt;dominantColor();
-// Returns hex string like &#039;#8a6f4c&#039;</code></pre>
+
+// 2. Read and convert iPhone HEIC or AVIF images natively
+$jpeg = Image::read(storage_path(&#039;app/photos/photo.heic&#039;))
+    -&gt;toJpeg();</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>dominantColor() resizes to a single pixel internally and returns hex string</li>
-  <li>Images with alpha channels return 8-digit hex (#rrggbbaa)</li>
-  <li>HEIC/AVIF image formats are supported natively</li>
+  <li><strong><code>dominantColor()</code></strong>: Resizes to a single pixel internally and returns a hex string (<code>#rrggbbaa</code> for images with alpha channels).</li>
+  <li><strong>Format Flexibility</strong>: iPhone <code>.heic</code> photos and <code>.avif</code> web formats work natively through standard <code>Image::read()</code>.</li>
+  <li><strong>Driver Requirements</strong>: HEIC decoding requires the Imagick extension with the HEIF delegate. AVIF works with GD (compiled with libavif) or Imagick.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
@@ -3399,7 +3421,11 @@ uses()
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-rector-automate-readonly-classes</guid>
       <description><![CDATA[Use Rector rules to automatically convert immutable DTOs and value objects into native PHP 8.2 readonly classes. Manually adding readonly keywords across doz...]]></description>
       <content:encoded><![CDATA[<blockquote>Use Rector rules to automatically convert immutable DTOs and value objects into native PHP 8.2 readonly classes.</blockquote>
-<p>Manually adding readonly keywords across dozens of data transfer objects is repetitive. Rector automates upgrading class properties and class declarations across codebase suites.</p>
+<p>Manually adding `readonly` keywords across dozens of data transfer objects (DTOs) and value objects is repetitive.</p>
+<p>Rector automates upgrading class declarations across your codebase using AST refactoring.</p>
+<hr>
+<h3>Configuration</h3>
+<p>Register `ReadOnlyClassRector` in `rector.php`:</p>
 <pre><code class="language-php">// rector.php
 use Rector\Config\RectorConfig;
 use Rector\Php82\Rector\Class_\ReadOnlyClassRector;
@@ -3408,10 +3434,31 @@ return RectorConfig::configure()
     -&gt;withRules([
         ReadOnlyClassRector::class,
     ]);</code></pre>
+<hr>
+<h3>What It Refactors</h3>
+<pre><code class="language-php">// Before Rector (individual readonly properties):
+class UserData
+{
+    public function __construct(
+        public readonly string $name,
+        public readonly string $email,
+    ) {}
+}
+
+// After Rector (PHP 8.2+ native readonly class):
+readonly class UserData
+{
+    public function __construct(
+        public string $name,
+        public string $email,
+    ) {}
+}</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Converts immutable classes to native PHP 8.2 readonly class declarations</li>
-  <li>Enforces immutability at compiler level for all class properties</li>
-  <li>Eliminates boilerplate docblock annotations and manual checks</li>
+  <li><strong>Compiler-Level Immutability</strong>: Enforces that all properties cannot be modified after instantiation.</li>
+  <li><strong>Cleaner Constructors</strong>: Removes repetitive <code>readonly</code> property declarations in favor of a single class-level keyword.</li>
+  <li><strong>Safe Automation</strong>: Rector verifies property usage before promoting classes, ensuring mutable entities are not broken.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
@@ -3598,18 +3645,25 @@ class AppServiceProvider extends ServiceProvider
       <title><![CDATA[Detect AI Agents in Laravel with AgentDetector and PAO]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-agent-detector-pao</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-agent-detector-pao</guid>
-      <description><![CDATA[Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI agents are part of moder...]]></description>
+      <description><![CDATA[Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI coding agents (Cursor, C...]]></description>
       <content:encoded><![CDATA[<blockquote>Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents.</blockquote>
-<p>AI agents are part of modern dev workflows, and Laravel provides first-party tools to handle them cleanly by detecting agents and switching terminal outputs to compact JSON.</p>
+<p>AI coding agents (Cursor, Claude Code, Devin) are now part of regular development workflows. Laravel provides first-party tools to detect agents and optimize terminal output for LLM parsing.</p>
+<hr>
+<h3>Agent Detection</h3>
 <pre><code class="language-php">use Laravel\AgentDetector\Facades\AgentDetector;
 
-if (AgentDetector::detect()-&gt;isAgent) {
-    logger()-&gt;info(&#039;AI agent detected&#039;, [&#039;agent&#039; =&gt; AgentDetector::detect()-&gt;name]);
+$detection = AgentDetector::detect();
+
+if ($detection-&gt;isAgent) {
+    // Inspect agent name (e.g. &#039;claude-code&#039;, &#039;cursor&#039;, &#039;devin&#039;)
+    logger()-&gt;info(&#039;AI agent session&#039;, [&#039;agent&#039; =&gt; $detection-&gt;name]);
 }</code></pre>
+<hr>
+<h3>How PAO Works</h3>
 <ul>
-  <li>AgentDetector ships with PAO (laravel/pao) by default in new apps</li>
-  <li>Detects agents via environment variables and file markers</li>
-  <li>PAO replaces verbose CLI output with compact JSON for agents</li>
+  <li><strong>First-Party</strong>: Ships with PAO (<code>laravel/pao</code>) included by default in new Laravel applications.</li>
+  <li><strong>Output Optimization</strong>: PAO automatically switches verbose Artisan CLI output into compact JSON when an agent is detected.</li>
+  <li><strong>Human Invariant</strong>: Human developers see standard terminal formatting with zero workflow change.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
@@ -3979,15 +4033,29 @@ public function store(StoreUserRequest $request)
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-withaggregate-subquery-optimization</guid>
       <description><![CDATA[Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances. When you need a single a...]]></description>
       <content:encoded><![CDATA[<blockquote>Use withAggregate() to pull a single column value from a relationship via a SQL subquery without eager loading full model instances.</blockquote>
-<p>When you need a single attribute from a related model, eager loading the entire relationship wastes memory. Laravel's withAggregate() runs a subselect query directly in SQL.</p>
+<p>When you need a single attribute from a related model, eager loading the entire relationship into memory wastes memory and hydration overhead.</p>
+<p>Laravel's `withAggregate()` runs a correlated subquery directly in the primary SQL statement, attaching the result as a virtual attribute on each parent model.</p>
+<hr>
+<h3>Code Examples</h3>
 <pre><code class="language-php">use App\Models\Post;
 
-// Pulls user name directly as $post-&gt;user_name via SQL subquery
-$posts = Post::withAggregate(&#039;user&#039;, &#039;name&#039;)-&gt;get();</code></pre>
+// 1. Pull a single related column (creates $post-&gt;user_name)
+$posts = Post::withAggregate(&#039;user&#039;, &#039;name&#039;)-&gt;get();
+
+// 2. Custom alias using the &#039;relation as alias&#039; syntax
+$posts = Post::withAggregate(&#039;user as author_email&#039;, &#039;email&#039;)-&gt;get();
+// Accessible as: $post-&gt;author_email
+
+// 3. Aggregate functions (MAX, MIN, AVG, SUM) with custom alias
+$posts = Post::withAggregate(&#039;comments as latest_comment_at&#039;, &#039;created_at&#039;, &#039;max&#039;)-&gt;get();
+// Accessible as: $post-&gt;latest_comment_at</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Creates virtual attributes named {relation}_{column} or your alias</li>
-  <li>Runs in a single database subquery instead of N+1 queries</li>
-  <li>Underlies withCount(), withSum(), and withAvg() helpers</li>
+  <li><strong>Method Signature</strong>: Accepts <code>($relations, $column, $function = null)</code>. Aliases must be specified in the relation argument using <code>&#39;relation as alias&#39;</code>.</li>
+  <li><strong>Zero Hydration Overhead</strong>: Attaches single column values without instantiating full Eloquent model objects for related rows.</li>
+  <li><strong>Underlying Engine</strong>: Serves as the flexible foundation behind <code>withCount()</code>, <code>withMax()</code>, and <code>withAvg()</code>.</li>
+  <li><strong>Direct SQL Sorting</strong>: You can order by the virtual attribute directly in SQL: <code>-&gt;orderBy(&#39;latest_comment_at&#39;, &#39;desc&#39;)</code>.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
@@ -4002,15 +4070,30 @@ $posts = Post::withAggregate(&#039;user&#039;, &#039;name&#039;)-&gt;get();</cod
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums</guid>
       <description><![CDATA[In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly. Testing...]]></description>
       <content:encoded><![CDATA[<blockquote>In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.</blockquote>
-<p>Testing JSON attributes or PHP backed enums requires no manual casting or encoding. assertDatabaseHas() supports arrow syntax and serializes enums automatically.</p>
-<pre><code class="language-php">$this-&gt;assertDatabaseHas(&#039;users&#039;, [
+<p>Testing JSON attributes or PHP backed enums in database assertions requires no manual casting, JSON encoding, or `->value` calls.</p>
+<p>`assertDatabaseHas()` natively serializes backed enums and translates arrow notation into database JSON queries.</p>
+<hr>
+<h3>Code Examples</h3>
+<pre><code class="language-php">use App\Enums\UserRole;
+
+// In Pest tests:
+assertDatabaseHas(&#039;users&#039;, [
+    &#039;role&#039; =&gt; UserRole::Maintainer, // Serializes backed enum automatically
+    &#039;settings-&gt;theme&#039; =&gt; &#039;dark&#039;,    // Queries nested JSON key
+    &#039;settings-&gt;notifications-&gt;email&#039; =&gt; true,
+]);
+
+// In PHPUnit tests:
+$this-&gt;assertDatabaseHas(&#039;users&#039;, [
     &#039;role&#039; =&gt; UserRole::Maintainer,
     &#039;settings-&gt;theme&#039; =&gt; &#039;dark&#039;,
 ]);</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Handles Backed Enums directly without -&gt;value casting</li>
-  <li>Queries nested JSON keys using arrow notation</li>
-  <li>Works out of the box with Pest and PHPUnit assertions</li>
+  <li><strong>Enum Serialization</strong>: Passes backed enum instances directly without manual <code>-&gt;value</code> extraction.</li>
+  <li><strong>Nested JSON Traversal</strong>: Arrow syntax (<code>settings-&gt;theme</code>) queries database JSON paths across MySQL, PostgreSQL, and SQLite.</li>
+  <li><strong>Framework Agnostic</strong>: Works identically in both Pest test functions and PHPUnit test cases.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
@@ -4060,14 +4143,35 @@ php artisan make:collection OrderCollection</code></pre>
       <title><![CDATA[Streamline Testing with Pest Test Impact Analysis (TIA)]]></title>
       <link>https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</guid>
-      <description><![CDATA[Enable Test Impact Analysis (TIA) in Pest to only run tests directly covering code that changed since the last commit. Running full test suites on every tiny...]]></description>
-      <content:encoded><![CDATA[<blockquote>Enable Test Impact Analysis (TIA) in Pest to only run tests directly covering code that changed since the last commit.</blockquote>
-<p>Running full test suites on every tiny change slows down feedback loops. Pest's TIA analyzes coverage artifacts to determine which tests cover modified lines.</p>
-<pre><code class="language-bash">./vendor/bin/pest --tia</code></pre>
+      <description><![CDATA[Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests. Running full tes...]]></description>
+      <content:encoded><![CDATA[<blockquote>Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests.</blockquote>
+<p>Running full test suites on every minor change slows down local feedback loops. While `--dirty` only checks if test files themselves changed, Pest's Tia Engine analyzes code coverage mapping to identify tests that execute the actual application lines you modified.</p>
+<hr>
+<h3>1. CLI Usage</h3>
+<p>Run Pest with the `--tia` flag:</p>
+<pre><code class="language-bash"># Run tests with Test Impact Analysis enabled
+./vendor/bin/pest --parallel --tia</code></pre>
+<p>On the initial run, Pest records a dependency graph of which tests touch which files. On subsequent runs, it only re-runs affected tests and replays cached results for the rest.</p>
+<hr>
+<h3>2. Configuration in tests/Pest.php</h3>
+<p>To avoid typing `--tia` on every run, configure the Tia Engine fluently inside `tests/Pest.php`:</p>
+<pre><code class="language-php">// tests/Pest.php
+
+pest()-&gt;tia()
+    -&gt;locally()   // Run TIA on every local invocation; skipped automatically in CI
+    -&gt;baselined() // Fetch shared baseline from CI when no local graph exists
+    -&gt;filtered(); // Narrow test runner to affected test files only</code></pre>
 <ul>
-  <li>Only runs tests affected by recent code changes</li>
-  <li>Can be configured in pest.php or run via --tia flag</li>
-  <li>Slashes test suite execution time during development</li>
+  <li><strong><code>locally()</code></strong>: Recommended. Activates TIA for every local <code>pest</code> run without requiring the <code>--tia</code> flag. In CI (or with <code>--ci</code>), TIA is skipped automatically so pipelines run the full suite.</li>
+  <li><strong><code>always()</code></strong>: Alternative to <code>locally()</code>. Enforces TIA across all environments including CI.</li>
+  <li><strong><code>baselined()</code></strong>: Downloads the shared CI baseline artifact so developers replay immediately on fresh clones.</li>
+</ul>
+<hr>
+<h3>Key Rules & Requirements</h3>
+<ul>
+  <li><strong>Coverage Driver</strong>: Requires a code coverage driver (<strong>PCOV</strong> or <strong>Xdebug</strong>) to build the dependency graph.</li>
+  <li><strong>Cosmetic Invariant</strong>: Whitespace changes, comments, and docblock edits produce identical hashes, executing zero tests.</li>
+  <li><strong>CLI Overrides</strong>: Bypass or force TIA anytime using <code>--tia</code> or <code>--no-tia</code>.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
@@ -4644,15 +4748,30 @@ return new InvoiceExportResponse($data);</code></pre>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-wheredate-index-performance</guid>
       <description><![CDATA[whereDate() wraps the column in a DATE() function, preventing the database from using indexes. Use whereBetween() with full timestamps for index-friendly fil...]]></description>
       <content:encoded><![CDATA[<blockquote>whereDate() wraps the column in a DATE() function, preventing the database from using indexes. Use whereBetween() with full timestamps for index-friendly filtering.</blockquote>
-<p>Filtering records with whereDate() forces the database to evaluate the DATE() function on every row, bypassing indexes. Use whereBetween() with explicit timestamps.</p>
-<pre><code class="language-php">$orders = Order::whereBetween(&#039;created_at&#039;, [
-    $date . &#039; 00:00:00&#039;,
-    $date . &#039; 23:59:59&#039;,
-])-&gt;get();</code></pre>
+<p>Filtering records with `whereDate()` forces the database engine to evaluate the `DATE()` function on every single row in the table, completely bypassing B-Tree indexes and causing slow full-table scans.</p>
+<hr>
+<h3>Before & After</h3>
+<pre><code class="language-php">use App\Models\Order;
+use Carbon\Carbon;
+
+$date = Carbon::parse(&#039;2026-03-12&#039;);
+
+// ❌ Avoid: Wraps column in DATE() function; bypasses indexes
+$orders = Order::whereDate(&#039;created_at&#039;, $date)-&gt;get();
+// Generated SQL: select * from `orders` where date(`created_at`) = &#039;2026-03-12&#039;
+
+// ✅ Recommended: Uses B-Tree index range scan
+$orders = Order::whereBetween(&#039;created_at&#039;, [
+    $date-&gt;copy()-&gt;startOfDay(),
+    $date-&gt;copy()-&gt;endOfDay(),
+])-&gt;get();
+// Generated SQL: select * from `orders` where `created_at` between &#039;2026-03-12 00:00:00&#039; and &#039;2026-03-12 23:59:59&#039;</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>whereBetween() enables B-Tree index range scans</li>
-  <li>Avoids wrapping indexed columns in SQL functions</li>
-  <li>Crucial for high-traffic tables with millions of rows</li>
+  <li><strong>Index Utilization</strong>: Allows MySQL and PostgreSQL to perform fast index range scans rather than full table scans.</li>
+  <li><strong>High Throughput</strong>: Critical for performance on tables containing millions of rows.</li>
+  <li><strong>Timezone Safety</strong>: Explicit start and end boundaries avoid edge-case shifts when dealing with UTC storage.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate>
@@ -5456,15 +5575,28 @@ $request-&gt;validate([
       <title><![CDATA[Enable Compact Test Output Printer in Pest]]></title>
       <link>https://mrpunyapal.dev/tips/pest-compact-printer-output</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/pest-compact-printer-output</guid>
-      <description><![CDATA[Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators. When running large test suites with hun...]]></description>
-      <content:encoded><![CDATA[<blockquote>Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators.</blockquote>
-<p>When running large test suites with hundreds of tests, verbose output fills terminal buffers. Enabling compact printer output displays dots and characters for fast console feedback.</p>
-<pre><code class="language-bash"># Enable compact output via CLI
-./vendor/bin/pest --compact</code></pre>
+      <description><![CDATA[Use the --compact flag or set it in your composer.json test script for minimal single-character test progress indicators. When running large test suites with...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use the --compact flag or set it in your composer.json test script for minimal single-character test progress indicators.</blockquote>
+<p>When running large test suites with hundreds of test cases, verbose multi-line output fills your terminal scrollback buffer.</p>
+<p>Pest provides a compact output mode that displays concise single-character indicators for fast visual feedback.</p>
+<hr>
+<h3>1. Run on Demand via CLI</h3>
+<pre><code class="language-bash">./vendor/bin/pest --compact</code></pre>
+<hr>
+<h3>2. Set as Default in composer.json</h3>
+<p>To make compact output the default for your team and CI runs, configure it inside `composer.json`:</p>
+<pre><code class="language-json">{
+    &quot;scripts&quot;: {
+        &quot;test&quot;: &quot;pest --compact&quot;
+    }
+}</code></pre>
+<p>Now running `composer test` executes Pest in compact mode automatically.</p>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Displays minimal test progress indicators to reduce console output clutter</li>
-  <li>Highlights failures and errors prominently with detailed tracebacks</li>
-  <li>Saves terminal scrollback memory during long test suite runs</li>
+  <li><strong>Minimal Terminal Clutter</strong>: Renders small single-character status indicators (<code>.</code> for passed, <code>F</code> for failed) instead of multi-line test names.</li>
+  <li><strong>Immediate Failure Details</strong>: Test failures, assertion errors, and stack traces are still rendered prominently at the end of the run.</li>
+  <li><strong>Scrollback Efficiency</strong>: Keeps terminal buffers clean during extensive test suite runs.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sun, 28 Dec 2025 00:00:00 GMT</pubDate>
@@ -5614,16 +5746,34 @@ php artisan queue:work --sleep=3 --tries=3 --timeout=90</code></pre>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-array-unpacking-square-brackets</guid>
       <description><![CDATA[Use array unpacking (...) inside square bracket array literals for string-keyed and indexed array merging. PHP 8.1 expanded array unpacking to support string...]]></description>
       <content:encoded><![CDATA[<blockquote>Use array unpacking (...) inside square bracket array literals for string-keyed and indexed array merging.</blockquote>
-<p>PHP 8.1 expanded array unpacking to support string keys inside array literals. This replaces array_merge() calls with clean spread syntax.</p>
-<pre><code class="language-php">$defaults = [&#039;theme&#039; =&gt; &#039;dark&#039;, &#039;notifications&#039; =&gt; true];
-$userCustom = [&#039;notifications&#039; =&gt; false, &#039;language&#039; =&gt; &#039;en&#039;];
+<p>PHP 8.1 expanded array unpacking to support string keys inside square bracket array literals, replacing verbose `array_merge()` calls with clean spread syntax.</p>
+<hr>
+<h3>Code Example</h3>
+<pre><code class="language-php">$defaults = [
+    &#039;theme&#039;         =&gt; &#039;dark&#039;,
+    &#039;notifications&#039; =&gt; true,
+];
 
-// Unpacks and merges arrays natively
-$options = [...$defaults, ...$userCustom];</code></pre>
+$userCustom = [
+    &#039;notifications&#039; =&gt; false,
+    &#039;language&#039;      =&gt; &#039;en&#039;,
+];
+
+// Unpacks and merges arrays natively (later values overwrite earlier keys)
+$options = [...$defaults, ...$userCustom];
+
+// Result:
+// [
+//     &#039;theme&#039;         =&gt; &#039;dark&#039;,
+//     &#039;notifications&#039; =&gt; false,
+//     &#039;language&#039;      =&gt; &#039;en&#039;,
+// ]</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Replaces verbose array_merge() calls with clean spread operator syntax</li>
-  <li>Supports string keys as of PHP 8.1 (later values overwrite earlier keys)</li>
-  <li>Cleaner syntax for array composition and middleware pipelines</li>
+  <li><strong>Clean Syntax</strong>: Replaces verbose <code>array_merge()</code> function calls with native spread operator syntax.</li>
+  <li><strong>String Key Support</strong>: In PHP 8.1+, string keys are fully supported; conflicting keys are overwritten by later elements in the list.</li>
+  <li><strong>Array Composition</strong>: Ideal for merging configuration defaults, request payloads, and query parameters cleanly.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Mon, 01 Dec 2025 00:00:00 GMT</pubDate>
@@ -6076,25 +6226,44 @@ $inactiveUsers-&gt;toQuery()-&gt;with(&#039;profile&#039;)-&gt;get();</code></pr
       <title><![CDATA[Use Real-Time Facades with the Facades Prefix]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-real-time-facades</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-real-time-facades</guid>
-      <description><![CDATA[Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal services...]]></description>
+      <description><![CDATA[Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal applicati...]]></description>
       <content:encoded><![CDATA[<blockquote>Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade.</blockquote>
-<p>Creating explicit Facade classes for internal services adds boilerplate. Laravel's Real-Time Facades generate mockable facades on the fly by prefixing namespace imports with Facades\.</p>
+<p>Creating explicit Facade classes for internal application services adds unnecessary boilerplate files.</p>
+<p>Laravel's Real-Time Facades generate mockable facades on the fly simply by prefixing the namespace import with `Facades\`.</p>
+<hr>
+<h3>1. Controller Usage</h3>
 <pre><code class="language-php">namespace App\Http\Controllers;
 
-// Import class with Facades\ prefix for instant facade capabilities
+// Import any internal service with the Facades\ prefix
 use Facades\App\Services\PaymentGateway;
 
 class CheckoutController
 {
     public function store()
     {
-        PaymentGateway::charge(100); // Executed as real-time facade
+        // Calls methods statically with container resolution
+        PaymentGateway::charge(100);
     }
 }</code></pre>
+<hr>
+<h3>2. Mocking in Tests</h3>
+<p>The main superpower of real-time facades is effortless test mocking without container bindings:</p>
+<pre><code class="language-php">use Facades\App\Services\PaymentGateway;
+
+it(&#039;processes checkout successfully&#039;, function () {
+    PaymentGateway::shouldReceive(&#039;charge&#039;)
+        -&gt;once()
+        -&gt;with(100)
+        -&gt;andReturn(true);
+
+    $this-&gt;post(&#039;/checkout&#039;)-&gt;assertOk();
+});</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Eliminates boilerplate dedicated Facade class files</li>
-  <li>Allows instant test mocking via PaymentGateway::shouldReceive()</li>
-  <li>Resolves underlying service class instance from container automatically</li>
+  <li><strong>Zero Boilerplate</strong>: No need to create a dedicated <code>app/Facades/PaymentGateway.php</code> file.</li>
+  <li><strong>Instant Testability</strong>: Call <code>shouldReceive()</code> or <code>spy()</code> directly on the imported real-time facade.</li>
+  <li><strong>Container Resolution</strong>: Laravel resolves the real underlying instance from the service container when not mocked.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sat, 12 Jul 2025 00:00:00 GMT</pubDate>
@@ -6764,7 +6933,7 @@ class AppServiceProvider extends ServiceProvider
 <ul>
   <li>Integrates custom caching commands into standard Laravel deployment lifecycles.</li>
   <li>Automatically handles cache clearing with <code>php artisan optimize:clear</code>.</li>
-  <li>Keeps deployment deployment scripts clean and unified.</li>
+  <li>Keeps deployment scripts clean and unified.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Wed, 19 Feb 2025 00:00:00 GMT</pubDate>
@@ -7163,24 +7332,38 @@ $matrix = $users-&gt;zip($roles, $status);
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/tall-stack-filament-admin-panel</guid>
       <description><![CDATA[Use FilamentPHP to build full-featured administrative panels, forms, and tables using Livewire and Alpine.js. Building custom admin dashboards from scratch r...]]></description>
       <content:encoded><![CDATA[<blockquote>Use FilamentPHP to build full-featured administrative panels, forms, and tables using Livewire and Alpine.js.</blockquote>
-<p>Building custom admin dashboards from scratch requires writing repetitive Blade components, Livewire tables, and form validation. Filament provides pre-built TALL stack components out of the box.</p>
-<pre><code class="language-php">use Filament\Forms\Components\TextInput;
+<p>Building custom admin dashboards from scratch requires writing repetitive Blade components, Livewire tables, and form validation.</p>
+<p>Filament provides pre-built, production-ready TALL stack components out of the box.</p>
+<hr>
+<h3>Form Schema Example</h3>
+<p>Define typed form schemas inside your Filament Resource classes:</p>
+<pre><code class="language-php">namespace App\Filament\Resources;
+
+use Filament\Forms\Form;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 
 public static function form(Form $form): Form
 {
     return $form-&gt;schema([
-        TextInput::make(&#039;name&#039;)-&gt;required(),
-        Select::make(&#039;role&#039;)-&gt;options([
-            &#039;admin&#039; =&gt; &#039;Admin&#039;,
-            &#039;editor&#039; =&gt; &#039;Editor&#039;,
-        ]),
+        TextInput::make(&#039;name&#039;)
+            -&gt;required()
+            -&gt;maxLength(255),
+
+        Select::make(&#039;role&#039;)
+            -&gt;options([
+                &#039;admin&#039;  =&gt; &#039;Administrator&#039;,
+                &#039;editor&#039; =&gt; &#039;Editor&#039;,
+            ])
+            -&gt;required(),
     ]);
 }</code></pre>
+<hr>
+<h3>Core Features</h3>
 <ul>
-  <li>First-party TALL stack admin framework built on Livewire and Alpine.js</li>
-  <li>Includes form builders, data tables, notifications, and dashboard widgets</li>
-  <li>Extremely extensible via custom Livewire components</li>
+  <li><strong>TALL Stack Native</strong>: Built directly on Livewire, Alpine.js, Tailwind CSS, and Laravel.</li>
+  <li><strong>Pre-Built Primitives</strong>: Ships with form builders, interactive data tables, notifications, modal drawers, and chart widgets.</li>
+  <li><strong>Extensible</strong>: Easily embed custom Livewire components and Blade views inside any Filament page.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Wed, 13 Nov 2024 00:00:00 GMT</pubDate>
@@ -7517,8 +7700,10 @@ if ($order-&gt;status === OrderStatus::COMPLETED) {
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-backed-integer-enums-indexing</guid>
       <description><![CDATA[When creating integer-backed PHP Enums, index starting from 1 to avoid false-y evaluation bugs in loose comparisons. In PHP, 0 evaluates as false-y in loose...]]></description>
       <content:encoded><![CDATA[<blockquote>When creating integer-backed PHP Enums, index starting from 1 to avoid false-y evaluation bugs in loose comparisons.</blockquote>
-<p>In PHP, 0 evaluates as false-y in loose condition checks like empty() or if ($enumValue). Starting integer enum values at 1 prevents accidental false-y evaluation bugs.</p>
-<pre><code class="language-php">// BAD: Case 0 is false-y in loose checks!
+<p>In PHP, `0` evaluates as false-y in loose condition checks like `empty()` or `if ($enum->value)`. Starting integer enum values at `1` prevents accidental false-y evaluation bugs.</p>
+<hr>
+<h3>Before & After</h3>
+<pre><code class="language-php">// ❌ Dangerous: 0 evaluates to false in loose checks
 enum Priority: int
 {
     case Low = 0;
@@ -7526,17 +7711,23 @@ enum Priority: int
     case High = 2;
 }
 
-// GOOD: Start indexing at 1
+// empty(Priority::Low-&gt;value) is true!
+
+// ✅ Recommended: Start indexing at 1
 enum Priority: int
 {
     case Low = 1;
     case Medium = 2;
     case High = 3;
-}</code></pre>
+}
+
+// empty(Priority::Low-&gt;value) is false!</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Prevents false-y evaluation pitfalls when checking enum integer values in loose conditionals</li>
-  <li>Aligns with standard 1-based database primary key indexing conventions</li>
-  <li>makes sure empty() checks on enum raw values behave predictably</li>
+  <li><strong>Prevents False-y Pitfalls</strong>: Avoids unexpected truthy/falsy evaluation bugs when inspecting raw enum integer values.</li>
+  <li><strong>Database Consistency</strong>: Aligns naturally with standard 1-based auto-incrementing database ID conventions.</li>
+  <li><strong>Predictable Empty Checks</strong>: Ensures <code>empty()</code> or <code>blank()</code> checks on enum values behave intuitively without silent failures.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sat, 31 Aug 2024 00:00:00 GMT</pubDate>
@@ -9233,13 +9424,34 @@ Post::query()
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-artisan-stubs-custom-namespaces</guid>
       <description><![CDATA[Publish and customize Artisan generator stubs using php artisan stub:publish to enforce custom code conventions across your team. Standard php artisan make:c...]]></description>
       <content:encoded><![CDATA[<blockquote>Publish and customize Artisan generator stubs using php artisan stub:publish to enforce custom code conventions across your team.</blockquote>
-<p>Standard php artisan make:controller or make:model commands generate default templates. Running stub:publish exports stub files to stubs/ so you can customize scaffolded code.</p>
-<pre><code class="language-bash"># Publish default Artisan code stubs to stubs/ directory
-php artisan stub:publish</code></pre>
+<p>Standard `php artisan make:controller` or `make:model` commands generate default framework templates.</p>
+<p>Running `stub:publish` exports these blueprint files to a local `stubs/` directory, allowing you to enforce project-specific conventions automatically.</p>
+<hr>
+<h3>1. Publish Stubs</h3>
+<pre><code class="language-bash">php artisan stub:publish</code></pre>
+<p>This exports all generator stubs into your application root's `stubs/` directory.</p>
+<hr>
+<h3>2. Customize Templates (e.g. stubs/model.stub)</h3>
+<p>Edit any stub file to enforce strict types, default properties, or custom traits:</p>
+<pre><code class="language-php">&lt;?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class {{ class }} extends Model
+{
+    use HasFactory;
+
+    // Enforce un-guarded models by default across the team
+    protected $guarded = [];
+}</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Exports code stubs to stubs/ folder for custom modification</li>
-  <li>Enforces team code standards (strict types, custom traits, imports)</li>
-  <li>Automatically used by artisan make:* commands once published</li>
+  <li><strong>Team Consistency</strong>: Every developer running <code>make:model</code> or <code>make:controller</code> receives the standardized company template.</li>
+  <li><strong>Zero Friction</strong>: Automatically picked up by Artisan without requiring any custom command flags or configuration files.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sun, 24 Mar 2024 00:00:00 GMT</pubDate>
@@ -9331,19 +9543,29 @@ $user-&gt;notify(new SendTemporaryPasswordNotification($plainTextPassword));</co
       <title><![CDATA[Clear Query Order Constraints with reorder()]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-eloquent-reorder-query-builder</guid>
-      <description><![CDATA[Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When modifying existing query builders or model...]]></description>
+      <description><![CDATA[Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints. When working with base query scopes or reposito...]]></description>
       <content:encoded><![CDATA[<blockquote>Use reorder() to clear previous orderBy clauses from a query builder before applying new sorting constraints.</blockquote>
-<p>When modifying existing query builders or model scopes that already contain orderBy clauses, appending another orderBy appends a secondary sort. reorder() strips existing ordering rules.</p>
+<p>When working with base query scopes or repository methods that already include an `orderBy` clause, calling `orderBy()` again appends a secondary sort rather than replacing the primary sort.</p>
+<p>`reorder()` removes previously assigned order clauses cleanly.</p>
+<hr>
+<h3>Code Examples</h3>
 <pre><code class="language-php">use App\Models\User;
 
+// Base query has default alphabetical ordering
 $query = User::orderBy(&#039;name&#039;, &#039;asc&#039;);
 
-// Replaces &#039;name&#039; sorting with &#039;created_at&#039; sorting
-$users = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();</code></pre>
+// 1. Completely remove all ORDER BY clauses (runs without order constraints)
+$unordered = (clone $query)-&gt;reorder()-&gt;get();
+
+// 2. Clear previous sort and apply new ordering
+$recentUsers = $query-&gt;reorder(&#039;created_at&#039;, &#039;desc&#039;)-&gt;get();
+// SQL: select * from `users` order by `created_at` desc</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Strips all existing orderBy clauses from the query builder</li>
-  <li>Accepts optional new column and direction arguments to re-apply sorting</li>
-  <li>Essential when overriding default sorting rules defined in model scopes</li>
+  <li><strong>Scope Overrides</strong>: Safely override hardcoded sorting rules defined in model global or local query scopes.</li>
+  <li><strong>Clean Reset</strong>: Calling <code>-&gt;reorder()</code> without arguments resets the query&#39;s internal <code>$orders</code> array to empty.</li>
+  <li><strong>Direction Flexibility</strong>: Accepts new column and direction arguments (<code>&#39;asc&#39;</code> or <code>&#39;desc&#39;</code>) in a single fluent call.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Thu, 07 Mar 2024 00:00:00 GMT</pubDate>
@@ -9856,19 +10078,29 @@ class PermissionCast implements CastsAttributes
       <title><![CDATA[Queue Heavy Artisan Commands with Artisan::queue()]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-artisan-queue-background-commands</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-artisan-queue-background-commands</guid>
-      <description><![CDATA[Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands like databa...]]></description>
+      <description><![CDATA[Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests. Running heavy Artisan commands (such as ge...]]></description>
       <content:encoded><![CDATA[<blockquote>Use Artisan::queue() to push long-running Artisan commands to background queues instead of blocking HTTP requests.</blockquote>
-<p>Running heavy Artisan commands like database backups or report generators inside HTTP controller requests blocks the user web server thread. Artisan::queue() dispatches the command to queue workers.</p>
+<p>Running heavy Artisan commands (such as generating bulk reports, clearing large cache stores, or sending system audits) inside HTTP controller requests blocks the user web server thread.</p>
+<p>`Artisan::queue()` dispatches the command directly to background queue workers.</p>
+<hr>
+<h3>Code Example</h3>
 <pre><code class="language-php">use Illuminate\Support\Facades\Artisan;
 
-// Pushes Artisan command execution to default background queue
+// 1. Pushes command execution to default background queue
 Artisan::queue(&#039;reports:generate&#039;, [
     &#039;--user&#039; =&gt; $user-&gt;id,
-]);</code></pre>
+]);
+
+// 2. Specify dedicated connection and queue worker
+Artisan::queue(&#039;reports:generate&#039;, [&#039;--user&#039; =&gt; $user-&gt;id])
+    -&gt;onConnection(&#039;redis&#039;)
+    -&gt;onQueue(&#039;exports&#039;);</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Dispatches command execution as a background queue job</li>
-  <li>Prevents HTTP request timeouts during long-running tasks</li>
-  <li>Accepts command arguments and option arrays</li>
+  <li><strong>Non-Blocking</strong>: Prevents HTTP timeouts by running commands asynchronously in background queue workers.</li>
+  <li><strong>Routing Control</strong>: Chain <code>onConnection()</code> and <code>onQueue()</code> to route tasks to dedicated worker pools.</li>
+  <li><strong>Argument Support</strong>: Accepts command arguments and flag options in standard key-value arrays.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Mon, 29 Jan 2024 00:00:00 GMT</pubDate>
@@ -9928,15 +10160,27 @@ Artisan::queue(&#039;reports:generate&#039;, [
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-wherejsonlength-eloquent</guid>
       <description><![CDATA[Use whereJsonLength() to query database records based on the number of elements in a JSON array attribute. Filtering records by the number of elements stored...]]></description>
       <content:encoded><![CDATA[<blockquote>Use whereJsonLength() to query database records based on the number of elements in a JSON array attribute.</blockquote>
-<p>Filtering records by the number of elements stored in a JSON array column is straightforward in Eloquent using whereJsonLength().</p>
+<p>Filtering records by the number of elements stored inside a JSON array column is natively supported in Eloquent using `whereJsonLength()`.</p>
+<hr>
+<h3>Code Examples</h3>
 <pre><code class="language-php">use App\Models\User;
 
-// Select users with more than 2 items in their JSON options-&gt;tags array
-$users = User::whereJsonLength(&#039;options-&gt;tags&#039;, &#039;&gt;&#039;, 2)-&gt;get();</code></pre>
+// 1. Find users with an empty tags array (length = 0)
+$untaggedUsers = User::whereJsonLength(&#039;preferences-&gt;tags&#039;, 0)-&gt;get();
+
+// 2. Select users with more than 3 active notification channels
+$multiChannelUsers = User::whereJsonLength(&#039;settings-&gt;channels&#039;, &#039;&gt;&#039;, 3)-&gt;get();
+
+// 3. Chain with orWhereJsonLength
+$filtered = User::whereJsonLength(&#039;skills&#039;, &#039;&gt;=&#039;, 5)
+    -&gt;orWhereJsonLength(&#039;certifications&#039;, &#039;&gt;&#039;, 0)
+    -&gt;get();</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Queries database JSON array length using native database JSON functions</li>
-  <li>Supports comparison operators (=, &gt;, &lt;, &gt;=, &lt;=)</li>
-  <li>Works with MySQL, PostgreSQL, and SQLite database drivers</li>
+  <li><strong>Native SQL JSON Functions</strong>: Leverages <code>JSON_LENGTH()</code> in MySQL and <code>jsonb_array_length()</code> in PostgreSQL under the hood.</li>
+  <li><strong>Comparison Operators</strong>: Supports all standard comparison operators (<code>=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>).</li>
+  <li><strong>Cross-Database</strong>: Works uniformly across MySQL, PostgreSQL, and SQLite.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sat, 20 Jan 2024 00:00:00 GMT</pubDate>
@@ -12501,20 +12745,24 @@ public function download(Request $request, Invoice $invoice)
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-tailwind-utility-css-workflow</guid>
       <description><![CDATA[Leverage Tailwind CSS utility classes to compose custom responsive designs directly in HTML without CSS stylesheet bloat. Writing custom CSS classes for ever...]]></description>
       <content:encoded><![CDATA[<blockquote>Leverage Tailwind CSS utility classes to compose custom responsive designs directly in HTML without CSS stylesheet bloat.</blockquote>
-<p>Writing custom CSS classes for every UI component leads to bloated stylesheet files. Tailwind CSS provides utility classes that streamline responsive styling directly inside templates.</p>
+<p>Writing custom CSS classes for every UI component leads to large stylesheets and naming exhaustion. Tailwind CSS provides utility classes that streamline responsive styling directly inside templates.</p>
+<hr>
+<h3>Utility-First Component Example</h3>
 <pre><code class="language-html">&lt;div class=&quot;p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4&quot;&gt;
   &lt;div class=&quot;shrink-0&quot;&gt;
-    &lt;img class=&quot;h-12 w-12&quot; src=&quot;/img/logo.svg&quot; alt=&quot;Logo&quot;&gt;
+    &lt;img class=&quot;h-12 w-12&quot; src=&quot;/img/avatar.svg&quot; alt=&quot;Avatar&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;div class=&quot;text-xl font-medium text-black&quot;&gt;Punyapal Shah&lt;/div&gt;
     &lt;p class=&quot;text-slate-500&quot;&gt;Software Engineer&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Eliminates named CSS class abstraction debates</li>
-  <li>Purges unused CSS styles automatically in production builds</li>
-  <li>makes sure consistent spacing, typography, and color tokens</li>
+  <li><strong>No Named Abstraction Clutter</strong>: Eliminates arbitrary CSS class naming debates like <code>.card-author-wrapper</code>.</li>
+  <li><strong>Automatic Dead Code Elimination</strong>: Build tools automatically purge unused utility classes, emitting tiny production CSS bundles.</li>
+  <li><strong>Consistent Design System</strong>: Enforces standard spacing, typography, and color tokens defined in your project configuration.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Sun, 03 Sep 2023 00:00:00 GMT</pubDate>
@@ -13543,17 +13791,36 @@ Route::get(&#039;/posts/{post:slug}&#039;, [PostController::class, &#039;show&#0
       <title><![CDATA[Understand Input Trimming & Empty String Normalization]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-trim-strings-convert-empty-strings-middleware</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-trim-strings-convert-empty-strings-middleware</guid>
-      <description><![CDATA[Laravel automatically trims request strings and converts empty string inputs to null via default global middleware. Laravel includes TrimStrings and ConvertE...]]></description>
+      <description><![CDATA[Laravel automatically trims request strings and converts empty string inputs to null via default global middleware. Laravel includes string trimming and empt...]]></description>
       <content:encoded><![CDATA[<blockquote>Laravel automatically trims request strings and converts empty string inputs to null via default global middleware.</blockquote>
-<p>Laravel includes TrimStrings and ConvertEmptyStringsToNull middleware globally. Incoming string inputs are automatically trimmed of whitespace and empty strings ('') become null.</p>
-<pre><code class="language-php">// Request input: [&#039;name&#039; =&gt; &#039;  Punyapal  &#039;, &#039;bio&#039; =&gt; &#039;&#039;]
+<p>Laravel includes string trimming and empty string conversion middleware in its default global stack. Incoming string inputs are automatically trimmed of whitespace, and empty strings (`''`) are normalized to `null`.</p>
+<hr>
+<h3>Default Behavior</h3>
+<pre><code class="language-php">// Incoming request payload: [&#039;name&#039; =&gt; &#039;  Punyapal  &#039;, &#039;bio&#039; =&gt; &#039;&#039;]
 
-$name = $request-&gt;input(&#039;name&#039;); // Returns &#039;Punyapal&#039;
-$bio  = $request-&gt;input(&#039;bio&#039;);  // Returns null</code></pre>
+$name = $request-&gt;input(&#039;name&#039;); // &#039;Punyapal&#039; (trimmed by TrimStrings)
+$bio  = $request-&gt;input(&#039;bio&#039;);  // null (converted from &#039;&#039; by ConvertEmptyStringsToNull)</code></pre>
+<hr>
+<h3>Customizing Trimming in bootstrap/app.php</h3>
+<p>To prevent trimming for specific fields (such as passwords or formatted secret keys) or route patterns, configure exclusions via `trimStrings` in `bootstrap/app.php`:</p>
+<pre><code class="language-php">// bootstrap/app.php
+use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
+
+-&gt;withMiddleware(function (Middleware $middleware) {
+    $middleware-&gt;trimStrings(except: [
+        &#039;current_password&#039;,
+        &#039;password&#039;,
+        &#039;password_confirmation&#039;,
+        fn (Request $request) =&gt; $request-&gt;is(&#039;webhooks/*&#039;),
+    ]);
+})</code></pre>
+<hr>
+<h3>Key Points</h3>
 <ul>
-  <li>TrimStrings removes leading and trailing whitespace automatically</li>
-  <li>ConvertEmptyStringsToNull normalizes empty form inputs (&#39;&#39;) to null</li>
-  <li>Can be bypassed for specific fields (like passwords) via $except property</li>
+  <li><strong>Automatic Sanitization</strong>: Strips accidental leading and trailing whitespace before requests reach controllers.</li>
+  <li><strong>Null Safety</strong>: Normalizes empty form inputs (<code>&#39;&#39;</code>) into <code>null</code>, ensuring foreign keys and nullable database columns store clean null values.</li>
+  <li><strong>Fluent Exclusions</strong>: In Laravel 11+, <code>$middleware-&gt;trimStrings(except: ...)</code> accepts field names or route-matching closures.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Mon, 26 Jun 2023 00:00:00 GMT</pubDate>
@@ -13674,20 +13941,41 @@ $dormantUsers = User::whereDoesntHave(&#039;orders&#039;, function ($query) {
       <title><![CDATA[Dynamically Append Model Casts with mergeCasts()]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-eloquent-merge-casts-dynamic</link>
       <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-eloquent-merge-casts-dynamic</guid>
-      <description><![CDATA[Use mergeCasts() to dynamically append attribute casting rules to Eloquent model instances at runtime. When working with dynamic attributes or traits on mode...]]></description>
-      <content:encoded><![CDATA[<blockquote>Use mergeCasts() to dynamically append attribute casting rules to Eloquent model instances at runtime.</blockquote>
-<p>When working with dynamic attributes or traits on models, hardcoding all casts in $casts can be inflexible. Use mergeCasts() to add casting definitions dynamically.</p>
+      <description><![CDATA[Use mergeCasts() to dynamically append attribute casting rules to Eloquent model instances or inside reusable model traits. When developing reusable model tr...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use mergeCasts() to dynamically append attribute casting rules to Eloquent model instances or inside reusable model traits.</blockquote>
+<p>When developing reusable model traits or packages, hardcoding cast definitions in the host model's `protected function casts(): array` can be brittle.</p>
+<p>Eloquent provides `mergeCasts()` to dynamically append cast definitions at runtime without overwriting existing casts.</p>
+<hr>
+<h3>1. Usage Inside Reusable Model Traits</h3>
+<p>The canonical use case for `mergeCasts()` is inside trait initialization hooks (`initialize{TraitName}`):</p>
+<pre><code class="language-php">namespace App\Models\Concerns;
+
+trait HasPreferences
+{
+    public function initializeHasPreferences(): void
+    {
+        // Appends to the host model&#039;s casts without touching existing definitions
+        $this-&gt;mergeCasts([
+            &#039;preferences&#039; =&gt; &#039;array&#039;,
+            &#039;theme_color&#039; =&gt; &#039;string&#039;,
+        ]);
+    }
+}</code></pre>
+<hr>
+<h3>2. Dynamic Runtime Casts</h3>
 <pre><code class="language-php">use App\Models\User;
 
 $user = new User();
+
+// Add temporary cast on an ad-hoc instance
 $user-&gt;mergeCasts([
-    &#039;options&#039; =&gt; &#039;array&#039;,
-    &#039;verified_at&#039; =&gt; &#039;datetime&#039;,
+    &#039;dynamic_metadata&#039; =&gt; &#039;json&#039;,
 ]);</code></pre>
+<hr>
+<h3>Key Benefits</h3>
 <ul>
-  <li>Appends cast rules to existing model casts dynamically at runtime</li>
-  <li>Ideal for reusable model traits that require specific attribute casts</li>
-  <li>Does not overwrite existing cast declarations for un-specified attributes</li>
+  <li><strong>Non-Destructive</strong>: Merges new cast rules into existing definitions without resetting previously declared attributes.</li>
+  <li><strong>Trait Architecture</strong>: Enables traits to supply their own casting requirements cleanly via <code>initializeTraitName()</code> methods.</li>
 </ul>
 ]]></content:encoded>
       <pubDate>Wed, 21 Jun 2023 00:00:00 GMT</pubDate>

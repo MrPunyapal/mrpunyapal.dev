@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">whereDate() wraps the column in a DATE() function, preventing the database from using indexes. Use whereBetween() with full timestamps for index-friendly filtering.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Filtering records with whereDate() forces the database to evaluate the DATE() function on every row, bypassing indexes. Use whereBetween() with explicit timestamps.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">whereDate() wraps the column in a DATE() function, preventing the database from using indexes. Use whereBetween() with full timestamps for index-friendly filtering.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Filtering records with <code>whereDate()</code> forces the database engine to evaluate the <code>DATE()</code> function on every single row in the table, completely bypassing B-Tree indexes and causing slow full-table scans.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Before &amp; After</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -749,21 +750,44 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$orders = Order::whereBetween(&#039;created_at&#039;, [
-    $date . &#039; 00:00:00&#039;,
-    $date . &#039; 23:59:59&#039;,
-])-&gt;get();" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\Order;
+use Carbon\Carbon;
+
+$date = Carbon::parse(&#039;2026-03-12&#039;);
+
+// ❌ Avoid: Wraps column in DATE() function; bypasses indexes
+$orders = Order::whereDate(&#039;created_at&#039;, $date)-&gt;get();
+// Generated SQL: select * from `orders` where date(`created_at`) = &#039;2026-03-12&#039;
+
+// ✅ Recommended: Uses B-Tree index range scan
+$orders = Order::whereBetween(&#039;created_at&#039;, [
+    $date-&gt;copy()-&gt;startOfDay(),
+    $date-&gt;copy()-&gt;endOfDay(),
+])-&gt;get();
+// Generated SQL: select * from `orders` where `created_at` between &#039;2026-03-12 00:00:00&#039; and &#039;2026-03-12 23:59:59&#039;" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$orders</span> = <span class="hljs-title class_">Order</span>::<span class="hljs-title function_ invoke__">whereBetween</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, [
-    <span class="hljs-variable">$date</span> . <span class="hljs-string">&#x27; 00:00:00&#x27;</span>,
-    <span class="hljs-variable">$date</span> . <span class="hljs-string">&#x27; 23:59:59&#x27;</span>,
-])-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">whereBetween() enables B-Tree index range scans</span></li><li class="leading-relaxed"><span class="align-middle">Avoids wrapping indexed columns in SQL functions</span></li><li class="leading-relaxed"><span class="align-middle">Crucial for high-traffic tables with millions of rows</span></li></ul>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Order</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">Carbon</span>;
+
+<span class="hljs-variable">$date</span> = <span class="hljs-title class_">Carbon</span>::<span class="hljs-title function_ invoke__">parse</span>(<span class="hljs-string">&#x27;2026-03-12&#x27;</span>);
+
+<span class="hljs-comment">// ❌ Avoid: Wraps column in DATE() function; bypasses indexes</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-title class_">Order</span>::<span class="hljs-title function_ invoke__">whereDate</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-variable">$date</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>();
+<span class="hljs-comment">// Generated SQL: select * from `orders` where date(`created_at`) = &#x27;2026-03-12&#x27;</span>
+
+<span class="hljs-comment">// ✅ Recommended: Uses B-Tree index range scan</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-title class_">Order</span>::<span class="hljs-title function_ invoke__">whereBetween</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, [
+    <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">startOfDay</span>(),
+    <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">copy</span>()-&gt;<span class="hljs-title function_ invoke__">endOfDay</span>(),
+])-&gt;<span class="hljs-title function_ invoke__">get</span>();
+<span class="hljs-comment">// Generated SQL: select * from `orders` where `created_at` between &#x27;2026-03-12 00:00:00&#x27; and &#x27;2026-03-12 23:59:59&#x27;</span></code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Index Utilization</strong>: Allows MySQL and PostgreSQL to perform fast index range scans rather than full table scans.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>High Throughput</strong>: Critical for performance on tables containing millions of rows.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Timezone Safety</strong>: Explicit start and end boundaries avoid edge-case shifts when dealing with UTC storage.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

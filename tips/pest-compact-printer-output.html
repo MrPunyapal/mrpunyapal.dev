@@ -17,7 +17,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators. When running large test suites with hun...">
+    <meta name="description" content="Use the --compact flag or set it in your composer.json test script for minimal single-character test progress indicators. When running large test suites with...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/pest-compact-printer-output">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
@@ -26,7 +26,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/pest-compact-printer-output">
     <meta property="og:title" content="Enable Compact Test Output Printer in Pest - Pest PHP &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators. When running large test suites with hun...">
+    <meta property="og:description" content="Use the --compact flag or set it in your composer.json test script for minimal single-character test progress indicators. When running large test suites with...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/pest-compact-printer-output.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/pest-compact-printer-output.png">
     <meta property="og:image:type" content="image/png">
@@ -45,7 +45,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/pest-compact-printer-output">
     <meta name="twitter:title" content="Enable Compact Test Output Printer in Pest - Pest PHP &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators. When running large test suites with hun...">
+    <meta name="twitter:description" content="Use the --compact flag or set it in your composer.json test script for minimal single-character test progress indicators. When running large test suites with...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/pest-compact-printer-output.png">
     <meta name="twitter:image:alt" content="Enable Compact Test Output Printer in Pest - Punyapal Shah">
 
@@ -58,7 +58,7 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/pest-compact-printer-output#article",
                 "headline": "Enable Compact Test Output Printer in Pest",
-                "description": "Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators. When running large test suites with hun...",
+                "description": "Use the --compact flag or set it in your composer.json test script for minimal single-character test progress indicators. When running large test suites with...",
                 "datePublished": "2025-12-28",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/pest-compact-printer-output",
@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use the --compact flag or configure compact output in pest.php for minimal single-character test progress indicators.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running large test suites with hundreds of tests, verbose output fills terminal buffers. Enabling compact printer output displays dots and characters for fast console feedback.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use the --compact flag or set it in your composer.json test script for minimal single-character test progress indicators.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running large test suites with hundreds of test cases, verbose multi-line output fills your terminal scrollback buffer.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Pest provides a compact output mode that displays concise single-character indicators for fast visual feedback.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Run on Demand via CLI</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -749,17 +750,41 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="# Enable compact output via CLI
-./vendor/bin/pest --compact" aria-label="Copy code to clipboard">
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="./vendor/bin/pest --compact" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash"><span class="hljs-comment"># Enable compact output via CLI</span>
-./vendor/bin/pest --compact</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Displays minimal test progress indicators to reduce console output clutter</span></li><li class="leading-relaxed"><span class="align-middle">Highlights failures and errors prominently with detailed tracebacks</span></li><li class="leading-relaxed"><span class="align-middle">Saves terminal scrollback memory during long test suite runs</span></li></ul>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash">./vendor/bin/pest --compact</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Set as Default in composer.json</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To make compact output the default for your team and CI runs, configure it inside <code>composer.json</code>:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="{
+    &quot;scripts&quot;: {
+        &quot;test&quot;: &quot;pest --compact&quot;
+    }
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;test&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;pest --compact&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Now running <code>composer test</code> executes Pest in compact mode automatically.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Minimal Terminal Clutter</strong>: Renders small single-character status indicators (<code>.</code> for passed, <code>F</code> for failed) instead of multi-line test names.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Immediate Failure Details</strong>: Test failures, assertion errors, and stack traces are still rendered prominently at the end of the run.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Scrollback Efficiency</strong>: Keeps terminal buffers clean during extensive test suite runs.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

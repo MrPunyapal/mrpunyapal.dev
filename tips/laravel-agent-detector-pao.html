@@ -17,7 +17,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Laravel&#039;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI agents are part of moder...">
+    <meta name="description" content="Laravel&#039;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI coding agents (Cursor, C...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-agent-detector-pao">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
@@ -26,7 +26,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-agent-detector-pao">
     <meta property="og:title" content="Detect AI Agents in Laravel with AgentDetector and PAO - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Laravel&#039;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI agents are part of moder...">
+    <meta property="og:description" content="Laravel&#039;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI coding agents (Cursor, C...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-agent-detector-pao.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-agent-detector-pao.png">
     <meta property="og:image:type" content="image/png">
@@ -45,7 +45,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-agent-detector-pao">
     <meta name="twitter:title" content="Detect AI Agents in Laravel with AgentDetector and PAO - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Laravel&#039;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI agents are part of moder...">
+    <meta name="twitter:description" content="Laravel&#039;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI coding agents (Cursor, C...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-agent-detector-pao.png">
     <meta name="twitter:image:alt" content="Detect AI Agents in Laravel with AgentDetector and PAO - Punyapal Shah">
 
@@ -58,7 +58,7 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/laravel-agent-detector-pao#article",
                 "headline": "Detect AI Agents in Laravel with AgentDetector and PAO",
-                "description": "Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI agents are part of moder...",
+                "description": "Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents. AI coding agents (Cursor, C...",
                 "datePublished": "2026-07-15",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-agent-detector-pao",
@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel&#39;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">AI agents are part of modern dev workflows, and Laravel provides first-party tools to handle them cleanly by detecting agents and switching terminal outputs to compact JSON.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel&#39;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">AI coding agents (Cursor, Claude Code, Devin) are now part of regular development workflows. Laravel provides first-party tools to detect agents and optimize terminal output for LLM parsing.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Agent Detection</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -751,8 +752,11 @@
         </div>
         <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Laravel\AgentDetector\Facades\AgentDetector;
 
-if (AgentDetector::detect()-&gt;isAgent) {
-    logger()-&gt;info(&#039;AI agent detected&#039;, [&#039;agent&#039; =&gt; AgentDetector::detect()-&gt;name]);
+$detection = AgentDetector::detect();
+
+if ($detection-&gt;isAgent) {
+    // Inspect agent name (e.g. &#039;claude-code&#039;, &#039;cursor&#039;, &#039;devin&#039;)
+    logger()-&gt;info(&#039;AI agent session&#039;, [&#039;agent&#039; =&gt; $detection-&gt;name]);
 }" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -762,10 +766,14 @@ if (AgentDetector::detect()-&gt;isAgent) {
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Laravel</span>\<span class="hljs-title">AgentDetector</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">AgentDetector</span>;
 
-<span class="hljs-keyword">if</span> (<span class="hljs-title class_">AgentDetector</span>::<span class="hljs-title function_ invoke__">detect</span>()-&gt;isAgent) {
-    <span class="hljs-title function_ invoke__">logger</span>()-&gt;<span class="hljs-title function_ invoke__">info</span>(<span class="hljs-string">&#x27;AI agent detected&#x27;</span>, [<span class="hljs-string">&#x27;agent&#x27;</span> =&gt; <span class="hljs-title class_">AgentDetector</span>::<span class="hljs-title function_ invoke__">detect</span>()-&gt;name]);
+<span class="hljs-variable">$detection</span> = <span class="hljs-title class_">AgentDetector</span>::<span class="hljs-title function_ invoke__">detect</span>();
+
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$detection</span>-&gt;isAgent) {
+    <span class="hljs-comment">// Inspect agent name (e.g. &#x27;claude-code&#x27;, &#x27;cursor&#x27;, &#x27;devin&#x27;)</span>
+    <span class="hljs-title function_ invoke__">logger</span>()-&gt;<span class="hljs-title function_ invoke__">info</span>(<span class="hljs-string">&#x27;AI agent session&#x27;</span>, [<span class="hljs-string">&#x27;agent&#x27;</span> =&gt; <span class="hljs-variable">$detection</span>-&gt;name]);
 }</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">AgentDetector ships with PAO (laravel/pao) by default in new apps</span></li><li class="leading-relaxed"><span class="align-middle">Detects agents via environment variables and file markers</span></li><li class="leading-relaxed"><span class="align-middle">PAO replaces verbose CLI output with compact JSON for agents</span></li></ul>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How PAO Works</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>First-Party</strong>: Ships with PAO (<code>laravel/pao</code>) included by default in new Laravel applications.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Output Optimization</strong>: PAO automatically switches verbose Artisan CLI output into compact JSON when an agent is detected.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Human Invariant</strong>: Human developers see standard terminal formatting with zero workflow change.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Leverage Tailwind CSS utility classes to compose custom responsive designs directly in HTML without CSS stylesheet bloat.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Writing custom CSS classes for every UI component leads to bloated stylesheet files. Tailwind CSS provides utility classes that streamline responsive styling directly inside templates.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Leverage Tailwind CSS utility classes to compose custom responsive designs directly in HTML without CSS stylesheet bloat.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Writing custom CSS classes for every UI component leads to large stylesheets and naming exhaustion. Tailwind CSS provides utility classes that streamline responsive styling directly inside templates.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Utility-First Component Example</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -751,7 +752,7 @@
         </div>
         <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="&lt;div class=&quot;p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4&quot;&gt;
   &lt;div class=&quot;shrink-0&quot;&gt;
-    &lt;img class=&quot;h-12 w-12&quot; src=&quot;/img/logo.svg&quot; alt=&quot;Logo&quot;&gt;
+    &lt;img class=&quot;h-12 w-12&quot; src=&quot;/img/avatar.svg&quot; alt=&quot;Avatar&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;div class=&quot;text-xl font-medium text-black&quot;&gt;Punyapal Shah&lt;/div&gt;
@@ -766,14 +767,15 @@
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;shrink-0&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h-12 w-12&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/img/logo.svg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Logo&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h-12 w-12&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/img/avatar.svg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Avatar&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-xl font-medium text-black&quot;</span>&gt;</span>Punyapal Shah<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-slate-500&quot;</span>&gt;</span>Software Engineer<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Eliminates named CSS class abstraction debates</span></li><li class="leading-relaxed"><span class="align-middle">Purges unused CSS styles automatically in production builds</span></li><li class="leading-relaxed"><span class="align-middle">makes sure consistent spacing, typography, and color tokens</span></li></ul>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>No Named Abstraction Clutter</strong>: Eliminates arbitrary CSS class naming debates like <code>.card-author-wrapper</code>.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Automatic Dead Code Elimination</strong>: Build tools automatically purge unused utility classes, emitting tiny production CSS bundles.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Consistent Design System</strong>: Enforces standard spacing, typography, and color tokens defined in your project configuration.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

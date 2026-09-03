@@ -17,7 +17,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <!-- Primary SEO Meta Tags -->
-    <meta name="description" content="Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal services...">
+    <meta name="description" content="Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal applicati...">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-real-time-facades">
     <link rel="alternate" type="application/rss+xml" title="Laravel Tips | Punyapal Shah" href="https://mrpunyapal.dev/tips/feed.xml">
@@ -26,7 +26,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-real-time-facades">
     <meta property="og:title" content="Use Real-Time Facades with the Facades Prefix - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta property="og:description" content="Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal services...">
+    <meta property="og:description" content="Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal applicati...">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-real-time-facades.png">
     <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-real-time-facades.png">
     <meta property="og:image:type" content="image/png">
@@ -45,7 +45,7 @@
     <meta name="twitter:creator" content="@MrPunyapal">
     <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-real-time-facades">
     <meta name="twitter:title" content="Use Real-Time Facades with the Facades Prefix - Laravel &amp; PHP Tip | Punyapal Shah">
-    <meta name="twitter:description" content="Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal services...">
+    <meta name="twitter:description" content="Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal applicati...">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-real-time-facades.png">
     <meta name="twitter:image:alt" content="Use Real-Time Facades with the Facades Prefix - Punyapal Shah">
 
@@ -58,7 +58,7 @@
                 "@type": "TechArticle",
                 "@id": "https://mrpunyapal.dev/tips/laravel-real-time-facades#article",
                 "headline": "Use Real-Time Facades with the Facades Prefix",
-                "description": "Prefix any application class import with Facades\\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal services...",
+                "description": "Prefix any application class import with Facades\\ to instantly treat it as a mockable Laravel Facade. Creating explicit Facade classes for internal applicati...",
                 "datePublished": "2025-07-12",
                 "inLanguage": "en",
                 "mainEntityOfPage": "https://mrpunyapal.dev/tips/laravel-real-time-facades",
@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Creating explicit Facade classes for internal services adds boilerplate. Laravel&#39;s Real-Time Facades generate mockable facades on the fly by prefixing namespace imports with Facades.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Prefix any application class import with Facades\ to instantly treat it as a mockable Laravel Facade.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Creating explicit Facade classes for internal application services adds unnecessary boilerplate files.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s Real-Time Facades generate mockable facades on the fly simply by prefixing the namespace import with <code>Facades\</code>.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Controller Usage</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -751,14 +752,15 @@
         </div>
         <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Http\Controllers;
 
-// Import class with Facades\ prefix for instant facade capabilities
+// Import any internal service with the Facades\ prefix
 use Facades\App\Services\PaymentGateway;
 
 class CheckoutController
 {
     public function store()
     {
-        PaymentGateway::charge(100); // Executed as real-time facade
+        // Calls methods statically with container resolution
+        PaymentGateway::charge(100);
     }
 }" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -769,17 +771,54 @@ class CheckoutController
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Http</span>\<span class="hljs-title class_">Controllers</span>;
 
-<span class="hljs-comment">// Import class with Facades\ prefix for instant facade capabilities</span>
+<span class="hljs-comment">// Import any internal service with the Facades\ prefix</span>
 <span class="hljs-keyword">use</span> <span class="hljs-title">Facades</span>\<span class="hljs-title">App</span>\<span class="hljs-title">Services</span>\<span class="hljs-title">PaymentGateway</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CheckoutController</span>
 </span>{
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">store</span>(<span class="hljs-params"></span>)
     </span>{
-        <span class="hljs-title class_">PaymentGateway</span>::<span class="hljs-title function_ invoke__">charge</span>(<span class="hljs-number">100</span>); <span class="hljs-comment">// Executed as real-time facade</span>
+        <span class="hljs-comment">// Calls methods statically with container resolution</span>
+        <span class="hljs-title class_">PaymentGateway</span>::<span class="hljs-title function_ invoke__">charge</span>(<span class="hljs-number">100</span>);
     }
 }</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Eliminates boilerplate dedicated Facade class files</span></li><li class="leading-relaxed"><span class="align-middle">Allows instant test mocking via PaymentGateway::shouldReceive()</span></li><li class="leading-relaxed"><span class="align-middle">Resolves underlying service class instance from container automatically</span></li></ul>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Mocking in Tests</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The main superpower of real-time facades is effortless test mocking without container bindings:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Facades\App\Services\PaymentGateway;
+
+it(&#039;processes checkout successfully&#039;, function () {
+    PaymentGateway::shouldReceive(&#039;charge&#039;)
+        -&gt;once()
+        -&gt;with(100)
+        -&gt;andReturn(true);
+
+    $this-&gt;post(&#039;/checkout&#039;)-&gt;assertOk();
+});" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Facades</span>\<span class="hljs-title">App</span>\<span class="hljs-title">Services</span>\<span class="hljs-title">PaymentGateway</span>;
+
+<span class="hljs-title function_ invoke__">it</span>(<span class="hljs-string">&#x27;processes checkout successfully&#x27;</span>, function () {
+    <span class="hljs-title class_">PaymentGateway</span>::<span class="hljs-title function_ invoke__">shouldReceive</span>(<span class="hljs-string">&#x27;charge&#x27;</span>)
+        -&gt;<span class="hljs-title function_ invoke__">once</span>()
+        -&gt;<span class="hljs-title function_ invoke__">with</span>(<span class="hljs-number">100</span>)
+        -&gt;<span class="hljs-title function_ invoke__">andReturn</span>(<span class="hljs-literal">true</span>);
+
+    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">post</span>(<span class="hljs-string">&#x27;/checkout&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">assertOk</span>();
+});</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Zero Boilerplate</strong>: No need to create a dedicated <code>app/Facades/PaymentGateway.php</code> file.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Instant Testability</strong>: Call <code>shouldReceive()</code> or <code>spy()</code> directly on the imported real-time facade.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Container Resolution</strong>: Laravel resolves the real underlying instance from the service container when not mocked.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

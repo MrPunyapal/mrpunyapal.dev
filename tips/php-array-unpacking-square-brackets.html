@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use array unpacking (...) inside square bracket array literals for string-keyed and indexed array merging.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHP 8.1 expanded array unpacking to support string keys inside array literals. This replaces array_merge() calls with clean spread syntax.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Use array unpacking (...) inside square bracket array literals for string-keyed and indexed array merging.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHP 8.1 expanded array unpacking to support string keys inside square bracket array literals, replacing verbose <code>array_merge()</code> calls with clean spread syntax.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Code Example</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -749,23 +750,52 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$defaults = [&#039;theme&#039; =&gt; &#039;dark&#039;, &#039;notifications&#039; =&gt; true];
-$userCustom = [&#039;notifications&#039; =&gt; false, &#039;language&#039; =&gt; &#039;en&#039;];
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="$defaults = [
+    &#039;theme&#039;         =&gt; &#039;dark&#039;,
+    &#039;notifications&#039; =&gt; true,
+];
 
-// Unpacks and merges arrays natively
-$options = [...$defaults, ...$userCustom];" aria-label="Copy code to clipboard">
+$userCustom = [
+    &#039;notifications&#039; =&gt; false,
+    &#039;language&#039;      =&gt; &#039;en&#039;,
+];
+
+// Unpacks and merges arrays natively (later values overwrite earlier keys)
+$options = [...$defaults, ...$userCustom];
+
+// Result:
+// [
+//     &#039;theme&#039;         =&gt; &#039;dark&#039;,
+//     &#039;notifications&#039; =&gt; false,
+//     &#039;language&#039;      =&gt; &#039;en&#039;,
+// ]" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$defaults</span> = [<span class="hljs-string">&#x27;theme&#x27;</span> =&gt; <span class="hljs-string">&#x27;dark&#x27;</span>, <span class="hljs-string">&#x27;notifications&#x27;</span> =&gt; <span class="hljs-literal">true</span>];
-<span class="hljs-variable">$userCustom</span> = [<span class="hljs-string">&#x27;notifications&#x27;</span> =&gt; <span class="hljs-literal">false</span>, <span class="hljs-string">&#x27;language&#x27;</span> =&gt; <span class="hljs-string">&#x27;en&#x27;</span>];
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$defaults</span> = [
+    <span class="hljs-string">&#x27;theme&#x27;</span>         =&gt; <span class="hljs-string">&#x27;dark&#x27;</span>,
+    <span class="hljs-string">&#x27;notifications&#x27;</span> =&gt; <span class="hljs-literal">true</span>,
+];
 
-<span class="hljs-comment">// Unpacks and merges arrays natively</span>
-<span class="hljs-variable">$options</span> = [...<span class="hljs-variable">$defaults</span>, ...<span class="hljs-variable">$userCustom</span>];</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Replaces verbose array_merge() calls with clean spread operator syntax</span></li><li class="leading-relaxed"><span class="align-middle">Supports string keys as of PHP 8.1 (later values overwrite earlier keys)</span></li><li class="leading-relaxed"><span class="align-middle">Cleaner syntax for array composition and middleware pipelines</span></li></ul>
+<span class="hljs-variable">$userCustom</span> = [
+    <span class="hljs-string">&#x27;notifications&#x27;</span> =&gt; <span class="hljs-literal">false</span>,
+    <span class="hljs-string">&#x27;language&#x27;</span>      =&gt; <span class="hljs-string">&#x27;en&#x27;</span>,
+];
+
+<span class="hljs-comment">// Unpacks and merges arrays natively (later values overwrite earlier keys)</span>
+<span class="hljs-variable">$options</span> = [...<span class="hljs-variable">$defaults</span>, ...<span class="hljs-variable">$userCustom</span>];
+
+<span class="hljs-comment">// Result:</span>
+<span class="hljs-comment">// [</span>
+<span class="hljs-comment">//     &#x27;theme&#x27;         =&gt; &#x27;dark&#x27;,</span>
+<span class="hljs-comment">//     &#x27;notifications&#x27; =&gt; false,</span>
+<span class="hljs-comment">//     &#x27;language&#x27;      =&gt; &#x27;en&#x27;,</span>
+<span class="hljs-comment">// ]</span></code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Clean Syntax</strong>: Replaces verbose <code>array_merge()</code> function calls with native spread operator syntax.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>String Key Support</strong>: In PHP 8.1+, string keys are fully supported; conflicting keys are overwritten by later elements in the list.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Array Composition</strong>: Ideal for merging configuration defaults, request payloads, and query parameters cleanly.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->
