@@ -9,9 +9,93 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Tue, 01 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Wed, 02 Sep 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Harden Filesystem Operations with Storage::path() Traversal Protection in Laravel 13.30]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-storage-path-traversal-protection</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-storage-path-traversal-protection</guid>
+      <description><![CDATA[Laravel 13.30 automatically normalizes and validates paths in Storage::path(), throwing a PathTraversalDetected exception if a path attempts to escape the co...]]></description>
+      <content:encoded><![CDATA[<blockquote>Laravel 13.30 automatically normalizes and validates paths in Storage::path(), throwing a PathTraversalDetected exception if a path attempts to escape the configured disk root.</blockquote>
+<p>When generating absolute filesystem paths using `Storage::path($filePath)`, Laravel resolves the argument relative to the disk root configured in `config/filesystems.php` (such as `storage/app/private`).</p>
+<p>If your application accepts file paths from user input without strict sanitization, malicious users can inject directory traversal sequences (`../../../`) to access sensitive configuration files, environment variables, or operating system secrets.</p>
+<p>**Laravel 13.30 hardens `Storage::path()` against path traversal attacks**, rejecting any resolved path that escapes the boundary of the configured storage disk.</p>
+<hr>
+<h3>1. The Vulnerability: Path Traversal via User Input</h3>
+<p>User-controlled file paths can enter your application through multiple entry points:</p>
+<ul>
+  <li>Query parameters (<code>?file=reports/summary.pdf</code>)</li>
+  <li>Route parameters (<code>/downloads/{filePath}</code>)</li>
+  <li>Form request fields (<code>request()-&gt;input(&#39;attachment&#39;)</code>)</li>
+  <li>JSON API payloads (<code>{ &quot;export_path&quot;: &quot;exports/data.csv&quot; }</code>)</li>
+</ul>
+<blockquote>**Warning for Laravel Versions Prior to 13.30**:  
+In versions before Laravel 13.30, `Storage::path()` does not validate path boundaries. Passing unvalidated user input containing `../` sequences will silently resolve files outside your disk root. If you are on an older version, you must manually sanitize input using `basename()` or verify that the resolved `realpath()` starts within the intended storage directory before reading or serving files.</blockquote>
+<hr>
+<h3>2. Laravel 13.30: Automatic Path Boundary Enforcement</h3>
+<p>In Laravel 13.30, `Storage::path()` normalizes dot segments (`.` and `..`) and validates that the final target path stays strictly inside the configured disk root. If the path tries to break out, Laravel immediately throws `PathTraversalDetected`.</p>
+<pre><code class="language-php">use Illuminate\Filesystem\PathTraversalDetected;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+// Malicious payload from query string: ?file=../../../../.env
+$requestedFile = $request-&gt;query(&#039;file&#039;);
+
+try {
+    // Attempting to resolve a path outside storage/app/private
+    $fullPath = Storage::disk(&#039;local&#039;)-&gt;path($requestedFile);
+} catch (PathTraversalDetected $e) {
+    // Laravel 13.30 halts execution immediately
+    abort(400, &#039;Invalid file path requested.&#039;);
+}</code></pre>
+<hr>
+<h3>3. Defense in Depth: Framework Boundary vs. Application Security</h3>
+<p>While Laravel 13.30 provides essential framework-level protection against filesystem escaping, it is not a substitute for application-level authorization.</p>
+<p>Security requires two distinct layers:</p>
+<h4>Framework Responsibility</h4>
+<ul>
+  <li>Enforces hard storage boundaries.</li>
+  <li>Rejects any path traversal attempt that escapes the configured storage disk root with <code>PathTraversalDetected</code>.</li>
+</ul>
+<h4>Application Responsibility</h4>
+<ul>
+  <li><strong>Input Validation</strong>: Never pass raw user-supplied strings directly to filesystem APIs without validating against an allowed list or strict pattern.</li>
+  <li><strong>Access Authorization</strong>: Verify that the authenticated user owns or has permission to view the requested resource (e.g. via Gates or Policies).</li>
+  <li><strong>ID-Based Lookups</strong>: Prefer database IDs or UUIDs to locate files instead of exposing raw filesystem paths to the client.</li>
+</ul>
+<hr>
+<h3>4. Best Practice for Serving Private Files</h3>
+<p>Instead of accepting raw path strings from user input, store file metadata in your database and resolve files using secure model relationships:</p>
+<pre><code class="language-php">use App\Models\Invoice;
+use Illuminate\Support\Facades\Gate;
+
+public function download(Invoice $invoice)
+{
+    // 1. Authorize user access
+    Gate::authorize(&#039;view&#039;, $invoice);
+
+    // 2. Resolve verified path stored internally in the database
+    return Storage::disk(&#039;local&#039;)-&gt;download($invoice-&gt;storage_path);
+}</code></pre>
+<hr>
+<h3>Summary</h3>
+<ul>
+  <li><code>Storage::path()</code> in Laravel 13.30 normalizes path strings and prevents traversal beyond the disk root.</li>
+  <li>Throws <code>Illuminate\Filesystem\PathTraversalDetected</code> when a path attempts to escape the storage root.</li>
+  <li>If running Laravel versions prior to 13.30, be vigilant and manually validate paths with <code>basename()</code> or <code>realpath()</code> checks.</li>
+  <li>Protects against malicious query parameters, route arguments, and JSON payloads.</li>
+  <li>Serves as defense in depth alongside proper input validation and user authorization.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Storage]]></category>
+      <category><![CDATA[Filesystem]]></category>
+      <category><![CDATA[Security]]></category>
+      <category><![CDATA[Path Traversal]]></category>
+    </item>
     <item>
       <title><![CDATA[Git Submodule vs. Git Subtree: Which Should You Use?]]></title>
       <link>https://mrpunyapal.dev/tips/git-submodule-vs-git-subtree</link>
