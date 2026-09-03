@@ -9,9 +9,84 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Wed, 02 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Thu, 03 Sep 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Use Immutable Dates by Default in Laravel]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates</guid>
+      <description><![CDATA[Make Laravel use CarbonImmutable by default so date calculations don't unexpectedly modify the original date. Carbon dates are mutable by default, so date op...]]></description>
+      <content:encoded><![CDATA[<blockquote>Make Laravel use `CarbonImmutable` by default so date calculations don't unexpectedly modify the original date.</blockquote>
+<p>Carbon dates are mutable by default, so date operations can unexpectedly change the original instance.</p>
+<pre><code class="language-php">$date = now();
+
+$tomorrow = $date-&gt;addDay();
+
+echo $date-&gt;toDateString();      // 2026-09-04
+echo $tomorrow-&gt;toDateString();  // 2026-09-04</code></pre>
+<p>`CarbonImmutable` returns a new instance instead:</p>
+<pre><code class="language-php">use Carbon\CarbonImmutable;
+
+$date = CarbonImmutable::now();
+
+$tomorrow = $date-&gt;addDay();
+
+echo $date-&gt;toDateString();      // 2026-09-03
+echo $tomorrow-&gt;toDateString();  // 2026-09-04</code></pre>
+<h3>Make It the Laravel Default</h3>
+<p>You can configure Laravel's date factory to use `CarbonImmutable`:</p>
+<pre><code class="language-php">use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Date;
+
+Date::use(CarbonImmutable::class);</code></pre>
+<p>Now existing helpers such as `now()` use immutable dates:</p>
+<pre><code class="language-php">$date = now();
+
+$tomorrow = $date-&gt;addDay();
+
+echo $date-&gt;toDateString();      // 2026-09-03
+echo $tomorrow-&gt;toDateString();  // 2026-09-04</code></pre>
+<p>This means you can keep using Laravel's normal date helpers without manually calling `CarbonImmutable::now()` everywhere.</p>
+<h3>Migrating an Existing Codebase</h3>
+<p>When moving an existing application to immutable dates, look for code that relies on Carbon mutating the original instance.</p>
+<pre><code class="language-php">$date = now();
+
+$date-&gt;addDay();
+
+echo $date-&gt;toDateString();  // Mutable: 2026-09-04</code></pre>
+<p>With immutable dates, assign the returned instance when you want to change the variable:</p>
+<pre><code class="language-php">$date = now();
+
+$date = $date-&gt;addDay();
+
+echo $date-&gt;toDateString();  // 2026-09-04</code></pre>
+<p>For reusable code, prefer `CarbonInterface` when you do not specifically need mutable `Carbon`:</p>
+<pre><code class="language-php">use Carbon\CarbonInterface;
+
+function processDate(CarbonInterface $date): void
+{
+    // ...
+}</code></pre>
+<h4>Using Rector</h4>
+<p>If you are migrating a large codebase, Rector can help with automated refactoring, but the exact Carbon migration rule should be checked against the Rector version installed in the project rather than assuming a rule name.</p>
+<p>You can inspect the rules available to your project with:</p>
+<pre><code class="language-bash">vendor/bin/rector list-rules</code></pre>
+<p>Rector also provides an online rule finder for discovering and verifying available rules.</p>
+<p>The important distinction is:</p>
+<ul>
+  <li><strong>Rector</strong> can help automate repetitive migration work.</li>
+  <li><strong><code>Date::use(CarbonImmutable::class)</code></strong> makes immutable dates the Laravel default.</li>
+</ul>
+<p>Before enabling this globally, check application and package code that depends on mutable Carbon behavior.</p>
+]]></content:encoded>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Utilities]]></category>
+      <category><![CDATA[Carbon]]></category>
+      <category><![CDATA[Dates]]></category>
+    </item>
     <item>
       <title><![CDATA[Harden Filesystem Operations with Storage::path() Traversal Protection in Laravel 13.30]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-storage-path-traversal-protection</link>
