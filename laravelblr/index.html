@@ -1874,9 +1874,10 @@
                 <h3 class="main-heading">Automate All Repetitive Work</h3>
               </div>
               <div class="dash-list">
-                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Test matrix running across PHP (8.2, 8.3, 8.4, 8.5) & Laravel (10, 11, 12, 13)</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Test matrix running across PHP (8.3, 8.4, 8.5) & Laravel (12, 13)</span></div>
                 <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>Automated static analysis using PHPStan / Larastan</span></div>
                 <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>Automated code styling using Laravel Pint</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-blue">—</span><span>Automated refactoring & upgrades with Rector</span></div>
               </div>
             </div>
           </div>
@@ -1914,7 +1915,7 @@
       <!-- SLIDE 21: THE COMPLETE CYCLE -->
       
 
-      <!-- SLIDE 25: THE COMPLETE CYCLE -->
+            <!-- SLIDE 25: THE COMPLETE CYCLE -->
       <section class="slide" data-index="25" data-slide-name="complete-cycle">
         <div class="slide-header">
           <div class="slide-title-wrap">
@@ -1930,81 +1931,91 @@
         </div>
         <div class="slide-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
 
-          <!-- Main Diagram Container -->
-          <div style="position: relative; width: 100%; max-width: 1060px; padding: 20px 0;">
+          <!-- Main Diagram Container: Optically centered -->
+          <div style="position: relative; width: 100%; max-width: 1040px; margin: 0 auto; margin-top: -12px;">
 
-            <!-- 7-column grid: node | arrow | node | arrow | node | arrow | node -->
-            <div style="display: grid; grid-template-columns: 180px 1fr 180px 1fr 180px 1fr 180px; grid-template-rows: auto auto; width: 100%; row-gap: 16px; align-items: center;">
+            <!-- 7-column layout: 170px | 1fr | 170px | 1fr | 170px | 1fr | 170px -->
+            <!-- Arrows span rows 1 and 2 to center vertically between title and subtitle -->
+            <div style="display: grid; grid-template-columns: 170px 1fr 170px 1fr 170px 1fr 170px; grid-template-rows: auto auto; width: 100%; row-gap: 12px; align-items: center;">
 
-              <!-- ROW 1: Labels + Forward Arrows -->
-              <div style="grid-area: 1/1; display: flex; justify-content: center;" class="step-item revealed" data-step="1">
+              <!-- COL 1: User -->
+              <div style="grid-area: 1/1; display: flex; justify-content: center; text-align: center;" class="step-item revealed" data-step="1">
                 <span style="color: #3B82F6; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">User</span>
               </div>
+              <div style="grid-area: 2/1; text-align: center; color: var(--text-gray); font-size: 15px; line-height: 1.4;" class="step-item revealed" data-step="1">
+                Builds with tools
+              </div>
 
-              <!-- Arrow 1 -->
-              <div style="grid-area: 1/2; display: flex; align-items: center; padding: 0 10px;" class="step-item" data-step="2">
+              <!-- ARROW 1: Spans rows 1 and 2 -->
+              <div style="grid-column: 2; grid-row: 1 / span 2; display: flex; align-items: center; padding: 0 12px;" class="step-item" data-step="2">
                 <div style="flex: 1; height: 3px; background: linear-gradient(to right, #3B82F6, #10B981); border-radius: 2px;"></div>
                 <svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink: 0; margin-left: -2px;"><polyline points="3,2 11,7 3,12" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
 
-              <div style="grid-area: 1/3; display: flex; justify-content: center;" class="step-item" data-step="2">
+              <!-- COL 3: Contributor -->
+              <div style="grid-area: 1/3; display: flex; justify-content: center; text-align: center;" class="step-item" data-step="2">
                 <span style="color: #10B981; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Contributor</span>
               </div>
+              <div style="grid-area: 2/3; text-align: center; color: var(--text-gray); font-size: 15px; line-height: 1.4;" class="step-item" data-step="2">
+                Fixes issues &amp; tests
+              </div>
 
-              <!-- Arrow 2 -->
-              <div style="grid-area: 1/4; display: flex; align-items: center; padding: 0 10px;" class="step-item" data-step="3">
+              <!-- ARROW 2: Spans rows 1 and 2 -->
+              <div style="grid-column: 4; grid-row: 1 / span 2; display: flex; align-items: center; padding: 0 12px;" class="step-item" data-step="3">
                 <div style="flex: 1; height: 3px; background: linear-gradient(to right, #10B981, #F59E0B); border-radius: 2px;"></div>
                 <svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink: 0; margin-left: -2px;"><polyline points="3,2 11,7 3,12" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
 
-              <div style="grid-area: 1/5; display: flex; justify-content: center;" class="step-item" data-step="3">
+              <!-- COL 5: Author -->
+              <div style="grid-area: 1/5; display: flex; justify-content: center; text-align: center;" class="step-item" data-step="3">
                 <span style="color: #F59E0B; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Author</span>
               </div>
+              <div style="grid-area: 2/5; text-align: center; color: var(--text-gray); font-size: 15px; line-height: 1.4;" class="step-item" data-step="3">
+                Creates new tools
+              </div>
 
-              <!-- Arrow 3 -->
-              <div style="grid-area: 1/6; display: flex; align-items: center; padding: 0 10px;" class="step-item" data-step="4">
+              <!-- ARROW 3: Spans rows 1 and 2 -->
+              <div style="grid-column: 6; grid-row: 1 / span 2; display: flex; align-items: center; padding: 0 12px;" class="step-item" data-step="4">
                 <div style="flex: 1; height: 3px; background: linear-gradient(to right, #F59E0B, #FF5722); border-radius: 2px;"></div>
                 <svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink: 0; margin-left: -2px;"><polyline points="3,2 11,7 3,12" fill="none" stroke="#FF5722" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
 
-              <div style="grid-area: 1/7; display: flex; justify-content: center;" class="step-item" data-step="4">
+              <!-- COL 7: Maintainer -->
+              <div style="grid-area: 1/7; display: flex; justify-content: center; text-align: center;" class="step-item" data-step="4">
                 <span style="color: #FF5722; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Maintainer</span>
               </div>
-
-              <!-- ROW 2: Descriptions -->
-              <div style="grid-area: 2/1; text-align: center; color: var(--text-gray); font-size: 15px;" class="step-item revealed" data-step="1">Builds with tools</div>
-              <div style="grid-area: 2/3; text-align: center; color: var(--text-gray); font-size: 15px;" class="step-item" data-step="2">Fixes issues &amp; tests</div>
-              <div style="grid-area: 2/5; text-align: center; color: var(--text-gray); font-size: 15px;" class="step-item" data-step="3">Creates new tools</div>
-              <div style="grid-area: 2/7; text-align: center; color: var(--text-gray); font-size: 15px;" class="step-item" data-step="4">Protects ecosystem</div>
+              <div style="grid-area: 2/7; text-align: center; color: var(--text-gray); font-size: 15px; line-height: 1.4;" class="step-item" data-step="4">
+                Protects ecosystem
+              </div>
 
             </div>
 
-            <!-- Loop Return Track: perfectly centered from Maintainer (col 7) to User (col 1) -->
-            <div class="step-item" data-step="5" style="position: relative; width: 100%; height: 70px; margin-top: 36px;">
-              <svg width="100%" height="70" viewBox="0 0 1060 70" preserveAspectRatio="none" style="overflow: visible;">
+            <!-- Loop Return Track: Symmetrical from Maintainer (955px) to User (85px) -->
+            <div class="step-item" data-step="5" style="position: relative; width: 100%; height: 74px; margin-top: 32px;">
+              <svg width="100%" height="74" viewBox="0 0 1040 74" preserveAspectRatio="none" style="overflow: visible;">
                 <defs>
-                  <linearGradient id="return-gradient" x1="970" y1="0" x2="90" y2="0" gradientUnits="userSpaceOnUse">
+                  <linearGradient id="return-gradient" x1="955" y1="0" x2="85" y2="0" gradientUnits="userSpaceOnUse">
                     <stop offset="0%" stop-color="#FF5722"/>
-                    <stop offset="40%" stop-color="#F59E0B"/>
-                    <stop offset="75%" stop-color="#10B981"/>
+                    <stop offset="38%" stop-color="#F59E0B"/>
+                    <stop offset="72%" stop-color="#10B981"/>
                     <stop offset="100%" stop-color="#3B82F6"/>
                   </linearGradient>
                 </defs>
                 
-                <!-- Smooth U-turn return path -->
-                <path d="M 970 0 
-                         L 970 28 
-                         Q 970 56, 940 56 
-                         L 120 56 
-                         Q 90 56, 90 28 
-                         L 90 12" 
+                <!-- Symmetrical smooth U-turn return path -->
+                <path d="M 955 0 
+                         L 955 30 
+                         Q 955 60, 925 60 
+                         L 115 60 
+                         Q 85 60, 85 30 
+                         L 85 14" 
                       fill="none" 
                       stroke="url(#return-gradient)" 
                       stroke-width="3" 
                       stroke-linecap="round" />
                 
-                <!-- Upward Arrow Head into User node -->
-                <polyline points="83,20 90,8 97,20" 
+                <!-- Upward Arrow Head centered on User column (x=85) -->
+                <polyline points="78,22 85,10 92,22" 
                           fill="none" 
                           stroke="#3B82F6" 
                           stroke-width="3" 
@@ -2057,7 +2068,7 @@
             <div class="content-accent-bar bar-orange"></div>
             <div class="content-main">
               <div class="step-item revealed" data-step="1">
-                <span class="pill-tag tag-orange">HOW TO START THIS WEEK</span>
+                <span class="pill-tag tag-orange">ACTION PLAN</span>
                 <h3 class="main-heading">How to start this week:</h3>
               </div>
               <div class="dash-list">
