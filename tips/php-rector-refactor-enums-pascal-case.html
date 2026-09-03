@@ -749,16 +749,16 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace AppRector;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Rector;
 
-use PhpParserNode;
-use PhpParserNodeExprClassConstFetch;
-use PhpParserNodeIdentifier;
-use PhpParserNodeStmtEnumCase;
-use PHPStanReflectionReflectionProvider;
-use RectorRectorAbstractRector;
-use SymplifyRuleDocGeneratorValueObjectCodeSampleCodeSample;
-use SymplifyRuleDocGeneratorValueObjectRuleDefinition;
+use PhpParser\Node;
+use PhpParser\Node\Expr\ClassConstFetch;
+use PhpParser\Node\Identifier;
+use PhpParser\Node\Stmt\EnumCase;
+use PHPStan\Reflection\ReflectionProvider;
+use Rector\Rector\AbstractRector;
+use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class RenameEnumCasesToPascalCaseRector extends AbstractRector
 {
@@ -838,16 +838,16 @@ final class RenameEnumCasesToPascalCaseRector extends AbstractRector
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">AppRector</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Rector</span>;
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParserNode</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParserNodeExprClassConstFetch</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParserNodeIdentifier</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParserNodeStmtEnumCase</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">PHPStanReflectionReflectionProvider</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">RectorRectorAbstractRector</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">SymplifyRuleDocGeneratorValueObjectCodeSampleCodeSample</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">SymplifyRuleDocGeneratorValueObjectRuleDefinition</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParser</span>\<span class="hljs-title">Node</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParser</span>\<span class="hljs-title">Node</span>\<span class="hljs-title">Expr</span>\<span class="hljs-title">ClassConstFetch</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParser</span>\<span class="hljs-title">Node</span>\<span class="hljs-title">Identifier</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">PhpParser</span>\<span class="hljs-title">Node</span>\<span class="hljs-title">Stmt</span>\<span class="hljs-title">EnumCase</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">PHPStan</span>\<span class="hljs-title">Reflection</span>\<span class="hljs-title">ReflectionProvider</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Rector</span>\<span class="hljs-title">Rector</span>\<span class="hljs-title">AbstractRector</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Symplify</span>\<span class="hljs-title">RuleDocGenerator</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">CodeSample</span>\<span class="hljs-title">CodeSample</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Symplify</span>\<span class="hljs-title">RuleDocGenerator</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">RuleDefinition</span>;
 
 <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RenameEnumCasesToPascalCaseRector</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractRector</span>
 </span>{
@@ -929,10 +929,10 @@ final class RenameEnumCasesToPascalCaseRector extends AbstractRector
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace AppConsoleCommands;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Console\Commands;
 
-use IlluminateConsoleCommand;
-use IlluminateSupportFacadesFile;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class RefactorBladeEnumsCommand extends Command
 {
@@ -979,10 +979,10 @@ class RefactorBladeEnumsCommand extends Command
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">AppConsoleCommands</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Console</span>\<span class="hljs-title class_">Commands</span>;
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateConsoleCommand</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateSupportFacadesFile</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Console</span>\<span class="hljs-title">Command</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">File</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RefactorBladeEnumsCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span>
 </span>{

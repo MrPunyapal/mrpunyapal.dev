@@ -741,7 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Process complex data sequences or multi-stage order checks through Laravel&#39;s built-in Pipeline facade to replace massive controller methods.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When processing multi-stage workflows (like order checkout validation or user onboarding steps), controllers accumulate giant if blocks. Laravel&#39;s Pipeline facade passes objects sequentially through pipe classes.</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Process complex data sequences or multi-stage order checks through Laravel&#39;s built-in Pipeline facade to replace massive controller methods.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When processing multi-stage workflows (such as order checkout validation or user onboarding steps), controller actions frequently accumulate deeply nested <code>if</code> statements.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s <code>Pipeline</code> facade passes an object sequentially through dedicated pipe classes.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Pipeline Runner</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -749,10 +750,18 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Pipeline;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use App\Models\Order;
+use App\Pipes\ApplyCoupon;
+use App\Pipes\CalculateTax;
+use App\Pipes\VerifyStock;
+use Illuminate\Support\Facades\Pipeline;
 
 $order = Pipeline::send($draftOrder)
-    -&gt;through([VerifyStock::class, ApplyDiscountCode::class])
+    -&gt;through([
+        VerifyStock::class,
+        ApplyCoupon::class,
+        CalculateTax::class,
+    ])
     -&gt;thenReturn();" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -760,12 +769,70 @@ $order = Pipeline::send($draftOrder)
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Pipeline</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Order</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Pipes</span>\<span class="hljs-title">ApplyCoupon</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Pipes</span>\<span class="hljs-title">CalculateTax</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Pipes</span>\<span class="hljs-title">VerifyStock</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Pipeline</span>;
 
 <span class="hljs-variable">$order</span> = <span class="hljs-title class_">Pipeline</span>::<span class="hljs-title function_ invoke__">send</span>(<span class="hljs-variable">$draftOrder</span>)
-    -&gt;<span class="hljs-title function_ invoke__">through</span>([<span class="hljs-title class_">VerifyStock</span>::<span class="hljs-variable language_">class</span>, <span class="hljs-title class_">ApplyDiscountCode</span>::<span class="hljs-variable language_">class</span>])
+    -&gt;<span class="hljs-title function_ invoke__">through</span>([
+        <span class="hljs-title class_">VerifyStock</span>::<span class="hljs-variable language_">class</span>,
+        <span class="hljs-title class_">ApplyCoupon</span>::<span class="hljs-variable language_">class</span>,
+        <span class="hljs-title class_">CalculateTax</span>::<span class="hljs-variable language_">class</span>,
+    ])
     -&gt;<span class="hljs-title function_ invoke__">thenReturn</span>();</code></pre>
-</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Each pipe is a single-responsibility class with a handle() signature</span></li><li class="leading-relaxed"><span class="align-middle">Easily add, remove, or reorder pipeline stages</span></li><li class="leading-relaxed"><span class="align-middle">Each step can be unit tested independently</span></li></ul>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Anatomy of a Pipe Class</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Each pipe implements a <code>handle()</code> method accepting the passable object and a <code>$next</code> closure:</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Pipes;
+
+use App\Models\Order;
+use Closure;
+
+class ApplyCoupon
+{
+    public function handle(Order $order, Closure $next)
+    {
+        if ($order-&gt;coupon_code) {
+            $order-&gt;discount = 15.00;
+        }
+
+        // Pass the modified object to the next pipe in sequence
+        return $next($order);
+    }
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Pipes</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Order</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Closure</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplyCoupon</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span>(<span class="hljs-params">Order <span class="hljs-variable">$order</span>, <span class="hljs-built_in">Closure</span> <span class="hljs-variable">$next</span></span>)
+    </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$order</span>-&gt;coupon_code) {
+            <span class="hljs-variable">$order</span>-&gt;discount = <span class="hljs-number">15.00</span>;
+        }
+
+        <span class="hljs-comment">// Pass the modified object to the next pipe in sequence</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$next</span>(<span class="hljs-variable">$order</span>);
+    }
+}</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Single Responsibility</strong>: Each step is an isolated class with one clear focus.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Easy Reordering</strong>: Add, remove, or reorder pipeline stages without touching adjacent logic.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Testability</strong>: Test individual pipeline steps independently with unit tests.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

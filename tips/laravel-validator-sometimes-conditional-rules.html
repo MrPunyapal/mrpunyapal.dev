@@ -775,7 +775,7 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use IlluminateSupportFacadesValidator;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Validator;
 use IlluminateValidationValidator as ValidatorInstance;
 
 $validator = Validator::make($request-&gt;all(), [
@@ -793,7 +793,7 @@ $validator-&gt;sometimes(&#039;phone_number&#039;, &#039;required|digits:10&#039
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateSupportFacadesValidator</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Validator</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateValidationValidator</span> <span class="hljs-keyword">as</span> <span class="hljs-title">ValidatorInstance</span>;
 
 <span class="hljs-variable">$validator</span> = <span class="hljs-title class_">Validator</span>::<span class="hljs-title function_ invoke__">make</span>(<span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">all</span>(), [

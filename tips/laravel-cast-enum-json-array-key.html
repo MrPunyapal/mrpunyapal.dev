@@ -769,11 +769,11 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace AppModels;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Models;
 
-use AppEnumsPostStatus;
-use IlluminateDatabaseEloquentCastsAttribute;
-use IlluminateDatabaseEloquentModel;
+use App\Enums\PostStatus;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
@@ -809,11 +809,11 @@ class Post extends Model
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">AppModels</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Models</span>;
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">AppEnumsPostStatus</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateDatabaseEloquentCastsAttribute</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateDatabaseEloquentModel</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Enums</span>\<span class="hljs-title">PostStatus</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Casts</span>\<span class="hljs-title">Attribute</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
 </span>{

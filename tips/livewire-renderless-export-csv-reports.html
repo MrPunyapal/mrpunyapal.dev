@@ -749,12 +749,12 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace AppLivewire;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Livewire;
 
-use AppModelsReport;
-use LivewireAttributesRenderless;
-use LivewireComponent;
-use SymfonyComponentHttpFoundationStreamedResponse;
+use App\Models\Report;
+use Livewire\Attributes\Renderless;
+use Livewire\Component;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class TransactionReports extends Component
 {
@@ -802,12 +802,12 @@ class TransactionReports extends Component
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">AppLivewire</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Livewire</span>;
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">AppModelsReport</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">LivewireAttributesRenderless</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">LivewireComponent</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">SymfonyComponentHttpFoundationStreamedResponse</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Report</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Livewire</span>\<span class="hljs-title">Attributes</span>\<span class="hljs-title">Renderless</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Livewire</span>\<span class="hljs-title">Component</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Symfony</span>\<span class="hljs-title">Component</span>\<span class="hljs-title">HttpFoundation</span>\<span class="hljs-title">StreamedResponse</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TransactionReports</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span>
 </span>{

@@ -71,7 +71,7 @@
                 "publisher": {
                     "@id": "https://mrpunyapal.dev/#person"
                 },
-                "timeRequired": "PT4M",
+                "timeRequired": "PT2M",
                 "articleSection": "Laravel"
             },
             {
@@ -724,7 +724,7 @@
                             <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
                             <span class="inline-flex items-center gap-1.5">
                                 <svg class="icon text-xs opacity-70" width="12" height="12" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-clock"/></svg>
-                                4 min read
+                                2 min read
                             </span>
                         </div>
 
@@ -741,43 +741,8 @@
 
                 <!-- Main Tip Content -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Migrating large file storage backends (such as transitioning terabytes of user uploads from an expensive legacy S3 bucket to Cloudflare R2 or MinIO) is traditionally an operational headache. A full upfront migration requires batch copy scripts, handling synchronization delays, and coordinating downtime before updating application disk configurations.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel 13.26 introduces the <code>read-through</code> filesystem driver. It pairs a <strong>primary disk</strong> with a <strong>fallback disk</strong>, allowing applications to serve existing files from the fallback storage while automatically promoting requested files to the primary storage on demand.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How the Read-Through Flow Works</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When an application reads a file through a read-through disk, Laravel resolves the request through a tiered lookup:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="Read requested
-      ↓
-Check primary disk
-   ↙       ↘
-found     missing
-  ↓          ↓
-serve    read from fallback
-             ↓
-       promote/copy to primary
-             ↓
-           serve" aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">Read requested
-      ↓
-Check primary disk
-   ↙       ↘
-found     missing
-  ↓          ↓
-serve    read from fallback
-             ↓
-       promote/copy to primary
-             ↓
-           serve</code></pre>
-</div><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Check Primary</strong>: Laravel checks whether the file exists on the primary disk. If found, it is served immediately.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Fallback Read</strong>: If missing from primary, Laravel reads the file stream from the fallback disk.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Lazy Promotion</strong>: By default, the file is automatically copied/promoted to the primary disk.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Response</strong>: The file content is returned to the application.</span></li></ol><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Subsequent reads for the same path hit the primary disk directly without touching the fallback storage.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Configuration</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Define a <code>read-through</code> disk in <code>config/filesystems.php</code> referencing your primary and fallback disks:</p>
+                    <blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">Laravel 13.26 introduces the read-through filesystem driver, combining primary and fallback storage disks to migrate files lazily as they are requested.</blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Migrating large file storage backends (such as moving terabytes of user uploads from an expensive legacy S3 bucket to Cloudflare R2) usually requires batch copy scripts and synchronized downtime.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel 13.26 adds the <code>read-through</code> filesystem driver. It pairs a <strong>primary disk</strong> with a <strong>fallback disk</strong>, serving existing files from fallback storage while automatically promoting requested files to the primary storage on demand.</p><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Configuration</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Define a <code>read-through</code> disk in <code>config/filesystems.php</code> referencing your primary and fallback disks:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -789,25 +754,27 @@ serve    read from fallback
 &#039;disks&#039; =&gt; [
 
     &#039;r2&#039; =&gt; [
-        &#039;driver&#039; =&gt; &#039;s3&#039;,
-        &#039;key&#039; =&gt; env(&#039;CLOUDFLARE_R2_KEY&#039;),
-        &#039;secret&#039; =&gt; env(&#039;CLOUDFLARE_R2_SECRET&#039;),
-        &#039;bucket&#039; =&gt; env(&#039;CLOUDFLARE_R2_BUCKET&#039;),
+        &#039;driver&#039;   =&gt; &#039;s3&#039;,
+        &#039;key&#039;      =&gt; env(&#039;CLOUDFLARE_R2_KEY&#039;),
+        &#039;secret&#039;   =&gt; env(&#039;CLOUDFLARE_R2_SECRET&#039;),
+        &#039;bucket&#039;   =&gt; env(&#039;CLOUDFLARE_R2_BUCKET&#039;),
         &#039;endpoint&#039; =&gt; env(&#039;CLOUDFLARE_R2_ENDPOINT&#039;),
     ],
 
     &#039;legacy-s3&#039; =&gt; [
         &#039;driver&#039; =&gt; &#039;s3&#039;,
-        &#039;key&#039; =&gt; env(&#039;AWS_ACCESS_KEY_ID&#039;),
+        &#039;key&#039;    =&gt; env(&#039;AWS_ACCESS_KEY_ID&#039;),
         &#039;secret&#039; =&gt; env(&#039;AWS_SECRET_ACCESS_KEY&#039;),
         &#039;bucket&#039; =&gt; env(&#039;AWS_BUCKET&#039;),
         &#039;region&#039; =&gt; env(&#039;AWS_DEFAULT_REGION&#039;),
     ],
 
     &#039;assets&#039; =&gt; [
-        &#039;driver&#039; =&gt; &#039;read-through&#039;,
-        &#039;primary&#039; =&gt; &#039;r2&#039;,
+        &#039;driver&#039;   =&gt; &#039;read-through&#039;,
+        &#039;primary&#039;  =&gt; &#039;r2&#039;,
         &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
+        // &#039;copy&#039;  =&gt; false, // Optional: read fallback without promoting to primary
+        // &#039;throw_on_promotion_failure&#039; =&gt; true, // Optional: throw on copy failure
     ],
 
 ]," aria-label="Copy code to clipboard">
@@ -821,29 +788,32 @@ serve    read from fallback
 <span class="hljs-string">&#x27;disks&#x27;</span> =&gt; [
 
     <span class="hljs-string">&#x27;r2&#x27;</span> =&gt; [
-        <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;s3&#x27;</span>,
-        <span class="hljs-string">&#x27;key&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_KEY&#x27;</span>),
-        <span class="hljs-string">&#x27;secret&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_SECRET&#x27;</span>),
-        <span class="hljs-string">&#x27;bucket&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_BUCKET&#x27;</span>),
+        <span class="hljs-string">&#x27;driver&#x27;</span>   =&gt; <span class="hljs-string">&#x27;s3&#x27;</span>,
+        <span class="hljs-string">&#x27;key&#x27;</span>      =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_KEY&#x27;</span>),
+        <span class="hljs-string">&#x27;secret&#x27;</span>   =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_SECRET&#x27;</span>),
+        <span class="hljs-string">&#x27;bucket&#x27;</span>   =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_BUCKET&#x27;</span>),
         <span class="hljs-string">&#x27;endpoint&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;CLOUDFLARE_R2_ENDPOINT&#x27;</span>),
     ],
 
     <span class="hljs-string">&#x27;legacy-s3&#x27;</span> =&gt; [
         <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;s3&#x27;</span>,
-        <span class="hljs-string">&#x27;key&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;AWS_ACCESS_KEY_ID&#x27;</span>),
+        <span class="hljs-string">&#x27;key&#x27;</span>    =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;AWS_ACCESS_KEY_ID&#x27;</span>),
         <span class="hljs-string">&#x27;secret&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;AWS_SECRET_ACCESS_KEY&#x27;</span>),
         <span class="hljs-string">&#x27;bucket&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;AWS_BUCKET&#x27;</span>),
         <span class="hljs-string">&#x27;region&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;AWS_DEFAULT_REGION&#x27;</span>),
     ],
 
     <span class="hljs-string">&#x27;assets&#x27;</span> =&gt; [
-        <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;read-through&#x27;</span>,
-        <span class="hljs-string">&#x27;primary&#x27;</span> =&gt; <span class="hljs-string">&#x27;r2&#x27;</span>,
+        <span class="hljs-string">&#x27;driver&#x27;</span>   =&gt; <span class="hljs-string">&#x27;read-through&#x27;</span>,
+        <span class="hljs-string">&#x27;primary&#x27;</span>  =&gt; <span class="hljs-string">&#x27;r2&#x27;</span>,
         <span class="hljs-string">&#x27;fallback&#x27;</span> =&gt; <span class="hljs-string">&#x27;legacy-s3&#x27;</span>,
+        <span class="hljs-comment">// &#x27;copy&#x27;  =&gt; false, // Optional: read fallback without promoting to primary</span>
+        <span class="hljs-comment">// &#x27;throw_on_promotion_failure&#x27; =&gt; true, // Optional: throw on copy failure</span>
     ],
 
 ],</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Application code reads and writes through the composite <code>assets</code> disk as usual:</p>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How It Operates</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -853,8 +823,11 @@ serve    read from fallback
         </div>
         <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Storage;
 
-// Reads check &#039;r2&#039; first, fall back to &#039;legacy-s3&#039;, and promote to &#039;r2&#039;
-$avatar = Storage::disk(&#039;assets&#039;)-&gt;get(&#039;avatars/user-102.jpg&#039;);" aria-label="Copy code to clipboard">
+// Reads check &#039;r2&#039; first; if missing, reads from &#039;legacy-s3&#039; and promotes to &#039;r2&#039;
+$avatar = Storage::disk(&#039;assets&#039;)-&gt;get(&#039;avatars/user-102.jpg&#039;);
+
+// Writes always target the primary disk (&#039;r2&#039;) directly
+Storage::disk(&#039;assets&#039;)-&gt;put(&#039;avatars/user-103.jpg&#039;, $contents);" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
@@ -863,61 +836,13 @@ $avatar = Storage::disk(&#039;assets&#039;)-&gt;get(&#039;avatars/user-102.jpg&#
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Storage</span>;
 
-<span class="hljs-comment">// Reads check &#x27;r2&#x27; first, fall back to &#x27;legacy-s3&#x27;, and promote to &#x27;r2&#x27;</span>
-<span class="hljs-variable">$avatar</span> = <span class="hljs-title class_">Storage</span>::<span class="hljs-title function_ invoke__">disk</span>(<span class="hljs-string">&#x27;assets&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&#x27;avatars/user-102.jpg&#x27;</span>);</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Writes, Deletes, and Directory Listings</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The <code>read-through</code> driver is specifically designed for read fallback and lazy promotion. All write and state operations route strictly to the <strong>primary disk</strong>:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Writes (<code>put</code>, <code>writeStream</code>)</strong>: Saved directly to the primary disk. The fallback disk is not modified.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Deletes (<code>delete</code>, <code>deleteDirectory</code>)</strong>: Removed from the primary disk. The fallback disk is untouched.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Directory Listings (<code>files</code>, <code>allFiles</code>, <code>directories</code>)</strong>: Scanned exclusively from the primary disk.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Disabling Promotion with No-Copy Mode</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If you want to read legacy files without writing them to the primary disk, disable automatic promotion using the <code>copy</code> option:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="&#039;assets&#039; =&gt; [
-    &#039;driver&#039; =&gt; &#039;read-through&#039;,
-    &#039;primary&#039; =&gt; &#039;r2&#039;,
-    &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
-    &#039;copy&#039; =&gt; false,
-]," aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-string">&#x27;assets&#x27;</span> =&gt; [
-    <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;read-through&#x27;</span>,
-    <span class="hljs-string">&#x27;primary&#x27;</span> =&gt; <span class="hljs-string">&#x27;r2&#x27;</span>,
-    <span class="hljs-string">&#x27;fallback&#x27;</span> =&gt; <span class="hljs-string">&#x27;legacy-s3&#x27;</span>,
-    <span class="hljs-string">&#x27;copy&#x27;</span> =&gt; <span class="hljs-literal">false</span>,
-],</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This no-copy mode is particularly useful in local development or staging environments where you want to read production files from a shared backup without populating your local disk or incurring write costs.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Handling Promotion Failures</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">By default, if promoting a file to the primary disk fails (e.g. due to network timeouts or temporary permission errors), Laravel swallows the copy error and returns the file from the fallback so the user request does not break.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If you prefer to strictly enforce promotion and surface any write issues immediately, enable <code>throw_on_promotion_failure</code>:</p>
-<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
-    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
-        </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="&#039;assets&#039; =&gt; [
-    &#039;driver&#039; =&gt; &#039;read-through&#039;,
-    &#039;primary&#039; =&gt; &#039;r2&#039;,
-    &#039;fallback&#039; =&gt; &#039;legacy-s3&#039;,
-    &#039;throw_on_promotion_failure&#039; =&gt; true,
-]," aria-label="Copy code to clipboard">
-            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-            <span class="copy-label">Copy</span>
-        </button>
-    </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-string">&#x27;assets&#x27;</span> =&gt; [
-    <span class="hljs-string">&#x27;driver&#x27;</span> =&gt; <span class="hljs-string">&#x27;read-through&#x27;</span>,
-    <span class="hljs-string">&#x27;primary&#x27;</span> =&gt; <span class="hljs-string">&#x27;r2&#x27;</span>,
-    <span class="hljs-string">&#x27;fallback&#x27;</span> =&gt; <span class="hljs-string">&#x27;legacy-s3&#x27;</span>,
-    <span class="hljs-string">&#x27;throw_on_promotion_failure&#x27;</span> =&gt; <span class="hljs-literal">true</span>,
-],</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Important Considerations</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Lazy vs Bulk Migration</strong>: A read-through disk does not automatically migrate an entire storage bucket in the background. It promotes individual files only when they are accessed.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Unrequested Files</strong>: Seldom-used or archived files that are never requested will remain solely on the fallback disk until accessed or purged.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Independent Credentials</strong>: Both primary and fallback disks must have valid driver configurations and accessible permissions.</span></li></ul><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use the <code>read-through</code> driver in Laravel 13.26 to pair a primary storage disk with a fallback storage disk.</span></li><li class="leading-relaxed"><span class="align-middle">Reads check the primary disk first, retrieve missing files from the fallback disk, and promote them to primary storage lazily.</span></li><li class="leading-relaxed"><span class="align-middle">Writes, deletes, and directory listings always operate on the primary disk.</span></li><li class="leading-relaxed"><span class="align-middle">Configure <code>copy =&gt; false</code> for read-only fallback, and <code>throw_on_promotion_failure =&gt; true</code> to surface copy errors.</span></li></ul>
+<span class="hljs-comment">// Reads check &#x27;r2&#x27; first; if missing, reads from &#x27;legacy-s3&#x27; and promotes to &#x27;r2&#x27;</span>
+<span class="hljs-variable">$avatar</span> = <span class="hljs-title class_">Storage</span>::<span class="hljs-title function_ invoke__">disk</span>(<span class="hljs-string">&#x27;assets&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&#x27;avatars/user-102.jpg&#x27;</span>);
+
+<span class="hljs-comment">// Writes always target the primary disk (&#x27;r2&#x27;) directly</span>
+<span class="hljs-title class_">Storage</span>::<span class="hljs-title function_ invoke__">disk</span>(<span class="hljs-string">&#x27;assets&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">put</span>(<span class="hljs-string">&#x27;avatars/user-103.jpg&#x27;</span>, <span class="hljs-variable">$contents</span>);</code></pre>
+</div><hr>
+<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Operational Mechanics</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Lazy Promotion</strong>: Files are copied to the primary disk only when accessed. Unrequested files remain on the fallback disk until accessed or purged.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Writes &amp; Deletes</strong>: Operations such as <code>put()</code>, <code>writeStream()</code>, <code>delete()</code>, and <code>deleteDirectory()</code> target the primary disk exclusively.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Directory Scans</strong>: <code>files()</code> and <code>directories()</code> inspect the primary disk only.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Read-Only Fallback (<code>copy =&gt; false</code>)</strong>: Disables automatic promotion. Useful in local or staging environments to read production buckets without incurring write costs or populating local disks.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Fault Tolerance</strong>: By default, if promoting a file to the primary disk fails, Laravel returns the fallback stream so the user request does not break. Set <code>&#39;throw_on_promotion_failure&#39; =&gt; true</code> to catch write errors in testing.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

@@ -749,11 +749,11 @@
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace AppProviders;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Providers;
 
-use IlluminateBroadcastingPrivateChannel;
-use IlluminateNotificationsDatabaseNotification;
-use IlluminateSupportServiceProvider;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -789,11 +789,11 @@ class AppServiceProvider extends ServiceProvider
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">AppProviders</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Providers</span>;
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateBroadcastingPrivateChannel</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateNotificationsDatabaseNotification</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateSupportServiceProvider</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Broadcasting</span>\<span class="hljs-title">PrivateChannel</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Notifications</span>\<span class="hljs-title">DatabaseNotification</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppServiceProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
 </span>{
@@ -853,10 +853,10 @@ class AppServiceProvider extends ServiceProvider
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace AppLivewire;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="namespace App\Livewire;
 
-use LivewireAttributesOn;
-use LivewireComponent;
+use Livewire\Attributes\On;
+use Livewire\Component;
 
 class NotificationBell extends Component
 {
@@ -872,10 +872,10 @@ class NotificationBell extends Component
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">AppLivewire</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Livewire</span>;
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">LivewireAttributesOn</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">LivewireComponent</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Livewire</span>\<span class="hljs-title">Attributes</span>\<span class="hljs-title">On</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Livewire</span>\<span class="hljs-title">Component</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NotificationBell</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span>
 </span>{
@@ -885,7 +885,7 @@ class NotificationBell extends Component
         <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">dispatch</span>(<span class="hljs-string">&#x27;refreshNotifications&#x27;</span>);
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Observe <code>DatabaseNotification::created</code> to automatically broadcast real-time events for every stored database notification.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates the need to duplicate broadcast payload definitions in individual notification classes.</span></li><li class="leading-relaxed"><span class="align-middle">Seamlessly integrates with Laravel Echo, Livewire, and Vue/React frontend architectures.</span></li></ul>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Observe <code>DatabaseNotification::created</code> to automatically broadcast real-time events for every stored database notification.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates the need to duplicate broadcast payload definitions in individual notification classes.</span></li><li class="leading-relaxed"><span class="align-middle">Directly integrates with Laravel Echo, Livewire, and Vue/React frontend architectures.</span></li></ul>
                 </div>
 
                 <!-- Bottom Inline Edit Link -->

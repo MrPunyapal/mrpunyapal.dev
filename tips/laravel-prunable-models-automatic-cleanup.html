@@ -849,7 +849,7 @@ class TempUpload extends Model
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
             <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
         </div>
-        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use IlluminateSupportFacadesSchedule;
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="use Illuminate\Support\Facades\Schedule;
 
 Schedule::command(&#039;model:prune&#039;)-&gt;daily();" aria-label="Copy code to clipboard">
             <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -858,7 +858,7 @@ Schedule::command(&#039;model:prune&#039;)-&gt;daily();" aria-label="Copy code t
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">IlluminateSupportFacadesSchedule</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Schedule</span>;
 
 <span class="hljs-title class_">Schedule</span>::<span class="hljs-title function_ invoke__">command</span>(<span class="hljs-string">&#x27;model:prune&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">daily</span>();</code></pre>
 </div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><code>Prunable</code> fires Eloquent model events and invokes the <code>pruning()</code> method for each deleted record.</span></li><li class="leading-relaxed"><span class="align-middle"><code>MassPrunable</code> runs direct SQL delete queries in chunks without firing individual model events.</span></li><li class="leading-relaxed"><span class="align-middle">Run <code>php artisan model:prune</code> or schedule it daily to keep table sizes optimal.</span></li></ul>
