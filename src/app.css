@@ -32,9 +32,12 @@ html:not(.dark) site-header {
 }
 
 html:not(.dark) .tech-line-h,
-html:not(.dark) .tech-line-v-top,
-html:not(.dark) .tech-line-v-bottom {
+html:not(.dark) .tech-line-v-top {
     background-color: #d4d4d8 !important;
+}
+
+html:not(.dark) .tech-line-v-bottom {
+    background: linear-gradient(to bottom, #d4d4d8, transparent) !important;
 }
 
 html:not(.dark) .tech-marker {
