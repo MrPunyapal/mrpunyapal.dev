@@ -167,42 +167,8 @@
     <!-- Preload and load critical fonts -->
     <link rel="preload" href="/profile-image-160.webp" as="image" type="image/webp" fetchpriority="high">
     
-    <!-- Critical CSS for animations and layout markers -->
+    <!-- Page Specific Styles -->
     <style>
-        /* Custom keyframes for enhanced animations */
-        @keyframes gradient-x {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(3deg); }
-        }
-        
-        @keyframes glow {
-            0% { box-shadow: 0 0 20px rgba(255, 45, 32, 0.3); }
-            100% { box-shadow: 0 0 30px rgba(255, 45, 32, 0.6); }
-        }
-        
-        @keyframes fade-up {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes scale-up {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        
-
-
         /* Typing animation styles */
         .typing-animation {
             height: 1.75rem;
@@ -227,62 +193,12 @@
         
         .cursor {
             font-weight: 300;
-            color: rgba(255, 45, 32, 0.8);
             animation: blink 1s infinite;
         }
         
         @keyframes blink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
-        }
-        
-        /* Ensure proper text colors */
-        body {
-            color: #1e293b;
-        }
-
-        /* Technical Grid Markers */
-        .tech-marker {
-            position: absolute;
-            width: 7px;
-            height: 7px;
-            background-color: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 50%;
-            z-index: 50;
-            box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
-        }
-        
-        /* Infinite Grid Lines */
-        .tech-line-h {
-            position: absolute;
-            height: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            width: 300vw;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .tech-line-v-top {
-            position: absolute;
-            width: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            bottom: 100%;
-            height: 100vh;
-        }
-
-        .tech-line-v-bottom {
-            position: absolute;
-            width: 1px;
-            background: linear-gradient(to bottom, #e2e8f0, transparent);
-            z-index: 0;
-            pointer-events: none;
-            top: 100%;
-            height: 120px;
         }
 
         /* Ant Circuit Lines Animation */
