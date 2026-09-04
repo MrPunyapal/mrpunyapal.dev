@@ -9,9 +9,46 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Thu, 03 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Fri, 04 Sep 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Group Consecutive Items with chunkBy()]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-collection-chunk-by</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-collection-chunk-by</guid>
+      <description><![CDATA[Use chunkBy() to split a Collection whenever the resolved value changes, without manually comparing items with the previous chunk. Before Laravel 13.30, grou...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use `chunkBy()` to split a Collection whenever the resolved value changes, without manually comparing items with the previous chunk.</blockquote>
+<p>Before Laravel 13.30, grouping consecutive items with the same value could require `chunkWhile()`:</p>
+<pre><code class="language-php">$products-&gt;chunkWhile(
+    fn (Product $product, $key, $chunk) =&gt;
+        $product-&gt;status === $chunk-&gt;last()-&gt;status
+);</code></pre>
+<p>Laravel 13.30 adds `chunkBy()` for this pattern:</p>
+<pre><code class="language-php">$products-&gt;chunkBy(&#039;status&#039;);</code></pre>
+<p>You can also provide a callback when the value needs to be calculated:</p>
+<pre><code class="language-php">$products-&gt;chunkBy(
+    fn (Product $product) =&gt; $product-&gt;status
+);</code></pre>
+<p>The important difference from `groupBy()` is that `chunkBy()` keeps **consecutive values together**. If the same value appears again later, it starts a new chunk:</p>
+<pre><code class="language-php">collect([&#039;paid&#039;, &#039;paid&#039;, &#039;pending&#039;, &#039;pending&#039;, &#039;paid&#039;])
+    -&gt;chunkBy(fn (string $status) =&gt; $status)
+    -&gt;all();
+
+// [
+//     [&#039;paid&#039;, &#039;paid&#039;],
+//     [&#039;pending&#039;, &#039;pending&#039;],
+//     [&#039;paid&#039;],
+// ]</code></pre>
+<p>It also works with nested attributes:</p>
+<pre><code class="language-php">$orders-&gt;chunkBy(&#039;customer.id&#039;);</code></pre>
+<p>Use `chunkBy()` when the order of the items matters and you want to split them into consecutive groups based on a value.</p>
+]]></content:encoded>
+      <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Collections]]></category>
+      <category><![CDATA[PHP]]></category>
+    </item>
     <item>
       <title><![CDATA[Use Immutable Dates by Default in Laravel]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-carbon-immutable-dates</link>
