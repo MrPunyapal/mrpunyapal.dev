@@ -1047,6 +1047,65 @@
       color: var(--text-dark);
       width: 100%;
     }
+  
+    /* Speaker Avatar Styles */
+    .speaker-avatar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .speaker-avatar-img {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid rgba(255, 87, 34, 0.6);
+      box-shadow: 0 0 20px rgba(255, 87, 34, 0.25);
+      flex-shrink: 0;
+    }
+
+    .speaker-avatar-lg {
+      width: 76px;
+      height: 76px;
+      border: 2.5px solid rgba(59, 130, 246, 0.6);
+      box-shadow: 0 0 24px rgba(59, 130, 246, 0.25);
+    }
+
+  
+    /* Slide 2: Dedicated Speaker Intro / About Me */
+    .about-me-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 48px;
+      align-items: center;
+      height: 100%;
+    }
+
+    .about-me-photo-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .about-me-avatar-hero {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3.5px solid rgba(255, 87, 34, 0.7);
+      box-shadow: 0 0 36px rgba(255, 87, 34, 0.3), inset 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .about-me-badges-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
   </style>
 </head>
 <body>
@@ -1055,32 +1114,85 @@
   <div class="deck-viewport" id="deckViewport">
     <div class="slide-frame" id="slideFrame">
 
-      <!-- SLIDE 1: TITLE -->
+            <!-- SLIDE 1: TITLE -->
       <section class="slide active" data-index="1"    data-slide-name="title">
         <div class="hero-layout">
           <div class="step-item revealed" data-step="1">
-            <span class="hero-tag">
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" style="flex-shrink: 0; margin-right: 2px;">
-                <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"></path>
-              </svg>
-              <span>LARAVEL BENGALURU</span>
-            </span>
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 26px;">
+              <span class="hero-tag" style="margin-bottom: 0;">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" style="flex-shrink: 0; margin-right: 2px;">
+                  <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"></path>
+                </svg>
+                <span>LARAVEL BENGALURU</span>
+              </span>
+              <span class="hero-tag" style="margin-bottom: 0; color: #60A5FA; background: rgba(59, 130, 246, 0.09); border-color: rgba(59, 130, 246, 0.45);">
+                <span>BENGALURU TECH WEEK</span>
+              </span>
+            </div>
             <h1 class="hero-title-1">From User to Maintainer:</h1>
             <h2 class="hero-title-2">The Open Source Journey</h2>
           </div>
           <div class="hero-author-wrap step-item" data-step="2">
             <p class="hero-author">Punyapal Shah</p>
-            <div class="hero-badges-row step-item" data-step="3">
-              <span class="hero-team-badge badge-pest">PEST &amp; PINKARY CORE TEAM</span>
-              <span class="hero-team-badge badge-artisans">MAINTAINER OF 20+ PROJECTS</span>
-              <span class="hero-team-badge badge-pinkary">CONTRIBUTED TO 120+ OS PROJECTS</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: ABOUT ME -->
+      <section class="slide" data-index="2"    data-slide-name="about-me">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">About Me</h2>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="about-me-grid">
+            <!-- Left: Hero Photo -->
+            <div class="about-me-photo-card step-item revealed" data-step="1">
+              <img src="/profile-image.jpg" alt="Punyapal Shah" class="about-me-avatar-hero" />
+              <h3 style="font-size: 24px; font-weight: 700; color: #fff; margin-top: 18px; letter-spacing: -0.01em;">Punyapal Shah</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 10px;">
+                <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Fira Code', monospace; font-size: 14.5px; color: #60A5FA; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.35); padding: 5px 14px; border-radius: 6px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                  <span>mrpunyapal.dev</span>
+                </span>
+                <span style="font-size: 13.5px; color: var(--text-dim); font-family: 'Fira Code', monospace;">@mrpunyapal</span>
+              </div>
+            </div>
+
+            <!-- Right: Roles, Badges, Highlights -->
+            <div class="content-box">
+              <div class="content-accent-bar bar-orange"></div>
+              <div class="content-main">
+                <div class="step-item revealed" data-step="1">
+                  <span class="pill-tag tag-orange">SPEAKER INTRO</span>
+                  <h3 class="main-heading" style="font-size: 32px; margin-bottom: 6px;">Laravel Engineer &amp; Full-Time Freelancer</h3>
+                  <p class="main-desc" style="font-size: 18px; margin-bottom: 18px;">Building open source tooling, architecture, and high-performance Laravel systems.</p>
+                </div>
+
+                <div class="about-me-badges-wrap step-item" data-step="2">
+                  <span class="hero-team-badge badge-pest">PEST &amp; PINKARY CORE TEAM</span>
+                  <span class="hero-team-badge badge-artisans">FOUNDER OF LARAVEL ARTISANS</span>
+                </div>
+
+                <div class="dash-list" style="margin-top: 18px;">
+                  <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Creator &amp; maintainer of 20+ open source packages</span></div>
+                  <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Contributed to 120+ open source repositories across the ecosystem</span></div>
+                  <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Full-time freelance engineering for global client production apps</span></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- SLIDE 2: THE EVOLUTION -->
-      <section class="slide" data-index="2" data-slide-name="evolution">
+      <section class="slide" data-index="3" data-slide-name="evolution">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1158,7 +1270,7 @@
       </section>
 
       <!-- TRANSITION: USER -->
-      <section class="slide stage-transition-slide" data-index="3"  data-slide-name="stage-user">
+      <section class="slide stage-transition-slide" data-index="4"  data-slide-name="stage-user">
         <div class="stage-hero-tracker">
           <span class="stage-morph-node">
             <span class="morph-prev">○ User</span>
@@ -1171,7 +1283,7 @@
       </section>
 
       <!-- SLIDE 3: THE FOUNDATION: WHY -->
-      <section class="slide" data-index="4"    data-slide-name="foundation-why">
+      <section class="slide" data-index="5"    data-slide-name="foundation-why">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1203,7 +1315,7 @@
       </section>
 
       <!-- SLIDE 4: THE FOUNDATION: WHAT -->
-      <section class="slide" data-index="5"    data-slide-name="foundation-what">
+      <section class="slide" data-index="6"    data-slide-name="foundation-what">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1235,7 +1347,7 @@
       </section>
 
       <!-- SLIDE 5: THE FOUNDATION: HOW -->
-      <section class="slide" data-index="6"    data-slide-name="foundation-how">
+      <section class="slide" data-index="7"    data-slide-name="foundation-how">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1335,7 +1447,7 @@
       </section>
 
       <!-- TRANSITION: CONTRIBUTOR -->
-      <section class="slide stage-transition-slide" data-index="7"   data-slide-name="stage-contributor">
+      <section class="slide stage-transition-slide" data-index="8"   data-slide-name="stage-contributor">
         <div class="stage-hero-tracker">
           <span class="stage-morph-node">
             <span class="morph-prev st-active-user">● User</span>
@@ -1351,7 +1463,7 @@
       </section>
 
       <!-- SLIDE 6: REAL WORLD PROOF (4-STEP PROGRESSIVE IMAGE STACK) -->
-      <section class="slide" data-index="8"    data-slide-name="real-world-proof">
+      <section class="slide" data-index="9"    data-slide-name="real-world-proof">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1383,7 +1495,7 @@
       </section>
 
       <!-- SLIDE 7: BUG REPORTS THAT MATTER -->
-      <section class="slide" data-index="9"    data-slide-name="bug-reports">
+      <section class="slide" data-index="10"    data-slide-name="bug-reports">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1414,7 +1526,7 @@
       </section>
 
       <!-- SLIDE 8: CONVENTIONAL COMMITS -->
-      <section class="slide" data-index="10"    data-slide-name="conventional-commits">
+      <section class="slide" data-index="11"    data-slide-name="conventional-commits">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1470,7 +1582,7 @@
       </section>
 
       <!-- SLIDE 9: PULL REQUEST DO'S -->
-      <section class="slide" data-index="11"    data-slide-name="pr-dos">
+      <section class="slide" data-index="12"    data-slide-name="pr-dos">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1503,7 +1615,7 @@
       </section>
 
       <!-- SLIDE 10: PULL REQUEST DON'TS -->
-      <section class="slide" data-index="12"    data-slide-name="pr-donts">
+      <section class="slide" data-index="13"    data-slide-name="pr-donts">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1536,7 +1648,7 @@
       </section>
 
       <!-- TRANSITION: AUTHOR -->
-      <section class="slide stage-transition-slide" data-index="13"   data-slide-name="stage-author">
+      <section class="slide stage-transition-slide" data-index="14"   data-slide-name="stage-author">
         <div class="stage-hero-tracker">
           <span class="st-done">✓ User</span>
           <span class="stage-morph-node">
@@ -1552,7 +1664,7 @@
       </section>
 
       <!-- SLIDE 11: WHEN TO BUILD A PACKAGE? -->
-      <section class="slide" data-index="14"    data-slide-name="when-to-build">
+      <section class="slide" data-index="15"    data-slide-name="when-to-build">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1583,7 +1695,7 @@
       </section>
 
       <!-- SLIDE 12: PACKAGE IDEATION -->
-      <section class="slide" data-index="15"    data-slide-name="package-ideation">
+      <section class="slide" data-index="16"    data-slide-name="package-ideation">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1611,7 +1723,7 @@
       </section>
 
                   <!-- SLIDE 13: AUTHOR VS MAINTAINER -->
-      <section class="slide" data-index="16"    data-slide-name="author-vs-maintainer">
+      <section class="slide" data-index="17"    data-slide-name="author-vs-maintainer">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1657,7 +1769,7 @@
       </section>
 
       <!-- TRANSITION: MAINTAINER -->
-      <section class="slide stage-transition-slide" data-index="17"   data-slide-name="stage-maintainer">
+      <section class="slide stage-transition-slide" data-index="18"   data-slide-name="stage-maintainer">
         <div class="stage-hero-tracker">
           <span class="st-done">✓ User</span>
           <span class="st-done">✓ Contributor</span>
@@ -1673,7 +1785,7 @@
       </section>
 
       <!-- SLIDE 14: THE HARDEST WORD IN OSS -->
-      <section class="slide" data-index="18"    data-slide-name="hardest-word">
+      <section class="slide" data-index="19"    data-slide-name="hardest-word">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1704,7 +1816,7 @@
       </section>
 
       <!-- SLIDE 15: DO NOT FORCE OPEN SOURCE -->
-      <section class="slide" data-index="19"    data-slide-name="ethics">
+      <section class="slide" data-index="20"    data-slide-name="ethics">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1735,7 +1847,7 @@
       </section>
 
       <!-- SLIDE 16: SEMANTIC VERSIONING: MAJOR -->
-      <section class="slide" data-index="20"    data-slide-name="semver-major">
+      <section class="slide" data-index="21"    data-slide-name="semver-major">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1774,7 +1886,7 @@
       </section>
 
       <!-- SLIDE 17: SEMANTIC VERSIONING: MINOR -->
-      <section class="slide" data-index="21"    data-slide-name="semver-minor">
+      <section class="slide" data-index="22"    data-slide-name="semver-minor">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1813,7 +1925,7 @@
       </section>
 
       <!-- SLIDE 18: SEMANTIC VERSIONING: PATCH -->
-      <section class="slide" data-index="22"    data-slide-name="semver-patch">
+      <section class="slide" data-index="23"    data-slide-name="semver-patch">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1852,7 +1964,7 @@
       </section>
 
       <!-- SLIDE 19: MAINTAINER TOOLING -->
-      <section class="slide" data-index="23"    data-slide-name="tooling">
+      <section class="slide" data-index="24"    data-slide-name="tooling">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1884,7 +1996,7 @@
       </section>
 
       <!-- SLIDE 20: EARNING MAINTAINER TRUST -->
-      <section class="slide" data-index="24"    data-slide-name="trust">
+      <section class="slide" data-index="25"    data-slide-name="trust">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -1915,7 +2027,7 @@
       
 
             <!-- SLIDE 25: THE COMPLETE CYCLE -->
-      <section class="slide" data-index="25" data-slide-name="complete-cycle">
+      <section class="slide" data-index="26" data-slide-name="complete-cycle">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -2050,7 +2162,7 @@
 
 
       <!-- SLIDE 22: YOUR NEXT STEP -->
-      <section class="slide" data-index="26"    data-slide-name="next-step">
+      <section class="slide" data-index="27"    data-slide-name="next-step">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -2078,7 +2190,7 @@
       </section>
 
       <!-- SLIDE 27: THANK YOU & PINKARY QR -->
-      <section class="slide" data-index="27" data-slide-name="thank-you">
+      <section class="slide" data-index="28" data-slide-name="thank-you">
         <div class="slide-header">
           <div class="slide-title-wrap">
             <div class="title-accent-bar"></div>
@@ -2091,8 +2203,12 @@
             <div class="content-box">
               <div class="content-accent-bar bar-orange"></div>
               <div class="content-main" style="justify-content: center;">
-                <div class="step-item revealed" data-step="1">
-                  <h2 style="font-size: 58px; font-weight: 800; color: #fff; margin-bottom: 28px; line-height: 1.1;">Thank You!</h2>
+                <div class="step-item revealed" data-step="1" style="display: flex; align-items: center; gap: 22px; margin-bottom: 28px;">
+                  <img src="/profile-image.jpg" alt="Punyapal Shah" class="speaker-avatar-img speaker-avatar-lg" />
+                  <div>
+                    <h2 style="font-size: 52px; font-weight: 800; color: #fff; line-height: 1.1; margin: 0;">Thank You!</h2>
+                    <p style="font-size: 18px; color: var(--text-gray); font-weight: 500; margin-top: 4px;">Punyapal Shah</p>
+                  </div>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 20px;">
                   <div class="social-item step-item" data-step="2">
@@ -2138,7 +2254,7 @@
         </div>
         <div class="slide-footer">
           <div class="general-footer-bar">
-            <div>Laravel Bengaluru 2026 • Punyapal Shah</div>
+            <div>Laravel Bengaluru • Bengaluru Tech Week 2026</div>
             <div>From User to Maintainer</div>
           </div>
         </div>
