@@ -2369,6 +2369,20 @@
       }
     }
 
+    
+    function revealAllOnSlide() {
+      const activeSlideEl = slides[currentSlide - 1];
+      const maxSteps = getMaxSteps(activeSlideEl);
+      currentStep = maxSteps;
+      applyStepVisibility(activeSlideEl, currentStep);
+    }
+
+    function resetSlideSteps() {
+      const activeSlideEl = slides[currentSlide - 1];
+      currentStep = 0;
+      applyStepVisibility(activeSlideEl, currentStep);
+    }
+
     function prevAction() {
       const activeSlideEl = slides[currentSlide - 1];
 
@@ -2396,7 +2410,19 @@
     });
 
     // Keyboard & Presentation Remote Clicker Handler
+        // Keyboard & Presentation Remote Clicker Handler
     window.addEventListener('keydown', (e) => {
+      // Reveal All / Reset Shortcut: 'a' or 'A'
+      if (e.key === 'a' || e.key === 'A') {
+        e.preventDefault();
+        if (e.shiftKey) {
+          resetSlideSteps();
+        } else {
+          revealAllOnSlide();
+        }
+        return;
+      }
+
       switch (e.key) {
         // Next: Right, Down, Space, Enter, PageDown, N
         case 'ArrowRight':
