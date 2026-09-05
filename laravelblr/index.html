@@ -1106,6 +1106,31 @@
       margin-top: 18px;
     }
 
+  
+    /* Auto-entrance animation for card headers on slide entry (0-click auto entrance) */
+    .slide.active .pill-tag {
+      animation: autoFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .slide.active .main-heading {
+      animation: autoFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+    }
+
+    .slide.active .content-accent-bar {
+      animation: autoFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes autoFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1171,7 +1196,7 @@
               <div class="content-main">
                 <div class="step-item revealed" data-step="1">
                   <span class="pill-tag tag-orange">SPEAKER INTRO</span>
-                  <h3 class="main-heading" style="font-size: 32px; margin-bottom: 6px;">Laravel Engineer &amp; Full-Time Freelancer</h3>
+                  <h3 class="main-heading" style="font-size: 32px; margin-bottom: 6px;">Laravel Engineer &amp; Consultant</h3>
                   <p class="main-desc" style="font-size: 18px; margin-bottom: 18px;">Building open source tooling, architecture, and high-performance Laravel systems.</p>
                 </div>
 
@@ -1183,7 +1208,7 @@
                 <div class="dash-list" style="margin-top: 18px;">
                   <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Creator &amp; maintainer of 20+ open source packages</span></div>
                   <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Contributed to 120+ open source repositories across the ecosystem</span></div>
-                  <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Full-time freelance engineering for global client production apps</span></div>
+                  <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Consulting and engineering for global client production applications</span></div>
                 </div>
               </div>
             </div>
@@ -1234,7 +1259,7 @@
               <div class="t-cell">
                 <div class="t-unit t-top step-item" data-step="1">
                   <span class="node-tag-pill tag-pill-blue">01 • USER</span>
-                  <div class="t-card-box">Builds real projects and relies on OSS tools.</div>
+                  <div class="t-card-box">Builds real projects and depends on OSS tools.</div>
                 </div>
               </div>
 
@@ -1282,7 +1307,7 @@
         </div>
       </section>
 
-      <!-- SLIDE 3: THE FOUNDATION: WHY -->
+            <!-- SLIDE 3: THE FOUNDATION: WHY -->
       <section class="slide" data-index="5"    data-slide-name="foundation-why">
         <div class="slide-header">
           <div class="slide-title-wrap">
@@ -1300,21 +1325,22 @@
           <div class="content-box">
             <div class="content-accent-bar bar-green"></div>
             <div class="content-main">
-              <div class="step-item revealed" data-step="1">
+              <div>
                 <span class="pill-tag tag-green">WHY CONTRIBUTE</span>
                 <h3 class="main-heading">Career Proof and Real Experience</h3>
               </div>
               <div class="dash-list">
-                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Real work speaks louder than a resume</span></div>
-                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Public proof of how you write and test code</span></div>
-                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Learn production architecture from popular packages</span></div>
-                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Give back to the tools and community you rely on daily</span></div>
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol">—</span><span>Real work speaks louder than a resume</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Public proof of how you write and test code</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Learn production architecture from popular packages</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Give back to the tools and community you rely on daily</span></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SLIDE 4: THE FOUNDATION: WHAT -->
+            <!-- SLIDE 4: THE FOUNDATION: WHAT -->
       <section class="slide" data-index="6"    data-slide-name="foundation-what">
         <div class="slide-header">
           <div class="slide-title-wrap">
@@ -1332,15 +1358,16 @@
           <div class="content-box">
             <div class="content-accent-bar bar-green"></div>
             <div class="content-main">
-              <div class="step-item revealed" data-step="1">
+              <div>
                 <span class="pill-tag tag-green">CONTRIBUTION TYPES</span>
                 <h3 class="main-heading">Contribution is Not Just Writing New Features</h3>
               </div>
               <div class="dash-list">
-                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Submitting targeted bug fixes for reported issues</span></div>
-                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Adding failing tests for edge cases you faced</span></div>
-                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Creating a small repo that easily reproduces a bug</span></div>
-                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Fixing wrong documentation and outdated examples</span></div>
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol">—</span><span>Submitting targeted bug fixes for reported issues</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Adding failing tests for edge cases you faced</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Creating a small repo that easily reproduces a bug</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Fixing wrong documentation and outdated examples</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1581,7 +1608,7 @@
         </div>
       </section>
 
-      <!-- SLIDE 9: PULL REQUEST DO'S -->
+            <!-- SLIDE 9: PULL REQUEST DO'S -->
       <section class="slide" data-index="12"    data-slide-name="pr-dos">
         <div class="slide-header">
           <div class="slide-title-wrap">
@@ -1599,22 +1626,23 @@
           <div class="content-box">
             <div class="content-accent-bar bar-green"></div>
             <div class="content-main">
-              <div class="step-item revealed" data-step="1">
+              <div>
                 <span class="pill-tag tag-green">BEST PRACTICES</span>
               </div>
               <div class="dash-list">
-                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Keep your PR small, clear, and focused on one issue</span></div>
-                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Always add test cases for what you changed</span></div>
-                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Explain clearly why this change is needed</span></div>
-                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Check CONTRIBUTING.md before writing code</span></div>
-                <div class="dash-item step-item" data-step="6"><span class="dash-symbol">—</span><span>Test locally on supported PHP and Laravel versions</span></div>
-                <div class="dash-item step-item" data-step="7"><span class="dash-symbol">—</span><span>Match the code style of the repository</span></div>
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol">—</span><span>Keep your PR small, clear, and focused on one issue</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Always add test cases for what you changed</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Explain clearly why this change is needed</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Check CONTRIBUTING.md before writing code</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Test locally on supported PHP and Laravel versions</span></div>
+                <div class="dash-item step-item" data-step="6"><span class="dash-symbol">—</span><span>Match the code style of the repository</span></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SLIDE 10: PULL REQUEST DON'TS -->
+            <!-- SLIDE 10: PULL REQUEST DON'TS -->
       <section class="slide" data-index="13"    data-slide-name="pr-donts">
         <div class="slide-header">
           <div class="slide-title-wrap">
@@ -1632,16 +1660,17 @@
           <div class="content-box">
             <div class="content-accent-bar bar-orange"></div>
             <div class="content-main">
-              <div class="step-item revealed" data-step="1">
+              <div>
                 <span class="pill-tag tag-orange">COMMON MISTAKES</span>
               </div>
               <div class="dash-list">
-                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">—</span><span>Don't club 3 different bug fixes into a single PR</span></div>
-                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Don't rewrite entire files without discussing first</span></div>
-                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Don't format unrelated files in the same PR</span></div>
-                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Don't open a PR without running tests locally</span></div>
-                <div class="dash-item step-item" data-step="6"><span class="dash-symbol dash-orange">—</span><span>Don't take code review comments personally</span></div>
-                <div class="dash-item step-item" data-step="7"><span class="dash-symbol dash-orange">—</span><span>Don't tag maintainers on Twitter/LinkedIn for quick reviews</span></div>
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol dash-orange">—</span><span>Don't club 3 different bug fixes into a single PR</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">—</span><span>Don't rewrite entire files without discussing first</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Don't format unrelated files in the same PR</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Don't open a PR without running tests locally</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Don't take code review comments personally</span></div>
+                <div class="dash-item step-item" data-step="6"><span class="dash-symbol dash-orange">—</span><span>Don't tag maintainers on Twitter/LinkedIn for quick reviews</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1712,17 +1741,17 @@
           <div class="content-box">
             <div class="content-accent-bar bar-yellow"></div>
             <div class="content-main">
-              <div class="step-item revealed" data-step="1">
+              <div>
                 <span class="pill-tag tag-yellow">PROBLEM-FIRST DESIGN</span>
                 <h3 class="main-heading" style="font-size: 34px;">Solve your own daily headache first.</h3>
               </div>
-              <p class="main-desc step-item" data-step="2" style="font-size: 20px;">The best packages are created because the author needed them for daily work, not because they sat down to brainstorm an imaginary idea.</p>
+              <p class="main-desc step-item" data-step="1" style="font-size: 20px;">The best packages are created because the author needed them for daily work, not because they sat down to brainstorm an imaginary idea.</p>
             </div>
           </div>
         </div>
       </section>
 
-                  <!-- SLIDE 13: AUTHOR VS MAINTAINER -->
+                        <!-- SLIDE 13: AUTHOR VS MAINTAINER -->
       <section class="slide" data-index="17"    data-slide-name="author-vs-maintainer">
         <div class="slide-header">
           <div class="slide-title-wrap">
@@ -1740,29 +1769,30 @@
           <div class="divided-2col">
             <!-- Left: Author -->
             <div>
-              <div class="step-item revealed" data-step="1">
+              <div>
                 <span class="pill-tag tag-blue">PACKAGE AUTHOR</span>
               </div>
               <div class="dash-list" style="margin-top: 16px;">
-                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Writes initial code and features</span></div>
-                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>Solves their own immediate problem</span></div>
-                <div class="dash-item step-item" data-step="6"><span class="dash-symbol dash-blue">—</span><span>Publishes v1.0.0 and tags releases</span></div>
-                <div class="dash-item step-item" data-step="8"><span class="dash-symbol dash-blue">—</span><span>Focuses on moving fast and shipping</span></div>
-                <div class="dash-item step-item" data-step="10"><span class="dash-symbol dash-blue">—</span><span>Often moves on once the code works</span></div>
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol dash-blue">—</span><span>Writes initial code and features</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>Solves their own immediate problem</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-blue">—</span><span>Publishes v1.0.0 and tags releases</span></div>
+                <div class="dash-item step-item" data-step="7"><span class="dash-symbol dash-blue">—</span><span>Focuses on moving fast and shipping</span></div>
+                <div class="dash-item step-item" data-step="9"><span class="dash-symbol dash-blue">—</span><span>Often moves on once the code works</span></div>
               </div>
             </div>
             <div class="divider-line"></div>
             <!-- Right: Maintainer -->
             <div>
-              <div class="step-item revealed" data-step="1">
+              <div>
                 <span class="pill-tag tag-green">PACKAGE MAINTAINER</span>
               </div>
               <div class="dash-list" style="margin-top: 16px;">
-                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Reviews issues and other people's PRs</span></div>
-                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Protects stability for the wider ecosystem</span></div>
-                <div class="dash-item step-item" data-step="7"><span class="dash-symbol">—</span><span>Manages upgrade matrices and SemVer</span></div>
-                <div class="dash-item step-item" data-step="9"><span class="dash-symbol">—</span><span>Focuses on backwards compatibility</span></div>
-                <div class="dash-item step-item" data-step="11"><span class="dash-symbol">—</span><span>Commits to long-term trust and maintenance</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Reviews issues and other people's PRs</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Protects stability for the wider ecosystem</span></div>
+                <div class="dash-item step-item" data-step="6"><span class="dash-symbol">—</span><span>Manages upgrade matrices and SemVer</span></div>
+                <div class="dash-item step-item" data-step="8"><span class="dash-symbol">—</span><span>Focuses on backwards compatibility</span></div>
+                <div class="dash-item step-item" data-step="10"><span class="dash-symbol">—</span><span>Commits to long-term trust and maintenance</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1963,7 +1993,7 @@
         </div>
       </section>
 
-      <!-- SLIDE 19: MAINTAINER TOOLING -->
+            <!-- SLIDE 19: MAINTAINER TOOLING -->
       <section class="slide" data-index="24"    data-slide-name="tooling">
         <div class="slide-header">
           <div class="slide-title-wrap">
@@ -1981,15 +2011,16 @@
           <div class="content-box">
             <div class="content-accent-bar bar-blue"></div>
             <div class="content-main">
-              <div class="step-item revealed" data-step="1">
+              <div>
                 <span class="pill-tag tag-blue" style="margin-bottom: 12px;">GITHUB ACTIONS</span>
                 <h3 class="main-heading">Automate All Repetitive Work</h3>
               </div>
               <div class="dash-list">
-                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Test matrix running across PHP (8.3, 8.4, 8.5) & Laravel (12, 13)</span></div>
-                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>Automated static analysis using PHPStan / Larastan</span></div>
-                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>Automated refactoring & upgrades with Rector</span></div>
-                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-blue">—</span><span>Automated code styling using Laravel Pint</span></div>
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol dash-blue">—</span><span>Test matrix running across PHP (8.3, 8.4, 8.5) & Laravel (12, 13)</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Automated static analysis using PHPStan / Larastan</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>Automated refactoring & upgrades with Rector</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>Automated code styling using Laravel Pint</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -2161,7 +2192,7 @@
       
 
 
-      <!-- SLIDE 22: YOUR NEXT STEP -->
+            <!-- SLIDE 22: YOUR NEXT STEP -->
       <section class="slide" data-index="27"    data-slide-name="next-step">
         <div class="slide-header">
           <div class="slide-title-wrap">
@@ -2176,14 +2207,15 @@
           <div class="content-box">
             <div class="content-accent-bar bar-orange"></div>
             <div class="content-main">
-              <div class="step-item revealed" data-step="1">
+              <div>
                 <span class="pill-tag tag-orange">ACTION PLAN</span>
                 <h3 class="main-heading">How to start this week:</h3>
               </div>
               <div class="dash-list">
-                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">1.</span><span>Pick one package you use at work every single day</span></div>
-                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">2.</span><span>Look at its GitHub issues for reproducible bugs</span></div>
-                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">3.</span><span>Submit a failing test or a documentation improvement</span></div>
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol dash-orange">1.</span><span>Pick one package you use at work every single day</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">2.</span><span>Look at its GitHub issues for reproducible bugs</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">3.</span><span>Submit a failing test or a documentation improvement</span></div>
+              </div>
             </div>
           </div>
         </div>
