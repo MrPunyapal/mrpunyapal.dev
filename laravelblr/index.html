@@ -2,13 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>From User to Maintainer: The Open Source Journey | Punyapal Shah</title>
-  <meta name="description" content="Interactive Keynote: From User to Maintainer - The Open Source Journey by Punyapal Shah.">
+  <meta name="description" content="Interactive keynote presentation: From User to Maintainer - The Open Source Journey by Punyapal Shah at Laravel Bengaluru.">
+  <meta name="author" content="Punyapal Shah">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mrpunyapal.dev/laravelblr">
+  <meta property="og:title" content="From User to Maintainer: The Open Source Journey | Punyapal Shah">
+  <meta property="og:description" content="Interactive keynote presentation: From User to Maintainer - The Open Source Journey by Punyapal Shah at Laravel Bengaluru.">
+  <meta property="og:site_name" content="Punyapal Shah">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://mrpunyapal.dev/laravelblr">
+  <meta name="twitter:title" content="From User to Maintainer: The Open Source Journey | Punyapal Shah">
+  <meta name="twitter:description" content="Interactive keynote presentation: From User to Maintainer - The Open Source Journey by Punyapal Shah at Laravel Bengaluru.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://mrpunyapal.dev/laravelblr">
+  <link rel="stylesheet" href="/src/tailwind.css">
+  <link rel="stylesheet" href="/src/app.css">
+  <script type="module" src="/src/main.js"></script>
+  <script>
+      (function() {
+          const saved = localStorage.getItem('theme');
+          const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && systemDark)) {
+              document.documentElement.classList.add('dark');
+          } else {
+              document.documentElement.classList.remove('dark');
+          }
+      })();
+  </script>
   <style>
     :root {
       --bg-canvas: #06090F;
@@ -32,7 +62,6 @@
       
       --c-pink: #EC4899;
       
-      
       --text-white: #FFFFFF;
       --text-gray: #94A3B8;
       --text-dim: #64748B;
@@ -47,66 +76,149 @@
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
       -webkit-tap-highlight-color: transparent;
     }
 
-    html, body {
-      width: 100vw;
+    body {
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    .dark body {
+      background: #020617 !important;
+      color: #f8fafc !important;
+    }
+
+    /* Technical Grid Markers */
+    .tech-marker {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      background-color: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 50%;
+      z-index: 50;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    }
+    .dark .tech-marker {
+      background-color: #0f172a;
+      border-color: #334155;
+      box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.5);
+    }
+
+    /* Infinite Grid Lines */
+    .tech-line-h {
+      position: absolute;
+      height: 1px;
+      background-color: #e2e8f0;
+      z-index: 0;
+      pointer-events: none;
+      width: 300vw;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .dark .tech-line-h {
+      background-color: #1e293b;
+    }
+
+    .tech-line-v-top {
+      position: absolute;
+      width: 1px;
+      background-color: #e2e8f0;
+      z-index: 0;
+      pointer-events: none;
+      bottom: 100%;
       height: 100vh;
-      overflow: hidden;
-      background-color: var(--bg-canvas);
-      color: var(--text-white);
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      user-select: none;
+    }
+    .dark .tech-line-v-top {
+      background-color: #1e293b;
     }
 
-        /* Native View Transitions API (Zero-Flicker Setup) */
-    ::view-transition-group(root),
-    ::view-transition-image-pair(root),
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-      overflow: hidden !important;
+    .tech-line-v-bottom {
+      position: absolute;
+      width: 1px;
+      background: linear-gradient(to bottom, #e2e8f0, transparent);
+      z-index: 0;
+      pointer-events: none;
+      top: 100%;
+      height: 120px;
+    }
+    .dark .tech-line-v-bottom {
+      background: linear-gradient(to bottom, #1e293b, transparent);
     }
 
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-      animation-duration: 0.18s;
-      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-      mix-blend-mode: normal !important;
-      background-color: var(--bg-slide);
+    @keyframes scale-up {
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .animate-scale-up {
+      animation: scale-up 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    @keyframes vt-fade-in {
+    /* Slide Transition */
+    @keyframes slideFadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
-    @keyframes vt-fade-out {
-      from { opacity: 1; }
-      to { opacity: 0; }
+    /* Prevent site-header from participating in any page view transitions */
+    site-header,
+    header,
+    .nav-active-indicator,
+    [style*="view-transition-name: site-header"],
+    [style*="view-transition-name: active-nav-indicator"] {
+      view-transition-name: none !important;
     }
 
-    ::view-transition-old(root) {
-      animation-name: vt-fade-out;
+    /* Embedded & Fullscreen Presentation Stage */
+    .deck-viewport-wrap {
+      width: 100%;
+      position: relative;
     }
 
-    ::view-transition-new(root) {
-      animation-name: vt-fade-in;
-    }
-
-    /* Full-Screen Presentation Stage */
     .deck-viewport {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       background-color: var(--bg-canvas);
-      cursor: default;
+      cursor: pointer;
+      user-select: none;
+      overflow: hidden;
     }
+
+    /* Native Fullscreen styling for the deck container */
+    #deckContainer:fullscreen,
+    #deckContainer:-webkit-full-screen {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      border-radius: 0 !important;
+      border: none !important;
+      background-color: #06090F !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    #deckContainer:fullscreen .deck-viewport-wrap,
+    #deckContainer:-webkit-full-screen .deck-viewport-wrap {
+      flex: 1;
+      width: 100vw !important;
+      height: 100vh !important;
+      aspect-ratio: auto !important;
+    }
+
 
     /* 16:9 Canvas (1280x720 base) */
     .slide-frame {
@@ -136,6 +248,7 @@
     .slide.active {
       display: flex;
       z-index: 10;
+      animation: slideFadeIn 0.15s ease-out both;
     }
 
     .slide.slide-prev {
@@ -159,6 +272,7 @@
     .stage-transition-slide.active {
       display: flex;
       z-index: 10;
+      animation: slideFadeIn 0.15s ease-out both;
     }
 
     .stage-hero-tracker {
@@ -168,7 +282,6 @@
       display: flex;
       align-items: center;
       gap: 36px;
-      view-transition-name: slide-tracker;
       padding: 24px 36px;
     }
 
@@ -241,7 +354,6 @@
       gap: 24px;
       margin-bottom: 24px;
       flex-shrink: 0;
-      view-transition-name: slide-header;
     }
 
     .slide-title-wrap {
@@ -275,7 +387,6 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      view-transition-name: slide-tracker;
     }
 
     .slide-tracker span {
@@ -1133,26 +1244,114 @@
 
   </style>
 </head>
-<body>
+<body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative antialiased transition-colors duration-200">
+  <!-- Icon sprite: Font Awesome Free 6.4.2 icons, CC BY 4.0 (https://fontawesome.com/license/free) -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+    <defs>
+      <symbol id="i-arrow-left" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></symbol>
+      <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"/></symbol>
+      <symbol id="i-location" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 448 512"><path d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V384c0-17.7-14.3-32-32-32zM384 96V64c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V96zm0 288c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H256c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V384z"/></symbol>
+      <symbol id="i-compress" viewBox="0 0 448 512"><path d="M160 64c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V64zM32 320c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V352c0-17.7-14.3-32-32-32H32zm256-192h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H288c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32s32-14.3 32-32V128zm32 192c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32s32-14.3 32-32V384h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320z"/></symbol>
+      <symbol id="i-info" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></symbol>
+      <symbol id="i-xmark" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></symbol>
+    </defs>
+  </svg>
 
-  <!-- Responsive Scaled Presentation Frame -->
-  <div class="deck-viewport" id="deckViewport">
-    <div class="slide-frame" id="slideFrame">
+  <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
+    <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
 
-            <!-- SLIDE 1: TITLE -->
+      <!-- Tech Markers: Corners -->
+      <div class="tech-marker -top-[4px] -left-[4px]"></div>
+      <div class="tech-marker -top-[4px] -right-[4px]"></div>
+      <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+      <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+      <!-- Global Extensions -->
+      <div class="tech-line-h top-[-1px]"></div>
+      <div class="tech-line-h bottom-[-1px]"></div>
+      <div class="tech-line-v-top left-[-1px]"></div>
+      <div class="tech-line-v-top right-[-1px]"></div>
+      <div class="tech-line-v-bottom left-[-1px]"></div>
+      <div class="tech-line-v-bottom right-[-1px]"></div>
+
+      <!-- Site Header -->
+      <site-header active="talks"></site-header>
+
+      <!-- Talk Context Bar -->
+      <div class="p-4 sm:p-6 md:p-8 border-b border-slate-200 dark:border-slate-800 relative">
+        <div class="tech-line-h bottom-[-1px]"></div>
+        <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+        <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+        <!-- Top Row: Back Navigation & Action Controls -->
+        <div class="flex items-center justify-between gap-3 mb-3">
+          <a href="/talks" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors py-1">
+            <svg class="icon" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-left"/></svg>
+            <span>Talks</span>
+          </a>
+
+          <!-- Action Buttons: Info & Fullscreen -->
+          <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <button type="button" id="btnHeaderInfo" aria-label="How to use presentation"
+                class="min-w-[36px] h-9 sm:w-auto sm:px-3.5 inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer shadow-2xs"
+                title="Keyboard Shortcuts & Controls">
+                <svg class="icon pointer-events-none" width="14" height="14" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-info"/></svg>
+                <span class="hidden sm:inline pointer-events-none">How to use</span>
+            </button>
+            <button type="button" id="btnHeaderFullscreen" aria-label="Enter Fullscreen"
+                class="min-w-[36px] h-9 sm:w-auto sm:px-3.5 inline-flex items-center justify-center gap-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors cursor-pointer"
+                title="Full Screen Mode (F)">
+                <svg class="icon fs-icon-expand pointer-events-none" width="14" height="14" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-expand"/></svg>
+                <svg class="icon fs-icon-compress hidden pointer-events-none" width="14" height="14" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-compress"/></svg>
+                <span class="hidden sm:inline pointer-events-none" id="headerFsText">Full Screen</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Talk Title -->
+        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
+          From User to Maintainer: The Open Source Journey
+        </h1>
+
+        <!-- Event Badges & Date Meta -->
+        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs">
+          <a href="https://x.com/LaravelBLR" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 rounded-md font-medium border border-slate-200 dark:border-slate-700 transition-colors">
+              <svg class="icon" width="12" height="12" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
+              <span>Bengaluru</span>
+          </a>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-md font-medium border border-slate-200 dark:border-slate-700">
+              <svg class="icon" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
+              <time datetime="2026-09">Sep 2026</time>
+          </span>
+        </div>
+      </div>
+
+      <!-- Slide Deck Stage Container (Framed box matching site aesthetic) -->
+      <div class="p-2.5 sm:p-6 md:p-8 bg-slate-50/50 dark:bg-slate-950/40">
+        <div id="deckContainer" class="group/deck relative w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-[#06090F] shadow-xl">
+
+          <!-- 16:9 Presentation Stage Viewport -->
+          <div class="deck-viewport-wrap relative w-full aspect-video overflow-hidden bg-[#06090F]">
+            <div class="deck-viewport" id="deckViewport">
+              <div class="slide-frame" id="slideFrame">
+
+                <!-- SLIDE 1: TITLE -->
       <section class="slide active" data-index="1"    data-slide-name="title">
         <div class="hero-layout">
           <div class="step-item revealed" data-step="1">
             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 26px;">
-              <span class="hero-tag" style="margin-bottom: 0;">
+              <a href="https://x.com/LaravelBLR" target="_blank" rel="noopener noreferrer" class="hero-tag" style="margin-bottom: 0; text-decoration: none;">
                 <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" style="flex-shrink: 0; margin-right: 2px;">
                   <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"></path>
                 </svg>
                 <span>LARAVEL BENGALURU</span>
-              </span>
-              <span class="hero-tag" style="margin-bottom: 0; color: #60A5FA; background: rgba(59, 130, 246, 0.09); border-color: rgba(59, 130, 246, 0.45);">
-                <span>BENGALURU TECH WEEK</span>
-              </span>
+              </a>
             </div>
             <h1 class="hero-title-1">From User to Maintainer:</h1>
             <h2 class="hero-title-2">The Open Source Journey</h2>
@@ -1871,6 +2070,7 @@
                 <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Fix things because you use the package daily and hit a real bug</span></div>
                 <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Never use AI to search for fake issues and spam maintainers with AI PRs</span></div>
                 <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Contribute because you genuinely want to give back to the community</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -2242,6 +2442,7 @@
                     <p style="font-size: 18px; color: var(--text-gray); font-weight: 500; margin-top: 4px;">Punyapal Shah</p>
                   </div>
                 </div>
+
                 <div style="display: flex; flex-direction: column; gap: 20px;">
                   <div class="social-item step-item" data-step="2">
                     <span class="social-icon-box" style="color: #60A5FA;">
@@ -2272,7 +2473,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Middle: Vertical Divider Line -->
             <div class="divider-line"></div>
 
@@ -2286,14 +2486,121 @@
         </div>
         <div class="slide-footer">
           <div class="general-footer-bar">
-            <div>Laravel Bengaluru • Bengaluru Tech Week 2026</div>
+            <div>Laravel Bengaluru</div>
             <div>From User to Maintainer</div>
           </div>
         </div>
       </section>
 
-    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+    </div>
+
+    <!-- Footer -->
+    <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 print:hidden">
+      <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
+        // Presented at Laravel Bengaluru
+        <a href="/talks"
+          class="text-slate-700 dark:text-slate-200 hover:bg-red-600 dark:hover:bg-red-400 transition-colors font-bold ml-1">
+          $this->backToTalks()
+        </a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Info / How To Modal Dialog (Direct body child for true viewport coverage and full Safari compatibility) -->
+  <div id="infoModal" class="hidden fixed inset-0 z-50 overflow-y-auto overflow-x-hidden p-3 sm:p-4 md:p-6" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" style="-webkit-overflow-scrolling: touch;">
+    <!-- Fixed Backdrop with Blur -->
+    <div id="modalBackdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-xs transition-opacity cursor-pointer" aria-hidden="true"></div>
+
+    <!-- Centering Scroll Wrapper (my-auto pattern guarantees zero clipping on mobile/Safari) -->
+    <div class="relative min-h-full flex items-center justify-center pointer-events-none py-2 sm:py-6">
+      <div id="modalDialog" class="pointer-events-auto relative w-full max-w-md sm:max-w-lg my-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 text-slate-800 dark:text-slate-200 animate-scale-up">
+        
+        <!-- Header -->
+        <div class="flex items-start justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 flex items-center justify-center border border-red-100 dark:border-red-900/60 shrink-0">
+              <svg class="icon pointer-events-none" width="16" height="16" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-info"/></svg>
+            </div>
+            <div>
+              <h3 id="modalTitle" class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight">How to Use the Slide Deck</h3>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Touch, mouse, and keyboard controls</p>
+            </div>
+          </div>
+          <button type="button" id="btnCloseModal" aria-label="Close modal"
+            class="p-1.5 -mr-1 -mt-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer shrink-0">
+            <svg class="icon pointer-events-none" width="16" height="16" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-xmark"/></svg>
+          </button>
+        </div>
+
+        <!-- Body Content -->
+        <div class="mt-3.5 space-y-3">
+          <!-- Slide Navigation -->
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+            <h4 class="font-semibold text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Slide Navigation</h4>
+            <div class="space-y-1.5 text-xs">
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-700 dark:text-slate-300 font-medium">Next Step / Slide</span>
+                <div class="flex gap-1 items-center">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 mr-0.5">Click Right /</span>
+                  <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">Space</kbd>
+                  <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">→</kbd>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-700 dark:text-slate-300 font-medium">Previous Step</span>
+                <div class="flex gap-1 items-center">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 mr-0.5">Click Left /</span>
+                  <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">←</kbd>
+                  <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">Backspace</kbd>
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+              <strong>Touch & Click:</strong> Tap the <strong>right side</strong> of the slide to advance, or the <strong>left side</strong> to go back. On phones, you can also <strong>swipe left / right</strong>.
+            </p>
+          </div>
+
+          <!-- Power Shortcuts (2 columns) -->
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+            <h4 class="font-semibold text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Power Shortcuts</h4>
+            <div class="grid grid-cols-2 gap-1.5 text-[11px] sm:text-xs">
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-600 dark:text-slate-300">Fullscreen</span>
+                <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">F</kbd>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-600 dark:text-slate-300">Reveal Slide</span>
+                <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">A</kbd>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-600 dark:text-slate-300">Reset Steps</span>
+                <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[10px] sm:text-[11px] border border-slate-200 dark:border-slate-700">Shift+A</kbd>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-600 dark:text-slate-300">First / Last</span>
+                <div class="flex gap-0.5">
+                  <kbd class="px-1 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[10px] border border-slate-200 dark:border-slate-700">Home</kbd>
+                  <kbd class="px-1 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[10px] border border-slate-200 dark:border-slate-700">End</kbd>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-4 flex justify-end">
+          <button type="button" id="btnModalGotIt"
+            class="w-full sm:w-auto px-5 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer text-center">
+            Got it
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2303,12 +2610,27 @@
     let currentSlide = 1;
     let currentStep = 1;
 
+    const deckViewport = document.getElementById('deckViewport');
+    const deckContainer = document.getElementById('deckContainer');
+    const btnHeaderFullscreen = document.getElementById('btnHeaderFullscreen');
+    const btnHeaderInfo = document.getElementById('btnHeaderInfo');
+    const infoModal = document.getElementById('infoModal');
+    const btnCloseModal = document.getElementById('btnCloseModal');
+    const btnModalGotIt = document.getElementById('btnModalGotIt');
+
     // Proportional Viewport Scaling
     function updateResponsiveScale() {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const scale = Math.min(vw / 1280, vh / 720);
+      if (!deckViewport) return;
+      const cw = deckViewport.clientWidth;
+      const ch = deckViewport.clientHeight;
+      if (!cw || !ch) return;
+      const scale = Math.min(cw / 1280, ch / 720);
       document.documentElement.style.setProperty('--deck-scale', scale);
+    }
+
+    if (window.ResizeObserver && deckViewport) {
+      const ro = new ResizeObserver(() => updateResponsiveScale());
+      ro.observe(deckViewport);
     }
     window.addEventListener('resize', updateResponsiveScale);
     window.addEventListener('orientationchange', updateResponsiveScale);
@@ -2372,15 +2694,7 @@
       if (index > totalSlides) index = totalSlides;
       if (index === currentSlide && targetStep === currentStep) return;
 
-      const isSlideChange = (index !== currentSlide);
-
-      if (isSlideChange && document.startViewTransition) {
-        document.startViewTransition(() => {
-          executeSlideDOMUpdate(index, targetStep);
-        });
-      } else {
-        executeSlideDOMUpdate(index, targetStep);
-      }
+      executeSlideDOMUpdate(index, targetStep);
     }
 
     function jumpToSlide(index) {
@@ -2401,7 +2715,6 @@
       }
     }
 
-    
     function revealAllOnSlide() {
       const activeSlideEl = slides[currentSlide - 1];
       const maxSteps = getMaxSteps(activeSlideEl);
@@ -2430,20 +2743,153 @@
       }
     }
 
-    // Click / Clicker Handler
-    window.addEventListener('click', (e) => {
-      if (window.getSelection().toString().length > 0) return;
-      nextAction();
+    // Modal Handlers
+    function openInfoModal() {
+      if (!infoModal) return;
+      infoModal.classList.remove('hidden');
+      infoModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+
+    function closeInfoModal() {
+      if (!infoModal) return;
+      infoModal.classList.add('hidden');
+      infoModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    btnHeaderInfo?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openInfoModal();
+    });
+    btnCloseModal?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeInfoModal();
+    });
+    btnModalGotIt?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeInfoModal();
     });
 
-    window.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      prevAction();
+    infoModal?.addEventListener('click', (e) => {
+      if (!e.target.closest('#modalDialog')) {
+        closeInfoModal();
+      }
     });
 
-    // Keyboard & Presentation Remote Clicker Handler
-        // Keyboard & Presentation Remote Clicker Handler
+    // Fullscreen Toggle Handlers
+    function toggleFullscreen() {
+      const targetEl = deckContainer || document.documentElement;
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (targetEl.requestFullscreen) {
+          targetEl.requestFullscreen().catch(() => {});
+        } else if (targetEl.webkitRequestFullscreen) {
+          targetEl.webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    }
+
+    btnHeaderFullscreen?.addEventListener('click', toggleFullscreen);
+
+    function updateFullscreenUI() {
+      const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      document.querySelectorAll('.fs-icon-expand').forEach(el => el.classList.toggle('hidden', isFs));
+      document.querySelectorAll('.fs-icon-compress').forEach(el => el.classList.toggle('hidden', !isFs));
+      const headerFsText = document.getElementById('headerFsText');
+      if (headerFsText) {
+        headerFsText.textContent = isFs ? 'Exit Full Screen' : 'Full Screen';
+      }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      updateResponsiveScale();
+      updateFullscreenUI();
+    });
+    document.addEventListener('webkitfullscreenchange', () => {
+      updateResponsiveScale();
+      updateFullscreenUI();
+    });
+
+    // Click / ContextMenu Handler on Slide Viewport ONLY
+    if (deckViewport) {
+      let isSwiping = false;
+
+      deckViewport.addEventListener('click', (e) => {
+        if (infoModal && !infoModal.classList.contains('hidden')) return;
+        if (isSwiping) return;
+        if (window.getSelection().toString().length > 0) return;
+        if (e.target.closest('button, a, input, select, textarea, .prevent-slide-advance, #infoModal')) return;
+
+        const rect = deckViewport.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        if (clickX < rect.width * 0.5) {
+          prevAction();
+        } else {
+          nextAction();
+        }
+      });
+
+      deckViewport.addEventListener('contextmenu', (e) => {
+        if (infoModal && !infoModal.classList.contains('hidden')) return;
+        if (e.target.closest('button, a, input, select, textarea, .prevent-slide-advance, #infoModal')) return;
+        e.preventDefault();
+        prevAction();
+      });
+
+      // Touch Swipe Gesture for Phones / Mobile Touchscreens
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchStartTime = 0;
+
+      deckViewport.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartTime = Date.now();
+        }
+      }, { passive: true });
+
+      deckViewport.addEventListener('touchend', (e) => {
+        if (e.changedTouches.length === 1) {
+          const deltaX = e.changedTouches[0].clientX - touchStartX;
+          const deltaY = e.changedTouches[0].clientY - touchStartY;
+          const deltaTime = Date.now() - touchStartTime;
+
+          // Horizontal swipe: > 40px, predominantly horizontal, < 500ms
+          if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) && deltaTime < 500) {
+            isSwiping = true;
+            setTimeout(() => { isSwiping = false; }, 300);
+            if (deltaX < 0) {
+              nextAction();
+            } else {
+              prevAction();
+            }
+          }
+        }
+      }, { passive: true });
+    }
+
+    // Keyboard Handler
     window.addEventListener('keydown', (e) => {
+      if (e.target.closest('input, textarea, select')) return;
+
+      // When modal is open, only allow Escape to close
+      if (infoModal && !infoModal.classList.contains('hidden')) {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeInfoModal();
+        }
+        return;
+      }
+
       // Reveal All / Reset Shortcut: 'a' or 'A'
       if (e.key === 'a' || e.key === 'A') {
         e.preventDefault();
@@ -2489,15 +2935,19 @@
           jumpToSlide(totalSlides);
           break;
 
-        // Toggle Fullscreen
+        // Toggle Fullscreen: F
         case 'f':
         case 'F':
           e.preventDefault();
-          if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(() => {});
-          } else {
-            document.exitFullscreen().catch(() => {});
-          }
+          toggleFullscreen();
+          break;
+
+        // Info Modal: '?' or 'i' / 'I'
+        case '?':
+        case 'i':
+        case 'I':
+          e.preventDefault();
+          openInfoModal();
           break;
       }
     });

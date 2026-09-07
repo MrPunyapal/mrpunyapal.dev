@@ -11,6 +11,7 @@ export function generateSitemap(tips, publicDir) {
         'https://mrpunyapal.dev/tips',
         'https://mrpunyapal.dev/resume',
         'https://mrpunyapal.dev/talks',
+        'https://mrpunyapal.dev/laravelblr',
     ];
 
     const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
