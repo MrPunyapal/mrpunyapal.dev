@@ -68,6 +68,7 @@ function getPendingPages() {
     { route: '/opensource', output: 'og/opensource.png', source: 'opensource.html' },
     { route: '/resume', output: 'og/resume.png', source: 'resume.html' },
     { route: '/tips', output: 'og/tips.png', source: 'tips.html' },
+    { route: '/laravelblr', output: 'og/laravelblr.png', source: 'laravelblr/index.html' },
   ];
 
   for (const page of mainPages) {
