@@ -1476,11 +1476,11 @@
 
       <!-- Slide Deck Stage Container (Framed box matching site aesthetic) -->
       <div class="p-2.5 sm:p-6 md:p-8 bg-slate-50/50 dark:bg-slate-950/40">
-        <div id="deckContainer" class="group/deck relative w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-[#06090F] shadow-xl">
+        <div id="deckContainer" class="group/deck relative w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-[#06090F] shadow-xl select-none">
 
           <!-- 16:9 Presentation Stage Viewport -->
-          <div class="deck-viewport-wrap relative w-full aspect-video overflow-hidden bg-[#06090F]">
-            <div class="deck-viewport" id="deckViewport">
+          <div class="deck-viewport-wrap relative w-full aspect-video overflow-hidden bg-[#06090F] select-none">
+            <div class="deck-viewport select-none" id="deckViewport">
               <div class="slide-frame" id="slideFrame">
 
                 <!-- SLIDE 1: TITLE -->
@@ -2643,7 +2643,7 @@
     </div>
 
     <!-- Footer -->
-    <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 print:hidden">
+    <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 print:hidden select-none">
       <p class="text-xs text-slate-600 dark:text-slate-300 font-mono">
         // Presented at Laravel Bengaluru
         <a href="/talks"
@@ -2978,11 +2978,25 @@
     if (deckViewport) {
       let isSwiping = false;
 
+      // Prevent accidental text selection on rapid clicks / double clicks
+      deckViewport.addEventListener('mousedown', (e) => {
+        if (!e.target.closest('button, a, input, select, textarea')) {
+          e.preventDefault();
+        }
+      });
+
       deckViewport.addEventListener('click', (e) => {
         if (infoModal && !infoModal.classList.contains('hidden')) return;
         if (isSwiping) return;
-        if (window.getSelection().toString().length > 0) return;
         if (e.target.closest('button, a, input, select, textarea, .prevent-slide-advance, #infoModal')) return;
+
+        // Clear any stray selection so the deck never freezes
+        if (window.getSelection) {
+          const sel = window.getSelection();
+          if (sel && sel.toString().length > 0) {
+            sel.removeAllRanges();
+          }
+        }
 
         const rect = deckViewport.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
