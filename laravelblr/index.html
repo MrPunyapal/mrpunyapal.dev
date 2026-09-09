@@ -239,19 +239,84 @@
       animation: scale-up 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Slide Transition */
-    @keyframes slideFadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    /* Scoped Native View Transitions API */
+    :root {
+      view-transition-name: none;
     }
 
-    /* Prevent site-header from participating in any page view transitions */
+    /* Prevent site-header and chrome from participating in slide transitions */
     site-header,
     header,
     .nav-active-indicator,
     [style*="view-transition-name: site-header"],
     [style*="view-transition-name: active-nav-indicator"] {
       view-transition-name: none !important;
+    }
+
+    ::view-transition-group(slide-frame) {
+      animation-duration: 0.25s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    ::view-transition-old(slide-frame),
+    ::view-transition-new(slide-frame) {
+      animation-duration: 0.2s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      mix-blend-mode: normal !important;
+      background-color: var(--bg-slide);
+    }
+
+    @keyframes vt-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes vt-fade-out {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    ::view-transition-old(slide-frame) {
+      animation-name: vt-fade-out;
+    }
+
+    ::view-transition-new(slide-frame) {
+      animation-name: vt-fade-in;
+    }
+
+    /* Slide Header Transition */
+    ::view-transition-group(slide-header) {
+      animation-duration: 0.25s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    ::view-transition-old(slide-header),
+    ::view-transition-new(slide-header) {
+      animation-duration: 0.2s;
+      mix-blend-mode: normal !important;
+    }
+
+    /* Stage Morph Tracker Transition (glides top-to-center and center-to-top) */
+    ::view-transition-group(slide-tracker) {
+      animation-duration: 0.38s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    ::view-transition-old(slide-tracker),
+    ::view-transition-new(slide-tracker) {
+      animation-duration: 0.38s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      mix-blend-mode: normal !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-group(*),
+      ::view-transition-old(*),
+      ::view-transition-new(*) {
+        animation: none !important;
+      }
     }
 
     /* Embedded & Fullscreen Presentation Stage */
@@ -306,7 +371,7 @@
       position: absolute;
       background-color: var(--bg-slide);
       overflow: hidden;
-      
+      view-transition-name: slide-frame;
     }
 
     /* Slide Structure: Header, Body, True Footer */
@@ -325,15 +390,13 @@
     .slide.active {
       display: flex;
       z-index: 10;
-      animation: slideFadeIn 0.15s ease-out both;
     }
 
     .slide.slide-prev {
       display: none;
     }
 
-    
-        /* Stage Transition Zoom Slides */
+    /* Stage Transition Zoom Slides */
     .stage-transition-slide {
       position: absolute;
       inset: 0;
@@ -349,7 +412,6 @@
     .stage-transition-slide.active {
       display: flex;
       z-index: 10;
-      animation: slideFadeIn 0.15s ease-out both;
     }
 
     .stage-hero-tracker {
@@ -359,6 +421,7 @@
       display: flex;
       align-items: center;
       gap: 36px;
+      view-transition-name: slide-tracker;
       padding: 24px 36px;
     }
 
@@ -431,6 +494,7 @@
       gap: 24px;
       margin-bottom: 24px;
       flex-shrink: 0;
+      view-transition-name: slide-header;
     }
 
     .slide-title-wrap {
@@ -464,6 +528,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      view-transition-name: slide-tracker;
     }
 
     .slide-tracker span {
@@ -2771,7 +2836,21 @@
       if (index > totalSlides) index = totalSlides;
       if (index === currentSlide && targetStep === currentStep) return;
 
-      executeSlideDOMUpdate(index, targetStep);
+      const isSlideChange = (index !== currentSlide);
+
+      if (isSlideChange && document.startViewTransition) {
+        try {
+          const vt = document.startViewTransition(() => {
+            executeSlideDOMUpdate(index, targetStep);
+          });
+          if (vt?.finished) vt.finished.catch(() => {});
+          if (vt?.ready) vt.ready.catch(() => {});
+        } catch {
+          executeSlideDOMUpdate(index, targetStep);
+        }
+      } else {
+        executeSlideDOMUpdate(index, targetStep);
+      }
     }
 
     function jumpToSlide(index) {
@@ -3034,6 +3113,12 @@
       const initial = parseInt(window.location.hash.replace('#', ''), 10);
       if (!isNaN(initial)) jumpToSlide(initial);
     }
+    window.addEventListener('popstate', () => {
+      if (window.location.hash) {
+        const target = parseInt(window.location.hash.replace('#', ''), 10);
+        if (!isNaN(target) && target !== currentSlide) jumpToSlide(target);
+      }
+    });
   </script>
 </body>
 </html>
