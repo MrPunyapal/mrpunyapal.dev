@@ -239,17 +239,24 @@
       animation: scale-up 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Scoped Native View Transitions API */
-    :root {
-      view-transition-name: none;
+    /* Scoped Native View Transitions: Only suppress root & header during slide switching */
+    html.slide-transitioning {
+      view-transition-name: none !important;
     }
 
-    /* Prevent site-header and chrome from participating in slide transitions */
-    site-header,
-    header,
-    .nav-active-indicator,
-    [style*="view-transition-name: site-header"],
-    [style*="view-transition-name: active-nav-indicator"] {
+    html.slide-transitioning site-header,
+    html.slide-transitioning header,
+    html.slide-transitioning .nav-active-indicator,
+    html.slide-transitioning [style*="view-transition-name: site-header"],
+    html.slide-transitioning [style*="view-transition-name: active-nav-indicator"] {
+      view-transition-name: none !important;
+    }
+
+    /* During theme transitions: disable slide deck layers so full-page curtain sweep animates cleanly */
+    html.theme-transitioning .slide-frame,
+    html.theme-transitioning .slide-header,
+    html.theme-transitioning .slide-tracker,
+    html.theme-transitioning .stage-hero-tracker {
       view-transition-name: none !important;
     }
 
@@ -2839,13 +2846,18 @@
       const isSlideChange = (index !== currentSlide);
 
       if (isSlideChange && document.startViewTransition) {
+        document.documentElement.classList.add('slide-transitioning');
         try {
           const vt = document.startViewTransition(() => {
             executeSlideDOMUpdate(index, targetStep);
           });
+          vt.finished.finally(() => {
+            document.documentElement.classList.remove('slide-transitioning');
+          });
           if (vt?.finished) vt.finished.catch(() => {});
           if (vt?.ready) vt.ready.catch(() => {});
         } catch {
+          document.documentElement.classList.remove('slide-transitioning');
           executeSlideDOMUpdate(index, targetStep);
         }
       } else {
