@@ -1411,7 +1411,7 @@
     </defs>
   </svg>
 
-  <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
+  <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 select-none">
     <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
 
       <!-- Tech Markers: Corners -->
@@ -2668,7 +2668,7 @@
 
     <!-- Centering Scroll Wrapper (my-auto pattern guarantees zero clipping on mobile/Safari) -->
     <div class="relative min-h-full flex items-center justify-center pointer-events-none py-2 sm:py-6">
-      <div id="modalDialog" class="pointer-events-auto relative w-full max-w-md sm:max-w-lg my-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 text-slate-800 dark:text-slate-200 animate-scale-up">
+      <div id="modalDialog" class="pointer-events-auto relative w-full max-w-md sm:max-w-lg my-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 text-slate-800 dark:text-slate-200 animate-scale-up select-text">
         
         <!-- Header -->
         <div class="flex items-start justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
@@ -2870,6 +2870,9 @@
     }
 
     function nextAction() {
+      if (window.getSelection) {
+        window.getSelection()?.removeAllRanges();
+      }
       const activeSlideEl = slides[currentSlide - 1];
       const maxSteps = getMaxSteps(activeSlideEl);
 
@@ -2897,6 +2900,9 @@
     }
 
     function prevAction() {
+      if (window.getSelection) {
+        window.getSelection()?.removeAllRanges();
+      }
       const activeSlideEl = slides[currentSlide - 1];
 
       if (currentStep > 0) {
@@ -2995,6 +3001,14 @@
         if (!e.target.closest('button, a, input, select, textarea')) {
           e.preventDefault();
         }
+      });
+      deckViewport.addEventListener('pointerdown', (e) => {
+        if (!e.target.closest('button, a, input, select, textarea')) {
+          e.preventDefault();
+        }
+      });
+      deckViewport.addEventListener('dblclick', (e) => {
+        e.preventDefault();
       });
 
       deckViewport.addEventListener('click', (e) => {
