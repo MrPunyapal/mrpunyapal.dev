@@ -9,9 +9,71 @@
     <description>Curated engineering tips, testing techniques, and idiomatic snippets for Laravel, Pest PHP, PHP, JavaScript, TypeScript, and Git by Punyapal Shah.</description>
     <language>en-us</language>
     <copyright>Copyright (c) Punyapal Shah</copyright>
-    <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
-    <lastBuildDate>Fri, 04 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+    <lastBuildDate>Sat, 12 Sep 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title><![CDATA[Use Laravel's remember_token as a Revocation Signal]]></title>
+      <link>https://mrpunyapal.dev/tips/laravel-remember-token-revocation-signal</link>
+      <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-remember-token-revocation-signal</guid>
+      <description><![CDATA[Use Laravel's remembertoken as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table. When build...]]></description>
+      <content:encoded><![CDATA[<blockquote>Use Laravel's remember_token as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.</blockquote>
+<p>When building a multi-account switcher, the application needs a way to verify whether a previously saved account entry is still valid before switching into it.</p>
+<p>Before adding another token or revocation table to your database, consider whether Laravel already maintains state that can serve as the invalidation signal you need.</p>
+<p>Laravel's `remember_token` on the `users` table already rotates whenever a user logs out, resets their password, or updates their credentials. You can bind saved account entries to this existing token using an HMAC.</p>
+<hr>
+<h3>Verifying Saved Accounts with remember_token</h3>
+<p>Store a signature derived from the user ID, current `remember_token`, and the application key, rather than storing the raw token:</p>
+<pre><code class="language-php">use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+// 1. Keep an account available for fast switching in session or local state
+$account = [
+    &#039;id&#039; =&gt; $user-&gt;id,
+
+    // Tie this entry to the user&#039;s current remember_token
+    &#039;hash&#039; =&gt; hash_hmac(
+        &#039;sha256&#039;,
+        $user-&gt;id . &#039;|&#039; . $user-&gt;remember_token,
+        config()-&gt;string(&#039;app.key&#039;),
+    ),
+];
+
+// 2. Later, before switching to the saved account...
+$user = User::findOrFail($account[&#039;id&#039;]);
+
+// Recreate the expected hash from the user&#039;s current remember_token
+$expected = hash_hmac(
+    &#039;sha256&#039;,
+    $user-&gt;id . &#039;|&#039; . $user-&gt;remember_token,
+    config()-&gt;string(&#039;app.key&#039;),
+);
+
+// If the remember_token changed, the saved account entry is no longer valid
+if (! hash_equals($account[&#039;hash&#039;], $expected)) {
+    // Invalidate or remove the saved entry instead of switching
+    return redirect()-&gt;route(&#039;login&#039;)-&gt;with(&#039;status&#039;, &#039;Session expired. Please log in again.&#039;);
+}
+
+// Valid: log into the target account
+Auth::login($user);</code></pre>
+<hr>
+<h3>How It Works</h3>
+<ul>
+  <li><strong>No raw token storage</strong>: The raw <code>remember_token</code> is never stored in the account-switching entry; only the derived HMAC hash is retained.</li>
+  <li><strong>Tied to current user state</strong>: The derived value depends on the user&#39;s active <code>remember_token</code>. When the user logs out (<code>Auth::logout()</code>), changes their password, or cycles tokens, Laravel rotates <code>remember_token</code>.</li>
+  <li><strong>Automatic invalidation</strong>: Once <code>remember_token</code> changes, recomputing the expected hash produces a different value, causing <code>hash_equals()</code> to fail and rejecting the stale switcher entry.</li>
+  <li><strong>Timing-safe comparison</strong>: <code>hash_equals()</code> prevents timing attacks when validating the stored hash against the expected value.</li>
+  <li><strong>Zero extra database tables</strong>: Reuses Laravel&#39;s built-in <code>users.remember_token</code> column instead of creating and maintaining a separate revocation table.</li>
+</ul>
+]]></content:encoded>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:creator><![CDATA[Punyapal Shah]]></dc:creator>
+      <category><![CDATA[Laravel]]></category>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Authentication]]></category>
+      <category><![CDATA[Security]]></category>
+    </item>
     <item>
       <title><![CDATA[Group Consecutive Items with chunkBy()]]></title>
       <link>https://mrpunyapal.dev/tips/laravel-collection-chunk-by</link>
