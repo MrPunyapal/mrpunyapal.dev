@@ -6,7 +6,9 @@
     "dev": "vite",
     "build": "vite build",
     "build:pdf": "node scripts/generate-pdf.js",
-    "generate:og": "capturist"
+    "build:pdf:force": "node scripts/generate-pdf.js --force",
+    "generate:og": "node scripts/generate-og.mjs",
+    "generate:og:force": "node scripts/generate-og.mjs --force"
   },
   "repository": {
     "type": "git",
@@ -33,8 +35,10 @@
   "homepage": "https://mrpunyapal.dev",
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
-    "capturist": "^0.1.1",
+    "capturist": "^0.5.1",
+    "gray-matter": "^4.0.3",
     "html-pdf-node": "^1.0.8",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4.3.3",
     "vite": "^8.1.5"
   }

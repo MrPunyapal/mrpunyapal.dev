@@ -1,7 +1,12 @@
 let currentPhrase = 0;
 let currentChar = 0;
 let isDeleting = false;
-let typingInterval;
+let typingAnimationFrameId = null;
+let lastStepTime = 0;
+let nextDelay = 100;
+let isTypingVisible = true;
+let isInteracting = false;
+let interactionTimeout = null;
 
 const phrases = [
     "Laravel Engineer",
@@ -13,57 +18,100 @@ const phrases = [
     "Content Creator",
 ];
 
-function typeAnimation() {
-    const typingText = document.getElementById('typingText');
-    if (!typingText) return;
-    
-    const fullText = phrases[currentPhrase];
-    
-    let newText = "";
-    if (isDeleting) {
-        newText = fullText.substring(0, currentChar - 1);
-        currentChar--;
-    } else {
-        newText = fullText.substring(0, currentChar + 1);
-        currentChar++;
+function stepTyping(timestamp) {
+    if (!isTypingVisible || isInteracting) {
+        typingAnimationFrameId = requestAnimationFrame(stepTyping);
+        return;
     }
 
-    typingText.textContent = newText;
-    
-    let typeSpeed = isDeleting ? 50 : 100;
-    
-    if (!isDeleting && currentChar === fullText.length) {
-        typeSpeed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && currentChar === 0) {
-        isDeleting = false;
-        currentPhrase = (currentPhrase + 1) % phrases.length;
-        typeSpeed = 500;
+    const typingText = document.getElementById('typingText');
+    if (!typingText) {
+        return;
     }
-    
-    clearTimeout(typingInterval);
-    typingInterval = setTimeout(typeAnimation, typeSpeed);
+
+    if (!lastStepTime) lastStepTime = timestamp;
+    const elapsed = timestamp - lastStepTime;
+
+    if (elapsed >= nextDelay) {
+        lastStepTime = timestamp;
+        const fullText = phrases[currentPhrase];
+
+        if (isDeleting) {
+            currentChar = Math.max(0, currentChar - 1);
+        } else {
+            currentChar = Math.min(fullText.length, currentChar + 1);
+        }
+
+        typingText.textContent = fullText.substring(0, currentChar);
+
+        nextDelay = isDeleting ? 50 : 100;
+
+        if (!isDeleting && currentChar === fullText.length) {
+            nextDelay = 2000;
+            isDeleting = true;
+        } else if (isDeleting && currentChar === 0) {
+            isDeleting = false;
+            currentPhrase = (currentPhrase + 1) % phrases.length;
+            nextDelay = 500;
+        }
+    }
+
+    typingAnimationFrameId = requestAnimationFrame(stepTyping);
+}
+
+function initTypingAnimation() {
+    const typingText = document.getElementById('typingText');
+    if (!typingText) return;
+
+    currentChar = phrases[0].length;
+    isDeleting = true;
+    nextDelay = 3000;
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            isTypingVisible = entries[0].isIntersecting;
+        }, { threshold: 0.1 });
+        observer.observe(typingText);
+    }
+
+    const handleUserInteraction = () => {
+        isInteracting = true;
+        clearTimeout(interactionTimeout);
+        interactionTimeout = setTimeout(() => {
+            isInteracting = false;
+        }, 600);
+    };
+
+    window.addEventListener('pointerdown', handleUserInteraction, { passive: true });
+    window.addEventListener('touchstart', handleUserInteraction, { passive: true });
+
+    typingAnimationFrameId = requestAnimationFrame(stepTyping);
 }
 
 function trackEvent(event, details) {
+    if (typeof window !== 'undefined') {
+        const host = window.location.hostname;
+        if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0' || host.endsWith('.local') || host.endsWith('.test')) {
+            return;
+        }
+    }
     if (typeof gtag !== 'undefined') {
         gtag('event', event, details);
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const typingText = document.getElementById('typingText');
-    if (typingText) {
-        currentChar = phrases[0].length;
-        isDeleting = true;
-        setTimeout(typeAnimation, 3000);
-    }
+    initTypingAnimation();
     
     document.querySelectorAll('a[target="_blank"]').forEach(link => {
         link.addEventListener('click', function() {
-            trackEvent('external_link_click', {
-                url: this.href,
-                text: this.textContent.trim()
+            const url = this.href;
+            const text = this.textContent.trim();
+            requestAnimationFrame(() => {
+                trackEvent('external_link_click', {
+                    url: url,
+                    text: text
+                });
             });
         });
     });
@@ -95,92 +143,118 @@ document.addEventListener('DOMContentLoaded', function() {
         if (doorContainer) doorContainer.setAttribute('aria-label', `${text}: ${hint}`);
     }
 
-    // Confetti effect
+    // Confetti effect with DocumentFragment and rAF batching
     function createConfetti() {
-        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
-        for (let i = 0; i < 50; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.cssText = `
-                position: fixed;
-                width: 10px;
-                height: 10px;
-                background: ${colors[Math.floor(Math.random() * colors.length)]};
-                top: 50%;
-                left: 50%;
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9998;
-                animation: confettiFall ${1 + Math.random() * 2}s linear forwards;
-                transform: translate(-50%, -50%) rotate(${Math.random() * 360}deg);
-            `;
-            confetti.style.setProperty('--tx', (Math.random() - 0.5) * 1000 + 'px');
-            confetti.style.setProperty('--ty', Math.random() * 1000 + 'px');
-            confetti.style.setProperty('--rz', Math.random() * 720 + 'deg');
-            document.body.appendChild(confetti);
-            
-            setTimeout(() => confetti.remove(), 3000);
-        }
+        requestAnimationFrame(() => {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
+            const fragment = document.createDocumentFragment();
+            const created = [];
+            for (let i = 0; i < 35; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    top: 50%;
+                    left: 50%;
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9998;
+                    animation: confettiFall ${1 + Math.random() * 2}s linear forwards;
+                    transform: translate(-50%, -50%) rotate(${Math.random() * 360}deg);
+                `;
+                confetti.style.setProperty('--tx', (Math.random() - 0.5) * 1000 + 'px');
+                confetti.style.setProperty('--ty', Math.random() * 1000 + 'px');
+                confetti.style.setProperty('--rz', Math.random() * 720 + 'deg');
+                fragment.appendChild(confetti);
+                created.push(confetti);
+            }
+            document.body.appendChild(fragment);
+            setTimeout(() => {
+                created.forEach(c => c.remove());
+            }, 3000);
+        });
     }
     
-    // Fireworks effect
+    // Fireworks effect with DocumentFragment and rAF batching
     function createFireworks() {
         const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7'];
         for (let i = 0; i < 3; i++) {
             setTimeout(() => {
-                const x = 20 + Math.random() * 60;
-                const y = 20 + Math.random() * 60;
-                for (let j = 0; j < 30; j++) {
-                    const particle = document.createElement('div');
-                    particle.style.cssText = `
-                        position: fixed;
-                        width: 6px;
-                        height: 6px;
-                        background: ${colors[Math.floor(Math.random() * colors.length)]};
-                        top: ${y}%;
-                        left: ${x}%;
-                        border-radius: 50%;
-                        pointer-events: none;
-                        z-index: 9998;
-                        box-shadow: 0 0 10px currentColor;
-                    `;
-                    const angle = (j / 30) * Math.PI * 2;
-                    const velocity = 100 + Math.random() * 100;
-                    const tx = Math.cos(angle) * velocity;
-                    const ty = Math.sin(angle) * velocity;
-                    particle.style.animation = `fireworkParticle 1s ease-out forwards`;
-                    particle.style.setProperty('--tx', tx + 'px');
-                    particle.style.setProperty('--ty', ty + 'px');
-                    document.body.appendChild(particle);
-                    
-                    setTimeout(() => particle.remove(), 1000);
-                }
+                requestAnimationFrame(() => {
+                    const x = 20 + Math.random() * 60;
+                    const y = 20 + Math.random() * 60;
+                    const fragment = document.createDocumentFragment();
+                    const created = [];
+                    for (let j = 0; j < 20; j++) {
+                        const particle = document.createElement('div');
+                        particle.style.cssText = `
+                            position: fixed;
+                            width: 6px;
+                            height: 6px;
+                            background: ${colors[Math.floor(Math.random() * colors.length)]};
+                            top: ${y}%;
+                            left: ${x}%;
+                            border-radius: 50%;
+                            pointer-events: none;
+                            z-index: 9998;
+                            box-shadow: 0 0 10px currentColor;
+                        `;
+                        const angle = (j / 20) * Math.PI * 2;
+                        const velocity = 100 + Math.random() * 100;
+                        const tx = Math.cos(angle) * velocity;
+                        const ty = Math.sin(angle) * velocity;
+                        particle.style.animation = `fireworkParticle 1s ease-out forwards`;
+                        particle.style.setProperty('--tx', tx + 'px');
+                        particle.style.setProperty('--ty', ty + 'px');
+                        fragment.appendChild(particle);
+                        created.push(particle);
+                    }
+                    document.body.appendChild(fragment);
+                    setTimeout(() => {
+                        created.forEach(p => p.remove());
+                    }, 1000);
+                });
             }, i * 300);
         }
     }
     
-    // Elephpant trumpet sound (simple beep using Web Audio API)
+    // Shared AudioContext for trumpet sound to avoid instantiation latency
+    let sharedAudioContext = null;
     function playTrumpetSound() {
-        if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            const audioContext = new AudioContext();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
-            oscillator.frequency.exponentialRampToValueAtTime(150, audioContext.currentTime + 0.3);
-            
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.5);
-        }
+        requestAnimationFrame(() => {
+            if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
+                try {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (!sharedAudioContext) {
+                        sharedAudioContext = new AudioCtx();
+                    }
+                    if (sharedAudioContext.state === 'suspended') {
+                        sharedAudioContext.resume();
+                    }
+                    const oscillator = sharedAudioContext.createOscillator();
+                    const gainNode = sharedAudioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(sharedAudioContext.destination);
+                    
+                    oscillator.type = 'sine';
+                    oscillator.frequency.setValueAtTime(200, sharedAudioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(400, sharedAudioContext.currentTime + 0.1);
+                    oscillator.frequency.exponentialRampToValueAtTime(150, sharedAudioContext.currentTime + 0.3);
+                    
+                    gainNode.gain.setValueAtTime(0.3, sharedAudioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, sharedAudioContext.currentTime + 0.5);
+                    
+                    oscillator.start(sharedAudioContext.currentTime);
+                    oscillator.stop(sharedAudioContext.currentTime + 0.5);
+                } catch (e) {
+                    // AudioContext unavailable or autoplay restricted
+                }
+            }
+        });
     }
 
     // Responsive Door Positioning
@@ -232,20 +306,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         elephpant.addEventListener('click', function(e) {
             e.stopPropagation();
-            
-            if (isPartyMode) {
-                elephpant.classList.remove('party-mode');
-                isPartyMode = false;
-            } else {
-                elephpant.classList.add('party-mode');
-                isPartyMode = true;
-                createConfetti();
-                createFireworks();
-                playTrumpetSound();
-                trackEvent('elephpant_interaction', {
-                    action: 'party_mode_enabled'
-                });
-            }
+            requestAnimationFrame(() => {
+                if (isPartyMode) {
+                    elephpant.classList.remove('party-mode');
+                    isPartyMode = false;
+                } else {
+                    elephpant.classList.add('party-mode');
+                    isPartyMode = true;
+                    createConfetti();
+                    createFireworks();
+                    playTrumpetSound();
+                    trackEvent('elephpant_interaction', {
+                        action: 'party_mode_enabled'
+                    });
+                }
+            });
         });
 
         // Initial Sequence: Speed up initially, then go home after a few seconds
@@ -280,106 +355,110 @@ document.addEventListener('DOMContentLoaded', function() {
         const elephpant = getElephpant();
         if (!elephpant || isElephpantHome) return;
         
-        const rect = elephpant.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const windowWidth = window.innerWidth;
-        
-        const currentBottom = windowHeight - rect.bottom;
-        const currentRight = windowWidth - rect.right;
-        const anchor = getElephpantAnchor(elephpant);
-
-        elephpant.style.animation = 'none';
-        // Hold the spot the run stopped at, expressed as an offset from the anchor.
-        elephpant.style.transform = translateFrom(anchor, currentBottom, currentRight);
-        elephpant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode');
-        
-        void elephpant.offsetWidth;
-        
-        if (doorContainer) doorContainer.classList.add('open');
-        
-        const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
-        const elephpantSize = elephpant.offsetWidth || 220;
-        const scaledSize = elephpantSize * 0.5;
-        const offset = (elephpantSize - scaledSize) / 2;
-        
-        const targetBottom = (windowHeight - doorRect.bottom) - offset;
-        const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
-        const targetRight = doorCenterFromRight - (elephpantSize / 2);
-
-        elephpant.classList.add('returning-home');
-        elephpant.style.transform = `${translateFrom(anchor, targetBottom, targetRight)} scale(0.5)`;
-        
-        setTimeout(() => {
-            elephpant.classList.add('hidden-behind-door');
-            elephpant.style.opacity = '0';
-            elephpant.style.pointerEvents = 'none';
-            if (doorContainer) doorContainer.classList.remove('open');
-            setDoorMessage("Knock to see me", "reveals the elephpant easter egg");
-            isElephpantHome = true;
-        }, 1500);
-    }
-
-    function releaseElephpant() {
-        const elephpant = initElephpant();
-        if (!elephpant || !isElephpantHome) return;
-        
-        if (doorContainer) doorContainer.classList.add('open');
-        
-        setTimeout(() => {
-            elephpant.classList.remove('hidden-behind-door');
-            elephpant.style.opacity = '1';
-            elephpant.style.pointerEvents = 'auto';
-            
-            const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
+        requestAnimationFrame(() => {
+            const rect = elephpant.getBoundingClientRect();
             const windowHeight = window.innerHeight;
             const windowWidth = window.innerWidth;
             
+            const currentBottom = windowHeight - rect.bottom;
+            const currentRight = windowWidth - rect.right;
+            const anchor = getElephpantAnchor(elephpant);
+
+            elephpant.style.animation = 'none';
+            // Hold the spot the run stopped at, expressed as an offset from the anchor.
+            elephpant.style.transform = translateFrom(anchor, currentBottom, currentRight);
+            elephpant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode');
+            
+            if (doorContainer) doorContainer.classList.add('open');
+            
+            const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
             const elephpantSize = elephpant.offsetWidth || 220;
             const scaledSize = elephpantSize * 0.5;
             const offset = (elephpantSize - scaledSize) / 2;
             
             const targetBottom = (windowHeight - doorRect.bottom) - offset;
             const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
-            const startRight = doorCenterFromRight - (elephpantSize / 2);
+            const targetRight = doorCenterFromRight - (elephpantSize / 2);
+
+            elephpant.classList.add('returning-home');
+            elephpant.style.transform = `${translateFrom(anchor, targetBottom, targetRight)} scale(0.5)`;
             
-            const anchor = getElephpantAnchor(elephpant);
-
-            // Step 1: Emerge directly from the hut door at half scale
-            elephpant.style.transition = 'none';
-            elephpant.style.transform = `${translateFrom(anchor, targetBottom, startRight)} scale(0.5)`;
-
-            void elephpant.offsetWidth;
-
-            elephpant.classList.remove('returning-home');
-            elephpant.classList.add('exiting-door');
-
-            // Step 2: Step out of the hut and transition down to screen perimeter run
-            elephpant.style.transition = 'transform 1s cubic-bezier(0.2, 0.8, 0.2, 1)';
-            elephpant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
-
             setTimeout(() => {
-                elephpant.classList.remove('exiting-door');
-                elephpant.style.animation = '';
-                elephpant.style.transform = '';
-                elephpant.style.transition = '';
-                
+                elephpant.classList.add('hidden-behind-door');
+                elephpant.style.opacity = '0';
+                elephpant.style.pointerEvents = 'none';
                 if (doorContainer) doorContainer.classList.remove('open');
-                setDoorMessage("Knock to hide me", "hides the elephpant easter egg");
-                isElephpantHome = false;
-            }, 1000);
-        }, 400);
+                setDoorMessage("Knock to see me", "reveals the elephpant easter egg");
+                isElephpantHome = true;
+            }, 1500);
+        });
+    }
+
+    function releaseElephpant() {
+        const elephpant = initElephpant();
+        if (!elephpant || !isElephpantHome) return;
+        
+        requestAnimationFrame(() => {
+            if (doorContainer) doorContainer.classList.add('open');
+            
+            setTimeout(() => {
+                elephpant.classList.remove('hidden-behind-door');
+                elephpant.style.opacity = '1';
+                elephpant.style.pointerEvents = 'auto';
+                
+                const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
+                const windowHeight = window.innerHeight;
+                const windowWidth = window.innerWidth;
+                
+                const elephpantSize = elephpant.offsetWidth || 220;
+                const scaledSize = elephpantSize * 0.5;
+                const offset = (elephpantSize - scaledSize) / 2;
+                
+                const targetBottom = (windowHeight - doorRect.bottom) - offset;
+                const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
+                const startRight = doorCenterFromRight - (elephpantSize / 2);
+                
+                const anchor = getElephpantAnchor(elephpant);
+
+                // Step 1: Emerge directly from the hut door at half scale
+                elephpant.style.transition = 'none';
+                elephpant.style.transform = `${translateFrom(anchor, targetBottom, startRight)} scale(0.5)`;
+
+                requestAnimationFrame(() => {
+                    elephpant.classList.remove('returning-home');
+                    elephpant.classList.add('exiting-door');
+
+                    // Step 2: Step out of the hut and transition down to screen perimeter run
+                    elephpant.style.transition = 'transform 1s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                    elephpant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
+                });
+
+                setTimeout(() => {
+                    elephpant.classList.remove('exiting-door');
+                    elephpant.style.animation = '';
+                    elephpant.style.transform = '';
+                    elephpant.style.transition = '';
+                    
+                    if (doorContainer) doorContainer.classList.remove('open');
+                    setDoorMessage("Knock to hide me", "hides the elephpant easter egg");
+                    isElephpantHome = false;
+                }, 1000);
+            }, 400);
+        });
     }
 
     // Door Click Event
     if (doorContainer) {
         doorContainer.addEventListener('click', () => {
-            initElephpant();
-            if (isElephpantHome) {
-                releaseElephpant();
-                playTrumpetSound();
-            } else {
-                sendElephpantHome();
-            }
+            requestAnimationFrame(() => {
+                initElephpant();
+                if (isElephpantHome) {
+                    releaseElephpant();
+                    playTrumpetSound();
+                } else {
+                    sendElephpantHome();
+                }
+            });
         });
     }
 

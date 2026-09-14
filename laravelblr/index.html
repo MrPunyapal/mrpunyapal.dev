@@ -1,0 +1,3164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From User to Maintainer: The Open Source Journey | Punyapal Shah</title>
+  <meta name="description" content="Interactive keynote presentation: From User to Maintainer - The Open Source Journey by Punyapal Shah at Laravel Bengaluru.">
+  <meta name="author" content="Punyapal Shah">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#FF2D20">
+  <meta name="msapplication-TileColor" content="#FF2D20">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mrpunyapal.dev/laravelblr">
+  <meta property="og:title" content="From User to Maintainer: The Open Source Journey | Punyapal Shah">
+  <meta property="og:description" content="Interactive keynote presentation: From User to Maintainer - The Open Source Journey by Punyapal Shah at Laravel Bengaluru.">
+  <meta property="og:image" content="https://mrpunyapal.dev/og/laravelblr.png">
+  <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/laravelblr.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="From User to Maintainer: The Open Source Journey by Punyapal Shah">
+  <meta property="og:site_name" content="Punyapal Shah">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@MrPunyapal">
+  <meta name="twitter:creator" content="@MrPunyapal">
+  <meta name="twitter:url" content="https://mrpunyapal.dev/laravelblr">
+  <meta name="twitter:title" content="From User to Maintainer: The Open Source Journey | Punyapal Shah">
+  <meta name="twitter:description" content="Interactive keynote presentation: From User to Maintainer - The Open Source Journey by Punyapal Shah at Laravel Bengaluru.">
+  <meta name="twitter:image" content="https://mrpunyapal.dev/og/laravelblr.png">
+  <meta name="twitter:image:src" content="https://mrpunyapal.dev/og/laravelblr.png">
+  <meta name="twitter:image:alt" content="From User to Maintainer: The Open Source Journey by Punyapal Shah">
+
+  <!-- Favicon and Icons -->
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="128x128">
+  <link rel="apple-touch-icon" href="/favicon.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@graph": [
+          {
+              "@type": "WebPage",
+              "@id": "https://mrpunyapal.dev/laravelblr#webpage",
+              "url": "https://mrpunyapal.dev/laravelblr",
+              "name": "From User to Maintainer: The Open Source Journey | Punyapal Shah",
+              "description": "Interactive keynote presentation: From User to Maintainer - The Open Source Journey by Punyapal Shah at Laravel Bengaluru.",
+              "inLanguage": "en",
+              "isPartOf": {
+                  "@id": "https://mrpunyapal.dev/#website"
+              },
+              "about": {
+                  "@id": "https://mrpunyapal.dev/#person"
+              },
+              "mainEntity": {
+                  "@type": "PresentationDigitalDocument",
+                  "@id": "https://mrpunyapal.dev/laravelblr#presentation",
+                  "name": "From User to Maintainer: The Open Source Journey",
+                  "description": "Interactive keynote presentation on open source contribution, package maintenance, and ecosystem sustainability by Punyapal Shah at Laravel Bengaluru.",
+                  "author": {
+                      "@id": "https://mrpunyapal.dev/#person"
+                  },
+                  "inLanguage": "en",
+                  "datePublished": "2026-09-05",
+                  "url": "https://mrpunyapal.dev/laravelblr"
+              }
+          },
+          {
+              "@type": "BreadcrumbList",
+              "@id": "https://mrpunyapal.dev/laravelblr#breadcrumb",
+              "itemListElement": [
+                  {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Home",
+                      "item": "https://mrpunyapal.dev/"
+                  },
+                  {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "name": "Talks",
+                      "item": "https://mrpunyapal.dev/talks"
+                  },
+                  {
+                      "@type": "ListItem",
+                      "position": 3,
+                      "name": "From User to Maintainer",
+                      "item": "https://mrpunyapal.dev/laravelblr"
+                  }
+              ]
+          }
+      ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://mrpunyapal.dev/laravelblr">
+  <link rel="stylesheet" href="/src/tailwind.css">
+  <link rel="stylesheet" href="/src/app.css">
+  <script type="module" src="/src/main.js"></script>
+  <script>
+      (function() {
+          const saved = localStorage.getItem('theme');
+          const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && systemDark)) {
+              document.documentElement.classList.add('dark');
+          } else {
+              document.documentElement.classList.remove('dark');
+          }
+      })();
+  </script>
+  <style>
+    :root {
+      --bg-canvas: #06090F;
+      --bg-slide: #0A0E14;
+      --bg-card: #0F172A;
+      --bg-card-hover: #162036;
+      
+      --border-card: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      
+      /* Vivid Accent Palette */
+      --c-orange: #FF5722;
+      
+      --c-blue: #3B82F6;
+      
+      --c-green: #10B981;
+      
+      --c-yellow: #F59E0B;
+      
+      --c-purple: #A855F7;
+      
+      --c-pink: #EC4899;
+      
+      --text-white: #FFFFFF;
+      --text-gray: #94A3B8;
+      --text-dim: #64748B;
+      --text-dark: #475569;
+      
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      
+      --deck-scale: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    .dark body {
+      background: #020617 !important;
+      color: #f8fafc !important;
+    }
+
+    /* Technical Grid Markers */
+    .tech-marker {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      background-color: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 50%;
+      z-index: 50;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    }
+    .dark .tech-marker {
+      background-color: #0f172a;
+      border-color: #334155;
+      box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.5);
+    }
+
+    /* Infinite Grid Lines */
+    .tech-line-h {
+      position: absolute;
+      height: 1px;
+      background-color: #e2e8f0;
+      z-index: 0;
+      pointer-events: none;
+      width: 300vw;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .dark .tech-line-h {
+      background-color: #1e293b;
+    }
+
+    .tech-line-v-top {
+      position: absolute;
+      width: 1px;
+      background-color: #e2e8f0;
+      z-index: 0;
+      pointer-events: none;
+      bottom: 100%;
+      height: 100vh;
+    }
+    .dark .tech-line-v-top {
+      background-color: #1e293b;
+    }
+
+    .tech-line-v-bottom {
+      position: absolute;
+      width: 1px;
+      background: linear-gradient(to bottom, #e2e8f0, transparent);
+      z-index: 0;
+      pointer-events: none;
+      top: 100%;
+      height: 120px;
+    }
+    .dark .tech-line-v-bottom {
+      background: linear-gradient(to bottom, #1e293b, transparent);
+    }
+
+    @keyframes scale-up {
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .animate-scale-up {
+      animation: scale-up 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Scoped Native View Transitions: Only suppress root & header during slide switching */
+    html.slide-transitioning {
+      view-transition-name: none !important;
+    }
+
+    html.slide-transitioning site-header,
+    html.slide-transitioning header,
+    html.slide-transitioning .nav-active-indicator,
+    html.slide-transitioning [style*="view-transition-name: site-header"],
+    html.slide-transitioning [style*="view-transition-name: active-nav-indicator"] {
+      view-transition-name: none !important;
+    }
+
+    /* During theme transitions: disable slide deck layers so full-page curtain sweep animates cleanly */
+    html.theme-transitioning .slide-frame,
+    html.theme-transitioning .slide-header,
+    html.theme-transitioning .slide-tracker,
+    html.theme-transitioning .stage-hero-tracker {
+      view-transition-name: none !important;
+    }
+
+    ::view-transition-group(slide-frame) {
+      animation-duration: 0.25s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    ::view-transition-old(slide-frame),
+    ::view-transition-new(slide-frame) {
+      animation-duration: 0.2s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      mix-blend-mode: normal !important;
+      background-color: var(--bg-slide);
+    }
+
+    @keyframes vt-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes vt-fade-out {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    ::view-transition-old(slide-frame) {
+      animation-name: vt-fade-out;
+    }
+
+    ::view-transition-new(slide-frame) {
+      animation-name: vt-fade-in;
+    }
+
+    /* Slide Header Transition */
+    ::view-transition-group(slide-header) {
+      animation-duration: 0.25s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    ::view-transition-old(slide-header),
+    ::view-transition-new(slide-header) {
+      animation-duration: 0.2s;
+      mix-blend-mode: normal !important;
+    }
+
+    /* Stage Morph Tracker Transition (glides top-to-center and center-to-top) */
+    ::view-transition-group(slide-tracker) {
+      animation-duration: 0.38s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    ::view-transition-old(slide-tracker),
+    ::view-transition-new(slide-tracker) {
+      animation-duration: 0.38s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      mix-blend-mode: normal !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-group(*),
+      ::view-transition-old(*),
+      ::view-transition-new(*) {
+        animation: none !important;
+      }
+    }
+
+    /* Embedded & Fullscreen Presentation Stage */
+    .deck-viewport-wrap {
+      width: 100%;
+      position: relative;
+    }
+
+    .deck-viewport {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background-color: var(--bg-canvas);
+      cursor: pointer;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    /* Native Fullscreen styling for the deck container */
+    #deckContainer:fullscreen,
+    #deckContainer:-webkit-full-screen {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      border-radius: 0 !important;
+      border: none !important;
+      background-color: #06090F !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    #deckContainer:fullscreen .deck-viewport-wrap,
+    #deckContainer:-webkit-full-screen .deck-viewport-wrap {
+      flex: 1;
+      width: 100vw !important;
+      height: 100vh !important;
+      aspect-ratio: auto !important;
+    }
+
+
+    /* 16:9 Canvas (1280x720 base) */
+    .slide-frame {
+      width: 1280px;
+      height: 720px;
+      transform: scale(var(--deck-scale, 1));
+      transform-origin: center center;
+      position: absolute;
+      background-color: var(--bg-slide);
+      overflow: hidden;
+      view-transition-name: slide-frame;
+    }
+
+    /* Slide Structure: Header, Body, True Footer */
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 1280px;
+      height: 720px;
+      padding: 46px 72px 34px 72px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--bg-slide);
+    }
+
+    .slide.active {
+      display: flex;
+      z-index: 10;
+    }
+
+    .slide.slide-prev {
+      display: none;
+    }
+
+    /* Stage Transition Zoom Slides */
+    .stage-transition-slide {
+      position: absolute;
+      inset: 0;
+      width: 1280px;
+      height: 720px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-slide);
+    }
+
+    .stage-transition-slide.active {
+      display: flex;
+      z-index: 10;
+    }
+
+    .stage-hero-tracker {
+      font-family: 'Fira Code', monospace;
+      font-size: 28px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      view-transition-name: slide-tracker;
+      padding: 24px 36px;
+    }
+
+    .stage-hero-tracker span {
+      transition: color 0.35s ease, opacity 0.35s ease;
+    }
+
+    .stage-hero-tracker .st-done {
+      color: #94A3B8;
+    }
+
+    .stage-hero-tracker .st-active-user {
+      color: var(--c-blue);
+      font-weight: 700;
+    }
+
+    .stage-hero-tracker .st-active-contributor {
+      color: var(--c-green);
+      font-weight: 700;
+    }
+
+    .stage-hero-tracker .st-active-author {
+      color: var(--c-yellow);
+      font-weight: 700;
+    }
+
+    .stage-hero-tracker .st-active-maintainer {
+      color: var(--c-orange);
+      font-weight: 700;
+    }
+
+    .stage-morph-node {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stage-morph-node .morph-prev {
+      transition: opacity 0.35s ease;
+      opacity: 1;
+    }
+
+    .stage-morph-node .morph-next {
+      position: absolute;
+      inset: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.35s ease;
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .stage-morph-node .morph-next.revealed {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .stage-morph-node.has-revealed .morph-prev {
+      opacity: 0;
+    }
+
+    /* Slide Header */
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+      flex-shrink: 0;
+      view-transition-name: slide-header;
+    }
+
+    .slide-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .title-accent-bar {
+      width: 4px;
+      height: 36px;
+      background: var(--c-orange);
+      border-radius: 2px;
+      flex-shrink: 0;
+      
+    }
+
+    .slide-title {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    /* Top Right Tracker with Morph Glow */
+    .slide-tracker {
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      view-transition-name: slide-tracker;
+    }
+
+    .slide-tracker span {
+      transition: color 0.3s ease;
+    }
+
+    .slide-tracker .st-done {
+      color: #94A3B8;
+    }
+
+    .slide-tracker .st-active-user {
+      color: var(--c-blue);
+      font-weight: 700;
+      
+    }
+
+    .slide-tracker .st-active-contributor {
+      color: var(--c-green);
+      font-weight: 700;
+      
+    }
+
+    .slide-tracker .st-active-author {
+      color: var(--c-yellow);
+      font-weight: 700;
+      
+    }
+
+    .slide-tracker .st-active-maintainer {
+      color: var(--c-orange);
+      font-weight: 700;
+      
+    }
+
+    /* Slide Body (Middle Content) */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Slide Footer (Anchored at Bottom of the Slide) */
+    .slide-footer {
+      flex-shrink: 0;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+      width: 100%;
+    }
+
+    /* Step-by-Step Progressive Reveal Fragments */
+    .step-item {
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .step-item.revealed {
+      opacity: 1;
+    }
+
+    /* SVG Timeline Animation */
+    .timeline-line-anim {
+      stroke-dasharray: 1040;
+      stroke-dashoffset: 1040;
+      transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .timeline-line-anim.revealed {
+      stroke-dashoffset: 0;
+    }
+
+    .node-dot-anim {
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .node-dot-anim.revealed {
+      opacity: 1;
+    }
+
+    /* Vertical Accent Bar: Full Height as Content */
+    .content-box {
+      display: flex;
+      gap: 32px;
+      align-items: stretch; /* Stretches line to exact content height */
+    }
+
+    .content-accent-bar {
+      width: 4px;
+      border-radius: 2px;
+      flex-shrink: 0;
+      align-self: stretch;
+      margin-top: -16px;
+      margin-bottom: -16px;
+    }
+
+    .bar-green { background: var(--c-green);  }
+    .bar-yellow { background: var(--c-yellow);  }
+    .bar-orange { background: var(--c-orange);  }
+    .bar-blue { background: var(--c-blue);  }
+    .bar-purple { background: var(--c-purple);  }
+
+    .content-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Pill Badges */
+    .pill-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      margin-bottom: 20px;
+    }
+
+    .tag-orange {
+      color: var(--c-orange);
+      background: rgba(255, 87, 34, 0.12);
+      border: 1px solid rgba(255, 87, 34, 0.4);
+    }
+
+    .tag-green {
+      color: var(--c-green);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .tag-yellow {
+      color: var(--c-yellow);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .tag-blue {
+      color: var(--c-blue);
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .tag-purple {
+      color: var(--c-purple);
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    /* Typography */
+    .main-heading {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.35;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .main-desc {
+      font-size: 19px;
+      line-height: 1.65;
+      color: var(--text-gray);
+      max-width: 940px;
+    }
+
+    /* Clean Dash List with Breathing Room */
+    .dash-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 6px;
+    }
+
+    .dash-item {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      font-size: 19px;
+      line-height: 1.5;
+      color: #E2E8F0;
+    }
+
+    .dash-symbol {
+      color: var(--c-green);
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+
+    .dash-symbol.dash-orange { color: var(--c-orange); }
+    .dash-symbol.dash-yellow { color: var(--c-yellow); }
+    .dash-symbol.dash-blue { color: var(--c-blue); }
+    .dash-symbol.dash-purple { color: var(--c-purple); }
+
+    /* Slide 1: Hero Keynote */
+    .hero-layout {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 0 20px;
+    }
+
+    .hero-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--c-orange);
+      background: rgba(255, 87, 34, 0.09);
+      border: 1px solid rgba(255, 87, 34, 0.45);
+      padding: 7px 16px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-bottom: 26px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      
+    }
+
+    .hero-title-1 {
+      font-size: 58px;
+      font-weight: 800;
+      color: var(--text-white);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+    }
+
+    .hero-title-2 {
+      font-size: 58px;
+      font-weight: 800;
+      color: var(--c-orange);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-top: 4px;
+      
+    }
+
+    .hero-author-wrap {
+      margin-top: 36px;
+    }
+
+    .hero-author {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text-gray);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-badges-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .hero-team-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.04em;
+    }
+
+    .badge-pest {
+      color: #60A5FA;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .badge-pinkary {
+      color: #34D399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .badge-artisans {
+      color: #FBBF24;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    /* Vector Timeline System */
+    .timeline-wrap-rocksolid {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      margin: 0 auto;
+    }
+
+    .timeline-cards-grid-4 {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      z-index: 3;
+    }
+
+    .timeline-cards-grid-5 {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      z-index: 3;
+    }
+
+    .t-cell {
+      position: relative;
+      height: 100%;
+    }
+
+    .t-unit {
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .t-unit.t-top {
+      bottom: calc(50% + 20px);
+    }
+
+    .t-unit.t-bottom {
+      top: calc(50% + 20px);
+    }
+
+    .t-card-box {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--text-gray);
+      text-align: center;
+    }
+
+        .node-tag-pill {
+      font-family: 'Fira Code', monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 7px 18px;
+      border-radius: 7px;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .tag-pill-blue {
+      color: #60A5FA;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .tag-pill-green {
+      color: #34D399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .tag-pill-yellow {
+      color: #FBBF24;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .tag-pill-orange {
+      color: #FF5722;
+      background: rgba(255, 87, 34, 0.12);
+      border: 1px solid rgba(255, 87, 34, 0.4);
+    }
+
+    .tag-pill-purple {
+      color: #C084FC;
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .footer-quote {
+      text-align: center;
+      font-size: 16px;
+      color: var(--text-gray);
+    }
+
+    .footer-quote-box {
+      font-family: 'Fira Code', monospace;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-card);
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    /* Slide 6: Real World Proof Image Stack */
+    .proof-stack-container {
+      position: relative;
+      width: 100%;
+      max-width: 1020px;
+      height: 480px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .proof-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .proof-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: block;
+    }
+
+    /* Slide 7: Clean 2-Column Bug Reports */
+    .clean-2col-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+    }
+
+    .clean-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .clean-quote {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.4;
+      margin: 20px 0 12px 0;
+    }
+
+    .clean-subtext {
+      font-size: 16px;
+      color: var(--text-gray);
+      line-height: 1.55;
+    }
+
+    
+        /* Slide 8: Table Container & Badges */
+    .table-box {
+      background: #070B11;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    /* Disable any transform on table rows to prevent layout distortion */
+    tr.step-item {
+      transform: none !important;
+    }
+
+    .commits-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    .commits-table th {
+      text-align: left;
+      padding: 18px 26px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Fira Code', monospace;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border-card);
+      background: rgba(255, 255, 255, 0.035);
+      letter-spacing: 0.05em;
+      vertical-align: middle !important;
+      height: 54px;
+    }
+
+    .commits-table td {
+      padding: 18px 26px;
+      border-bottom: 1px solid var(--border-card);
+      color: var(--text-white);
+      vertical-align: middle !important;
+      height: 60px;
+    }
+
+    .commits-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .prefix-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      vertical-align: middle;
+      letter-spacing: 0.05em;
+    }
+
+    .p-feat {
+      color: #34D399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .p-fix {
+      color: #F87171;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .p-chore {
+      color: #FBBF24;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .p-docs {
+      color: #60A5FA;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .p-refactor {
+      color: #C084FC;
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .code-msg {
+      font-family: 'Fira Code', monospace;
+      font-size: 14.5px;
+      color: var(--text-gray);
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    /* SVG Timeline Track & Circles (Exact Vertical Centering) */
+    .timeline-wrap-rocksolid {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      margin: 8px 0;
+    }
+
+    .timeline-svg-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .timeline-line-anim {
+      stroke-dasharray: 1040;
+      stroke-dashoffset: 1040;
+      transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .timeline-line-anim.revealed {
+      stroke-dashoffset: 0;
+    }
+
+    .node-dot-anim {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .node-dot-anim.revealed {
+      opacity: 1;
+    }
+
+
+    /* Slide 13: Author vs Maintainer Divided Columns */
+    .divided-2col {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 52px;
+      align-items: stretch;
+    }
+
+    .divider-line {
+      background: var(--border-card);
+      width: 1px;
+    }
+
+    /* Slide 21: 4 Cards with Large Centered Icons */
+    .cycle-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .cycle-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 32px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.25s ease,
+                  box-shadow 0.25s ease;
+    }
+
+    .cycle-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.25);
+      
+    }
+
+    .cycle-icon-wrap {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .cycle-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 10px;
+    }
+
+    .cycle-subtext {
+      font-size: 15px;
+      color: var(--text-gray);
+    }
+
+    /* Giant Stat Number (e.g. 3×, No.) */
+    .giant-text {
+      font-size: 130px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .gt-yellow { color: var(--c-yellow);  }
+    .gt-orange { color: var(--c-orange);  }
+
+    /* SemVer Footer Bar */
+    .semver-footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      width: 100%;
+    }
+
+    .semver-foot-item {
+      color: var(--text-dark);
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .semver-foot-item.active-major {
+      color: var(--c-orange);
+      font-weight: 700;
+      
+    }
+
+    .semver-foot-item.active-minor {
+      color: var(--c-blue);
+      font-weight: 700;
+      
+    }
+
+    .semver-foot-item.active-patch {
+      color: var(--c-green);
+      font-weight: 700;
+      
+    }
+
+    /* Slide 23: Thank You & Original Pinkary QR Image */
+    .qr-card-box {
+      width: 320px;
+      height: 320px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    
+
+    .qr-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+    }
+
+        .social-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Fira Code', monospace;
+      font-size: 19px;
+      color: #fff;
+    }
+
+    .social-icon-box {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .general-footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Fira Code', monospace;
+      font-size: 12.5px;
+      color: var(--text-dark);
+      width: 100%;
+    }
+  
+    /* Speaker Avatar Styles */
+    .speaker-avatar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .speaker-avatar-img {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid rgba(255, 87, 34, 0.6);
+      box-shadow: 0 0 20px rgba(255, 87, 34, 0.25);
+      flex-shrink: 0;
+    }
+
+    .speaker-avatar-lg {
+      width: 76px;
+      height: 76px;
+      border: 2.5px solid rgba(59, 130, 246, 0.6);
+      box-shadow: 0 0 24px rgba(59, 130, 246, 0.25);
+    }
+
+  
+    /* Slide 2: Dedicated Speaker Intro / About Me */
+    .about-me-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 48px;
+      align-items: center;
+      height: 100%;
+    }
+
+    .about-me-photo-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .about-me-avatar-hero {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3.5px solid rgba(255, 87, 34, 0.7);
+      box-shadow: 0 0 36px rgba(255, 87, 34, 0.3), inset 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .about-me-badges-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+  
+    /* Auto-entrance animation for card headers on slide entry (0-click auto entrance) */
+    .slide.active .pill-tag {
+      animation: autoFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .slide.active .main-heading {
+      animation: autoFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+    }
+
+    .slide.active .content-accent-bar {
+      animation: autoFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes autoFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+<body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative antialiased transition-colors duration-200">
+  <!-- Icon sprite: Font Awesome Free 6.4.2 icons, CC BY 4.0 (https://fontawesome.com/license/free) -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+    <defs>
+      <symbol id="i-arrow-left" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></symbol>
+      <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"/></symbol>
+      <symbol id="i-location" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 448 512"><path d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V384c0-17.7-14.3-32-32-32zM384 96V64c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V96zm0 288c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H256c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V384z"/></symbol>
+      <symbol id="i-compress" viewBox="0 0 448 512"><path d="M160 64c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V64zM32 320c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V352c0-17.7-14.3-32-32-32H32zm256-192h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H288c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32s32-14.3 32-32V128zm32 192c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32s32-14.3 32-32V384h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320z"/></symbol>
+      <symbol id="i-info" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></symbol>
+      <symbol id="i-xmark" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></symbol>
+    </defs>
+  </svg>
+
+  <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 select-none">
+    <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
+
+      <!-- Tech Markers: Corners -->
+      <div class="tech-marker -top-[4px] -left-[4px]"></div>
+      <div class="tech-marker -top-[4px] -right-[4px]"></div>
+      <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+      <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+      <!-- Global Extensions -->
+      <div class="tech-line-h top-[-1px]"></div>
+      <div class="tech-line-h bottom-[-1px]"></div>
+      <div class="tech-line-v-top left-[-1px]"></div>
+      <div class="tech-line-v-top right-[-1px]"></div>
+      <div class="tech-line-v-bottom left-[-1px]"></div>
+      <div class="tech-line-v-bottom right-[-1px]"></div>
+
+      <!-- Site Header -->
+      <site-header active="talks"></site-header>
+
+      <!-- Talk Context Bar -->
+      <div class="p-4 sm:p-6 md:p-8 border-b border-slate-200 dark:border-slate-800 relative">
+        <div class="tech-line-h bottom-[-1px]"></div>
+        <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+        <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+        <!-- Top Row: Back Navigation & Action Controls -->
+        <div class="flex items-center justify-between gap-3 mb-3">
+          <a href="/talks" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors py-1">
+            <svg class="icon" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-arrow-left"/></svg>
+            <span>Talks</span>
+          </a>
+
+          <!-- Action Buttons: Info & Fullscreen -->
+          <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <button type="button" id="btnHeaderInfo" aria-label="How to use presentation"
+                class="min-w-[36px] h-9 sm:w-auto sm:px-3.5 inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer shadow-2xs"
+                title="Keyboard Shortcuts & Controls">
+                <svg class="icon pointer-events-none" width="14" height="14" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-info"/></svg>
+                <span class="hidden sm:inline pointer-events-none">How to use</span>
+            </button>
+            <button type="button" id="btnHeaderFullscreen" aria-label="Enter Fullscreen"
+                class="min-w-[36px] h-9 sm:w-auto sm:px-3.5 inline-flex items-center justify-center gap-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors cursor-pointer"
+                title="Full Screen Mode (F)">
+                <svg class="icon fs-icon-expand pointer-events-none" width="14" height="14" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-expand"/></svg>
+                <svg class="icon fs-icon-compress hidden pointer-events-none" width="14" height="14" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-compress"/></svg>
+                <span class="hidden sm:inline pointer-events-none" id="headerFsText">Full Screen</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Talk Title -->
+        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-3">
+          From User to Maintainer: The Open Source Journey
+        </h1>
+
+        <!-- Event Badges & Date Meta -->
+        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs">
+          <a href="https://x.com/LaravelBLR" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 rounded-md font-medium border border-slate-200 dark:border-slate-700 transition-colors">
+              <svg class="icon" width="12" height="12" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-location"/></svg>
+              <span>Bengaluru</span>
+          </a>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md font-medium border border-slate-200 dark:border-slate-700">
+              <svg class="icon" width="12" height="12" viewBox="0 0 448 512" aria-hidden="true"><use href="#i-calendar"/></svg>
+              <time datetime="2026-09-05">Sep 2026</time>
+          </span>
+        </div>
+      </div>
+
+      <!-- Slide Deck Stage Container (Framed box matching site aesthetic) -->
+      <div class="p-2.5 sm:p-6 md:p-8 bg-slate-50/50 dark:bg-slate-950/40">
+        <div id="deckContainer" class="group/deck relative w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-[#06090F] shadow-xl select-none">
+
+          <!-- 16:9 Presentation Stage Viewport -->
+          <div class="deck-viewport-wrap relative w-full aspect-video overflow-hidden bg-[#06090F] select-none">
+            <div class="deck-viewport select-none" id="deckViewport">
+              <div class="slide-frame" id="slideFrame">
+
+                <!-- SLIDE 1: TITLE -->
+      <section class="slide active" data-index="1"    data-slide-name="title">
+        <div class="hero-layout">
+          <div class="step-item revealed" data-step="1">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 26px;">
+              <a href="https://x.com/LaravelBLR" target="_blank" rel="noopener noreferrer" class="hero-tag" style="margin-bottom: 0; text-decoration: none;">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" style="flex-shrink: 0; margin-right: 2px;">
+                  <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"></path>
+                </svg>
+                <span>LARAVEL BENGALURU</span>
+              </a>
+            </div>
+            <h1 class="hero-title-1">From User to Maintainer:</h1>
+            <h2 class="hero-title-2">The Open Source Journey</h2>
+          </div>
+          <div class="hero-author-wrap step-item" data-step="2">
+            <p class="hero-author">Punyapal Shah</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: ABOUT ME -->
+      <section class="slide" data-index="2"    data-slide-name="about-me">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">About Me</h2>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="about-me-grid">
+            <!-- Left: Hero Photo -->
+            <div class="about-me-photo-card step-item revealed" data-step="1">
+              <img src="/profile-image.jpg" alt="Punyapal Shah" class="about-me-avatar-hero" />
+              <h3 style="font-size: 24px; font-weight: 700; color: #fff; margin-top: 18px; letter-spacing: -0.01em;">Punyapal Shah</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 10px;">
+                <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Fira Code', monospace; font-size: 14.5px; color: #60A5FA; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.35); padding: 5px 14px; border-radius: 6px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                  <span>mrpunyapal.dev</span>
+                </span>
+                <span style="font-size: 13.5px; color: var(--text-dim); font-family: 'Fira Code', monospace;">@mrpunyapal</span>
+              </div>
+            </div>
+
+            <!-- Right: Roles, Badges, Highlights -->
+            <div class="content-box">
+              <div class="content-accent-bar bar-orange"></div>
+              <div class="content-main">
+                <div class="step-item revealed" data-step="1">
+                  <span class="pill-tag tag-orange">SPEAKER INTRO</span>
+                  <h3 class="main-heading" style="font-size: 32px; margin-bottom: 6px;">Laravel Engineer &amp; Consultant</h3>
+                  <p class="main-desc" style="font-size: 18px; margin-bottom: 18px;">Building open source tooling, architecture, and high-performance Laravel systems.</p>
+                </div>
+
+                <div class="about-me-badges-wrap step-item" data-step="2">
+                  <span class="hero-team-badge badge-pest">PEST &amp; PINKARY CORE TEAM</span>
+                  <span class="hero-team-badge badge-artisans">FOUNDER OF LARAVEL ARTISANS</span>
+                </div>
+
+                <div class="dash-list" style="margin-top: 18px;">
+                  <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Creator &amp; maintainer of 20+ open source packages</span></div>
+                  <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Contributed to 120+ open source repositories across the ecosystem</span></div>
+                  <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Consulting and engineering for global client production applications</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: THE EVOLUTION -->
+      <section class="slide" data-index="3" data-slide-name="evolution">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Evolution</h2>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="timeline-wrap-rocksolid">
+            <!-- Animated SVG Track Line + Circles -->
+            <svg class="timeline-svg-track" viewBox="0 0 1040 400" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="grad-s2-1" gradientUnits="userSpaceOnUse" x1="30" y1="200" x2="390" y2="200">
+                  <stop offset="0%" stop-color="#3B82F6" />
+                  <stop offset="100%" stop-color="#10B981" />
+                </linearGradient>
+                <linearGradient id="grad-s2-2" gradientUnits="userSpaceOnUse" x1="390" y1="200" x2="650" y2="200">
+                  <stop offset="0%" stop-color="#10B981" />
+                  <stop offset="100%" stop-color="#F59E0B" />
+                </linearGradient>
+                <linearGradient id="grad-s2-3" gradientUnits="userSpaceOnUse" x1="650" y1="200" x2="910" y2="200">
+                  <stop offset="0%" stop-color="#F59E0B" />
+                  <stop offset="100%" stop-color="#FF5722" />
+                </linearGradient>
+              </defs>
+              <line class="timeline-line-anim step-item" data-step="1" x1="30" y1="200" x2="390" y2="200" stroke="url(#grad-s2-1)" stroke-width="4" stroke-linecap="round" />
+              <line class="timeline-line-anim step-item" data-step="2" x1="390" y1="200" x2="650" y2="200" stroke="url(#grad-s2-2)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="3" x1="650" y1="200" x2="910" y2="200" stroke="url(#grad-s2-3)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="4" x1="910" y1="200" x2="1010" y2="200" stroke="#FF5722" stroke-width="4" stroke-linecap="round" />
+              
+              <circle class="node-dot-anim step-item" data-step="1" cx="130" cy="200" r="11" fill="#06090F" stroke="#3B82F6" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="2" cx="390" cy="200" r="11" fill="#06090F" stroke="#10B981" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="3" cx="650" cy="200" r="11" fill="#06090F" stroke="#F59E0B" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="4" cx="910" cy="200" r="11" fill="#06090F" stroke="#FF5722" stroke-width="4" />
+            </svg>
+
+            <!-- 4 Cards positioned over their respective nodes -->
+            <div class="timeline-cards-grid-4">
+              <!-- Node 1: User (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="1">
+                  <span class="node-tag-pill tag-pill-blue">01 • USER</span>
+                  <div class="t-card-box">Builds real projects and depends on OSS tools.</div>
+                </div>
+              </div>
+
+              <!-- Node 2: Contributor (Bottom) -->
+              <div class="t-cell">
+                <div class="t-unit t-bottom step-item" data-step="2">
+                  <span class="node-tag-pill tag-pill-green">02 • CONTRIBUTOR</span>
+                  <div class="t-card-box">Fixes bugs and improves open source tools.</div>
+                </div>
+              </div>
+
+              <!-- Node 3: Author (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="3">
+                  <span class="node-tag-pill tag-pill-yellow">03 • AUTHOR</span>
+                  <div class="t-card-box">Extracts reusable solutions into new packages.</div>
+                </div>
+              </div>
+
+              <!-- Node 4: Maintainer (Bottom) -->
+              <div class="t-cell">
+                <div class="t-unit t-bottom step-item" data-step="4">
+                  <span class="node-tag-pill tag-pill-orange">04 • MAINTAINER</span>
+                  <div class="t-card-box">Protects compatibility and manages releases.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="footer-quote">Every maintainer started by reading someone else's source code and finding an edge case.</div>
+        </div>
+      </section>
+
+      <!-- TRANSITION: USER -->
+      <section class="slide stage-transition-slide" data-index="4"  data-slide-name="stage-user">
+        <div class="stage-hero-tracker">
+          <span class="stage-morph-node">
+            <span class="morph-prev">○ User</span>
+            <span class="morph-next st-active-user step-item" data-step="1">● User</span>
+          </span>
+          <span>○ Contributor</span>
+          <span>○ Author</span>
+          <span>○ Maintainer</span>
+        </div>
+      </section>
+
+            <!-- SLIDE 3: THE FOUNDATION: WHY -->
+      <section class="slide" data-index="5"    data-slide-name="foundation-why">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Foundation: Why</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-active-user">● User</span>
+            <span>○ Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-green"></div>
+            <div class="content-main">
+              <div>
+                <span class="pill-tag tag-green">WHY CONTRIBUTE</span>
+                <h3 class="main-heading">Career Proof and Real Experience</h3>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol">—</span><span>Real work speaks louder than a resume</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Public proof of how you write and test code</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Learn production architecture from popular packages</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Give back to the tools and community you rely on daily</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            <!-- SLIDE 4: THE FOUNDATION: WHAT -->
+      <section class="slide" data-index="6"    data-slide-name="foundation-what">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Foundation: What</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-active-user">● User</span>
+            <span >○ Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-green"></div>
+            <div class="content-main">
+              <div>
+                <span class="pill-tag tag-green">CONTRIBUTION TYPES</span>
+                <h3 class="main-heading">Contribution is Not Just Writing New Features</h3>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol">—</span><span>Submitting targeted bug fixes for reported issues</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Adding failing tests for edge cases you faced</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Creating a small repo that easily reproduces a bug</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Fixing wrong documentation and outdated examples</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: THE FOUNDATION: HOW -->
+      <section class="slide" data-index="7"    data-slide-name="foundation-how">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Foundation: How</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-active-user">● User</span>
+            <span >○ Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="timeline-wrap-rocksolid">
+            <!-- Animated SVG Track Line + Circles -->
+            <svg class="timeline-svg-track" viewBox="0 0 1040 400" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="grad-s5-1" gradientUnits="userSpaceOnUse" x1="20" y1="200" x2="312" y2="200">
+                  <stop offset="0%" stop-color="#FF5722" />
+                  <stop offset="100%" stop-color="#F59E0B" />
+                </linearGradient>
+                <linearGradient id="grad-s5-2" gradientUnits="userSpaceOnUse" x1="312" y1="200" x2="520" y2="200">
+                  <stop offset="0%" stop-color="#F59E0B" />
+                  <stop offset="100%" stop-color="#3B82F6" />
+                </linearGradient>
+                <linearGradient id="grad-s5-3" gradientUnits="userSpaceOnUse" x1="520" y1="200" x2="728" y2="200">
+                  <stop offset="0%" stop-color="#3B82F6" />
+                  <stop offset="100%" stop-color="#10B981" />
+                </linearGradient>
+                <linearGradient id="grad-s5-4" gradientUnits="userSpaceOnUse" x1="728" y1="200" x2="936" y2="200">
+                  <stop offset="0%" stop-color="#10B981" />
+                  <stop offset="100%" stop-color="#A855F7" />
+                </linearGradient>
+              </defs>
+              <line class="timeline-line-anim step-item" data-step="1" x1="20" y1="200" x2="312" y2="200" stroke="url(#grad-s5-1)" stroke-width="4" stroke-linecap="round" />
+              <line class="timeline-line-anim step-item" data-step="2" x1="312" y1="200" x2="520" y2="200" stroke="url(#grad-s5-2)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="3" x1="520" y1="200" x2="728" y2="200" stroke="url(#grad-s5-3)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="4" x1="728" y1="200" x2="936" y2="200" stroke="url(#grad-s5-4)" stroke-width="4" />
+              <line class="timeline-line-anim step-item" data-step="5" x1="936" y1="200" x2="1020" y2="200" stroke="#A855F7" stroke-width="4" stroke-linecap="round" />
+              
+              <circle class="node-dot-anim step-item" data-step="1" cx="104" cy="200" r="11" fill="#06090F" stroke="#FF5722" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="2" cx="312" cy="200" r="11" fill="#06090F" stroke="#F59E0B" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="3" cx="520" cy="200" r="11" fill="#06090F" stroke="#3B82F6" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="4" cx="728" cy="200" r="11" fill="#06090F" stroke="#10B981" stroke-width="4" />
+              <circle class="node-dot-anim step-item" data-step="5" cx="936" cy="200" r="11" fill="#06090F" stroke="#A855F7" stroke-width="4" />
+            </svg>
+
+            <!-- 5 Cards positioned over their respective nodes -->
+            <div class="timeline-cards-grid-5">
+              <!-- Node 1: Fork (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="1">
+                  <span class="node-tag-pill tag-pill-orange">01 • FORK</span>
+                  <div class="t-card-box">Fork upstream repository to your personal account.</div>
+                </div>
+              </div>
+
+              <!-- Node 2: Clone (Bottom) -->
+              <div class="t-cell">
+                <div class="t-unit t-bottom step-item" data-step="2">
+                  <span class="node-tag-pill tag-pill-yellow">02 • CLONE</span>
+                  <div class="t-card-box">Clone repo locally and run composer install.</div>
+                </div>
+              </div>
+
+              <!-- Node 3: Branch (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="3">
+                  <span class="node-tag-pill tag-pill-blue">03 • BRANCH</span>
+                  <div class="t-card-box">Create a dedicated atomic git branch for your fix.</div>
+                </div>
+              </div>
+
+              <!-- Node 4: Test (Bottom) -->
+              <div class="t-cell">
+                <div class="t-unit t-bottom step-item" data-step="4">
+                  <span class="node-tag-pill tag-pill-green">04 • TEST</span>
+                  <div class="t-card-box">Write tests and ensure all test suites pass locally.</div>
+                </div>
+              </div>
+
+              <!-- Node 5: PR (Top) -->
+              <div class="t-cell">
+                <div class="t-unit t-top step-item" data-step="5">
+                  <span class="node-tag-pill tag-pill-purple">05 • PR</span>
+                  <div class="t-card-box">Submit clean PR with clear before/after context.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="footer-quote">
+            Always start by reading the repository file: <span class="footer-quote-box">CONTRIBUTING.md</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSITION: CONTRIBUTOR -->
+      <section class="slide stage-transition-slide" data-index="8"   data-slide-name="stage-contributor">
+        <div class="stage-hero-tracker">
+          <span class="stage-morph-node">
+            <span class="morph-prev st-active-user">● User</span>
+            <span class="morph-next st-done step-item" data-step="1">✓ User</span>
+          </span>
+          <span class="stage-morph-node">
+            <span class="morph-prev">○ Contributor</span>
+            <span class="morph-next st-active-contributor step-item" data-step="1">● Contributor</span>
+          </span>
+          <span>○ Author</span>
+          <span>○ Maintainer</span>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: REAL WORLD PROOF (4-STEP PROGRESSIVE IMAGE STACK) -->
+      <section class="slide" data-index="9"    data-slide-name="real-world-proof">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Real World Proof</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body" style="align-items: center;">
+          <div class="proof-stack-container">
+            <div class="proof-layer step-item revealed" data-step="1">
+              <img src="media/proof_1.png" alt="Real World Proof 1" class="proof-img" />
+            </div>
+            <div class="proof-layer step-item" data-step="2">
+              <img src="media/proof_2.png" alt="Real World Proof 2" class="proof-img" />
+            </div>
+            <div class="proof-layer step-item" data-step="3">
+              <img src="media/proof_3.png" alt="Real World Proof 3" class="proof-img" />
+            </div>
+            <div class="proof-layer step-item" data-step="4">
+              <img src="media/proof_4.png" alt="Real World Proof 4" class="proof-img" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: BUG REPORTS THAT MATTER -->
+      <section class="slide" data-index="10"    data-slide-name="bug-reports">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Bug Reports That Matter</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="divided-2col">
+            <div class="clean-col step-item revealed" data-step="1">
+              <span class="pill-tag tag-orange">INCOMPLETE REPORT</span>
+              <p class="clean-quote">"Package breaks when using array filters. Fix immediately."</p>
+              <p class="clean-subtext">No stack trace. No test. Maintainer cannot reproduce.</p>
+            </div>
+            <div class="divider-line"></div>
+            <div class="clean-col step-item" data-step="2">
+              <span class="pill-tag tag-green">MINIMAL REPRO REPO</span>
+              <p class="clean-quote">"Created a clean repo with 1 failing Pest test."</p>
+              <p class="clean-subtext" style="color: var(--c-green);">Pinpoints the exact bug. Maintainer can clone and fix quickly.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: CONVENTIONAL COMMITS -->
+      <section class="slide" data-index="11"    data-slide-name="conventional-commits">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Conventional Commits</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="table-box">
+            <table class="commits-table">
+              <thead>
+                <tr>
+                  <th>PREFIX</th>
+                  <th>MEANING</th>
+                  <th>STANDARD MESSAGE EXAMPLE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="step-item revealed" data-step="1">
+                  <td><span class="prefix-badge p-feat">FEAT</span></td>
+                  <td>New feature</td>
+                  <td><span class="code-msg">feat: add support for social login</span></td>
+                </tr>
+                <tr class="step-item" data-step="2">
+                  <td><span class="prefix-badge p-fix">FIX</span></td>
+                  <td>Bug fix</td>
+                  <td><span class="code-msg">fix: resolve redirect loop issue</span></td>
+                </tr>
+                <tr class="step-item" data-step="3">
+                  <td><span class="prefix-badge p-chore">CHORE</span></td>
+                  <td>Maintenance</td>
+                  <td><span class="code-msg">chore: bump composer dependencies</span></td>
+                </tr>
+                <tr class="step-item" data-step="4">
+                  <td><span class="prefix-badge p-docs">DOCS</span></td>
+                  <td>Documentation</td>
+                  <td><span class="code-msg">docs: update contributor setup guide</span></td>
+                </tr>
+                <tr class="step-item" data-step="5">
+                  <td><span class="prefix-badge p-refactor">REFACTOR</span></td>
+                  <td>Code cleanup</td>
+                  <td><span class="code-msg">refactor: simplify container binding logic</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+            <!-- SLIDE 9: PULL REQUEST DO'S -->
+      <section class="slide" data-index="12"    data-slide-name="pr-dos">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Pull Request Do's</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-green"></div>
+            <div class="content-main">
+              <div>
+                <span class="pill-tag tag-green">BEST PRACTICES</span>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol">—</span><span>Keep your PR small, clear, and focused on one issue</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Always add test cases for what you changed</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>Explain clearly why this change is needed</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Check CONTRIBUTING.md before writing code</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol">—</span><span>Test locally on supported PHP and Laravel versions</span></div>
+                <div class="dash-item step-item" data-step="6"><span class="dash-symbol">—</span><span>Match the code style of the repository</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            <!-- SLIDE 10: PULL REQUEST DON'TS -->
+      <section class="slide" data-index="13"    data-slide-name="pr-donts">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Pull Request Don'ts</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-active-contributor">● Contributor</span>
+            <span>○ Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-orange"></div>
+            <div class="content-main">
+              <div>
+                <span class="pill-tag tag-orange">COMMON MISTAKES</span>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol dash-orange">—</span><span>Don't club 3 different bug fixes into a single PR</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">—</span><span>Don't rewrite entire files without discussing first</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Don't format unrelated files in the same PR</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Don't open a PR without running tests locally</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Don't take code review comments personally</span></div>
+                <div class="dash-item step-item" data-step="6"><span class="dash-symbol dash-orange">—</span><span>Don't tag maintainers on Twitter/LinkedIn for quick reviews</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSITION: AUTHOR -->
+      <section class="slide stage-transition-slide" data-index="14"   data-slide-name="stage-author">
+        <div class="stage-hero-tracker">
+          <span class="st-done">✓ User</span>
+          <span class="stage-morph-node">
+            <span class="morph-prev st-active-contributor">● Contributor</span>
+            <span class="morph-next st-done step-item" data-step="1">✓ Contributor</span>
+          </span>
+          <span class="stage-morph-node">
+            <span class="morph-prev">○ Author</span>
+            <span class="morph-next st-active-author step-item" data-step="1">● Author</span>
+          </span>
+          <span>○ Maintainer</span>
+        </div>
+      </section>
+
+      <!-- SLIDE 11: WHEN TO BUILD A PACKAGE? -->
+      <section class="slide" data-index="15"    data-slide-name="when-to-build">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">When to Build a Package?</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-active-author">● Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;">
+            <div class="content-box step-item" data-step="2">
+              <div class="content-accent-bar bar-yellow"></div>
+              <div class="content-main">
+                <span class="pill-tag tag-yellow">EXTRACTION RULE</span>
+                <h3 class="main-heading">The 3× Rule</h3>
+                <p class="main-desc">If you have written the exact same helper or utility across 3 different client projects, extract it into a package.</p>
+              </div>
+            </div>
+            <div class="step-item revealed" data-step="1" style="padding-right: 48px;">
+              <div class="giant-text gt-yellow">3×</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12: PACKAGE IDEATION -->
+      <section class="slide" data-index="16"    data-slide-name="package-ideation">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Package Ideation</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-active-author">● Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-yellow"></div>
+            <div class="content-main">
+              <div>
+                <span class="pill-tag tag-yellow">PROBLEM-FIRST DESIGN</span>
+                <h3 class="main-heading" style="font-size: 34px;">Solve your own daily headache first.</h3>
+              </div>
+              <p class="main-desc step-item" data-step="1" style="font-size: 20px;">The best packages are created because the author needed them for daily work, not because they sat down to brainstorm an imaginary idea.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+                        <!-- SLIDE 13: AUTHOR VS MAINTAINER -->
+      <section class="slide" data-index="17"    data-slide-name="author-vs-maintainer">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Author vs Maintainer</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-active-author">● Author</span>
+            <span>○ Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="divided-2col">
+            <!-- Left: Author -->
+            <div>
+              <div>
+                <span class="pill-tag tag-blue">PACKAGE AUTHOR</span>
+              </div>
+              <div class="dash-list" style="margin-top: 16px;">
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol dash-blue">—</span><span>Writes initial code and features</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>Solves their own immediate problem</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-blue">—</span><span>Publishes v1.0.0 and tags releases</span></div>
+                <div class="dash-item step-item" data-step="7"><span class="dash-symbol dash-blue">—</span><span>Focuses on moving fast and shipping</span></div>
+                <div class="dash-item step-item" data-step="9"><span class="dash-symbol dash-blue">—</span><span>Often moves on once the code works</span></div>
+              </div>
+            </div>
+            <div class="divider-line"></div>
+            <!-- Right: Maintainer -->
+            <div>
+              <div>
+                <span class="pill-tag tag-green">PACKAGE MAINTAINER</span>
+              </div>
+              <div class="dash-list" style="margin-top: 16px;">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Reviews issues and other people's PRs</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Protects stability for the wider ecosystem</span></div>
+                <div class="dash-item step-item" data-step="6"><span class="dash-symbol">—</span><span>Manages upgrade matrices and SemVer</span></div>
+                <div class="dash-item step-item" data-step="8"><span class="dash-symbol">—</span><span>Focuses on backwards compatibility</span></div>
+                <div class="dash-item step-item" data-step="10"><span class="dash-symbol">—</span><span>Commits to long-term trust and maintenance</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSITION: MAINTAINER -->
+      <section class="slide stage-transition-slide" data-index="18"   data-slide-name="stage-maintainer">
+        <div class="stage-hero-tracker">
+          <span class="st-done">✓ User</span>
+          <span class="st-done">✓ Contributor</span>
+          <span class="stage-morph-node">
+            <span class="morph-prev st-active-author">● Author</span>
+            <span class="morph-next st-done step-item" data-step="1">✓ Author</span>
+          </span>
+          <span class="stage-morph-node">
+            <span class="morph-prev">○ Maintainer</span>
+            <span class="morph-next st-active-maintainer step-item" data-step="1">● Maintainer</span>
+          </span>
+        </div>
+      </section>
+
+      <!-- SLIDE 14: THE HARDEST WORD IN OSS -->
+      <section class="slide" data-index="19"    data-slide-name="hardest-word">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Hardest Word in OSS</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;">
+            <div class="content-box step-item" data-step="2">
+              <div class="content-accent-bar bar-orange"></div>
+              <div class="content-main">
+                <span class="pill-tag tag-orange">PROTECTING YOUR TIME</span>
+                <h3 class="main-heading">Protecting Your Time</h3>
+                <p class="main-desc">Every PR you merge is code you have to maintain for the next 5 years. Learn to say "No" politely to keep the project clean and focused.</p>
+              </div>
+            </div>
+            <div class="step-item revealed" data-step="1" style="padding-right: 48px;">
+              <div class="giant-text gt-orange">No.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15: DO NOT FORCE OPEN SOURCE -->
+      <section class="slide" data-index="20"    data-slide-name="ethics">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Do Not Force Open Source</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-orange"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-orange">ETHICS & INTENT</span>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">—</span><span>Don't contribute just to add your name to a repo or chase clout</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Fix things because you use the package daily and hit a real bug</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Never use AI to search for fake issues and spam maintainers with AI PRs</span></div>
+                <div class="dash-item step-item" data-step="5"><span class="dash-symbol dash-orange">—</span><span>Contribute because you genuinely want to give back to the community</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16: SEMANTIC VERSIONING: MAJOR -->
+      <section class="slide" data-index="21"    data-slide-name="semver-major">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Semantic Versioning</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-orange"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-orange" style="margin-bottom: 8px;">MAJOR RELEASE</span>
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 54px; font-weight: 800; color: var(--c-orange); letter-spacing: 0.05em; margin: 4px 0 14px 0;">v2.0.0</div>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">—</span><span>Breaking API changes</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">—</span><span>Dropping old PHP or Laravel versions</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-orange">—</span><span>Requires a step-by-step upgrade guide</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="semver-footer-bar">
+            <div class="semver-foot-item active-major">[ 1 / 3 ] MAJOR [X.0.0] ➔ Breaking Changes</div>
+            <div class="semver-foot-item">MINOR [x.X.0]</div>
+            <div class="semver-foot-item">PATCH [x.x.X]</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 17: SEMANTIC VERSIONING: MINOR -->
+      <section class="slide" data-index="22"    data-slide-name="semver-minor">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Semantic Versioning</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-blue"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-blue" style="margin-bottom: 8px;">MINOR RELEASE</span>
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 54px; font-weight: 800; color: var(--c-blue); letter-spacing: 0.05em; margin: 4px 0 14px 0;">v1.3.0</div>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>New features added</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>100% backwards compatible</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>No manual code changes needed by users</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="semver-footer-bar">
+            <div class="semver-foot-item">MAJOR [X.0.0]</div>
+            <div class="semver-foot-item active-minor">[ 2 / 3 ] MINOR [x.X.0] ➔ Features Added</div>
+            <div class="semver-foot-item">PATCH [x.x.X]</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 18: SEMANTIC VERSIONING: PATCH -->
+      <section class="slide" data-index="23"    data-slide-name="semver-patch">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Semantic Versioning</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-green"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-green" style="margin-bottom: 8px;">PATCH RELEASE</span>
+                <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 54px; font-weight: 800; color: var(--c-green); letter-spacing: 0.05em; margin: 4px 0 14px 0;">v1.2.4</div>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol">—</span><span>Bug fixes and security patches</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol">—</span><span>No new public features</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol">—</span><span>Safe for automatic <code style="font-family:'Fira Code'; color:#34D399;">composer update</code></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="semver-footer-bar">
+            <div class="semver-foot-item">MAJOR [X.0.0]</div>
+            <div class="semver-foot-item">MINOR [x.X.0]</div>
+            <div class="semver-foot-item active-patch">[ 3 / 3 ] PATCH [x.x.X] ➔ Bug Fixes</div>
+          </div>
+        </div>
+      </section>
+
+            <!-- SLIDE 19: MAINTAINER TOOLING -->
+      <section class="slide" data-index="24"    data-slide-name="tooling">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Maintainer Tooling</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-blue"></div>
+            <div class="content-main">
+              <div>
+                <span class="pill-tag tag-blue" style="margin-bottom: 12px;">GITHUB ACTIONS</span>
+                <h3 class="main-heading">Automate All Repetitive Work</h3>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol dash-blue">—</span><span>Test matrix running across PHP (8.3, 8.4, 8.5) & Laravel (12, 13)</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-blue">—</span><span>Automated static analysis using PHPStan / Larastan</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-blue">—</span><span>Automated refactoring & upgrades with Rector</span></div>
+                <div class="dash-item step-item" data-step="4"><span class="dash-symbol dash-blue">—</span><span>Automated code styling using Laravel Pint</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 20: EARNING MAINTAINER TRUST -->
+      <section class="slide" data-index="25"    data-slide-name="trust">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Earning Maintainer Trust</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-blue"></div>
+            <div class="content-main">
+              <div class="step-item revealed" data-step="1">
+                <span class="pill-tag tag-blue">COMMUNITY ADVANCEMENT</span>
+                <h3 class="main-heading" style="font-size: 34px;">Trust is earned through consistency.</h3>
+              </div>
+              <p class="main-desc step-item" data-step="2" style="font-size: 20px;">Reviewing other people's PRs, helping debug community issues, and writing thorough tests is how contributors naturally become core maintainers.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 21: THE COMPLETE CYCLE -->
+      
+
+            <!-- SLIDE 25: THE COMPLETE CYCLE -->
+      <section class="slide" data-index="26" data-slide-name="complete-cycle">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">The Complete Cycle</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-done">✓ User</span>
+            <span class="st-done">✓ Contributor</span>
+            <span class="st-done">✓ Author</span>
+            <span class="st-active-maintainer">● Maintainer</span>
+          </div>
+        </div>
+        <div class="slide-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+          <!-- Main Diagram Container: Optically centered -->
+          <div style="position: relative; width: 100%; max-width: 1040px; margin: 0 auto; margin-top: -12px;">
+
+            <!-- 7-column layout: 170px | 1fr | 170px | 1fr | 170px | 1fr | 170px -->
+            <!-- Arrows span rows 1 and 2 to center vertically between title and subtitle -->
+            <div style="display: grid; grid-template-columns: 170px 1fr 170px 1fr 170px 1fr 170px; grid-template-rows: auto auto; width: 100%; row-gap: 12px; align-items: center;">
+
+              <!-- COL 1: User -->
+              <div style="grid-area: 1/1; display: flex; justify-content: center; text-align: center;" class="step-item revealed" data-step="1">
+                <span style="color: #3B82F6; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">User</span>
+              </div>
+              <div style="grid-area: 2/1; text-align: center; color: var(--text-gray); font-size: 15px; line-height: 1.4;" class="step-item revealed" data-step="1">
+                Builds with OSS tools
+              </div>
+
+              <!-- ARROW 1: Spans rows 1 and 2 -->
+              <div style="grid-column: 2; grid-row: 1 / span 2; display: flex; align-items: center; padding: 0 12px;" class="step-item" data-step="2">
+                <div style="flex: 1; height: 3px; background: linear-gradient(to right, #3B82F6, #10B981); border-radius: 2px;"></div>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink: 0; margin-left: -2px;"><polyline points="3,2 11,7 3,12" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <!-- COL 3: Contributor -->
+              <div style="grid-area: 1/3; display: flex; justify-content: center; text-align: center;" class="step-item" data-step="2">
+                <span style="color: #10B981; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Contributor</span>
+              </div>
+              <div style="grid-area: 2/3; text-align: center; color: var(--text-gray); font-size: 15px; line-height: 1.4;" class="step-item" data-step="2">
+                Fixes bugs &amp; improves OSS
+              </div>
+
+              <!-- ARROW 2: Spans rows 1 and 2 -->
+              <div style="grid-column: 4; grid-row: 1 / span 2; display: flex; align-items: center; padding: 0 12px;" class="step-item" data-step="3">
+                <div style="flex: 1; height: 3px; background: linear-gradient(to right, #10B981, #F59E0B); border-radius: 2px;"></div>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink: 0; margin-left: -2px;"><polyline points="3,2 11,7 3,12" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <!-- COL 5: Author -->
+              <div style="grid-area: 1/5; display: flex; justify-content: center; text-align: center;" class="step-item" data-step="3">
+                <span style="color: #F59E0B; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Author</span>
+              </div>
+              <div style="grid-area: 2/5; text-align: center; color: var(--text-gray); font-size: 15px; line-height: 1.4;" class="step-item" data-step="3">
+                Creates new packages
+              </div>
+
+              <!-- ARROW 3: Spans rows 1 and 2 -->
+              <div style="grid-column: 6; grid-row: 1 / span 2; display: flex; align-items: center; padding: 0 12px;" class="step-item" data-step="4">
+                <div style="flex: 1; height: 3px; background: linear-gradient(to right, #F59E0B, #FF5722); border-radius: 2px;"></div>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink: 0; margin-left: -2px;"><polyline points="3,2 11,7 3,12" fill="none" stroke="#FF5722" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <!-- COL 7: Maintainer -->
+              <div style="grid-area: 1/7; display: flex; justify-content: center; text-align: center;" class="step-item" data-step="4">
+                <span style="color: #FF5722; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Maintainer</span>
+              </div>
+              <div style="grid-area: 2/7; text-align: center; color: var(--text-gray); font-size: 15px; line-height: 1.4;" class="step-item" data-step="4">
+                Protects compatibility &amp; releases
+              </div>
+
+            </div>
+
+            <!-- Loop Return Track: Symmetrical from Maintainer (955px) to User (85px) -->
+            <div class="step-item" data-step="5" style="position: relative; width: 100%; height: 74px; margin-top: 32px;">
+              <svg width="100%" height="74" viewBox="0 0 1040 74" preserveAspectRatio="none" style="overflow: visible;">
+                <defs>
+                  <linearGradient id="return-gradient" x1="955" y1="0" x2="85" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FF5722"/>
+                    <stop offset="38%" stop-color="#F59E0B"/>
+                    <stop offset="72%" stop-color="#10B981"/>
+                    <stop offset="100%" stop-color="#3B82F6"/>
+                  </linearGradient>
+                </defs>
+                
+                <!-- Symmetrical smooth U-turn return path -->
+                <path d="M 955 0 
+                         L 955 30 
+                         Q 955 60, 925 60 
+                         L 115 60 
+                         Q 85 60, 85 30 
+                         L 85 14" 
+                      fill="none" 
+                      stroke="url(#return-gradient)" 
+                      stroke-width="3" 
+                      stroke-linecap="round" />
+                
+                <!-- Upward Arrow Head centered on User column (x=85) -->
+                <polyline points="78,22 85,10 92,22" 
+                          fill="none" 
+                          stroke="#3B82F6" 
+                          stroke-width="3" 
+                          stroke-linecap="round" 
+                          stroke-linejoin="round" />
+              </svg>
+              <div style="text-align: center; margin-top: 14px; color: var(--text-dim); font-size: 15px; font-weight: 500; letter-spacing: 0.02em;">The cycle continues</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+            <!-- SLIDE 22: YOUR NEXT STEP -->
+      <section class="slide" data-index="27"    data-slide-name="next-step">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Your Next Step</h2>
+          </div>
+          <div class="slide-tracker">
+            <span class="st-active-maintainer">● Action Item</span>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="content-box">
+            <div class="content-accent-bar bar-orange"></div>
+            <div class="content-main">
+              <div>
+                <span class="pill-tag tag-orange">ACTION PLAN</span>
+                <h3 class="main-heading">How to start this week:</h3>
+              </div>
+              <div class="dash-list">
+                <div class="dash-item step-item" data-step="1"><span class="dash-symbol dash-orange">1.</span><span>Pick one package you use at work every single day</span></div>
+                <div class="dash-item step-item" data-step="2"><span class="dash-symbol dash-orange">2.</span><span>Look at its GitHub issues for reproducible bugs</span></div>
+                <div class="dash-item step-item" data-step="3"><span class="dash-symbol dash-orange">3.</span><span>Submit a failing test or a documentation improvement</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 27: THANK YOU & PINKARY QR -->
+      <section class="slide" data-index="28" data-slide-name="thank-you">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="title-accent-bar"></div>
+            <h2 class="slide-title">Questions & Discussion</h2>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="divided-2col" style="width: 100%; height: 100%; align-items: center;">
+            <!-- Left: Thank You & Social handles -->
+            <div class="content-box">
+              <div class="content-accent-bar bar-orange"></div>
+              <div class="content-main" style="justify-content: center;">
+                <div class="step-item revealed" data-step="1" style="display: flex; align-items: center; gap: 22px; margin-bottom: 28px;">
+                  <img src="/profile-image.jpg" alt="Punyapal Shah" class="speaker-avatar-img speaker-avatar-lg" />
+                  <div>
+                    <h2 style="font-size: 52px; font-weight: 800; color: #fff; line-height: 1.1; margin: 0;">Thank You!</h2>
+                    <p style="font-size: 18px; color: var(--text-gray); font-weight: 500; margin-top: 4px;">Punyapal Shah</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                  <div class="social-item step-item" data-step="2">
+                    <span class="social-icon-box" style="color: #60A5FA;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
+                    </span>
+                    <span>@mrpunyapal</span>
+                  </div>
+                  <div class="social-item step-item" data-step="3">
+                    <span class="social-icon-box" style="color: #34D399;">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                      </svg>
+                    </span>
+                    <span>mrpunyapal</span>
+                  </div>
+                  <div class="social-item step-item" data-step="4">
+                    <span class="social-icon-box" style="color: #60A5FA;">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                      </svg>
+                    </span>
+                    <span>mrpunyapal.dev</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Middle: Vertical Divider Line -->
+            <div class="divider-line"></div>
+
+            <!-- Right: Centered, Enlarged Pinkary QR Card -->
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+              <div class="qr-card-box step-item" data-step="5">
+                <img src="media/pinkary_qr.png" alt="Pinkary QR Code" class="qr-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="general-footer-bar">
+            <div>Laravel Bengaluru</div>
+            <div>From User to Maintainer</div>
+          </div>
+        </div>
+      </section>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 print:hidden select-none">
+      <p class="text-xs text-slate-600 dark:text-slate-300 font-mono">
+        // Presented at Laravel Bengaluru
+        <a href="/talks"
+          class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold ml-1">
+          $this->backToTalks()
+        </a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Info / How To Modal Dialog (Direct body child for true viewport coverage and full Safari compatibility) -->
+  <div id="infoModal" class="hidden fixed inset-0 z-50 overflow-y-auto overflow-x-hidden p-3 sm:p-4 md:p-6" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" style="-webkit-overflow-scrolling: touch;">
+    <!-- Fixed Backdrop with Blur -->
+    <div id="modalBackdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-xs transition-opacity cursor-pointer" aria-hidden="true"></div>
+
+    <!-- Centering Scroll Wrapper (my-auto pattern guarantees zero clipping on mobile/Safari) -->
+    <div class="relative min-h-full flex items-center justify-center pointer-events-none py-2 sm:py-6">
+      <div id="modalDialog" class="pointer-events-auto relative w-full max-w-md sm:max-w-lg my-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 text-slate-800 dark:text-slate-200 animate-scale-up select-text">
+        
+        <!-- Header -->
+        <div class="flex items-start justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 flex items-center justify-center border border-red-100 dark:border-red-900/60 shrink-0">
+              <svg class="icon pointer-events-none" width="16" height="16" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-info"/></svg>
+            </div>
+            <div>
+              <h3 id="modalTitle" class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight">How to Use the Slide Deck</h3>
+              <p class="text-[11px] text-slate-600 dark:text-slate-300 font-mono">Touch, mouse, and keyboard controls</p>
+            </div>
+          </div>
+          <button type="button" id="btnCloseModal" aria-label="Close modal"
+            class="p-1.5 -mr-1 -mt-1 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer shrink-0">
+            <svg class="icon pointer-events-none" width="16" height="16" viewBox="0 0 384 512" aria-hidden="true"><use href="#i-xmark"/></svg>
+          </button>
+        </div>
+
+        <!-- Body Content -->
+        <div class="mt-3.5 space-y-3">
+          <!-- Slide Navigation -->
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+            <h4 class="font-semibold text-[11px] text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">Slide Navigation</h4>
+            <div class="space-y-1.5 text-xs">
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-700 dark:text-slate-300 font-medium">Next Step / Slide</span>
+                <div class="flex gap-1 items-center">
+                  <span class="text-[10px] text-slate-600 dark:text-slate-400 mr-0.5">Click Right /</span>
+                  <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">Space</kbd>
+                  <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">→</kbd>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-700 dark:text-slate-300 font-medium">Previous Step</span>
+                <div class="flex gap-1 items-center">
+                  <span class="text-[10px] text-slate-600 dark:text-slate-400 mr-0.5">Click Left /</span>
+                  <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">←</kbd>
+                  <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">Backspace</kbd>
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              <strong>Touch & Click:</strong> Tap the <strong>right side</strong> of the slide to advance, or the <strong>left side</strong> to go back. On phones, you can also <strong>swipe left / right</strong>.
+            </p>
+          </div>
+
+          <!-- Power Shortcuts (2 columns) -->
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+            <h4 class="font-semibold text-[11px] text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">Power Shortcuts</h4>
+            <div class="grid grid-cols-2 gap-1.5 text-[11px] sm:text-xs">
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-600 dark:text-slate-300">Fullscreen</span>
+                <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">F</kbd>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-600 dark:text-slate-300">Reveal Slide</span>
+                <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[11px] border border-slate-200 dark:border-slate-700">A</kbd>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-600 dark:text-slate-300">Reset Steps</span>
+                <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[10px] sm:text-[11px] border border-slate-200 dark:border-slate-700">Shift+A</kbd>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-slate-600 dark:text-slate-300">First / Last</span>
+                <div class="flex gap-0.5">
+                  <kbd class="px-1 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[10px] border border-slate-200 dark:border-slate-700">Home</kbd>
+                  <kbd class="px-1 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono font-bold text-[10px] border border-slate-200 dark:border-slate-700">End</kbd>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-4 flex justify-end">
+          <button type="button" id="btnModalGotIt"
+            class="w-full sm:w-auto px-5 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer text-center">
+            Got it
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentSlide = 1;
+    let currentStep = 1;
+
+    const deckViewport = document.getElementById('deckViewport');
+    const deckContainer = document.getElementById('deckContainer');
+    const btnHeaderFullscreen = document.getElementById('btnHeaderFullscreen');
+    const btnHeaderInfo = document.getElementById('btnHeaderInfo');
+    const infoModal = document.getElementById('infoModal');
+    const btnCloseModal = document.getElementById('btnCloseModal');
+    const btnModalGotIt = document.getElementById('btnModalGotIt');
+
+    // Proportional Viewport Scaling
+    function updateResponsiveScale() {
+      if (!deckViewport) return;
+      const cw = deckViewport.clientWidth;
+      const ch = deckViewport.clientHeight;
+      if (!cw || !ch) return;
+      const scale = Math.min(cw / 1280, ch / 720);
+      document.documentElement.style.setProperty('--deck-scale', scale);
+    }
+
+    if (window.ResizeObserver && deckViewport) {
+      const ro = new ResizeObserver(() => updateResponsiveScale());
+      ro.observe(deckViewport);
+    }
+    window.addEventListener('resize', updateResponsiveScale);
+    window.addEventListener('orientationchange', updateResponsiveScale);
+    updateResponsiveScale();
+
+    function getMaxSteps(slideEl) {
+      const steps = slideEl.querySelectorAll('.step-item[data-step]');
+      let max = 0;
+      steps.forEach(el => {
+        const s = parseInt(el.getAttribute('data-step'), 10);
+        if (s > max) max = s;
+      });
+      return max;
+    }
+
+    function applyStepVisibility(slideEl, step) {
+      const steps = slideEl.querySelectorAll('.step-item[data-step]');
+      steps.forEach(el => {
+        const s = parseInt(el.getAttribute('data-step'), 10);
+        if (s <= step) {
+          el.classList.add('revealed');
+        } else {
+          el.classList.remove('revealed');
+        }
+      });
+
+      // Update morph node parent state
+      const morphNodes = slideEl.querySelectorAll('.stage-morph-node');
+      morphNodes.forEach(node => {
+        const hasRev = node.querySelector('.morph-next.revealed');
+        if (hasRev) {
+          node.classList.add('has-revealed');
+        } else {
+          node.classList.remove('has-revealed');
+        }
+      });
+    }
+
+    function executeSlideDOMUpdate(targetIndex, targetStep) {
+      currentSlide = targetIndex;
+
+      slides.forEach((slide, idx) => {
+        const slideNum = idx + 1;
+        const isActive = slideNum === currentSlide;
+        const isPrev = slideNum < currentSlide;
+        
+        slide.classList.toggle('active', isActive);
+        slide.classList.toggle('slide-prev', isPrev);
+        
+        if (isActive) {
+          currentStep = targetStep;
+          applyStepVisibility(slide, currentStep);
+        }
+      });
+
+      history.replaceState(null, '', '#' + currentSlide);
+    }
+
+    function updateSlide(index, targetStep = 0) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      if (index === currentSlide && targetStep === currentStep) return;
+
+      const isSlideChange = (index !== currentSlide);
+
+      if (isSlideChange && document.startViewTransition) {
+        document.documentElement.classList.add('slide-transitioning');
+        try {
+          const vt = document.startViewTransition(() => {
+            executeSlideDOMUpdate(index, targetStep);
+          });
+          vt.finished.finally(() => {
+            document.documentElement.classList.remove('slide-transitioning');
+          });
+          if (vt?.finished) vt.finished.catch(() => {});
+          if (vt?.ready) vt.ready.catch(() => {});
+        } catch {
+          document.documentElement.classList.remove('slide-transitioning');
+          executeSlideDOMUpdate(index, targetStep);
+        }
+      } else {
+        executeSlideDOMUpdate(index, targetStep);
+      }
+    }
+
+    function jumpToSlide(index) {
+      updateSlide(index, 0);
+    }
+
+    function nextAction() {
+      if (window.getSelection) {
+        window.getSelection()?.removeAllRanges();
+      }
+      const activeSlideEl = slides[currentSlide - 1];
+      const maxSteps = getMaxSteps(activeSlideEl);
+
+      if (currentStep < maxSteps) {
+        currentStep++;
+        applyStepVisibility(activeSlideEl, currentStep);
+      } else {
+        if (currentSlide < totalSlides) {
+          updateSlide(currentSlide + 1, 0);
+        }
+      }
+    }
+
+    function revealAllOnSlide() {
+      const activeSlideEl = slides[currentSlide - 1];
+      const maxSteps = getMaxSteps(activeSlideEl);
+      currentStep = maxSteps;
+      applyStepVisibility(activeSlideEl, currentStep);
+    }
+
+    function resetSlideSteps() {
+      const activeSlideEl = slides[currentSlide - 1];
+      currentStep = 0;
+      applyStepVisibility(activeSlideEl, currentStep);
+    }
+
+    function prevAction() {
+      if (window.getSelection) {
+        window.getSelection()?.removeAllRanges();
+      }
+      const activeSlideEl = slides[currentSlide - 1];
+
+      if (currentStep > 0) {
+        currentStep--;
+        applyStepVisibility(activeSlideEl, currentStep);
+      } else {
+        if (currentSlide > 1) {
+          const prevSlideEl = slides[currentSlide - 2];
+          const prevMax = getMaxSteps(prevSlideEl);
+          updateSlide(currentSlide - 1, prevMax);
+        }
+      }
+    }
+
+    // Modal Handlers
+    function openInfoModal() {
+      if (!infoModal) return;
+      infoModal.classList.remove('hidden');
+      infoModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+
+    function closeInfoModal() {
+      if (!infoModal) return;
+      infoModal.classList.add('hidden');
+      infoModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    btnHeaderInfo?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openInfoModal();
+    });
+    btnCloseModal?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeInfoModal();
+    });
+    btnModalGotIt?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeInfoModal();
+    });
+
+    infoModal?.addEventListener('click', (e) => {
+      if (!e.target.closest('#modalDialog')) {
+        closeInfoModal();
+      }
+    });
+
+    // Fullscreen Toggle Handlers
+    function toggleFullscreen() {
+      const targetEl = deckContainer || document.documentElement;
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (targetEl.requestFullscreen) {
+          targetEl.requestFullscreen().catch(() => {});
+        } else if (targetEl.webkitRequestFullscreen) {
+          targetEl.webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    }
+
+    btnHeaderFullscreen?.addEventListener('click', toggleFullscreen);
+
+    function updateFullscreenUI() {
+      const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      document.querySelectorAll('.fs-icon-expand').forEach(el => el.classList.toggle('hidden', isFs));
+      document.querySelectorAll('.fs-icon-compress').forEach(el => el.classList.toggle('hidden', !isFs));
+      const headerFsText = document.getElementById('headerFsText');
+      if (headerFsText) {
+        headerFsText.textContent = isFs ? 'Exit Full Screen' : 'Full Screen';
+      }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      updateResponsiveScale();
+      updateFullscreenUI();
+    });
+    document.addEventListener('webkitfullscreenchange', () => {
+      updateResponsiveScale();
+      updateFullscreenUI();
+    });
+
+    // Click / ContextMenu Handler on Slide Viewport ONLY
+    if (deckViewport) {
+      let isSwiping = false;
+
+      // Prevent accidental text selection on rapid clicks / double clicks
+      deckViewport.addEventListener('mousedown', (e) => {
+        if (!e.target.closest('button, a, input, select, textarea')) {
+          e.preventDefault();
+        }
+      });
+      deckViewport.addEventListener('pointerdown', (e) => {
+        if (!e.target.closest('button, a, input, select, textarea')) {
+          e.preventDefault();
+        }
+      });
+      deckViewport.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+      });
+
+      deckViewport.addEventListener('click', (e) => {
+        if (infoModal && !infoModal.classList.contains('hidden')) return;
+        if (isSwiping) return;
+        if (e.target.closest('button, a, input, select, textarea, .prevent-slide-advance, #infoModal')) return;
+
+        // Clear any stray selection so the deck never freezes
+        if (window.getSelection) {
+          const sel = window.getSelection();
+          if (sel && sel.toString().length > 0) {
+            sel.removeAllRanges();
+          }
+        }
+
+        const rect = deckViewport.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        if (clickX < rect.width * 0.5) {
+          prevAction();
+        } else {
+          nextAction();
+        }
+      });
+
+      deckViewport.addEventListener('contextmenu', (e) => {
+        if (infoModal && !infoModal.classList.contains('hidden')) return;
+        if (e.target.closest('button, a, input, select, textarea, .prevent-slide-advance, #infoModal')) return;
+        e.preventDefault();
+        prevAction();
+      });
+
+      // Touch Swipe Gesture for Phones / Mobile Touchscreens
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchStartTime = 0;
+
+      deckViewport.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartTime = Date.now();
+        }
+      }, { passive: true });
+
+      deckViewport.addEventListener('touchend', (e) => {
+        if (e.changedTouches.length === 1) {
+          const deltaX = e.changedTouches[0].clientX - touchStartX;
+          const deltaY = e.changedTouches[0].clientY - touchStartY;
+          const deltaTime = Date.now() - touchStartTime;
+
+          // Horizontal swipe: > 40px, predominantly horizontal, < 500ms
+          if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) && deltaTime < 500) {
+            isSwiping = true;
+            setTimeout(() => { isSwiping = false; }, 300);
+            if (deltaX < 0) {
+              nextAction();
+            } else {
+              prevAction();
+            }
+          }
+        }
+      }, { passive: true });
+    }
+
+    // Keyboard Handler
+    window.addEventListener('keydown', (e) => {
+      if (e.target.closest('input, textarea, select')) return;
+
+      // When modal is open, only allow Escape to close
+      if (infoModal && !infoModal.classList.contains('hidden')) {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeInfoModal();
+        }
+        return;
+      }
+
+      // Reveal All / Reset Shortcut: 'a' or 'A'
+      if (e.key === 'a' || e.key === 'A') {
+        e.preventDefault();
+        if (e.shiftKey) {
+          resetSlideSteps();
+        } else {
+          revealAllOnSlide();
+        }
+        return;
+      }
+
+      switch (e.key) {
+        // Next: Right, Down, Space, Enter, PageDown, N
+        case 'ArrowRight':
+        case 'ArrowDown':
+        case ' ':
+        case 'Enter':
+        case 'PageDown':
+        case 'n':
+        case 'N':
+          e.preventDefault();
+          nextAction();
+          break;
+
+        // Previous: Left, Up, Backspace, PageUp, P
+        case 'ArrowLeft':
+        case 'ArrowUp':
+        case 'Backspace':
+        case 'PageUp':
+        case 'p':
+        case 'P':
+          e.preventDefault();
+          prevAction();
+          break;
+
+        // Jump to Start / End
+        case 'Home':
+          e.preventDefault();
+          jumpToSlide(1);
+          break;
+        case 'End':
+          e.preventDefault();
+          jumpToSlide(totalSlides);
+          break;
+
+        // Toggle Fullscreen: F
+        case 'f':
+        case 'F':
+          e.preventDefault();
+          toggleFullscreen();
+          break;
+
+        // Info Modal: '?' or 'i' / 'I'
+        case '?':
+        case 'i':
+        case 'I':
+          e.preventDefault();
+          openInfoModal();
+          break;
+      }
+    });
+
+    // Hash URL handling
+    if (window.location.hash) {
+      const initial = parseInt(window.location.hash.replace('#', ''), 10);
+      if (!isNaN(initial)) jumpToSlide(initial);
+    }
+    window.addEventListener('popstate', () => {
+      if (window.location.hash) {
+        const target = parseInt(window.location.hash.replace('#', ''), 10);
+        if (!isNaN(target) && target !== currentSlide) jumpToSlide(target);
+      }
+    });
+  </script>
+</body>
+</html>
