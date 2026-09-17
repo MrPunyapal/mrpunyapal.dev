@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Shared AudioContext for trumpet sound to avoid instantiation latency
     let sharedAudioContext = null;
     function playTrumpetSound() {
-        requestAnimationFrame(() => {
+        setTimeout(() => {
             if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
                 try {
                     const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // AudioContext unavailable or autoplay restricted
                 }
             }
-        });
+        }, 60);
     }
 
     // Responsive Door Positioning
@@ -356,23 +356,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!elephpant || isElephpantHome) return;
         
         requestAnimationFrame(() => {
+            // Batch all DOM reads first to eliminate forced reflow / layout thrashing
             const rect = elephpant.getBoundingClientRect();
             const windowHeight = window.innerHeight;
             const windowWidth = window.innerWidth;
-            
-            const currentBottom = windowHeight - rect.bottom;
-            const currentRight = windowWidth - rect.right;
             const anchor = getElephpantAnchor(elephpant);
-
-            elephpant.style.animation = 'none';
-            // Hold the spot the run stopped at, expressed as an offset from the anchor.
-            elephpant.style.transform = translateFrom(anchor, currentBottom, currentRight);
-            elephpant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode');
-            
-            if (doorContainer) doorContainer.classList.add('open');
-            
             const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
             const elephpantSize = elephpant.offsetWidth || 220;
+
+            const currentBottom = windowHeight - rect.bottom;
+            const currentRight = windowWidth - rect.right;
             const scaledSize = elephpantSize * 0.5;
             const offset = (elephpantSize - scaledSize) / 2;
             
@@ -380,6 +373,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
             const targetRight = doorCenterFromRight - (elephpantSize / 2);
 
+            // Batch all DOM writes without interleaved reads
+            elephpant.style.animation = 'none';
+            elephpant.style.transform = translateFrom(anchor, currentBottom, currentRight);
+            elephpant.classList.remove('party-mode', 'turbo-mode', 'celebration-mode');
+            
+            if (doorContainer) doorContainer.classList.add('open');
             elephpant.classList.add('returning-home');
             elephpant.style.transform = `${translateFrom(anchor, targetBottom, targetRight)} scale(0.5)`;
             
@@ -398,59 +397,70 @@ document.addEventListener('DOMContentLoaded', function() {
         const elephpant = initElephpant();
         if (!elephpant || !isElephpantHome) return;
         
-        requestAnimationFrame(() => {
-            if (doorContainer) doorContainer.classList.add('open');
-            
+        if (doorContainer) doorContainer.classList.add('open');
+        
+        setTimeout(() => {
+            // Batch all DOM reads first
+            const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
+            const elephpantSize = elephpant.offsetWidth || 220;
+            const anchor = getElephpantAnchor(elephpant);
+
+            const scaledSize = elephpantSize * 0.5;
+            const offset = (elephpantSize - scaledSize) / 2;
+            const targetBottom = (windowHeight - doorRect.bottom) - offset;
+            const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
+            const startRight = doorCenterFromRight - (elephpantSize / 2);
+
+            // Batch all DOM writes
+            elephpant.classList.remove('hidden-behind-door');
+            elephpant.style.opacity = '1';
+            elephpant.style.pointerEvents = 'auto';
+
+            // Step 1: Emerge directly from the hut door at half scale
+            elephpant.style.transition = 'none';
+            elephpant.style.transform = `${translateFrom(anchor, targetBottom, startRight)} scale(0.5)`;
+
+            requestAnimationFrame(() => {
+                elephpant.classList.remove('returning-home');
+                elephpant.classList.add('exiting-door');
+
+                // Step 2: Step out of the hut and transition down to screen perimeter run
+                elephpant.style.transition = 'transform 1s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                elephpant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
+            });
+
             setTimeout(() => {
-                elephpant.classList.remove('hidden-behind-door');
-                elephpant.style.opacity = '1';
-                elephpant.style.pointerEvents = 'auto';
+                elephpant.classList.remove('exiting-door');
+                elephpant.style.animation = '';
+                elephpant.style.transform = '';
+                elephpant.style.transition = '';
                 
-                const doorRect = doorContainer ? doorContainer.getBoundingClientRect() : { bottom: 0, right: 0, width: 0 };
-                const windowHeight = window.innerHeight;
-                const windowWidth = window.innerWidth;
-                
-                const elephpantSize = elephpant.offsetWidth || 220;
-                const scaledSize = elephpantSize * 0.5;
-                const offset = (elephpantSize - scaledSize) / 2;
-                
-                const targetBottom = (windowHeight - doorRect.bottom) - offset;
-                const doorCenterFromRight = (windowWidth - doorRect.right) + (doorRect.width / 2);
-                const startRight = doorCenterFromRight - (elephpantSize / 2);
-                
-                const anchor = getElephpantAnchor(elephpant);
-
-                // Step 1: Emerge directly from the hut door at half scale
-                elephpant.style.transition = 'none';
-                elephpant.style.transform = `${translateFrom(anchor, targetBottom, startRight)} scale(0.5)`;
-
-                requestAnimationFrame(() => {
-                    elephpant.classList.remove('returning-home');
-                    elephpant.classList.add('exiting-door');
-
-                    // Step 2: Step out of the hut and transition down to screen perimeter run
-                    elephpant.style.transition = 'transform 1s cubic-bezier(0.2, 0.8, 0.2, 1)';
-                    elephpant.style.transform = 'translate3d(0px, 0px, 0) scaleX(1)';
-                });
-
-                setTimeout(() => {
-                    elephpant.classList.remove('exiting-door');
-                    elephpant.style.animation = '';
-                    elephpant.style.transform = '';
-                    elephpant.style.transition = '';
-                    
-                    if (doorContainer) doorContainer.classList.remove('open');
-                    setDoorMessage("Knock to hide me", "hides the elephpant easter egg");
-                    isElephpantHome = false;
-                }, 1000);
-            }, 400);
-        });
+                if (doorContainer) doorContainer.classList.remove('open');
+                setDoorMessage("Knock to hide me", "hides the elephpant easter egg");
+                isElephpantHome = false;
+            }, 1000);
+        }, 400);
     }
 
-    // Door Click Event
-    if (doorContainer) {
-        doorContainer.addEventListener('click', () => {
-            requestAnimationFrame(() => {
+    // Door Click & Keyboard Interaction Event (Immediate visual paint for 0ms INP)
+    function handleDoorInteraction(e) {
+        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') {
+            return;
+        }
+        if (e.type === 'keydown') {
+            e.preventDefault();
+        }
+
+        // 1. Immediately toggle the door visually for 0ms interaction response
+        if (doorContainer) {
+            doorContainer.classList.add('open');
+        }
+
+        // 2. Defer audio and elephpant coordination to non-blocking tasks so Next Paint is not delayed
+        requestAnimationFrame(() => {
+            setTimeout(() => {
                 initElephpant();
                 if (isElephpantHome) {
                     releaseElephpant();
@@ -458,16 +468,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     sendElephpantHome();
                 }
-            });
+            }, 0);
         });
     }
 
-    // Lazy load elephpant when browser is idle after load
+    if (doorContainer) {
+        doorContainer.addEventListener('click', handleDoorInteraction);
+        doorContainer.addEventListener('keydown', handleDoorInteraction);
+    }
+
+    // Lazy load elephpant and pre-warm AudioContext when browser is idle after load
     function scheduleLazyElephpant() {
+        const warmAudio = () => {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!sharedAudioContext && AudioCtx) {
+                    sharedAudioContext = new AudioCtx();
+                }
+            } catch (e) {}
+        };
         if ('requestIdleCallback' in window) {
-            requestIdleCallback(() => initElephpant(), { timeout: 2500 });
+            requestIdleCallback(() => {
+                initElephpant();
+                warmAudio();
+            }, { timeout: 2500 });
         } else {
-            setTimeout(initElephpant, 2000);
+            setTimeout(() => {
+                initElephpant();
+                warmAudio();
+            }, 2000);
         }
     }
 

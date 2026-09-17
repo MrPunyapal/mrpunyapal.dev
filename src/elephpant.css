@@ -1309,6 +1309,8 @@
   align-items: center;
   padding-top: 15px;
   transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
   /* Wood grain */
   background-image: linear-gradient(
     to bottom,
