@@ -131,7 +131,7 @@ ${desktopNavLinksHtml}
                             ${themeBtnInnerHtml}
                         </button>
                         <button type="button" data-mobile-menu-toggle aria-expanded="false" aria-controls="mobile-sidebar" aria-label="Open sidebar navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded hover:bg-slate-100 dark:hover:bg-slate-800">
-                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <svg class="w-5 h-5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M3.75 8.25h16.5M3.75 15.75h11"/>
                             </svg>
                         </button>
@@ -150,7 +150,7 @@ ${desktopNavLinksHtml}
                             <!-- Sidebar Header Bar (Clean Close Button Only) -->
                             <div class="flex items-center justify-end px-4 py-3.5 border-b border-slate-200 dark:border-slate-800">
                                 <button type="button" data-mobile-sidebar-close aria-label="Close navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded hover:bg-slate-100 dark:hover:bg-slate-800">
-                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <svg class="w-5 h-5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                         <path d="M18 6 6 18M6 6l12 12"/>
                                     </svg>
                                 </button>

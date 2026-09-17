@@ -9,7 +9,7 @@
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#FF2D20">
@@ -294,7 +294,7 @@
                     <div class="tech-marker -bottom-[4px] -right-[4px] hidden md:block"></div>
                     <!-- Ant Lines Originating from Photo -->
                     <div class="absolute inset-0 z-0 opacity-100 pointer-events-none overflow-hidden" aria-hidden="true">
-                        <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <svg class="w-full h-full" width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <defs>
                                 <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
                                     <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
@@ -357,9 +357,8 @@
                         <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight" style="view-transition-name: profile-name;">
                             Punyapal Shah
                         </h1>
-                        <div class="typing-animation h-7 sm:h-8 flex items-center overflow-hidden">
-                            <span class="typing-text text-lg sm:text-xl text-red-700 dark:text-red-400 font-medium whitespace-nowrap" id="typingText">Laravel Engineer</span>
-                            <span class="cursor text-red-700 dark:text-red-400 font-medium ml-0.5" aria-hidden="true">|</span>
+                        <div class="typing-animation h-7 sm:h-8 flex items-center overflow-hidden" style="contain: layout paint;">
+                            <span class="typing-text text-lg sm:text-xl text-red-700 dark:text-red-400 font-medium whitespace-nowrap after:content-['|'] after:ml-0.5 after:text-red-700 dark:after:text-red-400" id="typingText">Laravel Engineer</span>
                         </div>
                     </div>
 
@@ -502,7 +501,7 @@
     <!-- Lazy Loaded Elephpant Template -->
     <template id="elephpantTemplate">
         <div class="elephpant-container" id="runningElephpant" aria-hidden="true">
-            <svg class="elephpant" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg class="elephpant" width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <!-- Enhanced gradients and filters for more depth -->
                 <defs>
                     <radialGradient id="elephpantGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">

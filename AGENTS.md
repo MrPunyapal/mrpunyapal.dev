@@ -88,7 +88,7 @@ When maintaining or building interactive components and assets:
 - **SVG Explicit Dimensions (CLS Prevention)**: All `<svg>` elements (including icons, sprites, and decorative graphics) must declare explicit `width` and `height` attributes (e.g. `width="16" height="16"` or `width="12" height="12"`). Unstyled `<svg>` elements default to `300px × 150px` during HTML parsing before CSS loads, causing severe Cumulative Layout Shift (CLS) when styles apply.
 - **Animation Loops**: Use `requestAnimationFrame` for dynamic animation loops when appropriate, and avoid unnecessary polling loops.
 - **Visibility Checks**: Pause animation loops or expensive work when content is not visible where practical (e.g. using `IntersectionObserver`).
-- **Font Delivery**: Load Google Fonts using `<link rel="stylesheet">` with `display=swap` and preconnect links in `<head>`. Avoid `@import` rules in CSS files to prevent blocking network waterfalls.
+- **Font Delivery**: Load Google Fonts using `<link rel="stylesheet">` with `display=optional` (to eliminate layout shifts from late font swap) and preconnect links in `<head>`. Avoid `@import` rules in CSS files to prevent blocking network waterfalls.
 - **Layout Shift (CLS)**: Images (`<img>`) must maintain explicit `width` and `height` attributes alongside matching CSS aspect ratios (`aspect-square` / `aspect-ratio: 1 / 1`) to reserve intrinsic space and prevent layout shifts.
 - **Measured Optimizations**: Optimize based on actual behavior rather than assumptions. Avoid unnecessarily large DOM structures and preserve fast initial rendering.
 
