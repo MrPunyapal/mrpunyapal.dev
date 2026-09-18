@@ -555,33 +555,7 @@
     <meta name="msapplication-TileColor" content="#23a6d5">
 
     <!-- Preconnect for performance -->
-
-    <!-- Critical CSS for animations -->
     <style>
-        @keyframes fade-up {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scale-up {
-            from {
-                transform: scale(0.95);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
         body {
             background: #f8fafc;
             color: #1e293b;
@@ -766,7 +740,7 @@
                 <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
 
-                <div class="animate-fade-up">
+                <div>
                     <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
                         Talks & Speaking
                     </h1>
@@ -827,8 +801,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
 
                     <!-- Talk: From User to Maintainer (Featured Keynote) -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up md:col-span-2"
-                        style="animation-delay: 0.05s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 md:col-span-2">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -884,8 +857,7 @@
                     </div>
 
                     <!-- Talk: Laracon India 2026 (Featured) -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up md:col-span-2"
-                        style="animation-delay: 0.05s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 md:col-span-2">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -936,8 +908,7 @@
                     </div>
 
                     <!-- Talk: Panel Discussion -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
-                        style="animation-delay: 0.1s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -974,8 +945,7 @@
                     </div>
 
                     <!-- Talk: Open-Source: PR to package -->
-                   <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
-                        style="animation-delay: 0.2s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1019,8 +989,7 @@
                     </div>
 
                     <!-- Talk: PestPHP (Featured) -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
-                        style="animation-delay: 0.2s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1064,8 +1033,7 @@
                     </div>
 
                     <!-- Talk 1: Types in PHP -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
-                        style="animation-delay: 0.2s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1120,8 +1088,7 @@
                     </div>
 
                     <!-- Talk: Kozhikode Panel -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
-                        style="animation-delay: 0.25s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1164,8 +1131,7 @@
                     </div>
 
                     <!-- Talk 2: RectorPHP -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
-                        style="animation-delay: 0.3s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1227,8 +1193,7 @@
                     </div>
 
                     <!-- Talk 3: FilamentPHP -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
-                        style="animation-delay: 0.4s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1278,8 +1243,7 @@
                     </div>
 
                     <!-- Talk 4: Broadcasting -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 animate-fade-up"
-                        style="animation-delay: 0.5s;">
+                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">

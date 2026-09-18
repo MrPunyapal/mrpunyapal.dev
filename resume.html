@@ -167,32 +167,7 @@
 
     <!-- Preconnect for performance -->
 
-    <!-- Critical CSS for animations -->
     <style>
-        @keyframes fade-up {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scale-in {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
         body {
             background: #f8fafc;
             color: #1e293b;
@@ -210,7 +185,6 @@
             -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             border: 1px solid #e2e8f0;
-            animation: scale-in 0.6s ease-out;
         }
 
         .section-header {
@@ -266,24 +240,6 @@
         /* Enhanced hover effects */
         .hover\:scale-105:hover {
             transform: scale(1.05);
-        }
-
-        /* Custom animations for different elements */
-        .timeline-item {
-            animation: fade-up 0.6s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .timeline-item:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .timeline-item:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .timeline-item:nth-child(3) {
-            animation-delay: 0.3s;
         }
 
         /* Mobile optimizations */
@@ -423,19 +379,19 @@
                     </a>
                 </div>
 
-                <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6 sm:gap-8 animate-fade-up">
+                <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6 sm:gap-8">
                     <div class="flex-shrink-0 relative group">
                         <picture>
                             <source srcset="/profile-image-160.webp" type="image/webp">
                             <img src="/profile-image.jpg" alt="Punyapal Shah, Laravel Engineer and Open Source Maintainer"
                                 class="relative w-24 h-24 sm:w-32 sm:h-32 aspect-square rounded-full object-cover border-2 border-white dark:border-slate-800 shadow-sm"
-                                style="aspect-ratio: 1 / 1; view-transition-name: profile-avatar;"
+                                style="aspect-ratio: 1 / 1;"
                                 loading="eager" width="96" height="96" fetchpriority="high">
                         </picture>
                     </div>
 
                     <div class="flex-1 text-center lg:text-left">
-                        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight" style="view-transition-name: profile-name;">
+                        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">
                             Punyapal Shah
                         </h1>
                         <p class="text-lg text-red-600 dark:text-red-400 font-medium mb-4 font-mono">
@@ -489,7 +445,7 @@
 
                     <h2 class="section-header text-slate-900 dark:text-white">Professional Summary</h2>
 
-                    <div class="flex items-start gap-4 animate-fade-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-start gap-4">
                         <div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300">
                             <p>
                                 Laravel Engineer building products, developer tooling, and open source software for the Laravel ecosystem.
