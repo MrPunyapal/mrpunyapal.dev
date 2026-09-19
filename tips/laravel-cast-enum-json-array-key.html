@@ -37,66 +37,63 @@
     <script type="module" src="/src/main.js"></script>
     
     <style>
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .dark body {
+            background: #0a0a0a !important;
+            color: #f4f4f5 !important;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Technical Grid Markers */
         .tech-marker {
             position: absolute;
             width: 7px;
             height: 7px;
-            z-index: 20;
-            pointer-events: none;
+            background-color: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            z-index: 50;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
         }
-        .tech-marker::before {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 0;
-            width: 7px;
-            height: 1px;
-            background-color: #ef4444;
-        }
-        .tech-marker::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 3px;
-            width: 1px;
-            height: 7px;
-            background-color: #ef4444;
-        }
+
+        /* Infinite Grid Lines */
         .tech-line-h {
             position: absolute;
-            left: -100vw;
-            right: -100vw;
             height: 1px;
             background-color: #e2e8f0;
+            z-index: 0;
             pointer-events: none;
-            z-index: 1;
+            width: 300vw;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        .dark .tech-line-h {
-            background-color: #1e293b;
-        }
+
         .tech-line-v-top {
             position: absolute;
-            top: -100vh;
-            bottom: 100%;
             width: 1px;
             background-color: #e2e8f0;
+            z-index: 0;
             pointer-events: none;
-            z-index: 1;
+            bottom: 100%;
+            height: 100vh;
         }
-        .dark .tech-line-v-top {
-            background-color: #1e293b;
-        }
+
         .tech-line-v-bottom {
             position: absolute;
-            top: 100%;
-            bottom: -100vh;
             width: 1px;
-            background-color: #e2e8f0;
+            background: linear-gradient(to bottom, #e2e8f0, transparent);
+            z-index: 0;
             pointer-events: none;
-            z-index: 1;
-        }
-        .dark .tech-line-v-bottom {
-            background-color: #1e293b;
+            top: 100%;
+            height: 120px;
         }
     </style>
 
@@ -182,23 +179,23 @@
 
     <!-- Main Content Frame -->
     <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
-        <div class="w-full max-w-5xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
+        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
 
             <!-- Tech Markers: Corners -->
-            <div class="tech-marker -top-[4px] -left-[4px]"></div>
-            <div class="tech-marker -top-[4px] -right-[4px]"></div>
-            <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
-            <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+            <div class="tech-marker -top-[4px] -left-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -top-[4px] -right-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
 
             <!-- Global Infinite Extensions -->
-            <div class="tech-line-h top-[-1px]"></div>
-            <div class="tech-line-h bottom-[-1px]"></div>
+            <div class="tech-line-h top-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
 
-            <div class="tech-line-v-top left-[-1px]"></div>
-            <div class="tech-line-v-top right-[-1px]"></div>
+            <div class="tech-line-v-top left-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-v-top right-[-1px]" aria-hidden="true"></div>
 
-            <div class="tech-line-v-bottom left-[-1px]"></div>
-            <div class="tech-line-v-bottom right-[-1px]"></div>
+            <div class="tech-line-v-bottom left-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-v-bottom right-[-1px]" aria-hidden="true"></div>
 
             <!-- Card Header: Top Nav Bar -->
             <header class="border-b border-slate-200 dark:border-slate-800 relative z-20" style="view-transition-name: site-header;">
@@ -502,81 +499,75 @@
                 </script>
             </header>
 
-            <!-- Top Action Bar / Breadcrumb Navigation -->
-            <div class="px-6 sm:px-10 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4 flex-wrap select-none relative">
-                <div class="tech-line-h bottom-[-1px]"></div>
-                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
-                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+            <!-- Header Section (Breadcrumb + Title + Metadata) -->
+            <div class="p-6 sm:p-10 md:p-12 border-b border-slate-200 dark:border-slate-800 relative">
+                <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
+                <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
 
-                <a href="/tips" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors group">
-                    <svg class="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    <span>BACK</span>
-                </a>
+                <!-- Top Breadcrumbs / Action Bar -->
+                <div class="flex items-center justify-between gap-4 flex-wrap select-none mb-6">
+                    <a href="/tips" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors group">
+                        <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
+                        <span>BACK</span>
+                    </a>
 
-                <div class="flex items-center gap-2.5 flex-wrap">
-                    <button type="button" id="random-tip-btn" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-white dark:bg-slate-900 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer" title="Jump to random tip">
-                        <svg class="w-3.5 h-3.5 text-red-500" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                        </svg>
-                        <span>Random</span>
-                    </button>
+                    <div class="flex items-center gap-2.5 flex-wrap">
+                        <button type="button" id="random-tip-btn" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-white dark:bg-slate-900 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer" title="Jump to random tip">
+                            <svg class="w-3.5 h-3.5 text-red-500" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h7l-4 4m0 0l4 4M7 8h13M20 20h-7l4-4m0 0l-4-4m4 4H4"/>
+                            </svg>
+                            <span>Random</span>
+                        </button>
 
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
-                        Laravel
-                    </span>
-                    
-                    <span class="text-slate-300 dark:text-slate-700 font-mono text-xs">/</span>
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
-                        Eloquent
-                    </span>
-                    
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            Laravel
+                        </span>
+                        
+                        <span class="text-slate-300 dark:text-slate-700 font-mono text-xs">/</span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            Eloquent
+                        </span>
+                        
+                    </div>
+                </div>
+
+                <!-- Title -->
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
+                    Cast Enums Inside JSON and Array Column Keys in Eloquent
+                </h1>
+
+                <!-- Metadata Byline -->
+                <div class="flex items-center justify-between gap-4 flex-wrap text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400">
+                    <div class="flex items-center gap-2.5 flex-wrap">
+                        <span class="inline-flex items-center gap-1.5 text-slate-700 dark:text-slate-300 font-medium">
+                            <svg class="w-3.5 h-3.5 text-slate-400" width="14" height="14" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                            <span>Punyapal Shah</span>
+                        </span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-slate-400" width="14" height="14" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></svg>
+                            <time datetime="2024-01-30">Jan 30, 2024</time>
+                        </span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-slate-400" width="14" height="14" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zm0 464a208 208 0 1 0 0-416 208 208 0 1 0 0 416zm-8-272V128c0-13.3 10.7-24 24-24s24 10.7 24 24v80h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H264c-13.3 0-24-10.7-24-24z"/></svg>
+                            <span>1 min read</span>
+                        </span>
+                    </div>
+
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/eloquent/laravel-cast-enum-json-array-key.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                        <span>edit this tip</span>
+                        <span>&rarr;</span>
+                    </a>
                 </div>
             </div>
 
             <!-- Tip Article Container -->
             <article class="p-6 sm:p-10 md:p-12">
-                <!-- Article Header -->
-                <header class="mb-6">
-                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
-                        Cast Enums Inside JSON and Array Column Keys in Eloquent
-                    </h1>
-
-                    <div class="flex items-center justify-between gap-4 flex-wrap text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400 pb-4 border-b border-slate-200 dark:border-slate-800">
-                        <div class="flex items-center gap-2 flex-wrap">
-                            <span class="inline-flex items-center gap-1.5 text-slate-700 dark:text-slate-300 font-medium">
-                                <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                </svg>
-                                <span>Punyapal Shah</span>
-                            </span>
-                            <span>•</span>
-                            <span class="inline-flex items-center gap-1.5">
-                                <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <time datetime="2024-01-30">Jan 30, 2024</time>
-                            </span>
-                            <span>•</span>
-                            <span class="inline-flex items-center gap-1.5">
-                                <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>1 min read</span>
-                            </span>
-                        </div>
-
-                        <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/eloquent/laravel-cast-enum-json-array-key.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                            <span>edit this tip</span>
-                            <span>&rarr;</span>
-                        </a>
-                    </div>
-                </header>
-
                 <!-- Monospace Summary Callout Box -->
                 
-                <div class="my-6 p-4 sm:p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
+                <div class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
                     Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.
                 </div>
                 
@@ -789,11 +780,22 @@ $post-&gt;save();" aria-label="Copy code to clipboard">
                         </a>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 border-l border-t border-slate-200 dark:border-slate-800 relative">
+                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 relative">
                         
-        <article class="tip-card p-6 sm:p-8 flex flex-col justify-between relative border-b border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50/70 dark:hover:bg-slate-800/50 transition-colors group">
-            <div class="tech-marker -top-[4px] -right-[4px]"></div>
-            <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+        <article class="tip-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
+            <!-- Signature Corner Crosshairs -->
+            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
@@ -818,7 +820,7 @@ $post-&gt;save();" aria-label="Copy code to clipboard">
                 </p>
             </div>
 
-            <div class="pt-4 mt-5 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 relative z-10">
+            <div class="mt-5 flex items-center justify-between relative z-10">
                 <time datetime="2024-01-30" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                     Jan 30, 2024 • 1 min read
                 </time>
@@ -829,9 +831,20 @@ $post-&gt;save();" aria-label="Copy code to clipboard">
             </div>
         </article>
 
-        <article class="tip-card p-6 sm:p-8 flex flex-col justify-between relative border-b border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50/70 dark:hover:bg-slate-800/50 transition-colors group">
-            <div class="tech-marker -top-[4px] -right-[4px]"></div>
-            <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+        <article class="tip-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
+            <!-- Signature Corner Crosshairs -->
+            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
@@ -856,7 +869,7 @@ $post-&gt;save();" aria-label="Copy code to clipboard">
                 </p>
             </div>
 
-            <div class="pt-4 mt-5 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 relative z-10">
+            <div class="mt-5 flex items-center justify-between relative z-10">
                 <time datetime="2026-08-11" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                     Aug 11, 2026 • 1 min read
                 </time>
@@ -874,7 +887,7 @@ $post-&gt;save();" aria-label="Copy code to clipboard">
         </div>
 
         <!-- Footer -->
-        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10">
+        <div class="w-full max-w-6xl py-6 text-center mt-[-1px] z-10">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 // Got a tip in mind?
                 <a href="https://github.com/MrPunyapal/tips" target="_blank" rel="noopener noreferrer" class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold ml-1">

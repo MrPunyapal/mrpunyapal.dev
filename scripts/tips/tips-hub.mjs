@@ -18,66 +18,63 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
     // Critical Grid and Card CSS
     const criticalStyles = `
     <style>
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .dark body {
+            background: #0a0a0a !important;
+            color: #f4f4f5 !important;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Technical Grid Markers */
         .tech-marker {
             position: absolute;
             width: 7px;
             height: 7px;
-            z-index: 20;
-            pointer-events: none;
+            background-color: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            z-index: 50;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
         }
-        .tech-marker::before {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 0;
-            width: 7px;
-            height: 1px;
-            background-color: #ef4444;
-        }
-        .tech-marker::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 3px;
-            width: 1px;
-            height: 7px;
-            background-color: #ef4444;
-        }
+
+        /* Infinite Grid Lines */
         .tech-line-h {
             position: absolute;
-            left: -100vw;
-            right: -100vw;
             height: 1px;
             background-color: #e2e8f0;
+            z-index: 0;
             pointer-events: none;
-            z-index: 1;
+            width: 300vw;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        .dark .tech-line-h {
-            background-color: #1e293b;
-        }
+
         .tech-line-v-top {
             position: absolute;
-            top: -100vh;
-            bottom: 100%;
             width: 1px;
             background-color: #e2e8f0;
+            z-index: 0;
             pointer-events: none;
-            z-index: 1;
+            bottom: 100%;
+            height: 100vh;
         }
-        .dark .tech-line-v-top {
-            background-color: #1e293b;
-        }
+
         .tech-line-v-bottom {
             position: absolute;
-            top: 100%;
-            bottom: -100vh;
             width: 1px;
-            background-color: #e2e8f0;
+            background: linear-gradient(to bottom, #e2e8f0, transparent);
+            z-index: 0;
             pointer-events: none;
-            z-index: 1;
-        }
-        .dark .tech-line-v-bottom {
-            background-color: #1e293b;
+            top: 100%;
+            height: 120px;
         }
     </style>`;
 
@@ -103,14 +100,24 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
         const searchCorpus = `${tip.title} ${tip.category} ${tip.subcategory || ''} ${(tip.tags || []).join(' ')} ${tip.summary}`.toLowerCase();
 
         return `
-                <article class="tip-card p-6 sm:p-8 flex flex-col justify-between relative border-b border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50/70 dark:hover:bg-slate-800/50 transition-colors group"
+                <article class="tip-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
                     data-category="${escapeHtml(tip.category)}"
                     data-subcategory="${escapeHtml(tip.subcategory || '')}"
                     data-search="${escapeHtml(searchCorpus)}">
 
-                    <!-- Tech Markers at card corners -->
-                    <div class="tech-marker -top-[4px] -right-[4px]"></div>
-                    <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+                    <!-- Signature Corner Crosshairs -->
+                    <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
@@ -135,7 +142,7 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
                         </p>
                     </div>
 
-                    <div class="pt-4 mt-5 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 relative z-10">
+                    <div class="mt-5 flex items-center justify-between relative z-10">
                         <time datetime="${escapeHtml(effectiveDate)}" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             ${formatDate(effectiveDate)} • ${tip.readingTime} min read
                         </time>
@@ -234,29 +241,29 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
         <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
 
             <!-- Tech Markers: Corners -->
-            <div class="tech-marker -top-[4px] -left-[4px]"></div>
-            <div class="tech-marker -top-[4px] -right-[4px]"></div>
-            <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
-            <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+            <div class="tech-marker -top-[4px] -left-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -top-[4px] -right-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
 
             <!-- Global Infinite Extensions -->
-            <div class="tech-line-h top-[-1px]"></div>
-            <div class="tech-line-h bottom-[-1px]"></div>
+            <div class="tech-line-h top-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
 
-            <div class="tech-line-v-top left-[-1px]"></div>
-            <div class="tech-line-v-top right-[-1px]"></div>
+            <div class="tech-line-v-top left-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-v-top right-[-1px]" aria-hidden="true"></div>
 
-            <div class="tech-line-v-bottom left-[-1px]"></div>
-            <div class="tech-line-v-bottom right-[-1px]"></div>
+            <div class="tech-line-v-bottom left-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-v-bottom right-[-1px]" aria-hidden="true"></div>
 
             <!-- Card Header: Top Nav Bar -->
             ${renderSiteHeader('tips')}
 
             <!-- Header Section -->
             <div class="p-6 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative">
-                <div class="tech-line-h bottom-[-1px]"></div>
-                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
-                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+                <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
+                <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
 
                 <div class="animate-fade-up">
                     <div class="flex items-center justify-between gap-4 mb-3 flex-wrap sm:flex-nowrap">
@@ -309,9 +316,7 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
                         </button>
                     </div>
 
-                    <div id="results-count" class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-3">
-                        Showing all ${totalTipsCount} tips
-                    </div>
+                    <div id="results-count" class="hidden text-xs font-mono text-slate-500 dark:text-slate-400 mt-3"></div>
                 </div>
             </div>
 
@@ -389,11 +394,11 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
 
             <!-- Tips Grid Section (Signature 2-Column Crosshair Grid) -->
             <section class="border-b border-slate-200 dark:border-slate-800 relative">
-                <div class="tech-line-h bottom-[-1px]"></div>
-                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
-                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+                <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
+                <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
 
-                <div id="tips-container" class="grid grid-cols-1 md:grid-cols-2 border-l border-slate-200 dark:border-slate-800">
+                <div id="tips-container" class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                     ${tipsCardsHtml}
                 </div>
 
@@ -537,8 +542,10 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
                 if (resultsCount) {
                     if (q || activeCategory !== 'All' || activeSubcategory !== 'All') {
                         resultsCount.textContent = 'Showing ' + visibleCount + ' of ' + cards.length + ' tips';
+                        resultsCount.classList.remove('hidden');
                     } else {
-                        resultsCount.textContent = 'Showing all ' + cards.length + ' tips';
+                        resultsCount.textContent = '';
+                        resultsCount.classList.add('hidden');
                     }
                 }
 
