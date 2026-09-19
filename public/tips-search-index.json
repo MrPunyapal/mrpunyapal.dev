@@ -10,8 +10,8 @@
       "Security",
       "Architecture"
     ],
-    "description": "Use Laravel's remembertoken as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.",
-    "date": "2026-09-12"
+    "date": "2026-09-12",
+    "summary": "Use Laravel's remembertoken as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table."
   },
   {
     "slug": "git-submodule-vs-git-subtree",
@@ -25,8 +25,8 @@
       "DevOps",
       "Monorepo"
     ],
-    "description": "A practical comparison of Git Submodules and Git Subtrees to help you choose the right strategy for embedding one repository inside another.",
-    "date": "2026-09-01"
+    "date": "2026-09-01",
+    "summary": "A practical comparison of Git Submodules and Git Subtrees to help you choose the right strategy for embedding one repository inside another."
   },
   {
     "slug": "github-actions-cache-playwright-puppeteer",
@@ -40,8 +40,8 @@
       "Playwright",
       "Puppeteer"
     ],
-    "description": "Cache browser binaries with actions/cache to avoid downloading 150MB+ on every CI run.",
-    "date": "2026-08-31"
+    "date": "2026-08-31",
+    "summary": "Cache browser binaries with actions/cache to avoid downloading 150MB+ on every CI run."
   },
   {
     "slug": "github-actions-skip-steps-with-git-diff",
@@ -54,8 +54,8 @@
       "CI/CD",
       "Performance"
     ],
-    "description": "File modification timestamps are unreliable in GitHub Actions. Use git diff to detect actual changes and conditionally skip expensive workflow steps.",
-    "date": "2026-08-31"
+    "date": "2026-08-31",
+    "summary": "File modification timestamps are unreliable in GitHub Actions. Use git diff to detect actual changes and conditionally skip expensive workflow steps."
   },
   {
     "slug": "github-actions-incremental-file-writing",
@@ -68,8 +68,8 @@
       "CI/CD",
       "Build Tools"
     ],
-    "description": "Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds.",
-    "date": "2026-08-31"
+    "date": "2026-08-31",
+    "summary": "Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds."
   },
   {
     "slug": "mask-query-bindings-in-exception-messages",
@@ -82,8 +82,8 @@
       "Security",
       "Exceptions"
     ],
-    "description": "Keep query bindings out of QueryException messages while retaining access to the actual bindings.",
-    "date": "2026-08-28"
+    "date": "2026-08-28",
+    "summary": "Keep query bindings out of QueryException messages while retaining access to the actual bindings."
   },
   {
     "slug": "git-local-ignore-info-exclude",
@@ -96,8 +96,8 @@
       "Workflow",
       "Tooling"
     ],
-    "description": "Use .git/info/exclude to ignore personal scratch files, local debug scripts, and notes without polluting your team's shared .gitignore file.",
-    "date": "2026-08-22"
+    "date": "2026-08-22",
+    "summary": "Use .git/info/exclude to ignore personal scratch files, local debug scripts, and notes without polluting your team's shared .gitignore file."
   },
   {
     "slug": "laravel-stream-csv-downloads-without-temporary-files",
@@ -111,8 +111,8 @@
       "CSV",
       "Database"
     ],
-    "description": "Combine response()->streamDownload(), php://output, and query chunking to stream CSV exports directly to the browser without writing temporary files to disk.",
-    "date": "2026-08-21"
+    "date": "2026-08-21",
+    "summary": "Combine response()->streamDownload(), php://output, and query chunking to stream CSV exports directly to the browser without writing temporary files to disk."
   },
   {
     "slug": "laravel-builder-macro-registration",
@@ -124,8 +124,8 @@
       "Eloquent",
       "Macros"
     ],
-    "description": "Register reusable query methods directly on the Builder so every model gains access without repeating logic.",
-    "date": "2026-08-11"
+    "date": "2026-08-11",
+    "summary": "Register reusable query methods directly on the Builder so every model gains access without repeating logic."
   },
   {
     "slug": "css-prevent-navigation-layout-shift-flicker",
@@ -138,8 +138,8 @@
       "Frontend",
       "Performance"
     ],
-    "description": "Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.",
-    "date": "2026-08-11"
+    "date": "2026-08-11",
+    "summary": "Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns."
   },
   {
     "slug": "laravel-blueprint-macro-reusable-schema-audit-fields",
@@ -152,8 +152,8 @@
       "Migrations",
       "Macros"
     ],
-    "description": "Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations.",
-    "date": "2026-08-11"
+    "date": "2026-08-11",
+    "summary": "Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations."
   },
   {
     "slug": "github-actions-cross-repo-workflow-dispatch",
@@ -166,8 +166,8 @@
       "CI/CD",
       "DevOps"
     ],
-    "description": "Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.",
-    "date": "2026-08-11"
+    "date": "2026-08-11",
+    "summary": "Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository."
   },
   {
     "slug": "php-never-return-in-finally-block",
@@ -179,8 +179,8 @@
       "Exceptions",
       "Best Practices"
     ],
-    "description": "Placing a return statement inside a try-catch finally block silently overrides exceptions and previous return statements.",
-    "date": "2026-08-06"
+    "date": "2026-08-06",
+    "summary": "Placing a return statement inside a try-catch finally block silently overrides exceptions and previous return statements."
   },
   {
     "slug": "php-rector-automate-readonly-classes",
@@ -192,8 +192,8 @@
       "Rector",
       "Refactoring"
     ],
-    "description": "Use Rector rules to automatically convert immutable DTOs and value objects into native PHP 8.2 readonly classes.",
-    "date": "2026-07-29"
+    "date": "2026-07-29",
+    "summary": "Use Rector rules to automatically convert immutable DTOs and value objects into native PHP 8.2 readonly classes."
   },
   {
     "slug": "laravel-sole-vs-firstorfail",
@@ -205,8 +205,8 @@
       "Eloquent",
       "Database"
     ],
-    "description": "When you expect exactly one matching record, use sole() instead of firstOrFail(). It guards against multiple records by throwing MultipleRecordsFoundException.",
-    "date": "2026-07-20"
+    "date": "2026-07-20",
+    "summary": "When you expect exactly one matching record, use sole() instead of firstOrFail(). It guards against multiple records by throwing MultipleRecordsFoundException."
   },
   {
     "slug": "laravel-prohibitable-custom-commands-agents",
@@ -218,8 +218,8 @@
       "Artisan",
       "AI"
     ],
-    "description": "Use Laravel's Prohibitable trait on custom Artisan commands to selectively block AI agents from running destructive domain operations.",
-    "date": "2026-07-16"
+    "date": "2026-07-16",
+    "summary": "Use Laravel's Prohibitable trait on custom Artisan commands to selectively block AI agents from running destructive domain operations."
   },
   {
     "slug": "laravel-agent-detector-pao",
@@ -231,8 +231,8 @@
       "AI",
       "DevOps"
     ],
-    "description": "Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents.",
-    "date": "2026-07-15"
+    "date": "2026-07-15",
+    "summary": "Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents."
   },
   {
     "slug": "laravel-cursor-vs-lazy-collections",
@@ -244,8 +244,8 @@
       "Eloquent",
       "Performance"
     ],
-    "description": "cursor() hydrates single model instances sequentially using database cursors; lazy() streams records in chunks backed by LazyCollection.",
-    "date": "2026-07-03"
+    "date": "2026-07-03",
+    "summary": "cursor() hydrates single model instances sequentially using database cursors; lazy() streams records in chunks backed by LazyCollection."
   },
   {
     "slug": "laravel-chunk-vs-lazy-by-id",
@@ -257,8 +257,8 @@
       "Eloquent",
       "Performance"
     ],
-    "description": "Understand offset vs keyset pagination when processing large datasets to avoid missing records during updates.",
-    "date": "2026-07-02"
+    "date": "2026-07-02",
+    "summary": "Understand offset vs keyset pagination when processing large datasets to avoid missing records during updates."
   },
   {
     "slug": "laravel-security-ui-vs-policy-enforcement",
@@ -270,8 +270,8 @@
       "Security",
       "Policies"
     ],
-    "description": "Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers.",
-    "date": "2026-06-30"
+    "date": "2026-06-30",
+    "summary": "Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers."
   },
   {
     "slug": "laravel-db-after-commit-transaction-jobs",
@@ -283,8 +283,8 @@
       "Database",
       "Queue"
     ],
-    "description": "Use DB::afterCommit() to defer job dispatching until surrounding database transactions complete successfully.",
-    "date": "2026-06-28"
+    "date": "2026-06-28",
+    "summary": "Use DB::afterCommit() to defer job dispatching until surrounding database transactions complete successfully."
   },
   {
     "slug": "laravel-assert-database-has-json-enums",
@@ -297,8 +297,8 @@
       "Pest",
       "Enums"
     ],
-    "description": "In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.",
-    "date": "2026-06-15"
+    "date": "2026-06-15",
+    "summary": "In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly."
   },
   {
     "slug": "pest-tia-plugin-workflow",
@@ -310,8 +310,8 @@
       "Testing",
       "DX"
     ],
-    "description": "Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests.",
-    "date": "2026-05-18"
+    "date": "2026-05-18",
+    "summary": "Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests."
   },
   {
     "slug": "laravel-prohibitable-destructive-commands",
@@ -323,8 +323,8 @@
       "Database",
       "Security"
     ],
-    "description": "Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel's Prohibitable trait and DB::prohibitDestructiveCommands().",
-    "date": "2026-05-02"
+    "date": "2026-05-02",
+    "summary": "Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel's Prohibitable trait and DB::prohibitDestructiveCommands()."
   },
   {
     "slug": "php-security-strip-tags-vs-htmlpurifier",
@@ -336,8 +336,8 @@
       "Security",
       "XSS"
     ],
-    "description": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.",
-    "date": "2026-04-18"
+    "date": "2026-04-18",
+    "summary": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input."
   },
   {
     "slug": "laravel-pipeline-pattern-complex-workflows",
@@ -349,8 +349,8 @@
       "Architecture",
       "Design Patterns"
     ],
-    "description": "Process complex data sequences or multi-stage order checks through Laravel's built-in Pipeline facade to replace massive controller methods.",
-    "date": "2026-04-05"
+    "date": "2026-04-05",
+    "summary": "Process complex data sequences or multi-stage order checks through Laravel's built-in Pipeline facade to replace massive controller methods."
   },
   {
     "slug": "php-rector-remove-unnecessary-comments",
@@ -364,8 +364,8 @@
       "Clean Code",
       "Tooling"
     ],
-    "description": "Use a custom Rector rule to automatically strip noisy inline comments and empty docblocks across your codebase while preserving essential PHPDoc annotations.",
-    "date": "2026-03-11"
+    "date": "2026-03-11",
+    "summary": "Use a custom Rector rule to automatically strip noisy inline comments and empty docblocks across your codebase while preserving essential PHPDoc annotations."
   },
   {
     "slug": "laravel-queue-delete-when-missing-models",
@@ -378,8 +378,8 @@
       "Error Handling",
       "Clean Code"
     ],
-    "description": "Use the $deleteWhenMissingModels property on queued jobs to silently discard jobs if their referenced database records were deleted before execution.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "summary": "Use the $deleteWhenMissingModels property on queued jobs to silently discard jobs if their referenced database records were deleted before execution."
   },
   {
     "slug": "laravel-queue-without-relations-serialization",
@@ -392,8 +392,8 @@
       "Performance",
       "Architecture"
     ],
-    "description": "Use withoutRelations() when passing models to queue jobs to prevent large in-memory relationship graphs from serializing into queue storage.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "summary": "Use withoutRelations() when passing models to queue jobs to prevent large in-memory relationship graphs from serializing into queue storage."
   },
   {
     "slug": "laravel-queue-worker-polling-optimization",
@@ -405,8 +405,8 @@
       "Queue",
       "DevOps"
     ],
-    "description": "Use queue:work with appropriate sleep configuration or Redis blocking pops to reduce database CPU polling overheads.",
-    "date": "2025-12-05"
+    "date": "2025-12-05",
+    "summary": "Use queue:work with appropriate sleep configuration or Redis blocking pops to reduce database CPU polling overheads."
   },
   {
     "slug": "laravel-queue-worker-stop-when-empty-for",
@@ -418,8 +418,8 @@
       "Queue",
       "DevOps"
     ],
-    "description": "The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty workloads.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "summary": "The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty workloads."
   },
   {
     "slug": "laravel-eloquent-where-year-vs-date-between-index",
@@ -433,8 +433,8 @@
       "Database",
       "Indexes"
     ],
-    "description": "Replace whereYear() and whereMonth() on large database tables with whereBetween() date ranges to enable SQL index lookups.",
-    "date": "2025-11-19"
+    "date": "2025-11-19",
+    "summary": "Replace whereYear() and whereMonth() on large database tables with whereBetween() date ranges to enable SQL index lookups."
   },
   {
     "slug": "laravel-cache-memo-driver-in-memory",
@@ -446,8 +446,8 @@
       "Cache",
       "Performance"
     ],
-    "description": "Use Cache::memo() to combine persistent cache stores with per-request memory caching, preventing repetitive network roundtrips during a single HTTP request.",
-    "date": "2025-10-15"
+    "date": "2025-10-15",
+    "summary": "Use Cache::memo() to combine persistent cache stores with per-request memory caching, preventing repetitive network roundtrips during a single HTTP request."
   },
   {
     "slug": "laravel-database-generated-virtual-columns",
@@ -460,8 +460,8 @@
       "Migrations",
       "Performance"
     ],
-    "description": "Use virtualAs() and storedAs() in migrations to create generated database columns for high-speed indexing on JSON attributes.",
-    "date": "2025-08-27"
+    "date": "2025-08-27",
+    "summary": "Use virtualAs() and storedAs() in migrations to create generated database columns for high-speed indexing on JSON attributes."
   },
   {
     "slug": "php-timeout-guard-ticks-without-pcntl",
@@ -474,8 +474,8 @@
       "CLI",
       "Architecture"
     ],
-    "description": "Interrupt long-running synchronous PHP callables on any operating system using PHP tick declarations and tick callback functions without requiring the pcntl extension.",
-    "date": "2025-06-13"
+    "date": "2025-06-13",
+    "summary": "Interrupt long-running synchronous PHP callables on any operating system using PHP tick declarations and tick callback functions without requiring the pcntl extension."
   },
   {
     "slug": "laravel-db-when-querying-for-longer-than",
@@ -488,8 +488,8 @@
       "Performance",
       "Monitoring"
     ],
-    "description": "Use DB::whenQueryingForLongerThan() to monitor the cumulative time spent in database queries per HTTP request and notify developers of slow requests.",
-    "date": "2025-03-12"
+    "date": "2025-03-12",
+    "summary": "Use DB::whenQueryingForLongerThan() to monitor the cumulative time spent in database queries per HTTP request and notify developers of slow requests."
   },
   {
     "slug": "laravel-tappable-scopes-eloquent-scout",
@@ -503,8 +503,8 @@
       "Architecture",
       "DRY"
     ],
-    "description": "Extract query filtering logic into invokable scope classes that work interchangeably across Eloquent query builders and Laravel Scout search instances.",
-    "date": "2025-02-07"
+    "date": "2025-02-07",
+    "summary": "Extract query filtering logic into invokable scope classes that work interchangeably across Eloquent query builders and Laravel Scout search instances."
   },
   {
     "slug": "laravel-test-time-travel-freeze",
@@ -516,8 +516,8 @@
       "Testing",
       "Time"
     ],
-    "description": "Use $this->travelTo() or freezeTime() in test suites to test date-sensitive logic without slowing down test execution with sleep().",
-    "date": "2024-09-12"
+    "date": "2024-09-12",
+    "summary": "Use $this->travelTo() or freezeTime() in test suites to test date-sensitive logic without slowing down test execution with sleep()."
   },
   {
     "slug": "php-backed-integer-enums-indexing",
@@ -529,8 +529,8 @@
       "Enums",
       "Best Practices"
     ],
-    "description": "When creating integer-backed PHP Enums, index starting from 1 to avoid false-y evaluation bugs in loose comparisons.",
-    "date": "2024-08-31"
+    "date": "2024-08-31",
+    "summary": "When creating integer-backed PHP Enums, index starting from 1 to avoid false-y evaluation bugs in loose comparisons."
   },
   {
     "slug": "phpstan-static-analysis-levels-guide",
@@ -544,8 +544,8 @@
       "Static Analysis",
       "Type Safety"
     ],
-    "description": "Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10.",
-    "date": "2024-07-25"
+    "date": "2024-07-25",
+    "summary": "Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10."
   },
   {
     "slug": "php-generics-phpdoc-template",
@@ -559,8 +559,8 @@
       "Type Safety",
       "Architecture"
     ],
-    "description": "Implement type-safe generic collections, wrapper classes, and utility functions in PHP using PHPDoc template annotations for static analysis engines.",
-    "date": "2024-07-25"
+    "date": "2024-07-25",
+    "summary": "Implement type-safe generic collections, wrapper classes, and utility functions in PHP using PHPDoc template annotations for static analysis engines."
   },
   {
     "slug": "php-array-shapes-phpdoc",
@@ -574,8 +574,8 @@
       "Arrays",
       "Tooling"
     ],
-    "description": "Document and enforce structured array schemas using PHPDoc array shapes, lists, and non-empty array annotations for static analysis in PHPStan and Psalm.",
-    "date": "2024-07-25"
+    "date": "2024-07-25",
+    "summary": "Document and enforce structured array schemas using PHPDoc array shapes, lists, and non-empty array annotations for static analysis in PHPStan and Psalm."
   },
   {
     "slug": "laravel-gate-deny-as-not-found-security",
@@ -588,8 +588,8 @@
       "Security",
       "HTTP"
     ],
-    "description": "Use Response::denyAsNotFound() in policies to return a 404 Not Found response instead of 403 Forbidden, concealing the existence of private resources.",
-    "date": "2024-07-17"
+    "date": "2024-07-17",
+    "summary": "Use Response::denyAsNotFound() in policies to return a 404 Not Found response instead of 403 Forbidden, concealing the existence of private resources."
   },
   {
     "slug": "laravel-pipeline-send-multi-step-workflows",
@@ -602,8 +602,8 @@
       "Design Patterns",
       "Clean Code"
     ],
-    "description": "Use Laravel's Pipeline facade to pass objects through sequential pipe classes, keeping complex order processing and data transformations modular.",
-    "date": "2024-06-26"
+    "date": "2024-06-26",
+    "summary": "Use Laravel's Pipeline facade to pass objects through sequential pipe classes, keeping complex order processing and data transformations modular."
   },
   {
     "slug": "laravel-eloquent-prevent-lazy-loading-strict-mode",
@@ -616,8 +616,8 @@
       "Performance",
       "Debugging"
     ],
-    "description": "Enable Model::preventLazyLoading() in local development to automatically throw exceptions whenever a relationship is lazy loaded.",
-    "date": "2024-05-29"
+    "date": "2024-05-29",
+    "summary": "Enable Model::preventLazyLoading() in local development to automatically throw exceptions whenever a relationship is lazy loaded."
   },
   {
     "slug": "php-rector-refactor-enums-pascal-case",
@@ -632,8 +632,8 @@
       "Blade",
       "Tooling"
     ],
-    "description": "Automate renaming PHP 8.1+ enum cases from SNAKECASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script.",
-    "date": "2024-05-20"
+    "date": "2024-05-20",
+    "summary": "Automate renaming PHP 8.1+ enum cases from SNAKECASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script."
   },
   {
     "slug": "laravel-rector-automate-casts-method-upgrade",
@@ -645,8 +645,8 @@
       "Rector",
       "Tooling"
     ],
-    "description": "Use Rector to automatically refactor legacy protected $casts array properties into the modern casts() method across your entire Laravel codebase.",
-    "date": "2024-03-30"
+    "date": "2024-03-30",
+    "summary": "Use Rector to automatically refactor legacy protected $casts array properties into the modern casts() method across your entire Laravel codebase."
   },
   {
     "slug": "laravel-cast-enum-json-array-key",
@@ -660,8 +660,8 @@
       "Casts",
       "JSON"
     ],
-    "description": "Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.",
-    "date": "2024-01-30"
+    "date": "2024-01-30",
+    "summary": "Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators."
   },
   {
     "slug": "laravel-custom-casts-enum-json",
@@ -673,8 +673,8 @@
       "Eloquent",
       "Casts"
     ],
-    "description": "Use Eloquent custom casts (CastsAttributes) to handle complex JSON serialization and Backed Enum arrays cleanly.",
-    "date": "2024-01-30"
+    "date": "2024-01-30",
+    "summary": "Use Eloquent custom casts (CastsAttributes) to handle complex JSON serialization and Backed Enum arrays cleanly."
   },
   {
     "slug": "livewire-teleport-blade-view-cache-directive-fix",
@@ -688,8 +688,8 @@
       "Alpine.js",
       "Tooling"
     ],
-    "description": "Prevent view compilation glitches when running php artisan view:cache on templates using @teleport by registering explicit Blade directives.",
-    "date": "2024-01-14"
+    "date": "2024-01-14",
+    "summary": "Prevent view compilation glitches when running php artisan view:cache on templates using @teleport by registering explicit Blade directives."
   },
   {
     "slug": "laravel-activity-log-event-subscriber",
@@ -703,8 +703,8 @@
       "Architecture",
       "Audit"
     ],
-    "description": "Capture HTTP requests, Artisan CLI commands, and outgoing API responses into a unified audit trail using a single Laravel Event Subscriber.",
-    "date": "2023-12-01"
+    "date": "2023-12-01",
+    "summary": "Capture HTTP requests, Artisan CLI commands, and outgoing API responses into a unified audit trail using a single Laravel Event Subscriber."
   },
   {
     "slug": "laravel-generate-unique-slug-without-looping",
@@ -718,8 +718,8 @@
       "Performance",
       "Clean Code"
     ],
-    "description": "Generate unique database slugs in Eloquent by querying the maximum existing numerical suffix directly instead of executing repeated queries in a while loop.",
-    "date": "2023-11-29"
+    "date": "2023-11-29",
+    "summary": "Generate unique database slugs in Eloquent by querying the maximum existing numerical suffix directly instead of executing repeated queries in a while loop."
   },
   {
     "slug": "laravel-carbon-set-test-now-time-manipulation",
@@ -732,8 +732,8 @@
       "Carbon",
       "PHP"
     ],
-    "description": "Control system time during testing and development using Carbon::setTestNow() and inspect active time mocks with Carbon::hasTestNow().",
-    "date": "2023-11-23"
+    "date": "2023-11-23",
+    "summary": "Control system time during testing and development using Carbon::setTestNow() and inspect active time mocks with Carbon::hasTestNow()."
   },
   {
     "slug": "livewire-renderless-export-csv-reports",
@@ -748,8 +748,8 @@
       "CSV",
       "Performance"
     ],
-    "description": "Use Livewire 3's #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.",
-    "date": "2023-11-06"
+    "date": "2023-11-06",
+    "summary": "Use Livewire 3's #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries."
   },
   {
     "slug": "laravel-belongs-to-team-multitenancy-trait",
@@ -763,8 +763,8 @@
       "Architecture",
       "Security"
     ],
-    "description": "Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes.",
-    "date": "2023-11-05"
+    "date": "2023-11-05",
+    "summary": "Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes."
   },
   {
     "slug": "laravel-custom-wherelike-macro",
@@ -778,8 +778,8 @@
       "Search",
       "Database"
     ],
-    "description": "Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder.",
-    "date": "2023-10-27"
+    "date": "2023-10-27",
+    "summary": "Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder."
   },
   {
     "slug": "laravel-testing-lazily-refresh-database",
@@ -792,8 +792,8 @@
       "Performance",
       "Database"
     ],
-    "description": "Use LazilyRefreshDatabase instead of RefreshDatabase to run database transactions only for tests that actually touch the database.",
-    "date": "2023-10-11"
+    "date": "2023-10-11",
+    "summary": "Use LazilyRefreshDatabase instead of RefreshDatabase to run database transactions only for tests that actually touch the database."
   },
   {
     "slug": "laravel-factory-recycle-existing-models",
@@ -806,8 +806,8 @@
       "Factories",
       "Performance"
     ],
-    "description": "Use Factory::recycle() to pass existing parent models to child factories, avoiding duplicate database record creation in test fixtures.",
-    "date": "2023-09-27"
+    "date": "2023-09-27",
+    "summary": "Use Factory::recycle() to pass existing parent models to child factories, avoiding duplicate database record creation in test fixtures."
   },
   {
     "slug": "mysql-subquery-same-table-update-restriction",
@@ -819,8 +819,8 @@
       "Database",
       "SQL"
     ],
-    "description": "MySQL prevents updating a table while selecting from it in a subquery. Wrap subqueries in an intermediate alias table.",
-    "date": "2023-09-22"
+    "date": "2023-09-22",
+    "summary": "MySQL prevents updating a table while selecting from it in a subquery. Wrap subqueries in an intermediate alias table."
   },
   {
     "slug": "laravel-collection-when-conditional-pipelines",
@@ -832,8 +832,8 @@
       "Collections",
       "Clean Code"
     ],
-    "description": "Use when(), unless(), and whenEmpty() on Laravel Collections to conditionally apply transformations without breaking method chains.",
-    "date": "2023-09-20"
+    "date": "2023-09-20",
+    "summary": "Use when(), unless(), and whenEmpty() on Laravel Collections to conditionally apply transformations without breaking method chains."
   },
   {
     "slug": "laravel-http-fake-prevent-stray-requests",
@@ -846,8 +846,8 @@
       "HTTP",
       "Security"
     ],
-    "description": "Enable Http::preventStrayRequests() in test suites to throw exceptions whenever HTTP requests are made without explicit mocks.",
-    "date": "2023-09-13"
+    "date": "2023-09-13",
+    "summary": "Enable Http::preventStrayRequests() in test suites to throw exceptions whenever HTTP requests are made without explicit mocks."
   },
   {
     "slug": "laravel-where-has-multiple-database-connections",
@@ -860,8 +860,8 @@
       "Database",
       "Architecture"
     ],
-    "description": "Query related models located on different database connections using whereHas() without cross-database join errors.",
-    "date": "2023-08-16"
+    "date": "2023-08-16",
+    "summary": "Query related models located on different database connections using whereHas() without cross-database join errors."
   },
   {
     "slug": "laravel-array-column-relationships-hasmanyarraycolumn",
@@ -873,8 +873,8 @@
       "Eloquent",
       "Database"
     ],
-    "description": "Define relationships on models where foreign keys are stored as JSON arrays or comma-separated lists rather than traditional single-id foreign keys.",
-    "date": "2023-06-19"
+    "date": "2023-06-19",
+    "summary": "Define relationships on models where foreign keys are stored as JSON arrays or comma-separated lists rather than traditional single-id foreign keys."
   },
   {
     "slug": "laravel-sleep-helper-testable-delays",
@@ -887,8 +887,8 @@
       "Utilities",
       "Clean Code"
     ],
-    "description": "Replace PHP's native sleep() and usleep() with Laravel's Sleep facade to write testable, fakeable time pauses.",
-    "date": "2023-03-01"
+    "date": "2023-03-01",
+    "summary": "Replace PHP's native sleep() and usleep() with Laravel's Sleep facade to write testable, fakeable time pauses."
   },
   {
     "slug": "css-container-queries-responsive-components",
@@ -900,8 +900,8 @@
       "Responsive",
       "Frontend"
     ],
-    "description": "Use CSS Container Queries (@container) to adjust component layouts based on parent container width rather than viewport size.",
-    "date": "2023-02-24"
+    "date": "2023-02-24",
+    "summary": "Use CSS Container Queries (@container) to adjust component layouts based on parent container width rather than viewport size."
   },
   {
     "slug": "laravel-db-listen-slow-query-logging",
@@ -914,7 +914,7 @@
       "Performance",
       "Debugging"
     ],
-    "description": "Use DB::listen() in AppServiceProvider to monitor executed queries, log slow operations, and inspect raw SQL bindings during local development.",
-    "date": "2023-02-01"
+    "date": "2023-02-01",
+    "summary": "Use DB::listen() in AppServiceProvider to monitor executed queries, log slow operations, and inspect raw SQL bindings during local development."
   }
 ]
