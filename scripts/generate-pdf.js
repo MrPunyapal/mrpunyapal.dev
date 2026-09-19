@@ -32,6 +32,7 @@ function shouldSkipPdf() {
     }
     try {
       const diff = execSync('git diff --name-only HEAD~1 HEAD -- scripts/resume-print.html resume.html', {
+        stdio: ['pipe', 'pipe', 'pipe'],
         encoding: 'utf-8',
         cwd: path.resolve(__dirname, '..')
       }).trim();
@@ -43,6 +44,7 @@ function shouldSkipPdf() {
 
   try {
     const status = execSync('git status --porcelain scripts/resume-print.html resume.html', {
+      stdio: ['pipe', 'pipe', 'pipe'],
       encoding: 'utf-8',
       cwd: path.resolve(__dirname, '..')
     }).trim();

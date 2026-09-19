@@ -5,6 +5,7 @@ import { escapeHtml, escapeJsonStr, formatDate, getTipEffectiveDate, getCategory
 
 export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootDir) {
     const tipsOutPath = path.resolve(rootDir, 'tips.html');
+    const tipsIndexOutPath = path.resolve(rootDir, 'tips', 'index.html');
 
     const totalTipsCount = tips.length;
     const categoryNames = Object.keys(categoriesMap).sort((a, b) => {
@@ -684,7 +685,7 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
 
             // Sync URL params on load
             const urlParams = new URLSearchParams(window.location.search);
-            const queryParam = urlParams.get('q');
+            const queryParam = urlParams.get('q') || urlParams.get('search') || urlParams.get('tag');
             const categoryParam = urlParams.get('category');
             const subcatParam = urlParams.get('subcat') || urlParams.get('subcategory');
 
@@ -712,4 +713,5 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
 </html>`;
 
     writeFileIfChanged(tipsOutPath, hubHtml);
+    writeFileIfChanged(tipsIndexOutPath, hubHtml);
 }

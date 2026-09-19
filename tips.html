@@ -4869,7 +4869,7 @@
 
             // Sync URL params on load
             const urlParams = new URLSearchParams(window.location.search);
-            const queryParam = urlParams.get('q');
+            const queryParam = urlParams.get('q') || urlParams.get('search') || urlParams.get('tag');
             const categoryParam = urlParams.get('category');
             const subcatParam = urlParams.get('subcat') || urlParams.get('subcategory');
 

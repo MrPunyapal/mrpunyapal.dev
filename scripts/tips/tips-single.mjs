@@ -179,6 +179,7 @@ export function generateSingleTipPage(tip, allTips, rootDir) {
                 },
                 "headline": tip.title,
                 "description": tip.summary,
+                "image": `https://mrpunyapal.dev/og/tips/${tip.slug}.png`,
                 "url": `https://mrpunyapal.dev/tips/${tip.slug}`,
                 "datePublished": tip.created_at || tip.date || effectiveDate,
                 "dateModified": effectiveDate,
@@ -245,7 +246,7 @@ export function generateSingleTipPage(tip, allTips, rootDir) {
     <meta property="og:url" content="https://mrpunyapal.dev/tips/${tip.slug}">
     <meta property="og:title" content="${escapeHtml(tip.title)} - ${escapeHtml(tip.category)} | Punyapal Shah">
     <meta property="og:description" content="${escapeHtml(tip.summary)}">
-    <meta property="og:image" content="https://mrpunyapal.dev/og/tips-${tip.slug}.png">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/${tip.slug}.png">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="article:published_time" content="${escapeHtml(tip.created_at || tip.date || effectiveDate)}">
     <meta property="article:modified_time" content="${escapeHtml(effectiveDate)}">
@@ -256,7 +257,7 @@ export function generateSingleTipPage(tip, allTips, rootDir) {
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escapeHtml(tip.title)} - ${escapeHtml(tip.category)} | Punyapal Shah">
     <meta name="twitter:description" content="${escapeHtml(tip.summary)}">
-    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips-${tip.slug}.png">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/${tip.slug}.png">
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -397,7 +398,7 @@ export function generateSingleTipPage(tip, allTips, rootDir) {
                     <div class="flex items-center gap-2 flex-wrap">
                         <span class="text-xs font-mono text-slate-500 uppercase tracking-wider font-semibold">Tags:</span>
                         ${(tip.tags || []).map(tag => `
-                        <a href="/tips?search=${encodeURIComponent(tag)}" class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:text-red-600 transition-colors">
+                        <a href="/tips?q=${encodeURIComponent(tag)}" class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:text-red-600 transition-colors">
                             ${escapeHtml(tag)}
                         </a>
                         `).join('')}

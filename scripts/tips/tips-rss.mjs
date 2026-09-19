@@ -16,7 +16,11 @@ import {
 export function generateTipsRssFeed(tips, rootDir) {
     const feedOutPath = path.resolve(rootDir, 'public', 'tips', 'feed.xml');
 
-    const lastBuildDate = toRfc822Date(new Date());
+    const latestTipDate = tips.reduce((max, t) => {
+        const d = getTipEffectiveDate(t);
+        return d > max ? d : max;
+    }, '');
+    const lastBuildDate = toRfc822Date(latestTipDate || new Date());
 
     const itemsXml = tips.map(tip => {
         const effectiveDate = getTipEffectiveDate(tip);
