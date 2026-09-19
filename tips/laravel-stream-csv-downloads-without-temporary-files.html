@@ -574,11 +574,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Generating CSV exports often involves writing a temporary file to disk (<code>storage_path(&#39;app/temp.csv&#39;)</code>), returning a download response, and cleaning up the file afterward. This introduces unnecessary disk I/O and risk of disk space exhaustion.</p>
-<p>Using <code>response()-&gt;streamDownload()</code>, you can write CSV rows directly to <code>php://output</code> in chunked database batches with minimal memory consumption and zero disk usage.</p>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Invokable Controller Example</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Generating CSV exports often involves writing a temporary file to disk (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">storage_path(&#039;app/temp.csv&#039;)</code>), returning a download response, and cleaning up the file afterward. This introduces unnecessary disk I/O and risk of disk space exhaustion.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Using <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">response()-&gt;streamDownload()</code>, you can write CSV rows directly to <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">php://output</code> in chunked database batches with minimal memory consumption and zero disk usage.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Invokable Controller Example</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -660,10 +657,7 @@ class ExportProductsController
         ]);
     }
 }</code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Technical Details</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">**`php://output`**: A write-only output stream wrapper that writes directly into PHP's output buffer sent to the HTTP client.</span></li><li class="leading-relaxed"><span class="align-middle">**`fputcsv()`**: Handles escaping of commas, quotes, and newlines natively in PHP.</span></li><li class="leading-relaxed"><span class="align-middle">**`chunkById()`**: Paginates by `WHERE id > last_seen_id` rather than SQL `OFFSET`, preventing duplicate or skipped records if the table receives new rows during the export.</span></li><li class="leading-relaxed"><span class="align-middle">**Selective Columns**: Always pair `chunkById()` with explicit `select(['id', ...])` to hydrate only necessary columns instead of full model instances.</span></li></ul>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Technical Details</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">php://output</code></strong>: A write-only output stream wrapper that writes directly into PHP&#39;s output buffer sent to the HTTP client.</span></li><li class="leading-relaxed"><span class="align-middle"><strong><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">fputcsv()</code></strong>: Handles escaping of commas, quotes, and newlines natively in PHP.</span></li><li class="leading-relaxed"><span class="align-middle"><strong><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">chunkById()</code></strong>: Paginates by <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">WHERE id &gt; last_seen_id</code> rather than SQL <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">OFFSET</code>, preventing duplicate or skipped records if the table receives new rows during the export.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Selective Columns</strong>: Always pair <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">chunkById()</code> with explicit <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">select([&#039;id&#039;, ...])</code> to hydrate only necessary columns instead of full model instances.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -808,7 +802,7 @@ class ExportProductsController
                 </h3>
 
                 <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
-                    Use Livewire 3&#039;s #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.
+                    Use Livewire 3&#039;s #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.
                 </p>
             </div>
 

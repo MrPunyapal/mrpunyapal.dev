@@ -572,10 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>In PHP, <code>0</code> evaluates as false-y in loose condition checks like <code>empty()</code> or <code>if ($enum-&gt;value)</code>. Starting integer enum values at <code>1</code> prevents accidental false-y evaluation bugs.</p>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Before & After</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In PHP, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">0</code> evaluates as false-y in loose condition checks like <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">empty()</code> or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">if ($enum-&gt;value)</code>. Starting integer enum values at <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">1</code> prevents accidental false-y evaluation bugs.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Before &amp; After</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -627,10 +625,7 @@ enum Priority: int
 }
 
 <span class="hljs-comment">// empty(Priority::Low-&gt;value) is false!</span></code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">**Prevents False-y Pitfalls**: Avoids unexpected truthy/falsy evaluation bugs when inspecting raw enum integer values.</span></li><li class="leading-relaxed"><span class="align-middle">**Database Consistency**: Aligns naturally with standard 1-based auto-incrementing database ID conventions.</span></li><li class="leading-relaxed"><span class="align-middle">**Predictable Empty Checks**: Ensures `empty()` or `blank()` checks on enum values behave intuitively without silent failures.</span></li></ul>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Prevents False-y Pitfalls</strong>: Avoids unexpected truthy/falsy evaluation bugs when inspecting raw enum integer values.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Database Consistency</strong>: Aligns naturally with standard 1-based auto-incrementing database ID conventions.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Predictable Empty Checks</strong>: Ensures <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">empty()</code> or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">blank()</code> checks on enum values behave intuitively without silent failures.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -767,7 +762,7 @@ enum Priority: int
                 </h3>
 
                 <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
-                    striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.
+                    strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.
                 </p>
             </div>
 

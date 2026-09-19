@@ -572,10 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Calling <code>Cache::get(&#39;key&#39;)</code> multiple times in a single request still incurs a Redis network roundtrip or database query each time.</p>
-<p><code>Cache::memo()</code> wraps your configured cache store with an in-memory array cache for the duration of the current request:</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Calling <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Cache::get(&#039;key&#039;)</code> multiple times in a single request still incurs a Redis network roundtrip or database query each time.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Cache::memo()</code> wraps your configured cache store with an in-memory array cache for the duration of the current request:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -629,9 +627,7 @@ Cache::memo(&#039;redis&#039;)-&gt;remember(&#039;expensive-report&#039;, 3600, 
 <span class="hljs-title class_">Cache</span>::<span class="hljs-title function_ invoke__">memo</span>(<span class="hljs-string">&#x27;redis&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">remember</span>(<span class="hljs-string">&#x27;expensive-report&#x27;</span>, <span class="hljs-number">3600</span>, fn () =&gt;
     <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">buildReport</span>()
 );</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">Eliminates redundant cache store queries during heavy request lifecycles</span></li><li class="leading-relaxed"><span class="align-middle">In-memory values reset automatically at the end of the HTTP request</span></li><li class="leading-relaxed"><span class="align-middle">Mutation methods (`put`, `increment`, `forget`) keep memory and storage in sync</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Eliminates redundant cache store queries during heavy request lifecycles</span></li><li class="leading-relaxed"><span class="align-middle">In-memory values reset automatically at the end of the HTTP request</span></li><li class="leading-relaxed"><span class="align-middle">Mutation methods (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">put</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">increment</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">forget</code>) keep memory and storage in sync</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

@@ -573,12 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When working on a shared repository, you often create temporary files for local testing: a quick scratchpad (<code>scratchpad.md</code>), a temporary debugging script (<code>debug_local.php</code>), or a folder of personal investigation notes (<code>/notes/</code>).</p>
-<p>A common developer habit is adding those personal patterns to the project&#39;s root <code>.gitignore</code> file. However, <code>.gitignore</code> is committed and tracked in version control. Adding personal, one-off file patterns creates noisy pull request diffs and forces team members to adopt ignore rules they do not need.</p>
-<p>Git provides a built-in repository-local ignore file: <code>.git/info/exclude</code>.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Three Scopes of Git Ignore Rules</h3><p>Understanding where to place an ignore pattern depends on who needs the rule:</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When working on a shared repository, you often create temporary files for local testing: a quick scratchpad (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">scratchpad.md</code>), a temporary debugging script (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">debug_local.php</code>), or a folder of personal investigation notes (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">/notes/</code>).</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A common developer habit is adding those personal patterns to the project&#39;s root <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.gitignore</code> file. However, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.gitignore</code> is committed and tracked in version control. Adding personal, one-off file patterns creates noisy pull request diffs and forces team members to adopt ignore rules they do not need.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Git provides a built-in repository-local ignore file: <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.git/info/exclude</code>.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Three Scopes of Git Ignore Rules</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Understanding where to place an ignore pattern depends on who needs the rule:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -614,9 +610,7 @@ Personal rules for this clone only (Uncommitted, stored inside .git/)
 Global Gitignore (~/.gitignore)
   ↓
 Personal rules across all repositories on your machine (e.g. .DS_Store, .vscode/)</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How to Use .git/info/exclude</h3><p>Every Git repository includes a <code>.git/info/exclude</code> file by default. Because it lives inside the <code>.git</code> directory, it is never committed or pushed to remote repositories.</p>
-<p>Open the file in your preferred editor:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How to Use .git/info/exclude</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Every Git repository includes a <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.git/info/exclude</code> file by default. Because it lives inside the <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.git</code> directory, it is never committed or pushed to remote repositories.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Open the file in your preferred editor:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -632,8 +626,7 @@ Personal rules across all repositories on your machine (e.g. .DS_Store, .vscode/
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash">code .git/info/exclude</code></pre>
-</div><p>Add your personal patterns using standard <code>.gitignore</code> syntax:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Add your personal patterns using standard <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.gitignore</code> syntax:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -667,11 +660,7 @@ experimental_*.php
 
 # Local custom test database dump
 local_dump.sql</code></pre>
-</div><p>After saving the file, running <code>git status</code> will no longer report matching files under &quot;Untracked files&quot;, and running <code>git add .</code> will not accidentally stage them.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Important: .git/info/exclude Only Ignores Untracked Files</h3><p>Like <code>.gitignore</code>, adding a pattern to <code>.git/info/exclude</code> applies strictly to <strong>untracked files</strong>.</p>
-<p>If a file is already tracked in Git history, adding it to <code>.git/info/exclude</code> will not prevent Git from tracking subsequent changes to it.</p>
-<p>If you need to stop tracking a file that was previously committed while keeping your local copy on disk, you must remove it from the Git index:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">After saving the file, running <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git status</code> will no longer report matching files under &quot;Untracked files&quot;, and running <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git add .</code> will not accidentally stage them.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Important: .git/info/exclude Only Ignores Untracked Files</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Like <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.gitignore</code>, adding a pattern to <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.git/info/exclude</code> applies strictly to <strong>untracked files</strong>.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If a file is already tracked in Git history, adding it to <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.git/info/exclude</code> will not prevent Git from tracking subsequent changes to it.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If you need to stop tracking a file that was previously committed while keeping your local copy on disk, you must remove it from the Git index:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -687,8 +676,7 @@ local_dump.sql</code></pre>
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash">git <span class="hljs-built_in">rm</span> --cached path/to/file.txt</code></pre>
-</div><p><em>(Note: <code>git rm --cached</code> stages a deletion in Git history for the next commit, so only use it if the file should truly be removed from the shared repository for all contributors).</em></p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Decision Guide: Which Ignore Scope to Use</h3><table>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><em>(Note: <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git rm --cached</code> stages a deletion in Git history for the next commit, so only use it if the file should truly be removed from the shared repository for all contributors).</em></p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Decision Guide: Which Ignore Scope to Use</h3><div class="overflow-x-auto my-6 rounded-xl border border-slate-200 dark:border-slate-800"><table class="w-full text-left border-collapse">
 <thead>
 <tr>
 <th>Situation</th>
@@ -697,24 +685,22 @@ local_dump.sql</code></pre>
 </tr>
 </thead>
 <tbody><tr>
-<td>Project dependencies, build outputs, and shared environment templates (<code>node_modules/</code>, <code>vendor/</code>, <code>dist/</code>, <code>.env.example</code>)</td>
-<td>Project <code>.gitignore</code></td>
-<td><code>.gitignore</code> in repository root</td>
+<td>Project dependencies, build outputs, and shared environment templates (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">node_modules/</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">vendor/</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">dist/</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.env.example</code>)</td>
+<td>Project <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.gitignore</code></td>
+<td><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.gitignore</code> in repository root</td>
 </tr>
 <tr>
-<td>Personal scratch files, debug scripts, or local test fixtures specific to this clone (<code>scratchpad.md</code>, <code>debug_test.php</code>, <code>/my-notes/</code>)</td>
+<td>Personal scratch files, debug scripts, or local test fixtures specific to this clone (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">scratchpad.md</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">debug_test.php</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">/my-notes/</code>)</td>
 <td>Local repository exclude</td>
-<td><code>.git/info/exclude</code></td>
+<td><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.git/info/exclude</code></td>
 </tr>
 <tr>
-<td>Machine-wide artifacts and OS/IDE files across all projects on your laptop (<code>.DS_Store</code>, <code>Thumbs.db</code>, <code>.idea/</code>, <code>.vscode/</code>)</td>
+<td>Machine-wide artifacts and OS/IDE files across all projects on your laptop (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.DS_Store</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Thumbs.db</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.idea/</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.vscode/</code>)</td>
 <td>Global Gitignore</td>
-<td><code>~/.gitignore</code> (configured via <code>git config --global core.excludesFile</code>)</td>
+<td><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">~/.gitignore</code> (configured via <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git config --global core.excludesFile</code>)</td>
 </tr>
 </tbody></table>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Use `.gitignore` for shared project ignore rules that every team member needs.</span></li><li class="leading-relaxed"><span class="align-middle">Use `.git/info/exclude` to ignore personal scratch files and temporary scripts in a specific repository without modifying committed files.</span></li><li class="leading-relaxed"><span class="align-middle">Use a global Gitignore (`core.excludesFile`) for operating system and editor artifacts across all repositories on your machine.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.gitignore</code> for shared project ignore rules that every team member needs.</span></li><li class="leading-relaxed"><span class="align-middle">Use <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.git/info/exclude</code> to ignore personal scratch files and temporary scripts in a specific repository without modifying committed files.</span></li><li class="leading-relaxed"><span class="align-middle">Use a global Gitignore (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">core.excludesFile</code>) for operating system and editor artifacts across all repositories on your machine.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -855,7 +841,7 @@ local_dump.sql</code></pre>
                 </h3>
 
                 <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
-                    Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.
+                    Use repository_dispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.
                 </p>
             </div>
 

@@ -574,10 +574,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Using <code>whereYear(&#39;created_at&#39;, 2026)</code> forces database engines (MySQL, PostgreSQL) to wrap the column in an SQL function (<code>WHERE YEAR(created_at) = 2026</code>).</p>
-<p>Wrapping indexed columns in functions invalidates database B-Tree indexes, causing full table scans.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Problem with whereYear()</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Using <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">whereYear(&#039;created_at&#039;, 2026)</code> forces database engines (MySQL, PostgreSQL) to wrap the column in an SQL function (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">WHERE YEAR(created_at) = 2026</code>).</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Wrapping indexed columns in functions invalidates database B-Tree indexes, causing full table scans.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Problem with whereYear()</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -595,8 +593,7 @@ $orders = Order::whereYear(&#039;created_at&#039;, 2026)-&gt;get();" aria-label=
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// ❌ SLOW: SQL function YEAR(created_at) disables database index!</span>
 <span class="hljs-variable">$orders</span> = <span class="hljs-title class_">Order</span>::<span class="hljs-title function_ invoke__">whereYear</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-number">2026</span>)-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The High-Performance Solution: whereBetween()</h3><p>Using explicit timestamp boundaries enables the database engine to perform fast range index lookups:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The High-Performance Solution: whereBetween()</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Using explicit timestamp boundaries enables the database engine to perform fast range index lookups:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -648,9 +645,7 @@ $orders = Order::whereBetween(&#039;created_at&#039;, [
     <span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">startOfMonth</span>(),
     <span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">endOfMonth</span>(),
 ])-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">SQL date functions (`YEAR()`, `MONTH()`) prevent query optimizers from using column indexes.</span></li><li class="leading-relaxed"><span class="align-middle">`whereBetween('created_at', [$start, $end])` utilizes B-Tree indexes for fast range scans.</span></li><li class="leading-relaxed"><span class="align-middle">Essential optimization for tables with hundreds of thousands of records.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">SQL date functions (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">YEAR()</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">MONTH()</code>) prevent query optimizers from using column indexes.</span></li><li class="leading-relaxed"><span class="align-middle"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">whereBetween(&#039;created_at&#039;, [$start, $end])</code> utilizes B-Tree indexes for fast range scans.</span></li><li class="leading-relaxed"><span class="align-middle">Essential optimization for tables with hundreds of thousands of records.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

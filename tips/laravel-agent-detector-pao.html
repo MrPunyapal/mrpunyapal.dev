@@ -572,10 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>AI coding agents (Cursor, Claude Code, Devin) are now part of regular development workflows. Laravel provides first-party tools to detect agents and optimize terminal output for LLM parsing.</p>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Agent Detection</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">AI coding agents (Cursor, Claude Code, Devin) are now part of regular development workflows. Laravel provides first-party tools to detect agents and optimize terminal output for LLM parsing.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Agent Detection</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -605,10 +603,7 @@ if ($detection-&gt;isAgent) {
     <span class="hljs-comment">// Inspect agent name (e.g. &#x27;claude-code&#x27;, &#x27;cursor&#x27;, &#x27;devin&#x27;)</span>
     <span class="hljs-title function_ invoke__">logger</span>()-&gt;<span class="hljs-title function_ invoke__">info</span>(<span class="hljs-string">&#x27;AI agent session&#x27;</span>, [<span class="hljs-string">&#x27;agent&#x27;</span> =&gt; <span class="hljs-variable">$detection</span>-&gt;name]);
 }</code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How PAO Works</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">**First-Party**: Ships with PAO (`laravel/pao`) included by default in new Laravel applications.</span></li><li class="leading-relaxed"><span class="align-middle">**Output Optimization**: PAO automatically switches verbose Artisan CLI output into compact JSON when an agent is detected.</span></li><li class="leading-relaxed"><span class="align-middle">**Human Invariant**: Human developers see standard terminal formatting with zero workflow change.</span></li></ul>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How PAO Works</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>First-Party</strong>: Ships with PAO (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">laravel/pao</code>) included by default in new Laravel applications.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Output Optimization</strong>: PAO automatically switches verbose Artisan CLI output into compact JSON when an agent is detected.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Human Invariant</strong>: Human developers see standard terminal formatting with zero workflow change.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

@@ -573,10 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Build scripts that generate HTML, JSON, XML, or other output files often write the result unconditionally, even when the content has not changed. This creates problems in CI pipelines: unchanged files get new timestamps, <code>git status</code> reports false modifications, auto-commit steps push empty diffs, and downstream caches are invalidated for no reason.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Problem</h3><p>A typical build script writes output directly:</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Build scripts that generate HTML, JSON, XML, or other output files often write the result unconditionally, even when the content has not changed. This creates problems in CI pipelines: unchanged files get new timestamps, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git status</code> reports false modifications, auto-commit steps push empty diffs, and downstream caches are invalidated for no reason.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Problem</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A typical build script writes output directly:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -598,12 +596,7 @@ fs.writeFileSync(&#039;dist/index.html&#039;, html);" aria-label="Copy code to c
 
 <span class="hljs-keyword">const</span> html = <span class="hljs-title function_">generatePage</span>(data);
 fs.<span class="hljs-title function_">writeFileSync</span>(<span class="hljs-string">&#x27;dist/index.html&#x27;</span>, html);</code></pre>
-</div><p>If <code>generatePage</code> produces the same HTML as the file already on disk, the write is wasted. Worse, it updates the file&#39;s modification timestamp, which can trigger:</p>
-<ul>
-<li class="leading-relaxed"><span class="align-middle">`git diff` reporting the file as changed (if line endings or encoding differ)</span></li><li class="leading-relaxed"><span class="align-middle">Downstream tools rebuilding dependents of that file</span></li><li class="leading-relaxed"><span class="align-middle">CI auto-commit steps creating empty or noise-only commits</span></li><li class="leading-relaxed"><span class="align-middle">CDN or deployment cache invalidation for files that did not actually change</span></li></ul>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Fix: Compare Before Writing</h3><p>Read the existing file, compare it with the new content, and skip the write when they match:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">generatePage</code> produces the same HTML as the file already on disk, the write is wasted. Worse, it updates the file&#39;s modification timestamp, which can trigger:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git diff</code> reporting the file as changed (if line endings or encoding differ)</span></li><li class="leading-relaxed"><span class="align-middle">Downstream tools rebuilding dependents of that file</span></li><li class="leading-relaxed"><span class="align-middle">CI auto-commit steps creating empty or noise-only commits</span></li><li class="leading-relaxed"><span class="align-middle">CDN or deployment cache invalidation for files that did not actually change</span></li></ul><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Fix: Compare Before Writing</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Read the existing file, compare it with the new content, and skip the write when they match:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -647,8 +640,7 @@ function writeIfChanged(filePath, content) {
   fs.<span class="hljs-title function_">writeFileSync</span>(filePath, content);
   <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }</code></pre>
-</div><p>Usage in a build script:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Usage in a build script:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -682,8 +674,7 @@ console.log(`Wrote ${written}/${Object.keys(pages).length} files (rest unchanged
 }
 
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Wrote <span class="hljs-subst">${written}</span>/<span class="hljs-subst">${<span class="hljs-built_in">Object</span>.keys(pages).length}</span> files (rest unchanged)`</span>);</code></pre>
-</div><p>On a typical run where 3 out of 300 pages changed, you will see:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">On a typical run where 3 out of 300 pages changed, you will see:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -699,9 +690,7 @@ console.log(`Wrote ${written}/${Object.keys(pages).length} files (rest unchanged
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">Wrote 3/300 files (rest unchanged)</code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Apply to Every Generated Output</h3><p>This pattern works for any generated file type:</p>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Apply to Every Generated Output</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This pattern works for any generated file type:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -733,9 +722,7 @@ writeIfChanged(&#039;public/sitemap.xml&#039;, renderSitemap(routes));" aria-lab
 <span class="hljs-comment">// XML feeds and sitemaps</span>
 <span class="hljs-title function_">writeIfChanged</span>(<span class="hljs-string">&#x27;public/feed.xml&#x27;</span>, <span class="hljs-title function_">renderRssFeed</span>(posts));
 <span class="hljs-title function_">writeIfChanged</span>(<span class="hljs-string">&#x27;public/sitemap.xml&#x27;</span>, <span class="hljs-title function_">renderSitemap</span>(routes));</code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">CI Auto-Commit: Only Commit When Files Actually Changed</h3><p>When your workflow auto-commits generated files, the incremental write pattern prevents empty commits:</p>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">CI Auto-Commit: Only Commit When Files Actually Changed</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When your workflow auto-commits generated files, the incremental write pattern prevents empty commits:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -773,11 +760,7 @@ writeIfChanged(&#039;public/sitemap.xml&#039;, renderSitemap(routes));" aria-lab
       git commit -m &quot;chore: regenerate static assets&quot;
       git push
     fi</span></code></pre>
-</div><p>Without incremental writes, <code>git diff --cached</code> would always detect changes because every file received a fresh write (and potentially a new timestamp or trailing whitespace difference), leading to commits that contain no meaningful content changes.</p>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Points</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Always compare new content with existing files before writing in build scripts.</span></li><li class="leading-relaxed"><span class="align-middle">Skipping unchanged writes prevents false `git diff` results, unnecessary cache invalidation, and empty auto-commits.</span></li><li class="leading-relaxed"><span class="align-middle">The `try/catch` pattern handles missing files gracefully on first builds.</span></li><li class="leading-relaxed"><span class="align-middle">This optimization compounds in projects with hundreds of generated files, where only a few change per commit.</span></li><li class="leading-relaxed"><span class="align-middle">Pair with `git diff --cached --quiet` in CI to avoid committing when nothing actually changed.</span></li></ul>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Without incremental writes, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git diff --cached</code> would always detect changes because every file received a fresh write (and potentially a new timestamp or trailing whitespace difference), leading to commits that contain no meaningful content changes.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Points</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Always compare new content with existing files before writing in build scripts.</span></li><li class="leading-relaxed"><span class="align-middle">Skipping unchanged writes prevents false <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git diff</code> results, unnecessary cache invalidation, and empty auto-commits.</span></li><li class="leading-relaxed"><span class="align-middle">The <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">try/catch</code> pattern handles missing files gracefully on first builds.</span></li><li class="leading-relaxed"><span class="align-middle">This optimization compounds in projects with hundreds of generated files, where only a few change per commit.</span></li><li class="leading-relaxed"><span class="align-middle">Pair with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git diff --cached --quiet</code> in CI to avoid committing when nothing actually changed.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

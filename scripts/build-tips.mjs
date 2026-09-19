@@ -124,12 +124,25 @@ export async function buildTips() {
 
         const slug = data.slug || fileSlug;
 
-        // Extract summary: from frontmatter or first blockquote
+        // Extract summary: from frontmatter or leading blockquote
         let summary = data.summary;
-        const quoteMatch = cleanBody.match(/^>\s*(.+)$/m);
-        if (quoteMatch) {
-            if (!summary) summary = quoteMatch[1].replace(/[`*_[\]]/g, '').trim();
-            cleanBody = cleanBody.replace(quoteMatch[0], '').trim();
+        const leadingQuoteMatch = cleanBody.match(/^\s*>([\s\S]*?)(?:\n\s*\n|$)/);
+        if (leadingQuoteMatch) {
+            if (!summary) {
+                const quoteText = leadingQuoteMatch[1]
+                    .split('\n')
+                    .map(line => line.replace(/^\s*>\s?/, '').trim())
+                    .join(' ')
+                    .trim();
+                summary = quoteText
+                    .replace(/`/g, '')
+                    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+                    .replace(/\*\*([^*]+)\*\*/g, '$1')
+                    .replace(/\*([^*]+)\*/g, '$1')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+            cleanBody = cleanBody.replace(leadingQuoteMatch[0], '').trim();
         }
         if (!summary) {
             summary = extractSummary(cleanBody);

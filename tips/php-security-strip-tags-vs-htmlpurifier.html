@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Why strip_tags() Is Not Enough for XSS Protection - PHP | Punyapal Shah</title>
-    <meta name="description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.">
+    <meta name="description" content="strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier">
 
@@ -12,7 +12,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier">
     <meta property="og:title" content="Why strip_tags() Is Not Enough for XSS Protection - PHP | Punyapal Shah">
-    <meta property="og:description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.">
+    <meta property="og:description" content="strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/php-security-strip-tags-vs-htmlpurifier.png">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="article:published_time" content="2026-04-18">
@@ -23,7 +23,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Why strip_tags() Is Not Enough for XSS Protection - PHP | Punyapal Shah">
-    <meta name="twitter:description" content="striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.">
+    <meta name="twitter:description" content="strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/php-security-strip-tags-vs-htmlpurifier.png">
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,7 +110,7 @@
         "@id": "https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier"
       },
       "headline": "Why strip_tags() Is Not Enough for XSS Protection",
-      "description": "striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.",
+      "description": "strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.",
       "image": "https://mrpunyapal.dev/og/tips/php-security-strip-tags-vs-htmlpurifier.png",
       "url": "https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier",
       "datePublished": "2026-04-18",
@@ -567,14 +567,13 @@
                 <!-- Monospace Summary Callout Box -->
                 
                 <div class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
-                    striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.
+                    strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.
                 </div>
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>A common security misconception in PHP is relying on strip_tags() to sanitize user-submitted rich text. It allows attribute payloads like onload= or javascript: URIs through if allowed tags are specified.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A common security misconception in PHP is relying on strip_tags() to sanitize user-submitted rich text. It allows attribute payloads like onload= or javascript: URIs through if allowed tags are specified.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -596,9 +595,7 @@ $cleanHtml = $purifier-&gt;purify($input);" aria-label="Copy code to clipboard">
 
 <span class="hljs-variable">$purifier</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HTMLPurifier</span>();
 <span class="hljs-variable">$cleanHtml</span> = <span class="hljs-variable">$purifier</span>-&gt;<span class="hljs-title function_ invoke__">purify</span>(<span class="hljs-variable">$input</span>);</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">strip_tags() does not validate tag attributes or execution vectors</span></li><li class="leading-relaxed"><span class="align-middle">Always escape plain text with e() or Blade's {{ $var }}</span></li><li class="leading-relaxed"><span class="align-middle">For user-submitted rich text, use reliable HTML sanitizers like HTMLPurifier</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">strip_tags() does not validate tag attributes or execution vectors</span></li><li class="leading-relaxed"><span class="align-middle">Always escape plain text with e() or Blade&#39;s {{ $var }}</span></li><li class="leading-relaxed"><span class="align-middle">For user-submitted rich text, use reliable HTML sanitizers like HTMLPurifier</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

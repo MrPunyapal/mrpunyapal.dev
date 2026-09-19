@@ -573,10 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>In test suites, accidental outbound HTTP requests to real third-party APIs (such as payment gateways, SMS providers, or webhooks) can trigger unwanted real-world charges or fail unpredictably without internet access.</p>
-<p>Laravel provides <code>Http::preventStrayRequests()</code> to block all unmocked HTTP traffic.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Enabling in Base TestCase</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In test suites, accidental outbound HTTP requests to real third-party APIs (such as payment gateways, SMS providers, or webhooks) can trigger unwanted real-world charges or fail unpredictably without internet access.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel provides <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Http::preventStrayRequests()</code> to block all unmocked HTTP traffic.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Enabling in Base TestCase</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -620,8 +618,7 @@ abstract class TestCase extends BaseTestCase
         <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">preventStrayRequests</span>();
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">What Happens on Stray Requests</h3><p>If code executes an un-faked HTTP request during a test, Laravel immediately fails with a descriptive <code>RuntimeException</code>:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">What Happens on Stray Requests</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If code executes an un-faked HTTP request during a test, Laravel immediately fails with a descriptive <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">RuntimeException</code>:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -637,9 +634,7 @@ abstract class TestCase extends BaseTestCase
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">Attempted request to [https://api.stripe.com/v1/charges] without a matching fake.</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Guarantees 100% mocked external HTTP interactions in CI/CD pipelines.</span></li><li class="leading-relaxed"><span class="align-middle">Prevents accidental calls to real production API endpoints during testing.</span></li><li class="leading-relaxed"><span class="align-middle">Forces developers to declare explicit `Http::fake()` definitions for all outbound traffic.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Guarantees 100% mocked external HTTP interactions in CI/CD pipelines.</span></li><li class="leading-relaxed"><span class="align-middle">Prevents accidental calls to real production API endpoints during testing.</span></li><li class="leading-relaxed"><span class="align-middle">Forces developers to declare explicit <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Http::fake()</code> definitions for all outbound traffic.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

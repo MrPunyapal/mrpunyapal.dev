@@ -572,9 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When model attributes contain complex JSON structures or collections of Enums, implement CastsAttributes to handle custom database transformation and object hydration.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When model attributes contain complex JSON structures or collections of Enums, implement CastsAttributes to handle custom database transformation and object hydration.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -622,9 +621,7 @@ class PermissionCast implements CastsAttributes
         <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">json_encode</span>(<span class="hljs-title function_ invoke__">array_map</span>(fn (<span class="hljs-variable">$enum</span>) =&gt; <span class="hljs-variable">$enum</span>-&gt;value, <span class="hljs-variable">$value</span>));
     }
 }</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">Implements CastsAttributes with get() and set() transformation signatures</span></li><li class="leading-relaxed"><span class="align-middle">Handles custom JSON encoding and object hydration transparently</span></li><li class="leading-relaxed"><span class="align-middle">Keeps model classes free of manual JSON encoding logic</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Implements CastsAttributes with get() and set() transformation signatures</span></li><li class="leading-relaxed"><span class="align-middle">Handles custom JSON encoding and object hydration transparently</span></li><li class="leading-relaxed"><span class="align-middle">Keeps model classes free of manual JSON encoding logic</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

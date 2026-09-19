@@ -573,12 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Database migrations frequently repeat the same cluster of audit columns (such as created/updated timestamps, soft deletes, and user foreign keys) across multiple tables.</p>
-<p>Using <code>Blueprint::macro()</code>, you can bundle these columns into a single reusable helper method.</p>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Register the Macro</h3><p>Define your custom macro inside <code>AppServiceProvider::boot()</code>:</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Database migrations frequently repeat the same cluster of audit columns (such as created/updated timestamps, soft deletes, and user foreign keys) across multiple tables.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Using <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Blueprint::macro()</code>, you can bundle these columns into a single reusable helper method.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Register the Macro</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Define your custom macro inside <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">AppServiceProvider::boot()</code>:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -634,9 +630,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 }</code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Use Across Migrations</h3><p>Call the macro directly on <code>$table</code> in any migration:</p>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Use Across Migrations</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Call the macro directly on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$table</code> in any migration:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -686,10 +680,7 @@ return new class extends Migration
         });
     }
 };</code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Points</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">**Consistency**: Guarantees identical column types, nullability, and foreign key constraints across all audited tables.</span></li><li class="leading-relaxed"><span class="align-middle">**Execution Timing**: Macros expand into standard column definitions when `php artisan migrate` runs; they do not retroactively alter already-migrated tables.</span></li><li class="leading-relaxed"><span class="align-middle">**Parametric Flexibility**: Add arguments to your macro closure (like `$softDeletes = true`) to adapt column inclusion per table.</span></li></ul>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Points</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Consistency</strong>: Guarantees identical column types, nullability, and foreign key constraints across all audited tables.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Execution Timing</strong>: Macros expand into standard column definitions when <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">php artisan migrate</code> runs; they do not retroactively alter already-migrated tables.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Parametric Flexibility</strong>: Add arguments to your macro closure (like <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$softDeletes = true</code>) to adapt column inclusion per table.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

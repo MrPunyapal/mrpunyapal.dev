@@ -572,10 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When processing collections (such as applying search filters or sorting parameters), writing intermediate <code>if</code> blocks breaks the fluent chain and requires temporary variables.</p>
-<p>Laravel Collections provide <code>when()</code> and <code>unless()</code> to conditionally execute closures.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Conditional Transformations with when()</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When processing collections (such as applying search filters or sorting parameters), writing intermediate <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">if</code> blocks breaks the fluent chain and requires temporary variables.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel Collections provide <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">when()</code> and <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">unless()</code> to conditionally execute closures.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Conditional Transformations with when()</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -615,8 +613,7 @@ $products = collect($rawProducts)
     -&gt;<span class="hljs-title function_ invoke__">when</span>(<span class="hljs-variable">$sortBy</span> === <span class="hljs-string">&#x27;rating&#x27;</span>, function (<span class="hljs-variable">$collection</span>) {
         <span class="hljs-keyword">return</span> <span class="hljs-variable">$collection</span>-&gt;<span class="hljs-title function_ invoke__">sortByDesc</span>(<span class="hljs-string">&#x27;rating&#x27;</span>);
     });</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Fallback Data with whenEmpty()</h3><p>When a collection contains no items, <code>whenEmpty()</code> provides a clean fallback closure:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Fallback Data with whenEmpty()</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When a collection contains no items, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">whenEmpty()</code> provides a clean fallback closure:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -640,9 +637,7 @@ $products = collect($rawProducts)
         <span class="hljs-comment">// Fallback to default administrator if no recipients found</span>
         <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">collect</span>([<span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">getSystemAdmin</span>()]);
     });</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Keeps collection transformation logic inside a single readable fluent chain.</span></li><li class="leading-relaxed"><span class="align-middle">Accepts an optional default callback as the third argument if the condition is false.</span></li><li class="leading-relaxed"><span class="align-middle">`whenEmpty()` cleanly handles empty dataset fallbacks.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Keeps collection transformation logic inside a single readable fluent chain.</span></li><li class="leading-relaxed"><span class="align-middle">Accepts an optional default callback as the third argument if the condition is false.</span></li><li class="leading-relaxed"><span class="align-middle"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">whenEmpty()</code> cleanly handles empty dataset fallbacks.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

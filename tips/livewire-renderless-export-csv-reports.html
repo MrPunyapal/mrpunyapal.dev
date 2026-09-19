@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stream CSV Report Downloads with Renderless Livewire Component Actions - Livewire | Punyapal Shah</title>
-    <meta name="description" content="Use Livewire 3&#039;s #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.">
+    <meta name="description" content="Use Livewire 3&#039;s #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports">
 
@@ -12,7 +12,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports">
     <meta property="og:title" content="Stream CSV Report Downloads with Renderless Livewire Component Actions - Livewire | Punyapal Shah">
-    <meta property="og:description" content="Use Livewire 3&#039;s #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.">
+    <meta property="og:description" content="Use Livewire 3&#039;s #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/livewire-renderless-export-csv-reports.png">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="article:published_time" content="2023-11-06">
@@ -23,7 +23,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Stream CSV Report Downloads with Renderless Livewire Component Actions - Livewire | Punyapal Shah">
-    <meta name="twitter:description" content="Use Livewire 3&#039;s #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.">
+    <meta name="twitter:description" content="Use Livewire 3&#039;s #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/livewire-renderless-export-csv-reports.png">
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,7 +110,7 @@
         "@id": "https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports"
       },
       "headline": "Stream CSV Report Downloads with Renderless Livewire Component Actions",
-      "description": "Use Livewire 3's #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.",
+      "description": "Use Livewire 3's #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.",
       "image": "https://mrpunyapal.dev/og/tips/livewire-renderless-export-csv-reports.png",
       "url": "https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports",
       "datePublished": "2023-11-06",
@@ -570,16 +570,13 @@
                 <!-- Monospace Summary Callout Box -->
                 
                 <div class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
-                    Use Livewire 3&#039;s #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.
+                    Use Livewire 3&#039;s #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.
                 </div>
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When triggering a file download or CSV export from a Livewire component, Livewire&#39;s default lifecycle runs the component&#39;s <code>render()</code> method after executing the action.</p>
-<p>If your <code>render()</code> method executes complex database queries or chart calculations, running <code>render()</code> during a binary file download wastes server CPU and memory since the HTML response is discarded in favor of the download stream.</p>
-<p>Livewire 3 provides the <code>#[Renderless]</code> attribute to execute an action without invoking <code>render()</code>.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Livewire Component</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When triggering a file download or CSV export from a Livewire component, Livewire&#39;s default lifecycle runs the component&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">render()</code> method after executing the action.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If your <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">render()</code> method executes complex database queries or chart calculations, running <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">render()</code> during a binary file download wastes server CPU and memory since the HTML response is discarded in favor of the download stream.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Livewire 3 provides the <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">#[Renderless]</code> attribute to execute an action without invoking <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">render()</code>.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Livewire Component</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -711,9 +708,7 @@ class TransactionReports extends Component
         Export CSV
     <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Apply `#[Renderless]` (or `$this->skipRender()` in Livewire 2/3) to file export methods in Livewire components.</span></li><li class="leading-relaxed"><span class="align-middle">Skips the `render()` lifecycle entirely, preventing redundant database queries and HTML rendering during downloads.</span></li><li class="leading-relaxed"><span class="align-middle">Combines with `response()->streamDownload()` for memory-efficient exports directly to the browser.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Apply <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">#[Renderless]</code> (or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$this-&gt;skipRender()</code> in Livewire 2/3) to file export methods in Livewire components.</span></li><li class="leading-relaxed"><span class="align-middle">Skips the <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">render()</code> lifecycle entirely, preventing redundant database queries and HTML rendering during downloads.</span></li><li class="leading-relaxed"><span class="align-middle">Combines with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">response()-&gt;streamDownload()</code> for memory-efficient exports directly to the browser.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

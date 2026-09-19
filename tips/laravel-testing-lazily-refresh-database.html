@@ -573,10 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When running large test suites, the traditional <code>RefreshDatabase</code> trait migrates and resets database transactions before every test, even for pure unit tests that only test formatting or calculations without touching SQL.</p>
-<p><code>LazilyRefreshDatabase</code> defers database initialization until a query is executed.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Using LazilyRefreshDatabase in Tests</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running large test suites, the traditional <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">RefreshDatabase</code> trait migrates and resets database transactions before every test, even for pure unit tests that only test formatting or calculations without touching SQL.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">LazilyRefreshDatabase</code> defers database initialization until a query is executed.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Using LazilyRefreshDatabase in Tests</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -632,9 +630,7 @@ class UserFeatureTest extends TestCase
         <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">assertModelExists</span>(<span class="hljs-variable">$user</span>);
     });
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Defer database connection setup until the first SQL query executes.</span></li><li class="leading-relaxed"><span class="align-middle">Significantly accelerates test suite runtime in hybrid unit/feature suites.</span></li><li class="leading-relaxed"><span class="align-middle">Drop-in replacement for `RefreshDatabase`.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Defer database connection setup until the first SQL query executes.</span></li><li class="leading-relaxed"><span class="align-middle">Significantly accelerates test suite runtime in hybrid unit/feature suites.</span></li><li class="leading-relaxed"><span class="align-middle">Drop-in replacement for <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">RefreshDatabase</code>.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

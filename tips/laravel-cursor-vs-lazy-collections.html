@@ -572,9 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When iterating millions of records, get() exhausts PHP memory limits. cursor() uses PDO cursors to fetch records one by one, while lazy() queries records in chunks while exposing a fluent LazyCollection.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When iterating millions of records, get() exhausts PHP memory limits. cursor() uses PDO cursors to fetch records one by one, while lazy() queries records in chunks while exposing a fluent LazyCollection.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -606,9 +605,7 @@ User::where(&#039;active&#039;, false)-&gt;lazy(1000)-&gt;each-&gt;archive();" a
 
 <span class="hljs-comment">// Lazy: queries in chunks of 1000 under the hood, provides LazyCollection API</span>
 <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;active&#x27;</span>, <span class="hljs-literal">false</span>)-&gt;<span class="hljs-title function_ invoke__">lazy</span>(<span class="hljs-number">1000</span>)-&gt;each-&gt;<span class="hljs-title function_ invoke__">archive</span>();</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">cursor() uses a single database connection cursor for minimal RAM usage</span></li><li class="leading-relaxed"><span class="align-middle">lazy() executes chunked subqueries under the hood and allows collection chaining</span></li><li class="leading-relaxed"><span class="align-middle">Both prevent loading full datasets into PHP memory at once</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">cursor() uses a single database connection cursor for minimal RAM usage</span></li><li class="leading-relaxed"><span class="align-middle">lazy() executes chunked subqueries under the hood and allows collection chaining</span></li><li class="leading-relaxed"><span class="align-middle">Both prevent loading full datasets into PHP memory at once</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

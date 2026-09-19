@@ -16,7 +16,7 @@
             <link>https://mrpunyapal.dev/tips/laravel-remember-token-revocation-signal</link>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-remember-token-revocation-signal</guid>
             <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Use Laravel's remembertoken as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.]]></description>
+            <description><![CDATA[Use Laravel's remember_token as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.]]></description>
             <content:encoded><![CDATA[<p>When building a multi-account switcher, the application needs a way to verify whether a previously saved account entry is still valid before switching into it.</p>
 <p>Before adding another token or revocation table to your database, consider whether Laravel already maintains state that can serve as the invalidation signal you need.</p>
 <p>Laravel&#39;s <code>remember_token</code> on the <code>users</code> table already rotates whenever a user logs out, resets their password, or updates their credentials. You can bind saved account entries to this existing token using an HMAC.</p>
@@ -833,7 +833,7 @@ body {
             <link>https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</link>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</guid>
             <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.]]></description>
+            <description><![CDATA[Use repository_dispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.]]></description>
             <content:encoded><![CDATA[<p>GitHub Actions workflows are scoped to a single repository by default. To run a workflow in another repository after merging a PR or pushing a commit, use GitHub&#39;s <code>repository_dispatch</code> API endpoint.</p>
 <h2>1. Configure the Target Repository Listener</h2>
 <p>Add <code>repository_dispatch</code> to the <code>on</code> block in the target repository workflow file:</p>
@@ -1453,7 +1453,7 @@ class AppServiceProvider extends ServiceProvider
             <link>https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier</link>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier</guid>
             <pubDate>Sat, 18 Apr 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.]]></description>
+            <description><![CDATA[strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.]]></description>
             <content:encoded><![CDATA[<p>A common security misconception in PHP is relying on strip_tags() to sanitize user-submitted rich text. It allows attribute payloads like onload= or javascript: URIs through if allowed tags are specified.</p>
 <pre><code class="language-php">use HTMLPurifier;
 
@@ -2819,7 +2819,7 @@ class AppServiceProvider extends ServiceProvider
             <link>https://mrpunyapal.dev/tips/php-rector-refactor-enums-pascal-case</link>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-rector-refactor-enums-pascal-case</guid>
             <pubDate>Mon, 20 May 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Automate renaming PHP 8.1+ enum cases from SNAKECASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script.]]></description>
+            <description><![CDATA[Automate renaming PHP 8.1+ enum cases from SNAKE_CASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script.]]></description>
             <content:encoded><![CDATA[<p>When PHP 8.1 backed enums were introduced, many projects originally named enum cases in uppercase snake case (<code>case PENDING_REVIEW;</code>), matching older class constant conventions. Modern PHP and Laravel coding style standards (including PER-CS and Laravel Pint) recommend PascalCase for enum cases (<code>case PendingReview;</code>).</p>
 <p>Renaming enum cases across a large production application manually is error-prone. By combining a custom Rector rule with an Artisan Blade updater, you can refactor all enum declarations, references, and Blade view usages automatically.</p>
 <h2>1. Custom Rector Rule for Enum Cases</h2>
@@ -3398,7 +3398,7 @@ if (Carbon::hasTestNow()) {
             <link>https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports</link>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports</guid>
             <pubDate>Mon, 06 Nov 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Use Livewire 3's #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.]]></description>
+            <description><![CDATA[Use Livewire 3's #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.]]></description>
             <content:encoded><![CDATA[<p>When triggering a file download or CSV export from a Livewire component, Livewire&#39;s default lifecycle runs the component&#39;s <code>render()</code> method after executing the action.</p>
 <p>If your <code>render()</code> method executes complex database queries or chart calculations, running <code>render()</code> during a binary file download wastes server CPU and memory since the HTML response is discarded in favor of the download stream.</p>
 <p>Livewire 3 provides the <code>#[Renderless]</code> attribute to execute an action without invoking <code>render()</code>.</p>

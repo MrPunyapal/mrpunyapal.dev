@@ -573,10 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When dispatching queue jobs that accept an Eloquent model instance, Laravel serializes the model. If the model had dozens of nested relationships eager-loaded in the controller, all those related models are serialized into the queue payload (Redis / Database), causing massive payload bloat.</p>
-<p>Calling <code>withoutRelations()</code> strips loaded relations before dispatching.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Basic Usage</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When dispatching queue jobs that accept an Eloquent model instance, Laravel serializes the model. If the model had dozens of nested relationships eager-loaded in the controller, all those related models are serialized into the queue payload (Redis / Database), causing massive payload bloat.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Calling <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">withoutRelations()</code> strips loaded relations before dispatching.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Basic Usage</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -608,8 +606,7 @@ public function checkout(Order $order)
     <span class="hljs-comment">// Strips loaded relations so only the primary key is serialized</span>
     <span class="hljs-title class_">GenerateUserInvoiceJob</span>::<span class="hljs-title function_ invoke__">dispatch</span>(<span class="hljs-variable">$order</span>-&gt;<span class="hljs-title function_ invoke__">withoutRelations</span>());
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">In Job Class Constructors</h3><p>Alternatively, clean relations in the constructor:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">In Job Class Constructors</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Alternatively, clean relations in the constructor:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -659,9 +656,7 @@ class ProcessOrderJob implements ShouldQueue
         <span class="hljs-variable language_">$this</span>-&gt;order = <span class="hljs-variable">$order</span>-&gt;<span class="hljs-title function_ invoke__">withoutRelations</span>();
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Reduces serialized queue payload sizes from megabytes to bytes.</span></li><li class="leading-relaxed"><span class="align-middle">Prevents `Redis command size exceeded` or long text column limits in `jobs` tables.</span></li><li class="leading-relaxed"><span class="align-middle">Queue workers re-hydrate fresh relationships when needed.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Reduces serialized queue payload sizes from megabytes to bytes.</span></li><li class="leading-relaxed"><span class="align-middle">Prevents <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Redis command size exceeded</code> or long text column limits in <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">jobs</code> tables.</span></li><li class="leading-relaxed"><span class="align-middle">Queue workers re-hydrate fresh relationships when needed.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

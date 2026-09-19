@@ -573,10 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When writing unit tests or developing features that rely on temporal calculations (such as subscription renewals, birthday promotions, trial expirations, or grace periods), relying on real system time creates flaky tests that fail depending on the time of day or month.</p>
-<p>Carbon provides <code>setTestNow()</code> to lock time to a specific instant, alongside <code>hasTestNow()</code> to verify whether the temporal state is currently mocked.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Freezing Time in Feature Logic</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When writing unit tests or developing features that rely on temporal calculations (such as subscription renewals, birthday promotions, trial expirations, or grace periods), relying on real system time creates flaky tests that fail depending on the time of day or month.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Carbon provides <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">setTestNow()</code> to lock time to a specific instant, alongside <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">hasTestNow()</code> to verify whether the temporal state is currently mocked.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Freezing Time in Feature Logic</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -626,8 +624,7 @@ Carbon::setTestNow(null);" aria-label="Copy code to clipboard">
 
 <span class="hljs-comment">// Reset back to real system time</span>
 <span class="hljs-title class_">Carbon</span>::<span class="hljs-title function_ invoke__">setTestNow</span>(<span class="hljs-literal">null</span>);</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Checking if Mock Time is Active with `hasTestNow()`</h3><p>In custom debug bars, health checks, or safety middleware, you can inspect whether the application is running under a simulated timestamp:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Checking if Mock Time is Active with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">hasTestNow()</code></h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In custom debug bars, health checks, or safety middleware, you can inspect whether the application is running under a simulated timestamp:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -651,8 +648,7 @@ if (Carbon::hasTestNow()) {
 <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Carbon</span>::<span class="hljs-title function_ invoke__">hasTestNow</span>()) {
     <span class="hljs-title function_ invoke__">logger</span>()-&gt;<span class="hljs-title function_ invoke__">warning</span>(<span class="hljs-string">&#x27;Application running with mocked Carbon time: &#x27;</span> . <span class="hljs-title class_">Carbon</span>::<span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">toDateTimeString</span>());
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Laravel Test Helpers Under the Hood</h3><p>Laravel&#39;s built-in testing helpers (<code>$this-&gt;travelTo()</code>, <code>$this-&gt;freezeTime()</code>) interact directly with <code>Carbon::setTestNow()</code>:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Laravel Test Helpers Under the Hood</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s built-in testing helpers (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$this-&gt;travelTo()</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$this-&gt;freezeTime()</code>) interact directly with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Carbon::setTestNow()</code>:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -688,9 +684,7 @@ if (Carbon::hasTestNow()) {
 
     <span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">hasExpiredTrial</span>())-&gt;<span class="hljs-title function_ invoke__">toBeTrue</span>();
 });</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Use `Carbon::setTestNow()` to freeze time during test executions and verify time-dependent edge cases reliably.</span></li><li class="leading-relaxed"><span class="align-middle">Always reset mock time with `Carbon::setTestNow(null)` in test teardown hooks if not using Laravel's test time helpers.</span></li><li class="leading-relaxed"><span class="align-middle">Use `Carbon::hasTestNow()` to check if time manipulation is currently active.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Carbon::setTestNow()</code> to freeze time during test executions and verify time-dependent edge cases reliably.</span></li><li class="leading-relaxed"><span class="align-middle">Always reset mock time with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Carbon::setTestNow(null)</code> in test teardown hooks if not using Laravel&#39;s test time helpers.</span></li><li class="leading-relaxed"><span class="align-middle">Use <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Carbon::hasTestNow()</code> to check if time manipulation is currently active.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

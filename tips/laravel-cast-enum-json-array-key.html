@@ -574,9 +574,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Laravel provides first-party enum casting for standard model columns:</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel provides first-party enum casting for standard model columns:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -596,9 +595,7 @@
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">protected</span> <span class="hljs-variable">$casts</span> = [
     <span class="hljs-string">&#x27;status&#x27;</span> =&gt; <span class="hljs-title class_">PostStatus</span>::<span class="hljs-variable language_">class</span>,
 ];</code></pre>
-</div><p>However, when an enum value is stored inside a nested JSON object or array column (such as <code>options-&gt;status</code> or <code>settings[&#39;status&#39;]</code>), Laravel&#39;s default column casting casts the entire column to an array, leaving the nested enum value as a raw string or integer.</p>
-<p>Using Eloquent&#39;s <code>Attribute</code> accessor and mutator, you can automatically hydrate and serialize nested enum instances.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Implementing the Nested Enum Cast</h3>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">However, when an enum value is stored inside a nested JSON object or array column (such as <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">options-&gt;status</code> or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">settings[&#039;status&#039;]</code>), Laravel&#39;s default column casting casts the entire column to an array, leaving the nested enum value as a raw string or integer.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Using Eloquent&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Attribute</code> accessor and mutator, you can automatically hydrate and serialize nested enum instances.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Implementing the Nested Enum Cast</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -680,8 +677,7 @@ class Post extends Model
         );
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Practical Usage</h3><p>You can now interact with nested enum properties as strongly typed objects:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Practical Usage</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">You can now interact with nested enum properties as strongly typed objects:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -719,9 +715,7 @@ $post-&gt;save();" aria-label="Copy code to clipboard">
 <span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>] = <span class="hljs-title class_">PostStatus</span>::<span class="hljs-variable constant_">Published</span>;
 <span class="hljs-variable">$post</span>-&gt;options = <span class="hljs-variable">$options</span>;
 <span class="hljs-variable">$post</span>-&gt;<span class="hljs-title function_ invoke__">save</span>();</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Use Eloquent `Attribute::make()` to hydrate and serialize enums nested inside JSON attributes.</span></li><li class="leading-relaxed"><span class="align-middle">Use `PostStatus::tryFrom()` in the getter to gracefully handle unexpected values without throwing exceptions.</span></li><li class="leading-relaxed"><span class="align-middle">Ensures strongly typed enum consistency even for schemaless or flexible JSON payloads.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use Eloquent <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Attribute::make()</code> to hydrate and serialize enums nested inside JSON attributes.</span></li><li class="leading-relaxed"><span class="align-middle">Use <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">PostStatus::tryFrom()</code> in the getter to gracefully handle unexpected values without throwing exceptions.</span></li><li class="leading-relaxed"><span class="align-middle">Ensures strongly typed enum consistency even for schemaless or flexible JSON payloads.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

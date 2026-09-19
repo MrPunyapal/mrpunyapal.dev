@@ -574,9 +574,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Applications frequently need to log key lifecycle actions for debugging and compliance. Instead of scattering logging logic across various middleware, commands, and service classes, Laravel Event Subscribers let you listen to multiple framework events from a single centralized class.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The ActivityLogEventSubscriber</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Applications frequently need to log key lifecycle actions for debugging and compliance. Instead of scattering logging logic across various middleware, commands, and service classes, Laravel Event Subscribers let you listen to multiple framework events from a single centralized class.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The ActivityLogEventSubscriber</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -690,8 +689,7 @@ class ActivityLogEventSubscriber
         ];
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Registering the Subscriber</h3><p>In Laravel 11+, register the subscriber inside your <code>AppServiceProvider::boot()</code> method (or <code>EventServiceProvider</code> in earlier versions):</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Registering the Subscriber</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In Laravel 11+, register the subscriber inside your <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">AppServiceProvider::boot()</code> method (or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">EventServiceProvider</code> in earlier versions):</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -731,9 +729,7 @@ class AppServiceProvider extends ServiceProvider
         <span class="hljs-title class_">Event</span>::<span class="hljs-title function_ invoke__">subscribe</span>(<span class="hljs-title class_">ActivityLogEventSubscriber</span>::<span class="hljs-variable language_">class</span>);
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Use an Event Subscriber to group related event handlers into a single cohesive class.</span></li><li class="leading-relaxed"><span class="align-middle">Listen to built-in framework events like `RequestHandled`, `CommandFinished`, and `ResponseReceived` for comprehensive audit logging.</span></li><li class="leading-relaxed"><span class="align-middle">Decouples monitoring and logging logic from core HTTP controllers and console commands.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use an Event Subscriber to group related event handlers into a single cohesive class.</span></li><li class="leading-relaxed"><span class="align-middle">Listen to built-in framework events like <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">RequestHandled</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">CommandFinished</code>, and <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">ResponseReceived</code> for comprehensive audit logging.</span></li><li class="leading-relaxed"><span class="align-middle">Decouples monitoring and logging logic from core HTTP controllers and console commands.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -829,7 +825,7 @@ class AppServiceProvider extends ServiceProvider
                 </h3>
 
                 <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
-                    Use Laravel&#039;s remembertoken as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.
+                    Use Laravel&#039;s remember_token as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.
                 </p>
             </div>
 

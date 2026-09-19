@@ -573,11 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>While <code>DB::listen()</code> measures individual query duration, an endpoint that executes 100 fast 5ms queries spends a massive 500ms in SQL without triggering single-query slow thresholds.</p>
-<p><code>DB::whenQueryingForLongerThan()</code> measures the cumulative total database time across an entire request.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Setting Cumulative Query Thresholds</h3><p>In <code>AppServiceProvider::boot()</code>:</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">While <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">DB::listen()</code> measures individual query duration, an endpoint that executes 100 fast 5ms queries spends a massive 500ms in SQL without triggering single-query slow thresholds.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">DB::whenQueryingForLongerThan()</code> measures the cumulative total database time across an entire request.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Setting Cumulative Query Thresholds</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">AppServiceProvider::boot()</code>:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -631,9 +628,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Measures total aggregate SQL duration per HTTP request lifecycle.</span></li><li class="leading-relaxed"><span class="align-middle">Catches cumulative N+1 query regressions that individual query thresholds miss.</span></li><li class="leading-relaxed"><span class="align-middle">Accepts `CarbonInterval` instances for clean threshold definitions.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Measures total aggregate SQL duration per HTTP request lifecycle.</span></li><li class="leading-relaxed"><span class="align-middle">Catches cumulative N+1 query regressions that individual query thresholds miss.</span></li><li class="leading-relaxed"><span class="align-middle">Accepts <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">CarbonInterval</code> instances for clean threshold definitions.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

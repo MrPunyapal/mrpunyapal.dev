@@ -574,14 +574,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When managing projects that share common libraries, documentation sets, microservices, or reusable UI components, you frequently need to embed one Git repository inside another.</p>
-<p>Git provides two distinct mechanisms to handle this:</p>
-<ul>
-<li class="leading-relaxed"><span class="align-middle">**Git Submodules**: Keep the external repository strictly independent; the parent repository only stores a pointer to a specific commit SHA.</span></li><li class="leading-relaxed"><span class="align-middle">**Git Subtrees**: Merge the external repository files and commit history directly into a subdirectory of the parent repository.</span></li></ul>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Git Submodules: Independent Pointer</h3><p>With submodules, the external project remains an entirely separate repository. The parent repository does not store the files directly; it only tracks the submodule URL and a commit hash in <code>.gitmodules</code>.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When managing projects that share common libraries, documentation sets, microservices, or reusable UI components, you frequently need to embed one Git repository inside another.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Git provides two distinct mechanisms to handle this:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Git Submodules</strong>: Keep the external repository strictly independent; the parent repository only stores a pointer to a specific commit SHA.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Git Subtrees</strong>: Merge the external repository files and commit history directly into a subdirectory of the parent repository.</span></li></ul><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Git Submodules: Independent Pointer</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">With submodules, the external project remains an entirely separate repository. The parent repository does not store the files directly; it only tracks the submodule URL and a commit hash in <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.gitmodules</code>.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -627,8 +621,7 @@ git submodule add https://github.com/example/shared-lib.git packages/shared-lib
 
 <span class="hljs-comment"># Stage and commit the .gitmodules and submodule reference</span>
 git commit -m <span class="hljs-string">&quot;Add shared-lib submodule&quot;</span></code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Cloning a Repository with Submodules</h4><p>When team members clone a repository containing submodules, standard <code>git clone</code> leaves submodule directories empty. They must pass the <code>--recurse-submodules</code> flag:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Cloning a Repository with Submodules</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When team members clone a repository containing submodules, standard <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git clone</code> leaves submodule directories empty. They must pass the <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">--recurse-submodules</code> flag:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -652,8 +645,7 @@ git <span class="hljs-built_in">clone</span> --recurse-submodules https://github
 
 <span class="hljs-comment"># Or initialize submodules in an existing clone</span>
 git submodule update --init --recursive</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Updating a Submodule</h4><p>To pull the latest changes from the submodule remote branch and update the parent commit pointer:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Updating a Submodule</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To pull the latest changes from the submodule remote branch and update the parent commit pointer:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -673,9 +665,7 @@ git commit -m &quot;Update shared-lib to latest commit&quot;" aria-label="Copy c
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash">git submodule update --remote packages/shared-lib
 git add packages/shared-lib
 git commit -m <span class="hljs-string">&quot;Update shared-lib to latest commit&quot;</span></code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Git Subtrees: In-Tree Merged History</h3><p>With subtrees, the external repository&#39;s files are committed directly into your repository. Collaborators can clone, pull, and edit files normally without needing extra Git flags or submodule commands.</p>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Git Subtrees: In-Tree Merged History</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">With subtrees, the external repository&#39;s files are committed directly into your repository. Collaborators can clone, pull, and edit files normally without needing extra Git flags or submodule commands.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -721,8 +711,7 @@ git remote add shared-lib https://github.com/example/shared-lib.git
 
 <span class="hljs-comment"># 2. Add the subtree into packages/shared-lib using --squash</span>
 git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Pulling Upstream Updates</h4><p>When the external repository publishes new commits, pull them into the parent project:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Pulling Upstream Updates</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When the external repository publishes new commits, pull them into the parent project:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -738,8 +727,7 @@ git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pr
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash">git subtree pull --prefix=packages/shared-lib shared-lib main --squash</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Pushing Local Changes Upstream</h4><p>If you make modifications inside <code>packages/shared-lib</code> within the parent repo and want to push those commits back to the original repository:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Pushing Local Changes Upstream</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If you make modifications inside <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">packages/shared-lib</code> within the parent repo and want to push those commits back to the original repository:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -755,8 +743,7 @@ git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pr
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash">git subtree push --prefix=packages/shared-lib shared-lib main</code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">3. Side-by-Side Comparison</h3><table>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">3. Side-by-Side Comparison</h3><div class="overflow-x-auto my-6 rounded-xl border border-slate-200 dark:border-slate-800"><table class="w-full text-left border-collapse">
 <thead>
 <tr>
 <th>Feature</th>
@@ -766,13 +753,13 @@ git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pr
 </thead>
 <tbody><tr>
 <td><strong>Storage in Parent Repo</strong></td>
-<td>Only commit SHA reference (<code>.gitmodules</code>)</td>
+<td>Only commit SHA reference (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">.gitmodules</code>)</td>
 <td>Full file contents and history</td>
 </tr>
 <tr>
 <td><strong>Cloning Experience</strong></td>
-<td>Requires <code>--recurse-submodules</code></td>
-<td>Normal <code>git clone</code> (no extra flags)</td>
+<td>Requires <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">--recurse-submodules</code></td>
+<td>Normal <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git clone</code> (no extra flags)</td>
 </tr>
 <tr>
 <td><strong>Developer Complexity</strong></td>
@@ -792,7 +779,7 @@ git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pr
 <tr>
 <td><strong>Pushing Changes Back</strong></td>
 <td>Direct commits inside submodule directory</td>
-<td>Requires <code>git subtree push</code> command</td>
+<td>Requires <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git subtree push</code> command</td>
 </tr>
 <tr>
 <td><strong>Third-Party Dependencies</strong></td>
@@ -800,20 +787,7 @@ git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pr
 <td>Ideal for shared code you actively edit</td>
 </tr>
 </tbody></table>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">4. Which One Should You Choose?</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Choose Git Submodules if:</h4><ul>
-<li class="leading-relaxed"><span class="align-middle">The embedded repository has its own strict release cycle and version tags.</span></li><li class="leading-relaxed"><span class="align-middle">You want the parent repository to lock onto an exact commit hash.</span></li><li class="leading-relaxed"><span class="align-middle">Team members and CI pipelines are comfortable initializing submodules (`--recurse-submodules`).</span></li><li class="leading-relaxed"><span class="align-middle">The embedded project is large and you want to keep repository clone sizes small.</span></li></ul>
-<h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Choose Git Subtrees if:</h4><ul>
-<li class="leading-relaxed"><span class="align-middle">You want a friction-free clone experience for team members and contributors.</span></li><li class="leading-relaxed"><span class="align-middle">You want the external code to behave like ordinary files inside the repository.</span></li><li class="leading-relaxed"><span class="align-middle">You frequently edit the embedded files directly alongside your application code.</span></li><li class="leading-relaxed"><span class="align-middle">You want to avoid detached HEAD states and submodule initialization errors in CI.</span></li></ul>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">5. Common Gotchas</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Submodule Gotchas:</h4><ul>
-<li class="leading-relaxed"><span class="align-middle">**Empty Folders on Clone**: Forgetting `--recurse-submodules` leaves submodule folders blank.</span></li><li class="leading-relaxed"><span class="align-middle">**Uncommitted Pointer Updates**: Making changes inside the submodule folder without committing the updated reference in the parent repository causes inconsistent states between team members.</span></li><li class="leading-relaxed"><span class="align-middle">**Detached HEAD**: By default, submodules check out detached commits rather than tracking branches.</span></li></ul>
-<h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Subtree Gotchas:</h4><ul>
-<li class="leading-relaxed"><span class="align-middle">**Longer Commands**: Subtree syntax (`--prefix`, `--squash`, remote names) requires precise terminal commands.</span></li><li class="leading-relaxed"><span class="align-middle">**Repo Bloat**: Importing large repositories with long commit histories increases the size of your parent repository.</span></li></ul>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Use **Git Submodules** when you need strict commit pinning and want the dependency to remain an isolated external project.</span></li><li class="leading-relaxed"><span class="align-middle">Use **Git Subtrees** when you want shared code to live directly in your repository with direct cloning for collaborators.</span></li></ul>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">4. Which One Should You Choose?</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Choose Git Submodules if:</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">The embedded repository has its own strict release cycle and version tags.</span></li><li class="leading-relaxed"><span class="align-middle">You want the parent repository to lock onto an exact commit hash.</span></li><li class="leading-relaxed"><span class="align-middle">Team members and CI pipelines are comfortable initializing submodules (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">--recurse-submodules</code>).</span></li><li class="leading-relaxed"><span class="align-middle">The embedded project is large and you want to keep repository clone sizes small.</span></li></ul><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Choose Git Subtrees if:</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">You want a friction-free clone experience for team members and contributors.</span></li><li class="leading-relaxed"><span class="align-middle">You want the external code to behave like ordinary files inside the repository.</span></li><li class="leading-relaxed"><span class="align-middle">You frequently edit the embedded files directly alongside your application code.</span></li><li class="leading-relaxed"><span class="align-middle">You want to avoid detached HEAD states and submodule initialization errors in CI.</span></li></ul><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">5. Common Gotchas</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Submodule Gotchas:</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Empty Folders on Clone</strong>: Forgetting <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">--recurse-submodules</code> leaves submodule folders blank.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Uncommitted Pointer Updates</strong>: Making changes inside the submodule folder without committing the updated reference in the parent repository causes inconsistent states between team members.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Detached HEAD</strong>: By default, submodules check out detached commits rather than tracking branches.</span></li></ul><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Subtree Gotchas:</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Longer Commands</strong>: Subtree syntax (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">--prefix</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">--squash</code>, remote names) requires precise terminal commands.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Repo Bloat</strong>: Importing large repositories with long commit histories increases the size of your parent repository.</span></li></ul><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Use <strong>Git Submodules</strong> when you need strict commit pinning and want the dependency to remain an isolated external project.</span></li><li class="leading-relaxed"><span class="align-middle">Use <strong>Git Subtrees</strong> when you want shared code to live directly in your repository with direct cloning for collaborators.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -958,7 +932,7 @@ git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pr
                 </h3>
 
                 <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
-                    Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.
+                    Use repository_dispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.
                 </p>
             </div>
 

@@ -572,9 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Executing UPDATE table WHERE id IN (SELECT id FROM table) throws MySQL Error 1093. Work around this by wrapping the subquery in an intermediate derived table alias.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Executing UPDATE table WHERE id IN (SELECT id FROM table) throws MySQL Error 1093. Work around this by wrapping the subquery in an intermediate derived table alias.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -608,9 +607,7 @@ WHERE id IN (
         <span class="hljs-keyword">SELECT</span> id <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> last_login <span class="hljs-operator">&lt;</span> <span class="hljs-string">&#x27;2023-01-01&#x27;</span>
     ) <span class="hljs-keyword">AS</span> temp_users
 );</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">MySQL forbids modifying a target table used directly in a subquery clause</span></li><li class="leading-relaxed"><span class="align-middle">Wrapping subquery in SELECT * FROM (...) AS alias resolves Error 1093</span></li><li class="leading-relaxed"><span class="align-middle">Alternative: Use JOIN syntax for multi-table updates</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">MySQL forbids modifying a target table used directly in a subquery clause</span></li><li class="leading-relaxed"><span class="align-middle">Wrapping subquery in SELECT * FROM (...) AS alias resolves Error 1093</span></li><li class="leading-relaxed"><span class="align-middle">Alternative: Use JOIN syntax for multi-table updates</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

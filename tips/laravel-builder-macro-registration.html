@@ -572,9 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Laravel&#39;s <code>Macroable</code> trait lets you add methods to the Builder at runtime. Register them in a service provider&#39;s <code>boot()</code> method and they become available on any query.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Macroable</code> trait lets you add methods to the Builder at runtime. Register them in a service provider&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">boot()</code> method and they become available on any query.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -602,8 +601,7 @@ Builder::macro(&#039;useIndex&#039;, function (string $table, string $index) {
 <span class="hljs-title class_">Builder</span>::<span class="hljs-title function_ invoke__">macro</span>(<span class="hljs-string">&#x27;useIndex&#x27;</span>, function (<span class="hljs-keyword">string</span> <span class="hljs-variable">$table</span>, <span class="hljs-keyword">string</span> <span class="hljs-variable">$index</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-keyword">from</span>(DB::<span class="hljs-title function_ invoke__">raw</span>(<span class="hljs-string">&quot;<span class="hljs-subst">{$table}</span> WITH (INDEX(<span class="hljs-subst">{$index}</span>))&quot;</span>));
 });</code></pre>
-</div><p>Now any model can hint a specific index:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Now any model can hint a specific index:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -629,9 +627,7 @@ $orders = Order::query()
     -&gt;<span class="hljs-title function_ invoke__">useIndex</span>(<span class="hljs-string">&#x27;orders&#x27;</span>, <span class="hljs-string">&#x27;orders_status_created_index&#x27;</span>)
     -&gt;<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;status&#x27;</span>, <span class="hljs-string">&#x27;pending&#x27;</span>)
     -&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">Register on `Illuminate\Database\Eloquent\Builder` for Eloquent-level macros</span></li><li class="leading-relaxed"><span class="align-middle">The closure receives `$this` bound to the current builder instance</span></li><li class="leading-relaxed"><span class="align-middle">Useful for performance hints that aren't covered by the default query builder API</span></li><li class="leading-relaxed"><span class="align-middle">**Note:** The `WITH (INDEX(...))` syntax used above is specific to **Microsoft SQL Server (T-SQL)**. MySQL uses `FORCE INDEX(...)` and PostgreSQL relies on the query planner (no direct index hints). Adjust the macro body to match your database engine.</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Register on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Illuminate\Database\Eloquent\Builder</code> for Eloquent-level macros</span></li><li class="leading-relaxed"><span class="align-middle">The closure receives <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$this</code> bound to the current builder instance</span></li><li class="leading-relaxed"><span class="align-middle">Useful for performance hints that aren&#39;t covered by the default query builder API</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Note:</strong> The <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">WITH (INDEX(...))</code> syntax used above is specific to <strong>Microsoft SQL Server (T-SQL)</strong>. MySQL uses <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">FORCE INDEX(...)</code> and PostgreSQL relies on the query planner (no direct index hints). Adjust the macro body to match your database engine.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

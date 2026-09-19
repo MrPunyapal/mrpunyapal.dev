@@ -572,9 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Queue workers set to poll databases without sleep configs execute continuous SELECT queries, driving database CPU usage up. Configure appropriate sleep intervals or use Redis queue drivers.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Queue workers set to poll databases without sleep configs execute continuous SELECT queries, driving database CPU usage up. Configure appropriate sleep intervals or use Redis queue drivers.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -592,9 +591,7 @@ php artisan queue:work --sleep=3 --tries=3 --timeout=90" aria-label="Copy code t
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash"><span class="hljs-comment"># Wait 3 seconds when queue is empty before polling again</span>
 php artisan queue:work --<span class="hljs-built_in">sleep</span>=3 --tries=3 --<span class="hljs-built_in">timeout</span>=90</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">--sleep=3 pauses worker polling when no jobs are available</span></li><li class="leading-relaxed"><span class="align-middle">Reduces CPU usage and database query loads on idle queue workers</span></li><li class="leading-relaxed"><span class="align-middle">Redis queue driver uses blocking pop operations for instant zero-polling dispatch</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">--sleep=3 pauses worker polling when no jobs are available</span></li><li class="leading-relaxed"><span class="align-middle">Reduces CPU usage and database query loads on idle queue workers</span></li><li class="leading-relaxed"><span class="align-middle">Redis queue driver uses blocking pop operations for instant zero-polling dispatch</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

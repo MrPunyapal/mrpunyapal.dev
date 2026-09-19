@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trigger a GitHub Actions Workflow Across Repositories - Git | Punyapal Shah</title>
-    <meta name="description" content="Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.">
+    <meta name="description" content="Use repository_dispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.">
     <meta name="author" content="Punyapal Shah">
     <link rel="canonical" href="https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch">
 
@@ -12,7 +12,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch">
     <meta property="og:title" content="Trigger a GitHub Actions Workflow Across Repositories - Git | Punyapal Shah">
-    <meta property="og:description" content="Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.">
+    <meta property="og:description" content="Use repository_dispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.">
     <meta property="og:image" content="https://mrpunyapal.dev/og/tips/github-actions-cross-repo-workflow-dispatch.png">
     <meta property="og:site_name" content="Punyapal Shah">
     <meta property="article:published_time" content="2026-08-11">
@@ -23,7 +23,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Trigger a GitHub Actions Workflow Across Repositories - Git | Punyapal Shah">
-    <meta name="twitter:description" content="Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.">
+    <meta name="twitter:description" content="Use repository_dispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.">
     <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/github-actions-cross-repo-workflow-dispatch.png">
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,7 +110,7 @@
         "@id": "https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch"
       },
       "headline": "Trigger a GitHub Actions Workflow Across Repositories",
-      "description": "Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.",
+      "description": "Use repository_dispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.",
       "image": "https://mrpunyapal.dev/og/tips/github-actions-cross-repo-workflow-dispatch.png",
       "url": "https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch",
       "datePublished": "2026-08-11",
@@ -568,15 +568,13 @@
                 <!-- Monospace Summary Callout Box -->
                 
                 <div class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
-                    Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.
+                    Use repository_dispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.
                 </div>
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>GitHub Actions workflows are scoped to a single repository by default. To run a workflow in another repository after merging a PR or pushing a commit, use GitHub&#39;s <code>repository_dispatch</code> API endpoint.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Configure the Target Repository Listener</h3><p>Add <code>repository_dispatch</code> to the <code>on</code> block in the target repository workflow file:</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">GitHub Actions workflows are scoped to a single repository by default. To run a workflow in another repository after merging a PR or pushing a commit, use GitHub&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">repository_dispatch</code> API endpoint.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Configure the Target Repository Listener</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Add <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">repository_dispatch</code> to the <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">on</code> block in the target repository workflow file:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -624,8 +622,7 @@ jobs:
     <span class="hljs-attr">steps:</span>
       <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v4</span>
       <span class="hljs-bullet">-</span> <span class="hljs-attr">run:</span> <span class="hljs-string">echo</span> <span class="hljs-string">&quot;Build triggered&quot;</span></code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Configure the Source Repository Dispatcher</h3><p>In the source repository, add a workflow step that sends a POST request to GitHub&#39;s dispatches endpoint:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Configure the Source Repository Dispatcher</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In the source repository, add a workflow step that sends a POST request to GitHub&#39;s dispatches endpoint:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -689,11 +686,7 @@ jobs:
             -H &quot;Accept: application/vnd.github.v3+json&quot; \
             https://api.github.com/repos/OWNER/TARGET-REPO/dispatches \
             -d &#x27;{&quot;event_type&quot;: &quot;content-updated&quot;}&#x27;</span></code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">3. Create and Assign the Access Token</h3><ol>
-<li class="leading-relaxed"><span class="align-middle">Create a Fine-Grained Personal Access Token under GitHub Developer Settings.</span></li><li class="leading-relaxed"><span class="align-middle">Select the target repository under **Repository Access**.</span></li><li class="leading-relaxed"><span class="align-middle">Set **Contents** permission to **Read and write**.</span></li><li class="leading-relaxed"><span class="align-middle">Save the token as `WEBSITE_DISPATCH_TOKEN` in the source repository's Actions Secrets.</span></li></ol>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Considerations</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">The `event_type` string in the payload must match the array value under `types: [...]`.</span></li><li class="leading-relaxed"><span class="align-middle">Always pass `--fail --show-error` to `curl` so HTTP errors exit with code 1 instead of failing silently.</span></li><li class="leading-relaxed"><span class="align-middle">Fine-grained tokens limit dispatch access strictly to the targeted repository.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">3. Create and Assign the Access Token</h3><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Create a Fine-Grained Personal Access Token under GitHub Developer Settings.</span></li><li class="leading-relaxed"><span class="align-middle">Select the target repository under <strong>Repository Access</strong>.</span></li><li class="leading-relaxed"><span class="align-middle">Set <strong>Contents</strong> permission to <strong>Read and write</strong>.</span></li><li class="leading-relaxed"><span class="align-middle">Save the token as <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">WEBSITE_DISPATCH_TOKEN</code> in the source repository&#39;s Actions Secrets.</span></li></ol><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Considerations</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">The <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">event_type</code> string in the payload must match the array value under <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">types: [...]</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Always pass <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">--fail --show-error</code> to <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">curl</code> so HTTP errors exit with code 1 instead of failing silently.</span></li><li class="leading-relaxed"><span class="align-middle">Fine-grained tokens limit dispatch access strictly to the targeted repository.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

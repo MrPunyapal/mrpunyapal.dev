@@ -573,10 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When your application partitions data across multiple database connections (such as separating analytics logs, multi-tenant tenants, or payment microservices onto different database servers), standard SQL joins between connection tables fail.</p>
-<p>Eloquent&#39;s <code>whereHas()</code> directly handles relations across different database connections.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Defining Models on Separate Connections</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When your application partitions data across multiple database connections (such as separating analytics logs, multi-tenant tenants, or payment microservices onto different database servers), standard SQL joins between connection tables fail.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Eloquent&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">whereHas()</code> directly handles relations across different database connections.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Defining Models on Separate Connections</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -656,9 +654,7 @@ $activeTenants = Tenant::whereHas(&#039;activityLogs&#039;, function ($query) {
 <span class="hljs-variable">$activeTenants</span> = <span class="hljs-title class_">Tenant</span>::<span class="hljs-title function_ invoke__">whereHas</span>(<span class="hljs-string">&#x27;activityLogs&#x27;</span>, function (<span class="hljs-variable">$query</span>) {
     <span class="hljs-variable">$query</span>-&gt;<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-string">&#x27;&gt;=&#x27;</span>, <span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">subDays</span>(<span class="hljs-number">7</span>));
 })-&gt;<span class="hljs-title function_ invoke__">get</span>();</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Enables relational querying even when models reside on distinct database servers.</span></li><li class="leading-relaxed"><span class="align-middle">Uses `WHERE EXISTS` queries scoped by database name.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates manual cross-database ID querying loops.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Enables relational querying even when models reside on distinct database servers.</span></li><li class="leading-relaxed"><span class="align-middle">Uses <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">WHERE EXISTS</code> queries scoped by database name.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates manual cross-database ID querying loops.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

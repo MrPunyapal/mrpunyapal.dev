@@ -572,9 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Hiding an edit button using @can or v-if only modifies visual presentation. Attackers can submit HTTP requests directly to backend endpoints. Always enforce authorization logic in backend controllers or form requests.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Hiding an edit button using @can or v-if only modifies visual presentation. Attackers can submit HTTP requests directly to backend endpoints. Always enforce authorization logic in backend controllers or form requests.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -610,9 +609,7 @@ public function update(UpdatePostRequest $request, Post $post)
     <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">authorize</span>(<span class="hljs-string">&#x27;update&#x27;</span>, <span class="hljs-variable">$post</span>); <span class="hljs-comment">// Enforces server-side security</span>
     <span class="hljs-variable">$post</span>-&gt;<span class="hljs-title function_ invoke__">update</span>(<span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">validated</span>());
 }</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">UI directive checks like @can are user-experience features, not security guards</span></li><li class="leading-relaxed"><span class="align-middle">Always enforce $this->authorize() or Policy checks in backend controllers</span></li><li class="leading-relaxed"><span class="align-middle">Prevents unauthorized HTTP request payload tampering</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">UI directive checks like @can are user-experience features, not security guards</span></li><li class="leading-relaxed"><span class="align-middle">Always enforce $this-&gt;authorize() or Policy checks in backend controllers</span></li><li class="leading-relaxed"><span class="align-middle">Prevents unauthorized HTTP request payload tampering</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -700,7 +697,7 @@ public function update(UpdatePostRequest $request, Post $post)
                 </h3>
 
                 <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
-                    Use Laravel&#039;s remembertoken as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.
+                    Use Laravel&#039;s remember_token as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.
                 </p>
             </div>
 

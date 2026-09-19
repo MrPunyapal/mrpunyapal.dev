@@ -573,12 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When a database query fails, Laravel&#39;s <code>QueryException</code> message can include the values that were bound to the query.</p>
-<p>That can be useful while debugging, but it can also mean sensitive values end up in logs, error trackers, or other places where exception messages are stored.</p>
-<p>Laravel 13.27 adds an option to mask those bindings in exception messages.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Before</h3><p>A failed query can produce an exception message containing the actual value:</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When a database query fails, Laravel&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">QueryException</code> message can include the values that were bound to the query.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">That can be useful while debugging, but it can also mean sensitive values end up in logs, error trackers, or other places where exception messages are stored.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel 13.27 adds an option to mask those bindings in exception messages.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Before</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A failed query can produce an exception message containing the actual value:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -594,9 +590,7 @@
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">SQL: select * from `users` where `email` = &#x27;john@example.com&#x27;</code></pre>
-</div><p>That means the query&#39;s bound values become part of the exception message.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Laravel 13.27</h3><p>Enable binding masking on your database connection:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">That means the query&#39;s bound values become part of the exception message.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Laravel 13.27</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Enable binding masking on your database connection:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -628,8 +622,7 @@
         <span class="hljs-string">&#x27;mask_bindings_in_exception_messages&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;DB_MASK_BINDINGS&#x27;</span>, <span class="hljs-literal">false</span>),
     ],
 ];</code></pre>
-</div><p>Now the exception message keeps the placeholder instead of interpolating the binding:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Now the exception message keeps the placeholder instead of interpolating the binding:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -645,9 +638,7 @@
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">SQL: select * from `users` where `email` = ?</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The bindings are still available</h3><p>Masking the exception message does not remove the bindings from the query.</p>
-<p>You can still access them separately through:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The bindings are still available</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Masking the exception message does not remove the bindings from the query.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">You can still access them separately through:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -663,8 +654,7 @@
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$exception</span>-&gt;<span class="hljs-title function_ invoke__">getBindings</span>();</code></pre>
-</div><p>This gives you a useful separation:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This gives you a useful separation:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -692,14 +682,7 @@ SQL with ? placeholders
 Exception bindings
     ↓
 Actual values</code></pre>
-</div><p>So your error message can avoid exposing query values while the actual bindings remain available when you explicitly need them.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Why this is useful</h3><p>This can be especially useful when exceptions are sent to:</p>
-<ul>
-<li class="leading-relaxed"><span class="align-middle">application logs</span></li><li class="leading-relaxed"><span class="align-middle">error tracking services</span></li><li class="leading-relaxed"><span class="align-middle">APM systems</span></li><li class="leading-relaxed"><span class="align-middle">failed job records</span></li><li class="leading-relaxed"><span class="align-middle">other external monitoring systems</span></li></ul>
-<p>If query values can contain sensitive or personal information, keeping them out of the exception message reduces the chance of accidentally exposing them through your error reporting pipeline.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Takeaway</h3><p>Laravel 13.27 gives you more control over what appears in <code>QueryException</code> messages.</p>
-<p>If you don&#39;t need actual query bindings embedded in your exception messages, enable:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">So your error message can avoid exposing query values while the actual bindings remain available when you explicitly need them.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Why this is useful</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">This can be especially useful when exceptions are sent to:</p><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">application logs</span></li><li class="leading-relaxed"><span class="align-middle">error tracking services</span></li><li class="leading-relaxed"><span class="align-middle">APM systems</span></li><li class="leading-relaxed"><span class="align-middle">failed job records</span></li><li class="leading-relaxed"><span class="align-middle">other external monitoring systems</span></li></ul><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If query values can contain sensitive or personal information, keeping them out of the exception message reduces the chance of accidentally exposing them through your error reporting pipeline.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Takeaway</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel 13.27 gives you more control over what appears in <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">QueryException</code> messages.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">If you don&#39;t need actual query bindings embedded in your exception messages, enable:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -715,8 +698,7 @@ Actual values</code></pre>
         </button>
     </div>
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-string">&#x27;mask_bindings_in_exception_messages&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">env</span>(<span class="hljs-string">&#x27;DB_MASK_BINDINGS&#x27;</span>, <span class="hljs-literal">false</span>),</code></pre>
-</div><p>You still have access to the bindings separately through <code>getBindings()</code>.</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">You still have access to the bindings separately through <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">getBindings()</code>.</p>
                 </div>
 
                 <!-- Tags & Share Row -->

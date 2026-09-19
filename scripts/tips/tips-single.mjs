@@ -388,7 +388,7 @@ export function generateSingleTipPage(tip, allTips, rootDir) {
                 ` : ''}
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
                     ${renderedBody}
                 </div>
 

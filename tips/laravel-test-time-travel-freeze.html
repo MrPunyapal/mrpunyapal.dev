@@ -572,9 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Using sleep() in tests slows down execution suites significantly. Laravel&#39;s time travel helpers let you manipulate Carbon&#39;s internal clock instantaneously without real-world delays.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Using sleep() in tests slows down execution suites significantly. Laravel&#39;s time travel helpers let you manipulate Carbon&#39;s internal clock instantaneously without real-world delays.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -604,9 +603,7 @@
 
     <span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">fresh</span>()-&gt;<span class="hljs-title function_ invoke__">hasExpiredTrial</span>())-&gt;<span class="hljs-title function_ invoke__">toBeTrue</span>();
 });</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">Replaces slow real-time sleep() calls with instant mock clock jumps</span></li><li class="leading-relaxed"><span class="align-middle">travel(15)->days() moves time forward dynamically</span></li><li class="leading-relaxed"><span class="align-middle">freezeTime() locks current time to prevent test flickering</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Replaces slow real-time sleep() calls with instant mock clock jumps</span></li><li class="leading-relaxed"><span class="align-middle">travel(15)-&gt;days() moves time forward dynamically</span></li><li class="leading-relaxed"><span class="align-middle">freezeTime() locks current time to prevent test flickering</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

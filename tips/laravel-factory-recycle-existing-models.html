@@ -573,10 +573,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When generating complex test hierarchies (such as creating 10 Posts, each belonging to the same User, or multiple Orders for an existing Customer), child factories create duplicate parent models by default.</p>
-<p><code>recycle()</code> instructs factories to reuse existing model instances rather than creating new ones.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Reusing Existing Models</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When generating complex test hierarchies (such as creating 10 Posts, each belonging to the same User, or multiple Orders for an existing Customer), child factories create duplicate parent models by default.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">recycle()</code> instructs factories to reuse existing model instances rather than creating new ones.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Reusing Existing Models</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -610,8 +608,7 @@ $posts = Post::factory()
     -&gt;<span class="hljs-title function_ invoke__">count</span>(<span class="hljs-number">5</span>)
     -&gt;<span class="hljs-title function_ invoke__">recycle</span>(<span class="hljs-variable">$user</span>)
     -&gt;<span class="hljs-title function_ invoke__">create</span>();</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Recycling Collections of Models</h3><p>Pass a collection of models to distribute them across child instances:</p>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Recycling Collections of Models</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Pass a collection of models to distribute them across child instances:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -639,9 +636,7 @@ $posts = Post::factory()
     -&gt;<span class="hljs-title function_ invoke__">count</span>(<span class="hljs-number">20</span>)
     -&gt;<span class="hljs-title function_ invoke__">recycle</span>(<span class="hljs-variable">$users</span>)
     -&gt;<span class="hljs-title function_ invoke__">create</span>();</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">Prevents duplicate parent records from cluttering test databases.</span></li><li class="leading-relaxed"><span class="align-middle">Speeds up test execution times by reducing total database insertions.</span></li><li class="leading-relaxed"><span class="align-middle">Accepts single model instances or model collections.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Prevents duplicate parent records from cluttering test databases.</span></li><li class="leading-relaxed"><span class="align-middle">Speeds up test execution times by reducing total database insertions.</span></li><li class="leading-relaxed"><span class="align-middle">Accepts single model instances or model collections.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

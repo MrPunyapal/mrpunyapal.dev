@@ -572,11 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>When processing multi-stage workflows (such as order checkout validation or user onboarding steps), controller actions frequently accumulate deeply nested <code>if</code> statements.</p>
-<p>Laravel&#39;s <code>Pipeline</code> facade passes an object sequentially through dedicated pipe classes.</p>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Pipeline Runner</h3>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When processing multi-stage workflows (such as order checkout validation or user onboarding steps), controller actions frequently accumulate deeply nested <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">if</code> statements.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Pipeline</code> facade passes an object sequentially through dedicated pipe classes.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Pipeline Runner</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -616,9 +613,7 @@ $order = Pipeline::send($draftOrder)
         <span class="hljs-title class_">CalculateTax</span>::<span class="hljs-variable language_">class</span>,
     ])
     -&gt;<span class="hljs-title function_ invoke__">thenReturn</span>();</code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Anatomy of a Pipe Class</h3><p>Each pipe implements a <code>handle()</code> method accepting the passable object and a <code>$next</code> closure:</p>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Anatomy of a Pipe Class</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Each pipe implements a <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">handle()</code> method accepting the passable object and a <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$next</code> closure:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -666,10 +661,7 @@ class ApplyCoupon
         <span class="hljs-keyword">return</span> <span class="hljs-variable">$next</span>(<span class="hljs-variable">$order</span>);
     }
 }</code></pre>
-</div><hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">**Single Responsibility**: Each step is an isolated class with one clear focus.</span></li><li class="leading-relaxed"><span class="align-middle">**Easy Reordering**: Add, remove, or reorder pipeline stages without touching adjacent logic.</span></li><li class="leading-relaxed"><span class="align-middle">**Testability**: Test individual pipeline steps independently with unit tests.</span></li></ul>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Single Responsibility</strong>: Each step is an isolated class with one clear focus.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Easy Reordering</strong>: Add, remove, or reorder pipeline stages without touching adjacent logic.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Testability</strong>: Test individual pipeline steps independently with unit tests.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

@@ -572,9 +572,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>Updating records inside chunk() modifies the result set, causing offset pagination to skip every second chunk. Use chunkById() or lazyById() when updating query columns.</p>
-
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Updating records inside chunk() modifies the result set, causing offset pagination to skip every second chunk. Use chunkById() or lazyById() when updating query columns.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -610,9 +609,7 @@ User::where(&#039;processed&#039;, false)-&gt;chunkById(100, function ($users) {
 <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;processed&#x27;</span>, <span class="hljs-literal">false</span>)-&gt;<span class="hljs-title function_ invoke__">chunkById</span>(<span class="hljs-number">100</span>, function (<span class="hljs-variable">$users</span>) {
     <span class="hljs-variable">$users</span>-&gt;each-&gt;<span class="hljs-title function_ invoke__">update</span>([<span class="hljs-string">&#x27;processed&#x27;</span> =&gt; <span class="hljs-literal">true</span>]);
 });</code></pre>
-</div><ul>
-<li class="leading-relaxed"><span class="align-middle">chunk() uses OFFSET pagination (vulnerable to skipping if queried fields change)</span></li><li class="leading-relaxed"><span class="align-middle">chunkById() uses keyset pagination (WHERE id > last_id), safe for updates</span></li><li class="leading-relaxed"><span class="align-middle">lazyById() provides the same keyset safety wrapped in a LazyCollection</span></li></ul>
-
+</div><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">chunk() uses OFFSET pagination (vulnerable to skipping if queried fields change)</span></li><li class="leading-relaxed"><span class="align-middle">chunkById() uses keyset pagination (WHERE id &gt; last_id), safe for updates</span></li><li class="leading-relaxed"><span class="align-middle">lazyById() provides the same keyset safety wrapped in a LazyCollection</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

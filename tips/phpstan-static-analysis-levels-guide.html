@@ -574,10 +574,8 @@
                 
 
                 <!-- Tip Content Body -->
-                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
-                    <p>PHPStan inspects your PHP code without executing it, discovering subtle type mismatches, dead code, and unhandled edge cases. PHPStan organizes its rule sets into numeric levels ranging from <strong>0 (most lenient)</strong> to <strong>10 (maximum strictness)</strong>.</p>
-<p>When adopting PHPStan in existing or greenfield projects, understanding what each level verifies helps you establish progressive static analysis milestones.</p>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Overview of PHPStan Levels</h3><table>
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHPStan inspects your PHP code without executing it, discovering subtle type mismatches, dead code, and unhandled edge cases. PHPStan organizes its rule sets into numeric levels ranging from <strong>0 (most lenient)</strong> to <strong>10 (maximum strictness)</strong>.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When adopting PHPStan in existing or greenfield projects, understanding what each level verifies helps you establish progressive static analysis milestones.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Overview of PHPStan Levels</h3><div class="overflow-x-auto my-6 rounded-xl border border-slate-200 dark:border-slate-800"><table class="w-full text-left border-collapse">
 <thead>
 <tr>
 <th>Level</th>
@@ -608,7 +606,7 @@
 <tr>
 <td><strong>4</strong></td>
 <td>Dead Code Checks</td>
-<td>Unreachable <code>else</code> branches, redundant <code>instanceof</code> checks</td>
+<td>Unreachable <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">else</code> branches, redundant <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">instanceof</code> checks</td>
 </tr>
 <tr>
 <td><strong>5</strong></td>
@@ -632,18 +630,16 @@
 </tr>
 <tr>
 <td><strong>9</strong></td>
-<td>Strict <code>mixed</code> Evaluation</td>
-<td>Prohibits calling methods or accessing properties on <code>mixed</code> without narrowing</td>
+<td>Strict <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> Evaluation</td>
+<td>Prohibits calling methods or accessing properties on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> without narrowing</td>
 </tr>
 <tr>
 <td><strong>10</strong></td>
-<td>Strict Explicit <code>mixed</code> Types</td>
-<td>Prohibits passing or returning <code>mixed</code> where specific types are expected</td>
+<td>Strict Explicit <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> Types</td>
+<td>Prohibits passing or returning <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> where specific types are expected</td>
 </tr>
 </tbody></table>
-<hr>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level-by-Level Code Examples</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 0: Basic Syntax & Function Calls</h4><p>Verifies that called classes, functions, and methods exist, and that required parameter counts are satisfied:</p>
-
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level-by-Level Code Examples</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 0: Basic Syntax &amp; Function Calls</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Verifies that called classes, functions, and methods exist, and that required parameter counts are satisfied:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -685,8 +681,7 @@ calculate(1); // Error: Function calculate() called with 1 parameter, 2 required
 }
 
 <span class="hljs-title function_ invoke__">calculate</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// Error: Function calculate() called with 1 parameter, 2 required.</span></code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 1: Possibly Undefined Variables</h4><p>Ensures every variable accessed is guaranteed to be defined in all branching paths:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 1: Possibly Undefined Variables</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Ensures every variable accessed is guaranteed to be defined in all branching paths:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -716,8 +711,7 @@ calculate(1); // Error: Function calculate() called with 1 parameter, 2 required
 
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$data</span>; <span class="hljs-comment">// Error: Variable $data might not be defined.</span>
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 2: Unknown Methods on All Expressions</h4><p>Checks methods and properties on expressions where types are known via annotations or reflection:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 2: Unknown Methods on All Expressions</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Checks methods and properties on expressions where types are known via annotations or reflection:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -745,8 +739,7 @@ $user-&gt;getProfilePhoto(); // Error: Call to an undefined method User::getProf
 
 <span class="hljs-variable">$user</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();
 <span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">getProfilePhoto</span>(); <span class="hljs-comment">// Error: Call to an undefined method User::getProfilePhoto()</span></code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 3: Return Types and Property Assignments</h4><p>Validates that returned values and assigned properties match their type definitions:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 3: Return Types and Property Assignments</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Validates that returned values and assigned properties match their type definitions:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -788,8 +781,7 @@ $user-&gt;getProfilePhoto(); // Error: Call to an undefined method User::getProf
         <span class="hljs-keyword">return</span> <span class="hljs-number">12345</span>; <span class="hljs-comment">// Error: Method getInvoiceNumber() should return string but returns int.</span>
     }
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 4: Dead Code and Redundant Logic</h4><p>Detects unreachable statements and conditionals that always evaluate to true or false:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 4: Dead Code and Redundant Logic</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Detects unreachable statements and conditionals that always evaluate to true or false:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -821,8 +813,7 @@ $user-&gt;getProfilePhoto(); // Error: Call to an undefined method User::getProf
     <span class="hljs-keyword">return</span>;
     <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;Unreachable&#x27;</span>; <span class="hljs-comment">// Error: Unreachable statement - code above always returns.</span>
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 5: Argument Type Validation</h4><p>Verifies that arguments passed to functions match the declared parameter types:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 5: Argument Type Validation</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Verifies that arguments passed to functions match the declared parameter types:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -842,8 +833,7 @@ setDiscount(&#039;20&#039;); // Error: Parameter #1 expects int, string given." 
     <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setDiscount</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-variable">$percentage</span></span>): <span class="hljs-title">void</span> </span>{}
 
 <span class="hljs-title function_ invoke__">setDiscount</span>(<span class="hljs-string">&#x27;20&#x27;</span>); <span class="hljs-comment">// Error: Parameter #1 expects int, string given.</span></code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 6: Missing Typehints</h4><p>Requires explicit typehints on function parameters, return types, and properties:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 6: Missing Typehints</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Requires explicit typehints on function parameters, return types, and properties:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -873,8 +863,7 @@ setDiscount(&#039;20&#039;); // Error: Parameter #1 expects int, string given." 
     <span class="hljs-comment">// Error: Method generate() has parameter $options with no type specified.</span>
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generate</span>(<span class="hljs-params"><span class="hljs-variable">$options</span></span>) </span>{}
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 7: Partially Wrong Union Types</h4><p>Flags method calls on union types where only some union members implement the method:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 7: Partially Wrong Union Types</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Flags method calls on union types where only some union members implement the method:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -904,8 +893,7 @@ function notify(Customer|Guest $recipient): void
     <span class="hljs-comment">// Error: Call to method sendInvoice() on Customer|Guest (Guest does not have method).</span>
     <span class="hljs-variable">$recipient</span>-&gt;<span class="hljs-title function_ invoke__">sendInvoice</span>();
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 8: Nullable Type Access</h4><p>Catches potential &quot;Call to a member function on null&quot; errors:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 8: Nullable Type Access</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Catches potential &quot;Call to a member function on null&quot; errors:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -929,8 +917,7 @@ function notify(Customer|Guest $recipient): void
     <span class="hljs-comment">// Error: Cannot call method strlen() with parameter ?string (requires string).</span>
     <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$input</span>);
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 9: Strict `mixed` Evaluation</h4><p>At Level 9, <code>mixed</code> is treated strictly. You cannot perform operations on <code>mixed</code> values without explicit type narrowing:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 9: Strict <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> Evaluation</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">At Level 9, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> is treated strictly. You cannot perform operations on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> values without explicit type narrowing:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -954,8 +941,7 @@ function notify(Customer|Guest $recipient): void
     <span class="hljs-comment">// Error: Cannot call method trim() on mixed. Narrow type with is_string() first.</span>
     <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">trim</span>(<span class="hljs-variable">$value</span>);
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 10: Strict Explicit `mixed` Types (PHPStan 2.0+)</h4><p>PHPStan 2.0 introduces Level 10 (or <code>level: max</code>), which goes beyond Level 9 by prohibiting passing <code>mixed</code> values or returning <code>mixed</code> where specific types are expected, ensuring full end-to-end type safety throughout generic containers and arrays:</p>
-
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 10: Strict Explicit <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> Types (PHPStan 2.0+)</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHPStan 2.0 introduces Level 10 (or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">level: max</code>), which goes beyond Level 9 by prohibiting passing <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> values or returning <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> where specific types are expected, ensuring full end-to-end type safety throughout generic containers and arrays:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -995,8 +981,7 @@ function greet(string $name): string
 </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, <span class="hljs-subst">{$name}</span>!&quot;</span>;
 }</code></pre>
-</div><p>To satisfy Level 10, explicitly assert or validate the type:</p>
-
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To satisfy Level 10, explicitly assert or validate the type:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -1026,11 +1011,7 @@ function greet(string $name): string
 
     <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">greet</span>(<span class="hljs-variable">$payload</span>[<span class="hljs-string">&#x27;name&#x27;</span>]); <span class="hljs-comment">// Valid at Level 10</span>
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Recommended Adoption Strategy</h3><ol>
-<li class="leading-relaxed"><span class="align-middle">**Start at Level 1 or 2**: Fix baseline undefined variables and non-existent methods in legacy codebases.</span></li><li class="leading-relaxed"><span class="align-middle">**Advance to Level 5**: Add argument type verification to prevent runtime TypeError exceptions.</span></li><li class="leading-relaxed"><span class="align-middle">**Target Level 8 or Level 10**: Ideal for modern, strongly typed Laravel and PHP applications using Larastan.</span></li></ol>
-<h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul>
-<li class="leading-relaxed"><span class="align-middle">PHPStan levels range progressively from 0 (lenient) to 10 (maximum strictness).</span></li><li class="leading-relaxed"><span class="align-middle">Levels 1 to 5 catch common runtime bugs without requiring exhaustive PHPDoc annotations.</span></li><li class="leading-relaxed"><span class="align-middle">Levels 6 to 8 enforce complete type coverage and nullable safety.</span></li><li class="leading-relaxed"><span class="align-middle">Levels 9 and 10 enforce strict type narrowing on `mixed` values and array payloads.</span></li></ul>
-
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Recommended Adoption Strategy</h3><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Start at Level 1 or 2</strong>: Fix baseline undefined variables and non-existent methods in legacy codebases.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Advance to Level 5</strong>: Add argument type verification to prevent runtime TypeError exceptions.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Target Level 8 or Level 10</strong>: Ideal for modern, strongly typed Laravel and PHP applications using Larastan.</span></li></ol><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">PHPStan levels range progressively from 0 (lenient) to 10 (maximum strictness).</span></li><li class="leading-relaxed"><span class="align-middle">Levels 1 to 5 catch common runtime bugs without requiring exhaustive PHPDoc annotations.</span></li><li class="leading-relaxed"><span class="align-middle">Levels 6 to 8 enforce complete type coverage and nullable safety.</span></li><li class="leading-relaxed"><span class="align-middle">Levels 9 and 10 enforce strict type narrowing on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> values and array payloads.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->

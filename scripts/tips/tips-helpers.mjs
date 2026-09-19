@@ -83,8 +83,8 @@ export function extractSummary(markdownBody, explicitSummary) {
         .replace(/`.*?`/g, '')
         .replace(/#+\s+.*$/gm, '')
         .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-        .replace(/[*_~]/g, '')
-        .replace(/\n+/g, ' ')
+        .replace(/[*~]/g, '')
+        .replace(/\s+/g, ' ')
         .trim();
     if (!clean) return '';
     return clean.length > 160 ? clean.slice(0, 157).trim() + '...' : clean;
@@ -262,31 +262,85 @@ renderer.code = function({ text, lang }) {
 </div>`;
 };
 
-renderer.heading = function({ text, depth }) {
-    const headingLevel = Math.min(depth + 1, 6);
+renderer.heading = function(token) {
+    const headingLevel = Math.min(token.depth + 1, 6);
     const classes = {
         2: 'text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight',
         3: 'text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight',
         4: 'text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2',
     }[headingLevel] || 'text-base font-semibold text-slate-900 dark:text-white mt-4 mb-2';
 
-    return `<h${headingLevel} class="${classes}">${text}</h${headingLevel}>`;
+    const content = token.tokens ? this.parser.parseInline(token.tokens) : (token.text || '');
+    return `<h${headingLevel} class="${classes}">${content}</h${headingLevel}>`;
 };
 
-renderer.blockquote = function({ text }) {
-    return `<blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">${text}</blockquote>`;
+renderer.paragraph = function(token) {
+    const content = token.tokens ? this.parser.parseInline(token.tokens) : (token.text || token);
+    return `<p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">${content}</p>`;
 };
 
-renderer.link = function({ href, text }) {
-    const isExternal = href.startsWith('http') || href.startsWith('//');
-    const rel = isExternal ? ' rel="noopener noreferrer"' : '';
-    const target = isExternal ? ' target="_blank"' : '';
-    return `<a href="${escapeHtml(href)}"${target}${rel} class="text-red-600 dark:text-red-400 hover:underline font-semibold">${text}</a>`;
+renderer.list = function(token) {
+    const ordered = token.ordered;
+    const body = token.items
+        ? token.items.map(item => this.listitem(item)).join('')
+        : (token.body || '');
+    const tag = ordered ? 'ol' : 'ul';
+    const listClasses = ordered
+        ? 'list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2'
+        : 'list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2';
+    return `<${tag} class="${listClasses}">${body}</${tag}>`;
 };
 
 renderer.listitem = function(item) {
-    const content = this.processListItemContent ? this.processListItemContent(item) : (item.text || item.raw);
+    let content = '';
+    if (item.tokens && item.tokens.length > 0) {
+        if (item.loose || item.tokens.length > 1) {
+            content = this.parser.parse(item.tokens);
+        } else {
+            content = this.parser.parseInline(item.tokens[0]?.tokens || item.tokens);
+        }
+    } else {
+        content = item.text || item.raw || '';
+    }
     return `<li class="leading-relaxed"><span class="align-middle">${content}</span></li>`;
+};
+
+renderer.blockquote = function(token) {
+    const content = token.tokens ? this.parser.parse(token.tokens) : (token.text || token);
+    return `<blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">${content}</blockquote>`;
+};
+
+renderer.link = function(token) {
+    const href = token.href || '';
+    const content = token.tokens ? this.parser.parseInline(token.tokens) : (token.text || '');
+    const isExternal = href.startsWith('http') || href.startsWith('//');
+    const rel = isExternal ? ' rel="noopener noreferrer"' : '';
+    const target = isExternal ? ' target="_blank"' : '';
+    return `<a href="${escapeHtml(href)}"${target}${rel} class="text-red-600 dark:text-red-400 hover:underline font-semibold">${content}</a>`;
+};
+
+renderer.codespan = function(token) {
+    const text = typeof token === 'object' ? token.text : token;
+    return `<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">${escapeHtml(text)}</code>`;
+};
+
+renderer.hr = function() {
+    return `<hr class="my-8 border-slate-200 dark:border-slate-800">`;
+};
+
+renderer.table = function(token) {
+    let t = '', n = '';
+    for (let r = 0; r < token.header.length; r++) n += this.tablecell(token.header[r]);
+    t += this.tablerow({ text: n });
+    let i = '';
+    for (let r = 0; r < token.rows.length; r++) {
+        let o = token.rows[r];
+        n = '';
+        for (let s = 0; s < o.length; s++) n += this.tablecell(o[s]);
+        i += this.tablerow({ text: n });
+    }
+    if (i) i = `<tbody>${i}</tbody>`;
+    return `<div class="overflow-x-auto my-6 rounded-xl border border-slate-200 dark:border-slate-800"><table class="w-full text-left border-collapse">\n<thead>\n${t}</thead>\n${i}</table>\n</div>`;
 };
 
 marked.use({ renderer });
