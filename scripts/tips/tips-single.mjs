@@ -1,0 +1,512 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { renderSiteHeader } from '../site-header.mjs';
+import {
+    escapeHtml,
+    escapeJsonStr,
+    formatDate,
+    getTipEffectiveDate,
+    getCategoryBadge,
+    marked,
+    writeFileIfChanged
+} from './tips-helpers.mjs';
+
+/**
+ * Generate a single tip HTML page matching media_1789829314742.jpg
+ */
+export function generateSingleTipPage(tip, allTips, rootDir) {
+    const tipsOutDir = path.resolve(rootDir, 'tips');
+    const tipOutPath = path.join(tipsOutDir, `${tip.slug}.html`);
+
+    const effectiveDate = getTipEffectiveDate(tip);
+    const badge = getCategoryBadge(tip.category);
+
+    // Filter and score related tips
+    const relatedTips = allTips
+        .filter(t => t.slug !== tip.slug)
+        .map(t => {
+            let score = 0;
+            if (t.category === tip.category) score += 3;
+            if (t.subcategory && tip.subcategory && t.subcategory === tip.subcategory) score += 4;
+            const sharedTags = (t.tags || []).filter(tag => (tip.tags || []).includes(tag));
+            score += sharedTags.length * 2;
+            return { tip: t, score };
+        })
+        .sort((a, b) => {
+            if (b.score !== a.score) return b.score - a.score;
+            return new Date(getTipEffectiveDate(b.tip)) - new Date(getTipEffectiveDate(a.tip));
+        })
+        .slice(0, 2)
+        .map(item => item.tip);
+
+    // Fallback to latest tips if no related ones found
+    if (relatedTips.length === 0) {
+        relatedTips.push(...allTips.filter(t => t.slug !== tip.slug).slice(0, 2));
+    }
+
+    // Render markdown content
+    // Note: tip.body has already had the top H1 and leading blockquote summary stripped
+    const renderedBody = marked.parse(tip.body || '');
+
+    // Critical Grid and Card CSS (matching hub page)
+    const criticalStyles = `
+    <style>
+        .tech-marker {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            z-index: 20;
+            pointer-events: none;
+        }
+        .tech-marker::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 0;
+            width: 7px;
+            height: 1px;
+            background-color: #ef4444;
+        }
+        .tech-marker::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 3px;
+            width: 1px;
+            height: 7px;
+            background-color: #ef4444;
+        }
+        .tech-line-h {
+            position: absolute;
+            left: -100vw;
+            right: -100vw;
+            height: 1px;
+            background-color: #e2e8f0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .dark .tech-line-h {
+            background-color: #1e293b;
+        }
+        .tech-line-v-top {
+            position: absolute;
+            top: -100vh;
+            bottom: 100%;
+            width: 1px;
+            background-color: #e2e8f0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .dark .tech-line-v-top {
+            background-color: #1e293b;
+        }
+        .tech-line-v-bottom {
+            position: absolute;
+            top: 100%;
+            bottom: -100vh;
+            width: 1px;
+            background-color: #e2e8f0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .dark .tech-line-v-bottom {
+            background-color: #1e293b;
+        }
+    </style>`;
+
+    // Related tips cards HTML (2-column crosshair grid)
+    const relatedCardsHtml = relatedTips.map(r => {
+        const rEffectiveDate = getTipEffectiveDate(r);
+        const rBadge = getCategoryBadge(r.category);
+        return `
+        <article class="tip-card p-6 sm:p-8 flex flex-col justify-between relative border-b border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50/70 dark:hover:bg-slate-800/50 transition-colors group">
+            <div class="tech-marker -top-[4px] -right-[4px]"></div>
+            <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+            <div>
+                <div class="flex items-center gap-2 mb-3 flex-wrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${rBadge.bg} ${rBadge.text} ${rBadge.border}">
+                        ${escapeHtml(r.category)}
+                    </span>
+                    ${r.subcategory ? `
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                        ${escapeHtml(r.subcategory)}
+                    </span>
+                    ` : ''}
+                </div>
+
+                <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
+                    <a href="/tips/${r.slug}" class="after:absolute after:inset-0 focus:outline-none">
+                        ${escapeHtml(r.title)}
+                    </a>
+                </h3>
+
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+                    ${escapeHtml(r.summary)}
+                </p>
+            </div>
+
+            <div class="pt-4 mt-5 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 relative z-10">
+                <time datetime="${escapeHtml(rEffectiveDate)}" class="text-xs font-mono text-slate-500 dark:text-slate-400">
+                    ${formatDate(rEffectiveDate)} • ${r.readingTime} min read
+                </time>
+                <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                    <span>READ</span>
+                    <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
+                </span>
+            </div>
+        </article>`;
+    }).join('\n');
+
+    // JSON-LD Structured Data
+    const jsonLdData = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": `https://mrpunyapal.dev/tips/${tip.slug}#article`,
+                "isPartOf": {
+                    "@type": "WebPage",
+                    "@id": `https://mrpunyapal.dev/tips/${tip.slug}`
+                },
+                "headline": tip.title,
+                "description": tip.summary,
+                "url": `https://mrpunyapal.dev/tips/${tip.slug}`,
+                "datePublished": tip.created_at || tip.date || effectiveDate,
+                "dateModified": effectiveDate,
+                "inLanguage": "en",
+                "author": {
+                    "@type": "Person",
+                    "name": "Punyapal Shah",
+                    "url": "https://mrpunyapal.dev"
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": "Punyapal Shah",
+                    "url": "https://mrpunyapal.dev"
+                },
+                "keywords": tip.tags || []
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": `https://mrpunyapal.dev/tips/${tip.slug}#breadcrumb`,
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://mrpunyapal.dev"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Laravel Tips",
+                        "item": "https://mrpunyapal.dev/tips"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": tip.title,
+                        "item": `https://mrpunyapal.dev/tips/${tip.slug}`
+                    }
+                ]
+            }
+        ]
+    };
+
+    const shareUrl = `https://mrpunyapal.dev/tips/${tip.slug}`;
+    const shareText = `${tip.title} by @MrPunyapal`;
+    const xShareLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+
+    const githubEditUrl = tip.relPath
+        ? `https://github.com/MrPunyapal/tips/blob/main/${tip.relPath}`
+        : `https://github.com/MrPunyapal/tips`;
+
+    const singleTipHtml = `<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${escapeHtml(tip.title)} - ${escapeHtml(tip.category)} | Punyapal Shah</title>
+    <meta name="description" content="${escapeHtml(tip.summary)}">
+    <meta name="author" content="${escapeHtml(tip.author || 'Punyapal Shah')}">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/${tip.slug}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/${tip.slug}">
+    <meta property="og:title" content="${escapeHtml(tip.title)} - ${escapeHtml(tip.category)} | Punyapal Shah">
+    <meta property="og:description" content="${escapeHtml(tip.summary)}">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips-${tip.slug}.png">
+    <meta property="og:site_name" content="Punyapal Shah">
+    <meta property="article:published_time" content="${escapeHtml(tip.created_at || tip.date || effectiveDate)}">
+    <meta property="article:modified_time" content="${escapeHtml(effectiveDate)}">
+    <meta property="article:author" content="https://mrpunyapal.dev">
+    <meta property="article:section" content="${escapeHtml(tip.category)}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${escapeHtml(tip.title)} - ${escapeHtml(tip.category)} | Punyapal Shah">
+    <meta name="twitter:description" content="${escapeHtml(tip.summary)}">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips-${tip.slug}.png">
+    <!-- Browser and Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
+
+    <!-- Favicon & Stylesheet -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/src/tailwind.css">
+    <link rel="stylesheet" href="/src/app.css">
+    <script type="module" src="/src/main.js"></script>
+    ${criticalStyles}
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    ${JSON.stringify(jsonLdData, null, 2)}
+    </script>
+
+    <!-- Theme Initialization -->
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+
+<body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+
+    <!-- Main Content Frame -->
+    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
+        <div class="w-full max-w-5xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
+
+            <!-- Tech Markers: Corners -->
+            <div class="tech-marker -top-[4px] -left-[4px]"></div>
+            <div class="tech-marker -top-[4px] -right-[4px]"></div>
+            <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+            <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+            <!-- Global Infinite Extensions -->
+            <div class="tech-line-h top-[-1px]"></div>
+            <div class="tech-line-h bottom-[-1px]"></div>
+
+            <div class="tech-line-v-top left-[-1px]"></div>
+            <div class="tech-line-v-top right-[-1px]"></div>
+
+            <div class="tech-line-v-bottom left-[-1px]"></div>
+            <div class="tech-line-v-bottom right-[-1px]"></div>
+
+            <!-- Card Header: Top Nav Bar -->
+            ${renderSiteHeader('tips')}
+
+            <!-- Top Action Bar / Breadcrumb Navigation -->
+            <div class="px-6 sm:px-10 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4 flex-wrap select-none relative">
+                <div class="tech-line-h bottom-[-1px]"></div>
+                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+                <a href="/tips" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors group">
+                    <svg class="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    <span>BACK</span>
+                </a>
+
+                <div class="flex items-center gap-2.5 flex-wrap">
+                    <button type="button" id="random-tip-btn" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-white dark:bg-slate-900 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer" title="Jump to random tip">
+                        <svg class="w-3.5 h-3.5 text-red-500" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                        <span>Random</span>
+                    </button>
+
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${badge.bg} ${badge.text} ${badge.border}">
+                        ${escapeHtml(tip.category)}
+                    </span>
+                    ${tip.subcategory ? `
+                    <span class="text-slate-300 dark:text-slate-700 font-mono text-xs">/</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                        ${escapeHtml(tip.subcategory)}
+                    </span>
+                    ` : ''}
+                </div>
+            </div>
+
+            <!-- Tip Article Container -->
+            <article class="p-6 sm:p-10 md:p-12">
+                <!-- Article Header -->
+                <header class="mb-6">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
+                        ${escapeHtml(tip.title)}
+                    </h1>
+
+                    <div class="flex items-center justify-between gap-4 flex-wrap text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400 pb-4 border-b border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="inline-flex items-center gap-1.5 text-slate-700 dark:text-slate-300 font-medium">
+                                <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                                <span>${escapeHtml(tip.author || 'Punyapal Shah')}</span>
+                            </span>
+                            <span>•</span>
+                            <span class="inline-flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <time datetime="${escapeHtml(effectiveDate)}">${formatDate(effectiveDate)}</time>
+                            </span>
+                            <span>•</span>
+                            <span class="inline-flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>${tip.readingTime} min read</span>
+                            </span>
+                        </div>
+
+                        <a href="${escapeHtml(githubEditUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                            <span>edit this tip</span>
+                            <span>&rarr;</span>
+                        </a>
+                    </div>
+                </header>
+
+                <!-- Monospace Summary Callout Box -->
+                ${tip.summary ? `
+                <div class="my-6 p-4 sm:p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
+                    ${escapeHtml(tip.summary)}
+                </div>
+                ` : ''}
+
+                <!-- Tip Content Body -->
+                <div class="tip-content text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base space-y-4">
+                    ${renderedBody}
+                </div>
+
+                <!-- Tags & Share Row -->
+                <div class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4 flex-wrap">
+                    <!-- Tags (without '#' prefix) -->
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="text-xs font-mono text-slate-500 uppercase tracking-wider font-semibold">Tags:</span>
+                        ${(tip.tags || []).map(tag => `
+                        <a href="/tips?search=${encodeURIComponent(tag)}" class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:text-red-600 transition-colors">
+                            ${escapeHtml(tag)}
+                        </a>
+                        `).join('')}
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="flex items-center gap-2">
+                        <a href="${escapeHtml(xShareLink)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors" aria-label="Share tip on X">
+                            <svg class="w-3.5 h-3.5" width="14" height="14" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
+                                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+                            </svg>
+                            <span>Share on X</span>
+                        </a>
+                        <button type="button" id="copy-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors cursor-pointer" aria-label="Copy tip link">
+                            <svg class="w-3.5 h-3.5" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                            </svg>
+                            <span id="copy-link-label">Copy Link</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Related Tips Section (2-column Crosshair Grid) -->
+                ${relatedTips.length > 0 ? `
+                <div class="mt-12 pt-10 border-t border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                            Related Tips
+                        </h2>
+                        <a href="/tips" class="text-xs font-mono text-red-600 dark:text-red-400 hover:underline">
+                            View all tips &rarr;
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 border-l border-t border-slate-200 dark:border-slate-800 relative">
+                        ${relatedCardsHtml}
+                    </div>
+                </div>
+                ` : ''}
+            </article>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10">
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                // Got a tip in mind?
+                <a href="https://github.com/MrPunyapal/tips" target="_blank" rel="noopener noreferrer" class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold ml-1">
+                    Contributions are always welcome
+                </a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Client-side Interactive Script for Single Tip -->
+    <script>
+        const ALL_TIP_SLUGS = ${JSON.stringify(allTips.map(t => t.slug))};
+        document.addEventListener('DOMContentLoaded', () => {
+            // Random Tip Button
+            const randomBtn = document.getElementById('random-tip-btn');
+            if (randomBtn && ALL_TIP_SLUGS.length > 1) {
+                randomBtn.addEventListener('click', () => {
+                    const currentSlug = '${tip.slug}';
+                    const pool = ALL_TIP_SLUGS.filter(s => s !== currentSlug);
+                    const randomSlug = pool[Math.floor(Math.random() * pool.length)];
+                    window.location.href = '/tips/' + randomSlug;
+                });
+            }
+
+            // Copy Tip Link Button
+            const copyLinkBtn = document.getElementById('copy-link-btn');
+            const copyLinkLabel = document.getElementById('copy-link-label');
+            if (copyLinkBtn) {
+                copyLinkBtn.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        if (copyLinkLabel) copyLinkLabel.textContent = 'Copied!';
+                        copyLinkBtn.classList.add('border-emerald-500', 'text-emerald-600');
+                        setTimeout(() => {
+                            if (copyLinkLabel) copyLinkLabel.textContent = 'Copy Link';
+                            copyLinkBtn.classList.remove('border-emerald-500', 'text-emerald-600');
+                        }, 2000);
+                    } catch (e) {
+                        console.error('Failed to copy link', e);
+                    }
+                });
+            }
+
+            // Copy Code Snippet Buttons
+            document.querySelectorAll('.copy-code-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const code = btn.getAttribute('data-code');
+                    if (!code) return;
+                    try {
+                        await navigator.clipboard.writeText(code);
+                        const label = btn.querySelector('.copy-label');
+                        if (label) label.textContent = 'Copied!';
+                        btn.classList.add('border-emerald-500', 'text-emerald-600');
+                        setTimeout(() => {
+                            if (label) label.textContent = 'Copy';
+                            btn.classList.remove('border-emerald-500', 'text-emerald-600');
+                        }, 2000);
+                    } catch (e) {
+                        console.error('Failed to copy code', e);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>`;
+
+    writeFileIfChanged(tipOutPath, singleTipHtml);
+}
