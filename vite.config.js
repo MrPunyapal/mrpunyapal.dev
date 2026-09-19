@@ -3,7 +3,6 @@ import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'node:path';
 import fs from 'node:fs';
 import { renderSiteHeader } from './scripts/site-header.mjs';
-import { tipsRedirectPlugin } from './scripts/vite-plugin-tips-redirects.mjs';
 
 function siteComponentsPlugin() {
   return {
@@ -29,11 +28,27 @@ function getLaravelblrInputs() {
   return inputs;
 }
 
+function getTipsInputs() {
+  const inputs = {};
+  const tipsIndex = resolve(__dirname, 'tips.html');
+  if (fs.existsSync(tipsIndex)) {
+    inputs['tips'] = tipsIndex;
+  }
+  const tipsDir = resolve(__dirname, 'tips');
+  if (fs.existsSync(tipsDir)) {
+    const files = fs.readdirSync(tipsDir).filter(f => f.endsWith('.html'));
+    for (const file of files) {
+      const key = `tips/${file.replace(/\.html$/, '')}`;
+      inputs[key] = resolve(tipsDir, file);
+    }
+  }
+  return inputs;
+}
+
 export default defineConfig({
   plugins: [
     siteComponentsPlugin(),
     tailwindcss(),
-    tipsRedirectPlugin(),
   ],
   publicDir: 'public',
   build: {
@@ -48,6 +63,7 @@ export default defineConfig({
         projects: resolve(__dirname, 'projects.html'),
         opensource: resolve(__dirname, 'opensource.html'),
         ...getLaravelblrInputs(),
+        ...getTipsInputs(),
       },
     },
   },

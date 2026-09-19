@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Laravel Tips - Punyapal Shah</title>
+        <link>https://mrpunyapal.dev/tips</link>
+        <description>Curated developer tips, architectural patterns, and testing techniques for Laravel, PHP, and modern web development.</description>
+        <language>en-us</language>
+        <lastBuildDate>Sat, 12 Sep 2026 12:00:00 GMT</lastBuildDate>
+        <atom:link href="https://mrpunyapal.dev/tips/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title>Use Laravel&#039;s remember_token as a Revocation Signal</title>
+            <link>https://mrpunyapal.dev/tips/laravel-remember-token-revocation-signal</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-remember-token-revocation-signal</guid>
+            <pubDate>Sat, 12 Sep 2026 12:00:00 GMT</pubDate>
+            <description>Use Laravel&#039;s remembertoken as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Git Submodule vs. Git Subtree: Which Should You Use?</title>
+            <link>https://mrpunyapal.dev/tips/git-submodule-vs-git-subtree</link>
+            <guid>https://mrpunyapal.dev/tips/git-submodule-vs-git-subtree</guid>
+            <pubDate>Tue, 01 Sep 2026 12:00:00 GMT</pubDate>
+            <description>A practical comparison of Git Submodules and Git Subtrees to help you choose the right strategy for embedding one repository inside another.</description>
+            <category>Git</category>
+        </item>
+        <item>
+            <title>Cache Playwright and Puppeteer Browsers in GitHub Actions</title>
+            <link>https://mrpunyapal.dev/tips/github-actions-cache-playwright-puppeteer</link>
+            <guid>https://mrpunyapal.dev/tips/github-actions-cache-playwright-puppeteer</guid>
+            <pubDate>Mon, 31 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Cache browser binaries with actions/cache to avoid downloading 150MB+ on every CI run.</description>
+            <category>Git</category>
+        </item>
+        <item>
+            <title>Skip Expensive CI Steps Using git diff Instead of File Timestamps</title>
+            <link>https://mrpunyapal.dev/tips/github-actions-skip-steps-with-git-diff</link>
+            <guid>https://mrpunyapal.dev/tips/github-actions-skip-steps-with-git-diff</guid>
+            <pubDate>Mon, 31 Aug 2026 12:00:00 GMT</pubDate>
+            <description>File modification timestamps are unreliable in GitHub Actions. Use git diff to detect actual changes and conditionally skip expensive workflow steps.</description>
+            <category>Git</category>
+        </item>
+        <item>
+            <title>Write Files Incrementally in Build Scripts to Avoid Unnecessary Rebuilds</title>
+            <link>https://mrpunyapal.dev/tips/github-actions-incremental-file-writing</link>
+            <guid>https://mrpunyapal.dev/tips/github-actions-incremental-file-writing</guid>
+            <pubDate>Mon, 31 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds.</description>
+            <category>Git</category>
+        </item>
+        <item>
+            <title>Mask Query Bindings in Laravel Exception Messages</title>
+            <link>https://mrpunyapal.dev/tips/mask-query-bindings-in-exception-messages</link>
+            <guid>https://mrpunyapal.dev/tips/mask-query-bindings-in-exception-messages</guid>
+            <pubDate>Fri, 28 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Keep query bindings out of QueryException messages while retaining access to the actual bindings.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Ignore Local Files Without Modifying .gitignore Using .git/info/exclude</title>
+            <link>https://mrpunyapal.dev/tips/git-local-ignore-info-exclude</link>
+            <guid>https://mrpunyapal.dev/tips/git-local-ignore-info-exclude</guid>
+            <pubDate>Sat, 22 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Use .git/info/exclude to ignore personal scratch files, local debug scripts, and notes without polluting your team&#039;s shared .gitignore file.</description>
+            <category>Git</category>
+        </item>
+        <item>
+            <title>Stream CSV Downloads in Laravel Without Creating Temporary Files</title>
+            <link>https://mrpunyapal.dev/tips/laravel-stream-csv-downloads-without-temporary-files</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-stream-csv-downloads-without-temporary-files</guid>
+            <pubDate>Fri, 21 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Combine response()-&gt;streamDownload(), php://output, and query chunking to stream CSV exports directly to the browser without writing temporary files to disk.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Define Custom Macros on the Eloquent Builder</title>
+            <link>https://mrpunyapal.dev/tips/laravel-builder-macro-registration</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-builder-macro-registration</guid>
+            <pubDate>Tue, 11 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Register reusable query methods directly on the Builder so every model gains access without repeating logic.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Prevent Navigation Layout Shifts and Flickering in Web Applications</title>
+            <link>https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker</link>
+            <guid>https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker</guid>
+            <pubDate>Tue, 11 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.</description>
+            <category>CSS</category>
+        </item>
+        <item>
+            <title>Reusable Migration Fields with Custom Blueprint Macros</title>
+            <link>https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields</guid>
+            <pubDate>Tue, 11 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Extend Laravel&#039;s Blueprint class with custom macros to standardize and reuse common schema columns across database migrations.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Trigger a GitHub Actions Workflow Across Repositories</title>
+            <link>https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</link>
+            <guid>https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</guid>
+            <pubDate>Tue, 11 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Use repositorydispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.</description>
+            <category>Git</category>
+        </item>
+        <item>
+            <title>Never Return Statements inside Finally Blocks in PHP</title>
+            <link>https://mrpunyapal.dev/tips/php-never-return-in-finally-block</link>
+            <guid>https://mrpunyapal.dev/tips/php-never-return-in-finally-block</guid>
+            <pubDate>Thu, 06 Aug 2026 12:00:00 GMT</pubDate>
+            <description>Placing a return statement inside a try-catch finally block silently overrides exceptions and previous return statements.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Automate PHP Readonly Class Refactoring with Rector</title>
+            <link>https://mrpunyapal.dev/tips/php-rector-automate-readonly-classes</link>
+            <guid>https://mrpunyapal.dev/tips/php-rector-automate-readonly-classes</guid>
+            <pubDate>Wed, 29 Jul 2026 12:00:00 GMT</pubDate>
+            <description>Use Rector rules to automatically convert immutable DTOs and value objects into native PHP 8.2 readonly classes.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Use sole() Instead of firstOrFail() for Single Record Guarantees</title>
+            <link>https://mrpunyapal.dev/tips/laravel-sole-vs-firstorfail</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-sole-vs-firstorfail</guid>
+            <pubDate>Mon, 20 Jul 2026 12:00:00 GMT</pubDate>
+            <description>When you expect exactly one matching record, use sole() instead of firstOrFail(). It guards against multiple records by throwing MultipleRecordsFoundException.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Protect Custom Artisan Commands from AI Agents with Prohibitable</title>
+            <link>https://mrpunyapal.dev/tips/laravel-prohibitable-custom-commands-agents</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-prohibitable-custom-commands-agents</guid>
+            <pubDate>Thu, 16 Jul 2026 12:00:00 GMT</pubDate>
+            <description>Use Laravel&#039;s Prohibitable trait on custom Artisan commands to selectively block AI agents from running destructive domain operations.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Detect AI Agents in Laravel with AgentDetector and PAO</title>
+            <link>https://mrpunyapal.dev/tips/laravel-agent-detector-pao</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-agent-detector-pao</guid>
+            <pubDate>Wed, 15 Jul 2026 12:00:00 GMT</pubDate>
+            <description>Laravel&#039;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Stream Large Datasets: cursor() vs lazy() in Eloquent</title>
+            <link>https://mrpunyapal.dev/tips/laravel-cursor-vs-lazy-collections</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-cursor-vs-lazy-collections</guid>
+            <pubDate>Fri, 03 Jul 2026 12:00:00 GMT</pubDate>
+            <description>cursor() hydrates single model instances sequentially using database cursors; lazy() streams records in chunks backed by LazyCollection.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Choose the Right Processing Method: chunk(), lazy(), chunkById(), lazyById()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-chunk-vs-lazy-by-id</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-chunk-vs-lazy-by-id</guid>
+            <pubDate>Thu, 02 Jul 2026 12:00:00 GMT</pubDate>
+            <description>Understand offset vs keyset pagination when processing large datasets to avoid missing records during updates.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>UI Controls Are Not Security Layers: Always Enforce Policies</title>
+            <link>https://mrpunyapal.dev/tips/laravel-security-ui-vs-policy-enforcement</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-security-ui-vs-policy-enforcement</guid>
+            <pubDate>Tue, 30 Jun 2026 12:00:00 GMT</pubDate>
+            <description>Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Dispatch Jobs After Transaction Commit with DB::afterCommit()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-db-after-commit-transaction-jobs</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-db-after-commit-transaction-jobs</guid>
+            <pubDate>Sun, 28 Jun 2026 12:00:00 GMT</pubDate>
+            <description>Use DB::afterCommit() to defer job dispatching until surrounding database transactions complete successfully.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Assert JSON Columns and Backed Enums with assertDatabaseHas</title>
+            <link>https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums</guid>
+            <pubDate>Mon, 15 Jun 2026 12:00:00 GMT</pubDate>
+            <description>In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Streamline Testing with Pest Test Impact Analysis (TIA)</title>
+            <link>https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</link>
+            <guid>https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</guid>
+            <pubDate>Mon, 18 May 2026 12:00:00 GMT</pubDate>
+            <description>Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests.</description>
+            <category>Pest PHP</category>
+        </item>
+        <item>
+            <title>Protect Production with Laravel Prohibitable Commands</title>
+            <link>https://mrpunyapal.dev/tips/laravel-prohibitable-destructive-commands</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-prohibitable-destructive-commands</guid>
+            <pubDate>Sat, 02 May 2026 12:00:00 GMT</pubDate>
+            <description>Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel&#039;s Prohibitable trait and DB::prohibitDestructiveCommands().</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Why strip_tags() Is Not Enough for XSS Protection</title>
+            <link>https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier</link>
+            <guid>https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier</guid>
+            <pubDate>Sat, 18 Apr 2026 12:00:00 GMT</pubDate>
+            <description>striptags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Clean Up Complex Multi-Step Operations with Illuminate Pipeline</title>
+            <link>https://mrpunyapal.dev/tips/laravel-pipeline-pattern-complex-workflows</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-pipeline-pattern-complex-workflows</guid>
+            <pubDate>Sun, 05 Apr 2026 12:00:00 GMT</pubDate>
+            <description>Process complex data sequences or multi-stage order checks through Laravel&#039;s built-in Pipeline facade to replace massive controller methods.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Clean Up Redundant Code Comments with a Custom Rector Rule</title>
+            <link>https://mrpunyapal.dev/tips/php-rector-remove-unnecessary-comments</link>
+            <guid>https://mrpunyapal.dev/tips/php-rector-remove-unnecessary-comments</guid>
+            <pubDate>Wed, 11 Mar 2026 12:00:00 GMT</pubDate>
+            <description>Use a custom Rector rule to automatically strip noisy inline comments and empty docblocks across your codebase while preserving essential PHPDoc annotations.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Automatically Discard Orphaned Queue Jobs with deleteWhenMissingModels</title>
+            <link>https://mrpunyapal.dev/tips/laravel-queue-delete-when-missing-models</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-queue-delete-when-missing-models</guid>
+            <pubDate>Wed, 14 Jan 2026 12:00:00 GMT</pubDate>
+            <description>Use the $deleteWhenMissingModels property on queued jobs to silently discard jobs if their referenced database records were deleted before execution.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Prevent Queue Payload Bloat with withoutRelations()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-queue-without-relations-serialization</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-queue-without-relations-serialization</guid>
+            <pubDate>Wed, 17 Dec 2025 12:00:00 GMT</pubDate>
+            <description>Use withoutRelations() when passing models to queue jobs to prevent large in-memory relationship graphs from serializing into queue storage.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Optimize Queue Worker Polling Overheads in Production</title>
+            <link>https://mrpunyapal.dev/tips/laravel-queue-worker-polling-optimization</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-queue-worker-polling-optimization</guid>
+            <pubDate>Fri, 05 Dec 2025 12:00:00 GMT</pubDate>
+            <description>Use queue:work with appropriate sleep configuration or Redis blocking pops to reduce database CPU polling overheads.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Auto-Scale Queue Workers with --stop-when-empty-for in Laravel</title>
+            <link>https://mrpunyapal.dev/tips/laravel-queue-worker-stop-when-empty-for</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-queue-worker-stop-when-empty-for</guid>
+            <pubDate>Thu, 20 Nov 2025 12:00:00 GMT</pubDate>
+            <description>The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty workloads.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Optimize Date Queries by Replacing whereYear() with whereBetween()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-eloquent-where-year-vs-date-between-index</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-eloquent-where-year-vs-date-between-index</guid>
+            <pubDate>Wed, 19 Nov 2025 12:00:00 GMT</pubDate>
+            <description>Replace whereYear() and whereMonth() on large database tables with whereBetween() date ranges to enable SQL index lookups.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Prevent Duplicate Redis and Database Lookups with Cache::memo()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-cache-memo-driver-in-memory</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-cache-memo-driver-in-memory</guid>
+            <pubDate>Wed, 15 Oct 2025 12:00:00 GMT</pubDate>
+            <description>Use Cache::memo() to combine persistent cache stores with per-request memory caching, preventing repetitive network roundtrips during a single HTTP request.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Index Dynamic JSON Attributes with Generated Virtual Columns</title>
+            <link>https://mrpunyapal.dev/tips/laravel-database-generated-virtual-columns</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-database-generated-virtual-columns</guid>
+            <pubDate>Wed, 27 Aug 2025 12:00:00 GMT</pubDate>
+            <description>Use virtualAs() and storedAs() in migrations to create generated database columns for high-speed indexing on JSON attributes.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Tick-Based Execution Timeout Wrapper in PHP Without PCNTL</title>
+            <link>https://mrpunyapal.dev/tips/php-timeout-guard-ticks-without-pcntl</link>
+            <guid>https://mrpunyapal.dev/tips/php-timeout-guard-ticks-without-pcntl</guid>
+            <pubDate>Fri, 13 Jun 2025 12:00:00 GMT</pubDate>
+            <description>Interrupt long-running synchronous PHP callables on any operating system using PHP tick declarations and tick callback functions without requiring the pcntl extension.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Detect Cumulative Database Query Spikes with whenQueryingForLongerThan()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-db-when-querying-for-longer-than</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-db-when-querying-for-longer-than</guid>
+            <pubDate>Wed, 12 Mar 2025 12:00:00 GMT</pubDate>
+            <description>Use DB::whenQueryingForLongerThan() to monitor the cumulative time spent in database queries per HTTP request and notify developers of slow requests.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Reusable Tappable Scopes for Eloquent and Laravel Scout Queries</title>
+            <link>https://mrpunyapal.dev/tips/laravel-tappable-scopes-eloquent-scout</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-tappable-scopes-eloquent-scout</guid>
+            <pubDate>Fri, 07 Feb 2025 12:00:00 GMT</pubDate>
+            <description>Extract query filtering logic into invokable scope classes that work interchangeably across Eloquent query builders and Laravel Scout search instances.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Ditch sleep() in Tests: Use Laravel Time Travel Helpers</title>
+            <link>https://mrpunyapal.dev/tips/laravel-test-time-travel-freeze</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-test-time-travel-freeze</guid>
+            <pubDate>Thu, 12 Sep 2024 12:00:00 GMT</pubDate>
+            <description>Use $this-&gt;travelTo() or freezeTime() in test suites to test date-sensitive logic without slowing down test execution with sleep().</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Integer Enums: Start Indexing from 1, Avoid 0</title>
+            <link>https://mrpunyapal.dev/tips/php-backed-integer-enums-indexing</link>
+            <guid>https://mrpunyapal.dev/tips/php-backed-integer-enums-indexing</guid>
+            <pubDate>Sat, 31 Aug 2024 12:00:00 GMT</pubDate>
+            <description>When creating integer-backed PHP Enums, index starting from 1 to avoid false-y evaluation bugs in loose comparisons.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Complete Guide to PHPStan Static Analysis Levels (0 to 10)</title>
+            <link>https://mrpunyapal.dev/tips/phpstan-static-analysis-levels-guide</link>
+            <guid>https://mrpunyapal.dev/tips/phpstan-static-analysis-levels-guide</guid>
+            <pubDate>Thu, 25 Jul 2024 12:00:00 GMT</pubDate>
+            <description>Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Generic Classes and Functions in PHP Using PHPDoc @template</title>
+            <link>https://mrpunyapal.dev/tips/php-generics-phpdoc-template</link>
+            <guid>https://mrpunyapal.dev/tips/php-generics-phpdoc-template</guid>
+            <pubDate>Thu, 25 Jul 2024 12:00:00 GMT</pubDate>
+            <description>Implement type-safe generic collections, wrapper classes, and utility functions in PHP using PHPDoc template annotations for static analysis engines.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Typed Arrays and Array Shapes in PHP with PHPDoc</title>
+            <link>https://mrpunyapal.dev/tips/php-array-shapes-phpdoc</link>
+            <guid>https://mrpunyapal.dev/tips/php-array-shapes-phpdoc</guid>
+            <pubDate>Thu, 25 Jul 2024 12:00:00 GMT</pubDate>
+            <description>Document and enforce structured array schemas using PHPDoc array shapes, lists, and non-empty array annotations for static analysis in PHPStan and Psalm.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Prevent Information Disclosure with Gate::denyAsNotFound()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-gate-deny-as-not-found-security</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-gate-deny-as-not-found-security</guid>
+            <pubDate>Wed, 17 Jul 2024 12:00:00 GMT</pubDate>
+            <description>Use Response::denyAsNotFound() in policies to return a 404 Not Found response instead of 403 Forbidden, concealing the existence of private resources.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Execute Multi-Step Business Workflows with the Pipeline Facade</title>
+            <link>https://mrpunyapal.dev/tips/laravel-pipeline-send-multi-step-workflows</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-pipeline-send-multi-step-workflows</guid>
+            <pubDate>Wed, 26 Jun 2024 12:00:00 GMT</pubDate>
+            <description>Use Laravel&#039;s Pipeline facade to pass objects through sequential pipe classes, keeping complex order processing and data transformations modular.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Detect and Eliminate N+1 Queries in Development with preventLazyLoading()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-eloquent-prevent-lazy-loading-strict-mode</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-eloquent-prevent-lazy-loading-strict-mode</guid>
+            <pubDate>Wed, 29 May 2024 12:00:00 GMT</pubDate>
+            <description>Enable Model::preventLazyLoading() in local development to automatically throw exceptions whenever a relationship is lazy loaded.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Refactor PHP Enum Cases from snake_case to PascalCase with Rector</title>
+            <link>https://mrpunyapal.dev/tips/php-rector-refactor-enums-pascal-case</link>
+            <guid>https://mrpunyapal.dev/tips/php-rector-refactor-enums-pascal-case</guid>
+            <pubDate>Mon, 20 May 2024 12:00:00 GMT</pubDate>
+            <description>Automate renaming PHP 8.1+ enum cases from SNAKECASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script.</description>
+            <category>PHP</category>
+        </item>
+        <item>
+            <title>Automate Laravel 11 casts() Method Upgrade with Rector</title>
+            <link>https://mrpunyapal.dev/tips/laravel-rector-automate-casts-method-upgrade</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-rector-automate-casts-method-upgrade</guid>
+            <pubDate>Sat, 30 Mar 2024 12:00:00 GMT</pubDate>
+            <description>Use Rector to automatically refactor legacy protected $casts array properties into the modern casts() method across your entire Laravel codebase.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Cast Enums Inside JSON and Array Column Keys in Eloquent</title>
+            <link>https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key</guid>
+            <pubDate>Tue, 30 Jan 2024 12:00:00 GMT</pubDate>
+            <description>Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Combine Custom Casts and Enums for Complex Attributes</title>
+            <link>https://mrpunyapal.dev/tips/laravel-custom-casts-enum-json</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-custom-casts-enum-json</guid>
+            <pubDate>Tue, 30 Jan 2024 12:00:00 GMT</pubDate>
+            <description>Use Eloquent custom casts (CastsAttributes) to handle complex JSON serialization and Backed Enum arrays cleanly.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Fix Blade View Cache Compilation for Teleport Directives in Livewire</title>
+            <link>https://mrpunyapal.dev/tips/livewire-teleport-blade-view-cache-directive-fix</link>
+            <guid>https://mrpunyapal.dev/tips/livewire-teleport-blade-view-cache-directive-fix</guid>
+            <pubDate>Sun, 14 Jan 2024 12:00:00 GMT</pubDate>
+            <description>Prevent view compilation glitches when running php artisan view:cache on templates using @teleport by registering explicit Blade directives.</description>
+            <category>Livewire</category>
+        </item>
+        <item>
+            <title>Centralized Application Activity Logging with Laravel Event Subscribers</title>
+            <link>https://mrpunyapal.dev/tips/laravel-activity-log-event-subscriber</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-activity-log-event-subscriber</guid>
+            <pubDate>Fri, 01 Dec 2023 12:00:00 GMT</pubDate>
+            <description>Capture HTTP requests, Artisan CLI commands, and outgoing API responses into a unified audit trail using a single Laravel Event Subscriber.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Efficient Unique Slug Generation in Eloquent Without Looping Queries</title>
+            <link>https://mrpunyapal.dev/tips/laravel-generate-unique-slug-without-looping</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-generate-unique-slug-without-looping</guid>
+            <pubDate>Wed, 29 Nov 2023 12:00:00 GMT</pubDate>
+            <description>Generate unique database slugs in Eloquent by querying the maximum existing numerical suffix directly instead of executing repeated queries in a while loop.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Freeze and Inspect Application Time in Tests with Carbon setTestNow()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-carbon-set-test-now-time-manipulation</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-carbon-set-test-now-time-manipulation</guid>
+            <pubDate>Thu, 23 Nov 2023 12:00:00 GMT</pubDate>
+            <description>Control system time during testing and development using Carbon::setTestNow() and inspect active time mocks with Carbon::hasTestNow().</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Stream CSV Report Downloads with Renderless Livewire Component Actions</title>
+            <link>https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports</link>
+            <guid>https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports</guid>
+            <pubDate>Mon, 06 Nov 2023 12:00:00 GMT</pubDate>
+            <description>Use Livewire 3&#039;s #Renderless attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.</description>
+            <category>Livewire</category>
+        </item>
+        <item>
+            <title>Multi-Tenant Team Scoping with a Reusable BelongsToTeam Model Trait</title>
+            <link>https://mrpunyapal.dev/tips/laravel-belongs-to-team-multitenancy-trait</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-belongs-to-team-multitenancy-trait</guid>
+            <pubDate>Sun, 05 Nov 2023 12:00:00 GMT</pubDate>
+            <description>Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Reusable whereLike Macro with Relationship and Expression Support</title>
+            <link>https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro</guid>
+            <pubDate>Fri, 27 Oct 2023 12:00:00 GMT</pubDate>
+            <description>Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Speed Up Test Suites with the LazilyRefreshDatabase Trait</title>
+            <link>https://mrpunyapal.dev/tips/laravel-testing-lazily-refresh-database</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-testing-lazily-refresh-database</guid>
+            <pubDate>Wed, 11 Oct 2023 12:00:00 GMT</pubDate>
+            <description>Use LazilyRefreshDatabase instead of RefreshDatabase to run database transactions only for tests that actually touch the database.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Reuse Model Instances Across Nested Factories with Factory recycle()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-factory-recycle-existing-models</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-factory-recycle-existing-models</guid>
+            <pubDate>Wed, 27 Sep 2023 12:00:00 GMT</pubDate>
+            <description>Use Factory::recycle() to pass existing parent models to child factories, avoiding duplicate database record creation in test fixtures.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Work Around MySQL Subquery Restrictions on Target Tables</title>
+            <link>https://mrpunyapal.dev/tips/mysql-subquery-same-table-update-restriction</link>
+            <guid>https://mrpunyapal.dev/tips/mysql-subquery-same-table-update-restriction</guid>
+            <pubDate>Fri, 22 Sep 2023 12:00:00 GMT</pubDate>
+            <description>MySQL prevents updating a table while selecting from it in a subquery. Wrap subqueries in an intermediate alias table.</description>
+            <category>MySQL</category>
+        </item>
+        <item>
+            <title>Build Conditional Transformation Pipelines with Collection::when() and whenEmpty()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-collection-when-conditional-pipelines</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-collection-when-conditional-pipelines</guid>
+            <pubDate>Wed, 20 Sep 2023 12:00:00 GMT</pubDate>
+            <description>Use when(), unless(), and whenEmpty() on Laravel Collections to conditionally apply transformations without breaking method chains.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Catch Unmocked External API Calls with Http::preventStrayRequests()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-http-fake-prevent-stray-requests</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-http-fake-prevent-stray-requests</guid>
+            <pubDate>Wed, 13 Sep 2023 12:00:00 GMT</pubDate>
+            <description>Enable Http::preventStrayRequests() in test suites to throw exceptions whenever HTTP requests are made without explicit mocks.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Query Relationships Across Multiple Database Connections</title>
+            <link>https://mrpunyapal.dev/tips/laravel-where-has-multiple-database-connections</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-where-has-multiple-database-connections</guid>
+            <pubDate>Wed, 16 Aug 2023 12:00:00 GMT</pubDate>
+            <description>Query related models located on different database connections using whereHas() without cross-database join errors.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Query JSON and Array ID Columns with Array-Column Relationships</title>
+            <link>https://mrpunyapal.dev/tips/laravel-array-column-relationships-hasmanyarraycolumn</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-array-column-relationships-hasmanyarraycolumn</guid>
+            <pubDate>Mon, 19 Jun 2023 12:00:00 GMT</pubDate>
+            <description>Define relationships on models where foreign keys are stored as JSON arrays or comma-separated lists rather than traditional single-id foreign keys.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Test Time Delays Without Slowing Down Tests Using the Sleep Helper</title>
+            <link>https://mrpunyapal.dev/tips/laravel-sleep-helper-testable-delays</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-sleep-helper-testable-delays</guid>
+            <pubDate>Wed, 01 Mar 2023 12:00:00 GMT</pubDate>
+            <description>Replace PHP&#039;s native sleep() and usleep() with Laravel&#039;s Sleep facade to write testable, fakeable time pauses.</description>
+            <category>Laravel</category>
+        </item>
+        <item>
+            <title>Use CSS Container Queries for Modular Component Layouts</title>
+            <link>https://mrpunyapal.dev/tips/css-container-queries-responsive-components</link>
+            <guid>https://mrpunyapal.dev/tips/css-container-queries-responsive-components</guid>
+            <pubDate>Fri, 24 Feb 2023 12:00:00 GMT</pubDate>
+            <description>Use CSS Container Queries (@container) to adjust component layouts based on parent container width rather than viewport size.</description>
+            <category>CSS</category>
+        </item>
+        <item>
+            <title>Log and Audit Slow Database Queries with DB::listen()</title>
+            <link>https://mrpunyapal.dev/tips/laravel-db-listen-slow-query-logging</link>
+            <guid>https://mrpunyapal.dev/tips/laravel-db-listen-slow-query-logging</guid>
+            <pubDate>Wed, 01 Feb 2023 12:00:00 GMT</pubDate>
+            <description>Use DB::listen() in AppServiceProvider to monitor executed queries, log slow operations, and inspect raw SQL bindings during local development.</description>
+            <category>Laravel</category>
+        </item>
+    </channel>
+</rss>

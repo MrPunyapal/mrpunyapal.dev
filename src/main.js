@@ -46,3 +46,26 @@ if (typeof customElements !== 'undefined' && !customElements.get('site-header'))
     }
     customElements.define('site-header', SiteHeader);
 }
+
+// Copy to clipboard handler for code blocks
+if (typeof document !== 'undefined') {
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.copy-code-btn');
+        if (!btn) return;
+        const container = btn.closest('.code-block-wrapper');
+        if (!container) return;
+        const code = container.querySelector('code');
+        if (!code) return;
+        const text = code.innerText || code.textContent || '';
+        navigator.clipboard.writeText(text).then(() => {
+            const copyText = btn.querySelector('.copy-text');
+            if (copyText) {
+                const originalText = copyText.textContent;
+                copyText.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyText.textContent = originalText;
+                }, 2000);
+            }
+        }).catch(() => {});
+    });
+}

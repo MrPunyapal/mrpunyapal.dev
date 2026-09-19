@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cast Enums Inside JSON and Array Column Keys in Eloquent | Punyapal Shah</title>
+
+    <!-- Browser and Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#FF2D20">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.">
+    <meta name="author" content="Punyapal Shah">
+    <link rel="canonical" href="https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key">
+    <meta property="og:title" content="Cast Enums Inside JSON and Array Column Keys in Eloquent | Punyapal Shah">
+    <meta property="og:description" content="Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/tips/laravel-cast-enum-json-array-key.png">
+    <meta property="og:image:secure_url" content="https://mrpunyapal.dev/og/tips/laravel-cast-enum-json-array-key.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Cast Enums Inside JSON and Array Column Keys in Eloquent">
+    <meta property="og:site_name" content="Punyapal Shah">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2024-01-30">
+    <meta property="article:author" content="https://mrpunyapal.dev/#person">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@MrPunyapal">
+    <meta name="twitter:creator" content="@MrPunyapal">
+    <meta name="twitter:url" content="https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key">
+    <meta name="twitter:title" content="Cast Enums Inside JSON and Array Column Keys in Eloquent | Punyapal Shah">
+    <meta name="twitter:description" content="Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/tips/laravel-cast-enum-json-array-key.png">
+    <meta name="twitter:image:src" content="https://mrpunyapal.dev/og/tips/laravel-cast-enum-json-array-key.png">
+    <meta name="twitter:image:alt" content="Cast Enums Inside JSON and Array Column Keys in Eloquent">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "TechArticle",
+            "@id": "https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key#article",
+            "isPartOf": {
+                "@id": "https://mrpunyapal.dev/#website"
+            },
+            "headline": "Cast Enums Inside JSON and Array Column Keys in Eloquent",
+            "description": "Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.",
+            "url": "https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key",
+            "datePublished": "2024-01-30",
+            "dateModified": "2024-01-30",
+            "image": "https://mrpunyapal.dev/og/tips/laravel-cast-enum-json-array-key.png",
+            "author": {
+                "@id": "https://mrpunyapal.dev/#person"
+            },
+            "publisher": {
+                "@id": "https://mrpunyapal.dev/#person"
+            },
+            "inLanguage": "en"
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://mrpunyapal.dev/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Tips",
+                    "item": "https://mrpunyapal.dev/tips"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Laravel",
+                    "item": "https://mrpunyapal.dev/tips"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "name": "Cast Enums Inside JSON and Array Column Keys in Eloquent",
+                    "item": "https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key"
+                }
+            ]
+        }
+    ]
+}
+    </script>
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="128x128">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <meta name="msapplication-TileColor" content="#FF2D20">
+
+    <link rel="stylesheet" href="/src/tailwind.css">
+    <link rel="stylesheet" href="/src/app.css">
+    <script type="module" src="/src/main.js"></script>
+
+    <style>
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .dark body {
+            background: #0a0a0a !important;
+            color: #f4f4f5 !important;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Technical Grid Markers */
+        .tech-marker {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background-color: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            z-index: 50;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Infinite Grid Lines */
+        .tech-line-h {
+            position: absolute;
+            height: 1px;
+            background-color: #e2e8f0;
+            z-index: 0;
+            pointer-events: none;
+            width: 300vw;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tech-line-v-top {
+            position: absolute;
+            width: 1px;
+            background-color: #e2e8f0;
+            z-index: 0;
+            pointer-events: none;
+            bottom: 100%;
+            height: 100vh;
+        }
+
+        .tech-line-v-bottom {
+            position: absolute;
+            width: 1px;
+            background-color: #e2e8f0;
+            z-index: 0;
+            pointer-events: none;
+            top: 100%;
+            height: 120px;
+        }
+    </style>
+</head>
+
+<body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative antialiased transition-colors duration-200">
+
+    <!-- Main Content Container -->
+    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
+        <div class="w-full max-w-4xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
+
+            <!-- Tech Markers: Corners -->
+            <div class="tech-marker -top-[4px] -left-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -top-[4px] -right-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
+
+            <!-- Global Extensions -->
+            <div class="tech-line-h top-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
+
+            <div class="tech-line-v-top left-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-v-top right-[-1px]" aria-hidden="true"></div>
+
+            <div class="tech-line-v-bottom left-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-v-bottom right-[-1px]" aria-hidden="true"></div>
+
+            <!-- Card Header: Top Nav Bar -->
+            <site-header active="tips"></site-header>
+
+            <!-- Article Wrapper -->
+            <article class="p-6 sm:p-12 relative">
+                <!-- Breadcrumbs -->
+                <nav class="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-6 flex-wrap" aria-label="Breadcrumbs">
+                    <a href="/" class="hover:text-red-600 dark:hover:text-red-400 transition-colors">Home</a>
+                    <span aria-hidden="true">/</span>
+                    <a href="/tips" class="hover:text-red-600 dark:hover:text-red-400 transition-colors">Tips</a>
+                    <span aria-hidden="true">/</span>
+                    <a href="/tips?category=laravel" class="hover:text-red-600 dark:hover:text-red-400 transition-colors">Laravel</a>
+                    <span aria-hidden="true">/</span>
+                    <span class="text-slate-700 dark:text-slate-200 font-medium truncate max-w-xs">Cast Enums Inside JSON and Array Column Keys in Eloquent</span>
+                </nav>
+
+                <!-- Article Header Meta -->
+                <div class="flex flex-wrap items-center gap-2.5 mb-4">
+                    <span class="px-2.5 py-0.5 text-xs font-semibold rounded border bg-red-50 text-red-700 border-red-100 dark:bg-red-950/40 dark:text-red-400 dark:border-red-900/60">Laravel</span>
+                    <span class="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Eloquent</span>
+                    <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">&bull;</span>
+                    <time datetime="2024-01-30" class="text-xs font-mono text-slate-500 dark:text-slate-400">Jan 30, 2024</time>
+                    <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">&bull;</span>
+                    <span class="text-xs font-mono text-slate-500 dark:text-slate-400">2 min read</span>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight mb-6">
+                    Cast Enums Inside JSON and Array Column Keys in Eloquent
+                </h1>
+
+                <!-- Lead Summary Quote -->
+                <div class="p-4 sm:p-5 rounded-lg bg-red-50/50 dark:bg-red-950/20 border-l-4 border-red-500 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed my-6 font-medium">
+                    Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.
+                </div>
+
+                <!-- Tip Body Content -->
+                <div class="tip-content mt-6">
+<p>Laravel provides first-party enum casting for standard model columns:</p>
+<div class="code-block-wrapper my-6 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 overflow-hidden">
+  <div class="flex items-center justify-between px-4 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-800/50 text-xs font-mono text-slate-500 dark:text-slate-400">
+    <span class="font-semibold uppercase tracking-wider">php</span>
+    <button type="button" class="copy-code-btn px-2.5 py-1 text-xs font-medium rounded hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-1.5 cursor-pointer" aria-label="Copy code to clipboard">
+      <svg class="copy-icon" width="12" height="12" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L384 99.9V320c0 8.8-7.2 16-16 16zM192 0C156.7 0 128 28.7 128 64V320c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-17-6.7-33.3-18.7-45.3L381.3 18.7C369.3 6.7 353 0 336 0H192zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16h32V128H64z"/></svg>
+      <span class="copy-text">Copy</span>
+    </button>
+  </div>
+  <div class="p-4 overflow-x-auto text-sm font-mono leading-relaxed">
+    <pre><code class="hljs language-php"><span class="hljs-keyword">protected</span> <span class="hljs-variable">$casts</span> = [
+    <span class="hljs-string">&#x27;status&#x27;</span> =&gt; <span class="hljs-title class_">PostStatus</span>::<span class="hljs-variable language_">class</span>,
+];</code></pre>
+  </div>
+</div><p>However, when an enum value is stored inside a nested JSON object or array column (such as <code>options-&gt;status</code> or <code>settings[&#39;status&#39;]</code>), Laravel&#39;s default column casting casts the entire column to an array, leaving the nested enum value as a raw string or integer.</p>
+<p>Using Eloquent&#39;s <code>Attribute</code> accessor and mutator, you can automatically hydrate and serialize nested enum instances.</p>
+<h2>Implementing the Nested Enum Cast</h2>
+<div class="code-block-wrapper my-6 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 overflow-hidden">
+  <div class="flex items-center justify-between px-4 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-800/50 text-xs font-mono text-slate-500 dark:text-slate-400">
+    <span class="font-semibold uppercase tracking-wider">php</span>
+    <button type="button" class="copy-code-btn px-2.5 py-1 text-xs font-medium rounded hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-1.5 cursor-pointer" aria-label="Copy code to clipboard">
+      <svg class="copy-icon" width="12" height="12" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L384 99.9V320c0 8.8-7.2 16-16 16zM192 0C156.7 0 128 28.7 128 64V320c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-17-6.7-33.3-18.7-45.3L381.3 18.7C369.3 6.7 353 0 336 0H192zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16h32V128H64z"/></svg>
+      <span class="copy-text">Copy</span>
+    </button>
+  </div>
+  <div class="p-4 overflow-x-auto text-sm font-mono leading-relaxed">
+    <pre><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Enums</span>\<span class="hljs-title">PostStatus</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Casts</span>\<span class="hljs-title">Attribute</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">options</span>(<span class="hljs-params"></span>): <span class="hljs-title">Attribute</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Attribute</span>::<span class="hljs-title function_ invoke__">make</span>(
+            <span class="hljs-attr">get</span>: function (<span class="hljs-variable">$value</span>): <span class="hljs-keyword">array</span> {
+                <span class="hljs-variable">$options</span> = <span class="hljs-title function_ invoke__">json_decode</span>(<span class="hljs-variable">$value</span> ?? <span class="hljs-string">&#x27;[]&#x27;</span>, <span class="hljs-literal">true</span>) ?? [];
+
+                <span class="hljs-comment">// Hydrate string value to Backed Enum instance</span>
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>])) {
+                    <span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>] = <span class="hljs-title class_">PostStatus</span>::<span class="hljs-title function_ invoke__">tryFrom</span>(<span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>]) ?? <span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>];
+                }
+
+                <span class="hljs-keyword">return</span> <span class="hljs-variable">$options</span>;
+            },
+            set: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$value</span></span>): <span class="hljs-title">string</span> </span>{
+                <span class="hljs-variable">$options</span> = <span class="hljs-title function_ invoke__">is_array</span>(<span class="hljs-variable">$value</span>) ? <span class="hljs-variable">$value</span> : (<span class="hljs-title function_ invoke__">json_decode</span>(<span class="hljs-variable">$value</span>, <span class="hljs-literal">true</span>) ?? []);
+
+                <span class="hljs-comment">// Serialize Backed Enum instance to scalar value before storing</span>
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>]) &amp;&amp; <span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>] <span class="hljs-keyword">instanceof</span> PostStatus) {
+                    <span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>] = <span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>]-&gt;value;
+                }
+
+                <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">json_encode</span>(<span class="hljs-variable">$options</span>);
+            }
+        );
+    }
+}</code></pre>
+  </div>
+</div><h2>Practical Usage</h2>
+<p>You can now interact with nested enum properties as strongly typed objects:</p>
+<div class="code-block-wrapper my-6 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 overflow-hidden">
+  <div class="flex items-center justify-between px-4 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-800/50 text-xs font-mono text-slate-500 dark:text-slate-400">
+    <span class="font-semibold uppercase tracking-wider">php</span>
+    <button type="button" class="copy-code-btn px-2.5 py-1 text-xs font-medium rounded hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-1.5 cursor-pointer" aria-label="Copy code to clipboard">
+      <svg class="copy-icon" width="12" height="12" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L384 99.9V320c0 8.8-7.2 16-16 16zM192 0C156.7 0 128 28.7 128 64V320c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-17-6.7-33.3-18.7-45.3L381.3 18.7C369.3 6.7 353 0 336 0H192zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16h32V128H64z"/></svg>
+      <span class="copy-text">Copy</span>
+    </button>
+  </div>
+  <div class="p-4 overflow-x-auto text-sm font-mono leading-relaxed">
+    <pre><code class="hljs language-php"><span class="hljs-variable">$post</span> = <span class="hljs-title class_">Post</span>::<span class="hljs-title function_ invoke__">find</span>(<span class="hljs-number">1</span>);
+
+<span class="hljs-comment">// Accessing the nested enum</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$post</span>-&gt;options[<span class="hljs-string">&#x27;status&#x27;</span>] === <span class="hljs-title class_">PostStatus</span>::<span class="hljs-variable constant_">Draft</span>) {
+    <span class="hljs-comment">// Strongly typed enum comparison</span>
+}
+
+<span class="hljs-comment">// Updating the nested enum</span>
+<span class="hljs-variable">$options</span> = <span class="hljs-variable">$post</span>-&gt;options;
+<span class="hljs-variable">$options</span>[<span class="hljs-string">&#x27;status&#x27;</span>] = <span class="hljs-title class_">PostStatus</span>::<span class="hljs-variable constant_">Published</span>;
+<span class="hljs-variable">$post</span>-&gt;options = <span class="hljs-variable">$options</span>;
+<span class="hljs-variable">$post</span>-&gt;<span class="hljs-title function_ invoke__">save</span>();</code></pre>
+  </div>
+</div><h2>Summary</h2>
+<ul>
+<li>Use Eloquent <code>Attribute::make()</code> to hydrate and serialize enums nested inside JSON attributes.</li>
+<li>Use <code>PostStatus::tryFrom()</code> in the getter to gracefully handle unexpected values without throwing exceptions.</li>
+<li>Ensures strongly typed enum consistency even for schemaless or flexible JSON payloads.</li>
+</ul>
+
+                </div>
+
+                <!-- Tags Section -->
+                <div class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-mono text-slate-500 dark:text-slate-400 mr-2">Tags:</span>
+                    <span class="px-2 py-0.5 text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Eloquent</span>
+                                <span class="px-2 py-0.5 text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Enums</span>
+                                <span class="px-2 py-0.5 text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Casts</span>
+                                <span class="px-2 py-0.5 text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">JSON</span>
+                </div>
+
+                <!-- Actions Bar: Edit on GitHub & Back to Tips -->
+                <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+                    <a href="/tips" class="inline-flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                        <svg class="w-3.5 h-3.5" width="14" height="14" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+                        <span>Back to All Tips</span>
+                    </a>
+
+                    <a href="https://github.com/MrPunyapal/tips/blob/main/content/laravel/eloquent/laravel-cast-enum-json-array-key.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                        <svg class="w-3.5 h-3.5" width="14" height="14" viewBox="0 0 496 512" fill="currentColor" aria-hidden="true"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+                        <span>Edit on GitHub</span>
+                    </a>
+                </div>
+
+                <!-- Author Card -->
+                <div class="mt-8 p-5 sm:p-6 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
+                    <img src="/profile-image-160.webp" alt="Punyapal Shah" width="56" height="56" class="w-14 h-14 rounded-full border-2 border-red-500/20 aspect-square object-cover flex-shrink-0" loading="lazy">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div>
+                                <h2 class="text-base font-bold text-slate-900 dark:text-white">Punyapal Shah</h2>
+                                <p class="text-xs font-mono text-slate-500 dark:text-slate-400">Laravel Engineer &amp; Open Source Maintainer (Pest &amp; Pinkary Core)</p>
+                            </div>
+                            <div class="flex items-center justify-center sm:justify-end gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
+                                <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors">@MrPunyapal</a>
+                                <span aria-hidden="true">&bull;</span>
+                                <a href="https://github.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-400 transition-colors">GitHub</a>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                            Sharing practical engineering patterns, testing workflows, and developer productivity insights for Laravel and PHP.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Previous / Next Navigation -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                    
+                    <a href="/tips/laravel-custom-casts-enum-json" class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group flex flex-col justify-between">
+                        <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mb-1.5">
+                            <svg class="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" width="14" height="14" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+                            <span>Previous Tip</span>
+                        </span>
+                        <span class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors line-clamp-2 leading-snug">Combine Custom Casts and Enums for Complex Attributes</span>
+                    </a>
+                    
+                    <a href="/tips/laravel-rector-automate-casts-method-upgrade" class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group flex flex-col justify-between text-right">
+                        <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1.5 mb-1.5">
+                            <span>Next Tip</span>
+                            <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" width="14" height="14" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                        </span>
+                        <span class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors line-clamp-2 leading-snug">Automate Laravel 11 casts() Method Upgrade with Rector</span>
+                    </a>
+                </div>
+
+            </article>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="w-full max-w-4xl py-6 text-center mt-[-1px] z-10">
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                // Have a question or feedback on this tip?
+                <a href="https://x.com/MrPunyapal" target="_blank" rel="noopener noreferrer" class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold ml-1">
+                    @MrPunyapal
+                </a>
+            </p>
+        </div>
+    </main>
+
+</body>
+
+</html>

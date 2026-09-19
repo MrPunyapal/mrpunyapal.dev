@@ -9,13 +9,14 @@ export function renderSiteHeader(activePage = 'home') {
         { id: 'services', href: '/services', label: 'Services' },
         { id: 'projects', href: '/projects', label: 'Projects' },
         { id: 'oss', href: '/opensource', label: 'Open Source', shortLabel: 'OSS', hasHeart: true },
+        { id: 'tips', href: '/tips', label: 'Tips' },
         { id: 'resume', href: '/resume', label: 'Resume' },
         { id: 'talks', href: '/talks', label: 'Talks' },
     ];
 
     // Desktop Nav Items
     const desktopNavLinksHtml = navItems.map(item => {
-        const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource');
+        const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource') || (item.id === 'tips' && (activePage === 'tips' || activePage === 'tip'));
         const activeClasses = 'text-slate-900 dark:text-white border-b-2 border-transparent relative';
         const inactiveClasses = 'text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative';
         const activeIndicator = isActive ? `<span class="nav-active-indicator absolute -bottom-[1px] inset-x-0 h-[2px] bg-red-500 z-10" style="view-transition-name: active-nav-indicator;" aria-hidden="true"></span>` : '';
@@ -36,7 +37,7 @@ export function renderSiteHeader(activePage = 'home') {
 
     // Mobile Sidebar Items (Clean left red border quote style)
     const mobileSidebarNavLinksHtml = navItems.map(item => {
-        const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource');
+        const isActive = activePage === item.id || (item.id === 'oss' && activePage === 'opensource') || (item.id === 'tips' && (activePage === 'tips' || activePage === 'tip'));
         const activeClasses = 'bg-slate-100 dark:bg-slate-800/60 text-slate-900 dark:text-white font-medium border-l-4 border-red-500';
         const inactiveClasses = 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent';
 
