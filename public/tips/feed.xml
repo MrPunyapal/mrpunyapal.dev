@@ -17,7 +17,10 @@
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-remember-token-revocation-signal</guid>
             <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Laravel's remember_token as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.]]></description>
-            <content:encoded><![CDATA[<p>When building a multi-account switcher, the application needs a way to verify whether a previously saved account entry is still valid before switching into it.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Laravel&#39;s remember_token as an invalidation signal for saved account-switching state without maintaining a dedicated token or revocation table.</p>
+</blockquote>
+<p>When building a multi-account switcher, the application needs a way to verify whether a previously saved account entry is still valid before switching into it.</p>
 <p>Before adding another token or revocation table to your database, consider whether Laravel already maintains state that can serve as the invalidation signal you need.</p>
 <p>Laravel&#39;s <code>remember_token</code> on the <code>users</code> table already rotates whenever a user logs out, resets their password, or updates their credentials. You can bind saved account entries to this existing token using an HMAC.</p>
 <hr>
@@ -79,7 +82,10 @@ Auth::login($user);</code></pre><hr>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/git-submodule-vs-git-subtree</guid>
             <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[A practical comparison of Git Submodules and Git Subtrees to help you choose the right strategy for embedding one repository inside another.]]></description>
-            <content:encoded><![CDATA[<p>When managing projects that share common libraries, documentation sets, microservices, or reusable UI components, you frequently need to embed one Git repository inside another.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>A practical comparison of Git Submodules and Git Subtrees to help you choose the right strategy for embedding one repository inside another.</p>
+</blockquote>
+<p>When managing projects that share common libraries, documentation sets, microservices, or reusable UI components, you frequently need to embed one Git repository inside another.</p>
 <p>Git provides two distinct mechanisms to handle this:</p>
 <ul>
 <li><strong>Git Submodules</strong>: Keep the external repository strictly independent; the parent repository only stores a pointer to a specific commit SHA.</li>
@@ -218,7 +224,10 @@ git subtree add --prefix=packages/shared-lib shared-lib main --squash</code></pr
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-cache-playwright-puppeteer</guid>
             <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Cache browser binaries with actions/cache to avoid downloading 150MB+ on every CI run.]]></description>
-            <content:encoded><![CDATA[<p>Playwright and Puppeteer download full browser binaries (Chromium, Firefox, WebKit) during installation. Without caching, every workflow run downloads these binaries from scratch, adding 30-90 seconds of network time depending on the browser set and runner region.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Cache browser binaries with <code>actions/cache</code> to avoid downloading 150MB+ on every CI run.</p>
+</blockquote>
+<p>Playwright and Puppeteer download full browser binaries (Chromium, Firefox, WebKit) during installation. Without caching, every workflow run downloads these binaries from scratch, adding 30-90 seconds of network time depending on the browser set and runner region.</p>
 <h2>Cache Playwright Browsers</h2>
 <pre><code class="language-yaml">jobs:
   build:
@@ -327,7 +336,10 @@ npx puppeteer browsers install chrome</code></pre><p>Installing all browsers dow
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-incremental-file-writing</guid>
             <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds.]]></description>
-            <content:encoded><![CDATA[<p>Build scripts that generate HTML, JSON, XML, or other output files often write the result unconditionally, even when the content has not changed. This creates problems in CI pipelines: unchanged files get new timestamps, <code>git status</code> reports false modifications, auto-commit steps push empty diffs, and downstream caches are invalidated for no reason.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds.</p>
+</blockquote>
+<p>Build scripts that generate HTML, JSON, XML, or other output files often write the result unconditionally, even when the content has not changed. This creates problems in CI pipelines: unchanged files get new timestamps, <code>git status</code> reports false modifications, auto-commit steps push empty diffs, and downstream caches are invalidated for no reason.</p>
 <h2>The Problem</h2>
 <p>A typical build script writes output directly:</p>
 <pre><code class="language-javascript">import fs from &#039;node:fs&#039;;
@@ -418,7 +430,10 @@ writeIfChanged(&#039;public/sitemap.xml&#039;, renderSitemap(routes));</code></p
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-skip-steps-with-git-diff</guid>
             <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[File modification timestamps are unreliable in GitHub Actions. Use git diff to detect actual changes and conditionally skip expensive workflow steps.]]></description>
-            <content:encoded><![CDATA[<p>Many build tools use file modification timestamps (<code>mtime</code>) to decide what needs rebuilding. This works on local machines because the filesystem tracks when each file was last saved.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>File modification timestamps are unreliable in GitHub Actions. Use <code>git diff</code> to detect actual changes and conditionally skip expensive workflow steps.</p>
+</blockquote>
+<p>Many build tools use file modification timestamps (<code>mtime</code>) to decide what needs rebuilding. This works on local machines because the filesystem tracks when each file was last saved.</p>
 <p>In GitHub Actions, <code>actions/checkout</code> resets <strong>every file&#39;s timestamp</strong> to the moment of checkout. A project with 500 files will have all 500 stamped with the exact same time, regardless of when each was actually last modified.</p>
 <p>Any script comparing timestamps to decide &quot;has this source changed since the last build?&quot; will answer &quot;yes&quot; for everything, triggering full rebuilds on every single run.</p>
 <h2>The Problem in Practice</h2>
@@ -529,7 +544,10 @@ if (!hasSourceChanged([&#039;template.html&#039;, &#039;styles/resume.css&#039;]
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/mask-query-bindings-in-exception-messages</guid>
             <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Keep query bindings out of QueryException messages while retaining access to the actual bindings.]]></description>
-            <content:encoded><![CDATA[<p>When a database query fails, Laravel&#39;s <code>QueryException</code> message can include the values that were bound to the query.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Keep query bindings out of <code>QueryException</code> messages while retaining access to the actual bindings.</p>
+</blockquote>
+<p>When a database query fails, Laravel&#39;s <code>QueryException</code> message can include the values that were bound to the query.</p>
 <p>That can be useful while debugging, but it can also mean sensitive values end up in logs, error trackers, or other places where exception messages are stored.</p>
 <p>Laravel 13.27 adds an option to mask those bindings in exception messages.</p>
 <h2>Before</h2>
@@ -586,7 +604,10 @@ Actual values</code></pre><p>So your error message can avoid exposing query valu
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/git-local-ignore-info-exclude</guid>
             <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Use .git/info/exclude to ignore personal scratch files, local debug scripts, and notes without polluting your team's shared .gitignore file.]]></description>
-            <content:encoded><![CDATA[<p>When working on a shared repository, you often create temporary files for local testing: a quick scratchpad (<code>scratchpad.md</code>), a temporary debugging script (<code>debug_local.php</code>), or a folder of personal investigation notes (<code>/notes/</code>).</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use .git/info/exclude to ignore personal scratch files, local debug scripts, and notes without polluting your team&#39;s shared .gitignore file.</p>
+</blockquote>
+<p>When working on a shared repository, you often create temporary files for local testing: a quick scratchpad (<code>scratchpad.md</code>), a temporary debugging script (<code>debug_local.php</code>), or a folder of personal investigation notes (<code>/notes/</code>).</p>
 <p>A common developer habit is adding those personal patterns to the project&#39;s root <code>.gitignore</code> file. However, <code>.gitignore</code> is committed and tracked in version control. Adding personal, one-off file patterns creates noisy pull request diffs and forces team members to adopt ignore rules they do not need.</p>
 <p>Git provides a built-in repository-local ignore file: <code>.git/info/exclude</code>.</p>
 <h2>Three Scopes of Git Ignore Rules</h2>
@@ -666,7 +687,10 @@ local_dump.sql</code></pre><p>After saving the file, running <code>git status</c
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-stream-csv-downloads-without-temporary-files</guid>
             <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Combine response()->streamDownload(), php://output, and query chunking to stream CSV exports directly to the browser without writing temporary files to disk.]]></description>
-            <content:encoded><![CDATA[<p>Generating CSV exports often involves writing a temporary file to disk (<code>storage_path(&#39;app/temp.csv&#39;)</code>), returning a download response, and cleaning up the file afterward. This introduces unnecessary disk I/O and risk of disk space exhaustion.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Combine response()-&gt;streamDownload(), php://output, and query chunking to stream CSV exports directly to the browser without writing temporary files to disk.</p>
+</blockquote>
+<p>Generating CSV exports often involves writing a temporary file to disk (<code>storage_path(&#39;app/temp.csv&#39;)</code>), returning a download response, and cleaning up the file afterward. This introduces unnecessary disk I/O and risk of disk space exhaustion.</p>
 <p>Using <code>response()-&gt;streamDownload()</code>, you can write CSV rows directly to <code>php://output</code> in chunked database batches with minimal memory consumption and zero disk usage.</p>
 <hr>
 <h2>Invokable Controller Example</h2>
@@ -727,7 +751,10 @@ class ExportProductsController
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/css-prevent-navigation-layout-shift-flicker</guid>
             <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.]]></description>
-            <content:encoded><![CDATA[<p>Navigation bars often suffer from subtle layout shifts during page reloads, theme toggles, and tab switches. Combining a few CSS and HTML techniques eliminates these visual jumps entirely.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.</p>
+</blockquote>
+<p>Navigation bars often suffer from subtle layout shifts during page reloads, theme toggles, and tab switches. Combining a few CSS and HTML techniques eliminates these visual jumps entirely.</p>
 <h3>1. Lock Root Scrollbar Space and Clip Horizontal Overflow</h3>
 <p>Navigating between long pages with scrollbars and short pages without scrollbars causes horizontal layout jumps. Use <code>scrollbar-gutter: stable</code> on <code>html</code> with <code>overflow-y: auto</code>, and clip horizontal overflow on <code>body</code> with <code>overflow-x: clip</code>.</p>
 <pre><code class="language-css">/* Reserve scrollbar width globally without forcing a scrollbar track on short pages */
@@ -834,7 +861,10 @@ body {
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/github-actions-cross-repo-workflow-dispatch</guid>
             <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Use repository_dispatch to trigger a workflow in a target repository when commits or PRs land in a source repository.]]></description>
-            <content:encoded><![CDATA[<p>GitHub Actions workflows are scoped to a single repository by default. To run a workflow in another repository after merging a PR or pushing a commit, use GitHub&#39;s <code>repository_dispatch</code> API endpoint.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use <code>repository_dispatch</code> to trigger a workflow in a target repository when commits or PRs land in a source repository.</p>
+</blockquote>
+<p>GitHub Actions workflows are scoped to a single repository by default. To run a workflow in another repository after merging a PR or pushing a commit, use GitHub&#39;s <code>repository_dispatch</code> API endpoint.</p>
 <h2>1. Configure the Target Repository Listener</h2>
 <p>Add <code>repository_dispatch</code> to the <code>on</code> block in the target repository workflow file:</p>
 <pre><code class="language-yaml"># .github/workflows/build.yml (target repo)
@@ -907,7 +937,10 @@ jobs:
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-blueprint-macro-reusable-schema-audit-fields</guid>
             <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Extend Laravel's Blueprint class with custom macros to standardize and reuse common schema columns across database migrations.]]></description>
-            <content:encoded><![CDATA[<p>Database migrations frequently repeat the same cluster of audit columns (such as created/updated timestamps, soft deletes, and user foreign keys) across multiple tables.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Extend Laravel&#39;s Blueprint class with custom macros to standardize and reuse common schema columns across database migrations.</p>
+</blockquote>
+<p>Database migrations frequently repeat the same cluster of audit columns (such as created/updated timestamps, soft deletes, and user foreign keys) across multiple tables.</p>
 <p>Using <code>Blueprint::macro()</code>, you can bundle these columns into a single reusable helper method.</p>
 <hr>
 <h2>Register the Macro</h2>
@@ -974,7 +1007,10 @@ return new class extends Migration
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-builder-macro-registration</guid>
             <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Register reusable query methods directly on the Builder so every model gains access without repeating logic.]]></description>
-            <content:encoded><![CDATA[<p>Laravel&#39;s <code>Macroable</code> trait lets you add methods to the Builder at runtime. Register them in a service provider&#39;s <code>boot()</code> method and they become available on any query.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Register reusable query methods directly on the Builder so every model gains access without repeating logic.</p>
+</blockquote>
+<p>Laravel&#39;s <code>Macroable</code> trait lets you add methods to the Builder at runtime. Register them in a service provider&#39;s <code>boot()</code> method and they become available on any query.</p>
 <pre><code class="language-php">use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
@@ -1007,7 +1043,10 @@ $orders = Order::query()
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-never-return-in-finally-block</guid>
             <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Placing a return statement inside a try-catch finally block silently overrides exceptions and previous return statements.]]></description>
-            <content:encoded><![CDATA[<p>A return statement inside a finally block executes regardless of whether an exception was thrown or caught. It silently discards pending exceptions and overwrites return values from try or catch blocks.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Placing a return statement inside a try-catch finally block silently overrides exceptions and previous return statements.</p>
+</blockquote>
+<p>A return statement inside a finally block executes regardless of whether an exception was thrown or caught. It silently discards pending exceptions and overwrites return values from try or catch blocks.</p>
 <pre><code class="language-php">// What does guess() return? It returns &#039;finally&#039;!
 function guess(): string
 {
@@ -1047,7 +1086,10 @@ function processOrderClean(): bool
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-rector-automate-readonly-classes</guid>
             <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Rector rules to automatically convert immutable DTOs and value objects into native PHP 8.2 readonly classes.]]></description>
-            <content:encoded><![CDATA[<p>Manually adding <code>readonly</code> keywords across dozens of data transfer objects (DTOs) and value objects is repetitive.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Rector rules to automatically convert immutable DTOs and value objects into native PHP 8.2 readonly classes.</p>
+</blockquote>
+<p>Manually adding <code>readonly</code> keywords across dozens of data transfer objects (DTOs) and value objects is repetitive.</p>
 <p>Rector automates upgrading class declarations across your codebase using AST refactoring.</p>
 <hr>
 <h2>Configuration</h2>
@@ -1098,7 +1140,10 @@ readonly class UserData
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-sole-vs-firstorfail</guid>
             <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[When you expect exactly one matching record, use sole() instead of firstOrFail(). It guards against multiple records by throwing MultipleRecordsFoundException.]]></description>
-            <content:encoded><![CDATA[<p>When querying unique records, firstOrFail() silently returns the first record even if multiple records match due to data integrity issues. sole() makes sure exactly one record exists.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>When you expect exactly one matching record, use sole() instead of firstOrFail(). It guards against multiple records by throwing MultipleRecordsFoundException.</p>
+</blockquote>
+<p>When querying unique records, firstOrFail() silently returns the first record even if multiple records match due to data integrity issues. sole() makes sure exactly one record exists.</p>
 <pre><code class="language-php">// Throws ModelNotFoundException if 0, MultipleRecordsFoundException if 2+
 $user = User::where(&#039;verification_token&#039;, $token)-&gt;sole();</code></pre><ul>
 <li>Asserts that exactly one record matches criteria</li>
@@ -1119,7 +1164,10 @@ $user = User::where(&#039;verification_token&#039;, $token)-&gt;sole();</code></
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-prohibitable-custom-commands-agents</guid>
             <pubDate>Thu, 16 Jul 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Laravel's Prohibitable trait on custom Artisan commands to selectively block AI agents from running destructive domain operations.]]></description>
-            <content:encoded><![CDATA[<p>While <code>DB::prohibitDestructiveCommands()</code> protects core database migrations, custom Artisan commands (such as purging inactive tenants or deleting old records) require their own guard so AI coding agents do not execute them automatically.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Laravel&#39;s Prohibitable trait on custom Artisan commands to selectively block AI agents from running destructive domain operations.</p>
+</blockquote>
+<p>While <code>DB::prohibitDestructiveCommands()</code> protects core database migrations, custom Artisan commands (such as purging inactive tenants or deleting old records) require their own guard so AI coding agents do not execute them automatically.</p>
 <hr>
 <h2>1. Add Prohibitable to the Command Class</h2>
 <p>Add the <code>Illuminate\Console\Prohibitable</code> trait to your custom command:</p>
@@ -1180,7 +1228,10 @@ class AppServiceProvider extends ServiceProvider
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-agent-detector-pao</guid>
             <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Laravel's AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents.]]></description>
-            <content:encoded><![CDATA[<p>AI coding agents (Cursor, Claude Code, Devin) are now part of regular development workflows. Laravel provides first-party tools to detect agents and optimize terminal output for LLM parsing.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Laravel&#39;s AgentDetector detects whether an AI coding agent is interacting with your app, and PAO optimizes CLI output for agents.</p>
+</blockquote>
+<p>AI coding agents (Cursor, Claude Code, Devin) are now part of regular development workflows. Laravel provides first-party tools to detect agents and optimize terminal output for LLM parsing.</p>
 <hr>
 <h2>Agent Detection</h2>
 <pre><code class="language-php">use Laravel\AgentDetector\Facades\AgentDetector;
@@ -1211,7 +1262,10 @@ if ($detection-&gt;isAgent) {
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-cursor-vs-lazy-collections</guid>
             <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[cursor() hydrates single model instances sequentially using database cursors; lazy() streams records in chunks backed by LazyCollection.]]></description>
-            <content:encoded><![CDATA[<p>When iterating millions of records, get() exhausts PHP memory limits. cursor() uses PDO cursors to fetch records one by one, while lazy() queries records in chunks while exposing a fluent LazyCollection.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>cursor() hydrates single model instances sequentially using database cursors; lazy() streams records in chunks backed by LazyCollection.</p>
+</blockquote>
+<p>When iterating millions of records, get() exhausts PHP memory limits. cursor() uses PDO cursors to fetch records one by one, while lazy() queries records in chunks while exposing a fluent LazyCollection.</p>
 <pre><code class="language-php">use App\Models\User;
 
 // Cursors: single query, streams 1 instance at a time (lowest memory)
@@ -1239,7 +1293,10 @@ User::where(&#039;active&#039;, false)-&gt;lazy(1000)-&gt;each-&gt;archive();</c
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-chunk-vs-lazy-by-id</guid>
             <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Understand offset vs keyset pagination when processing large datasets to avoid missing records during updates.]]></description>
-            <content:encoded><![CDATA[<p>Updating records inside chunk() modifies the result set, causing offset pagination to skip every second chunk. Use chunkById() or lazyById() when updating query columns.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Understand offset vs keyset pagination when processing large datasets to avoid missing records during updates.</p>
+</blockquote>
+<p>Updating records inside chunk() modifies the result set, causing offset pagination to skip every second chunk. Use chunkById() or lazyById() when updating query columns.</p>
 <pre><code class="language-php">use App\Models\User;
 
 // BAD when updating filtered column: skips records due to offset shift!
@@ -1269,7 +1326,10 @@ User::where(&#039;processed&#039;, false)-&gt;chunkById(100, function ($users) {
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-security-ui-vs-policy-enforcement</guid>
             <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers.]]></description>
-            <content:encoded><![CDATA[<p>Hiding an edit button using @can or v-if only modifies visual presentation. Attackers can submit HTTP requests directly to backend endpoints. Always enforce authorization logic in backend controllers or form requests.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Hiding buttons in Blade or Vue does not restrict access. Always enforce authorization policies in controller or request layers.</p>
+</blockquote>
+<p>Hiding an edit button using @can or v-if only modifies visual presentation. Attackers can submit HTTP requests directly to backend endpoints. Always enforce authorization logic in backend controllers or form requests.</p>
 <pre><code class="language-php">// Blade UI (Visual convenience only)
 @can(&#039;update&#039;, $post)
     &lt;a href=&quot;{{ route(&#039;posts.edit&#039;, $post) }}&quot;&gt;Edit Post&lt;/a&gt;
@@ -1299,7 +1359,10 @@ public function update(UpdatePostRequest $request, Post $post)
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-db-after-commit-transaction-jobs</guid>
             <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Use DB::afterCommit() to defer job dispatching until surrounding database transactions complete successfully.]]></description>
-            <content:encoded><![CDATA[<p>Dispatching queue jobs inside active DB transactions can trigger race conditions where background workers run before the transaction commits. DB::afterCommit() delays side effects until commit finishes.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use DB::afterCommit() to defer job dispatching until surrounding database transactions complete successfully.</p>
+</blockquote>
+<p>Dispatching queue jobs inside active DB transactions can trigger race conditions where background workers run before the transaction commits. DB::afterCommit() delays side effects until commit finishes.</p>
 <pre><code class="language-php">use Illuminate\Support\Facades\DB;
 use App\Jobs\ProcessPayment;
 
@@ -1327,7 +1390,10 @@ DB::transaction(function () use ($order) {
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-assert-database-has-json-enums</guid>
             <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.]]></description>
-            <content:encoded><![CDATA[<p>Testing JSON attributes or PHP backed enums in database assertions requires no manual casting, JSON encoding, or <code>-&gt;value</code> calls.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>In Laravel and Pest tests, assertDatabaseHas() natively queries nested JSON properties using arrow syntax and accepts backed Enum instances directly.</p>
+</blockquote>
+<p>Testing JSON attributes or PHP backed enums in database assertions requires no manual casting, JSON encoding, or <code>-&gt;value</code> calls.</p>
 <p><code>assertDatabaseHas()</code> natively serializes backed enums and translates arrow notation into database JSON queries.</p>
 <hr>
 <h2>Code Examples</h2>
@@ -1366,7 +1432,10 @@ $this-&gt;assertDatabaseHas(&#039;users&#039;, [
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</guid>
             <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests.]]></description>
-            <content:encoded><![CDATA[<p>Running full test suites on every minor change slows down local feedback loops. While <code>--dirty</code> only checks if test files themselves changed, Pest&#39;s Tia Engine analyzes code coverage mapping to identify tests that execute the actual application lines you modified.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests.</p>
+</blockquote>
+<p>Running full test suites on every minor change slows down local feedback loops. While <code>--dirty</code> only checks if test files themselves changed, Pest&#39;s Tia Engine analyzes code coverage mapping to identify tests that execute the actual application lines you modified.</p>
 <hr>
 <h2>1. CLI Usage</h2>
 <p>Run Pest with the <code>--tia</code> flag:</p>
@@ -1406,7 +1475,10 @@ pest()-&gt;tia()
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-prohibitable-destructive-commands</guid>
             <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel's Prohibitable trait and DB::prohibitDestructiveCommands().]]></description>
-            <content:encoded><![CDATA[<p>Accidentally running <code>migrate:fresh</code> or <code>db:wipe</code> on a production database is catastrophic.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Prevent catastrophic accidents like db:wipe or migrate:fresh in production using Laravel&#39;s Prohibitable trait and DB::prohibitDestructiveCommands().</p>
+</blockquote>
+<p>Accidentally running <code>migrate:fresh</code> or <code>db:wipe</code> on a production database is catastrophic.</p>
 <p>Laravel provides <code>DB::prohibitDestructiveCommands()</code> to block dangerous commands when running in production.</p>
 <hr>
 <h2>AppServiceProvider Configuration</h2>
@@ -1454,7 +1526,10 @@ class AppServiceProvider extends ServiceProvider
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-security-strip-tags-vs-htmlpurifier</guid>
             <pubDate>Sat, 18 Apr 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.]]></description>
-            <content:encoded><![CDATA[<p>A common security misconception in PHP is relying on strip_tags() to sanitize user-submitted rich text. It allows attribute payloads like onload= or javascript: URIs through if allowed tags are specified.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>strip_tags() removes HTML elements but fails to sanitize inline attributes or malformed HTML payload vectors. Use HTMLPurifier for rich text input.</p>
+</blockquote>
+<p>A common security misconception in PHP is relying on strip_tags() to sanitize user-submitted rich text. It allows attribute payloads like onload= or javascript: URIs through if allowed tags are specified.</p>
 <pre><code class="language-php">use HTMLPurifier;
 
 $purifier = new HTMLPurifier();
@@ -1477,7 +1552,10 @@ $cleanHtml = $purifier-&gt;purify($input);</code></pre><ul>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-pipeline-pattern-complex-workflows</guid>
             <pubDate>Sun, 05 Apr 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Process complex data sequences or multi-stage order checks through Laravel's built-in Pipeline facade to replace massive controller methods.]]></description>
-            <content:encoded><![CDATA[<p>When processing multi-stage workflows (such as order checkout validation or user onboarding steps), controller actions frequently accumulate deeply nested <code>if</code> statements.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Process complex data sequences or multi-stage order checks through Laravel&#39;s built-in Pipeline facade to replace massive controller methods.</p>
+</blockquote>
+<p>When processing multi-stage workflows (such as order checkout validation or user onboarding steps), controller actions frequently accumulate deeply nested <code>if</code> statements.</p>
 <p>Laravel&#39;s <code>Pipeline</code> facade passes an object sequentially through dedicated pipe classes.</p>
 <hr>
 <h2>The Pipeline Runner</h2>
@@ -1533,7 +1611,10 @@ class ApplyCoupon
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-rector-remove-unnecessary-comments</guid>
             <pubDate>Wed, 11 Mar 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Use a custom Rector rule to automatically strip noisy inline comments and empty docblocks across your codebase while preserving essential PHPDoc annotations.]]></description>
-            <content:encoded><![CDATA[<p>Codebases often accumulate redundant comments over time: commented-out legacy code, obvious explanations (<code>// set user name</code>), or empty boilerplate docblocks generated by older IDE templates.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use a custom Rector rule to automatically strip noisy inline comments and empty docblocks across your codebase while preserving essential PHPDoc annotations.</p>
+</blockquote>
+<p>Codebases often accumulate redundant comments over time: commented-out legacy code, obvious explanations (<code>// set user name</code>), or empty boilerplate docblocks generated by older IDE templates.</p>
 <p>Manually reviewing and removing thousands of stale comments across hundreds of files is time-consuming. Using Rector, you can define an AbstractRector rule that strips non-essential comments while retaining critical PHPDoc annotations such as <code>@param</code>, <code>@return</code>, and <code>@throws</code>.</p>
 <h2>The Rector Implementation</h2>
 <pre><code class="language-php">namespace App\Rector;
@@ -1683,7 +1764,10 @@ return RectorConfig::configure()
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-queue-delete-when-missing-models</guid>
             <pubDate>Wed, 14 Jan 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Use the $deleteWhenMissingModels property on queued jobs to silently discard jobs if their referenced database records were deleted before execution.]]></description>
-            <content:encoded><![CDATA[<p>When an Eloquent model is passed to a queued job and a user deletes that record before the worker picks up the job, Laravel throws a <code>ModelNotFoundException</code>, causing the job to fail and populate the <code>failed_jobs</code> table.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use the $deleteWhenMissingModels property on queued jobs to silently discard jobs if their referenced database records were deleted before execution.</p>
+</blockquote>
+<p>When an Eloquent model is passed to a queued job and a user deletes that record before the worker picks up the job, Laravel throws a <code>ModelNotFoundException</code>, causing the job to fail and populate the <code>failed_jobs</code> table.</p>
 <p>Setting <code>$deleteWhenMissingModels = true</code> instructs the worker to delete the job silently.</p>
 <h2>Enabling on Job Classes</h2>
 <pre><code class="language-php">namespace App\Jobs;
@@ -1728,7 +1812,10 @@ class GeneratePostThumbnailJob implements ShouldQueue
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-queue-without-relations-serialization</guid>
             <pubDate>Wed, 17 Dec 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Use withoutRelations() when passing models to queue jobs to prevent large in-memory relationship graphs from serializing into queue storage.]]></description>
-            <content:encoded><![CDATA[<p>When dispatching queue jobs that accept an Eloquent model instance, Laravel serializes the model. If the model had dozens of nested relationships eager-loaded in the controller, all those related models are serialized into the queue payload (Redis / Database), causing massive payload bloat.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use withoutRelations() when passing models to queue jobs to prevent large in-memory relationship graphs from serializing into queue storage.</p>
+</blockquote>
+<p>When dispatching queue jobs that accept an Eloquent model instance, Laravel serializes the model. If the model had dozens of nested relationships eager-loaded in the controller, all those related models are serialized into the queue payload (Redis / Database), causing massive payload bloat.</p>
 <p>Calling <code>withoutRelations()</code> strips loaded relations before dispatching.</p>
 <h2>Basic Usage</h2>
 <pre><code class="language-php">use App\Jobs\GenerateUserInvoiceJob;
@@ -1779,7 +1866,10 @@ class ProcessOrderJob implements ShouldQueue
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-queue-worker-polling-optimization</guid>
             <pubDate>Fri, 05 Dec 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Use queue:work with appropriate sleep configuration or Redis blocking pops to reduce database CPU polling overheads.]]></description>
-            <content:encoded><![CDATA[<p>Queue workers set to poll databases without sleep configs execute continuous SELECT queries, driving database CPU usage up. Configure appropriate sleep intervals or use Redis queue drivers.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use queue:work with appropriate sleep configuration or Redis blocking pops to reduce database CPU polling overheads.</p>
+</blockquote>
+<p>Queue workers set to poll databases without sleep configs execute continuous SELECT queries, driving database CPU usage up. Configure appropriate sleep intervals or use Redis queue drivers.</p>
 <pre><code class="language-bash"># Wait 3 seconds when queue is empty before polling again
 php artisan queue:work --sleep=3 --tries=3 --timeout=90</code></pre><ul>
 <li>--sleep=3 pauses worker polling when no jobs are available</li>
@@ -1800,7 +1890,10 @@ php artisan queue:work --sleep=3 --tries=3 --timeout=90</code></pre><ul>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-queue-worker-stop-when-empty-for</guid>
             <pubDate>Thu, 20 Nov 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty workloads.]]></description>
-            <content:encoded><![CDATA[<p>Running <code>php artisan queue:work --stop-when-empty</code> in serverless environments or container auto-scalers terminates the worker process immediately when no jobs remain. If new jobs arrive seconds later, new processes must spin up continuously.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>The --stop-when-empty-for option keeps queue workers alive for a specific grace period after the queue empties, preventing rapid process churn during bursty workloads.</p>
+</blockquote>
+<p>Running <code>php artisan queue:work --stop-when-empty</code> in serverless environments or container auto-scalers terminates the worker process immediately when no jobs remain. If new jobs arrive seconds later, new processes must spin up continuously.</p>
 <p>The <code>--stop-when-empty-for</code> option adds a configurable idle timeout:</p>
 <pre><code class="language-bash"># Stops worker immediately once queue is empty
 php artisan queue:work --stop-when-empty
@@ -1825,7 +1918,10 @@ php artisan queue:work --stop-when-empty-for=60</code></pre><ul>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-eloquent-where-year-vs-date-between-index</guid>
             <pubDate>Wed, 19 Nov 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Replace whereYear() and whereMonth() on large database tables with whereBetween() date ranges to enable SQL index lookups.]]></description>
-            <content:encoded><![CDATA[<p>Using <code>whereYear(&#39;created_at&#39;, 2026)</code> forces database engines (MySQL, PostgreSQL) to wrap the column in an SQL function (<code>WHERE YEAR(created_at) = 2026</code>).</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Replace whereYear() and whereMonth() on large database tables with whereBetween() date ranges to enable SQL index lookups.</p>
+</blockquote>
+<p>Using <code>whereYear(&#39;created_at&#39;, 2026)</code> forces database engines (MySQL, PostgreSQL) to wrap the column in an SQL function (<code>WHERE YEAR(created_at) = 2026</code>).</p>
 <p>Wrapping indexed columns in functions invalidates database B-Tree indexes, causing full table scans.</p>
 <h2>The Problem with whereYear()</h2>
 <pre><code class="language-php">// ❌ SLOW: SQL function YEAR(created_at) disables database index!
@@ -1864,7 +1960,10 @@ $orders = Order::whereBetween(&#039;created_at&#039;, [
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-cache-memo-driver-in-memory</guid>
             <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Cache::memo() to combine persistent cache stores with per-request memory caching, preventing repetitive network roundtrips during a single HTTP request.]]></description>
-            <content:encoded><![CDATA[<p>Calling <code>Cache::get(&#39;key&#39;)</code> multiple times in a single request still incurs a Redis network roundtrip or database query each time.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Cache::memo() to combine persistent cache stores with per-request memory caching, preventing repetitive network roundtrips during a single HTTP request.</p>
+</blockquote>
+<p>Calling <code>Cache::get(&#39;key&#39;)</code> multiple times in a single request still incurs a Redis network roundtrip or database query each time.</p>
 <p><code>Cache::memo()</code> wraps your configured cache store with an in-memory array cache for the duration of the current request:</p>
 <pre><code class="language-php">use Illuminate\Support\Facades\Cache;
 
@@ -1904,7 +2003,10 @@ Cache::memo(&#039;redis&#039;)-&gt;remember(&#039;expensive-report&#039;, 3600, 
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-database-generated-virtual-columns</guid>
             <pubDate>Wed, 27 Aug 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Use virtualAs() and storedAs() in migrations to create generated database columns for high-speed indexing on JSON attributes.]]></description>
-            <content:encoded><![CDATA[<p>Querying deep JSON attributes (such as <code>WHERE JSON_EXTRACT(metadata, &#39;$.country&#39;) = &#39;US&#39;</code>) cannot use standard B-Tree column indexes, resulting in slow full table scans on large tables.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use virtualAs() and storedAs() in migrations to create generated database columns for high-speed indexing on JSON attributes.</p>
+</blockquote>
+<p>Querying deep JSON attributes (such as <code>WHERE JSON_EXTRACT(metadata, &#39;$.country&#39;) = &#39;US&#39;</code>) cannot use standard B-Tree column indexes, resulting in slow full table scans on large tables.</p>
 <p>Generated columns extract values from JSON or string expressions and allow standard indexing.</p>
 <h2>Creating Generated Columns in Migrations</h2>
 <pre><code class="language-php">use Illuminate\Database\Migrations\Migration;
@@ -1954,7 +2056,10 @@ $largeOrders = Order::where(&#039;total_amount&#039;, &#039;&gt;&#039;, 500)-&gt
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-timeout-guard-ticks-without-pcntl</guid>
             <pubDate>Fri, 13 Jun 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Interrupt long-running synchronous PHP callables on any operating system using PHP tick declarations and tick callback functions without requiring the pcntl extension.]]></description>
-            <content:encoded><![CDATA[<p>In command-line scripts, background jobs, or plugin execution engines, you may need to impose a hard execution timeout on a closure or callable. The standard Unix approach uses <code>pcntl_alarm()</code> or <code>pcntl_fork()</code>, but the <code>pcntl</code> extension is unavailable on Windows environments and in certain shared hosting setups.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Interrupt long-running synchronous PHP callables on any operating system using PHP tick declarations and tick callback functions without requiring the pcntl extension.</p>
+</blockquote>
+<p>In command-line scripts, background jobs, or plugin execution engines, you may need to impose a hard execution timeout on a closure or callable. The standard Unix approach uses <code>pcntl_alarm()</code> or <code>pcntl_fork()</code>, but the <code>pcntl</code> extension is unavailable on Windows environments and in certain shared hosting setups.</p>
 <p>Using PHP ticks (<code>declare(ticks=1)</code>), you can implement a cross-platform execution watchdog that monitors elapsed execution time and interrupts runaway code.</p>
 <h2>The TimeoutGuard Implementation</h2>
 <pre><code class="language-php">declare(ticks=1);
@@ -2032,7 +2137,10 @@ class TimeoutGuard
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-db-when-querying-for-longer-than</guid>
             <pubDate>Wed, 12 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Use DB::whenQueryingForLongerThan() to monitor the cumulative time spent in database queries per HTTP request and notify developers of slow requests.]]></description>
-            <content:encoded><![CDATA[<p>While <code>DB::listen()</code> measures individual query duration, an endpoint that executes 100 fast 5ms queries spends a massive 500ms in SQL without triggering single-query slow thresholds.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use DB::whenQueryingForLongerThan() to monitor the cumulative time spent in database queries per HTTP request and notify developers of slow requests.</p>
+</blockquote>
+<p>While <code>DB::listen()</code> measures individual query duration, an endpoint that executes 100 fast 5ms queries spends a massive 500ms in SQL without triggering single-query slow thresholds.</p>
 <p><code>DB::whenQueryingForLongerThan()</code> measures the cumulative total database time across an entire request.</p>
 <h2>Setting Cumulative Query Thresholds</h2>
 <p>In <code>AppServiceProvider::boot()</code>:</p>
@@ -2076,7 +2184,10 @@ class AppServiceProvider extends ServiceProvider
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-tappable-scopes-eloquent-scout</guid>
             <pubDate>Fri, 07 Feb 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Extract query filtering logic into invokable scope classes that work interchangeably across Eloquent query builders and Laravel Scout search instances.]]></description>
-            <content:encoded><![CDATA[<p>Standard Eloquent local scopes (<code>scopeActive()</code>, <code>scopeFilter()</code>) work well for database queries, but they are tightly coupled to the Eloquent <code>Builder</code> instance and cannot be directly invoked on a Laravel Scout search query builder (<code>Post::search()-&gt;...</code>).</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Extract query filtering logic into invokable scope classes that work interchangeably across Eloquent query builders and Laravel Scout search instances.</p>
+</blockquote>
+<p>Standard Eloquent local scopes (<code>scopeActive()</code>, <code>scopeFilter()</code>) work well for database queries, but they are tightly coupled to the Eloquent <code>Builder</code> instance and cannot be directly invoked on a Laravel Scout search query builder (<code>Post::search()-&gt;...</code>).</p>
 <p>By creating invokable &quot;Tappable Scope&quot; classes, you can share identical query constraints across both database queries and full-text search pipelines without duplicating logic.</p>
 <h2>1. Create the Invokable Scope Class</h2>
 <p>Create a dedicated scope class that accepts either an Eloquent <code>Builder</code> or a Scout <code>Builder</code>:</p>
@@ -2151,7 +2262,10 @@ $results = Post::search($searchTerm)
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-test-time-travel-freeze</guid>
             <pubDate>Thu, 12 Sep 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Use $this->travelTo() or freezeTime() in test suites to test date-sensitive logic without slowing down test execution with sleep().]]></description>
-            <content:encoded><![CDATA[<p>Using sleep() in tests slows down execution suites significantly. Laravel&#39;s time travel helpers let you manipulate Carbon&#39;s internal clock instantaneously without real-world delays.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use $this-&gt;travelTo() or freezeTime() in test suites to test date-sensitive logic without slowing down test execution with sleep().</p>
+</blockquote>
+<p>Using sleep() in tests slows down execution suites significantly. Laravel&#39;s time travel helpers let you manipulate Carbon&#39;s internal clock instantaneously without real-world delays.</p>
 <pre><code class="language-php">test(&#039;trial expires after 14 days&#039;, function () {
     $user = User::factory()-&gt;create([&#039;trial_ends_at&#039; =&gt; now()-&gt;addDays(14)]);
 
@@ -2178,7 +2292,10 @@ $results = Post::search($searchTerm)
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-backed-integer-enums-indexing</guid>
             <pubDate>Sat, 31 Aug 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[When creating integer-backed PHP Enums, index starting from 1 to avoid false-y evaluation bugs in loose comparisons.]]></description>
-            <content:encoded><![CDATA[<p>In PHP, <code>0</code> evaluates as false-y in loose condition checks like <code>empty()</code> or <code>if ($enum-&gt;value)</code>. Starting integer enum values at <code>1</code> prevents accidental false-y evaluation bugs.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>When creating integer-backed PHP Enums, index starting from 1 to avoid false-y evaluation bugs in loose comparisons.</p>
+</blockquote>
+<p>In PHP, <code>0</code> evaluates as false-y in loose condition checks like <code>empty()</code> or <code>if ($enum-&gt;value)</code>. Starting integer enum values at <code>1</code> prevents accidental false-y evaluation bugs.</p>
 <hr>
 <h2>Before &amp; After</h2>
 <pre><code class="language-php">// ❌ Dangerous: 0 evaluates to false in loose checks
@@ -2220,7 +2337,10 @@ enum Priority: int
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-array-shapes-phpdoc</guid>
             <pubDate>Thu, 25 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Document and enforce structured array schemas using PHPDoc array shapes, lists, and non-empty array annotations for static analysis in PHPStan and Psalm.]]></description>
-            <content:encoded><![CDATA[<p>PHP arrays are versatile: they function as zero-indexed lists, associative maps, and nested dictionary structures. However, using native typehints like <code>function process(array $data)</code> leaves the contents of the array untyped, leading to potential missing key errors or unexpected values at runtime.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Document and enforce structured array schemas using PHPDoc array shapes, lists, and non-empty array annotations for static analysis in PHPStan and Psalm.</p>
+</blockquote>
+<p>PHP arrays are versatile: they function as zero-indexed lists, associative maps, and nested dictionary structures. However, using native typehints like <code>function process(array $data)</code> leaves the contents of the array untyped, leading to potential missing key errors or unexpected values at runtime.</p>
 <p>By using PHPDoc array shapes and pseudo-types, static analysis tools (like PHPStan and Psalm) and modern IDEs (such as PhpStorm and VS Code) can strictly validate array keys and types without requiring dedicated Data Transfer Objects (DTOs) for every small payload.</p>
 <hr>
 <h2>1. Defining Exact Array Shapes (<code>array{...}</code>)</h2>
@@ -2334,7 +2454,10 @@ triggerListeners([
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-generics-phpdoc-template</guid>
             <pubDate>Thu, 25 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Implement type-safe generic collections, wrapper classes, and utility functions in PHP using PHPDoc template annotations for static analysis engines.]]></description>
-            <content:encoded><![CDATA[<p>While PHP does not have native language-level generic syntax (like <code>class Collection&lt;T&gt;</code>), static analysis tools such as PHPStan and Psalm provide full generic support via <code>@template</code> annotations.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Implement type-safe generic collections, wrapper classes, and utility functions in PHP using PHPDoc template annotations for static analysis engines.</p>
+</blockquote>
+<p>While PHP does not have native language-level generic syntax (like <code>class Collection&lt;T&gt;</code>), static analysis tools such as PHPStan and Psalm provide full generic support via <code>@template</code> annotations.</p>
 <p>By annotating wrapper classes and helper functions with <code>@template</code>, you preserve exact object types across transformations and collections without resorting to ambiguous <code>mixed</code> or <code>object</code> returns.</p>
 <hr>
 <h2>1. Generic Collections and Repositories</h2>
@@ -2473,7 +2596,10 @@ $service = createInstance(PaymentGateway::class);</code></pre><hr>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/phpstan-static-analysis-levels-guide</guid>
             <pubDate>Thu, 25 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10.]]></description>
-            <content:encoded><![CDATA[<p>PHPStan inspects your PHP code without executing it, discovering subtle type mismatches, dead code, and unhandled edge cases. PHPStan organizes its rule sets into numeric levels ranging from <strong>0 (most lenient)</strong> to <strong>10 (maximum strictness)</strong>.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10.</p>
+</blockquote>
+<p>PHPStan inspects your PHP code without executing it, discovering subtle type mismatches, dead code, and unhandled edge cases. PHPStan organizes its rule sets into numeric levels ranging from <strong>0 (most lenient)</strong> to <strong>10 (maximum strictness)</strong>.</p>
 <p>When adopting PHPStan in existing or greenfield projects, understanding what each level verifies helps you establish progressive static analysis milestones.</p>
 <h2>Overview of PHPStan Levels</h2>
 <table>
@@ -2684,7 +2810,10 @@ function greet(string $name): string
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-gate-deny-as-not-found-security</guid>
             <pubDate>Wed, 17 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Response::denyAsNotFound() in policies to return a 404 Not Found response instead of 403 Forbidden, concealing the existence of private resources.]]></description>
-            <content:encoded><![CDATA[<p>Returning HTTP 403 Forbidden on confidential resources (such as private repositories, draft invoices, or secret project boards) tells attackers that the resource exists, leaking information.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Response::denyAsNotFound() in policies to return a 404 Not Found response instead of 403 Forbidden, concealing the existence of private resources.</p>
+</blockquote>
+<p>Returning HTTP 403 Forbidden on confidential resources (such as private repositories, draft invoices, or secret project boards) tells attackers that the resource exists, leaking information.</p>
 <p>Laravel policies support <code>Response::denyAsNotFound()</code> to return a 404 response directly from authorization checks.</p>
 <h2>Policy Implementation</h2>
 <pre><code class="language-php">namespace App\Policies;
@@ -2725,7 +2854,10 @@ class ProjectPolicy
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-pipeline-send-multi-step-workflows</guid>
             <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Laravel's Pipeline facade to pass objects through sequential pipe classes, keeping complex order processing and data transformations modular.]]></description>
-            <content:encoded><![CDATA[<p>When an application workflow involves multiple distinct stages (such as validating payment, applying coupons, calculating tax, and generating invoices), stuffing all logic into a single service method creates monolithic, hard-to-test code.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Laravel&#39;s Pipeline facade to pass objects through sequential pipe classes, keeping complex order processing and data transformations modular.</p>
+</blockquote>
+<p>When an application workflow involves multiple distinct stages (such as validating payment, applying coupons, calculating tax, and generating invoices), stuffing all logic into a single service method creates monolithic, hard-to-test code.</p>
 <p>Laravel&#39;s <code>Pipeline</code> pattern executes sequential pipes cleanly.</p>
 <h2>Defining Pipe Classes</h2>
 <p>Each pipe receives the payload and a <code>$next</code> closure:</p>
@@ -2776,7 +2908,10 @@ $processedOrder = Pipeline::send($order)
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-eloquent-prevent-lazy-loading-strict-mode</guid>
             <pubDate>Wed, 29 May 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Enable Model::preventLazyLoading() in local development to automatically throw exceptions whenever a relationship is lazy loaded.]]></description>
-            <content:encoded><![CDATA[<p>Accidentally accessing relationships inside loops (like <code>$user-&gt;posts</code> without <code>User::with(&#39;posts&#39;)</code>) causes silent N+1 query performance degradation that often goes unnoticed until production traffic spikes.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Enable Model::preventLazyLoading() in local development to automatically throw exceptions whenever a relationship is lazy loaded.</p>
+</blockquote>
+<p>Accidentally accessing relationships inside loops (like <code>$user-&gt;posts</code> without <code>User::with(&#39;posts&#39;)</code>) causes silent N+1 query performance degradation that often goes unnoticed until production traffic spikes.</p>
 <p><code>Model::preventLazyLoading()</code> forces Eloquent to throw an exception when lazy loading occurs.</p>
 <h2>Enabling in AppServiceProvider</h2>
 <pre><code class="language-php">namespace App\Providers;
@@ -2820,7 +2955,10 @@ class AppServiceProvider extends ServiceProvider
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/php-rector-refactor-enums-pascal-case</guid>
             <pubDate>Mon, 20 May 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Automate renaming PHP 8.1+ enum cases from SNAKE_CASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script.]]></description>
-            <content:encoded><![CDATA[<p>When PHP 8.1 backed enums were introduced, many projects originally named enum cases in uppercase snake case (<code>case PENDING_REVIEW;</code>), matching older class constant conventions. Modern PHP and Laravel coding style standards (including PER-CS and Laravel Pint) recommend PascalCase for enum cases (<code>case PendingReview;</code>).</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Automate renaming PHP 8.1+ enum cases from SNAKE_CASE to PascalCase across PHP classes and Blade templates using Rector and an Artisan refactoring script.</p>
+</blockquote>
+<p>When PHP 8.1 backed enums were introduced, many projects originally named enum cases in uppercase snake case (<code>case PENDING_REVIEW;</code>), matching older class constant conventions. Modern PHP and Laravel coding style standards (including PER-CS and Laravel Pint) recommend PascalCase for enum cases (<code>case PendingReview;</code>).</p>
 <p>Renaming enum cases across a large production application manually is error-prone. By combining a custom Rector rule with an Artisan Blade updater, you can refactor all enum declarations, references, and Blade view usages automatically.</p>
 <h2>1. Custom Rector Rule for Enum Cases</h2>
 <pre><code class="language-php">namespace App\Rector;
@@ -2973,7 +3111,10 @@ class RefactorBladeEnumsCommand extends Command
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-rector-automate-casts-method-upgrade</guid>
             <pubDate>Sat, 30 Mar 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Rector to automatically refactor legacy protected $casts array properties into the modern casts() method across your entire Laravel codebase.]]></description>
-            <content:encoded><![CDATA[<p>Laravel 11 introduced the <code>casts()</code> method on Eloquent models, allowing fluent cast definitions, class references, and method calls inside model classes.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Rector to automatically refactor legacy protected $casts array properties into the modern casts() method across your entire Laravel codebase.</p>
+</blockquote>
+<p>Laravel 11 introduced the <code>casts()</code> method on Eloquent models, allowing fluent cast definitions, class references, and method calls inside model classes.</p>
 <p>Rector automates converting legacy <code>protected $casts</code> properties to the new method:</p>
 <pre><code class="language-diff">1) app/Models/Post.php
 
@@ -3009,7 +3150,10 @@ class RefactorBladeEnumsCommand extends Command
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-cast-enum-json-array-key</guid>
             <pubDate>Tue, 30 Jan 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.]]></description>
-            <content:encoded><![CDATA[<p>Laravel provides first-party enum casting for standard model columns:</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Cast enum instances nested within JSON or array database columns using Eloquent Attribute accessors and mutators.</p>
+</blockquote>
+<p>Laravel provides first-party enum casting for standard model columns:</p>
 <pre><code class="language-php">protected $casts = [
     &#039;status&#039; =&gt; PostStatus::class,
 ];</code></pre><p>However, when an enum value is stored inside a nested JSON object or array column (such as <code>options-&gt;status</code> or <code>settings[&#39;status&#39;]</code>), Laravel&#39;s default column casting casts the entire column to an array, leaving the nested enum value as a raw string or integer.</p>
@@ -3083,7 +3227,10 @@ $post-&gt;save();</code></pre><h2>Summary</h2>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-custom-casts-enum-json</guid>
             <pubDate>Tue, 30 Jan 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Eloquent custom casts (CastsAttributes) to handle complex JSON serialization and Backed Enum arrays cleanly.]]></description>
-            <content:encoded><![CDATA[<p>When model attributes contain complex JSON structures or collections of Enums, implement CastsAttributes to handle custom database transformation and object hydration.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Eloquent custom casts (CastsAttributes) to handle complex JSON serialization and Backed Enum arrays cleanly.</p>
+</blockquote>
+<p>When model attributes contain complex JSON structures or collections of Enums, implement CastsAttributes to handle custom database transformation and object hydration.</p>
 <pre><code class="language-php">namespace App\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
@@ -3119,7 +3266,10 @@ class PermissionCast implements CastsAttributes
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/livewire-teleport-blade-view-cache-directive-fix</guid>
             <pubDate>Sun, 14 Jan 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Prevent view compilation glitches when running php artisan view:cache on templates using @teleport by registering explicit Blade directives.]]></description>
-            <content:encoded><![CDATA[<p>When using Livewire or Alpine.js <code>@teleport</code> directives inside Blade templates, running <code>php artisan view:cache</code> in production or CI/CD pipelines can occasionally cause compilation errors or unparsed tags if custom directive compilation is missing from the service container.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Prevent view compilation glitches when running php artisan view:cache on templates using @teleport by registering explicit Blade directives.</p>
+</blockquote>
+<p>When using Livewire or Alpine.js <code>@teleport</code> directives inside Blade templates, running <code>php artisan view:cache</code> in production or CI/CD pipelines can occasionally cause compilation errors or unparsed tags if custom directive compilation is missing from the service container.</p>
 <p>You can ensure consistent, error-free view compilation by registering custom Blade compiler directives for <code>@teleport</code> and <code>@endteleport</code>.</p>
 <h2>The Fix in AppServiceProvider</h2>
 <p>Add the custom directive registration inside your <code>AppServiceProvider::register()</code> or <code>boot()</code> method:</p>
@@ -3179,7 +3329,10 @@ php artisan view:cache</code></pre><p>All views compile cleanly into cached PHP 
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-activity-log-event-subscriber</guid>
             <pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Capture HTTP requests, Artisan CLI commands, and outgoing API responses into a unified audit trail using a single Laravel Event Subscriber.]]></description>
-            <content:encoded><![CDATA[<p>Applications frequently need to log key lifecycle actions for debugging and compliance. Instead of scattering logging logic across various middleware, commands, and service classes, Laravel Event Subscribers let you listen to multiple framework events from a single centralized class.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Capture HTTP requests, Artisan CLI commands, and outgoing API responses into a unified audit trail using a single Laravel Event Subscriber.</p>
+</blockquote>
+<p>Applications frequently need to log key lifecycle actions for debugging and compliance. Instead of scattering logging logic across various middleware, commands, and service classes, Laravel Event Subscribers let you listen to multiple framework events from a single centralized class.</p>
 <h2>The ActivityLogEventSubscriber</h2>
 <pre><code class="language-php">namespace App\Listeners;
 
@@ -3266,7 +3419,10 @@ class AppServiceProvider extends ServiceProvider
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-generate-unique-slug-without-looping</guid>
             <pubDate>Wed, 29 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Generate unique database slugs in Eloquent by querying the maximum existing numerical suffix directly instead of executing repeated queries in a while loop.]]></description>
-            <content:encoded><![CDATA[<p>When generating URL slugs for blog posts, products, or articles, collisions occur when two records share the same title (<code>&quot;My First Post&quot;</code>).</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Generate unique database slugs in Eloquent by querying the maximum existing numerical suffix directly instead of executing repeated queries in a while loop.</p>
+</blockquote>
+<p>When generating URL slugs for blog posts, products, or articles, collisions occur when two records share the same title (<code>&quot;My First Post&quot;</code>).</p>
 <p>A frequent implementation uses a <code>while</code> loop that repeatedly queries the database (<code>post-1</code>, <code>post-2</code>, <code>post-3</code>, ...) until an available slug is found. On busy applications with many duplicate titles, this pattern generates dozens of sequential database roundtrips for a single record creation.</p>
 <p>You can determine the next unique slug in a single query by inspecting the maximum numeric suffix using SQL functions.</p>
 <h2>The Efficient Implementation</h2>
@@ -3340,7 +3496,10 @@ class Article extends Model
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-carbon-set-test-now-time-manipulation</guid>
             <pubDate>Thu, 23 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Control system time during testing and development using Carbon::setTestNow() and inspect active time mocks with Carbon::hasTestNow().]]></description>
-            <content:encoded><![CDATA[<p>When writing unit tests or developing features that rely on temporal calculations (such as subscription renewals, birthday promotions, trial expirations, or grace periods), relying on real system time creates flaky tests that fail depending on the time of day or month.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Control system time during testing and development using Carbon::setTestNow() and inspect active time mocks with Carbon::hasTestNow().</p>
+</blockquote>
+<p>When writing unit tests or developing features that rely on temporal calculations (such as subscription renewals, birthday promotions, trial expirations, or grace periods), relying on real system time creates flaky tests that fail depending on the time of day or month.</p>
 <p>Carbon provides <code>setTestNow()</code> to lock time to a specific instant, alongside <code>hasTestNow()</code> to verify whether the temporal state is currently mocked.</p>
 <h2>Freezing Time in Feature Logic</h2>
 <pre><code class="language-php">use Carbon\Carbon;
@@ -3399,7 +3558,10 @@ if (Carbon::hasTestNow()) {
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/livewire-renderless-export-csv-reports</guid>
             <pubDate>Mon, 06 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Livewire 3's #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.]]></description>
-            <content:encoded><![CDATA[<p>When triggering a file download or CSV export from a Livewire component, Livewire&#39;s default lifecycle runs the component&#39;s <code>render()</code> method after executing the action.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Livewire 3&#39;s #[Renderless] attribute to stream file downloads directly from component actions without triggering unnecessary view re-renders or database queries.</p>
+</blockquote>
+<p>When triggering a file download or CSV export from a Livewire component, Livewire&#39;s default lifecycle runs the component&#39;s <code>render()</code> method after executing the action.</p>
 <p>If your <code>render()</code> method executes complex database queries or chart calculations, running <code>render()</code> during a binary file download wastes server CPU and memory since the HTML response is discarded in favor of the download stream.</p>
 <p>Livewire 3 provides the <code>#[Renderless]</code> attribute to execute an action without invoking <code>render()</code>.</p>
 <h2>The Livewire Component</h2>
@@ -3477,7 +3639,10 @@ class TransactionReports extends Component
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-belongs-to-team-multitenancy-trait</guid>
             <pubDate>Sun, 05 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes.]]></description>
-            <content:encoded><![CDATA[<p>In multi-tenant or team-based SaaS applications, models (such as projects, invoices, and documents) must belong to a specific team, and users must only access records belonging to their active team.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes.</p>
+</blockquote>
+<p>In multi-tenant or team-based SaaS applications, models (such as projects, invoices, and documents) must belong to a specific team, and users must only access records belonging to their active team.</p>
 <p>Instead of writing repetitive query scopes and <code>$model-&gt;team_id = auth()-&gt;user()-&gt;team_id</code> assignments in every controller, you can encapsulate multi-tenant behavior in a reusable model trait.</p>
 <h2>The BelongsToTeam Trait</h2>
 <pre><code class="language-php">namespace App\Traits\Models;
@@ -3568,7 +3733,10 @@ class Project extends Model
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-custom-wherelike-macro</guid>
             <pubDate>Fri, 27 Oct 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder.]]></description>
-            <content:encoded><![CDATA[<p>Searching across multiple attributes frequently leads to verbose and repetitive <code>orWhere</code> query chains in controller code.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Simplify multi-column wildcard searches across model columns, relationships, and raw SQL expressions using a powerful whereLike macro on the Eloquent Builder.</p>
+</blockquote>
+<p>Searching across multiple attributes frequently leads to verbose and repetitive <code>orWhere</code> query chains in controller code.</p>
 <p>By registering a custom <code>whereLike</code> macro on Eloquent&#39;s <code>Builder</code>, you can search across model columns, dot-notation relationships (<code>user.name</code>), and custom database expressions (<code>DB::raw()</code>) in a single readable call.</p>
 <h2>Registering the Macro in AppServiceProvider</h2>
 <pre><code class="language-php">namespace App\Providers;
@@ -3649,7 +3817,10 @@ $posts = Post::query()
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-testing-lazily-refresh-database</guid>
             <pubDate>Wed, 11 Oct 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Use LazilyRefreshDatabase instead of RefreshDatabase to run database transactions only for tests that actually touch the database.]]></description>
-            <content:encoded><![CDATA[<p>When running large test suites, the traditional <code>RefreshDatabase</code> trait migrates and resets database transactions before every test, even for pure unit tests that only test formatting or calculations without touching SQL.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use LazilyRefreshDatabase instead of RefreshDatabase to run database transactions only for tests that actually touch the database.</p>
+</blockquote>
+<p>When running large test suites, the traditional <code>RefreshDatabase</code> trait migrates and resets database transactions before every test, even for pure unit tests that only test formatting or calculations without touching SQL.</p>
 <p><code>LazilyRefreshDatabase</code> defers database initialization until a query is executed.</p>
 <h2>Using LazilyRefreshDatabase in Tests</h2>
 <pre><code class="language-php">namespace Tests\Feature;
@@ -3693,7 +3864,10 @@ class UserFeatureTest extends TestCase
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-factory-recycle-existing-models</guid>
             <pubDate>Wed, 27 Sep 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Use Factory::recycle() to pass existing parent models to child factories, avoiding duplicate database record creation in test fixtures.]]></description>
-            <content:encoded><![CDATA[<p>When generating complex test hierarchies (such as creating 10 Posts, each belonging to the same User, or multiple Orders for an existing Customer), child factories create duplicate parent models by default.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use Factory::recycle() to pass existing parent models to child factories, avoiding duplicate database record creation in test fixtures.</p>
+</blockquote>
+<p>When generating complex test hierarchies (such as creating 10 Posts, each belonging to the same User, or multiple Orders for an existing Customer), child factories create duplicate parent models by default.</p>
 <p><code>recycle()</code> instructs factories to reuse existing model instances rather than creating new ones.</p>
 <h2>Reusing Existing Models</h2>
 <pre><code class="language-php">use App\Models\Post;
@@ -3734,7 +3908,10 @@ $posts = Post::factory()
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/mysql-subquery-same-table-update-restriction</guid>
             <pubDate>Fri, 22 Sep 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[MySQL prevents updating a table while selecting from it in a subquery. Wrap subqueries in an intermediate alias table.]]></description>
-            <content:encoded><![CDATA[<p>Executing UPDATE table WHERE id IN (SELECT id FROM table) throws MySQL Error 1093. Work around this by wrapping the subquery in an intermediate derived table alias.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>MySQL prevents updating a table while selecting from it in a subquery. Wrap subqueries in an intermediate alias table.</p>
+</blockquote>
+<p>Executing UPDATE table WHERE id IN (SELECT id FROM table) throws MySQL Error 1093. Work around this by wrapping the subquery in an intermediate derived table alias.</p>
 <pre><code class="language-sql">-- ❌ FAILS in MySQL: Error 1093
 -- UPDATE users SET status = &#039;inactive&#039; WHERE id IN (SELECT id FROM users WHERE last_login &lt; &#039;2023-01-01&#039;);
 
@@ -3763,7 +3940,10 @@ WHERE id IN (
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-collection-when-conditional-pipelines</guid>
             <pubDate>Wed, 20 Sep 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Use when(), unless(), and whenEmpty() on Laravel Collections to conditionally apply transformations without breaking method chains.]]></description>
-            <content:encoded><![CDATA[<p>When processing collections (such as applying search filters or sorting parameters), writing intermediate <code>if</code> blocks breaks the fluent chain and requires temporary variables.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use when(), unless(), and whenEmpty() on Laravel Collections to conditionally apply transformations without breaking method chains.</p>
+</blockquote>
+<p>When processing collections (such as applying search filters or sorting parameters), writing intermediate <code>if</code> blocks breaks the fluent chain and requires temporary variables.</p>
 <p>Laravel Collections provide <code>when()</code> and <code>unless()</code> to conditionally execute closures.</p>
 <h2>Conditional Transformations with when()</h2>
 <pre><code class="language-php">$sortBy = request(&#039;sort&#039;); // &#039;price&#039;, &#039;rating&#039;, or null
@@ -3804,7 +3984,10 @@ $products = collect($rawProducts)
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-http-fake-prevent-stray-requests</guid>
             <pubDate>Wed, 13 Sep 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Enable Http::preventStrayRequests() in test suites to throw exceptions whenever HTTP requests are made without explicit mocks.]]></description>
-            <content:encoded><![CDATA[<p>In test suites, accidental outbound HTTP requests to real third-party APIs (such as payment gateways, SMS providers, or webhooks) can trigger unwanted real-world charges or fail unpredictably without internet access.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Enable Http::preventStrayRequests() in test suites to throw exceptions whenever HTTP requests are made without explicit mocks.</p>
+</blockquote>
+<p>In test suites, accidental outbound HTTP requests to real third-party APIs (such as payment gateways, SMS providers, or webhooks) can trigger unwanted real-world charges or fail unpredictably without internet access.</p>
 <p>Laravel provides <code>Http::preventStrayRequests()</code> to block all unmocked HTTP traffic.</p>
 <h2>Enabling in Base TestCase</h2>
 <pre><code class="language-php">namespace Tests;
@@ -3844,7 +4027,10 @@ abstract class TestCase extends BaseTestCase
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-where-has-multiple-database-connections</guid>
             <pubDate>Wed, 16 Aug 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Query related models located on different database connections using whereHas() without cross-database join errors.]]></description>
-            <content:encoded><![CDATA[<p>When your application partitions data across multiple database connections (such as separating analytics logs, multi-tenant tenants, or payment microservices onto different database servers), standard SQL joins between connection tables fail.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Query related models located on different database connections using whereHas() without cross-database join errors.</p>
+</blockquote>
+<p>When your application partitions data across multiple database connections (such as separating analytics logs, multi-tenant tenants, or payment microservices onto different database servers), standard SQL joins between connection tables fail.</p>
 <p>Eloquent&#39;s <code>whereHas()</code> directly handles relations across different database connections.</p>
 <h2>Defining Models on Separate Connections</h2>
 <pre><code class="language-php">namespace App\Models;
@@ -3893,7 +4079,10 @@ $activeTenants = Tenant::whereHas(&#039;activityLogs&#039;, function ($query) {
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-array-column-relationships-hasmanyarraycolumn</guid>
             <pubDate>Mon, 19 Jun 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Define relationships on models where foreign keys are stored as JSON arrays or comma-separated lists rather than traditional single-id foreign keys.]]></description>
-            <content:encoded><![CDATA[<p>When dealing with legacy schemas or denormalized database designs where a model stores multiple related IDs inside a JSON array column (e.g. <code>[1, 2, 5]</code>), standard Eloquent relationships fail.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Define relationships on models where foreign keys are stored as JSON arrays or comma-separated lists rather than traditional single-id foreign keys.</p>
+</blockquote>
+<p>When dealing with legacy schemas or denormalized database designs where a model stores multiple related IDs inside a JSON array column (e.g. <code>[1, 2, 5]</code>), standard Eloquent relationships fail.</p>
 <p>Using array column relationship packages or custom query scope join helpers allows direct querying:</p>
 <pre><code class="language-php">use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
@@ -3931,7 +4120,10 @@ $products = Product::withTag(5)-&gt;get();</code></pre><ul>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-sleep-helper-testable-delays</guid>
             <pubDate>Wed, 01 Mar 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Replace PHP's native sleep() and usleep() with Laravel's Sleep facade to write testable, fakeable time pauses.]]></description>
-            <content:encoded><![CDATA[<p>Using native <code>sleep(5)</code> in queue jobs or API polling loops pauses real system execution, causing test suites to run slowly.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Replace PHP&#39;s native sleep() and usleep() with Laravel&#39;s Sleep facade to write testable, fakeable time pauses.</p>
+</blockquote>
+<p>Using native <code>sleep(5)</code> in queue jobs or API polling loops pauses real system execution, causing test suites to run slowly.</p>
 <p>Laravel provides the <code>Illuminate\Support\Sleep</code> facade, which supports inspection and faking during tests.</p>
 <h2>Using Sleep in Application Code</h2>
 <pre><code class="language-php">use Illuminate\Support\Sleep;
@@ -3977,7 +4169,10 @@ test(&#039;it pauses before retrying failed requests&#039;, function () {
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/css-container-queries-responsive-components</guid>
             <pubDate>Fri, 24 Feb 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Use CSS Container Queries (@container) to adjust component layouts based on parent container width rather than viewport size.]]></description>
-            <content:encoded><![CDATA[<p>Media queries (@media) check total screen width, which breaks when a component is placed inside narrow sidebars versus wide main content areas. Container queries adjust styles based on element parent container width.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use CSS Container Queries (@container) to adjust component layouts based on parent container width rather than viewport size.</p>
+</blockquote>
+<p>Media queries (@media) check total screen width, which breaks when a component is placed inside narrow sidebars versus wide main content areas. Container queries adjust styles based on element parent container width.</p>
 <pre><code class="language-css">/* Define container context on parent */
 .card-container {
   container-type: inline-size;
@@ -4008,7 +4203,10 @@ test(&#039;it pauses before retrying failed requests&#039;, function () {
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-db-listen-slow-query-logging</guid>
             <pubDate>Wed, 01 Feb 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Use DB::listen() in AppServiceProvider to monitor executed queries, log slow operations, and inspect raw SQL bindings during local development.]]></description>
-            <content:encoded><![CDATA[<p>Debugging database performance bottlenecks requires visibility into every executed query, its execution time, and bound parameters.</p>
+            <content:encoded><![CDATA[<blockquote>
+<p>Use DB::listen() in AppServiceProvider to monitor executed queries, log slow operations, and inspect raw SQL bindings during local development.</p>
+</blockquote>
+<p>Debugging database performance bottlenecks requires visibility into every executed query, its execution time, and bound parameters.</p>
 <p>Laravel provides <code>DB::listen()</code> to register a callback executed after every database query.</p>
 <h2>Logging Slow Queries in Development</h2>
 <p>Add the listener inside <code>AppServiceProvider::boot()</code>:</p>

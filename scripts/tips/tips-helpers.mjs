@@ -307,7 +307,7 @@ renderer.listitem = function(item) {
 
 renderer.blockquote = function(token) {
     const content = token.tokens ? this.parser.parse(token.tokens) : (token.text || token);
-    return `<blockquote class="p-4 sm:p-5 my-5 rounded-lg bg-slate-50 dark:bg-[#141414] border-l-4 border-red-500 border border-slate-200 dark:border-[#262626] text-slate-700 dark:text-slate-300 text-sm sm:text-base font-mono leading-relaxed">${content}</blockquote>`;
+    return `<blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0">${content}</blockquote>`;
 };
 
 renderer.link = function(token) {

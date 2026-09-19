@@ -565,16 +565,12 @@
 
             <!-- Tip Article Container -->
             <article class="p-6 sm:p-10 md:p-12">
-                <!-- Monospace Summary Callout Box -->
-                
-                <div class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
-                    Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds.
-                </div>
+                <!-- Fallback Summary Callout Box (only if tip body lacks a leading blockquote) -->
                 
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Build scripts that generate HTML, JSON, XML, or other output files often write the result unconditionally, even when the content has not changed. This creates problems in CI pipelines: unchanged files get new timestamps, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git status</code> reports false modifications, auto-commit steps push empty diffs, and downstream caches are invalidated for no reason.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Problem</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A typical build script writes output directly:</p>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Compare generated content against existing files before writing. This prevents unnecessary git diffs, cache invalidation, and downstream rebuilds.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Build scripts that generate HTML, JSON, XML, or other output files often write the result unconditionally, even when the content has not changed. This creates problems in CI pipelines: unchanged files get new timestamps, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">git status</code> reports false modifications, auto-commit steps push empty diffs, and downstream caches are invalidated for no reason.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Problem</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A typical build script writes output directly:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">

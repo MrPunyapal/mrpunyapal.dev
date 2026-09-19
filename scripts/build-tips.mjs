@@ -142,7 +142,7 @@ export async function buildTips() {
                     .replace(/\s+/g, ' ')
                     .trim();
             }
-            cleanBody = cleanBody.replace(leadingQuoteMatch[0], '').trim();
+            // Preserve leading blockquote in cleanBody so marked renders it as a styled blockquote with red left border
         }
         if (!summary) {
             summary = extractSummary(cleanBody);

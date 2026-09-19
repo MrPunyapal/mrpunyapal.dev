@@ -45,7 +45,8 @@ export function generateSingleTipPage(tip, allTips, rootDir) {
     }
 
     // Render markdown content
-    // Note: tip.body has already had the top H1 and leading blockquote summary stripped
+    // Note: tip.body contains the full markdown (with top H1 stripped)
+    const hasLeadingQuote = /^\s*>/m.test(tip.body || '');
     const renderedBody = marked.parse(tip.body || '');
 
     // Critical Grid and Card CSS (matching hub page and site standards)
@@ -380,11 +381,11 @@ export function generateSingleTipPage(tip, allTips, rootDir) {
 
             <!-- Tip Article Container -->
             <article class="p-6 sm:p-10 md:p-12">
-                <!-- Monospace Summary Callout Box -->
-                ${tip.summary ? `
-                <div class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
-                    ${escapeHtml(tip.summary)}
-                </div>
+                <!-- Fallback Summary Callout Box (only if tip body lacks a leading blockquote) -->
+                ${!hasLeadingQuote && tip.summary ? `
+                <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0">
+                    <p>${escapeHtml(tip.summary)}</p>
+                </blockquote>
                 ` : ''}
 
                 <!-- Tip Content Body -->

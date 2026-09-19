@@ -564,16 +564,12 @@
 
             <!-- Tip Article Container -->
             <article class="p-6 sm:p-10 md:p-12">
-                <!-- Monospace Summary Callout Box -->
-                
-                <div class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
-                    Use CSS Container Queries (@container) to adjust component layouts based on parent container width rather than viewport size.
-                </div>
+                <!-- Fallback Summary Callout Box (only if tip body lacks a leading blockquote) -->
                 
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Media queries (@media) check total screen width, which breaks when a component is placed inside narrow sidebars versus wide main content areas. Container queries adjust styles based on element parent container width.</p>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use CSS Container Queries (@container) to adjust component layouts based on parent container width rather than viewport size.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Media queries (@media) check total screen width, which breaks when a component is placed inside narrow sidebars versus wide main content areas. Container queries adjust styles based on element parent container width.</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -705,7 +701,7 @@
 
             <div class="mt-5 flex items-center justify-between relative z-10">
                 <time datetime="2026-08-11" class="text-xs font-mono text-slate-500 dark:text-slate-400">
-                    Aug 11, 2026 • 2 min read
+                    Aug 11, 2026 • 3 min read
                 </time>
                 <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
                     <span>READ</span>

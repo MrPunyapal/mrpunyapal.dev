@@ -566,16 +566,12 @@
 
             <!-- Tip Article Container -->
             <article class="p-6 sm:p-10 md:p-12">
-                <!-- Monospace Summary Callout Box -->
-                
-                <div class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
-                    Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes.
-                </div>
+                <!-- Fallback Summary Callout Box (only if tip body lacks a leading blockquote) -->
                 
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In multi-tenant or team-based SaaS applications, models (such as projects, invoices, and documents) must belong to a specific team, and users must only access records belonging to their active team.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Instead of writing repetitive query scopes and <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$model-&gt;team_id = auth()-&gt;user()-&gt;team_id</code> assignments in every controller, you can encapsulate multi-tenant behavior in a reusable model trait.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The BelongsToTeam Trait</h3>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Automatically assign tenant IDs and restrict Eloquent queries using a reusable BelongsToTeam model trait with model booting and global scopes.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In multi-tenant or team-based SaaS applications, models (such as projects, invoices, and documents) must belong to a specific team, and users must only access records belonging to their active team.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Instead of writing repetitive query scopes and <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$model-&gt;team_id = auth()-&gt;user()-&gt;team_id</code> assignments in every controller, you can encapsulate multi-tenant behavior in a reusable model trait.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The BelongsToTeam Trait</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">

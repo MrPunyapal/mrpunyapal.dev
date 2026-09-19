@@ -566,16 +566,12 @@
 
             <!-- Tip Article Container -->
             <article class="p-6 sm:p-10 md:p-12">
-                <!-- Monospace Summary Callout Box -->
-                
-                <div class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed">
-                    Document and enforce structured array schemas using PHPDoc array shapes, lists, and non-empty array annotations for static analysis in PHPStan and Psalm.
-                </div>
+                <!-- Fallback Summary Callout Box (only if tip body lacks a leading blockquote) -->
                 
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHP arrays are versatile: they function as zero-indexed lists, associative maps, and nested dictionary structures. However, using native typehints like <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">function process(array $data)</code> leaves the contents of the array untyped, leading to potential missing key errors or unexpected values at runtime.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">By using PHPDoc array shapes and pseudo-types, static analysis tools (like PHPStan and Psalm) and modern IDEs (such as PhpStorm and VS Code) can strictly validate array keys and types without requiring dedicated Data Transfer Objects (DTOs) for every small payload.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Defining Exact Array Shapes (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">array{...}</code>)</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Array shapes define the exact dictionary schema of an associative array, including expected keys and their individual types:</p>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Document and enforce structured array schemas using PHPDoc array shapes, lists, and non-empty array annotations for static analysis in PHPStan and Psalm.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHP arrays are versatile: they function as zero-indexed lists, associative maps, and nested dictionary structures. However, using native typehints like <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">function process(array $data)</code> leaves the contents of the array untyped, leading to potential missing key errors or unexpected values at runtime.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">By using PHPDoc array shapes and pseudo-types, static analysis tools (like PHPStan and Psalm) and modern IDEs (such as PhpStorm and VS Code) can strictly validate array keys and types without requiring dedicated Data Transfer Objects (DTOs) for every small payload.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Defining Exact Array Shapes (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">array{...}</code>)</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Array shapes define the exact dictionary schema of an associative array, including expected keys and their individual types:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -944,7 +940,7 @@ triggerListeners([
 
             <div class="mt-5 flex items-center justify-between relative z-10">
                 <time datetime="2024-07-25" class="text-xs font-mono text-slate-500 dark:text-slate-400">
-                    Jul 25, 2024 • 1 min read
+                    Jul 25, 2024 • 2 min read
                 </time>
                 <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
                     <span>READ</span>
