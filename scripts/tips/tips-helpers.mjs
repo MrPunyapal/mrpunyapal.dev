@@ -365,7 +365,7 @@ export function renderRssHtml(markdown) {
 export function writeFileIfChanged(filePath, newContent) {
     if (fs.existsSync(filePath)) {
         const existing = fs.readFileSync(filePath, 'utf-8');
-        if (existing === newContent) {
+        if (existing.replace(/\r\n/g, '\n') === newContent.replace(/\r\n/g, '\n')) {
             return false;
         }
     }
