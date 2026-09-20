@@ -71,6 +71,9 @@
             margin-bottom: 3px;
             break-after: avoid;
             page-break-after: avoid;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
         }
         .subtitle {
             text-align: center;
@@ -125,10 +128,10 @@
             widows: 3;
         }
         .date {
-            float: right;
             font-weight: normal;
             color: #64748b;
             font-size: 11.5px;
+            white-space: nowrap;
         }
         
         /* Modern Semantic Container Print Rules */
@@ -215,6 +218,7 @@
             .subtitle { font-size: 11.5px; margin-bottom: 6px; }
             .contact { font-size: 10px; margin-bottom: 14px; }
             .section-link { font-size: 9.5px; }
+            .date { font-size: 10.5px; }
             .footer-note { font-size: 9.5px; margin-top: 14px; }
         }
     </style>
@@ -247,7 +251,7 @@
             </div>
             <div class="skills-col">
                 <strong>Testing & Developer Tooling</strong>
-                <p>Pest, PHPUnit, PHPStan, Rector, Laravel Pint, Static Analysis, Automated Refactoring, AI Workflows</p>
+                <p>Pest, PHPUnit, PHPStan, Rector, Laravel Pint, Static Analysis, Automated Refactoring, LLM Integrations, Structured Data Extraction</p>
             </div>
             <div class="skills-col">
                 <strong>Architecture & Data</strong>
@@ -267,7 +271,7 @@
         </h2>
 
         <article class="entry-block">
-            <h3>Freelance, Senior Laravel Engineer <span class="date"><time datetime="2020-07">July 2020</time> – Present</span></h3>
+            <h3><span>Freelance, Senior Laravel Engineer</span> <span class="date"><time datetime="2020-07">July 2020</time> – Present</span></h3>
             <ul>
                 <li>Engineered and shipped features for production multi-tenant SaaS platforms, ecommerce applications, and booking engines using the TALL stack and Filament, integrating payment gateways including Stripe, PayPal, and Razorpay, and communication services including Twilio and Dialpad.</li>
                 <li>Upgraded legacy Laravel applications from 5.x and 7.x up to 11.x and 12.x, modernizing dependencies, Livewire, Filament, and PHP versions while maintaining application stability.</li>
@@ -279,7 +283,7 @@
         </article>
 
         <article class="entry-block">
-            <h3>ShubhKey Infotech LLP, Lead Engineer <span class="date"><time datetime="2022-08">Aug 2022</time> – <time datetime="2024-09">Sep 2024</time></span></h3>
+            <h3><span>ShubhKey Infotech LLP, Lead Engineer</span> <span class="date"><time datetime="2022-08">Aug 2022</time> – <time datetime="2024-09">Sep 2024</time></span></h3>
             <ul>
                 <li>Led engineering and developed a full-scale freelance marketplace end to end, building real-time messaging, contract management, billing, and activity monitoring using WebSockets and the TALL stack.</li>
                 <li>Migrated legacy codebases to modern Laravel architecture, refactored REST APIs, and established standardized engineering practices across the development team.</li>
@@ -289,7 +293,7 @@
         </article>
 
         <article class="entry-block">
-            <h3>Maven InfoTech, Sr. Full Stack Developer <span class="date"><time datetime="2022-02">Feb 2022</time> – <time datetime="2022-08">Aug 2022</time></span></h3>
+            <h3><span>Maven InfoTech, Sr. Full Stack Developer</span> <span class="date"><time datetime="2022-02">Feb 2022</time> – <time datetime="2022-08">Aug 2022</time></span></h3>
             <ul>
                 <li>Engineered a multi-carrier shipping and logistics platform featuring automated ZIP code zone mapping, carrier selection algorithms, deliverability validation, and real-time shipping label PDF generation.</li>
                 <li>Migrated legacy Drupal and CorePHP applications to modern Laravel architecture for a yacht charter booking platform, introducing multi-lingual date-range booking and dynamic pricing while boosting performance by 80%+.</li>
@@ -349,7 +353,7 @@
     <section class="resume-section">
         <h2>EDUCATION</h2>
         <article class="entry-block">
-            <h3>Bachelor of Technology (B.Tech) - Information Technology <span class="date"><time datetime="2016">2016</time> – <time datetime="2020">2020</time></span></h3>
+            <h3><span>Bachelor of Technology (B.Tech) - Information Technology</span> <span class="date"><time datetime="2016">2016</time> – <time datetime="2020">2020</time></span></h3>
             <p>U.V. Patel College of Engineering, Ganpat University</p>
         </article>
     </section>
