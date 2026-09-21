@@ -1135,6 +1135,49 @@ readonly class UserData
             <category>Refactoring</category>
         </item>
         <item>
+            <title><![CDATA[Streamline Testing with Pest Test Impact Analysis (TIA)]]></title>
+            <link>https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</link>
+            <guid isPermaLink="true">https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</guid>
+            <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p>Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests.</p>
+</blockquote>
+<p>Running full test suites on every minor change slows down local feedback loops. While <code>--dirty</code> only checks if test files themselves changed, Pest&#39;s Tia Engine analyzes code coverage mapping to identify tests that execute the actual application lines you modified.</p>
+<hr>
+<h2>1. CLI Usage</h2>
+<p>Run Pest with the <code>--tia</code> flag:</p>
+<pre><code class="language-bash"># Run tests with Test Impact Analysis enabled
+./vendor/bin/pest --parallel --tia</code></pre><p>On the initial run, Pest records a dependency graph of which tests touch which files. On subsequent runs, it only re-runs affected tests and replays cached results for the rest.</p>
+<hr>
+<h2>2. Configuration in tests/Pest.php</h2>
+<p>To avoid typing <code>--tia</code> on every run, configure the Tia Engine fluently inside <code>tests/Pest.php</code>:</p>
+<pre><code class="language-php">// tests/Pest.php
+
+pest()-&gt;tia()
+    -&gt;locally()   // Run TIA on every local invocation; skipped automatically in CI
+    -&gt;baselined() // Fetch shared baseline from CI when no local graph exists
+    -&gt;filtered(); // Narrow test runner to affected test files only</code></pre><ul>
+<li><strong><code>locally()</code></strong>: Recommended. Activates TIA for every local <code>pest</code> run without requiring the <code>--tia</code> flag. In CI (or with <code>--ci</code>), TIA is skipped automatically so pipelines run the full suite.</li>
+<li><strong><code>always()</code></strong>: Alternative to <code>locally()</code>. Enforces TIA across all environments including CI.</li>
+<li><strong><code>baselined()</code></strong>: Downloads the shared CI baseline artifact so developers replay immediately on fresh clones.</li>
+</ul>
+<hr>
+<h2>Key Rules &amp; Requirements</h2>
+<ul>
+<li><strong>Coverage Driver</strong>: Requires a code coverage driver (<strong>PCOV</strong> or <strong>Xdebug</strong>) to build the dependency graph.</li>
+<li><strong>Cosmetic Invariant</strong>: Whitespace changes, comments, and docblock edits produce identical hashes, executing zero tests.</li>
+<li><strong>CLI Overrides</strong>: Bypass or force TIA anytime using <code>--tia</code> or <code>--no-tia</code>.</li>
+</ul>
+]]></content:encoded>
+            <author>contact@mrpunyapal.dev (Punyapal Shah)</author>
+            <category>Pest PHP</category>
+            <category>Plugins</category>
+            <category>Pest</category>
+            <category>Testing</category>
+            <category>DX</category>
+        </item>
+        <item>
             <title><![CDATA[Use sole() Instead of firstOrFail() for Single Record Guarantees]]></title>
             <link>https://mrpunyapal.dev/tips/laravel-sole-vs-firstorfail</link>
             <guid isPermaLink="true">https://mrpunyapal.dev/tips/laravel-sole-vs-firstorfail</guid>
@@ -1425,49 +1468,6 @@ $this-&gt;assertDatabaseHas(&#039;users&#039;, [
             <category>Testing</category>
             <category>Pest</category>
             <category>Enums</category>
-        </item>
-        <item>
-            <title><![CDATA[Streamline Testing with Pest Test Impact Analysis (TIA)]]></title>
-            <link>https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</link>
-            <guid isPermaLink="true">https://mrpunyapal.dev/tips/pest-tia-plugin-workflow</guid>
-            <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests.]]></description>
-            <content:encoded><![CDATA[<blockquote>
-<p>Enable the Tia Engine in Pest to only re-run tests affected by your latest code changes while replaying cached results for unaffected tests.</p>
-</blockquote>
-<p>Running full test suites on every minor change slows down local feedback loops. While <code>--dirty</code> only checks if test files themselves changed, Pest&#39;s Tia Engine analyzes code coverage mapping to identify tests that execute the actual application lines you modified.</p>
-<hr>
-<h2>1. CLI Usage</h2>
-<p>Run Pest with the <code>--tia</code> flag:</p>
-<pre><code class="language-bash"># Run tests with Test Impact Analysis enabled
-./vendor/bin/pest --parallel --tia</code></pre><p>On the initial run, Pest records a dependency graph of which tests touch which files. On subsequent runs, it only re-runs affected tests and replays cached results for the rest.</p>
-<hr>
-<h2>2. Configuration in tests/Pest.php</h2>
-<p>To avoid typing <code>--tia</code> on every run, configure the Tia Engine fluently inside <code>tests/Pest.php</code>:</p>
-<pre><code class="language-php">// tests/Pest.php
-
-pest()-&gt;tia()
-    -&gt;locally()   // Run TIA on every local invocation; skipped automatically in CI
-    -&gt;baselined() // Fetch shared baseline from CI when no local graph exists
-    -&gt;filtered(); // Narrow test runner to affected test files only</code></pre><ul>
-<li><strong><code>locally()</code></strong>: Recommended. Activates TIA for every local <code>pest</code> run without requiring the <code>--tia</code> flag. In CI (or with <code>--ci</code>), TIA is skipped automatically so pipelines run the full suite.</li>
-<li><strong><code>always()</code></strong>: Alternative to <code>locally()</code>. Enforces TIA across all environments including CI.</li>
-<li><strong><code>baselined()</code></strong>: Downloads the shared CI baseline artifact so developers replay immediately on fresh clones.</li>
-</ul>
-<hr>
-<h2>Key Rules &amp; Requirements</h2>
-<ul>
-<li><strong>Coverage Driver</strong>: Requires a code coverage driver (<strong>PCOV</strong> or <strong>Xdebug</strong>) to build the dependency graph.</li>
-<li><strong>Cosmetic Invariant</strong>: Whitespace changes, comments, and docblock edits produce identical hashes, executing zero tests.</li>
-<li><strong>CLI Overrides</strong>: Bypass or force TIA anytime using <code>--tia</code> or <code>--no-tia</code>.</li>
-</ul>
-]]></content:encoded>
-            <author>contact@mrpunyapal.dev (Punyapal Shah)</author>
-            <category>Pest PHP</category>
-            <category>Plugins</category>
-            <category>Pest</category>
-            <category>Testing</category>
-            <category>DX</category>
         </item>
         <item>
             <title><![CDATA[Protect Production with Laravel Prohibitable Commands]]></title>
