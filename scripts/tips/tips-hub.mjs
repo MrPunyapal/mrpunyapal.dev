@@ -83,6 +83,7 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
     const iconSprite = `
     <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true">
         <defs>
+            <symbol id="i-crosshair" viewBox="0 0 12 12"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></symbol>
             <symbol id="i-heart" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></symbol>
             <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
             <symbol id="i-calendar" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></symbol>
@@ -95,29 +96,32 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
     </svg>`;
 
     // Generate Card HTML for each Tip
-    const tipsCardsHtml = tips.map(tip => {
+    const INITIAL_VISIBLE_COUNT = 24;
+    const tipsCardsHtml = tips.map((tip, idx) => {
         const effectiveDate = getTipEffectiveDate(tip);
         const badge = getCategoryBadge(tip.category);
         const searchCorpus = `${tip.title} ${tip.category} ${tip.subcategory || ''} ${(tip.tags || []).join(' ')} ${tip.summary}`.toLowerCase();
+        const isInitiallyHidden = idx >= INITIAL_VISIBLE_COUNT;
 
         return `
                 <article class="tip-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                    ${isInitiallyHidden ? 'style="display: none;"' : ''}
                     data-category="${escapeHtml(tip.category)}"
                     data-subcategory="${escapeHtml(tip.subcategory || '')}"
                     data-search="${escapeHtml(searchCorpus)}">
 
                     <!-- Signature Corner Crosshairs -->
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
                     </div>
                     <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
                     </div>
                     <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
                     </div>
                     <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                        <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
                     </div>
 
                     <div>
@@ -237,6 +241,7 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
 </head>
 
 <body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    ${iconSprite}
     <!-- Main Content Frame -->
     <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
         <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
@@ -403,6 +408,32 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
                     ${tipsCardsHtml}
                 </div>
 
+                <!-- Lazy Loading Sentinel & Load More Controls -->
+                <div id="tips-lazy-controls" class="p-6 sm:p-8 text-center border-t border-slate-200 dark:border-slate-800 relative bg-slate-50/50 dark:bg-slate-900/30">
+                    <!-- Sentinel element for IntersectionObserver -->
+                    <div id="scroll-sentinel" class="h-1 w-full" aria-hidden="true"></div>
+
+                    <!-- Subtle Loading Spinner when scrolling or loading more -->
+                    <div id="lazy-loading-spinner" class="hidden flex items-center justify-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <svg class="animate-spin h-4 w-4 text-red-600" width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span>Loading more tips...</span>
+                    </div>
+
+                    <!-- Manual Load More button (works as fallback or explicit click) -->
+                    <button type="button" id="load-more-btn" aria-label="Load more tips" class="px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer inline-flex items-center gap-2">
+                        <span>Load More Tips</span>
+                        <span id="load-more-count" class="text-[11px] text-slate-400 font-normal"></span>
+                    </button>
+
+                    <!-- End of results indicator -->
+                    <div id="all-loaded-indicator" class="hidden text-xs font-mono text-slate-400 dark:text-slate-500">
+                        // All tips loaded (<span id="all-loaded-count">${totalTipsCount}</span> total)
+                    </div>
+                </div>
+
                 <!-- Empty State (hidden by default) -->
                 <div id="empty-state" class="hidden p-12 text-center border-t border-slate-200 dark:border-slate-800">
                     <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
@@ -455,9 +486,24 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
             const activeFilterBadge = document.getElementById('active-filter-badge');
             const resultsCount = document.getElementById('results-count');
             const emptyState = document.getElementById('empty-state');
-            const cards = document.querySelectorAll('.tip-card');
+            const cards = Array.from(document.querySelectorAll('.tip-card'));
+            let matchingCards = [...cards];
+
             const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
             const subcategoryFilterBtns = document.querySelectorAll('.subcategory-filter-btn');
+
+            const INITIAL_BATCH = 24;
+            const BATCH_SIZE = 20;
+            let currentLimit = INITIAL_BATCH;
+            let isLoading = false;
+
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            const loadMoreCount = document.getElementById('load-more-count');
+            const loadingSpinner = document.getElementById('lazy-loading-spinner');
+            const allLoadedIndicator = document.getElementById('all-loaded-indicator');
+            const allLoadedCount = document.getElementById('all-loaded-count');
+            const lazyControls = document.getElementById('tips-lazy-controls');
+            const scrollSentinel = document.getElementById('scroll-sentinel');
 
             let activeCategory = 'All';
             let activeSubcategory = 'All';
@@ -519,30 +565,31 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
                 }
             }
 
-            function filterCards() {
-                const q = searchQuery.toLowerCase().trim();
-                let visibleCount = 0;
+            function updateDisplay() {
+                const totalMatching = matchingCards.length;
+                const shownCount = Math.min(currentLimit, totalMatching);
 
-                cards.forEach(card => {
-                    const cardCat = card.getAttribute('data-category');
-                    const cardSubcat = card.getAttribute('data-subcategory');
-                    const cardSearch = card.getAttribute('data-search') || '';
-
-                    const matchesCategory = (activeCategory === 'All' || cardCat.toLowerCase() === activeCategory.toLowerCase());
-                    const matchesSubcat = (activeSubcategory === 'All' || cardSubcat.toLowerCase() === activeSubcategory.toLowerCase());
-                    const matchesQuery = !q || cardSearch.includes(q);
-
-                    if (matchesCategory && matchesSubcat && matchesQuery) {
-                        card.style.display = 'flex';
-                        visibleCount++;
+                // Show matching cards up to currentLimit
+                for (let i = 0; i < totalMatching; i++) {
+                    if (i < currentLimit) {
+                        matchingCards[i].style.display = 'flex';
                     } else {
-                        card.style.display = 'none';
+                        matchingCards[i].style.display = 'none';
                     }
-                });
+                }
 
+                // Hide cards that do not match the current search or filters
+                const matchingSet = new Set(matchingCards);
+                for (let i = 0; i < cards.length; i++) {
+                    if (!matchingSet.has(cards[i])) {
+                        cards[i].style.display = 'none';
+                    }
+                }
+
+                // Header Results Count
                 if (resultsCount) {
-                    if (q || activeCategory !== 'All' || activeSubcategory !== 'All') {
-                        resultsCount.textContent = 'Showing ' + visibleCount + ' of ' + cards.length + ' tips';
+                    if (searchQuery.trim().length > 0 || activeCategory !== 'All' || activeSubcategory !== 'All') {
+                        resultsCount.textContent = 'Showing ' + shownCount + ' of ' + totalMatching + ' matching tips';
                         resultsCount.classList.remove('hidden');
                     } else {
                         resultsCount.textContent = '';
@@ -550,15 +597,83 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
                     }
                 }
 
-                if (emptyState) {
-                    if (visibleCount === 0) {
-                        emptyState.classList.remove('hidden');
+                // Empty state and Lazy controls
+                if (totalMatching === 0) {
+                    if (emptyState) emptyState.classList.remove('hidden');
+                    if (lazyControls) lazyControls.classList.add('hidden');
+                } else {
+                    if (emptyState) emptyState.classList.add('hidden');
+                    if (lazyControls) lazyControls.classList.remove('hidden');
+
+                    if (shownCount >= totalMatching) {
+                        if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
+                        if (loadingSpinner) loadingSpinner.classList.add('hidden');
+                        if (allLoadedIndicator) {
+                            allLoadedIndicator.classList.remove('hidden');
+                            if (allLoadedCount) allLoadedCount.textContent = String(totalMatching);
+                        }
                     } else {
-                        emptyState.classList.add('hidden');
+                        if (allLoadedIndicator) allLoadedIndicator.classList.add('hidden');
+                        if (loadingSpinner) loadingSpinner.classList.add('hidden');
+                        if (loadMoreBtn) {
+                            loadMoreBtn.classList.remove('hidden');
+                            const remaining = totalMatching - shownCount;
+                            if (loadMoreCount) loadMoreCount.textContent = '(' + remaining + ' more)';
+                        }
                     }
                 }
 
                 updateFilterBadge();
+            }
+
+            function filterCards() {
+                const q = searchQuery.toLowerCase().trim();
+
+                matchingCards = cards.filter(card => {
+                    const cardCat = card.getAttribute('data-category') || '';
+                    const cardSubcat = card.getAttribute('data-subcategory') || '';
+                    const cardSearch = card.getAttribute('data-search') || '';
+
+                    const matchesCategory = (activeCategory === 'All' || cardCat.toLowerCase() === activeCategory.toLowerCase());
+                    const matchesSubcat = (activeSubcategory === 'All' || cardSubcat.toLowerCase() === activeSubcategory.toLowerCase());
+                    const matchesQuery = !q || cardSearch.includes(q);
+
+                    return matchesCategory && matchesSubcat && matchesQuery;
+                });
+
+                currentLimit = INITIAL_BATCH;
+                updateDisplay();
+            }
+
+            function loadMore() {
+                if (isLoading || currentLimit >= matchingCards.length) return;
+                isLoading = true;
+
+                if (loadingSpinner) loadingSpinner.classList.remove('hidden');
+                if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
+
+                requestAnimationFrame(() => {
+                    currentLimit += BATCH_SIZE;
+                    updateDisplay();
+                    isLoading = false;
+                });
+            }
+
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', loadMore);
+            }
+
+            if ('IntersectionObserver' in window && scrollSentinel) {
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting && !isLoading && currentLimit < matchingCards.length) {
+                        loadMore();
+                    }
+                }, {
+                    rootMargin: '500px 0px',
+                    threshold: 0.01
+                });
+
+                observer.observe(scrollSentinel);
             }
 
             function updateSubcategoryVisibility() {
@@ -706,6 +821,8 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
 
             if (queryParam || categoryParam || subcatParam) {
                 filterCards();
+            } else {
+                updateDisplay();
             }
         });
     </script>
