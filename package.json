@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Source code for mrpunyapal.dev - Punyapal Shah's personal website, projects, open source work, talks, and resume.",
   "scripts": {
-    "dev": "node scripts/build-tips.mjs && vite",
-    "build": "node scripts/build-tips.mjs && vite build",
+    "dev": "node scripts/build-tips.mjs && node scripts/build-blogs.mjs && vite",
+    "build": "node scripts/build-tips.mjs && node scripts/build-blogs.mjs && vite build",
     "build:tips": "node scripts/build-tips.mjs",
+    "build:blogs": "node scripts/build-blogs.mjs",
     "build:pdf": "node scripts/generate-pdf.js",
     "build:pdf:force": "node scripts/generate-pdf.js --force",
     "generate:og": "node scripts/generate-og.mjs",

@@ -45,6 +45,23 @@ function getTipsInputs() {
   return inputs;
 }
 
+function getBlogsInputs() {
+  const inputs = {};
+  const blogIndex = resolve(__dirname, 'blog.html');
+  if (fs.existsSync(blogIndex)) {
+    inputs['blog'] = blogIndex;
+  }
+  const blogDir = resolve(__dirname, 'blog');
+  if (fs.existsSync(blogDir)) {
+    const files = fs.readdirSync(blogDir).filter(f => f.endsWith('.html'));
+    for (const file of files) {
+      const key = `blog/${file.replace(/\.html$/, '')}`;
+      inputs[key] = resolve(blogDir, file);
+    }
+  }
+  return inputs;
+}
+
 export default defineConfig({
   plugins: [
     siteComponentsPlugin(),
@@ -64,6 +81,7 @@ export default defineConfig({
         opensource: resolve(__dirname, 'opensource.html'),
         ...getLaravelblrInputs(),
         ...getTipsInputs(),
+        ...getBlogsInputs(),
       },
     },
   },
