@@ -91,6 +91,7 @@ export function getPendingPages(isForce = false) {
     { route: '/talks', output: 'og/talks.png', source: 'talks.html' },
     { route: '/opensource', output: 'og/opensource.png', source: 'opensource.html' },
     { route: '/resume', output: 'og/resume.png', source: 'resume.html' },
+    { route: '/blog', output: 'og/blog.png', source: 'blog.html' },
     { route: '/tips', output: 'og/tips.png', source: 'tips.html' },
     { route: '/laravelblr', output: 'og/laravelblr.png', source: 'laravelblr/index.html' },
   ];
@@ -118,6 +119,26 @@ export function getPendingPages(isForce = false) {
           pending.push({ route: page.route, output: page.output });
         }
       } catch {}
+    }
+  }
+
+  const blogDir = path.resolve(rootDir, 'blog');
+  if (fs.existsSync(blogDir)) {
+    const files = fs.readdirSync(blogDir).filter(f => f.endsWith('.html') && f !== 'index.html');
+    for (const file of files) {
+      const slug = file.replace(/\.html$/, '');
+      const outPath = path.resolve(rootDir, 'public', 'og', 'blog', `${slug}.png`);
+      const mdSourcePath = path.resolve(rootDir, 'content', 'blogs', `${slug}.md`);
+
+      if (isForce || !fs.existsSync(outPath)) {
+        pending.push({ route: `/blog/${slug}`, output: `og/blog/${slug}.png` });
+      } else if (!process.env.CI && fs.existsSync(mdSourcePath)) {
+        const mdStat = fs.statSync(mdSourcePath);
+        const outStat = fs.statSync(outPath);
+        if (mdStat.mtimeMs > outStat.mtimeMs) {
+          pending.push({ route: `/blog/${slug}`, output: `og/blog/${slug}.png` });
+        }
+      }
     }
   }
 
