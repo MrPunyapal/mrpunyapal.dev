@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevent Navigation Layout Shifts and Flickering in Web Applications - CSS | Punyapal Shah</title>
+    <meta name="description" content="Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.">
+    <meta name="author" content="Punyapal Shah">
+    <link rel="canonical" href="https://mrpunyapal.dev/blog/css-prevent-navigation-layout-shift-flicker">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mrpunyapal.dev/blog/css-prevent-navigation-layout-shift-flicker">
+    <meta property="og:title" content="Prevent Navigation Layout Shifts and Flickering in Web Applications - CSS | Punyapal Shah">
+    <meta property="og:description" content="Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.">
+    <meta property="og:image" content="https://mrpunyapal.dev/og/blog/css-prevent-navigation-layout-shift-flicker.png">
+    <meta property="og:site_name" content="Punyapal Shah">
+    <meta property="article:published_time" content="2026-08-11">
+    <meta property="article:modified_time" content="2026-08-11">
+    <meta property="article:author" content="https://mrpunyapal.dev">
+    <meta property="article:section" content="CSS">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prevent Navigation Layout Shifts and Flickering in Web Applications - CSS | Punyapal Shah">
+    <meta name="twitter:description" content="Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.">
+    <meta name="twitter:image" content="https://mrpunyapal.dev/og/blog/css-prevent-navigation-layout-shift-flicker.png">
+
+    <!-- Browser and Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
+
+    <!-- Favicon & Stylesheet -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/src/tailwind.css">
+    <link rel="stylesheet" href="/src/app.css">
+    <script type="module" src="/src/main.js"></script>
+    
+    <style>
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .dark body {
+            background: #0a0a0a !important;
+            color: #f4f4f5 !important;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Technical Grid Markers */
+        .tech-marker {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background-color: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            z-index: 50;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Infinite Grid Lines */
+        .tech-line-h {
+            position: absolute;
+            height: 1px;
+            background-color: #e2e8f0;
+            z-index: 0;
+            pointer-events: none;
+            width: 300vw;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tech-line-v-top {
+            position: absolute;
+            width: 1px;
+            background-color: #e2e8f0;
+            z-index: 0;
+            pointer-events: none;
+            bottom: 100%;
+            height: 100vh;
+        }
+
+        .tech-line-v-bottom {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(to bottom, #e2e8f0, transparent);
+            z-index: 0;
+            pointer-events: none;
+            top: 100%;
+            height: 120px;
+        }
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://mrpunyapal.dev/blog/css-prevent-navigation-layout-shift-flicker#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://mrpunyapal.dev/blog/css-prevent-navigation-layout-shift-flicker"
+      },
+      "headline": "Prevent Navigation Layout Shifts and Flickering in Web Applications",
+      "description": "Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.",
+      "image": "https://mrpunyapal.dev/og/blog/css-prevent-navigation-layout-shift-flicker.png",
+      "url": "https://mrpunyapal.dev/blog/css-prevent-navigation-layout-shift-flicker",
+      "datePublished": "2026-08-11",
+      "dateModified": "2026-08-11",
+      "inLanguage": "en",
+      "author": {
+        "@type": "Person",
+        "name": "Punyapal Shah",
+        "url": "https://mrpunyapal.dev"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Punyapal Shah",
+        "url": "https://mrpunyapal.dev"
+      },
+      "keywords": [
+        "CSS",
+        "Layout Shift",
+        "Frontend",
+        "Performance"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://mrpunyapal.dev/blog/css-prevent-navigation-layout-shift-flicker#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://mrpunyapal.dev"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://mrpunyapal.dev/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Prevent Navigation Layout Shifts and Flickering in Web Applications",
+          "item": "https://mrpunyapal.dev/blog/css-prevent-navigation-layout-shift-flicker"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Initialization -->
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+
+<body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+
+    <!-- Main Content Frame -->
+    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
+        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
+
+            <!-- Tech Markers: Corners -->
+            <div class="tech-marker -top-[4px] -left-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -top-[4px] -right-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
+            <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
+
+            <!-- Global Infinite Extensions -->
+            <div class="tech-line-h top-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
+
+            <div class="tech-line-v-top left-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-v-top right-[-1px]" aria-hidden="true"></div>
+
+            <div class="tech-line-v-bottom left-[-1px]" aria-hidden="true"></div>
+            <div class="tech-line-v-bottom right-[-1px]" aria-hidden="true"></div>
+
+            <!-- Card Header: Top Nav Bar -->
+            <header class="border-b border-slate-200 dark:border-slate-800 relative z-20" style="view-transition-name: site-header;">
+                <!-- Embedded navigation icon symbols -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+                    <defs>
+                        <symbol id="i-heart" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></symbol>
+                        <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
+                    </defs>
+                </svg>
+
+                <!-- Horizontal Line Extension -->
+                <div class="tech-line-h bottom-[-1px]"></div>
+
+                <!-- Intersections with outer border -->
+                <div class="tech-marker -bottom-[4px] -left-[4px]"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]"></div>
+
+                <!-- Desktop Nav Row (Visible on sm: and larger) -->
+                <div class="hidden sm:flex site-nav-row items-center overflow-x-auto px-4 sm:px-6 w-full">
+                    <!-- Spacer pushes nav to the right -->
+                    <div class="site-nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
+
+                    <!-- Navigation Tabs -->
+                    <nav aria-label="Main Navigation" class="site-nav-tabs flex items-center -mb-[1px] shrink-0">
+                    <a href="/" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Home"><span>Home</span></span>
+                        
+                    </a>
+                    <a href="/services" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Services"><span>Services</span></span>
+                        
+                    </a>
+                    <a href="/projects" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Projects"><span>Projects</span></span>
+                        
+                    </a>
+                    <a href="/opensource" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center gap-1.5 whitespace-nowrap">
+                        <span class="nav-label" data-text="Open Source"><span>Open Source</span></span>
+                        <svg class="icon text-red-500 text-xs" width="12" height="12" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
+                        
+                    </a>
+                    <a href="/tips" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Tips"><span>Tips</span></span>
+                        
+                    </a>
+                    <a href="/resume" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Resume"><span>Resume</span></span>
+                        
+                    </a>
+                    <a href="/talks" class="px-2 sm:px-2.5 md:px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-slate-900/60 dark:text-white/60 hover:text-slate-900 dark:hover:text-white border-b-2 border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors relative inline-flex items-center whitespace-nowrap">
+                        <span class="nav-label" data-text="Talks"><span>Talks</span></span>
+                        
+                    </a>
+                    </nav>
+
+                    <!-- Utility Buttons -->
+                    <div class="site-nav-utilities flex items-center gap-1 sm:gap-1.5 py-2 pl-2 sm:pl-3 border-l border-slate-200 dark:border-slate-800 shrink-0">
+                        <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub" class="site-nav-source p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
+                            <svg class="icon text-sm" width="16" height="16" viewBox="0 0 496 512" fill="currentColor" aria-hidden="true"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+                        </a>
+                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn relative p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                            <span class="theme-icon-container flex items-center justify-center" aria-hidden="true">
+        <svg class="theme-sun-icon hidden dark:block text-amber-400" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+            <line x1="12" y1="2" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
+            <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
+            <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
+        </svg>
+        <svg class="theme-moon-icon block dark:hidden text-indigo-500" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </span>
+    <span class="theme-spider-badge absolute -top-1 -right-1 pointer-events-none flex items-center justify-center z-10 text-slate-800 dark:text-slate-200" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="13.5" height="13.5" fill="currentColor" aria-hidden="true" style="display:block;">
+            <g stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 44 60 Q 28 80 16 78" />
+                <path d="M 56 60 Q 72 80 84 78" />
+                <path d="M 42 53 Q 20 63 10 53" />
+                <path d="M 58 53 Q 80 63 90 53" />
+                <path d="M 42 45 Q 18 36 12 24" />
+                <path d="M 58 45 Q 82 36 88 24" />
+                <path d="M 44 38 Q 30 18 20 10" />
+                <path d="M 56 38 Q 70 18 80 10" />
+            </g>
+            <ellipse cx="50" cy="35" rx="14" ry="17" />
+            <circle cx="50" cy="57" r="10" />
+            <path d="M 44 65 Q 47 73 47 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+            <path d="M 56 65 Q 53 73 53 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+        </svg>
+    </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Header Bar (Visible on mobile < sm) -->
+                <div class="flex sm:hidden items-center justify-between px-4 py-2.5 w-full">
+                    <a href="/" aria-label="Home page" class="px-2 py-1 text-sm font-semibold text-slate-900 dark:text-white hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                        Home
+                    </a>
+
+                    <div class="flex items-center gap-1.5">
+                        <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded" title="GitHub Repository">
+                            <svg class="icon text-sm" width="16" height="16" viewBox="0 0 496 512" fill="currentColor" aria-hidden="true"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+                        </a>
+                        <button type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle theme" class="theme-toggle-btn relative p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded">
+                            <span class="theme-icon-container flex items-center justify-center" aria-hidden="true">
+        <svg class="theme-sun-icon hidden dark:block text-amber-400" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+            <line x1="12" y1="2" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
+            <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
+            <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
+        </svg>
+        <svg class="theme-moon-icon block dark:hidden text-indigo-500" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </span>
+    <span class="theme-spider-badge absolute -top-1 -right-1 pointer-events-none flex items-center justify-center z-10 text-slate-800 dark:text-slate-200" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="13.5" height="13.5" fill="currentColor" aria-hidden="true" style="display:block;">
+            <g stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 44 60 Q 28 80 16 78" />
+                <path d="M 56 60 Q 72 80 84 78" />
+                <path d="M 42 53 Q 20 63 10 53" />
+                <path d="M 58 53 Q 80 63 90 53" />
+                <path d="M 42 45 Q 18 36 12 24" />
+                <path d="M 58 45 Q 82 36 88 24" />
+                <path d="M 44 38 Q 30 18 20 10" />
+                <path d="M 56 38 Q 70 18 80 10" />
+            </g>
+            <ellipse cx="50" cy="35" rx="14" ry="17" />
+            <circle cx="50" cy="57" r="10" />
+            <path d="M 44 65 Q 47 73 47 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+            <path d="M 56 65 Q 53 73 53 77" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+        </svg>
+    </span>
+                        </button>
+                        <button type="button" data-mobile-menu-toggle aria-expanded="false" aria-controls="mobile-sidebar" aria-label="Open sidebar navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+                            <svg class="w-5 h-5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M3.75 8.25h16.5M3.75 15.75h11"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Off-Canvas Mobile Sidebar Drawer -->
+                <div id="mobile-sidebar" class="hidden sm:hidden fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation sidebar">
+                    <!-- Semi-transparent Blur Backdrop -->
+                    <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity duration-300 ease-in-out opacity-0" aria-hidden="true"></div>
+
+                    <!-- Slide-Over Panel Container -->
+                    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+                        <div id="mobile-sidebar-panel" class="w-64 sm:w-72 h-dvh max-h-dvh bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-full flex flex-col">
+                            
+                            <!-- Sidebar Header Bar (Clean Close Button Only) -->
+                            <div class="flex items-center justify-end px-4 py-3.5 border-b border-slate-200 dark:border-slate-800">
+                                <button type="button" data-mobile-sidebar-close aria-label="Close navigation menu" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+                                    <svg class="w-5 h-5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M18 6 6 18M6 6l12 12"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Sidebar Content Links -->
+                            <div class="flex-1 overflow-y-auto px-3 py-4 space-y-1.5">
+                <a href="/" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Home</span>
+                </a>
+                <a href="/services" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Services</span>
+                </a>
+                <a href="/projects" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Projects</span>
+                </a>
+                <a href="/opensource" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Open Source</span>
+                </a>
+                <a href="/tips" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Tips</span>
+                </a>
+                <a href="/resume" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Resume</span>
+                </a>
+                <a href="/talks" class="flex items-center px-4 py-3 text-base transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40 hover:text-slate-900 dark:hover:text-white border-l-4 border-transparent">
+                    <span>Talks</span>
+                </a>
+                            </div>
+
+                            <!-- Sidebar Footer -->
+                            <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                                <span class="font-medium text-slate-700 dark:text-slate-300">Punyapal Shah</span>
+                                <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub" class="hover:text-slate-900 dark:hover:text-white transition-colors font-mono">GitHub ↗</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smooth Interactivity Script for Off-Canvas Sidebar -->
+                <script>
+                if (!window.__sidebarNavInit) {
+                    window.__sidebarNavInit = true;
+
+                    function preventTouchMove(e) {
+                        if (e.target.closest('#mobile-sidebar-panel')) return;
+                        e.preventDefault();
+                    }
+
+                    function openSidebar() {
+                        var sidebar = document.getElementById('mobile-sidebar');
+                        var backdrop = document.getElementById('mobile-sidebar-backdrop');
+                        var panel = document.getElementById('mobile-sidebar-panel');
+                        var toggleBtn = document.querySelector('[data-mobile-menu-toggle]');
+                        if (!sidebar || !backdrop || !panel) return;
+
+                        sidebar.classList.remove('hidden');
+
+                        document.addEventListener('touchmove', preventTouchMove, { passive: false });
+
+                        requestAnimationFrame(function() {
+                            backdrop.classList.remove('opacity-0');
+                            backdrop.classList.add('opacity-100');
+                            panel.classList.remove('translate-x-full');
+                            panel.classList.add('translate-x-0');
+                        });
+
+                        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+                    }
+
+                    function closeSidebar() {
+                        var sidebar = document.getElementById('mobile-sidebar');
+                        var backdrop = document.getElementById('mobile-sidebar-backdrop');
+                        var panel = document.getElementById('mobile-sidebar-panel');
+                        var toggleBtn = document.querySelector('[data-mobile-menu-toggle]');
+                        if (!sidebar || !backdrop || !panel) return;
+
+                        backdrop.classList.remove('opacity-100');
+                        backdrop.classList.add('opacity-0');
+                        panel.classList.remove('translate-x-0');
+                        panel.classList.add('translate-x-full');
+
+                        document.removeEventListener('touchmove', preventTouchMove);
+
+                        setTimeout(function() {
+                            sidebar.classList.add('hidden');
+                        }, 300);
+
+                        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                    }
+
+                    function initSidebarEvents() {
+                        var toggleBtns = document.querySelectorAll('[data-mobile-menu-toggle]');
+                        var closeBtns = document.querySelectorAll('[data-mobile-sidebar-close]');
+                        var backdrop = document.getElementById('mobile-sidebar-backdrop');
+
+                        toggleBtns.forEach(function(btn) {
+                            btn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                openSidebar();
+                            });
+                        });
+
+                        closeBtns.forEach(function(btn) {
+                            btn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                closeSidebar();
+                            });
+                        });
+
+                        if (backdrop) {
+                            backdrop.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                closeSidebar();
+                            });
+                        }
+                    }
+
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initSidebarEvents);
+                    } else {
+                        initSidebarEvents();
+                    }
+
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape') {
+                            var sidebar = document.getElementById('mobile-sidebar');
+                            if (sidebar && !sidebar.classList.contains('hidden')) {
+                                closeSidebar();
+                            }
+                        }
+                    });
+                }
+                </script>
+            </header>
+
+            <!-- Header Section (Breadcrumb + Title + Metadata) -->
+            <div class="p-6 sm:p-10 md:p-12 border-b border-slate-200 dark:border-slate-800 relative">
+                <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
+                <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
+                <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
+
+                <!-- Top Breadcrumbs / Action Bar -->
+                <div class="flex items-center justify-between gap-4 flex-wrap select-none mb-6">
+                    <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors group">
+                        <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
+                        <span>BACK TO BLOG</span>
+                    </a>
+
+                    <div class="flex items-center gap-2.5 flex-wrap">
+                        <button type="button" id="random-blog-btn" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-white dark:bg-slate-900 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer" title="Jump to random article">
+                            <svg class="w-3.5 h-3.5 text-red-500" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h7l-4 4m0 0l4 4M7 8h13M20 20h-7l4-4m0 0l-4-4m4 4H4"/>
+                            </svg>
+                            <span>Random</span>
+                        </button>
+
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 border-cyan-200 dark:border-cyan-900/50">
+                            CSS
+                        </span>
+                        
+                        <span class="text-slate-300 dark:text-slate-700 font-mono text-xs">/</span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            Styling
+                        </span>
+                        
+                    </div>
+                </div>
+
+                <!-- Title -->
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
+                    Prevent Navigation Layout Shifts and Flickering in Web Applications
+                </h1>
+
+                <!-- Metadata Byline -->
+                <div class="flex items-center justify-between gap-4 flex-wrap text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400">
+                    <div class="flex items-center gap-2.5 flex-wrap">
+                        <span class="inline-flex items-center gap-1.5 text-slate-700 dark:text-slate-300 font-medium">
+                            <svg class="w-3.5 h-3.5 text-slate-400" width="14" height="14" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                            <span>Punyapal Shah</span>
+                        </span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-slate-400" width="14" height="14" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></svg>
+                            <time datetime="2026-08-11">Aug 11, 2026</time>
+                        </span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-slate-400" width="14" height="14" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zm0 464a208 208 0 1 0 0-416 208 208 0 1 0 0 416zm-8-272V128c0-13.3 10.7-24 24-24s24 10.7 24 24v80h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H264c-13.3 0-24-10.7-24-24z"/></svg>
+                            <span>3 min read</span>
+                        </span>
+                    </div>
+
+                    <a href="https://github.com/MrPunyapal/mrpunyapal.dev/blob/main/content/blogs/css/css-prevent-navigation-layout-shift-flicker.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                        <span>edit on GitHub</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Blog Article Container -->
+            <article class="p-6 sm:p-10 md:p-12">
+                <!-- Fallback Summary Callout Box (only if post body lacks a leading blockquote) -->
+                
+
+                <!-- Post Content Body -->
+                <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Fix common navigation bar layout shifts, scrollbar jumps, font width shifts, and theme switcher flickering with clean CSS and HTML patterns.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Navigation bars often suffer from subtle layout shifts during page reloads, theme toggles, and tab switches. Combining a few CSS and HTML techniques eliminates these visual jumps entirely.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">1. Lock Root Scrollbar Space and Clip Horizontal Overflow</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Navigating between long pages with scrollbars and short pages without scrollbars causes horizontal layout jumps. Use <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">scrollbar-gutter: stable</code> on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">html</code> with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow-y: auto</code>, and clip horizontal overflow on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">body</code> with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow-x: clip</code>.</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="/* Reserve scrollbar width globally without forcing a scrollbar track on short pages */
+html {
+  scrollbar-gutter: stable;
+  overflow-y: auto;
+}
+
+/* Clip wide horizontal overflow without creating a second scroll container */
+body {
+  overflow-x: clip;
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-css"><span class="hljs-comment">/* Reserve scrollbar width globally without forcing a scrollbar track on short pages */</span>
+<span class="hljs-selector-tag">html</span> {
+  <span class="hljs-attribute">scrollbar-gutter</span>: stable;
+  <span class="hljs-attribute">overflow-y</span>: auto;
+}
+
+<span class="hljs-comment">/* Clip wide horizontal overflow without creating a second scroll container */</span>
+<span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">overflow-x</span>: clip;
+}</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">scrollbar-gutter: stable</code> reserves scrollbar space on short pages so layout width remains constant across navigations, while <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow-y: auto</code> avoids rendering an empty scrollbar track when scrolling is not needed.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow-x: clip</code> instead of <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow-x: hidden</code> on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">body</code>. Traditional <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow-x: hidden</code> forces browsers to evaluate <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow-y</code> as <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">auto</code>, creating a secondary scroll container on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">body</code> that causes double vertical scrollbars. <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow-x: clip</code> clips horizontal overflow cleanly without creating a scrolling context.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">2. Prevent View Transition Scrollbar Flicker</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When using native cross-document View Transitions (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">@view-transition { navigation: auto; }</code>), browsers render outgoing and incoming page snapshots simultaneously. For a single frame during the transition, the viewport height expands, triggering a temporary scrollbar track.</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="/* Prevent temporary scrollbar flicker during cross-document view transitions */
+::view-transition-group(root),
+::view-transition-image-pair(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+  overflow: hidden !important;
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-css"><span class="hljs-comment">/* Prevent temporary scrollbar flicker during cross-document view transitions */</span>
+::<span class="hljs-built_in">view-transition-group</span>(root),
+::<span class="hljs-built_in">view-transition-image-pair</span>(root),
+::<span class="hljs-built_in">view-transition-old</span>(root),
+::<span class="hljs-built_in">view-transition-new</span>(root) {
+  <span class="hljs-attribute">overflow</span>: hidden <span class="hljs-meta">!important</span>;
+}</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Setting <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow: hidden</code> on the root view transition pseudo-elements clips snapshot layers to viewport bounds, preventing split-second scrollbar popping during page navigations.</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">3. Lock Navigation Tab Widths with CSS Grid</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Active or hovered navigation tabs often expand in width when text becomes bold or changes color contrast, pushing adjacent tabs left or right. Use CSS Grid overlay with an invisible pseudo-element to reserve bold text dimensions upfront.</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="&lt;nav class=&quot;nav-tabs&quot;&gt;
+  &lt;a href=&quot;/dashboard&quot; class=&quot;nav-link active&quot;&gt;
+    &lt;span class=&quot;nav-label&quot; data-text=&quot;Dashboard&quot;&gt;
+      &lt;span&gt;Dashboard&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a href=&quot;/settings&quot; class=&quot;nav-link&quot;&gt;
+    &lt;span class=&quot;nav-label&quot; data-text=&quot;Settings&quot;&gt;
+      &lt;span&gt;Settings&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/a&gt;
+&lt;/nav&gt;" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-tabs&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/dashboard&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-link active&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-label&quot;</span> <span class="hljs-attr">data-text</span>=<span class="hljs-string">&quot;Dashboard&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Dashboard<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/settings&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-link&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-label&quot;</span> <span class="hljs-attr">data-text</span>=<span class="hljs-string">&quot;Settings&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Settings<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></code></pre>
+</div>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code=".nav-tabs a {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Grid overlay sizes container to the widest content layer */
+.nav-tabs .nav-label {
+  display: inline-grid;
+  grid-template-areas: &quot;label&quot;;
+  align-items: center;
+  justify-items: center;
+}
+
+.nav-tabs .nav-label::after,
+.nav-tabs .nav-label &gt; span {
+  grid-area: label;
+}
+
+/* Invisible bold pseudo-element reserves max text width */
+.nav-tabs .nav-label::after {
+  content: attr(data-text);
+  font-weight: 700;
+  visibility: hidden;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-css"><span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-tag">a</span> {
+  <span class="hljs-attribute">display</span>: inline-flex;
+  <span class="hljs-attribute">align-items</span>: center;
+}
+
+<span class="hljs-comment">/* Grid overlay sizes container to the widest content layer */</span>
+<span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-class">.nav-label</span> {
+  <span class="hljs-attribute">display</span>: inline-grid;
+  <span class="hljs-attribute">grid-template-areas</span>: <span class="hljs-string">&quot;label&quot;</span>;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">justify-items</span>: center;
+}
+
+<span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-class">.nav-label</span><span class="hljs-selector-pseudo">::after</span>,
+<span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-class">.nav-label</span> &gt; <span class="hljs-selector-tag">span</span> {
+  <span class="hljs-attribute">grid-area</span>: label;
+}
+
+<span class="hljs-comment">/* Invisible bold pseudo-element reserves max text width */</span>
+<span class="hljs-selector-class">.nav-tabs</span> <span class="hljs-selector-class">.nav-label</span><span class="hljs-selector-pseudo">::after</span> {
+  <span class="hljs-attribute">content</span>: <span class="hljs-built_in">attr</span>(data-text);
+  <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">700</span>;
+  <span class="hljs-attribute">visibility</span>: hidden;
+  <span class="hljs-attribute">overflow</span>: hidden;
+  <span class="hljs-attribute">user-select</span>: none;
+  <span class="hljs-attribute">pointer-events</span>: none;
+}</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">4. Pre-render Theme Toggle Icons in HTML</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Swapping sun and moon icons via JavaScript after page load causes visual button flickering. Pre-render both icons directly in static HTML and toggle visibility using CSS theme classes.</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="&lt;button type=&quot;button&quot; class=&quot;theme-toggle&quot; aria-label=&quot;Toggle theme&quot;&gt;
+  &lt;!-- Sun icon visible in dark mode --&gt;
+  &lt;svg class=&quot;hidden dark:block&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;16&quot; height=&quot;16&quot;&gt;
+    &lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;5&quot; fill=&quot;currentColor&quot;/&gt;
+  &lt;/svg&gt;
+
+  &lt;!-- Moon icon visible in light mode --&gt;
+  &lt;svg class=&quot;block dark:hidden&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;16&quot; height=&quot;16&quot;&gt;
+    &lt;path d=&quot;M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z&quot; fill=&quot;currentColor&quot;/&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;theme-toggle&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Toggle theme&quot;</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Sun icon visible in dark mode --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hidden dark:block&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;16&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;16&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&quot;12&quot;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&quot;12&quot;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&quot;5&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;currentColor&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Moon icon visible in light mode --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;block dark:hidden&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;16&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;16&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;currentColor&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">5. Use Opacity for Text Contrast Changes</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Changing text color from gray to solid black or white triggers font stem-darkening in browser rendering engines, altering glyph widths by fractions of a pixel. Use constant base colors and toggle opacity instead.</p>
+<div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
+    <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+            <span class="w-3 h-3 rounded-full bg-[#d0d7de] dark:bg-[#262626] inline-block" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#1c1c1c] hover:bg-[#f3f4f6] dark:hover:bg-[#262626] text-[#57606a] dark:text-[#8b949e] hover:text-[#24292e] dark:hover:text-[#c9d1d9] transition-colors text-xs font-medium cursor-pointer" data-code="/* Active tab */
+.nav-link.active {
+  color: #0f172a; /* 100% opacity */
+}
+
+/* Inactive tab uses same base color with lower opacity */
+.nav-link:not(.active) {
+  color: rgba(15, 23, 42, 0.6);
+}" aria-label="Copy code to clipboard">
+            <svg class="w-3.5 h-3.5 opacity-70" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="copy-label">Copy</span>
+        </button>
+    </div>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-css"><span class="hljs-comment">/* Active tab */</span>
+<span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-class">.active</span> {
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#0f172a</span>; <span class="hljs-comment">/* 100% opacity */</span>
+}
+
+<span class="hljs-comment">/* Inactive tab uses same base color with lower opacity */</span>
+<span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:not</span>(<span class="hljs-selector-class">.active</span>) {
+  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">15</span>, <span class="hljs-number">23</span>, <span class="hljs-number">42</span>, <span class="hljs-number">0.6</span>);
+}</code></pre>
+</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Key Takeaways</h4><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Reserve scrollbar width on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">html</code> with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">scrollbar-gutter: stable</code> and clip horizontal overflow on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">body</code> with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow-x: clip</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Clip View Transition root pseudo-elements with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">overflow: hidden</code> to prevent split-second scrollbar popping.</span></li><li class="leading-relaxed"><span class="align-middle">Reserve space for bold tab labels using <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">display: inline-grid</code> and <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">content: attr(data-text)</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Pre-render all theme toggle states in static HTML to eliminate DOM injection flicker.</span></li><li class="leading-relaxed"><span class="align-middle">Adjust text opacity rather than hex colors to preserve font glyph vector calculations.</span></li></ul>
+                </div>
+
+                <!-- Tags & Share Row -->
+                <div class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4 flex-wrap">
+                    <!-- Tags -->
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="text-xs font-mono text-slate-500 uppercase tracking-wider font-semibold">Tags:</span>
+                        
+                        <a href="/blog?q=CSS" class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:text-red-600 transition-colors">
+                            CSS
+                        </a>
+                        
+                        <a href="/blog?q=Layout%20Shift" class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:text-red-600 transition-colors">
+                            Layout Shift
+                        </a>
+                        
+                        <a href="/blog?q=Frontend" class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:text-red-600 transition-colors">
+                            Frontend
+                        </a>
+                        
+                        <a href="/blog?q=Performance" class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:text-red-600 transition-colors">
+                            Performance
+                        </a>
+                        
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="flex items-center gap-2">
+                        <a href="https://twitter.com/intent/tweet?text=Prevent%20Navigation%20Layout%20Shifts%20and%20Flickering%20in%20Web%20Applications%20by%20%40MrPunyapal&amp;url=https%3A%2F%2Fmrpunyapal.dev%2Fblog%2Fcss-prevent-navigation-layout-shift-flicker" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors" aria-label="Share article on X">
+                            <svg class="w-3.5 h-3.5" width="14" height="14" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
+                                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+                            </svg>
+                            <span>Share on X</span>
+                        </a>
+                        <button type="button" id="copy-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors cursor-pointer" aria-label="Copy article link">
+                            <svg class="w-3.5 h-3.5" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                            </svg>
+                            <span id="copy-link-label">Copy Link</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Related Articles Section (2-column Crosshair Grid) -->
+                
+                <div class="mt-12 pt-10 border-t border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                            Related Articles
+                        </h2>
+                        <a href="/blog" class="text-xs font-mono text-red-600 dark:text-red-400 hover:underline">
+                            View all articles &rarr;
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 relative">
+                        
+        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
+            <!-- Signature Corner Crosshairs -->
+            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+
+            <div>
+                <div class="flex items-center gap-2 mb-3 flex-wrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
+                        Git
+                    </span>
+                    
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                        GitHub Actions
+                    </span>
+                    
+                </div>
+
+                <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
+                    <a href="/blog/github-actions-skip-steps-with-git-diff" class="after:absolute after:inset-0 focus:outline-none">
+                        Skip Expensive CI Steps Using git diff Instead of File Timestamps
+                    </a>
+                </h3>
+
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+                    File modification timestamps are unreliable in GitHub Actions. Use git diff to detect actual changes and conditionally skip expensive workflow steps.
+                </p>
+            </div>
+
+            <div class="mt-5 flex items-center justify-between relative z-10">
+                <time datetime="2026-08-31" class="text-xs font-mono text-slate-500 dark:text-slate-400">
+                    Aug 31, 2026 • 2 min read
+                </time>
+                <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                    <span>READ</span>
+                    <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
+                </span>
+            </div>
+        </article>
+
+        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
+            <!-- Signature Corner Crosshairs -->
+            <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+
+            <div>
+                <div class="flex items-center gap-2 mb-3 flex-wrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        Laravel
+                    </span>
+                    
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                        Utilities
+                    </span>
+                    
+                </div>
+
+                <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
+                    <a href="/blog/laravel-carbon-immutable-dates" class="after:absolute after:inset-0 focus:outline-none">
+                        Use Immutable Dates by Default in Laravel
+                    </a>
+                </h3>
+
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+                    Configure Laravel&#039;s Date facade to use CarbonImmutable by default, and automate migrating legacy Carbon calls with Rector.
+                </p>
+            </div>
+
+            <div class="mt-5 flex items-center justify-between relative z-10">
+                <time datetime="2026-09-03" class="text-xs font-mono text-slate-500 dark:text-slate-400">
+                    Sep 3, 2026 • 1 min read
+                </time>
+                <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                    <span>READ</span>
+                    <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
+                </span>
+            </div>
+        </article>
+                    </div>
+                </div>
+                
+            </article>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="w-full max-w-6xl py-6 text-center mt-[-1px] z-10">
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                // Got thoughts or a topic request?
+                <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" rel="noopener noreferrer" class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold ml-1">
+                    Discussions and feedback welcome
+                </a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Client-side Interactive Script for Single Blog Post -->
+    <script>
+        const ALL_BLOG_SLUGS = ["laravel-carbon-immutable-dates","laravel-storage-path-traversal-protection","git-submodule-vs-git-subtree","laravel-collection-higher-order-messages","github-actions-cache-playwright-puppeteer","github-actions-incremental-file-writing","github-actions-skip-steps-with-git-diff","laravel-mariadb-vector-distance-queries","laravel-queue-total-size-metrics","git-cherry-pick-single-commit","git-local-ignore-info-exclude","laravel-process-idle-timeout-fake-assertions","laravel-request-all-input-file-precedence","php-docsmith-static-documentation-generator","laravel-artisan-dev-multiplex-terminal-ui","laravel-avoid-env-outside-config-pest-arch","laravel-image-stream-format-response","laravel-schema-state-load-seeding","laravel-detect-model-changes-isdirty-waschanged","css-prevent-navigation-layout-shift-flicker","php-predefined-constants-cheat-sheet","php-rector-remove-unnecessary-comments","laravel-tappable-scopes-eloquent-scout","php-array-shapes-phpdoc","php-generics-phpdoc-template","php-type-system-cheat-sheet","phpstan-static-analysis-levels-guide","laravel-architecture-skinny-controllers-invokable-actions","laravel-architecture-naming-conventions-reference","php-rector-refactor-enums-pascal-case","laravel-broadcast-database-notifications-instantly","laravel-cast-enum-json-array-key","laravel-blade-checked-and-selected-directives","laravel-enum-has-label-trait","livewire-teleport-blade-view-cache-directive-fix","laravel-activity-log-event-subscriber","laravel-belongs-to-team-multitenancy-trait","laravel-custom-wherelike-macro"];
+        document.addEventListener('DOMContentLoaded', () => {
+            // Random Blog Button
+            const randomBtn = document.getElementById('random-blog-btn');
+            if (randomBtn && ALL_BLOG_SLUGS.length > 1) {
+                randomBtn.addEventListener('click', () => {
+                    const currentSlug = 'css-prevent-navigation-layout-shift-flicker';
+                    const pool = ALL_BLOG_SLUGS.filter(s => s !== currentSlug);
+                    const randomSlug = pool[Math.floor(Math.random() * pool.length)];
+                    window.location.href = '/blog/' + randomSlug;
+                });
+            }
+
+            // Copy Article Link Button
+            const copyLinkBtn = document.getElementById('copy-link-btn');
+            const copyLinkLabel = document.getElementById('copy-link-label');
+            if (copyLinkBtn) {
+                copyLinkBtn.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        if (copyLinkLabel) copyLinkLabel.textContent = 'Copied!';
+                        copyLinkBtn.classList.add('border-emerald-500', 'text-emerald-600');
+                        setTimeout(() => {
+                            if (copyLinkLabel) copyLinkLabel.textContent = 'Copy Link';
+                            copyLinkBtn.classList.remove('border-emerald-500', 'text-emerald-600');
+                        }, 2000);
+                    } catch (e) {
+                        console.error('Failed to copy link', e);
+                    }
+                });
+            }
+
+            // Copy Code Snippet Buttons
+            document.querySelectorAll('.copy-code-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const code = btn.getAttribute('data-code');
+                    if (!code) return;
+                    try {
+                        await navigator.clipboard.writeText(code);
+                        const label = btn.querySelector('.copy-label');
+                        if (label) label.textContent = 'Copied!';
+                        btn.classList.add('border-emerald-500', 'text-emerald-600');
+                        setTimeout(() => {
+                            if (label) label.textContent = 'Copy';
+                            btn.classList.remove('border-emerald-500', 'text-emerald-600');
+                        }, 2000);
+                    } catch (e) {
+                        console.error('Failed to copy code', e);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
