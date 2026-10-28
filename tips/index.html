@@ -95,6 +95,12 @@
             top: 100%;
             height: 120px;
         }
+
+        #load-more-btn.hidden,
+        #all-loaded-indicator.hidden,
+        #lazy-loading-spinner.hidden {
+            display: none !important;
+        }
     </style>
 
     <!-- Structured Data (JSON-LD) -->
@@ -20501,7 +20507,7 @@
                     <div id="scroll-sentinel" class="h-1 w-full" aria-hidden="true"></div>
 
                     <!-- Subtle Loading Spinner when scrolling or loading more -->
-                    <div id="lazy-loading-spinner" class="hidden flex items-center justify-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
+                    <div id="lazy-loading-spinner" class="hidden flex items-center justify-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400" style="display: none;">
                         <svg class="animate-spin h-4 w-4 text-red-600" width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -20516,7 +20522,7 @@
                     </button>
 
                     <!-- End of results indicator -->
-                    <div id="all-loaded-indicator" class="hidden text-xs font-mono text-slate-400 dark:text-slate-500">
+                    <div id="all-loaded-indicator" class="hidden text-xs font-mono text-slate-400 dark:text-slate-500" style="display: none;">
                         // All tips loaded (<span id="all-loaded-count">329</span> total)
                     </div>
                 </div>
@@ -20686,24 +20692,50 @@
 
                 // Empty state and Lazy controls
                 if (totalMatching === 0) {
-                    if (emptyState) emptyState.classList.remove('hidden');
-                    if (lazyControls) lazyControls.classList.add('hidden');
+                    if (emptyState) {
+                        emptyState.classList.remove('hidden');
+                        emptyState.style.display = 'block';
+                    }
+                    if (lazyControls) {
+                        lazyControls.classList.add('hidden');
+                        lazyControls.style.display = 'none';
+                    }
                 } else {
-                    if (emptyState) emptyState.classList.add('hidden');
-                    if (lazyControls) lazyControls.classList.remove('hidden');
+                    if (emptyState) {
+                        emptyState.classList.add('hidden');
+                        emptyState.style.display = 'none';
+                    }
+                    if (lazyControls) {
+                        lazyControls.classList.remove('hidden');
+                        lazyControls.style.display = 'block';
+                    }
 
                     if (shownCount >= totalMatching) {
-                        if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
-                        if (loadingSpinner) loadingSpinner.classList.add('hidden');
+                        if (loadMoreBtn) {
+                            loadMoreBtn.classList.add('hidden');
+                            loadMoreBtn.style.display = 'none';
+                        }
+                        if (loadingSpinner) {
+                            loadingSpinner.classList.add('hidden');
+                            loadingSpinner.style.display = 'none';
+                        }
                         if (allLoadedIndicator) {
                             allLoadedIndicator.classList.remove('hidden');
+                            allLoadedIndicator.style.display = 'block';
                             if (allLoadedCount) allLoadedCount.textContent = String(totalMatching);
                         }
                     } else {
-                        if (allLoadedIndicator) allLoadedIndicator.classList.add('hidden');
-                        if (loadingSpinner) loadingSpinner.classList.add('hidden');
+                        if (allLoadedIndicator) {
+                            allLoadedIndicator.classList.add('hidden');
+                            allLoadedIndicator.style.display = 'none';
+                        }
+                        if (loadingSpinner) {
+                            loadingSpinner.classList.add('hidden');
+                            loadingSpinner.style.display = 'none';
+                        }
                         if (loadMoreBtn) {
                             loadMoreBtn.classList.remove('hidden');
+                            loadMoreBtn.style.display = 'inline-flex';
                             const remaining = totalMatching - shownCount;
                             if (loadMoreCount) loadMoreCount.textContent = '(' + remaining + ' more)';
                         }
@@ -20736,8 +20768,14 @@
                 if (isLoading || currentLimit >= matchingCards.length) return;
                 isLoading = true;
 
-                if (loadingSpinner) loadingSpinner.classList.remove('hidden');
-                if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
+                if (loadingSpinner) {
+                    loadingSpinner.classList.remove('hidden');
+                    loadingSpinner.style.display = 'flex';
+                }
+                if (loadMoreBtn) {
+                    loadMoreBtn.classList.add('hidden');
+                    loadMoreBtn.style.display = 'none';
+                }
 
                 requestAnimationFrame(() => {
                     currentLimit += BATCH_SIZE;
