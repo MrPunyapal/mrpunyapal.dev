@@ -521,7 +521,7 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
@@ -571,7 +571,7 @@
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use DB::scalar() to execute raw SQL queries that return a single scalar value without array wrapping.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running aggregate SQL functions, database version checks, or single-value calculations (such as <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">SELECT count(*)</code> or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">SELECT current_timestamp</code>), <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">DB::select()</code> returns an array of objects (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$result[0]-&gt;count</code>).</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">DB::scalar()</code> extracts and returns the single primitive value directly.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Querying Scalar Values</h3>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use DB::scalar() to execute raw SQL queries that return a single scalar value without array wrapping.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running aggregate SQL functions, database version checks, or single-value calculations (such as <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">SELECT count(*)</code> or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">SELECT current_timestamp</code>), <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">DB::select()</code> returns an array of objects (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$result[0]-&gt;count</code>).</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">DB::scalar()</code> extracts and returns the single primitive value directly.</p><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Querying Scalar Values</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -595,7 +595,7 @@ $databaseTime = DB::scalar(&#039;SELECT NOW()&#039;);" aria-label="Copy code to 
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">DB</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">DB</span>;
 
 <span class="hljs-comment">// Returns integer count directly: 42</span>
 <span class="hljs-variable">$count</span> = DB::<span class="hljs-title function_ invoke__">scalar</span>(<span class="hljs-string">&#x27;SELECT count(*) FROM users WHERE is_active = 1&#x27;</span>);
@@ -605,7 +605,7 @@ $databaseTime = DB::scalar(&#039;SELECT NOW()&#039;);" aria-label="Copy code to 
 
 <span class="hljs-comment">// Returns boolean or timestamp directly</span>
 <span class="hljs-variable">$databaseTime</span> = DB::<span class="hljs-title function_ invoke__">scalar</span>(<span class="hljs-string">&#x27;SELECT NOW()&#x27;</span>);</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Parameter Bindings</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">DB::scalar()</code> supports parameter bindings for SQL injection protection:</p>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Parameter Bindings</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">DB::scalar()</code> supports parameter bindings for SQL injection protection:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -623,11 +623,11 @@ $databaseTime = DB::scalar(&#039;SELECT NOW()&#039;);" aria-label="Copy code to 
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$totalRevenue</span> = DB::<span class="hljs-title function_ invoke__">scalar</span>(
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$totalRevenue</span> = DB::<span class="hljs-title function_ invoke__">scalar</span>(
     <span class="hljs-string">&#x27;SELECT SUM(total) FROM orders WHERE status = ? AND created_at &gt;= ?&#x27;</span>,
     [<span class="hljs-string">&#x27;completed&#x27;</span>, <span class="hljs-title function_ invoke__">now</span>()-&gt;<span class="hljs-title function_ invoke__">startOfYear</span>()]
 );</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Returns single primitive values (int, string, float, bool) directly.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates manual <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$result[0]-&gt;column</code> array extraction boilerplate.</span></li><li class="leading-relaxed"><span class="align-middle">Fully supports prepared parameter bindings.</span></li></ul>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Summary</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Returns single primitive values (int, string, float, bool) directly.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates manual <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$result[0]-&gt;column</code> array extraction boilerplate.</span></li><li class="leading-relaxed"><span class="align-middle">Fully supports prepared parameter bindings.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -702,7 +702,7 @@ $databaseTime = DB::scalar(&#039;SELECT NOW()&#039;);" aria-label="Copy code to 
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
@@ -751,7 +751,7 @@ $databaseTime = DB::scalar(&#039;SELECT NOW()&#039;);" aria-label="Copy code to 
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     

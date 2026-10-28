@@ -521,7 +521,7 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
@@ -571,7 +571,7 @@
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use Model::withoutTimestamps() to update records during data migrations or internal status increments without altering their updated_at timestamps.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running background data fixes, backfilling legacy columns, or incrementing internal counters (like view counts or sync hashes), updating a model modifies <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">updated_at</code>, which corrupts user-facing &quot;Last Modified&quot; dates.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">withoutTimestamps()</code> method temporarily suspends automatic timestamp mutation.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Updating Models Without Timestamp Changes</h3>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use Model::withoutTimestamps() to update records during data migrations or internal status increments without altering their updated_at timestamps.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running background data fixes, backfilling legacy columns, or incrementing internal counters (like view counts or sync hashes), updating a model modifies <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">updated_at</code>, which corrupts user-facing &quot;Last Modified&quot; dates.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">withoutTimestamps()</code> method temporarily suspends automatic timestamp mutation.</p><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Updating Models Without Timestamp Changes</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -594,7 +594,7 @@ Post::withoutTimestamps(function () use ($post, $migratedData) {
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Post</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Post</span>;
 
 <span class="hljs-comment">// Updates the post without changing its updated_at column</span>
 <span class="hljs-title class_">Post</span>::<span class="hljs-title function_ invoke__">withoutTimestamps</span>(function () <span class="hljs-keyword">use</span> ($<span class="hljs-title">post</span>, $<span class="hljs-title">migratedData</span>) {
@@ -603,7 +603,7 @@ Post::withoutTimestamps(function () use ($post, $migratedData) {
         &#x27;<span class="hljs-title">is_indexed</span>&#x27;       =&gt; <span class="hljs-title">true</span>,
     ]);
 });</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">On Individual Model Instances</h3>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">On Individual Model Instances</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -620,10 +620,10 @@ Post::withoutTimestamps(function () use ($post, $migratedData) {
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">withoutTimestamps</span>(function () <span class="hljs-keyword">use</span> ($<span class="hljs-title">user</span>) {
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">withoutTimestamps</span>(function () <span class="hljs-keyword">use</span> ($<span class="hljs-title">user</span>) {
     $<span class="hljs-title">user</span>-&gt;<span class="hljs-title">update</span>([&#x27;<span class="hljs-title">login_count</span>&#x27; =&gt; $<span class="hljs-title">user</span>-&gt;<span class="hljs-title">login_count</span> + 1]);
 });</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Preserves original <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">updated_at</code> timestamps during maintenance updates.</span></li><li class="leading-relaxed"><span class="align-middle">Scoped strictly to the executed closure callback.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates manual <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$model-&gt;timestamps = false</code> state toggling.</span></li></ul>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Summary</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Preserves original <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">updated_at</code> timestamps during maintenance updates.</span></li><li class="leading-relaxed"><span class="align-middle">Scoped strictly to the executed closure callback.</span></li><li class="leading-relaxed"><span class="align-middle">Eliminates manual <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$model-&gt;timestamps = false</code> state toggling.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -698,7 +698,7 @@ Post::withoutTimestamps(function () use ($post, $migratedData) {
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
@@ -747,7 +747,7 @@ Post::withoutTimestamps(function () use ($post, $migratedData) {
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     

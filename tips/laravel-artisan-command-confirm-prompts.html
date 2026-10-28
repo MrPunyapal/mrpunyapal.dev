@@ -521,7 +521,7 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
@@ -571,7 +571,7 @@
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use $this-&gt;confirm() and Laravel Prompts inside Artisan commands to require explicit confirmation before executing destructive operations.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When creating custom Artisan CLI commands that delete records, clear caches, or synchronize production databases, executing accidentally without confirmation can lead to severe data loss.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel provides built-in confirmation helpers on all command classes.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Using $this-&gt;confirm() in Commands</h3>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use $this-&gt;confirm() and Laravel Prompts inside Artisan commands to require explicit confirmation before executing destructive operations.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When creating custom Artisan CLI commands that delete records, clear caches, or synchronize production databases, executing accidentally without confirmation can lead to severe data loss.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel provides built-in confirmation helpers on all command classes.</p><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Using $this-&gt;confirm() in Commands</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -616,7 +616,7 @@ class PruneInactiveUsersCommand extends Command
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Console</span>\<span class="hljs-title class_">Commands</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Console</span>\<span class="hljs-title class_">Commands</span>;
 
 <span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Console</span>\<span class="hljs-title">Command</span>;
@@ -647,7 +647,7 @@ class PruneInactiveUsersCommand extends Command
         <span class="hljs-keyword">return</span> <span class="hljs-built_in">self</span>::<span class="hljs-variable constant_">SUCCESS</span>;
     }
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Using Modern Laravel Prompts</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel also includes Laravel Prompts for interactive terminal UIs:</p>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Using Modern Laravel Prompts</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel also includes Laravel Prompts for interactive terminal UIs:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -669,7 +669,7 @@ $confirmed = confirm(
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-keyword">function</span> <span class="hljs-title">LaravelPromptsconfirm</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-keyword">function</span> <span class="hljs-title">LaravelPromptsconfirm</span>;
 
 <span class="hljs-variable">$confirmed</span> = <span class="hljs-title function_ invoke__">confirm</span>(
     <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Do you want to proceed with database synchronization?&#x27;</span>,
@@ -677,7 +677,7 @@ $confirmed = confirm(
     <span class="hljs-attr">yes</span>: <span class="hljs-string">&#x27;Yes, synchronize now&#x27;</span>,
     <span class="hljs-attr">no</span>: <span class="hljs-string">&#x27;Cancel&#x27;</span>
 );</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Protects database records and remote services from accidental command execution.</span></li><li class="leading-relaxed"><span class="align-middle"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$this-&gt;confirm(&#039;question&#039;, default: false)</code> defaults safely to rejection.</span></li><li class="leading-relaxed"><span class="align-middle">Supports <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">--force</code> options for non-interactive automated CI/CD pipelines.</span></li></ul>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Summary</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Protects database records and remote services from accidental command execution.</span></li><li class="leading-relaxed"><span class="align-middle"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$this-&gt;confirm(&#039;question&#039;, default: false)</code> defaults safely to rejection.</span></li><li class="leading-relaxed"><span class="align-middle">Supports <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">--force</code> options for non-interactive automated CI/CD pipelines.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -752,7 +752,7 @@ $confirmed = confirm(
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
@@ -801,7 +801,7 @@ $confirmed = confirm(
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     

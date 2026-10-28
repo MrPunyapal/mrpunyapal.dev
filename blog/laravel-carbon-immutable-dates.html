@@ -37,67 +37,6 @@
     <link rel="stylesheet" href="/src/tailwind.css">
     <link rel="stylesheet" href="/src/app.css">
     <script type="module" src="/src/main.js"></script>
-    
-    <style>
-        body {
-            background: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
-        }
-
-        .dark body {
-            background: #0a0a0a !important;
-            color: #f4f4f5 !important;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Technical Grid Markers */
-        .tech-marker {
-            position: absolute;
-            width: 7px;
-            height: 7px;
-            background-color: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 50%;
-            z-index: 50;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Infinite Grid Lines */
-        .tech-line-h {
-            position: absolute;
-            height: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            width: 300vw;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tech-line-v-top {
-            position: absolute;
-            width: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            bottom: 100%;
-            height: 100vh;
-        }
-
-        .tech-line-v-bottom {
-            position: absolute;
-            width: 1px;
-            background: linear-gradient(to bottom, #e2e8f0, transparent);
-            z-index: 0;
-            pointer-events: none;
-            top: 100%;
-            height: 120px;
-        }
-    </style>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -179,6 +118,12 @@
 </head>
 
 <body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true" width="0" height="0">
+        <defs>
+            <symbol id="i-crosshair" viewBox="0 0 12 12"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></symbol>
+        </defs>
+    </svg>
 
     <!-- Main Content Frame -->
     <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
@@ -510,7 +455,7 @@
 
                 <!-- Top Breadcrumbs / Action Bar -->
                 <div class="flex items-center justify-between gap-4 flex-wrap select-none mb-6">
-                    <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors group">
+                    <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-red-400 transition-colors group">
                         <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
                         <span>BACK TO BLOG</span>
                     </a>
@@ -523,12 +468,12 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
-                        <span class="text-slate-300 dark:text-slate-700 font-mono text-xs">/</span>
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                        <span class="text-slate-300 dark:text-slate-700 font-mono text-xs" aria-hidden="true">/</span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                             Utilities
                         </span>
                         
@@ -594,14 +539,14 @@ echo $tomorrow-&gt;toDateString(); // 2026-09-04" aria-label="Copy code to clipb
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$date</span> = <span class="hljs-title function_ invoke__">now</span>();
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$date</span> = <span class="hljs-title function_ invoke__">now</span>();
 
 <span class="hljs-variable">$tomorrow</span> = <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">addDay</span>();
 
 <span class="hljs-comment">// Both variables now point to tomorrow!</span>
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();     <span class="hljs-comment">// 2026-09-04</span>
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$tomorrow</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>(); <span class="hljs-comment">// 2026-09-04</span></code></pre>
-</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Configure the Date Facade</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">AppServiceProvider::boot()</code>, instruct Laravel&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date</code> factory to generate <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">CarbonImmutable</code> instances:</p>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">1. Configure the Date Facade</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">In <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">AppServiceProvider::boot()</code>, instruct Laravel&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date</code> factory to generate <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">CarbonImmutable</code> instances:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -628,7 +573,7 @@ class AppServiceProvider extends ServiceProvider
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Providers</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Providers</span>;
 
 <span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">CarbonImmutable</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Date</span>;
@@ -661,13 +606,13 @@ echo $tomorrow-&gt;toDateString(); // 2026-09-04" aria-label="Copy code to clipb
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$date</span> = <span class="hljs-title function_ invoke__">now</span>();
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$date</span> = <span class="hljs-title function_ invoke__">now</span>();
 
 <span class="hljs-variable">$tomorrow</span> = <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">addDay</span>();
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$date</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>();     <span class="hljs-comment">// 2026-09-03 (original remains unchanged)</span>
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$tomorrow</span>-&gt;<span class="hljs-title function_ invoke__">toDateString</span>(); <span class="hljs-comment">// 2026-09-04</span></code></pre>
-</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. The Direct Carbon Trap</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">While <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date::use(CarbonImmutable::class)</code> secures <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">now()</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">today()</code>, and <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date::now()</code>, any code directly calling <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Carbon::now()</code> or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Carbon::parse()</code> bypasses Laravel&#39;s date factory and remains mutable:</p>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">2. The Direct Carbon Trap</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">While <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date::use(CarbonImmutable::class)</code> secures <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">now()</code>, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">today()</code>, and <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date::now()</code>, any code directly calling <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Carbon::now()</code> or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Carbon::parse()</code> bypasses Laravel&#39;s date factory and remains mutable:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -688,14 +633,14 @@ $date = Date::parse(&#039;2026-09-03&#039;);" aria-label="Copy code to clipboard
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">Carbon</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">Carbon</span>;
 
 <span class="hljs-comment">// ❌ Bypasses Laravel&#x27;s Date factory; remains mutable</span>
 <span class="hljs-variable">$date</span> = <span class="hljs-title class_">Carbon</span>::<span class="hljs-title function_ invoke__">parse</span>(<span class="hljs-string">&#x27;2026-09-03&#x27;</span>);
 
 <span class="hljs-comment">// ✅ Routes through Date factory; returns CarbonImmutable</span>
 <span class="hljs-variable">$date</span> = <span class="hljs-title class_">Date</span>::<span class="hljs-title function_ invoke__">parse</span>(<span class="hljs-string">&#x27;2026-09-03&#x27;</span>);</code></pre>
-</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">3. Automate Codebase Migration with Rector</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To migrate an existing codebase so all static Carbon calls route through Laravel&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date</code> facade, use <a href="https://getrector.com/rule-detail/carbon-to-date-facade-rector" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline font-semibold"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">CarbonToDateFacadeRector</code></a> from <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">rector-laravel</code>:</p>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">3. Automate Codebase Migration with Rector</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">To migrate an existing codebase so all static Carbon calls route through Laravel&#39;s <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date</code> facade, use <a href="https://getrector.com/rule-detail/carbon-to-date-facade-rector" target="_blank" rel="noopener noreferrer" class="text-red-700 dark:text-red-400 hover:underline font-semibold"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">CarbonToDateFacadeRector</code></a> from <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">rector-laravel</code>:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -710,7 +655,7 @@ $date = Date::parse(&#039;2026-09-03&#039;);" aria-label="Copy code to clipboard
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-bash">composer require --dev driftingly/rector-laravel</code></pre>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-bash">composer require --dev driftingly/rector-laravel</code></pre>
 </div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Register the rule in <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">rector.php</code>:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
@@ -733,7 +678,7 @@ return RectorConfig::configure()
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// rector.php</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-comment">// rector.php</span>
 <span class="hljs-keyword">use</span> <span class="hljs-title">Rector</span>\<span class="hljs-title">Config</span>\<span class="hljs-title">RectorConfig</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">RectorLaravel</span>\<span class="hljs-title">Rector</span>\<span class="hljs-title">StaticCall</span>\<span class="hljs-title">CarbonToDateFacadeRector</span>;
 
@@ -741,7 +686,7 @@ return RectorConfig::configure()
     -&gt;<span class="hljs-title function_ invoke__">withRules</span>([
         <span class="hljs-title class_">CarbonToDateFacadeRector</span>::<span class="hljs-variable language_">class</span>,
     ]);</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">What Rector Automatically Transforms</h4>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">What Rector Automatically Transforms</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -766,7 +711,7 @@ $date = Date::parse(&#039;2026-01-01&#039;);" aria-label="Copy code to clipboard
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Before Rector:</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-comment">// Before Rector:</span>
 <span class="hljs-keyword">use</span> <span class="hljs-title">Carbon</span>\<span class="hljs-title">Carbon</span>;
 
 <span class="hljs-variable">$now</span> = <span class="hljs-title class_">Carbon</span>::<span class="hljs-title function_ invoke__">now</span>();
@@ -777,7 +722,7 @@ $date = Date::parse(&#039;2026-01-01&#039;);" aria-label="Copy code to clipboard
 
 <span class="hljs-variable">$now</span> = <span class="hljs-title class_">Date</span>::<span class="hljs-title function_ invoke__">now</span>();
 <span class="hljs-variable">$date</span> = <span class="hljs-title class_">Date</span>::<span class="hljs-title function_ invoke__">parse</span>(<span class="hljs-string">&#x27;2026-01-01&#x27;</span>);</code></pre>
-</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Key Benefits</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Predictable Date Math</strong>: Operations like <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">addDay()</code> or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">subMonth()</code> always return new instances without mutating source dates.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Framework Uniformity</strong>: Using <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date::use(CarbonImmutable::class)</code> guarantees all Eloquent timestamps, cast dates, and helpers share the same immutable behavior.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Automated Modernization</strong>: <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">CarbonToDateFacadeRector</code> removes manual search-and-replace across legacy controllers and services.</span></li></ul>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Key Benefits</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Predictable Date Math</strong>: Operations like <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">addDay()</code> or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">subMonth()</code> always return new instances without mutating source dates.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Framework Uniformity</strong>: Using <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Date::use(CarbonImmutable::class)</code> guarantees all Eloquent timestamps, cast dates, and helpers share the same immutable behavior.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Automated Modernization</strong>: <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">CarbonToDateFacadeRector</code> removes manual search-and-replace across legacy controllers and services.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -810,13 +755,13 @@ $date = Date::parse(&#039;2026-01-01&#039;);" aria-label="Copy code to clipboard
 
                     <!-- Share Buttons -->
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Use%20Immutable%20Dates%20by%20Default%20in%20Laravel%20by%20%40MrPunyapal&amp;url=https%3A%2F%2Fmrpunyapal.dev%2Fblog%2Flaravel-carbon-immutable-dates" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors" aria-label="Share article on X">
+                        <a href="https://twitter.com/intent/tweet?text=Use%20Immutable%20Dates%20by%20Default%20in%20Laravel%20by%20%40MrPunyapal&amp;url=https%3A%2F%2Fmrpunyapal.dev%2Fblog%2Flaravel-carbon-immutable-dates" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors" >
                             <svg class="w-3.5 h-3.5" width="14" height="14" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
                                 <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
                             </svg>
                             <span>Share on X</span>
                         </a>
-                        <button type="button" id="copy-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors cursor-pointer" aria-label="Copy article link">
+                        <button type="button" id="copy-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors cursor-pointer" >
                             <svg class="w-3.5 h-3.5" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
                             </svg>
@@ -839,35 +784,35 @@ $date = Date::parse(&#039;2026-01-01&#039;);" aria-label="Copy code to clipboard
 
                     <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 relative">
                         
-        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
+        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between">
             <!-- Signature Corner Crosshairs -->
             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                         Utilities
                     </span>
                     
                 </div>
 
                 <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                    <a href="/blog/laravel-process-idle-timeout-fake-assertions" class="after:absolute after:inset-0 focus:outline-none">
+                    <a href="/blog/laravel-process-idle-timeout-fake-assertions" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                         Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions
                     </a>
                 </h3>
@@ -881,42 +826,42 @@ $date = Date::parse(&#039;2026-01-01&#039;);" aria-label="Copy code to clipboard
                 <time datetime="2026-08-22" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                     Aug 22, 2026 • 3 min read
                 </time>
-                <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                     <span>READ</span>
                     <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                 </span>
             </div>
         </article>
 
-        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
+        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between">
             <!-- Signature Corner Crosshairs -->
             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                         Utilities
                     </span>
                     
                 </div>
 
                 <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                    <a href="/blog/laravel-artisan-dev-multiplex-terminal-ui" class="after:absolute after:inset-0 focus:outline-none">
+                    <a href="/blog/laravel-artisan-dev-multiplex-terminal-ui" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                         Terminal UI Upgrade for php artisan dev in Laravel 13.25
                     </a>
                 </h3>
@@ -930,7 +875,7 @@ $date = Date::parse(&#039;2026-01-01&#039;);" aria-label="Copy code to clipboard
                 <time datetime="2026-08-18" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                     Aug 18, 2026 • 3 min read
                 </time>
-                <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                     <span>READ</span>
                     <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                 </span>

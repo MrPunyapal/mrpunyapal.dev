@@ -48,87 +48,32 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
     const hasLeadingQuote = /^\s*>/m.test(post.body || '');
     const renderedBody = marked.parse(post.body || '');
 
-    // Critical Grid and Card CSS
-    const criticalStyles = `
-    <style>
-        body {
-            background: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
-        }
-
-        .dark body {
-            background: #0a0a0a !important;
-            color: #f4f4f5 !important;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Technical Grid Markers */
-        .tech-marker {
-            position: absolute;
-            width: 7px;
-            height: 7px;
-            background-color: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 50%;
-            z-index: 50;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Infinite Grid Lines */
-        .tech-line-h {
-            position: absolute;
-            height: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            width: 300vw;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tech-line-v-top {
-            position: absolute;
-            width: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            bottom: 100%;
-            height: 100vh;
-        }
-
-        .tech-line-v-bottom {
-            position: absolute;
-            width: 1px;
-            background: linear-gradient(to bottom, #e2e8f0, transparent);
-            z-index: 0;
-            pointer-events: none;
-            top: 100%;
-            height: 120px;
-        }
-    </style>`;
+    // Embedded SVG Sprite
+    const iconSprite = `
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true" width="0" height="0">
+        <defs>
+            <symbol id="i-crosshair" viewBox="0 0 12 12"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></symbol>
+        </defs>
+    </svg>`;
 
     // Related blog cards HTML
     const relatedCardsHtml = relatedPosts.map(r => {
         const rEffectiveDate = getTipEffectiveDate(r);
         const rBadge = getCategoryBadge(r.category);
         return `
-        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
+        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between">
             <!-- Signature Corner Crosshairs -->
             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
 
             <div>
@@ -137,14 +82,14 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
                         ${escapeHtml(r.category)}
                     </span>
                     ${r.subcategory ? `
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                         ${escapeHtml(r.subcategory)}
                     </span>
                     ` : ''}
                 </div>
 
                 <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                    <a href="/blog/${r.slug}" class="after:absolute after:inset-0 focus:outline-none">
+                    <a href="/blog/${r.slug}" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                         ${escapeHtml(r.title)}
                     </a>
                 </h3>
@@ -158,7 +103,7 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
                 <time datetime="${escapeHtml(rEffectiveDate)}" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                     ${formatDate(rEffectiveDate)} • ${r.readingTime} min read
                 </time>
-                <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                     <span>READ</span>
                     <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                 </span>
@@ -270,7 +215,6 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
     <link rel="stylesheet" href="/src/tailwind.css">
     <link rel="stylesheet" href="/src/app.css">
     <script type="module" src="/src/main.js"></script>
-    ${criticalStyles}
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -292,6 +236,7 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
 </head>
 
 <body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    ${iconSprite}
 
     <!-- Main Content Frame -->
     <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
@@ -324,7 +269,7 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
 
                 <!-- Top Breadcrumbs / Action Bar -->
                 <div class="flex items-center justify-between gap-4 flex-wrap select-none mb-6">
-                    <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors group">
+                    <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-red-400 transition-colors group">
                         <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
                         <span>BACK TO BLOG</span>
                     </a>
@@ -341,8 +286,8 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
                             ${escapeHtml(post.category)}
                         </span>
                         ${post.subcategory ? `
-                        <span class="text-slate-300 dark:text-slate-700 font-mono text-xs">/</span>
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                        <span class="text-slate-300 dark:text-slate-700 font-mono text-xs" aria-hidden="true">/</span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                             ${escapeHtml(post.subcategory)}
                         </span>
                         ` : ''}
@@ -408,13 +353,13 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
 
                     <!-- Share Buttons -->
                     <div class="flex items-center gap-2">
-                        <a href="${escapeHtml(xShareLink)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors" aria-label="Share article on X">
+                        <a href="${escapeHtml(xShareLink)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors" >
                             <svg class="w-3.5 h-3.5" width="14" height="14" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
                                 <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
                             </svg>
                             <span>Share on X</span>
                         </a>
-                        <button type="button" id="copy-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors cursor-pointer" aria-label="Copy article link">
+                        <button type="button" id="copy-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors cursor-pointer" >
                             <svg class="w-3.5 h-3.5" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
                             </svg>

@@ -38,65 +38,6 @@
     <script type="module" src="/src/main.js"></script>
     
     <style>
-        body {
-            background: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
-        }
-
-        .dark body {
-            background: #0a0a0a !important;
-            color: #f4f4f5 !important;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Technical Grid Markers */
-        .tech-marker {
-            position: absolute;
-            width: 7px;
-            height: 7px;
-            background-color: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 50%;
-            z-index: 50;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Infinite Grid Lines */
-        .tech-line-h {
-            position: absolute;
-            height: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            width: 300vw;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tech-line-v-top {
-            position: absolute;
-            width: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            bottom: 100%;
-            height: 100vh;
-        }
-
-        .tech-line-v-bottom {
-            position: absolute;
-            width: 1px;
-            background: linear-gradient(to bottom, #e2e8f0, transparent);
-            z-index: 0;
-            pointer-events: none;
-            top: 100%;
-            height: 120px;
-        }
-
         #load-more-btn.hidden,
         #all-loaded-indicator.hidden,
         #lazy-loading-spinner.hidden {
@@ -369,7 +310,7 @@
 
 <body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
     
-    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true" width="0" height="0">
         <defs>
             <symbol id="i-crosshair" viewBox="0 0 12 12"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></symbol>
             <symbol id="i-heart" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></symbol>
@@ -757,21 +698,21 @@
                         </button>
                     </div>
 
-                    <div id="results-count" class="hidden text-xs font-mono text-slate-500 dark:text-slate-400 mt-3"></div>
+                    <div id="results-count" class="hidden text-xs font-mono text-slate-600 dark:text-slate-400 mt-3" role="status" aria-live="polite"></div>
                 </div>
             </div>
 
             <!-- Slide-over Filter Sidebar Drawer -->
             <div id="filter-drawer-backdrop" class="hidden fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-xs z-50 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true"></div>
 
-            <aside id="filter-drawer-panel" role="dialog" aria-modal="true" aria-label="Filters sidebar" class="hidden fixed top-0 bottom-0 right-0 h-dvh max-h-dvh w-full max-w-full sm:max-w-md md:max-w-lg bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col overflow-hidden">
+            <div id="filter-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="filter-drawer-title" class="hidden fixed top-0 bottom-0 right-0 h-dvh max-h-dvh w-full max-w-full sm:max-w-md md:max-w-lg bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col overflow-hidden">
                 <!-- Drawer Header -->
                 <div class="flex items-center justify-between p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800">
                     <div class="flex items-center gap-2">
                         <svg class="w-4 h-4 text-red-500" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
                         </svg>
-                        <h2 class="text-base font-bold text-slate-900 dark:text-white">Filter Articles</h2>
+                        <h2 id="filter-drawer-title" class="text-base font-bold text-slate-900 dark:text-white">Filter Articles</h2>
                     </div>
                     <button type="button" id="close-filter-drawer-btn" class="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer" aria-label="Close filter drawer">
                         <svg class="w-5 h-5" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -789,27 +730,27 @@
                         </h3>
                         <div class="flex flex-wrap gap-1.5">
                             
-                                <button type="button" data-filter="All" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer active-filter bg-red-600 text-white border-red-600 shadow-sm">
+                                <button type="button" data-filter="All" aria-pressed="true" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer active-filter bg-red-600 text-white border-red-600 shadow-sm">
                                     <span>All</span>
                                     <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-white text-red-700 font-bold">38</span>
                                 </button>
-                                <button type="button" data-filter="CSS" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
+                                <button type="button" data-filter="CSS" aria-pressed="false" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
                                     <span>CSS</span>
                                     <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">1</span>
                                 </button>
-                                <button type="button" data-filter="Git" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
+                                <button type="button" data-filter="Git" aria-pressed="false" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
                                     <span>Git</span>
                                     <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">6</span>
                                 </button>
-                                <button type="button" data-filter="Laravel" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
+                                <button type="button" data-filter="Laravel" aria-pressed="false" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
                                     <span>Laravel</span>
                                     <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">22</span>
                                 </button>
-                                <button type="button" data-filter="Livewire" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
+                                <button type="button" data-filter="Livewire" aria-pressed="false" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
                                     <span>Livewire</span>
                                     <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">1</span>
                                 </button>
-                                <button type="button" data-filter="PHP" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
+                                <button type="button" data-filter="PHP" aria-pressed="false" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
                                     <span>PHP</span>
                                     <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">8</span>
                                 </button>
@@ -822,7 +763,7 @@
                             Topic
                         </h3>
                         <div class="flex flex-wrap gap-1.5">
-                            <button type="button" data-subcat="All" class="subcategory-filter-btn active-subcat inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-colors cursor-pointer bg-red-600 text-white border-red-600 shadow-xs">
+                            <button type="button" data-subcat="All" aria-pressed="true" class="subcategory-filter-btn active-subcat inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-colors cursor-pointer bg-red-600 text-white border-red-600 shadow-xs">
                                 <span>All Topics</span>
                             </button>
                             
@@ -907,7 +848,7 @@
                         View Results
                     </button>
                 </div>
-            </aside>
+            </div>
 
             <!-- Blog Grid Section (Signature 2-Column Crosshair Grid) -->
             <section class="border-b border-slate-200 dark:border-slate-800 relative">
@@ -917,7 +858,7 @@
 
                 <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                     
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Laravel"
                     data-subcategory="Utilities"
@@ -939,18 +880,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Utilities
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-carbon-immutable-dates" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-carbon-immutable-dates" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Use Immutable Dates by Default in Laravel
                             </a>
                         </h2>
@@ -964,14 +905,14 @@
                         <time datetime="2026-09-03" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Sep 3, 2026 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Laravel"
                     data-subcategory="Storage"
@@ -993,18 +934,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Storage
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-storage-path-traversal-protection" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-storage-path-traversal-protection" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Harden Filesystem Operations with Storage::path() Traversal Protection in Laravel 13.30
                             </a>
                         </h2>
@@ -1018,14 +959,14 @@
                         <time datetime="2026-09-02" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Sep 2, 2026 • 3 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Git"
                     data-subcategory="Workflow"
@@ -1047,18 +988,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
                                 Git
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Workflow
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/git-submodule-vs-git-subtree" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/git-submodule-vs-git-subtree" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Git Submodule vs. Git Subtree: Which Should You Use?
                             </a>
                         </h2>
@@ -1072,14 +1013,14 @@
                         <time datetime="2026-09-01" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Sep 1, 2026 • 4 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Laravel"
                     data-subcategory="Collections"
@@ -1101,18 +1042,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Collections
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-collection-higher-order-messages" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-collection-higher-order-messages" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Simplify Collection Operations with Higher-Order Messages
                             </a>
                         </h2>
@@ -1126,14 +1067,14 @@
                         <time datetime="2026-09-01" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Sep 1, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Git"
                     data-subcategory="GitHub Actions"
@@ -1155,18 +1096,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
                                 Git
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 GitHub Actions
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/github-actions-cache-playwright-puppeteer" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/github-actions-cache-playwright-puppeteer" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Cache Playwright and Puppeteer Browsers in GitHub Actions
                             </a>
                         </h2>
@@ -1180,14 +1121,14 @@
                         <time datetime="2026-08-31" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 31, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Git"
                     data-subcategory="GitHub Actions"
@@ -1209,18 +1150,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
                                 Git
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 GitHub Actions
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/github-actions-incremental-file-writing" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/github-actions-incremental-file-writing" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Write Files Incrementally in Build Scripts to Avoid Unnecessary Rebuilds
                             </a>
                         </h2>
@@ -1234,14 +1175,14 @@
                         <time datetime="2026-08-31" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 31, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Git"
                     data-subcategory="GitHub Actions"
@@ -1263,18 +1204,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
                                 Git
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 GitHub Actions
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/github-actions-skip-steps-with-git-diff" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/github-actions-skip-steps-with-git-diff" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Skip Expensive CI Steps Using git diff Instead of File Timestamps
                             </a>
                         </h2>
@@ -1288,14 +1229,14 @@
                         <time datetime="2026-08-31" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 31, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Laravel"
                     data-subcategory="Database"
@@ -1317,18 +1258,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Database
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-mariadb-vector-distance-queries" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-mariadb-vector-distance-queries" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Query AI Embeddings with MariaDB Vector Distance in Laravel 13.27
                             </a>
                         </h2>
@@ -1342,14 +1283,14 @@
                         <time datetime="2026-08-31" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 31, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Laravel"
                     data-subcategory="Queue"
@@ -1371,18 +1312,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Queue
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-queue-total-size-metrics" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-queue-total-size-metrics" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Monitor Aggregate Queue Metrics with Total Size Helpers in Laravel 13.27
                             </a>
                         </h2>
@@ -1396,14 +1337,14 @@
                         <time datetime="2026-08-30" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 30, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Git"
                     data-subcategory="Workflow"
@@ -1425,18 +1366,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
                                 Git
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Workflow
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/git-cherry-pick-single-commit" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/git-cherry-pick-single-commit" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Apply Individual Commits Across Branches with Git cherry-pick
                             </a>
                         </h2>
@@ -1450,14 +1391,14 @@
                         <time datetime="2026-08-29" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 29, 2026 • 3 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Git"
                     data-subcategory="Workflow"
@@ -1479,18 +1420,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50">
                                 Git
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Workflow
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/git-local-ignore-info-exclude" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/git-local-ignore-info-exclude" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Ignore Local Files Without Modifying .gitignore Using .git/info/exclude
                             </a>
                         </h2>
@@ -1504,14 +1445,14 @@
                         <time datetime="2026-08-22" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 22, 2026 • 3 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Laravel"
                     data-subcategory="Utilities"
@@ -1533,18 +1474,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Utilities
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-process-idle-timeout-fake-assertions" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-process-idle-timeout-fake-assertions" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Process Improvements in Laravel 13.26: Idle Timeouts and Testing Assertions
                             </a>
                         </h2>
@@ -1558,14 +1499,14 @@
                         <time datetime="2026-08-22" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 22, 2026 • 3 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Laravel"
                     data-subcategory="HTTP &amp; API"
@@ -1587,18 +1528,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 HTTP &amp; API
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-request-all-input-file-precedence" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-request-all-input-file-precedence" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Laravel 13.25 Reverses Merge Order in Request::all()
                             </a>
                         </h2>
@@ -1612,14 +1553,14 @@
                         <time datetime="2026-08-19" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 19, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="PHP"
                     data-subcategory="Tooling"
@@ -1641,18 +1582,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                                 PHP
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Tooling
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/php-docsmith-static-documentation-generator" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/php-docsmith-static-documentation-generator" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Build Polished Static Documentation Sites from Markdown with DocSmith
                             </a>
                         </h2>
@@ -1666,14 +1607,14 @@
                         <time datetime="2026-08-19" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 19, 2026 • 5 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Laravel"
                     data-subcategory="Utilities"
@@ -1695,18 +1636,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Utilities
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-artisan-dev-multiplex-terminal-ui" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-artisan-dev-multiplex-terminal-ui" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Terminal UI Upgrade for php artisan dev in Laravel 13.25
                             </a>
                         </h2>
@@ -1720,14 +1661,14 @@
                         <time datetime="2026-08-18" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 18, 2026 • 3 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     
                     data-category="Laravel"
                     data-subcategory="Configuration"
@@ -1749,18 +1690,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Configuration
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-avoid-env-outside-config-pest-arch" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-avoid-env-outside-config-pest-arch" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Use config() Instead of env() in Application Code
                             </a>
                         </h2>
@@ -1774,14 +1715,14 @@
                         <time datetime="2026-08-16" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 16, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="HTTP &amp; API"
@@ -1803,18 +1744,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 HTTP &amp; API
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-image-stream-format-response" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-image-stream-format-response" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Process Uploaded Images from Streams in Laravel 13.25
                             </a>
                         </h2>
@@ -1828,14 +1769,14 @@
                         <time datetime="2026-08-15" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 15, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Database"
@@ -1857,18 +1798,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Database
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-schema-state-load-seeding" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-schema-state-load-seeding" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Load Large SQL Dumps in Laravel Seeders
                             </a>
                         </h2>
@@ -1882,14 +1823,14 @@
                         <time datetime="2026-08-15" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 15, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Eloquent"
@@ -1911,18 +1852,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Eloquent
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-detect-model-changes-isdirty-waschanged" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-detect-model-changes-isdirty-waschanged" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Detect Eloquent Model Attribute Changes Before and After Saving
                             </a>
                         </h2>
@@ -1936,14 +1877,14 @@
                         <time datetime="2026-08-14" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 14, 2026 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="CSS"
                     data-subcategory="Styling"
@@ -1965,18 +1906,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 border-cyan-200 dark:border-cyan-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-cyan-50 dark:bg-cyan-950/40 text-cyan-700 dark:text-cyan-400 border-cyan-200 dark:border-cyan-900/50">
                                 CSS
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Styling
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/css-prevent-navigation-layout-shift-flicker" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/css-prevent-navigation-layout-shift-flicker" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Prevent Navigation Layout Shifts and Flickering in Web Applications
                             </a>
                         </h2>
@@ -1990,14 +1931,14 @@
                         <time datetime="2026-08-11" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Aug 11, 2026 • 3 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="PHP"
                     data-subcategory="Tooling"
@@ -2019,18 +1960,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                                 PHP
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Tooling
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/php-predefined-constants-cheat-sheet" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/php-predefined-constants-cheat-sheet" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 PHP Predefined and Magic Constants Cheat Sheet (PHP 8.4 Ready)
                             </a>
                         </h2>
@@ -2044,14 +1985,14 @@
                         <time datetime="2026-03-28" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Mar 28, 2026 • 3 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="PHP"
                     data-subcategory="Tooling"
@@ -2073,18 +2014,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                                 PHP
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Tooling
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/php-rector-remove-unnecessary-comments" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/php-rector-remove-unnecessary-comments" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Clean Up Redundant Code Comments with a Custom Rector Rule
                             </a>
                         </h2>
@@ -2098,14 +2039,14 @@
                         <time datetime="2026-03-11" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Mar 11, 2026 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Eloquent"
@@ -2127,18 +2068,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Eloquent
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-tappable-scopes-eloquent-scout" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-tappable-scopes-eloquent-scout" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Reusable Tappable Scopes for Eloquent and Laravel Scout Queries
                             </a>
                         </h2>
@@ -2152,14 +2093,14 @@
                         <time datetime="2025-02-07" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Feb 7, 2025 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="PHP"
                     data-subcategory="Tooling"
@@ -2181,18 +2122,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                                 PHP
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Tooling
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/php-array-shapes-phpdoc" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/php-array-shapes-phpdoc" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Typed Arrays and Array Shapes in PHP with PHPDoc
                             </a>
                         </h2>
@@ -2206,14 +2147,14 @@
                         <time datetime="2024-07-25" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jul 25, 2024 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="PHP"
                     data-subcategory="Tooling"
@@ -2235,18 +2176,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                                 PHP
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Tooling
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/php-generics-phpdoc-template" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/php-generics-phpdoc-template" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Generic Classes and Functions in PHP Using PHPDoc @template
                             </a>
                         </h2>
@@ -2260,14 +2201,14 @@
                         <time datetime="2024-07-25" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jul 25, 2024 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="PHP"
                     data-subcategory="Syntax"
@@ -2289,18 +2230,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                                 PHP
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Syntax
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/php-type-system-cheat-sheet" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/php-type-system-cheat-sheet" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Complete Modern PHP Type System Cheat Sheet
                             </a>
                         </h2>
@@ -2314,14 +2255,14 @@
                         <time datetime="2024-07-25" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jul 25, 2024 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="PHP"
                     data-subcategory="Tooling"
@@ -2343,18 +2284,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                                 PHP
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Tooling
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/phpstan-static-analysis-levels-guide" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/phpstan-static-analysis-levels-guide" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Complete Guide to PHPStan Static Analysis Levels (0 to 10)
                             </a>
                         </h2>
@@ -2368,14 +2309,14 @@
                         <time datetime="2024-07-25" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jul 25, 2024 • 4 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Architecture"
@@ -2397,18 +2338,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Architecture
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-architecture-skinny-controllers-invokable-actions" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-architecture-skinny-controllers-invokable-actions" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Keep Controllers Lean by Delegating Business Logic to Action Classes
                             </a>
                         </h2>
@@ -2422,14 +2363,14 @@
                         <time datetime="2024-07-10" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jul 10, 2024 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Architecture"
@@ -2451,18 +2392,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Architecture
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-architecture-naming-conventions-reference" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-architecture-naming-conventions-reference" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Follow Laravel Standard Naming Conventions for Predictable Architecture
                             </a>
                         </h2>
@@ -2476,14 +2417,14 @@
                         <time datetime="2024-06-05" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jun 5, 2024 • 2 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="PHP"
                     data-subcategory="Tooling"
@@ -2505,18 +2446,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                                 PHP
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Tooling
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/php-rector-refactor-enums-pascal-case" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/php-rector-refactor-enums-pascal-case" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Refactor PHP Enum Cases from snake_case to PascalCase with Rector
                             </a>
                         </h2>
@@ -2530,14 +2471,14 @@
                         <time datetime="2024-05-20" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             May 20, 2024 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Events"
@@ -2559,18 +2500,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Events
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-broadcast-database-notifications-instantly" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-broadcast-database-notifications-instantly" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Instantly Broadcast Real-Time Database Notifications Using Model Observers
                             </a>
                         </h2>
@@ -2584,14 +2525,14 @@
                         <time datetime="2024-02-11" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Feb 11, 2024 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Eloquent"
@@ -2613,18 +2554,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Eloquent
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-cast-enum-json-array-key" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-cast-enum-json-array-key" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Cast Enums Inside JSON and Array Column Keys in Eloquent
                             </a>
                         </h2>
@@ -2638,14 +2579,14 @@
                         <time datetime="2024-01-30" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jan 30, 2024 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Blade"
@@ -2667,18 +2608,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Blade
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-blade-checked-and-selected-directives" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-blade-checked-and-selected-directives" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Clean Up HTML Forms with Blade&#039;s @checked and @selected Directives
                             </a>
                         </h2>
@@ -2692,14 +2633,14 @@
                         <time datetime="2024-01-24" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jan 24, 2024 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Eloquent"
@@ -2721,18 +2662,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Eloquent
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-enum-has-label-trait" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-enum-has-label-trait" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Human-Friendly Enum Case Labels with a Reusable HasLabel Trait
                             </a>
                         </h2>
@@ -2746,14 +2687,14 @@
                         <time datetime="2024-01-17" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jan 17, 2024 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Livewire"
                     data-subcategory="Components"
@@ -2775,18 +2716,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-pink-50 dark:bg-pink-950/40 text-pink-600 dark:text-pink-400 border-pink-200 dark:border-pink-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-pink-50 dark:bg-pink-950/40 text-pink-700 dark:text-pink-400 border-pink-200 dark:border-pink-900/50">
                                 Livewire
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Components
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/livewire-teleport-blade-view-cache-directive-fix" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/livewire-teleport-blade-view-cache-directive-fix" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Fix Blade View Cache Compilation for Teleport Directives in Livewire
                             </a>
                         </h2>
@@ -2800,14 +2741,14 @@
                         <time datetime="2024-01-14" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Jan 14, 2024 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Events"
@@ -2829,18 +2770,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Events
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-activity-log-event-subscriber" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-activity-log-event-subscriber" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Centralized Application Activity Logging with Laravel Event Subscribers
                             </a>
                         </h2>
@@ -2854,14 +2795,14 @@
                         <time datetime="2023-12-01" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Dec 1, 2023 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Architecture"
@@ -2883,18 +2824,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Architecture
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-belongs-to-team-multitenancy-trait" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-belongs-to-team-multitenancy-trait" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Multi-Tenant Team Scoping with a Reusable BelongsToTeam Model Trait
                             </a>
                         </h2>
@@ -2908,14 +2849,14 @@
                         <time datetime="2023-11-05" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Nov 5, 2023 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
                     </div>
                 </article>
 
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     style="display: none;"
                     data-category="Laravel"
                     data-subcategory="Eloquent"
@@ -2937,18 +2878,18 @@
 
                     <div>
                         <div class="flex items-center gap-2 mb-3 flex-wrap">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                                 Laravel
                             </span>
                             
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 Eloquent
                             </span>
                             
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/laravel-custom-wherelike-macro" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/laravel-custom-wherelike-macro" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 Reusable whereLike Macro with Relationship and Expression Support
                             </a>
                         </h2>
@@ -2962,7 +2903,7 @@
                         <time datetime="2023-10-27" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             Oct 27, 2023 • 1 min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
@@ -2976,7 +2917,7 @@
                     <div id="scroll-sentinel" class="h-1 w-full" aria-hidden="true"></div>
 
                     <!-- Subtle Loading Spinner when scrolling or loading more -->
-                    <div id="lazy-loading-spinner" class="hidden flex items-center justify-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400" style="display: none;">
+                    <div id="lazy-loading-spinner" role="status" aria-live="polite" class="hidden flex items-center justify-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400" style="display: none;">
                         <svg class="animate-spin h-4 w-4 text-red-600" width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -2985,19 +2926,19 @@
                     </div>
 
                     <!-- Manual Load More button (works as fallback or explicit click) -->
-                    <button type="button" id="load-more-btn" aria-label="Load more articles" class="px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer inline-flex items-center gap-2">
+                    <button type="button" id="load-more-btn" class="px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer inline-flex items-center gap-2">
                         <span>Load More Articles</span>
-                        <span id="load-more-count" class="text-[11px] text-slate-400 font-normal"></span>
+                        <span id="load-more-count" class="text-[11px] text-slate-500 dark:text-slate-400 font-normal"></span>
                     </button>
 
                     <!-- End of results indicator -->
-                    <div id="all-loaded-indicator" class="hidden text-xs font-mono text-slate-400 dark:text-slate-500" style="display: none;">
+                    <div id="all-loaded-indicator" role="status" class="hidden text-xs font-mono text-slate-600 dark:text-slate-400" style="display: none;">
                         // All articles loaded (<span id="all-loaded-count">38</span> total)
                     </div>
                 </div>
 
                 <!-- Empty State (hidden by default) -->
-                <div id="empty-state" class="hidden p-12 text-center border-t border-slate-200 dark:border-slate-800">
+                <div id="empty-state" role="status" class="hidden p-12 text-center border-t border-slate-200 dark:border-slate-800">
                     <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
                         <svg class="w-6 h-6" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -3014,7 +2955,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] print:hidden">
+        <div class="w-full max-w-6xl py-6 text-center mt-[-1px] z-10 print:hidden">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 // Got thoughts or a topic request?
                 <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" rel="noopener noreferrer"

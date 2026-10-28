@@ -522,7 +522,7 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
@@ -572,7 +572,7 @@
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel Collections support higher-order messages through dynamic properties, allowing operations like each, map, filter, and groupBy to work directly with an item&#39;s property or method without writing boilerplate callbacks.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When manipulating collections in Laravel, developers frequently pass anonymous functions that do nothing more than read a single object property or invoke a single method.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Writing boilerplate closures for simple property forwarding adds unnecessary visual noise.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel provides <strong>higher-order messages</strong> via proxy properties on collections, allowing you to access item attributes and methods directly on the collection itself.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">The Core Concept: Removing Boilerplate Callbacks</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Consider grouping a collection of orders by their status:</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Before</h4>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel Collections support higher-order messages through dynamic properties, allowing operations like each, map, filter, and groupBy to work directly with an item&#39;s property or method without writing boilerplate callbacks.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When manipulating collections in Laravel, developers frequently pass anonymous functions that do nothing more than read a single object property or invoke a single method.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Writing boilerplate closures for simple property forwarding adds unnecessary visual noise.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel provides <strong>higher-order messages</strong> via proxy properties on collections, allowing you to access item attributes and methods directly on the collection itself.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">The Core Concept: Removing Boilerplate Callbacks</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Consider grouping a collection of orders by their status:</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Before</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -589,10 +589,10 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">groupBy</span>(function (Order <span class="hljs-variable">$order</span>) {
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">groupBy</span>(function (Order <span class="hljs-variable">$order</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-variable">$order</span>-&gt;status;
 });</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">After</h4>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">After</h3>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -607,8 +607,8 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$orders</span>-&gt;groupBy-&gt;status;</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The closure existed only to access the <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">status</code> property. With higher-order messages, Laravel intercepts the property access and applies it to each item in the collection automatically.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">How Higher-Order Messages Work</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Higher-order messages are accessed as dynamic properties on the Collection instance (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$collection-&gt;methodName-&gt;target</code>).</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Behind the scenes, Laravel returns a <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">HigherOrderCollectionProxy</code> instance. When you access a property or call a method on this proxy, Laravel applies that operation to each item during the collection loop:</p>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$orders</span>-&gt;groupBy-&gt;status;</code></pre>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The closure existed only to access the <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">status</code> property. With higher-order messages, Laravel intercepts the property access and applies it to each item in the collection automatically.</p><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">How Higher-Order Messages Work</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Higher-order messages are accessed as dynamic properties on the Collection instance (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$collection-&gt;methodName-&gt;target</code>).</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Behind the scenes, Laravel returns a <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">HigherOrderCollectionProxy</code> instance. When you access a property or call a method on this proxy, Laravel applies that operation to each item during the collection loop:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -627,12 +627,12 @@ Loops items and invokes $item-&gt;markAsVip()" aria-label="Copy code to clipboar
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-text">$collection-&gt;each-&gt;markAsVip()
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-text">$collection-&gt;each-&gt;markAsVip()
          ↓
 HigherOrderCollectionProxy
          ↓
 Loops items and invokes $item-&gt;markAsVip()</code></pre>
-</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Property Access vs. Method Calls</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Depending on the collection method and what each item exposes, higher-order messages can forward either a <strong>property access</strong> or a <strong>method invocation</strong>:</p><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">1. Reading an Attribute (Property Access)</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When accessing model attributes or array keys:</p>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Property Access vs. Method Calls</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Depending on the collection method and what each item exposes, higher-order messages can forward either a <strong>property access</strong> or a <strong>method invocation</strong>:</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">1. Reading an Attribute (Property Access)</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When accessing model attributes or array keys:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -654,7 +654,7 @@ $recentUsers = $users-&gt;sortByDesc-&gt;created_at;" aria-label="Copy code to c
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Sum the total property across all orders</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-comment">// Sum the total property across all orders</span>
 <span class="hljs-variable">$totalRevenue</span> = <span class="hljs-variable">$orders</span>-&gt;sum-&gt;total;
 
 <span class="hljs-comment">// Group items by category property</span>
@@ -662,7 +662,7 @@ $recentUsers = $users-&gt;sortByDesc-&gt;created_at;" aria-label="Copy code to c
 
 <span class="hljs-comment">// Sort users by created_at timestamp descending</span>
 <span class="hljs-variable">$recentUsers</span> = <span class="hljs-variable">$users</span>-&gt;sortByDesc-&gt;created_at;</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">2. Invoking an Action (Method Call)</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running a method on each item in the collection:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">2. Invoking an Action (Method Call)</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When running a method on each item in the collection:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -684,7 +684,7 @@ $validSubscriptions = $subscriptions-&gt;reject-&gt;isExpired();" aria-label="Co
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Execute markAsVip() on each User instance</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-comment">// Execute markAsVip() on each User instance</span>
 <span class="hljs-variable">$users</span>-&gt;each-&gt;<span class="hljs-title function_ invoke__">markAsVip</span>();
 
 <span class="hljs-comment">// Filter users where isActive() returns true</span>
@@ -692,7 +692,7 @@ $validSubscriptions = $subscriptions-&gt;reject-&gt;isExpired();" aria-label="Co
 
 <span class="hljs-comment">// Reject expired subscriptions</span>
 <span class="hljs-variable">$validSubscriptions</span> = <span class="hljs-variable">$subscriptions</span>-&gt;reject-&gt;<span class="hljs-title function_ invoke__">isExpired</span>();</code></pre>
-</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Real-World Practical Examples</h3>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Real-World Practical Examples</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -743,7 +743,7 @@ class BillingService
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Services</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Services</span>;
 
 <span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Invoice</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
@@ -780,7 +780,7 @@ class BillingService
         ];
     }
 }</code></pre>
-</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Complete Supported Method Reference</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Higher-order messages are supported across 23 Collection methods, organized by category:</p>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Complete Supported Method Reference</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Higher-order messages are supported across 23 Collection methods, organized by category:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -830,7 +830,7 @@ $collection-&gt;takeWhile-&gt;method();" aria-label="Copy code to clipboard">
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php">
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php">
 <span class="hljs-comment">// Aggregation: calculate values from a property or method.</span>
 <span class="hljs-variable">$collection</span>-&gt;average-&gt;property;
 <span class="hljs-variable">$collection</span>-&gt;avg-&gt;property;
@@ -866,7 +866,7 @@ $collection-&gt;takeWhile-&gt;method();" aria-label="Copy code to clipboard">
 <span class="hljs-variable">$collection</span>-&gt;skipWhile-&gt;<span class="hljs-title function_ invoke__">method</span>();
 <span class="hljs-variable">$collection</span>-&gt;takeUntil-&gt;<span class="hljs-title function_ invoke__">method</span>();
 <span class="hljs-variable">$collection</span>-&gt;takeWhile-&gt;<span class="hljs-title function_ invoke__">method</span>();</code></pre>
-</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">When to Keep the Closure</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Higher-order messages are designed for direct property reads and single method calls. If your callback involves custom logic, comparisons, or multi-step transformations, continue using standard closures:</p>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">When to Keep the Closure</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Higher-order messages are designed for direct property reads and single method calls. If your callback involves custom logic, comparisons, or multi-step transformations, continue using standard closures:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -889,7 +889,7 @@ $users-&gt;each(function (User $user) use ($notifier, $discountCode) {
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">// Keep a closure when custom business logic or conditionals are needed:</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-comment">// Keep a closure when custom business logic or conditionals are needed:</span>
 <span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">groupBy</span>(function (Order <span class="hljs-variable">$order</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-variable">$order</span>-&gt;total &gt; <span class="hljs-number">1000</span> ? <span class="hljs-string">&#x27;tier_enterprise&#x27;</span> : <span class="hljs-string">&#x27;tier_standard&#x27;</span>;
 });
@@ -898,7 +898,7 @@ $users-&gt;each(function (User $user) use ($notifier, $discountCode) {
 <span class="hljs-variable">$users</span>-&gt;<span class="hljs-title function_ invoke__">each</span>(function (User <span class="hljs-variable">$user</span>) <span class="hljs-keyword">use</span> ($<span class="hljs-title">notifier</span>, $<span class="hljs-title">discountCode</span>) {
     $<span class="hljs-title">notifier</span>-&gt;<span class="hljs-title">sendCustomPromotion</span>($<span class="hljs-title">user</span>, $<span class="hljs-title">discountCode</span>);
 });</code></pre>
-</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The general rule: <strong>Use higher-order messages when a callback only forwards a property or method; keep a closure when you need logic.</strong></p><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Higher-order messages eliminate boilerplate closures across 23 Laravel Collection methods.</span></li><li class="leading-relaxed"><span class="align-middle">Accessed via dynamic properties on the collection (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$collection-&gt;filter-&gt;isActive()</code>).</span></li><li class="leading-relaxed"><span class="align-middle">Supports both property retrieval (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$orders-&gt;sum-&gt;total</code>) and method execution (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$users-&gt;each-&gt;delete()</code>).</span></li><li class="leading-relaxed"><span class="align-middle">Keeps chained collection pipelines readable and concise without sacrificing clarity.</span></li></ul>
+</div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The general rule: <strong>Use higher-order messages when a callback only forwards a property or method; keep a closure when you need logic.</strong></p><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Summary</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Higher-order messages eliminate boilerplate closures across 23 Laravel Collection methods.</span></li><li class="leading-relaxed"><span class="align-middle">Accessed via dynamic properties on the collection (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$collection-&gt;filter-&gt;isActive()</code>).</span></li><li class="leading-relaxed"><span class="align-middle">Supports both property retrieval (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$orders-&gt;sum-&gt;total</code>) and method execution (<code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$users-&gt;each-&gt;delete()</code>).</span></li><li class="leading-relaxed"><span class="align-middle">Keeps chained collection pipelines readable and concise without sacrificing clarity.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -977,7 +977,7 @@ $users-&gt;each(function (User $user) use ($notifier, $discountCode) {
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
@@ -1026,7 +1026,7 @@ $users-&gt;each(function (User $user) use ($notifier, $discountCode) {
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     

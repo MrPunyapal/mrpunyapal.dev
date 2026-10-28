@@ -520,7 +520,7 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
@@ -570,7 +570,7 @@
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use mapWithKeys() to transform collections into associative dictionaries with custom keys and values in a single operation.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When converting an Eloquent collection or dataset into a keyed associative array for dropdowns, chart data, or JSON dictionaries, combining <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">keyBy()</code> and <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">map()</code> loops over the collection multiple times.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mapWithKeys()</code> allows you to define both the new key and new value simultaneously.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Basic Key-Value Mapping</h3>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use mapWithKeys() to transform collections into associative dictionaries with custom keys and values in a single operation.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When converting an Eloquent collection or dataset into a keyed associative array for dropdowns, chart data, or JSON dictionaries, combining <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">keyBy()</code> and <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">map()</code> loops over the collection multiple times.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mapWithKeys()</code> allows you to define both the new key and new value simultaneously.</p><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Basic Key-Value Mapping</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -597,7 +597,7 @@ $lookup = $users-&gt;mapWithKeys(function (User $user) {
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
 
 <span class="hljs-variable">$users</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">all</span>();
 
@@ -610,7 +610,7 @@ $lookup = $users-&gt;mapWithKeys(function (User $user) {
 <span class="hljs-comment">//     &#x27;punyapal@example.com&#x27; =&gt; &#x27;Punyapal Shah&#x27;,</span>
 <span class="hljs-comment">//     &#x27;alex@example.com&#x27;     =&gt; &#x27;Punyapal Shah&#x27;,</span>
 <span class="hljs-comment">// ]</span></code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Formatting Option Lists for Form Selects</h3>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Formatting Option Lists for Form Selects</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -628,11 +628,11 @@ $lookup = $users-&gt;mapWithKeys(function (User $user) {
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$options</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">all</span>()-&gt;<span class="hljs-title function_ invoke__">mapWithKeys</span>(function (User <span class="hljs-variable">$user</span>) {
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$options</span> = <span class="hljs-title class_">User</span>::<span class="hljs-title function_ invoke__">all</span>()-&gt;<span class="hljs-title function_ invoke__">mapWithKeys</span>(function (User <span class="hljs-variable">$user</span>) {
     <span class="hljs-variable">$label</span> = <span class="hljs-string">&quot;<span class="hljs-subst">{$user-&gt;name}</span> (<span class="hljs-subst">{$user-&gt;department}</span>)&quot;</span>;
     <span class="hljs-keyword">return</span> [<span class="hljs-variable">$user</span>-&gt;id =&gt; <span class="hljs-variable">$label</span>];
 });</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Multiple Key-Value Pairs from Single Items</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A single item can return multiple key-value pairs if needed:</p>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Multiple Key-Value Pairs from Single Items</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">A single item can return multiple key-value pairs if needed:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -652,13 +652,13 @@ $lookup = $users-&gt;mapWithKeys(function (User $user) {
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$rates</span> = <span class="hljs-title function_ invoke__">collect</span>(<span class="hljs-variable">$plans</span>)-&gt;<span class="hljs-title function_ invoke__">mapWithKeys</span>(function (<span class="hljs-variable">$plan</span>) {
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$rates</span> = <span class="hljs-title function_ invoke__">collect</span>(<span class="hljs-variable">$plans</span>)-&gt;<span class="hljs-title function_ invoke__">mapWithKeys</span>(function (<span class="hljs-variable">$plan</span>) {
     <span class="hljs-keyword">return</span> [
         <span class="hljs-variable">$plan</span>[<span class="hljs-string">&#x27;id&#x27;</span>] . <span class="hljs-string">&#x27;_monthly&#x27;</span> =&gt; <span class="hljs-variable">$plan</span>[<span class="hljs-string">&#x27;monthly_price&#x27;</span>],
         <span class="hljs-variable">$plan</span>[<span class="hljs-string">&#x27;id&#x27;</span>] . <span class="hljs-string">&#x27;_annual&#x27;</span>  =&gt; <span class="hljs-variable">$plan</span>[<span class="hljs-string">&#x27;annual_price&#x27;</span>],
     ];
 });</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Transforms items into key-value pairs in a single collection pass.</span></li><li class="leading-relaxed"><span class="align-middle">Closure must return an associative array with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">[key =&gt; value]</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Ideal for building select dropdown options and API lookup dictionaries.</span></li></ul>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Summary</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Transforms items into key-value pairs in a single collection pass.</span></li><li class="leading-relaxed"><span class="align-middle">Closure must return an associative array with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">[key =&gt; value]</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Ideal for building select dropdown options and API lookup dictionaries.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -729,7 +729,7 @@ $lookup = $users-&gt;mapWithKeys(function (User $user) {
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
@@ -778,7 +778,7 @@ $lookup = $users-&gt;mapWithKeys(function (User $user) {
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     

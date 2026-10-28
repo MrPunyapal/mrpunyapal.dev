@@ -37,67 +37,6 @@
     <link rel="stylesheet" href="/src/tailwind.css">
     <link rel="stylesheet" href="/src/app.css">
     <script type="module" src="/src/main.js"></script>
-    
-    <style>
-        body {
-            background: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
-        }
-
-        .dark body {
-            background: #0a0a0a !important;
-            color: #f4f4f5 !important;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Technical Grid Markers */
-        .tech-marker {
-            position: absolute;
-            width: 7px;
-            height: 7px;
-            background-color: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 50%;
-            z-index: 50;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Infinite Grid Lines */
-        .tech-line-h {
-            position: absolute;
-            height: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            width: 300vw;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tech-line-v-top {
-            position: absolute;
-            width: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            bottom: 100%;
-            height: 100vh;
-        }
-
-        .tech-line-v-bottom {
-            position: absolute;
-            width: 1px;
-            background: linear-gradient(to bottom, #e2e8f0, transparent);
-            z-index: 0;
-            pointer-events: none;
-            top: 100%;
-            height: 120px;
-        }
-    </style>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -179,6 +118,12 @@
 </head>
 
 <body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true" width="0" height="0">
+        <defs>
+            <symbol id="i-crosshair" viewBox="0 0 12 12"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></symbol>
+        </defs>
+    </svg>
 
     <!-- Main Content Frame -->
     <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
@@ -510,7 +455,7 @@
 
                 <!-- Top Breadcrumbs / Action Bar -->
                 <div class="flex items-center justify-between gap-4 flex-wrap select-none mb-6">
-                    <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors group">
+                    <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 hover:text-red-700 dark:hover:text-red-400 transition-colors group">
                         <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
                         <span>BACK TO BLOG</span>
                     </a>
@@ -523,12 +468,12 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                             PHP
                         </span>
                         
-                        <span class="text-slate-300 dark:text-slate-700 font-mono text-xs">/</span>
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                        <span class="text-slate-300 dark:text-slate-700 font-mono text-xs" aria-hidden="true">/</span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                             Tooling
                         </span>
                         
@@ -573,7 +518,7 @@
 
                 <!-- Post Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHPStan inspects your PHP code without executing it, discovering subtle type mismatches, dead code, and unhandled edge cases. PHPStan organizes its rule sets into numeric levels ranging from <strong>0 (most lenient)</strong> to <strong>10 (maximum strictness)</strong>.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When adopting PHPStan in existing or greenfield projects, understanding what each level verifies helps you establish progressive static analysis milestones.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Overview of PHPStan Levels</h3><div class="overflow-x-auto my-6 rounded-xl border border-slate-200 dark:border-slate-800"><table class="w-full text-left border-collapse">
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Understand what each rule level in PHPStan inspects, from basic syntax errors at Level 0 to strict mixed-type enforcement at Level 9 and Level 10.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHPStan inspects your PHP code without executing it, discovering subtle type mismatches, dead code, and unhandled edge cases. PHPStan organizes its rule sets into numeric levels ranging from <strong>0 (most lenient)</strong> to <strong>10 (maximum strictness)</strong>.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When adopting PHPStan in existing or greenfield projects, understanding what each level verifies helps you establish progressive static analysis milestones.</p><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Overview of PHPStan Levels</h2><div class="overflow-x-auto my-6 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><table class="w-full text-left border-collapse">
 <thead>
 <tr>
 <th>Level</th>
@@ -637,7 +582,7 @@
 <td>Prohibits passing or returning <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> where specific types are expected</td>
 </tr>
 </tbody></table>
-</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level-by-Level Code Examples</h3><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 0: Basic Syntax &amp; Function Calls</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Verifies that called classes, functions, and methods exist, and that required parameter counts are satisfied:</p>
+</div><hr class="my-8 border-slate-200 dark:border-slate-800"><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Level-by-Level Code Examples</h2><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 0: Basic Syntax &amp; Function Calls</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Verifies that called classes, functions, and methods exist, and that required parameter counts are satisfied:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -665,7 +610,7 @@ calculate(1); // Error: Function calculate() called with 1 parameter, 2 required
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span>
 </span>{
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
     </span>{
@@ -679,7 +624,7 @@ calculate(1); // Error: Function calculate() called with 1 parameter, 2 required
 }
 
 <span class="hljs-title function_ invoke__">calculate</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// Error: Function calculate() called with 1 parameter, 2 required.</span></code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 1: Possibly Undefined Variables</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Ensures every variable accessed is guaranteed to be defined in all branching paths:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 1: Possibly Undefined Variables</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Ensures every variable accessed is guaranteed to be defined in all branching paths:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -701,7 +646,7 @@ calculate(1); // Error: Function calculate() called with 1 parameter, 2 required
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span>(<span class="hljs-params"><span class="hljs-keyword">bool</span> <span class="hljs-variable">$flag</span></span>): <span class="hljs-title">void</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span>(<span class="hljs-params"><span class="hljs-keyword">bool</span> <span class="hljs-variable">$flag</span></span>): <span class="hljs-title">void</span>
 </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-variable">$flag</span>) {
         <span class="hljs-variable">$data</span> = <span class="hljs-string">&#x27;ready&#x27;</span>;
@@ -709,7 +654,7 @@ calculate(1); // Error: Function calculate() called with 1 parameter, 2 required
 
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$data</span>; <span class="hljs-comment">// Error: Variable $data might not be defined.</span>
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 2: Unknown Methods on All Expressions</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Checks methods and properties on expressions where types are known via annotations or reflection:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 2: Unknown Methods on All Expressions</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Checks methods and properties on expressions where types are known via annotations or reflection:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -730,14 +675,14 @@ $user-&gt;getProfilePhoto(); // Error: Call to an undefined method User::getProf
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span>
 </span>{
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getName</span>(<span class="hljs-params"></span>): <span class="hljs-title">string</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Alex&#x27;</span>; }
 }
 
 <span class="hljs-variable">$user</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();
 <span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">getProfilePhoto</span>(); <span class="hljs-comment">// Error: Call to an undefined method User::getProfilePhoto()</span></code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 3: Return Types and Property Assignments</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Validates that returned values and assigned properties match their type definitions:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 3: Return Types and Property Assignments</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Validates that returned values and assigned properties match their type definitions:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -765,7 +710,7 @@ $user-&gt;getProfilePhoto(); // Error: Call to an undefined method User::getProf
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span>
 </span>{
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-variable">$total</span>;
 
@@ -779,7 +724,7 @@ $user-&gt;getProfilePhoto(); // Error: Call to an undefined method User::getProf
         <span class="hljs-keyword">return</span> <span class="hljs-number">12345</span>; <span class="hljs-comment">// Error: Method getInvoiceNumber() should return string but returns int.</span>
     }
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 4: Dead Code and Redundant Logic</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Detects unreachable statements and conditionals that always evaluate to true or false:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 4: Dead Code and Redundant Logic</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Detects unreachable statements and conditionals that always evaluate to true or false:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -802,7 +747,7 @@ $user-&gt;getProfilePhoto(); // Error: Call to an undefined method User::getProf
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">check</span>(<span class="hljs-params">User <span class="hljs-variable">$user</span></span>): <span class="hljs-title">void</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">check</span>(<span class="hljs-params">User <span class="hljs-variable">$user</span></span>): <span class="hljs-title">void</span>
 </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-variable">$user</span> <span class="hljs-keyword">instanceof</span> User) { <span class="hljs-comment">// Always true</span>
         <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;Valid&#x27;</span>;
@@ -811,7 +756,7 @@ $user-&gt;getProfilePhoto(); // Error: Call to an undefined method User::getProf
     <span class="hljs-keyword">return</span>;
     <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;Unreachable&#x27;</span>; <span class="hljs-comment">// Error: Unreachable statement - code above always returns.</span>
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 5: Argument Type Validation</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Verifies that arguments passed to functions match the declared parameter types:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 5: Argument Type Validation</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Verifies that arguments passed to functions match the declared parameter types:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -828,10 +773,10 @@ setDiscount(&#039;20&#039;); // Error: Parameter #1 expects int, string given." 
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setDiscount</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-variable">$percentage</span></span>): <span class="hljs-title">void</span> </span>{}
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setDiscount</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-variable">$percentage</span></span>): <span class="hljs-title">void</span> </span>{}
 
 <span class="hljs-title function_ invoke__">setDiscount</span>(<span class="hljs-string">&#x27;20&#x27;</span>); <span class="hljs-comment">// Error: Parameter #1 expects int, string given.</span></code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 6: Missing Typehints</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Requires explicit typehints on function parameters, return types, and properties:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 6: Missing Typehints</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Requires explicit typehints on function parameters, return types, and properties:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -853,7 +798,7 @@ setDiscount(&#039;20&#039;); // Error: Parameter #1 expects int, string given." 
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Report</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Report</span>
 </span>{
     <span class="hljs-comment">// Error: Property Report::$records has no type specified.</span>
     <span class="hljs-keyword">private</span> <span class="hljs-variable">$records</span>;
@@ -861,7 +806,7 @@ setDiscount(&#039;20&#039;); // Error: Parameter #1 expects int, string given." 
     <span class="hljs-comment">// Error: Method generate() has parameter $options with no type specified.</span>
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generate</span>(<span class="hljs-params"><span class="hljs-variable">$options</span></span>) </span>{}
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 7: Partially Wrong Union Types</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Flags method calls on union types where only some union members implement the method:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 7: Partially Wrong Union Types</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Flags method calls on union types where only some union members implement the method:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -883,7 +828,7 @@ function notify(Customer|Guest $recipient): void
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>{ <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendInvoice</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span> </span>{} }
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>{ <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendInvoice</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span> </span>{} }
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Guest</span> </span>{}
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">notify</span>(<span class="hljs-params">Customer|Guest <span class="hljs-variable">$recipient</span></span>): <span class="hljs-title">void</span>
@@ -891,7 +836,7 @@ function notify(Customer|Guest $recipient): void
     <span class="hljs-comment">// Error: Call to method sendInvoice() on Customer|Guest (Guest does not have method).</span>
     <span class="hljs-variable">$recipient</span>-&gt;<span class="hljs-title function_ invoke__">sendInvoice</span>();
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 8: Nullable Type Access</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Catches potential &quot;Call to a member function on null&quot; errors:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 8: Nullable Type Access</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Catches potential &quot;Call to a member function on null&quot; errors:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -910,12 +855,12 @@ function notify(Customer|Guest $recipient): void
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printLength</span>(<span class="hljs-params">?<span class="hljs-keyword">string</span> <span class="hljs-variable">$input</span></span>): <span class="hljs-title">int</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printLength</span>(<span class="hljs-params">?<span class="hljs-keyword">string</span> <span class="hljs-variable">$input</span></span>): <span class="hljs-title">int</span>
 </span>{
     <span class="hljs-comment">// Error: Cannot call method strlen() with parameter ?string (requires string).</span>
     <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$input</span>);
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 9: Strict <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> Evaluation</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">At Level 9, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> is treated strictly. You cannot perform operations on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> values without explicit type narrowing:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 9: Strict <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> Evaluation</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">At Level 9, <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> is treated strictly. You cannot perform operations on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> values without explicit type narrowing:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -934,12 +879,12 @@ function notify(Customer|Guest $recipient): void
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">formatData</span>(<span class="hljs-params"><span class="hljs-keyword">mixed</span> <span class="hljs-variable">$value</span></span>): <span class="hljs-title">string</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">formatData</span>(<span class="hljs-params"><span class="hljs-keyword">mixed</span> <span class="hljs-variable">$value</span></span>): <span class="hljs-title">string</span>
 </span>{
     <span class="hljs-comment">// Error: Cannot call method trim() on mixed. Narrow type with is_string() first.</span>
     <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">trim</span>(<span class="hljs-variable">$value</span>);
 }</code></pre>
-</div><h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mt-4 mb-2">Level 10: Strict Explicit <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> Types (PHPStan 2.0+)</h4><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHPStan 2.0 introduces Level 10 (or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">level: max</code>), which goes beyond Level 9 by prohibiting passing <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> values or returning <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> where specific types are expected, ensuring full end-to-end type safety throughout generic containers and arrays:</p>
+</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Level 10: Strict Explicit <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> Types (PHPStan 2.0+)</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">PHPStan 2.0 introduces Level 10 (or <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">level: max</code>), which goes beyond Level 9 by prohibiting passing <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> values or returning <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> where specific types are expected, ensuring full end-to-end type safety throughout generic containers and arrays:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -966,7 +911,7 @@ function greet(string $name): string
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-comment">/**
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@param</span> array&lt;string, mixed&gt; $payload
  */</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processPayload</span>(<span class="hljs-params"><span class="hljs-keyword">array</span> <span class="hljs-variable">$payload</span></span>): <span class="hljs-title">string</span>
@@ -1001,7 +946,7 @@ function greet(string $name): string
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processPayload</span>(<span class="hljs-params"><span class="hljs-keyword">array</span> <span class="hljs-variable">$payload</span></span>): <span class="hljs-title">string</span>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processPayload</span>(<span class="hljs-params"><span class="hljs-keyword">array</span> <span class="hljs-variable">$payload</span></span>): <span class="hljs-title">string</span>
 </span>{
     <span class="hljs-keyword">if</span> (! <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$payload</span>[<span class="hljs-string">&#x27;name&#x27;</span>]) || ! <span class="hljs-title function_ invoke__">is_string</span>(<span class="hljs-variable">$payload</span>[<span class="hljs-string">&#x27;name&#x27;</span>])) {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">InvalidArgumentException</span>(<span class="hljs-string">&#x27;Expected name to be a string.&#x27;</span>);
@@ -1009,7 +954,7 @@ function greet(string $name): string
 
     <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">greet</span>(<span class="hljs-variable">$payload</span>[<span class="hljs-string">&#x27;name&#x27;</span>]); <span class="hljs-comment">// Valid at Level 10</span>
 }</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Recommended Adoption Strategy</h3><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Start at Level 1 or 2</strong>: Fix baseline undefined variables and non-existent methods in legacy codebases.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Advance to Level 5</strong>: Add argument type verification to prevent runtime TypeError exceptions.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Target Level 8 or Level 10</strong>: Ideal for modern, strongly typed Laravel and PHP applications using Larastan.</span></li></ol><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">PHPStan levels range progressively from 0 (lenient) to 10 (maximum strictness).</span></li><li class="leading-relaxed"><span class="align-middle">Levels 1 to 5 catch common runtime bugs without requiring exhaustive PHPDoc annotations.</span></li><li class="leading-relaxed"><span class="align-middle">Levels 6 to 8 enforce complete type coverage and nullable safety.</span></li><li class="leading-relaxed"><span class="align-middle">Levels 9 and 10 enforce strict type narrowing on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> values and array payloads.</span></li></ul>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Recommended Adoption Strategy</h2><ol class="list-decimal list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle"><strong>Start at Level 1 or 2</strong>: Fix baseline undefined variables and non-existent methods in legacy codebases.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Advance to Level 5</strong>: Add argument type verification to prevent runtime TypeError exceptions.</span></li><li class="leading-relaxed"><span class="align-middle"><strong>Target Level 8 or Level 10</strong>: Ideal for modern, strongly typed Laravel and PHP applications using Larastan.</span></li></ol><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Summary</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">PHPStan levels range progressively from 0 (lenient) to 10 (maximum strictness).</span></li><li class="leading-relaxed"><span class="align-middle">Levels 1 to 5 catch common runtime bugs without requiring exhaustive PHPDoc annotations.</span></li><li class="leading-relaxed"><span class="align-middle">Levels 6 to 8 enforce complete type coverage and nullable safety.</span></li><li class="leading-relaxed"><span class="align-middle">Levels 9 and 10 enforce strict type narrowing on <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">mixed</code> values and array payloads.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -1042,13 +987,13 @@ function greet(string $name): string
 
                     <!-- Share Buttons -->
                     <div class="flex items-center gap-2">
-                        <a href="https://twitter.com/intent/tweet?text=Complete%20Guide%20to%20PHPStan%20Static%20Analysis%20Levels%20(0%20to%2010)%20by%20%40MrPunyapal&amp;url=https%3A%2F%2Fmrpunyapal.dev%2Fblog%2Fphpstan-static-analysis-levels-guide" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors" aria-label="Share article on X">
+                        <a href="https://twitter.com/intent/tweet?text=Complete%20Guide%20to%20PHPStan%20Static%20Analysis%20Levels%20(0%20to%2010)%20by%20%40MrPunyapal&amp;url=https%3A%2F%2Fmrpunyapal.dev%2Fblog%2Fphpstan-static-analysis-levels-guide" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors" >
                             <svg class="w-3.5 h-3.5" width="14" height="14" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
                                 <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
                             </svg>
                             <span>Share on X</span>
                         </a>
-                        <button type="button" id="copy-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors cursor-pointer" aria-label="Copy article link">
+                        <button type="button" id="copy-link-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 text-xs font-mono font-medium transition-colors cursor-pointer" >
                             <svg class="w-3.5 h-3.5" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
                             </svg>
@@ -1071,35 +1016,35 @@ function greet(string $name): string
 
                     <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 relative">
                         
-        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
+        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between">
             <!-- Signature Corner Crosshairs -->
             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                         PHP
                     </span>
                     
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                         Tooling
                     </span>
                     
                 </div>
 
                 <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                    <a href="/blog/php-array-shapes-phpdoc" class="after:absolute after:inset-0 focus:outline-none">
+                    <a href="/blog/php-array-shapes-phpdoc" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                         Typed Arrays and Array Shapes in PHP with PHPDoc
                     </a>
                 </h3>
@@ -1113,42 +1058,42 @@ function greet(string $name): string
                 <time datetime="2024-07-25" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                     Jul 25, 2024 • 2 min read
                 </time>
-                <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                     <span>READ</span>
                     <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                 </span>
             </div>
         </article>
 
-        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
+        <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between">
             <!-- Signature Corner Crosshairs -->
             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
             <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10 hidden md:block" aria-hidden="true">
-                <svg aria-hidden="true" class="w-full h-full" width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg aria-hidden="true" class="w-full h-full" width="16" height="16"><use href="#i-crosshair"/></svg>
             </div>
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900/50">
                         PHP
                     </span>
                     
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                         Tooling
                     </span>
                     
                 </div>
 
                 <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                    <a href="/blog/php-generics-phpdoc-template" class="after:absolute after:inset-0 focus:outline-none">
+                    <a href="/blog/php-generics-phpdoc-template" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                         Generic Classes and Functions in PHP Using PHPDoc @template
                     </a>
                 </h3>
@@ -1162,7 +1107,7 @@ function greet(string $name): string
                 <time datetime="2024-07-25" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                     Jul 25, 2024 • 2 min read
                 </time>
-                <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                     <span>READ</span>
                     <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                 </span>

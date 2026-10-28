@@ -521,7 +521,7 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
@@ -571,7 +571,7 @@
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use Http::pool() to dispatch multiple external API requests concurrently in parallel rather than waiting for sequential responses.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When your application fetches data from multiple external microservices or third-party APIs (such as fetching user billing data, shipment status, and weather forecasts), executing requests sequentially adds the latency of each API call together.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Http::pool()</code> dispatches requests concurrently in parallel using Guzzle&#39;s asynchronous curl multi-handler.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Sending Parallel Requests</h3>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use Http::pool() to dispatch multiple external API requests concurrently in parallel rather than waiting for sequential responses.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When your application fetches data from multiple external microservices or third-party APIs (such as fetching user billing data, shipment status, and weather forecasts), executing requests sequentially adds the latency of each API call together.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">Http::pool()</code> dispatches requests concurrently in parallel using Guzzle&#39;s asynchronous curl multi-handler.</p><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Sending Parallel Requests</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -597,7 +597,7 @@ $user = $responses[&#039;user&#039;]-&gt;json();" aria-label="Copy code to clipb
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Client</span>\<span class="hljs-title">Pool</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Client</span>\<span class="hljs-title">Pool</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Http</span>;
 
 <span class="hljs-variable">$responses</span> = <span class="hljs-title class_">Http</span>::<span class="hljs-title function_ invoke__">pool</span>(fn (Pool <span class="hljs-variable">$pool</span>) =&gt; [
@@ -609,7 +609,7 @@ $user = $responses[&#039;user&#039;]-&gt;json();" aria-label="Copy code to clipb
 <span class="hljs-comment">// Responses are accessed by their assigned pool keys</span>
 <span class="hljs-variable">$rates</span> = <span class="hljs-variable">$responses</span>[<span class="hljs-string">&#x27;rates&#x27;</span>]-&gt;<span class="hljs-title function_ invoke__">ok</span>() ? <span class="hljs-variable">$responses</span>[<span class="hljs-string">&#x27;rates&#x27;</span>]-&gt;<span class="hljs-title function_ invoke__">json</span>() : [];
 <span class="hljs-variable">$user</span> = <span class="hljs-variable">$responses</span>[<span class="hljs-string">&#x27;user&#x27;</span>]-&gt;<span class="hljs-title function_ invoke__">json</span>();</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Executes multiple HTTP requests concurrently in a single non-blocking event loop.</span></li><li class="leading-relaxed"><span class="align-middle">Reduces total execution time to the duration of the slowest single request.</span></li><li class="leading-relaxed"><span class="align-middle">Assign custom keys with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$pool-&gt;as(&#039;key&#039;)</code> for easy response lookup.</span></li></ul>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Summary</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Executes multiple HTTP requests concurrently in a single non-blocking event loop.</span></li><li class="leading-relaxed"><span class="align-middle">Reduces total execution time to the duration of the slowest single request.</span></li><li class="leading-relaxed"><span class="align-middle">Assign custom keys with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$pool-&gt;as(&#039;key&#039;)</code> for easy response lookup.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -684,7 +684,7 @@ $user = $responses[&#039;user&#039;]-&gt;json();" aria-label="Copy code to clipb
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
@@ -733,7 +733,7 @@ $user = $responses[&#039;user&#039;]-&gt;json();" aria-label="Copy code to clipb
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     

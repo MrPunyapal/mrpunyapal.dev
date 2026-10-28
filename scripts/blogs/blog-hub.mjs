@@ -19,65 +19,6 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
     // Critical Grid and Card CSS
     const criticalStyles = `
     <style>
-        body {
-            background: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
-        }
-
-        .dark body {
-            background: #0a0a0a !important;
-            color: #f4f4f5 !important;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Technical Grid Markers */
-        .tech-marker {
-            position: absolute;
-            width: 7px;
-            height: 7px;
-            background-color: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 50%;
-            z-index: 50;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Infinite Grid Lines */
-        .tech-line-h {
-            position: absolute;
-            height: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            width: 300vw;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tech-line-v-top {
-            position: absolute;
-            width: 1px;
-            background-color: #e2e8f0;
-            z-index: 0;
-            pointer-events: none;
-            bottom: 100%;
-            height: 100vh;
-        }
-
-        .tech-line-v-bottom {
-            position: absolute;
-            width: 1px;
-            background: linear-gradient(to bottom, #e2e8f0, transparent);
-            z-index: 0;
-            pointer-events: none;
-            top: 100%;
-            height: 120px;
-        }
-
         #load-more-btn.hidden,
         #all-loaded-indicator.hidden,
         #lazy-loading-spinner.hidden {
@@ -87,7 +28,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
 
     // Embedded SVG Sprite
     const iconSprite = `
-    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true" width="0" height="0">
         <defs>
             <symbol id="i-crosshair" viewBox="0 0 12 12"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></symbol>
             <symbol id="i-heart" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></symbol>
@@ -105,7 +46,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
         const isInitiallyHidden = idx >= INITIAL_VISIBLE_COUNT;
 
         return `
-                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between"
+                <article class="blog-card group relative p-6 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 focus-within:ring-2 focus-within:ring-red-500/80 transition-colors duration-300 flex flex-col justify-between"
                     ${isInitiallyHidden ? 'style="display: none;"' : ''}
                     data-category="${escapeHtml(post.category)}"
                     data-subcategory="${escapeHtml(post.subcategory || '')}"
@@ -131,14 +72,14 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                                 ${escapeHtml(post.category)}
                             </span>
                             ${post.subcategory ? `
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                                 ${escapeHtml(post.subcategory)}
                             </span>
                             ` : ''}
                         </div>
 
                         <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-snug mb-2.5 tracking-tight">
-                            <a href="/blog/${post.slug}" class="after:absolute after:inset-0 focus:outline-none">
+                            <a href="/blog/${post.slug}" class="after:absolute after:inset-0 focus:outline-none focus-visible:underline">
                                 ${escapeHtml(post.title)}
                             </a>
                         </h2>
@@ -152,7 +93,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                         <time datetime="${escapeHtml(effectiveDate)}" class="text-xs font-mono text-slate-500 dark:text-slate-400">
                             ${formatDate(effectiveDate)} • ${post.readingTime} min read
                         </time>
-                        <span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 group-hover:text-red-700 transition-colors inline-flex items-center gap-1 font-mono">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 group-hover:text-red-800 dark:group-hover:text-red-300 transition-colors inline-flex items-center gap-1 font-mono">
                             <span>READ</span>
                             <span class="group-hover:translate-x-0.5 transition-transform">&gt;</span>
                         </span>
@@ -325,21 +266,21 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                         </button>
                     </div>
 
-                    <div id="results-count" class="hidden text-xs font-mono text-slate-500 dark:text-slate-400 mt-3"></div>
+                    <div id="results-count" class="hidden text-xs font-mono text-slate-600 dark:text-slate-400 mt-3" role="status" aria-live="polite"></div>
                 </div>
             </div>
 
             <!-- Slide-over Filter Sidebar Drawer -->
             <div id="filter-drawer-backdrop" class="hidden fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-xs z-50 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true"></div>
 
-            <aside id="filter-drawer-panel" role="dialog" aria-modal="true" aria-label="Filters sidebar" class="hidden fixed top-0 bottom-0 right-0 h-dvh max-h-dvh w-full max-w-full sm:max-w-md md:max-w-lg bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col overflow-hidden">
+            <div id="filter-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="filter-drawer-title" class="hidden fixed top-0 bottom-0 right-0 h-dvh max-h-dvh w-full max-w-full sm:max-w-md md:max-w-lg bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col overflow-hidden">
                 <!-- Drawer Header -->
                 <div class="flex items-center justify-between p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800">
                     <div class="flex items-center gap-2">
                         <svg class="w-4 h-4 text-red-500" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
                         </svg>
-                        <h2 class="text-base font-bold text-slate-900 dark:text-white">Filter Articles</h2>
+                        <h2 id="filter-drawer-title" class="text-base font-bold text-slate-900 dark:text-white">Filter Articles</h2>
                     </div>
                     <button type="button" id="close-filter-drawer-btn" class="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer" aria-label="Close filter drawer">
                         <svg class="w-5 h-5" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -360,7 +301,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                                 const count = categoriesMap[cat] || 0;
                                 const isAll = cat === 'All';
                                 return `
-                                <button type="button" data-filter="${escapeHtml(cat)}" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer ${isAll ? 'active-filter bg-red-600 text-white border-red-600 shadow-sm' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'}">
+                                <button type="button" data-filter="${escapeHtml(cat)}" aria-pressed="${isAll ? 'true' : 'false'}" class="category-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer ${isAll ? 'active-filter bg-red-600 text-white border-red-600 shadow-sm' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'}">
                                     <span>${escapeHtml(cat)}</span>
                                     <span class="text-[10px] font-mono px-1.5 py-0.2 rounded ${isAll ? 'bg-white text-red-700 font-bold' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'}">${count}</span>
                                 </button>`;
@@ -374,7 +315,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                             Topic
                         </h3>
                         <div class="flex flex-wrap gap-1.5">
-                            <button type="button" data-subcat="All" class="subcategory-filter-btn active-subcat inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-colors cursor-pointer bg-red-600 text-white border-red-600 shadow-xs">
+                            <button type="button" data-subcat="All" aria-pressed="true" class="subcategory-filter-btn active-subcat inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-colors cursor-pointer bg-red-600 text-white border-red-600 shadow-xs">
                                 <span>All Topics</span>
                             </button>
                             ${subcategoryNames.map(subcat => {
@@ -399,7 +340,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                         View Results
                     </button>
                 </div>
-            </aside>
+            </div>
 
             <!-- Blog Grid Section (Signature 2-Column Crosshair Grid) -->
             <section class="border-b border-slate-200 dark:border-slate-800 relative">
@@ -417,7 +358,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                     <div id="scroll-sentinel" class="h-1 w-full" aria-hidden="true"></div>
 
                     <!-- Subtle Loading Spinner when scrolling or loading more -->
-                    <div id="lazy-loading-spinner" class="hidden flex items-center justify-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400" style="display: none;">
+                    <div id="lazy-loading-spinner" role="status" aria-live="polite" class="hidden flex items-center justify-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400" style="display: none;">
                         <svg class="animate-spin h-4 w-4 text-red-600" width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -426,19 +367,19 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                     </div>
 
                     <!-- Manual Load More button (works as fallback or explicit click) -->
-                    <button type="button" id="load-more-btn" aria-label="Load more articles" class="px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer inline-flex items-center gap-2">
+                    <button type="button" id="load-more-btn" class="px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer inline-flex items-center gap-2">
                         <span>Load More Articles</span>
-                        <span id="load-more-count" class="text-[11px] text-slate-400 font-normal"></span>
+                        <span id="load-more-count" class="text-[11px] text-slate-500 dark:text-slate-400 font-normal"></span>
                     </button>
 
                     <!-- End of results indicator -->
-                    <div id="all-loaded-indicator" class="hidden text-xs font-mono text-slate-400 dark:text-slate-500" style="display: none;">
+                    <div id="all-loaded-indicator" role="status" class="hidden text-xs font-mono text-slate-600 dark:text-slate-400" style="display: none;">
                         // All articles loaded (<span id="all-loaded-count">${totalPostsCount}</span> total)
                     </div>
                 </div>
 
                 <!-- Empty State (hidden by default) -->
-                <div id="empty-state" class="hidden p-12 text-center border-t border-slate-200 dark:border-slate-800">
+                <div id="empty-state" role="status" class="hidden p-12 text-center border-t border-slate-200 dark:border-slate-800">
                     <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
                         <svg class="w-6 h-6" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -455,7 +396,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
         </div>
 
         <!-- Footer -->
-        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] print:hidden">
+        <div class="w-full max-w-6xl py-6 text-center mt-[-1px] z-10 print:hidden">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 // Got thoughts or a topic request?
                 <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" rel="noopener noreferrer"

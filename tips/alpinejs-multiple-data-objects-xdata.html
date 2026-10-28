@@ -596,7 +596,7 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
   <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;alpine:init&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
     <span class="hljs-title class_">Alpine</span>.<span class="hljs-title function_">data</span>(<span class="hljs-string">&#x27;dropdown&#x27;</span>, <span class="hljs-function">() =&gt;</span> ({ <span class="hljs-attr">open</span>: <span class="hljs-literal">false</span>, <span class="hljs-title function_">toggle</span>(<span class="hljs-params"></span>) { <span class="hljs-variable language_">this</span>.<span class="hljs-property">open</span> = !<span class="hljs-variable language_">this</span>.<span class="hljs-property">open</span> } }));
     <span class="hljs-title class_">Alpine</span>.<span class="hljs-title function_">data</span>(<span class="hljs-string">&#x27;search&#x27;</span>, <span class="hljs-function">() =&gt;</span> ({ <span class="hljs-attr">query</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-title function_">clear</span>(<span class="hljs-params"></span>) { <span class="hljs-variable language_">this</span>.<span class="hljs-property">query</span> = <span class="hljs-string">&#x27;&#x27;</span> } }));
@@ -728,7 +728,7 @@
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 border-cyan-200 dark:border-cyan-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-cyan-50 dark:bg-cyan-950/40 text-cyan-700 dark:text-cyan-400 border-cyan-200 dark:border-cyan-900/50">
                         CSS
                     </span>
                     

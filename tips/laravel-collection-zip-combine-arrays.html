@@ -520,7 +520,7 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
@@ -570,7 +570,7 @@
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use zip() on Laravel Collections to merge array elements sharing matching index positions into paired sub-collections.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When processing paired tabular data (such as headers and corresponding CSV row values, or parallel arrays of names and scores), indexing arrays manually with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$names[$i]</code> requires bounds checking.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">zip()</code> pairs corresponding items from multiple arrays together.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Basic Usage</h3>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use zip() on Laravel Collections to merge array elements sharing matching index positions into paired sub-collections.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">When processing paired tabular data (such as headers and corresponding CSV row values, or parallel arrays of names and scores), indexing arrays manually with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">$names[$i]</code> requires bounds checking.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3"><code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">zip()</code> pairs corresponding items from multiple arrays together.</p><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Basic Usage</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -595,7 +595,7 @@ $zipped = $names-&gt;zip($scores);
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$names</span> = <span class="hljs-title function_ invoke__">collect</span>([<span class="hljs-string">&#x27;Punyapal&#x27;</span>, <span class="hljs-string">&#x27;Developer 2&#x27;</span>, <span class="hljs-string">&#x27;Developer 3&#x27;</span>]);
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$names</span> = <span class="hljs-title function_ invoke__">collect</span>([<span class="hljs-string">&#x27;Punyapal&#x27;</span>, <span class="hljs-string">&#x27;Developer 2&#x27;</span>, <span class="hljs-string">&#x27;Developer 3&#x27;</span>]);
 <span class="hljs-variable">$scores</span> = [<span class="hljs-number">95</span>, <span class="hljs-number">88</span>, <span class="hljs-number">92</span>];
 
 <span class="hljs-variable">$zipped</span> = <span class="hljs-variable">$names</span>-&gt;<span class="hljs-title function_ invoke__">zip</span>(<span class="hljs-variable">$scores</span>);
@@ -606,7 +606,7 @@ $zipped = $names-&gt;zip($scores);
 <span class="hljs-comment">//     [&#x27;Developer 2&#x27;, 88],</span>
 <span class="hljs-comment">//     [&#x27;Developer 3&#x27;, 92],</span>
 <span class="hljs-comment">// ]</span></code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Zipping Multiple Datasets</h3>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Zipping Multiple Datasets</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -626,13 +626,13 @@ $matrix = $users-&gt;zip($roles, $status);
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$users</span> = <span class="hljs-title function_ invoke__">collect</span>([<span class="hljs-string">&#x27;User 1&#x27;</span>, <span class="hljs-string">&#x27;User 2&#x27;</span>]);
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$users</span> = <span class="hljs-title function_ invoke__">collect</span>([<span class="hljs-string">&#x27;User 1&#x27;</span>, <span class="hljs-string">&#x27;User 2&#x27;</span>]);
 <span class="hljs-variable">$roles</span> = [<span class="hljs-string">&#x27;Admin&#x27;</span>, <span class="hljs-string">&#x27;Editor&#x27;</span>];
 <span class="hljs-variable">$status</span> = [<span class="hljs-string">&#x27;Active&#x27;</span>, <span class="hljs-string">&#x27;Pending&#x27;</span>];
 
 <span class="hljs-variable">$matrix</span> = <span class="hljs-variable">$users</span>-&gt;<span class="hljs-title function_ invoke__">zip</span>(<span class="hljs-variable">$roles</span>, <span class="hljs-variable">$status</span>);
 <span class="hljs-comment">// Output: [[&#x27;User 1&#x27;, &#x27;Admin&#x27;, &#x27;Active&#x27;], [&#x27;User 2&#x27;, &#x27;Editor&#x27;, &#x27;Pending&#x27;]]</span></code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Merges elements of matching index positions across multiple arrays.</span></li><li class="leading-relaxed"><span class="align-middle">Fills missing values with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">null</code> if array lengths differ.</span></li><li class="leading-relaxed"><span class="align-middle">Ideal for data matrix transformations and CSV row construction.</span></li></ul>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Summary</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Merges elements of matching index positions across multiple arrays.</span></li><li class="leading-relaxed"><span class="align-middle">Fills missing values with <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">null</code> if array lengths differ.</span></li><li class="leading-relaxed"><span class="align-middle">Ideal for data matrix transformations and CSV row construction.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -703,7 +703,7 @@ $matrix = $users-&gt;zip($roles, $status);
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
@@ -752,7 +752,7 @@ $matrix = $users-&gt;zip($roles, $status);
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     

@@ -13,7 +13,7 @@ subcategory: "Styling"
 
 Navigation bars often suffer from subtle layout shifts during page reloads, theme toggles, and tab switches. Combining a few CSS and HTML techniques eliminates these visual jumps entirely.
 
-### 1. Lock Root Scrollbar Space and Clip Horizontal Overflow
+## 1. Lock Root Scrollbar Space and Clip Horizontal Overflow
 
 Navigating between long pages with scrollbars and short pages without scrollbars causes horizontal layout jumps. Use `scrollbar-gutter: stable` on `html` with `overflow-y: auto`, and clip horizontal overflow on `body` with `overflow-x: clip`.
 
@@ -34,7 +34,7 @@ body {
 
 Use `overflow-x: clip` instead of `overflow-x: hidden` on `body`. Traditional `overflow-x: hidden` forces browsers to evaluate `overflow-y` as `auto`, creating a secondary scroll container on `body` that causes double vertical scrollbars. `overflow-x: clip` clips horizontal overflow cleanly without creating a scrolling context.
 
-### 2. Prevent View Transition Scrollbar Flicker
+## 2. Prevent View Transition Scrollbar Flicker
 
 When using native cross-document View Transitions (`@view-transition { navigation: auto; }`), browsers render outgoing and incoming page snapshots simultaneously. For a single frame during the transition, the viewport height expands, triggering a temporary scrollbar track.
 
@@ -50,7 +50,7 @@ When using native cross-document View Transitions (`@view-transition { navigatio
 
 Setting `overflow: hidden` on the root view transition pseudo-elements clips snapshot layers to viewport bounds, preventing split-second scrollbar popping during page navigations.
 
-### 3. Lock Navigation Tab Widths with CSS Grid
+## 3. Lock Navigation Tab Widths with CSS Grid
 
 Active or hovered navigation tabs often expand in width when text becomes bold or changes color contrast, pushing adjacent tabs left or right. Use CSS Grid overlay with an invisible pseudo-element to reserve bold text dimensions upfront.
 
@@ -99,7 +99,7 @@ Active or hovered navigation tabs often expand in width when text becomes bold o
 }
 ```
 
-### 4. Pre-render Theme Toggle Icons in HTML
+## 4. Pre-render Theme Toggle Icons in HTML
 
 Swapping sun and moon icons via JavaScript after page load causes visual button flickering. Pre-render both icons directly in static HTML and toggle visibility using CSS theme classes.
 
@@ -117,7 +117,7 @@ Swapping sun and moon icons via JavaScript after page load causes visual button 
 </button>
 ```
 
-### 5. Use Opacity for Text Contrast Changes
+## 5. Use Opacity for Text Contrast Changes
 
 Changing text color from gray to solid black or white triggers font stem-darkening in browser rendering engines, altering glyph widths by fractions of a pixel. Use constant base colors and toggle opacity instead.
 
@@ -133,7 +133,7 @@ Changing text color from gray to solid black or white triggers font stem-darkeni
 }
 ```
 
-### Key Takeaways
+## Key Takeaways
 
 - Reserve scrollbar width on `html` with `scrollbar-gutter: stable` and clip horizontal overflow on `body` with `overflow-x: clip`.
 - Clip View Transition root pseudo-elements with `overflow: hidden` to prevent split-second scrollbar popping.

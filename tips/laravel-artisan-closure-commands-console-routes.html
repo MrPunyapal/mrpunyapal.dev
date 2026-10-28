@@ -521,7 +521,7 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
@@ -571,7 +571,7 @@
 
                 <!-- Tip Content Body -->
                 <div class="tip-content max-w-none text-slate-800 dark:text-slate-200 text-sm sm:text-base">
-                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use Artisan::command() in routes/console.php to build focused CLI commands using closures without creating dedicated Command classes.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Creating a full <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">php artisan make:command</code> class for simple administrative tasks (like generating report summaries, triggering test webhooks, or syncing a single user) introduces unnecessary file clutter.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel supports closure-based commands in <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">routes/console.php</code>.</p><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Defining Closure Commands</h3>
+                    <blockquote class="mb-8 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-red-500 bg-slate-50/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-mono text-xs sm:text-sm leading-relaxed [&>p]:m-0"><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use Artisan::command() in routes/console.php to build focused CLI commands using closures without creating dedicated Command classes.</p></blockquote><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Creating a full <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">php artisan make:command</code> class for simple administrative tasks (like generating report summaries, triggering test webhooks, or syncing a single user) introduces unnecessary file clutter.</p><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Laravel supports closure-based commands in <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">routes/console.php</code>.</p><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Defining Closure Commands</h2>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -595,7 +595,7 @@ Artisan::command(&#039;user:promote {user} {--role=admin}&#039;, function (User 
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">User</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Artisan</span>;
 
 <span class="hljs-title class_">Artisan</span>::<span class="hljs-title function_ invoke__">command</span>(<span class="hljs-string">&#x27;user:promote {user} {--role=admin}&#x27;</span>, function (User <span class="hljs-variable">$user</span>) {
@@ -605,7 +605,7 @@ Artisan::command(&#039;user:promote {user} {--role=admin}&#039;, function (User 
 
     <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">info</span>(<span class="hljs-string">&quot;Successfully promoted user <span class="hljs-subst">{$user-&gt;email}</span> to <span class="hljs-subst">{$role}</span>!&quot;</span>);
 })-&gt;<span class="hljs-title function_ invoke__">purpose</span>(<span class="hljs-string">&#x27;Promote a user to a specific system role&#x27;</span>);</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Dependency Injection and Type Hints</h3><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Closure commands support route model binding and service container injection directly in their argument list:</p>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Dependency Injection and Type Hints</h2><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Closure commands support route model binding and service container injection directly in their argument list:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
         <div class="flex items-center gap-2">
@@ -624,12 +624,12 @@ Artisan::command(&#039;user:promote {user} {--role=admin}&#039;, function (User 
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-title class_">Artisan</span>::<span class="hljs-title function_ invoke__">command</span>(<span class="hljs-string">&#x27;billing:reconcile&#x27;</span>, function (PaymentGateway <span class="hljs-variable">$gateway</span>) {
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-title class_">Artisan</span>::<span class="hljs-title function_ invoke__">command</span>(<span class="hljs-string">&#x27;billing:reconcile&#x27;</span>, function (PaymentGateway <span class="hljs-variable">$gateway</span>) {
     <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">comment</span>(<span class="hljs-string">&#x27;Reconciling pending Stripe invoices...&#x27;</span>);
     <span class="hljs-variable">$gateway</span>-&gt;<span class="hljs-title function_ invoke__">reconcile</span>();
     <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">info</span>(<span class="hljs-string">&#x27;Done!&#x27;</span>);
 })-&gt;<span class="hljs-title function_ invoke__">purpose</span>(<span class="hljs-string">&#x27;Reconcile pending gateway invoices&#x27;</span>);</code></pre>
-</div><h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight">Summary</h3><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Defines console commands using closures in <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">routes/console.php</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Supports model binding, arguments, options, and container injection.</span></li><li class="leading-relaxed"><span class="align-middle">Keeps simple CLI utilities organized in a single file.</span></li></ul>
+</div><h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">Summary</h2><ul class="list-disc list-inside my-4 space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 pl-2"><li class="leading-relaxed"><span class="align-middle">Defines console commands using closures in <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">routes/console.php</code>.</span></li><li class="leading-relaxed"><span class="align-middle">Supports model binding, arguments, options, and container injection.</span></li><li class="leading-relaxed"><span class="align-middle">Keeps simple CLI utilities organized in a single file.</span></li></ul>
                 </div>
 
                 <!-- Tags & Share Row -->
@@ -704,7 +704,7 @@ Artisan::command(&#039;user:promote {user} {--role=admin}&#039;, function (User 
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
@@ -753,7 +753,7 @@ Artisan::command(&#039;user:promote {user} {--role=admin}&#039;, function (User 
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     

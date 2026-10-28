@@ -162,56 +162,56 @@ export function getCategoryBadge(category) {
     if (cat.includes('laravel')) {
         return {
             bg: 'bg-red-50 dark:bg-red-950/40',
-            text: 'text-red-600 dark:text-red-400',
+            text: 'text-red-700 dark:text-red-400',
             border: 'border-red-200 dark:border-red-900/50',
         };
     }
     if (cat === 'php') {
         return {
             bg: 'bg-indigo-50 dark:bg-indigo-950/40',
-            text: 'text-indigo-600 dark:text-indigo-400',
+            text: 'text-indigo-700 dark:text-indigo-400',
             border: 'border-indigo-200 dark:border-indigo-900/50',
         };
     }
     if (cat.includes('pest')) {
         return {
             bg: 'bg-pink-50 dark:bg-pink-950/40',
-            text: 'text-pink-600 dark:text-pink-400',
+            text: 'text-pink-700 dark:text-pink-400',
             border: 'border-pink-200 dark:border-pink-900/50',
         };
     }
     if (cat.includes('livewire')) {
         return {
             bg: 'bg-pink-50 dark:bg-pink-950/40',
-            text: 'text-pink-600 dark:text-pink-400',
+            text: 'text-pink-700 dark:text-pink-400',
             border: 'border-pink-200 dark:border-pink-900/50',
         };
     }
     if (cat.includes('git')) {
         return {
             bg: 'bg-emerald-50 dark:bg-emerald-950/40',
-            text: 'text-emerald-600 dark:text-emerald-400',
+            text: 'text-emerald-700 dark:text-emerald-400',
             border: 'border-emerald-200 dark:border-emerald-900/50',
         };
     }
     if (cat.includes('css') || cat.includes('tailwind')) {
         return {
             bg: 'bg-cyan-50 dark:bg-cyan-950/40',
-            text: 'text-cyan-600 dark:text-cyan-400',
+            text: 'text-cyan-700 dark:text-cyan-400',
             border: 'border-cyan-200 dark:border-cyan-900/50',
         };
     }
     if (cat.includes('mysql') || cat.includes('database')) {
         return {
             bg: 'bg-blue-50 dark:bg-blue-950/40',
-            text: 'text-blue-600 dark:text-blue-400',
+            text: 'text-blue-700 dark:text-blue-400',
             border: 'border-blue-200 dark:border-blue-900/50',
         };
     }
     if (cat.includes('filament')) {
         return {
             bg: 'bg-amber-50 dark:bg-amber-950/40',
-            text: 'text-amber-600 dark:text-amber-400',
+            text: 'text-amber-700 dark:text-amber-400',
             border: 'border-amber-200 dark:border-amber-900/50',
         };
     }
@@ -258,12 +258,12 @@ renderer.code = function({ text, lang }) {
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-${escapeHtml(language)}">${highlightedCode}</code></pre>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-${escapeHtml(language)}">${highlightedCode}</code></pre>
 </div>`;
 };
 
 renderer.heading = function(token) {
-    const headingLevel = Math.min(token.depth + 1, 6);
+    const headingLevel = token.depth === 1 ? 2 : Math.min(token.depth, 6);
     const classes = {
         2: 'text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight',
         3: 'text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3 tracking-tight',
@@ -316,7 +316,7 @@ renderer.link = function(token) {
     const isExternal = href.startsWith('http') || href.startsWith('//');
     const rel = isExternal ? ' rel="noopener noreferrer"' : '';
     const target = isExternal ? ' target="_blank"' : '';
-    return `<a href="${escapeHtml(href)}"${target}${rel} class="text-red-600 dark:text-red-400 hover:underline font-semibold">${content}</a>`;
+    return `<a href="${escapeHtml(href)}"${target}${rel} class="text-red-700 dark:text-red-400 hover:underline font-semibold">${content}</a>`;
 };
 
 renderer.codespan = function(token) {
@@ -340,7 +340,7 @@ renderer.table = function(token) {
         i += this.tablerow({ text: n });
     }
     if (i) i = `<tbody>${i}</tbody>`;
-    return `<div class="overflow-x-auto my-6 rounded-xl border border-slate-200 dark:border-slate-800"><table class="w-full text-left border-collapse">\n<thead>\n${t}</thead>\n${i}</table>\n</div>`;
+    return `<div class="overflow-x-auto my-6 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><table class="w-full text-left border-collapse">\n<thead>\n${t}</thead>\n${i}</table>\n</div>`;
 };
 
 marked.use({ renderer });

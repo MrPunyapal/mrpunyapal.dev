@@ -520,7 +520,7 @@
                             <span>Random</span>
                         </button>
 
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                             Laravel
                         </span>
                         
@@ -588,7 +588,7 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$products</span>-&gt;<span class="hljs-title function_ invoke__">chunkWhile</span>(
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$products</span>-&gt;<span class="hljs-title function_ invoke__">chunkWhile</span>(
     fn (Product <span class="hljs-variable">$product</span>, <span class="hljs-variable">$key</span>, <span class="hljs-variable">$chunk</span>) =&gt;
         <span class="hljs-variable">$product</span>-&gt;status === <span class="hljs-variable">$chunk</span>-&gt;<span class="hljs-title function_ invoke__">last</span>()-&gt;status
 );</code></pre>
@@ -607,7 +607,7 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$products</span>-&gt;<span class="hljs-title function_ invoke__">chunkBy</span>(<span class="hljs-string">&#x27;status&#x27;</span>);</code></pre>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$products</span>-&gt;<span class="hljs-title function_ invoke__">chunkBy</span>(<span class="hljs-string">&#x27;status&#x27;</span>);</code></pre>
 </div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">You can also provide a callback when the value needs to be calculated:</p>
 <div class="code-block-wrapper my-6 rounded-2xl border border-[#d0d7de] dark:border-[#262626] bg-white dark:bg-[#121212] text-[#24292e] dark:text-[#c9d1d9] overflow-hidden text-xs sm:text-sm font-mono shadow-sm relative group">
     <div class="flex items-center justify-between px-4 py-3 bg-[#f6f8fa] dark:bg-[#181818] border-b border-[#d0d7de] dark:border-[#262626] select-none">
@@ -625,7 +625,7 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$products</span>-&gt;<span class="hljs-title function_ invoke__">chunkBy</span>(
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$products</span>-&gt;<span class="hljs-title function_ invoke__">chunkBy</span>(
     fn (Product <span class="hljs-variable">$product</span>) =&gt; <span class="hljs-variable">$product</span>-&gt;status
 );</code></pre>
 </div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">The important difference from <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">groupBy()</code> is that <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">chunkBy()</code> keeps <strong>consecutive values together</strong>. If the same value appears again later, it starts a new chunk:</p>
@@ -651,7 +651,7 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-title function_ invoke__">collect</span>([<span class="hljs-string">&#x27;paid&#x27;</span>, <span class="hljs-string">&#x27;paid&#x27;</span>, <span class="hljs-string">&#x27;pending&#x27;</span>, <span class="hljs-string">&#x27;pending&#x27;</span>, <span class="hljs-string">&#x27;paid&#x27;</span>])
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-title function_ invoke__">collect</span>([<span class="hljs-string">&#x27;paid&#x27;</span>, <span class="hljs-string">&#x27;paid&#x27;</span>, <span class="hljs-string">&#x27;pending&#x27;</span>, <span class="hljs-string">&#x27;pending&#x27;</span>, <span class="hljs-string">&#x27;paid&#x27;</span>])
     -&gt;<span class="hljs-title function_ invoke__">chunkBy</span>(fn (<span class="hljs-keyword">string</span> <span class="hljs-variable">$status</span>) =&gt; <span class="hljs-variable">$status</span>)
     -&gt;<span class="hljs-title function_ invoke__">all</span>();
 
@@ -675,7 +675,7 @@
             <span class="copy-label">Copy</span>
         </button>
     </div>
-    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212]"><code class="hljs language-php"><span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">chunkBy</span>(<span class="hljs-string">&#x27;customer.id&#x27;</span>);</code></pre>
+    <pre class="p-5 sm:p-6 overflow-x-auto leading-relaxed bg-white dark:bg-[#121212] focus:outline-none focus-visible:ring-1 focus-visible:ring-red-500/50" tabindex="0"><code class="hljs language-php"><span class="hljs-variable">$orders</span>-&gt;<span class="hljs-title function_ invoke__">chunkBy</span>(<span class="hljs-string">&#x27;customer.id&#x27;</span>);</code></pre>
 </div><p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed my-3">Use <code class="px-1.5 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-medium">chunkBy()</code> when the order of the items matters and you want to split them into consecutive groups based on a value.</p>
                 </div>
 
@@ -747,7 +747,7 @@
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
@@ -796,7 +796,7 @@
 
             <div>
                 <div class="flex items-center gap-2 mb-3 flex-wrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900/50">
                         Laravel
                     </span>
                     
