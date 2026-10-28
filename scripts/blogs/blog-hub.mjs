@@ -215,8 +215,9 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
 
-    <!-- Favicon & Stylesheet -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="128x128">
+    <link rel="apple-touch-icon" href="/favicon.png">
     <link rel="stylesheet" href="/src/tailwind.css">
     <link rel="stylesheet" href="/src/app.css">
     <script type="module" src="/src/main.js"></script>
