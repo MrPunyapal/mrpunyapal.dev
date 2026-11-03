@@ -9,15 +9,15 @@ subcategory: "Testing"
 
 # Fixing Slow and Failing Laravel Pest Parallel Tests on Windows
 
-> Parallel Pest runs on Windows often fail with WIN1252 encoding errors or out of shared memory lock crashes. Here is how to configure PostgreSQL, Xdebug, OpenSSL, and your build pipeline for fast, reliable parallel testing.
+> Parallel Pest runs on Windows often fail with WIN1252 encoding errors or out of shared memory lock crashes. Here is how to configure PostgreSQL, OpenSSL, and your build pipeline for fast, reliable parallel testing.
 
 You sit down at a workstation with 20 logical CPU cores, run `php vendor/bin/pest --parallel`, and watch workers either choke immediately or take three times longer than your team's budget continuous integration box. Adding more workers makes the run slower, not faster. Eventually, workers crash with cryptic encoding mismatches or shared memory lock errors.
 
 When this happens, developers often assume Pest, ParaTest, or the test suite itself is broken on Windows. That assumption is almost always wrong. The application code and tests are usually completely healthy.
 
-The failures come directly from your local Windows runtime environment. Out of the box, standard Windows installations of PostgreSQL (including stacks managed by DBngin or standalone installers) initialize databases using code page WIN1252. The default PostgreSQL lock table is sized for modest single-threaded development, not twenty concurrent database migrations dropping dozens of tables simultaneously. Global CLI PHP configurations frequently leave Xdebug code coverage running on every execution, while missing default OpenSSL configuration files and unbuilt frontend assets cause isolated assertions to crash.
+The failures come directly from your local Windows runtime environment. Out of the box, standard Windows installations of PostgreSQL (including stacks managed by DBngin or standalone installers) initialize databases using code page WIN1252. The default PostgreSQL lock table is sized for modest single-threaded development, not twenty concurrent database migrations dropping dozens of tables simultaneously. Missing default OpenSSL configuration files, interrupted vendor installations, and unbuilt frontend assets cause isolated assertions to crash.
 
-Fixing these six friction points transforms a broken, sluggish test run into an execution suite that finishes in under two and a half minutes across thousands of tests.
+Fixing these five friction points transforms a broken, sluggish test run into an execution suite that finishes in under two and a half minutes across thousands of tests.
 
 ---
 
@@ -28,10 +28,9 @@ Run through this checklist to unblock your local test run:
 1. **Repair vendor dependencies**: Run `composer install` to ensure Amp and ParaTest process worker files are fully written to disk.
 2. **Rebuild PostgreSQL template1 as UTF-8**: Drop and recreate `template1` from `template0` using `UTF8` encoding and `C` collation so parallel test databases clone correctly.
 3. **Increase Postgres lock capacity**: Raise `max_locks_per_transaction` to `512` in `postgresql.conf` to handle concurrent `migrate:fresh` operations.
-4. **Disable global Xdebug coverage**: Set `xdebug.mode=off` and enable `opcache.enable_cli=1` in your CLI `php.ini`.
-5. **Supply an OpenSSL configuration file**: Point PHP to an `openssl.cnf` file via the `OPENSSL_CONF` environment variable or copy it into `C:\Program Files\Common Files\SSL\`.
-6. **Build frontend assets**: Run `bun run build` (or `npm run build`) so Inertia and Blade feature tests can read `public/build/manifest.json`.
-7. **Re-run the parallel suite**: Execute `php vendor/bin/pest --parallel` and confirm clean execution.
+4. **Supply an OpenSSL configuration file**: Point PHP to an `openssl.cnf` file via the `OPENSSL_CONF` environment variable or copy it into `C:\Program Files\Common Files\SSL\`.
+5. **Build frontend assets**: Run `bun run build` (or `npm run build`) so Inertia and Blade feature tests can read `public/build/manifest.json`.
+6. **Re-run the parallel suite**: Execute `php vendor/bin/pest --parallel` and confirm clean execution.
 
 ---
 
@@ -195,74 +194,7 @@ The output should now read `512`.
 
 ---
 
-## 3. Xdebug Coverage is Enabled Globally
-
-### The Problem
-
-Many developers enable Xdebug code coverage in their global CLI `php.ini` file to generate a test coverage report, and then leave it enabled. 
-
-When `xdebug.mode=coverage` remains in your global `php.ini`, every single invocation of the PHP CLI boots the Xdebug Zend extension and instruments every opcode executed by the virtual machine. In a parallel test suite executing tens of thousands of assertions across 20 workers, this adds massive overhead to process bootstrapping, file loading, and assertion checking.
-
-Parallel testing becomes sluggish, worker processes pin the CPU near 100%, and tests take twice as long to complete.
-
-### Diagnosis
-
-Inspect the active PHP configuration and query Xdebug's active runtime mode:
-
-```powershell
-php --ini
-php -r "var_dump(xdebug_info('mode'));"
-```
-
-If the command outputs `array(1) { [0]=> string(8) "coverage" }`, your PHP CLI is instrumenting every test run automatically.
-
-### Fix
-
-Open the loaded `php.ini` path identified by `php --ini`. Adjust the following directives:
-
-```ini
-xdebug.mode=off
-opcache.enable_cli=1
-```
-
-Setting `xdebug.mode=off` turns off opcode instrumentation by default. Enabling `opcache.enable_cli=1` ensures PHP's bytecode cache accelerates script bootstrapping across all parallel processes.
-
-If you occasionally need to generate code coverage reports, do not re-enable it globally. The `XDEBUG_MODE` environment variable overrides `php.ini` on demand:
-
-```powershell
-$env:XDEBUG_MODE='coverage'
-php vendor/bin/pest --coverage
-```
-
-Once that command finishes, clear the environment variable in your shell session:
-
-```powershell
-$env:XDEBUG_MODE=''
-```
-
-Note that specific project scripts (for instance, a `composer test:unit` script configured with coverage flags) will intentionally invoke `XDEBUG_MODE=coverage`. Those commands are slow by design, but standard day-to-day parallel test runs should always run with Xdebug disabled.
-
-### Verification
-
-Check Xdebug's active mode in a clean shell:
-
-```powershell
-php -r "var_dump(xdebug_info('mode'));"
-```
-
-The output should be `array(0) { }`.
-
-When running with coverage explicitly set:
-
-```powershell
-$env:XDEBUG_MODE='coverage'; php -r "var_dump(xdebug_info('mode'));"; $env:XDEBUG_MODE=''
-```
-
-The output will confirm `string(8) "coverage"`, verifying that on-demand profiling still works when requested.
-
----
-
-## 4. PHP Has No OpenSSL Config
+## 3. PHP Has No OpenSSL Config
 
 ### The Problem
 
@@ -336,7 +268,7 @@ The output must now print `bool(true)`.
 
 ---
 
-## 5. `vendor/` is Incomplete
+## 4. `vendor/` is Incomplete
 
 ### The Problem
 
@@ -373,7 +305,7 @@ This should return `True`.
 
 ---
 
-## 6. Feature Tests Need Built Frontend Assets
+## 5. Feature Tests Need Built Frontend Assets
 
 ### The Problem
 
@@ -407,7 +339,7 @@ Once the manifest file is generated, your Inertia and Vite integration tests can
 
 ---
 
-## 7. Measured Results
+## 6. Measured Results
 
 To illustrate the concrete impact of these fixes, here are actual benchmark results taken on a 20-core Windows 11 workstation running a large enterprise test suite:
 
@@ -417,14 +349,12 @@ To illustrate the concrete impact of these fixes, here are actual benchmark resu
 - **Unit and Service Suite**:
   - *Before Fixes*: Failed on cryptographic signature tests with `assert($key !== false)`.
   - *After Fixes*: **838 tests passed** with zero assertion failures.
-- **Xdebug Overhead on a Single Isolated Test File**:
-  - *With `xdebug.mode=coverage` active globally*: **7.2 seconds**.
-  - *With `xdebug.mode=off` and OPcache CLI enabled*: **4.2 seconds**.
-  - Across a full suite of thousands of tests, this 40% reduction in per-process execution overhead saves several minutes per test run.
+- **Before the Fixes**:
+  - The same parallel run produced hundreds of encoding failures and eventually aborted with out of shared memory errors.
 
 ---
 
-## 8. Why This Mostly Bites Windows Users
+## 7. Why This Mostly Bites Windows Users
 
 These problems rarely appear on Linux workstations or in CI environments because:
 
@@ -435,20 +365,20 @@ These problems rarely appear on Linux workstations or in CI environments because
 
 ---
 
-## 9. Caveats and Operating Notes
+## 8. Caveats and Operating Notes
 
 Keep these operational details in mind when applying these fixes:
 
-- **Back Up Configuration Files**: Always create a backup copy of `php.ini` and `postgresql.conf` before editing them.
+- **Back Up Configuration Files**: Always create a backup copy of `postgresql.conf` before editing it.
 - **Scope of Database Rebuild**: Rebuilding `template1` alters the blueprint for all future databases created on your local PostgreSQL cluster. It does not alter or re-encode existing development databases (such as your main local app database). If an existing local database was previously created under `WIN1252`, convert it by dumping it, creating a new `UTF8` database, and restoring the data.
-- **Stack Updates Can Overwrite Configurations**: If you use an environment manager like Laravel Herd or DBngin, creating a brand new service instance or upgrading major PHP runtimes can provision a fresh `php.ini` or `postgresql.conf`. Keep this checklist handy so you can re-verify your environment after major stack upgrades.
+- **Stack Updates Can Overwrite Configurations**: If you use an environment manager like Laravel Herd or DBngin, creating a brand new service instance can provision a fresh `postgresql.conf`. Keep this checklist handy so you can re-verify your environment after major stack upgrades.
 - **Crash Recovery Patience**: If PostgreSQL is terminated abruptly while workers are actively writing to it, Windows PostgreSQL will perform WAL crash recovery on the next startup. This can take a couple of minutes while it checks data directories. Do not forcefully terminate the process again while recovery is underway.
 
 ---
 
-## 10. Quick Verification Reference
+## 9. Quick Verification Reference
 
-Before running your full test suite, verify all six fixes with this sequence of commands:
+Before running your full test suite, verify all five fixes with this sequence of commands:
 
 ### 1. Verify PostgreSQL Database Encodings
 ```sql
@@ -464,25 +394,19 @@ show max_locks_per_transaction;
 ```
 *Expected: `512`.*
 
-### 3. Verify Xdebug is Disabled
-```powershell
-php -r "var_dump(xdebug_info('mode'));"
-```
-*Expected: `array(0) { }`.*
-
-### 4. Verify OpenSSL RSA Key Generation
+### 3. Verify OpenSSL RSA Key Generation
 ```powershell
 php -r "var_dump(openssl_pkey_new(['private_key_bits' => 2048, 'private_key_type' => OPENSSL_KEYTYPE_RSA]) !== false);"
 ```
 *Expected: `bool(true)`.*
 
-### 5. Verify Frontend Manifest Exists
+### 4. Verify Frontend Manifest Exists
 ```powershell
 Test-Path "public/build/manifest.json"
 ```
 *Expected: `True`.*
 
-### 6. Verify Vendor Process Files
+### 5. Verify Vendor Process Files
 ```powershell
 Test-Path "vendor/amphp/amp/src/functions.php"
 ```
@@ -490,8 +414,8 @@ Test-Path "vendor/amphp/amp/src/functions.php"
 
 ---
 
-## 11. Closing
+## 10. Closing
 
 All of these fixes operate at the system and environment level. None of them require altering your application models, changing test logic, or hacking framework internals.
 
-Before blaming your test runner or assuming that parallel testing cannot work smoothly on Windows, check your database template encoding, PostgreSQL lock limits, PHP extension modes, and frontend build assets. Once your local environment is configured properly, a 20-core Windows workstation can run large Laravel parallel test suites faster than almost any remote CI server.
+Before blaming your test runner or assuming that parallel testing cannot work smoothly on Windows, check your database template encoding, PostgreSQL lock limits, OpenSSL configuration, and frontend build assets. Once your local environment is configured properly, a 20-core Windows workstation can run large Laravel parallel test suites faster than almost any remote CI server.
