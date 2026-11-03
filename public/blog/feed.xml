@@ -8,9 +8,259 @@
         <atom:link href="https://mrpunyapal.dev/blog/feed.xml" rel="self" type="application/rss+xml"/>
         <description>Articles, tutorials, and engineering guides for Laravel, PHP, Git, and modern web development by Punyapal Shah.</description>
         <language>en-US</language>
-        <lastBuildDate>Thu, 03 Sep 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 03 Nov 2026 00:00:00 GMT</lastBuildDate>
         <managingEditor>contact@mrpunyapal.dev (Punyapal Shah)</managingEditor>
         <webMaster>contact@mrpunyapal.dev (Punyapal Shah)</webMaster>
+        <item>
+            <title><![CDATA[Fixing Slow and Failing Laravel Pest Parallel Tests on Windows]]></title>
+            <link>https://mrpunyapal.dev/blog/laravel-pest-parallel-testing-windows-postgresql</link>
+            <guid isPermaLink="true">https://mrpunyapal.dev/blog/laravel-pest-parallel-testing-windows-postgresql</guid>
+            <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Parallel Pest runs on Windows often fail with WIN1252 encoding errors or out of shared memory lock crashes. Here is how to configure PostgreSQL, Xdebug, OpenSSL, and your build pipeline for fast, reliable parallel testing.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p>Parallel Pest runs on Windows often fail with WIN1252 encoding errors or out of shared memory lock crashes. Here is how to configure PostgreSQL, Xdebug, OpenSSL, and your build pipeline for fast, reliable parallel testing.</p>
+</blockquote>
+<p>You sit down at a workstation with 20 logical CPU cores, run <code>php vendor/bin/pest --parallel</code>, and watch workers either choke immediately or take three times longer than your team&#39;s budget continuous integration box. Adding more workers makes the run slower, not faster. Eventually, workers crash with cryptic encoding mismatches or shared memory lock errors.</p>
+<p>When this happens, developers often assume Pest, ParaTest, or the test suite itself is broken on Windows. That assumption is almost always wrong. The application code and tests are usually completely healthy.</p>
+<p>The failures come directly from your local Windows runtime environment. Out of the box, standard Windows installations of PostgreSQL (including stacks managed by DBngin or standalone installers) initialize databases using code page WIN1252. The default PostgreSQL lock table is sized for modest single-threaded development, not twenty concurrent database migrations dropping dozens of tables simultaneously. Global CLI PHP configurations frequently leave Xdebug code coverage running on every execution, while missing default OpenSSL configuration files and unbuilt frontend assets cause isolated assertions to crash.</p>
+<p>Fixing these six friction points transforms a broken, sluggish test run into an execution suite that finishes in under two and a half minutes across thousands of tests.</p>
+<hr>
+<h2>TL;DR Checklist</h2>
+<p>Run through this checklist to unblock your local test run:</p>
+<ol>
+<li><strong>Repair vendor dependencies</strong>: Run <code>composer install</code> to ensure Amp and ParaTest process worker files are fully written to disk.</li>
+<li><strong>Rebuild PostgreSQL template1 as UTF-8</strong>: Drop and recreate <code>template1</code> from <code>template0</code> using <code>UTF8</code> encoding and <code>C</code> collation so parallel test databases clone correctly.</li>
+<li><strong>Increase Postgres lock capacity</strong>: Raise <code>max_locks_per_transaction</code> to <code>512</code> in <code>postgresql.conf</code> to handle concurrent <code>migrate:fresh</code> operations.</li>
+<li><strong>Disable global Xdebug coverage</strong>: Set <code>xdebug.mode=off</code> and enable <code>opcache.enable_cli=1</code> in your CLI <code>php.ini</code>.</li>
+<li><strong>Supply an OpenSSL configuration file</strong>: Point PHP to an <code>openssl.cnf</code> file via the <code>OPENSSL_CONF</code> environment variable or copy it into <code>C:\Program Files\Common Files\SSL\</code>.</li>
+<li><strong>Build frontend assets</strong>: Run <code>bun run build</code> (or <code>npm run build</code>) so Inertia and Blade feature tests can read <code>public/build/manifest.json</code>.</li>
+<li><strong>Re-run the parallel suite</strong>: Execute <code>php vendor/bin/pest --parallel</code> and confirm clean execution.</li>
+</ol>
+<hr>
+<h2>1. PostgreSQL Initialized with Windows-1252</h2>
+<h3>The Problem</h3>
+<p>When PostgreSQL is installed on Windows, the initialization utility (<code>initdb</code>) samples the operating system&#39;s regional locale. On English Windows installations, this typically defaults to code page 1252 (<code>WIN1252</code>). When the cluster initializes, the default database template, <code>template1</code>, inherits <code>WIN1252</code>.</p>
+<p>When you run <code>pest --parallel</code>, ParaTest boots independent worker processes. Laravel&#39;s parallel testing package creates a distinct database for each worker (for example, <code>testing_test_1</code>, <code>testing_test_2</code>, up to <code>testing_test_20</code>). Laravel explicitly executes:</p>
+<pre><code class="language-sql">CREATE DATABASE testing_test_1 WITH ENCODING &#039;utf8&#039;;</code></pre><p>In PostgreSQL, every <code>CREATE DATABASE</code> statement clones <code>template1</code> by default unless an explicit template is specified. When Postgres tries to create a <code>UTF8</code> database from a <code>WIN1252</code> template, it fails with this error:</p>
+<pre><code class="language-text">SQLSTATE[22023]: Invalid parameter value: 7 ERROR: new encoding (UTF8) is incompatible with the encoding of the template database (WIN1252)</code></pre><p>Linux CI runners initialize PostgreSQL clusters directly inside Docker containers configured with <code>en_US.UTF-8</code> or <code>C.UTF-8</code>. As a result, CI runs without issue while local Windows runs fail immediately.</p>
+<h3>Diagnosis</h3>
+<p>Connect to your local Postgres server using your preferred SQL client or <code>psql</code> and inspect your existing database catalog:</p>
+<pre><code class="language-sql">select datname,
+       pg_encoding_to_char(encoding) as encoding,
+       datcollate,
+       datctype,
+       datistemplate
+from pg_database
+order by datname;</code></pre><p>Look at the rows for <code>template1</code> and <code>testing</code>. If their encoding column reports <code>WIN1252</code>, any parallel database creation requiring UTF-8 will abort.</p>
+<h3>Fix (One-Time, Cluster-Level)</h3>
+<p>To fix this permanently for all future databases created on your local cluster, you must rebuild <code>template1</code> using <code>template0</code>. <code>template0</code> is the pristine, immutable template database created during cluster initialization that has no custom schema modifications.</p>
+<p>Connect to the default <code>postgres</code> database as a superuser (such as <code>postgres</code>). Make sure no other client or service is connected to <code>template1</code> or your test database, then run:</p>
+<pre><code class="language-sql">-- Terminate any active connections to template1 and testing
+select pg_terminate_backend(pid)
+from pg_stat_activity
+where datname in (&#039;template1&#039;, &#039;testing&#039;)
+  and pid &lt;&gt; pg_backend_pid();
+
+-- Temporarily mark template1 as a standard database so it can be dropped
+update pg_database set datistemplate = false where datname = &#039;template1&#039;;
+drop database template1;
+
+-- Recreate template1 using template0 as the source, forced to UTF8
+create database template1
+  with template = template0
+  encoding = &#039;UTF8&#039;
+  lc_collate = &#039;C&#039;
+  lc_ctype = &#039;C&#039;;
+
+-- Restore template1 status
+update pg_database set datistemplate = true where datname = &#039;template1&#039;;
+
+-- Recreate the primary testing database under UTF8
+drop database if exists testing;
+create database testing
+  with template = template0
+  encoding = &#039;UTF8&#039;
+  lc_collate = &#039;C&#039;
+  lc_ctype = &#039;C&#039;;</code></pre><p>Using <code>C</code> collation for test templates offers deterministic byte-order sorting and significantly reduces locale-string overhead during high-volume database operations. If your application specifically relies on locale-sensitive linguistic sorting in test assertions, substitute an appropriate UTF-8 locale, but ensure that collation remains consistent between single and parallel test runs.</p>
+<p>Rebuilding <code>template1</code> does not touch or corrupt existing databases (such as your main development application database). Only databases created after this change inherit the new UTF-8 encoding.</p>
+<p><em>(Temporary workaround note: If you cannot modify <code>template1</code> due to strict multi-user permissions, you can manually pre-create worker databases like <code>testing_test_1</code> through <code>testing_test_20</code> with <code>TEMPLATE template0 ENCODING &#39;UTF8&#39;</code>. However, this is fragile and requires manual maintenance whenever worker counts change).</em></p>
+<h3>Verification</h3>
+<p>Run the verification query:</p>
+<pre><code class="language-sql">select datname, pg_encoding_to_char(encoding) as encoding, datcollate
+from pg_database
+where datname in (&#039;template1&#039;, &#039;testing&#039;);</code></pre><p>Confirm that both databases now report <code>UTF8</code> in the <code>encoding</code> column.</p>
+<hr>
+<h2>2. <code>max_locks_per_transaction</code> is Too Small for Parallel Workers</h2>
+<h3>The Problem</h3>
+<p>When running parallel tests with Laravel&#39;s <code>RefreshDatabase</code> trait, each worker runs database migrations to ensure its schema is synchronized. In parallel execution, 16 or 20 workers hit PostgreSQL at the exact same moment.</p>
+<p>When <code>migrate:fresh</code> runs across all workers, each process drops tables, constraints, sequences, and indexes simultaneously. In PostgreSQL, lock table allocations are stored in a fixed-size shared memory array calculated at startup. The size of this tracking table is determined roughly by:</p>
+<p>$$\text{Lock Table Size} \approx (\text{max_connections} + \text{max_prepared_transactions}) \times \text{max_locks_per_transaction}$$</p>
+<p>The default value of <code>max_locks_per_transaction</code> is <code>64</code>. When 20 workers concurrently acquire exclusive locks on dozens of tables and indexes during schema teardowns, PostgreSQL exhausts its shared lock slots. You will see workers crash with:</p>
+<pre><code class="language-text">SQLSTATE[53200]: Out of memory: 7 ERROR: out of shared memory
+HINT: You might need to increase &quot;max_locks_per_transaction&quot;.</code></pre><h3>Diagnosis</h3>
+<p>Check your current PostgreSQL lock configuration:</p>
+<pre><code class="language-sql">select name, setting, unit
+from pg_settings
+where name in (
+  &#039;max_locks_per_transaction&#039;,
+  &#039;max_connections&#039;,
+  &#039;shared_buffers&#039;
+);</code></pre><p>If <code>max_locks_per_transaction</code> is set to <code>64</code>, your database cannot reliably handle 16 to 20 workers concurrently migrating complex schemas.</p>
+<h3>Fix</h3>
+<p>Locate your active configuration file by running:</p>
+<pre><code class="language-sql">show config_file;</code></pre><p>Open <code>postgresql.conf</code> in an editor and update the setting:</p>
+<pre><code class="language-ini">max_locks_per_transaction = 512</code></pre><p>Save the file and restart your PostgreSQL server using the control mechanism appropriate for your setup:</p>
+<ul>
+<li>If using <strong>DBngin</strong>, click Stop and then Start on the PostgreSQL service.</li>
+<li>If using <strong>Laravel Herd Pro Services</strong>, toggle the PostgreSQL service off and on.</li>
+<li>If running as a standard <strong>Windows Service</strong>, run <code>Restart-Service postgresql*</code> in an elevated PowerShell session.</li>
+</ul>
+<blockquote>
+<p><strong>Warning regarding Windows restarts</strong>: Avoid running <code>pg_ctl restart</code> inside non-interactive PowerShell processes or background agent runners. The detached process can inherit the parent console standard output handle and appear to hang indefinitely. Furthermore, if the PostgreSQL process underwent an unclean shutdown, Windows PostgreSQL may spend several minutes performing crash recovery and directory tree fsync operations before opening its network port. Use your GUI service manager or Windows Service controller to restart cleanly.</p>
+</blockquote>
+<h3>Verification</h3>
+<p>Once PostgreSQL is back online, query the runtime value:</p>
+<pre><code class="language-sql">show max_locks_per_transaction;</code></pre><p>The output should now read <code>512</code>.</p>
+<p><em>(Note: Dropping worker counts via <code>--processes=8</code> can reduce lock pressure, but increasing <code>max_locks_per_transaction</code> directly is the permanent solution that allows your test suite to fully utilize modern multi-core hardware).</em></p>
+<hr>
+<h2>3. Xdebug Coverage is Enabled Globally</h2>
+<h3>The Problem</h3>
+<p>Many developers enable Xdebug code coverage in their global CLI <code>php.ini</code> file to generate a test coverage report, and then leave it enabled. </p>
+<p>When <code>xdebug.mode=coverage</code> remains in your global <code>php.ini</code>, every single invocation of the PHP CLI boots the Xdebug Zend extension and instruments every opcode executed by the virtual machine. In a parallel test suite executing tens of thousands of assertions across 20 workers, this adds massive overhead to process bootstrapping, file loading, and assertion checking.</p>
+<p>Parallel testing becomes sluggish, worker processes pin the CPU near 100%, and tests take twice as long to complete.</p>
+<h3>Diagnosis</h3>
+<p>Inspect the active PHP configuration and query Xdebug&#39;s active runtime mode:</p>
+<pre><code class="language-powershell">php --ini
+php -r &quot;var_dump(xdebug_info(&#039;mode&#039;));&quot;</code></pre><p>If the command outputs <code>array(1) { [0]=&gt; string(8) &quot;coverage&quot; }</code>, your PHP CLI is instrumenting every test run automatically.</p>
+<h3>Fix</h3>
+<p>Open the loaded <code>php.ini</code> path identified by <code>php --ini</code>. Adjust the following directives:</p>
+<pre><code class="language-ini">xdebug.mode=off
+opcache.enable_cli=1</code></pre><p>Setting <code>xdebug.mode=off</code> turns off opcode instrumentation by default. Enabling <code>opcache.enable_cli=1</code> ensures PHP&#39;s bytecode cache accelerates script bootstrapping across all parallel processes.</p>
+<p>If you occasionally need to generate code coverage reports, do not re-enable it globally. The <code>XDEBUG_MODE</code> environment variable overrides <code>php.ini</code> on demand:</p>
+<pre><code class="language-powershell">$env:XDEBUG_MODE=&#039;coverage&#039;
+php vendor/bin/pest --coverage</code></pre><p>Once that command finishes, clear the environment variable in your shell session:</p>
+<pre><code class="language-powershell">$env:XDEBUG_MODE=&#039;&#039;</code></pre><p>Note that specific project scripts (for instance, a <code>composer test:unit</code> script configured with coverage flags) will intentionally invoke <code>XDEBUG_MODE=coverage</code>. Those commands are slow by design, but standard day-to-day parallel test runs should always run with Xdebug disabled.</p>
+<h3>Verification</h3>
+<p>Check Xdebug&#39;s active mode in a clean shell:</p>
+<pre><code class="language-powershell">php -r &quot;var_dump(xdebug_info(&#039;mode&#039;));&quot;</code></pre><p>The output should be <code>array(0) { }</code>.</p>
+<p>When running with coverage explicitly set:</p>
+<pre><code class="language-powershell">$env:XDEBUG_MODE=&#039;coverage&#039;; php -r &quot;var_dump(xdebug_info(&#039;mode&#039;));&quot;; $env:XDEBUG_MODE=&#039;&#039;</code></pre><p>The output will confirm <code>string(8) &quot;coverage&quot;</code>, verifying that on-demand profiling still works when requested.</p>
+<hr>
+<h2>4. PHP Has No OpenSSL Config</h2>
+<h3>The Problem</h3>
+<p>If your application interacts with GitHub Apps, signed JWTs, asymmetric encryption, or API token generation, your tests likely invoke <code>openssl_pkey_new()</code> or related OpenSSL functions.</p>
+<p>On Linux, OpenSSL locates system configuration files in standard locations such as <code>/etc/ssl/openssl.cnf</code>. On Windows, the OpenSSL library compiled into PHP searches for <code>openssl.cnf</code> at a hardcoded compiled path:</p>
+<pre><code class="language-text">C:\Program Files\Common Files\SSL\openssl.cnf</code></pre><p>If that directory or file does not exist, <code>openssl_pkey_new()</code> returns <code>false</code>. When testing signature creation or token minting, this produces unexpected assertion failures:</p>
+<pre><code class="language-text">AssertionError: assert($key !== false)</code></pre><h3>Diagnosis</h3>
+<p>Run this quick test in PowerShell:</p>
+<pre><code class="language-powershell">php -r &quot;var_dump(openssl_pkey_new([&#039;private_key_bits&#039; =&gt; 2048, &#039;private_key_type&#039; =&gt; OPENSSL_KEYTYPE_RSA]) !== false);&quot;</code></pre><p>If it prints <code>bool(false)</code>, PHP cannot locate a valid OpenSSL configuration file. You can also inspect the compiled default search path:</p>
+<pre><code class="language-powershell">php --ri openssl</code></pre><p>Look for the line displaying <code>Openssl default config</code>.</p>
+<h3>Fix</h3>
+<p>You have two reliable options to resolve this on Windows.</p>
+<h4>Option A: Copy the bundled config to the default path (Recommended)</h4>
+<p>PHP distributions (including those packaged with Laravel Herd) ship with a valid <code>openssl.cnf</code> file inside their extras directory. </p>
+<p>For example, with Laravel Herd, the file is located at:
+<code>C:\Users\&lt;your-username&gt;\.config\herd\bin\php85\extras\ssl\openssl.cnf</code></p>
+<p>In an elevated PowerShell prompt (Run as Administrator), ensure the destination directory exists and copy the configuration file over:</p>
+<pre><code class="language-powershell">New-Item -ItemType Directory -Force -Path &quot;C:\Program Files\Common Files\SSL&quot;
+Copy-Item &quot;$env:USERPROFILE\.config\herd\bin\php85\extras\ssl\openssl.cnf&quot; &quot;C:\Program Files\Common Files\SSL\openssl.cnf&quot;</code></pre><h4>Option B: Set the <code>OPENSSL_CONF</code> environment variable</h4>
+<p>If you do not have administrative privileges to write to <code>Program Files</code>, register a user-level environment variable pointing directly to your PHP installation&#39;s bundled configuration:</p>
+<pre><code class="language-powershell">setx OPENSSL_CONF &quot;$env:USERPROFILE\.config\herd\bin\php85\extras\ssl\openssl.cnf&quot;</code></pre><p>Close your terminal and open a new window for the environment variable change to take effect.</p>
+<h3>Verification</h3>
+<p>Run the key generation probe again:</p>
+<pre><code class="language-powershell">php -r &quot;var_dump(openssl_pkey_new([&#039;private_key_bits&#039; =&gt; 2048, &#039;private_key_type&#039; =&gt; OPENSSL_KEYTYPE_RSA]) !== false);&quot;</code></pre><p>The output must now print <code>bool(true)</code>.</p>
+<hr>
+<h2>5. <code>vendor/</code> is Incomplete</h2>
+<h3>The Problem</h3>
+<p>If a previous <code>composer install</code> or <code>composer update</code> was interrupted by terminal closure, an anti-virus lock on a temporary folder, or a background process kill, Composer can leave directory stubs without unpacking their files.</p>
+<p>Because ParaTest and Pest rely on Amp (<code>amphp/amp</code>) and Symfony Process components for process orchestration, an incomplete vendor tree causes Pest to crash before running a single test:</p>
+<pre><code class="language-text">Fatal error: Failed opening required &#039;.../vendor/amphp/amp/src/functions.php&#039; (include_path=&#039;.&#039;) in ...</code></pre><h3>Fix</h3>
+<p>Re-run Composer to verify package integrity and populate missing files:</p>
+<pre><code class="language-powershell">composer install</code></pre><p>If a custom project plugin or post-install script fails during initial restoration, bypass scripts temporarily to download all missing packages, and then run a clean install:</p>
+<pre><code class="language-powershell">composer install --no-scripts
+composer install</code></pre><p>Inspect the Amp directory to ensure package files are present on disk:</p>
+<pre><code class="language-powershell">Test-Path &quot;vendor/amphp/amp/src/functions.php&quot;</code></pre><p>This should return <code>True</code>.</p>
+<hr>
+<h2>6. Feature Tests Need Built Frontend Assets</h2>
+<h3>The Problem</h3>
+<p>In modern Laravel applications using Inertia.js (React or Vue) or Vite Blade directives, Feature tests often test HTTP responses that render frontend pages. When an endpoint renders an Inertia view, Laravel&#39;s Vite integration checks <code>public/build/manifest.json</code> to verify entrypoints.</p>
+<p>If you have just cloned the repository, switched branches, or cleared static build directories without rebuilding the client application, Feature tests return HTTP 500 status codes:</p>
+<pre><code class="language-text">Unable to locate file in Vite manifest: resources/js/pages/organization/show.tsx</code></pre><p>CI workflows always run a build step (such as <code>npm run build</code> or <code>bun run build</code>) before invoking tests. When testing locally, you must do the same. This is not an application bug or a Vite flaw; it is an expected prerequisite for rendering view components that reference Vite manifests.</p>
+<h3>Fix</h3>
+<p>Run your project&#39;s frontend build script:</p>
+<pre><code class="language-powershell">bun run build</code></pre><p><em>(or <code>npm run build</code> / <code>pnpm build</code> if using Node).</em></p>
+<p>Verify that the manifest exists:</p>
+<pre><code class="language-powershell">Test-Path &quot;public/build/manifest.json&quot;</code></pre><p>Once the manifest file is generated, your Inertia and Vite integration tests can locate compiled asset paths without throwing 500 errors.</p>
+<hr>
+<h2>7. Measured Results</h2>
+<p>To illustrate the concrete impact of these fixes, here are actual benchmark results taken on a 20-core Windows 11 workstation running a large enterprise test suite:</p>
+<ul>
+<li><strong>Feature and Controller Suite (20 Workers)</strong>:<ul>
+<li><em>Before Fixes</em>: Aborted immediately with hundreds of <code>WIN1252</code> encoding errors. When forced past encoding issues with pre-created databases, failed halfway through due to <code>out of shared memory</code> lock table exhaustion.</li>
+<li><em>After Fixes</em>: <strong>2,865 tests passed</strong> cleanly in <strong>143 seconds</strong>.</li>
+</ul>
+</li>
+<li><strong>Unit and Service Suite</strong>:<ul>
+<li><em>Before Fixes</em>: Failed on cryptographic signature tests with <code>assert($key !== false)</code>.</li>
+<li><em>After Fixes</em>: <strong>838 tests passed</strong> with zero assertion failures.</li>
+</ul>
+</li>
+<li><strong>Xdebug Overhead on a Single Isolated Test File</strong>:<ul>
+<li><em>With <code>xdebug.mode=coverage</code> active globally</em>: <strong>7.2 seconds</strong>.</li>
+<li><em>With <code>xdebug.mode=off</code> and OPcache CLI enabled</em>: <strong>4.2 seconds</strong>.</li>
+<li>Across a full suite of thousands of tests, this 40% reduction in per-process execution overhead saves several minutes per test run.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>8. Why This Mostly Bites Windows Users</h2>
+<p>These problems rarely appear on Linux workstations or in CI environments because:</p>
+<ol>
+<li><strong>Linux System Defaults</strong>: Linux distributions and official Docker images configure PostgreSQL with standard <code>UTF-8</code> locales out of the box. Windows <code>initdb</code> defaults to legacy ANSI code pages based on Windows regional settings.</li>
+<li><strong>High-Core Local Workstations</strong>: Windows development machines often feature high-performance desktop or mobile CPUs with 16 to 24 logical cores. Running parallel suites with one worker per core exposes concurrency bottlenecks (such as the default 64-slot Postgres lock table) that never surface on 2-core or 4-core CI runners.</li>
+<li><strong>Standalone Extension Stacks</strong>: In Linux environments, OpenSSL system libraries have universally standard filesystem conventions (<code>/etc/ssl/certs</code>). Windows has no standard global Unix filesystem root, so compiled native Windows PHP binaries require explicit configuration files.</li>
+<li><strong>Tooling Gaps</strong>: CI pipelines run linear workflows that enforce asset compilation and package installation steps prior to test execution. Local development environments allow developers to jump straight into test commands with stale assets or missing build steps.</li>
+</ol>
+<hr>
+<h2>9. Caveats and Operating Notes</h2>
+<p>Keep these operational details in mind when applying these fixes:</p>
+<ul>
+<li><strong>Back Up Configuration Files</strong>: Always create a backup copy of <code>php.ini</code> and <code>postgresql.conf</code> before editing them.</li>
+<li><strong>Scope of Database Rebuild</strong>: Rebuilding <code>template1</code> alters the blueprint for all future databases created on your local PostgreSQL cluster. It does not alter or re-encode existing development databases (such as your main local app database). If an existing local database was previously created under <code>WIN1252</code>, convert it by dumping it, creating a new <code>UTF8</code> database, and restoring the data.</li>
+<li><strong>Stack Updates Can Overwrite Configurations</strong>: If you use an environment manager like Laravel Herd or DBngin, creating a brand new service instance or upgrading major PHP runtimes can provision a fresh <code>php.ini</code> or <code>postgresql.conf</code>. Keep this checklist handy so you can re-verify your environment after major stack upgrades.</li>
+<li><strong>Crash Recovery Patience</strong>: If PostgreSQL is terminated abruptly while workers are actively writing to it, Windows PostgreSQL will perform WAL crash recovery on the next startup. This can take a couple of minutes while it checks data directories. Do not forcefully terminate the process again while recovery is underway.</li>
+</ul>
+<hr>
+<h2>10. Quick Verification Reference</h2>
+<p>Before running your full test suite, verify all six fixes with this sequence of commands:</p>
+<h3>1. Verify PostgreSQL Database Encodings</h3>
+<pre><code class="language-sql">select datname, pg_encoding_to_char(encoding) as encoding, datcollate
+from pg_database
+where datname in (&#039;template1&#039;, &#039;testing&#039;);</code></pre><p><em>Expected: Both rows display <code>UTF8</code> and <code>C</code>.</em></p>
+<h3>2. Verify PostgreSQL Lock Capacity</h3>
+<pre><code class="language-sql">show max_locks_per_transaction;</code></pre><p><em>Expected: <code>512</code>.</em></p>
+<h3>3. Verify Xdebug is Disabled</h3>
+<pre><code class="language-powershell">php -r &quot;var_dump(xdebug_info(&#039;mode&#039;));&quot;</code></pre><p><em>Expected: <code>array(0) { }</code>.</em></p>
+<h3>4. Verify OpenSSL RSA Key Generation</h3>
+<pre><code class="language-powershell">php -r &quot;var_dump(openssl_pkey_new([&#039;private_key_bits&#039; =&gt; 2048, &#039;private_key_type&#039; =&gt; OPENSSL_KEYTYPE_RSA]) !== false);&quot;</code></pre><p><em>Expected: <code>bool(true)</code>.</em></p>
+<h3>5. Verify Frontend Manifest Exists</h3>
+<pre><code class="language-powershell">Test-Path &quot;public/build/manifest.json&quot;</code></pre><p><em>Expected: <code>True</code>.</em></p>
+<h3>6. Verify Vendor Process Files</h3>
+<pre><code class="language-powershell">Test-Path &quot;vendor/amphp/amp/src/functions.php&quot;</code></pre><p><em>Expected: <code>True</code>.</em></p>
+<hr>
+<h2>11. Closing</h2>
+<p>All of these fixes operate at the system and environment level. None of them require altering your application models, changing test logic, or hacking framework internals.</p>
+<p>Before blaming your test runner or assuming that parallel testing cannot work smoothly on Windows, check your database template encoding, PostgreSQL lock limits, PHP extension modes, and frontend build assets. Once your local environment is configured properly, a 20-core Windows workstation can run large Laravel parallel test suites faster than almost any remote CI server.</p>
+]]></content:encoded>
+            <author>contact@mrpunyapal.dev (Punyapal Shah)</author>
+            <category>Laravel</category>
+            <category>Testing</category>
+            <category>Laravel</category>
+            <category>Pest PHP</category>
+            <category>PostgreSQL</category>
+            <category>Windows</category>
+            <category>Testing</category>
+        </item>
         <item>
             <title><![CDATA[Use Immutable Dates by Default in Laravel]]></title>
             <link>https://mrpunyapal.dev/blog/laravel-carbon-immutable-dates</link>
