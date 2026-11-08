@@ -195,8 +195,9 @@
     </svg>
 
     <!-- Main Content Container -->
-    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 portfolio-v2 portfolio-services">
-        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10 portfolio-frame">
+    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 portfolio-v2 portfolio-services portfolio-redesign portfolio-services">
+        <div class="portfolio-rails" aria-hidden="true"><div class="portfolio-rails-inner"></div></div>
+        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10 portfolio-frame portfolio-shell">
 
             <!-- Tech Markers: Corners -->
             <div class="tech-marker -top-[4px] -left-[4px]" aria-hidden="true"></div>
@@ -218,7 +219,7 @@
             <site-header active="services"></site-header>
 
             <!-- Hero Section -->
-            <section class="p-5 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative portfolio-page-intro">
+            <section class="p-5 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative portfolio-page-intro portfolio-page-header">
                 <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
                 <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
@@ -243,13 +244,13 @@
                 <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
 
                 <div class="p-4 sm:p-12">
-                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Engineering Services</h2>
+                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 portfolio-section-title">Engineering Services</h2>
                     <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-6 sm:mb-8">
                         Most of my work starts with an existing application. The goal is to make it easier and safer to change, not to rewrite everything from scratch.
                     </p>
 
                     <!-- Grid Layout matching site grid cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 portfolio-tiles">
+                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 portfolio-tiles portfolio-collection-grid">
 
                         <!-- Service 1: Laravel Application Engineering -->
                         <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
@@ -492,12 +493,12 @@
                 <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
 
                 <div class="p-4 sm:p-12">
-                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">How We Can Work Together</h2>
+                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 portfolio-section-title">How We Can Work Together</h2>
                     <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-6 sm:mb-8">
                         Most projects start with a specific problem. Bring an existing application, a modernization project, a testing problem, or a technical decision that needs a second opinion.
                     </p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 portfolio-tiles portfolio-engagements">
+                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 portfolio-tiles portfolio-engagements portfolio-collection-grid">
 
                         <!-- Option 1: Engineering Projects -->
                         <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 flex flex-col justify-between">
@@ -601,7 +602,7 @@
             <!-- Technical Sponsorships Section -->
             <section class="relative">
                 <div class="p-4 sm:p-12">
-                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Technical Sponsorships</h2>
+                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 portfolio-section-title">Technical Sponsorships</h2>
                     <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mb-6 sm:mb-8">
                         Paid sponsored announcements and launch posts shared across my personal technical channels.
                     </p>
@@ -678,7 +679,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 portfolio-footer">
+        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 portfolio-footer portfolio-footer">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 // Have a Laravel problem to work through?
                 <a href="mailto:mrpunyapal@gmail.com?subject=Project%20Inquiry"
