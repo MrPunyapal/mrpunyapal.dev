@@ -1,0 +1,574 @@
+/*
+ * The actual structural half of the ZIP integration.
+ * This controls the composition of existing HTML, rather than replacing
+ * copy or importing the prototype's demo data / SPA / Elephpant.
+ */
+
+/* Homepage: editorial identity + a proper full-height Elephpant area */
+main.portfolio-home .portfolio-feature-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  border-bottom: 1px solid var(--portfolio-line);
+  min-height: 390px;
+  background: var(--portfolio-surface);
+}
+main.portfolio-home .portfolio-feature-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(1.5rem,3.4vw,3.1rem);
+}
+main.portfolio-home .portfolio-open-link {
+  display: flex;
+  align-items: center;
+  margin-bottom: clamp(1.6rem,3vw,3.3rem);
+}
+main.portfolio-home .portfolio-open-link a {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb,var(--portfolio-accent) 32%,var(--portfolio-line));
+  border-radius: 999px;
+  background: var(--portfolio-accent-soft);
+  color: var(--portfolio-accent);
+  font-family: var(--portfolio-mono);
+  font-size: .73rem;
+  padding: .47rem .85rem;
+  text-decoration: none;
+}
+main.portfolio-home .portfolio-persona {
+  display: grid;
+  grid-template-columns: 70px minmax(0,1fr);
+  gap: 1.3rem;
+  align-items: center;
+  margin-bottom: clamp(1.5rem,2.5vw,2.6rem);
+}
+main.portfolio-home .portfolio-person-photo {min-width:0}
+main.portfolio-home .portfolio-person-photo picture {display:block}
+main.portfolio-home .portfolio-person-photo img {
+  display: block;
+  width: 70px !important;
+  height: 70px !important;
+  border: 2px solid var(--portfolio-rail);
+  border-radius: 50%;
+  box-shadow: none;
+}
+main.portfolio-home .portfolio-persona h1 {
+  font-size: clamp(2.2rem,4vw,3.55rem);
+  letter-spacing: -.06em;
+  line-height: 1.03;
+  margin: 0 0 .45rem;
+}
+main.portfolio-home .portfolio-persona .typing-animation {
+  color: var(--portfolio-muted);
+  height: auto;
+  max-width:100%;
+}
+main.portfolio-home .portfolio-persona .typing-text {
+  font-family: var(--portfolio-mono);
+  font-size: .87rem;
+  line-height: 1.55;
+}
+main.portfolio-home .portfolio-tldr {
+  border-top: 1px dashed var(--portfolio-rail);
+  padding-top: clamp(1.2rem,2.4vw,1.8rem);
+  margin-top: auto;
+}
+main.portfolio-home .portfolio-tldr p {
+  font-size: clamp(.87rem,1.15vw,1.02rem);
+  line-height: 1.84;
+}
+main.portfolio-home .portfolio-feature-door {
+  position: relative;
+  min-height: 380px;
+  overflow: visible;
+  border-left: 1px solid var(--portfolio-line);
+  background-color: var(--portfolio-subtle);
+  background-image:
+    linear-gradient(var(--portfolio-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--portfolio-line) 1px,transparent 1px);
+  background-size: 26px 26px;
+  isolation: isolate;
+}
+main.portfolio-home .portfolio-door-chrome {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  font: .72rem var(--portfolio-mono);
+  color: var(--portfolio-muted);
+  letter-spacing: .02em;
+  opacity: .8;
+}
+main.portfolio-home .portfolio-feature-door #desktop-door-placeholder {
+  display: flex !important;
+  width: 100%;
+  min-height: 360px;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+main.portfolio-home .portfolio-feature-door .door-container {
+  flex: none;
+}
+
+/* Move the real about narrative beside existing community destinations. */
+main.portfolio-home .portfolio-story-layout {
+  display: grid;
+  grid-template-columns: minmax(0,2fr) minmax(290px,1fr);
+  align-items: stretch;
+  border-bottom:1px solid var(--portfolio-line);
+}
+main.portfolio-home .portfolio-story-copy {
+  min-width: 0;
+  border-right:1px solid var(--portfolio-line);
+}
+main.portfolio-home .portfolio-story-copy > div {
+  height: 100%;
+  border-bottom: 0 !important;
+  padding: clamp(1.65rem,3.4vw,3rem) !important;
+}
+main.portfolio-home .portfolio-story-copy p {
+  max-width: 72ch;
+  font-size: .99rem;
+  line-height: 1.9;
+}
+main.portfolio-home .portfolio-story-copy h2.sr-only {
+  position: static;
+  width:auto;
+  height:auto;
+  clip:auto;
+  overflow:visible;
+  font: 700 clamp(1.2rem,2vw,1.65rem)/1.35 var(--portfolio-display);
+  color:var(--portfolio-ink);
+  margin: 0 0 1.3rem;
+  letter-spacing:-.035em;
+}
+main.portfolio-home .portfolio-community-column {
+  min-width:0;
+  background:var(--portfolio-subtle);
+}
+main.portfolio-home .portfolio-community-column > div {
+  padding: clamp(1.5rem,3vw,2.6rem) !important;
+}
+main.portfolio-home .portfolio-community-column h2 {
+  font-family:var(--portfolio-display);
+  letter-spacing:-.025em;
+  text-transform:none;
+  font-size:1.1rem;
+  line-height:1.4;
+  font-weight:700;
+  color:var(--portfolio-ink);
+}
+main.portfolio-home .portfolio-community-column a {
+  background:var(--portfolio-surface);
+}
+main.portfolio-home .portfolio-connections {
+  padding: clamp(1.2rem,2.2vw,1.8rem) clamp(1.5rem,3.4vw,3rem);
+}
+main.portfolio-home .portfolio-connections > div {
+  border:0;
+  padding:0;
+}
+main.portfolio-home .portfolio-connections h2 {
+  margin-bottom: .9rem;
+}
+main.portfolio-home .portfolio-sponsor-row > div {
+  max-width:72rem;
+  border-inline:1px solid var(--portfolio-line);
+  border-bottom:1px solid var(--portfolio-line);
+  background:var(--portfolio-subtle);
+  margin-top:0;
+}
+
+/* The prototype's full-width editorial section headers. Existing text only. */
+main.portfolio-v2:not(.portfolio-home) .portfolio-page-intro {
+  padding:clamp(2rem,4.4vw,4rem) !important;
+  border-bottom:1px solid var(--portfolio-line);
+}
+main.portfolio-services .portfolio-page-intro h1,
+main.portfolio-opensource .portfolio-page-intro h1 {
+  font:600 .72rem/1.3 var(--portfolio-mono);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--portfolio-muted);
+  margin:0 0 1.3rem;
+}
+main.portfolio-services .portfolio-page-intro p.font-mono,
+main.portfolio-opensource .portfolio-page-intro p.font-mono {
+  font:700 clamp(2.1rem,3.4vw,3.35rem)/1.14 var(--portfolio-display);
+  letter-spacing:-.052em;
+  color:var(--portfolio-ink);
+  max-width:930px;
+  margin:0 0 1.1rem;
+}
+main.portfolio-services .portfolio-page-intro p.font-mono + p,
+main.portfolio-opensource .portfolio-page-intro p.font-mono + p {
+  max-width:760px;
+  line-height:1.78;
+}
+main.portfolio-projects .portfolio-page-intro h1,
+main.portfolio-talks .portfolio-page-intro h1,
+main.portfolio-resume .portfolio-page-intro h1 {
+  font-size:clamp(2.7rem,4.5vw,4rem);
+}
+main.portfolio-v2 .portfolio-page-intro + section {
+  border-top:0;
+}
+
+/* Real card entries become the ZIP's row-based 3-column information layout.
+   All original entries and text stay in the DOM, not truncated. */
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) {
+  display:flex !important;
+  flex-direction:column;
+  gap:0 !important;
+  border-left:0 !important;
+  border-top:1px solid var(--portfolio-line) !important;
+  background:var(--portfolio-surface);
+}
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) > .group {
+  width:100%;
+  min-width:0;
+  min-height:0;
+  padding:0 !important;
+  border:0 !important;
+  border-bottom:1px solid var(--portfolio-line) !important;
+  border-radius:0 !important;
+  position:relative;
+}
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) > .group > .absolute {
+  display:none;
+}
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) > .group > .flex.flex-col {
+  display:grid !important;
+  grid-template-columns:minmax(0,3fr) minmax(0,4.2fr) minmax(0,2.8fr);
+  align-content:start;
+  align-items:start;
+  gap:0 clamp(1.5rem,2.5vw,2.8rem);
+  padding:clamp(1.2rem,2.4vw,2.15rem);
+}
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) > .group > .flex.flex-col > :first-child {
+  grid-column:1;
+  grid-row:1;
+  align-self:start;
+  min-width:0;
+}
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) > .group > .flex.flex-col > p {
+  grid-column:2;
+  grid-row:1 / span 2;
+  margin:0 !important;
+  min-width:0;
+  line-height:1.75;
+}
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) > .group > .flex.flex-col > :nth-child(3) {
+  grid-column:3;
+  grid-row:1 / span 2;
+  align-content:start;
+  justify-content:flex-start;
+  min-width:0;
+  margin:0 !important;
+  align-self:start;
+}
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) > .group > .flex.flex-col > :nth-child(n+4) {
+  grid-column:1;
+  grid-row:auto;
+  margin-top:.85rem;
+  align-self:start;
+}
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) h3 {
+  font-size:clamp(.97rem,1.25vw,1.13rem);
+  letter-spacing:-.028em;
+  line-height:1.45;
+}
+main.portfolio-v2 :is(
+  .portfolio-project-list,
+  .portfolio-contributions-list,
+  .portfolio-packages-list,
+  .portfolio-engineering-list,
+  .portfolio-talks-list
+) .flex.flex-wrap > span {
+  border-radius:3px;
+  background:transparent;
+  border-color:var(--portfolio-line);
+  font:500 .65rem/1.35 var(--portfolio-mono);
+  color:var(--portfolio-muted);
+}
+main.portfolio-v2 .portfolio-engineering-list > .group > .flex.flex-col > :first-child .font-mono {
+  display:block;
+  margin-bottom:.35rem;
+  text-transform:uppercase;
+  font-size:.68rem;
+  letter-spacing:.05em;
+  color:var(--portfolio-accent);
+}
+main.portfolio-v2 .portfolio-contributions-list h3,
+main.portfolio-v2 .portfolio-packages-list h3 {
+  text-decoration:underline;
+  text-decoration-color:var(--portfolio-rail);
+  text-underline-offset:4px;
+}
+main.portfolio-v2 .portfolio-tiles > .group::before {
+  width:2px;
+}
+main.portfolio-v2 .portfolio-project-list > .group:hover,
+main.portfolio-v2 .portfolio-packages-list > .group:hover,
+main.portfolio-v2 .portfolio-contributions-list > .group:hover,
+main.portfolio-v2 .portfolio-engineering-list > .group:hover {
+  background:var(--portfolio-subtle) !important;
+}
+
+/* Engineering is primary. Consultation stays a 2-up engagement section,
+   followed by sponsorship, rather than becoming another engineering row. */
+main.portfolio-services .portfolio-engagements {
+  border:1px solid var(--portfolio-line) !important;
+  background:var(--portfolio-subtle);
+}
+main.portfolio-services .portfolio-engagements > .group {
+  background:var(--portfolio-subtle) !important;
+}
+main.portfolio-services .portfolio-sponsorships {
+  padding-top:1.5rem;
+}
+
+/* Talk archive: use the same row language rather than generic cards. */
+main.portfolio-talks .portfolio-talks-list > .group > .flex.flex-col {
+  grid-template-columns:minmax(0,38%) minmax(0,62%);
+}
+main.portfolio-talks .portfolio-talks-list > .group > .flex.flex-col > :nth-child(3) {
+  grid-column:2;
+  grid-row:2;
+  margin-top:.75rem !important;
+}
+
+/* Keep the dedicated Resume page legible, with a quieter document rhythm. */
+main.portfolio-resume .portfolio-tiles {
+  border-color:var(--portfolio-line);
+}
+main.portfolio-resume .portfolio-tiles > .group {
+  box-shadow:none;
+}
+main.portfolio-resume .portfolio-tiles h3 {
+  font-family:var(--portfolio-display);
+}
+
+/* Generated content remains functional. Give the real Blog and Tips
+   index cards more deliberate editorial space without replacing articles. */
+main.portfolio-blog .portfolio-tiles,
+main.portfolio-tips .portfolio-tiles {
+  border-color:var(--portfolio-line);
+}
+main.portfolio-blog .portfolio-tiles > article,
+main.portfolio-tips .portfolio-tiles > article {
+  min-height:260px;
+  background:var(--portfolio-surface) !important;
+  padding:clamp(1.5rem,2.5vw,2.35rem);
+  border-color:var(--portfolio-line);
+  transition:background-color .2s;
+}
+main.portfolio-blog .portfolio-tiles > article:hover,
+main.portfolio-tips .portfolio-tiles > article:hover {
+  background:var(--portfolio-subtle) !important;
+}
+
+@media (max-width:900px) {
+  main.portfolio-home .portfolio-feature-hero,
+  main.portfolio-home .portfolio-story-layout {grid-template-columns:minmax(0,1fr) minmax(230px,.8fr)}
+  main.portfolio-v2 :is(
+    .portfolio-project-list,
+    .portfolio-contributions-list,
+    .portfolio-packages-list,
+    .portfolio-engineering-list,
+    .portfolio-talks-list
+  ) > .group > .flex.flex-col {
+    grid-template-columns:minmax(0,3.6fr) minmax(0,6.4fr);
+    row-gap:.85rem;
+  }
+  main.portfolio-v2 :is(
+    .portfolio-project-list,
+    .portfolio-contributions-list,
+    .portfolio-packages-list,
+    .portfolio-engineering-list,
+    .portfolio-talks-list
+  ) > .group > .flex.flex-col > :nth-child(3) {
+    grid-column:2;
+    grid-row:2;
+  }
+}
+@media (max-width:767px) {
+  main.portfolio-home .portfolio-feature-hero,
+  main.portfolio-home .portfolio-story-layout {display:block}
+  main.portfolio-home .portfolio-feature-hero {min-height:0}
+  main.portfolio-home .portfolio-feature-main {padding:1.55rem 1.4rem}
+  main.portfolio-home .portfolio-feature-door {display:none}
+  main.portfolio-home .portfolio-persona {grid-template-columns:54px minmax(0,1fr);gap:.85rem}
+  main.portfolio-home .portfolio-person-photo img {width:54px !important;height:54px !important}
+  main.portfolio-home .portfolio-persona h1 {font-size:clamp(1.85rem,8vw,2.75rem)}
+  main.portfolio-home .portfolio-persona .typing-text {font-size:.77rem}
+  main.portfolio-home .portfolio-story-copy {border-right:0;border-bottom:1px solid var(--portfolio-line)}
+  main.portfolio-home .portfolio-story-copy > div {padding:1.65rem 1.35rem !important}
+  main.portfolio-home .portfolio-community-column > div {padding:1.5rem 1.35rem !important}
+  main.portfolio-home .portfolio-connections {padding:1.4rem 1.35rem}
+  main.portfolio-v2 :is(
+    .portfolio-project-list,
+    .portfolio-contributions-list,
+    .portfolio-packages-list,
+    .portfolio-engineering-list,
+    .portfolio-talks-list
+  ) > .group > .flex.flex-col {
+    display:flex !important;
+    flex-direction:column;
+    gap:.8rem;
+    padding:1.45rem 1.25rem;
+  }
+  main.portfolio-v2 :is(
+    .portfolio-project-list,
+    .portfolio-contributions-list,
+    .portfolio-packages-list,
+    .portfolio-engineering-list,
+    .portfolio-talks-list
+  ) > .group > .flex.flex-col > :nth-child(n) {
+    margin:0 !important;
+    width:100%;
+  }
+  main.portfolio-services .portfolio-page-intro p.font-mono,
+  main.portfolio-opensource .portfolio-page-intro p.font-mono {
+    font-size:clamp(1.9rem,7vw,2.45rem);
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  main.portfolio-v2 .portfolio-project-list > .group,
+  main.portfolio-v2 .portfolio-engineering-list > .group,
+  main.portfolio-v2 .portfolio-contributions-list > .group,
+  main.portfolio-v2 .portfolio-packages-list > .group {transition:none}
+}
+
+
+/* Compact credibility strip and project summary, using their existing
+   labels and values rather than the oversized decorative type. */
+main.portfolio-home .portfolio-about-heading {
+  font:700 clamp(1.2rem,2vw,1.65rem)/1.32 var(--portfolio-display);
+  color:var(--portfolio-ink);
+  letter-spacing:-.035em;
+  margin:0 0 1.35rem;
+}
+main.portfolio-opensource .portfolio-metrics,
+main.portfolio-projects .portfolio-metrics {
+  margin-top:clamp(1.35rem,2.4vw,2rem);
+}
+main.portfolio-opensource .portfolio-metrics > div {
+  flex-direction:column-reverse !important;
+  align-items:flex-start !important;
+  text-align:left !important;
+  padding:1.35rem 1.25rem !important;
+  min-height:110px;
+}
+main.portfolio-opensource .portfolio-metrics > div > svg,
+main.portfolio-projects .portfolio-metrics > div > svg {
+  display:none !important;
+}
+main.portfolio-opensource .portfolio-metrics > div > p:first-of-type {
+  font:700 clamp(.94rem,1.25vw,1.09rem)/1.4 var(--portfolio-display) !important;
+  color:var(--portfolio-ink) !important;
+  letter-spacing:-.03em !important;
+  margin:0 !important;
+  text-transform:none !important;
+  text-align:left !important;
+  overflow-wrap:anywhere;
+}
+main.portfolio-opensource .portfolio-metrics > div > p:nth-of-type(2) {
+  font:500 .68rem/1.45 var(--portfolio-mono) !important;
+  letter-spacing:.025em !important;
+  color:var(--portfolio-muted) !important;
+  text-transform:none !important;
+  margin:0 0 .65rem !important;
+  text-align:left !important;
+  max-width:100%;
+  overflow-wrap:break-word;
+}
+main.portfolio-projects .portfolio-metrics > div {
+  align-items:flex-start !important;
+  justify-content:flex-start !important;
+  text-align:left !important;
+  padding:1.25rem 1.2rem !important;
+  min-height:120px;
+}
+main.portfolio-projects .portfolio-metrics > div > p:first-of-type {
+  text-align:left !important;
+  font:700 clamp(.88rem,1.2vw,1rem)/1.35 var(--portfolio-display) !important;
+  letter-spacing:-.02em;
+  color:var(--portfolio-ink);
+  margin:0 0 .55rem;
+}
+main.portfolio-projects .portfolio-metrics > div > div {
+  margin:0 !important;
+  font:400 .69rem/1.55 var(--portfolio-mono) !important;
+  color:var(--portfolio-muted);
+  text-align:left;
+}
+main.portfolio-projects .portfolio-page-intro,
+main.portfolio-opensource .portfolio-page-intro {
+  padding:clamp(1.65rem,3.2vw,2.7rem) !important;
+}
+main.portfolio-projects .portfolio-page-intro > div:not(.tech-marker):not(.tech-line-h),
+main.portfolio-opensource .portfolio-page-intro > div:not(.tech-marker):not(.tech-line-h) {
+  max-width:none;
+}
+@media(max-width:767px) {
+  main.portfolio-projects .portfolio-metrics > div,
+  main.portfolio-opensource .portfolio-metrics > div {
+    min-height:0;
+    padding:1.2rem 1rem !important;
+  }
+}

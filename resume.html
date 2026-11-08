@@ -9,7 +9,7 @@
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=optional">
     <link rel="preload" href="/profile-image-160.webp" as="image" type="image/webp" fetchpriority="high">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="index, follow">
@@ -340,8 +340,8 @@
 
 
     <!-- Main Content -->
-    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
-        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
+    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 portfolio-v2 portfolio-resume">
+        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10 portfolio-frame">
 
             <!-- Tech Markers: Corners -->
             <div class="tech-marker -top-[4px] -left-[4px]"></div>
@@ -363,7 +363,7 @@
             <site-header active="resume"></site-header>
 
             <!-- Header Section -->
-            <div class="p-5 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative">
+            <div class="p-5 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative portfolio-page-intro">
                 <!-- Horizontal Line Extension -->
                 <div class="tech-line-h bottom-[-1px]"></div>
 
@@ -467,7 +467,7 @@
                         <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6">Engineering Expertise
                         </h2>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 portfolio-tiles">
                             <!-- Laravel Ecosystem -->
                             <div
                                 class="group relative p-4 sm:p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
@@ -832,7 +832,7 @@
 
                         <p class="text-sm text-slate-600 leading-relaxed mb-6 max-w-3xl">Representative engineering work spanning production systems, open source contributions, enterprise architecture, and intelligent automation.</p>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 dark:border-slate-800">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 dark:border-slate-800 portfolio-tiles">
 
                             <div
                                 class="group relative p-4 sm:p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
@@ -1210,7 +1210,7 @@
                         <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6">Speaking Engagements
                         </h2>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 dark:border-slate-800">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 dark:border-slate-800 portfolio-tiles">
                             <!-- Talk 1: Laracon India -->
                             <div
                                 class="group relative p-4 sm:p-6 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
@@ -1469,7 +1469,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 print:hidden">
+        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 print:hidden portfolio-footer">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 // Need a printable version? <a href="/resume.pdf" download="Punyapal Shah" aria-label="Download PDF Resume" class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold">Download PDF</a>
             </p>

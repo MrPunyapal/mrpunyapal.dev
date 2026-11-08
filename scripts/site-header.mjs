@@ -107,7 +107,11 @@ export function renderSiteHeader(activePage = 'home') {
 
                 <!-- Desktop Nav Row (Visible on sm: and larger) -->
                 <div class="hidden sm:flex site-nav-row items-center overflow-x-auto px-4 sm:px-6 w-full">
-                    <!-- Spacer pushes nav to the right -->
+                    <!-- Architectural-grid site identity. Original nav and theme switch remain unchanged. -->
+                    <a href="/" class="portfolio-brand hidden lg:inline-flex items-center gap-2 shrink-0" aria-label="Punyapal Shah home">
+                        <span class="portfolio-brand-mark" aria-hidden="true"></span>
+                        <span>Punyapal Shah</span>
+                    </a>
                     <div class="site-nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
 
                     <!-- Navigation Tabs -->

@@ -1,0 +1,425 @@
+/*
+ * Portfolio design integration: architectural grid language from
+ * mrpunyapal_dev_polished_patch.zip/index-preview.html, adapted to the
+ * real multi-page site. Existing content, header controls and Elephpant
+ * remain authoritative and are not replaced by demo implementations.
+ */
+
+:root {
+  --portfolio-canvas: #fafafa;
+  --portfolio-surface: #ffffff;
+  --portfolio-subtle: #f4f4f5;
+  --portfolio-hover: #f0f0f3;
+  --portfolio-ink: #111113;
+  --portfolio-body: #42424a;
+  --portfolio-muted: #71717a;
+  --portfolio-line: #e4e4e7;
+  --portfolio-rail: #d4d4d8;
+  --portfolio-accent: #ec3b24;
+  --portfolio-accent-soft: rgba(236,59,36,.075);
+  --portfolio-display: "Space Grotesk", "Inter", sans-serif;
+  --portfolio-sans: "Instrument Sans", "Inter", sans-serif;
+  --portfolio-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html.dark {
+  --portfolio-canvas: #09090b;
+  --portfolio-surface: #111115;
+  --portfolio-subtle: #17171c;
+  --portfolio-hover: #1d1d23;
+  --portfolio-ink: #fafafa;
+  --portfolio-body: #c5c5cd;
+  --portfolio-muted: #a1a1aa;
+  --portfolio-line: #29292f;
+  --portfolio-rail: #38383f;
+  --portfolio-accent: #ff5544;
+  --portfolio-accent-soft: rgba(255,85,68,.12);
+}
+
+body:has(main.portfolio-v2) {
+  background: var(--portfolio-canvas) !important;
+  color: var(--portfolio-ink);
+  font-family: var(--portfolio-sans);
+}
+
+/* The two guide rails refer to the existing 72rem site frame, as in
+   the ZIP. They are paint only, and never intercept pointer events. */
+body:has(main.portfolio-v2)::before {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  inset-block: 0;
+  width: min(100%, 72rem);
+  left: 50%;
+  transform: translateX(-50%);
+  border-inline: 1px solid var(--portfolio-line);
+}
+
+main.portfolio-v2 {
+  position: relative;
+  z-index: 1;
+  gap: 0;
+  color: var(--portfolio-body);
+  padding-bottom: clamp(2rem,5vw,4rem);
+}
+
+main.portfolio-v2 .portfolio-frame {
+  background: var(--portfolio-surface) !important;
+  border-color: var(--portfolio-line) !important;
+  box-shadow: none !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+main.portfolio-v2 :is(.border-slate-200,.dark\:border-slate-800) {
+  border-color: var(--portfolio-line);
+}
+
+main.portfolio-v2 .tech-marker {
+  box-shadow: 0 0 0 2px var(--portfolio-surface);
+}
+
+/* Existing header markup and controls remain unchanged. */
+main.portfolio-v2 site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: block;
+  background: color-mix(in srgb,var(--portfolio-surface) 90%,transparent);
+  border-bottom: 1px solid var(--portfolio-line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+main.portfolio-v2 .site-nav-tabs a {
+  font-family: var(--portfolio-sans);
+  letter-spacing: -.015em;
+  transition: color .16s ease, background-color .16s ease;
+}
+main.portfolio-v2 .site-nav-tabs a:hover {
+  background: var(--portfolio-accent-soft);
+}
+main.portfolio-v2 .nav-active-indicator {
+  background: var(--portfolio-accent);
+}
+
+/* Desktop identity borrows the compact masthead from the ZIP,
+   without replacing the source/GitHub link or original toggle control. */
+main.portfolio-v2 .portfolio-brand {
+  font-family: var(--portfolio-display);
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: -.045em;
+  white-space: nowrap;
+  color: var(--portfolio-ink);
+  text-decoration: none;
+}
+main.portfolio-v2 .portfolio-brand:hover {
+  color: var(--portfolio-accent);
+}
+main.portfolio-v2 .portfolio-brand-mark {
+  width: 9px;
+  height: 9px;
+  display: inline-block;
+  flex: none;
+  background: var(--portfolio-accent);
+  transform: rotate(45deg);
+}
+main.portfolio-v2 .site-nav-row {
+  min-height: 3.75rem;
+}
+main.portfolio-v2 .site-nav-utilities {
+  border-left-color: var(--portfolio-line);
+}
+
+/* Type hierarchy is taken from the architectural-grid prototype.
+   It changes presentation, not wording or source content. */
+main.portfolio-v2 :is(h1,h2,h3) {
+  color: var(--portfolio-ink);
+}
+main.portfolio-v2 h1 {
+  font-family: var(--portfolio-display);
+  font-size: clamp(2.65rem,5.1vw,4.35rem);
+  line-height: 1.06;
+  letter-spacing: -.052em;
+  font-weight: 700;
+  text-wrap: balance;
+  margin-bottom: clamp(1rem,2vw,1.45rem);
+}
+main.portfolio-v2 :is(h2,h3) {
+  letter-spacing: -.022em;
+}
+main.portfolio-v2 h2 {
+  font-family: var(--portfolio-display);
+}
+main.portfolio-v2 h2.uppercase {
+  font-family: var(--portfolio-mono);
+  font-weight: 600;
+  font-size: .72rem;
+  letter-spacing: .095em;
+  color: var(--portfolio-muted);
+}
+main.portfolio-v2 h3 {
+  font-family: var(--portfolio-display);
+  line-height: 1.3;
+}
+main.portfolio-v2 :is(p,li) {
+  text-wrap: pretty;
+}
+main.portfolio-v2 .font-mono,
+main.portfolio-v2 :is(p,span).tracking-widest {
+  font-family: var(--portfolio-mono);
+}
+main.portfolio-v2 a:focus-visible,
+main.portfolio-v2 button:focus-visible {
+  outline: 2px solid var(--portfolio-accent);
+  outline-offset: 3px;
+}
+
+/* Primary page intro: clearly separated from the rest of the grid,
+   with high-contrast editorial typography and calmer body text. */
+main.portfolio-v2 .portfolio-page-intro {
+  position: relative;
+  background: var(--portfolio-surface);
+  padding: clamp(1.5rem,4.2vw,3.65rem) !important;
+}
+main.portfolio-v2 .portfolio-page-intro > div:first-child {
+  max-width: 58rem;
+}
+main.portfolio-v2 .portfolio-page-intro p {
+  max-width: 70ch;
+}
+main.portfolio-v2 .portfolio-page-intro p.font-mono {
+  color: var(--portfolio-accent);
+  font-size: clamp(.9rem,1.4vw,1.075rem);
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+/* Preserve the existing original photo and door, but make the
+   identity half of the homepage feel like the reference composition. */
+main.portfolio-home .portfolio-home-hero {
+  background: var(--portfolio-surface);
+}
+main.portfolio-home .portfolio-home-hero > div:first-child {
+  background-color: var(--portfolio-subtle);
+}
+main.portfolio-home .portfolio-home-hero > div:not(:first-child) {
+  background: var(--portfolio-surface);
+}
+main.portfolio-home .portfolio-home-hero h1 {
+  font-size: clamp(2.55rem,5.3vw,4.65rem);
+  letter-spacing: -.055em;
+}
+main.portfolio-home .portfolio-home-hero a[href="/services"] {
+  text-underline-offset: 4px;
+}
+main.portfolio-home .portfolio-home-about {
+  background: var(--portfolio-surface);
+}
+main.portfolio-home .portfolio-home-about p {
+  line-height: 1.82;
+}
+
+/* Full-width seams and marker-based structural divisions from ZIP. */
+main.portfolio-v2 .portfolio-frame > :is(section,div):not(site-header) {
+  border-color: var(--portfolio-line);
+}
+main.portfolio-v2 .portfolio-frame > :is(section,div) .tech-line-h,
+main.portfolio-v2 .portfolio-frame > :is(section,div) .tech-line-v-top {
+  opacity: .8;
+}
+main.portfolio-v2 .portfolio-metrics {
+  gap: 0 !important;
+  border: 1px solid var(--portfolio-line);
+  background: var(--portfolio-surface);
+  margin-top: clamp(1.65rem,3.5vw,2.5rem);
+}
+main.portfolio-v2 .portfolio-metrics > div {
+  border-radius: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: var(--portfolio-surface) !important;
+  min-width: 0;
+  transition: background-color .17s ease;
+}
+main.portfolio-v2 .portfolio-metrics > div:not(:last-child) {
+  border-right: 1px solid var(--portfolio-line) !important;
+}
+main.portfolio-v2 .portfolio-metrics > div:hover {
+  background: var(--portfolio-subtle) !important;
+}
+main.portfolio-v2 .portfolio-metrics :is(svg,.font-mono) {
+  color: var(--portfolio-accent);
+}
+
+/* The original two-column item grids remain complete. Rather than
+   replacing them with demo data, each real entry becomes a precise cell. */
+main.portfolio-v2 .portfolio-tiles {
+  border-color: var(--portfolio-line) !important;
+  background: var(--portfolio-surface);
+}
+main.portfolio-v2 .portfolio-tiles > .group,
+main.portfolio-v2 .portfolio-tiles > div {
+  position: relative;
+  background: var(--portfolio-surface) !important;
+  border-color: var(--portfolio-line) !important;
+  transition: background-color .18s ease, border-color .18s ease;
+}
+main.portfolio-v2 .portfolio-tiles > .group:hover,
+main.portfolio-v2 .portfolio-tiles > .group:focus-within {
+  background: var(--portfolio-subtle) !important;
+}
+main.portfolio-v2 .portfolio-tiles > .group::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  background: var(--portfolio-accent);
+  pointer-events: none;
+  transition: height .22s ease;
+}
+main.portfolio-v2 .portfolio-tiles > .group:hover::before,
+main.portfolio-v2 .portfolio-tiles > .group:focus-within::before {
+  height: 100%;
+}
+main.portfolio-v2 .portfolio-tiles h3 {
+  font-size: clamp(1.05rem,1.6vw,1.32rem);
+  font-weight: 700;
+  letter-spacing: -.032em;
+}
+main.portfolio-v2 .portfolio-tiles .group p {
+  line-height: 1.74;
+}
+main.portfolio-v2 .portfolio-tiles :is(.rounded-lg,.rounded-md) {
+  border-radius: .2rem;
+}
+
+/* Project, OSS and Talks pages: section headings become readable
+   editorial separators, not extra blocks competing with the work. */
+main.portfolio-v2.portfolio-projects > .portfolio-frame section > div > h2,
+main.portfolio-v2.portfolio-opensource > .portfolio-frame section > div > h2,
+main.portfolio-v2.portfolio-talks > .portfolio-frame section > div > h2 {
+  color: var(--portfolio-muted);
+}
+main.portfolio-v2.portfolio-projects .portfolio-tiles a,
+main.portfolio-v2.portfolio-opensource .portfolio-tiles a,
+main.portfolio-v2.portfolio-talks .portfolio-tiles a {
+  text-underline-offset: 3px;
+}
+main.portfolio-v2.portfolio-opensource .portfolio-metrics {
+  margin-bottom: .5rem;
+}
+
+/* Services retains its existing five offerings, engagement paths,
+   sponsorship information and every price and destination. */
+main.portfolio-services .portfolio-tiles h3 {
+  font-size: clamp(1.15rem,1.9vw,1.4rem);
+}
+main.portfolio-services .portfolio-tiles .font-mono {
+  color: var(--portfolio-accent);
+}
+main.portfolio-services .portfolio-engagements {
+  background: var(--portfolio-subtle);
+  border-color: var(--portfolio-line);
+}
+main.portfolio-services .portfolio-sponsorships {
+  border-top: 1px solid var(--portfolio-line);
+}
+
+/* Resume is a document, not a pricing or social-media grid. */
+main.portfolio-resume .portfolio-tiles > div {
+  background: var(--portfolio-surface);
+}
+main.portfolio-resume .portfolio-page-intro h1 {
+  font-size: clamp(2.65rem,5vw,4.2rem);
+}
+
+/* Preserve functionality and filtering of Blog/Tips by styling only
+   the generated containers that opt into the same portfolio class. */
+main.portfolio-blog .portfolio-page-intro,
+main.portfolio-tips .portfolio-page-intro {
+  border-bottom-color: var(--portfolio-line);
+}
+
+/* Fine-grained polish: subtle code-like tags, better link affordances,
+   and small readable closing prompts. */
+main.portfolio-v2 .portfolio-frame .text-red-600,
+main.portfolio-v2 .portfolio-frame .dark\:text-red-400 {
+  text-decoration-color: var(--portfolio-accent);
+}
+main.portfolio-v2 .portfolio-footer {
+  border-inline: 1px solid var(--portfolio-line);
+  border-bottom: 1px solid var(--portfolio-line);
+  background: var(--portfolio-subtle);
+  margin-top: 0 !important;
+  padding: 1.6rem 1rem !important;
+  max-width: 72rem;
+  width: 100%;
+}
+main.portfolio-v2 .portfolio-footer p {
+  font-size: .75rem;
+  line-height: 1.7;
+}
+main.portfolio-v2 .portfolio-footer a {
+  text-decoration: underline;
+  text-decoration-color: var(--portfolio-rail);
+  text-underline-offset: 4px;
+}
+main.portfolio-v2 .portfolio-footer a:hover {
+  color: var(--portfolio-accent);
+  text-decoration-color: currentColor;
+}
+main.portfolio-v2 ::selection {
+  background: var(--portfolio-accent-soft);
+}
+
+@media (min-width: 768px) {
+  main.portfolio-v2 .portfolio-tiles > .group {
+    min-height: 100%;
+  }
+  main.portfolio-home .portfolio-home-hero > div:first-child {
+    border-right-color: var(--portfolio-line);
+  }
+}
+@media (max-width: 767px) {
+  main.portfolio-v2 {
+    padding-inline: .75rem;
+  }
+  main.portfolio-v2 h1 {
+    font-size: clamp(2.35rem,9.5vw,3.15rem);
+  }
+  main.portfolio-v2 .portfolio-page-intro {
+    padding: 1.65rem 1.25rem !important;
+  }
+  main.portfolio-v2 .portfolio-metrics {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  main.portfolio-v2 .portfolio-metrics > div:nth-child(2n) {
+    border-right: 0 !important;
+  }
+  main.portfolio-v2 .portfolio-metrics > div:nth-child(n+3) {
+    border-top: 1px solid var(--portfolio-line) !important;
+  }
+}
+@media (max-width: 480px) {
+  main.portfolio-v2 .portfolio-metrics {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  main.portfolio-v2 .portfolio-frame {
+    min-width: 0;
+  }
+  main.portfolio-v2 .portfolio-tiles h3 {
+    font-size: 1.06rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  main.portfolio-v2 .portfolio-tiles > .group,
+  main.portfolio-v2 .portfolio-tiles > .group::before,
+  main.portfolio-v2 .portfolio-metrics > div {
+    transition: none;
+  }
+}

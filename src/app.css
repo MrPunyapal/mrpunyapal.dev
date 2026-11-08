@@ -11,19 +11,53 @@ body {
     color: #0f172a;
 }
 
-/* Unified Warm Studio Light Theme (Seamless Linear / Stripe Aesthetic) */
-html:not(.dark) body {
-    background-color: #fafafa !important;
+/*
+ * Selective surface polish from the architectural-grid prototype.
+ * The body and outer shell remain neutral; interior cards regain a distinct
+ * surface instead of inheriting the same flat canvas color.
+ * Keep the existing grid markers, navigation and theme-switch behavior.
+ */
+:root {
+    --portfolio-canvas: #fafafa;
+    --portfolio-surface: #ffffff;
+    --portfolio-subtle: #f4f4f5;
+    --portfolio-line: #e4e4e7;
+    --portfolio-rail: #d4d4d8;
 }
 
-html:not(.dark) .bg-white\/80,
+html:not(.dark) body {
+    background-color: var(--portfolio-canvas) !important;
+}
+
+/* Outer framed page stays on the canvas; actual content cards lift off it. */
+html:not(.dark) .bg-white\/80 {
+    background-color: var(--portfolio-canvas) !important;
+    border-color: var(--portfolio-line) !important;
+}
+
 html:not(.dark) .bg-white {
-    background-color: #fafafa !important;
-    border-color: #d4d4d8 !important;
+    background-color: var(--portfolio-surface) !important;
+    border-color: var(--portfolio-line) !important;
 }
 
 html:not(.dark) .border-slate-200 {
-    border-color: #d4d4d8 !important;
+    border-color: var(--portfolio-line) !important;
+}
+
+/* Align card interaction with the subtle surface hierarchy, not a full redesign. */
+html:not(.dark) main .grid > .group.bg-white:is(:hover, :focus-within) {
+    background-color: var(--portfolio-subtle) !important;
+    border-color: var(--portfolio-rail) !important;
+}
+
+main > .w-full.max-w-6xl h1 {
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+}
+
+main .grid > .group h3 {
+    letter-spacing: -0.012em;
+    line-height: 1.4;
 }
 
 html:not(.dark) site-header {
