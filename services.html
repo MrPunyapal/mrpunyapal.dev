@@ -185,6 +185,11 @@
 
 <body
     class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative antialiased transition-colors duration-200">
+    <!-- Viewport Decorative Rails -->
+    <div class="viewport-rails" aria-hidden="true">
+        <div class="rail-pulse-left"></div>
+        <div class="rail-pulse-right"></div>
+    </div>
     <!-- Icon sprite: Font Awesome Free 6.4.2 icons, CC BY 4.0 (https://fontawesome.com/license/free) -->
     <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true" width="0" height="0">
         <defs>
@@ -278,20 +283,25 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
                                     <div>
-                                        <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
-                                            Laravel Application Engineering
-                                        </h3>
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="icon-badge icon-badge-red" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                            </span>
+                                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                                                Laravel Application Engineering
+                                            </h3>
+                                        </div>
                                         <span class="text-xs text-red-600 dark:text-red-400 font-medium font-mono">Production Systems</span>
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Build and extend production Laravel applications with custom domain logic, Livewire components, Filament panels, APIs, background jobs, real-time features, and payment integrations.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">SaaS &amp; Ecommerce</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Livewire &amp; Filament</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">APIs &amp; Integrations</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Queues &amp; Background Work</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">SaaS &amp; Ecommerce</span>
+                                    <span class="tech-tag">Livewire &amp; Filament</span>
+                                    <span class="tech-tag">APIs &amp; Integrations</span>
+                                    <span class="tech-tag">Queues &amp; Background Work</span>
                                 </div>
                             </div>
                         </div>
@@ -323,20 +333,25 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
                                     <div>
-                                        <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
-                                            Legacy Application Modernization
-                                        </h3>
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="icon-badge" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+                                            </span>
+                                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                                                Legacy Application Modernization
+                                            </h3>
+                                        </div>
                                         <span class="text-xs text-red-600 dark:text-red-400 font-medium font-mono">Upgrades &amp; Migration</span>
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Modernize older Laravel and PHP applications step by step. Upgrade Laravel and PHP versions, update Livewire and Filament, refactor older code, and migrate legacy applications without assuming a full rewrite is necessary.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Laravel Upgrades</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">PHP Modernization</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Legacy Migrations</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Incremental Changes</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel Upgrades</span>
+                                    <span class="tech-tag">PHP Modernization</span>
+                                    <span class="tech-tag">Legacy Migrations</span>
+                                    <span class="tech-tag">Incremental Changes</span>
                                 </div>
                             </div>
                         </div>
@@ -368,20 +383,25 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
                                     <div>
-                                        <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
-                                            Testing &amp; Code Quality
-                                        </h3>
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="icon-badge" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                            </span>
+                                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                                                Testing &amp; Code Quality
+                                            </h3>
+                                        </div>
                                         <span class="text-xs text-red-600 dark:text-red-400 font-medium font-mono">Test Architecture</span>
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Add confidence to existing applications with Pest and PHPUnit testing, PHPStan static analysis, Rector automated refactoring, and practical coding standards.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Pest &amp; PHPUnit</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">PHPStan</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Rector</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Testing Architecture</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Pest &amp; PHPUnit</span>
+                                    <span class="tech-tag">PHPStan</span>
+                                    <span class="tech-tag">Rector</span>
+                                    <span class="tech-tag">Testing Architecture</span>
                                 </div>
                             </div>
                         </div>
@@ -413,20 +433,25 @@
                             <div class="flex flex-col h-full">
                                 <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
                                     <div>
-                                        <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
-                                            Architecture &amp; Performance
-                                        </h3>
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="icon-badge" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+                                            </span>
+                                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                                                Architecture &amp; Performance
+                                            </h3>
+                                        </div>
                                         <span class="text-xs text-red-600 dark:text-red-400 font-medium font-mono">Application Health</span>
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Diagnose application and database problems, including N+1 queries, slow queries, database indexes, caching, queue workloads, and unclear domain boundaries.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Database Queries</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">N+1 Detection</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Caching</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Queues</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Database Queries</span>
+                                    <span class="tech-tag">N+1 Detection</span>
+                                    <span class="tech-tag">Caching</span>
+                                    <span class="tech-tag">Queues</span>
                                 </div>
                             </div>
                         </div>
@@ -463,20 +488,25 @@
                             <div class="flex flex-col h-full max-w-3xl">
                                 <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
                                     <div>
-                                        <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
-                                            Developer Tooling &amp; Automation
-                                        </h3>
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="icon-badge" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                                            </span>
+                                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                                                Developer Tooling &amp; Automation
+                                            </h3>
+                                        </div>
                                         <span class="text-xs text-red-600 dark:text-red-400 font-medium font-mono">Developer Experience</span>
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Build tools and automation that remove repetitive work from development, including Artisan commands, CI checks, automated refactoring, testing workflows, and background processing.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Artisan CLI</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">CI Checks</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Automated Refactoring</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Automation</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Artisan CLI</span>
+                                    <span class="tech-tag">CI Checks</span>
+                                    <span class="tech-tag">Automated Refactoring</span>
+                                    <span class="tech-tag">Automation</span>
                                 </div>
                             </div>
                         </div>
@@ -538,7 +568,7 @@
                             </div>
                             <div class="pt-4 mt-auto">
                                 <a href="mailto:mrpunyapal@gmail.com?subject=Project%20Inquiry" aria-label="Contact Punyapal for engineering projects"
-                                    class="inline-flex items-center gap-1.5 text-xs font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors">
+                                    class="btn-laravel text-xs">
                                     <span>$this-&gt;startProject()</span>
                                     <span aria-hidden="true">&rarr;</span>
                                 </a>
@@ -582,7 +612,7 @@
                             </div>
                             <div class="pt-4 mt-auto flex flex-col gap-2 items-start">
                                 <a href="mailto:mrpunyapal@gmail.com?subject=1%3A1%20Consultation%20Inquiry" aria-label="Book a 1:1 technical consultation call"
-                                    class="inline-flex items-center gap-1.5 text-xs font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors">
+                                    class="btn-outline text-xs">
                                     <span>$this-&gt;bookCall()</span>
                                     <span aria-hidden="true">&rarr;</span>
                                 </a>
@@ -615,14 +645,14 @@
                                 <div>
                                     <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3">Suitable for</h3>
 
-                                    <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
-                                        <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Product Launches</span>
-                                        <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Open-Source Releases</span>
-                                        <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Package Releases</span>
-                                        <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Major Feature Updates</span>
-                                        <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Technical Products</span>
-                                        <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Developer Tools</span>
-                                        <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">Conference &amp; Event News</span>
+                                    <div class="tag-cluster mb-6">
+                                        <span class="tech-tag">Product Launches</span>
+                                        <span class="tech-tag">Open-Source Releases</span>
+                                        <span class="tech-tag">Package Releases</span>
+                                        <span class="tech-tag">Major Feature Updates</span>
+                                        <span class="tech-tag">Technical Products</span>
+                                        <span class="tech-tag">Developer Tools</span>
+                                        <span class="tech-tag">Conference &amp; Event News</span>
                                     </div>
                                 </div>
 
@@ -664,7 +694,7 @@
                                 </div>
 
                                 <a href="mailto:mrpunyapal@gmail.com?subject=Sponsorship%20Inquiry" aria-label="Inquire about technical sponsorships"
-                                    class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 text-xs font-medium border border-red-200 dark:border-red-900/60 text-red-600 dark:text-red-400 rounded hover:bg-red-600 hover:text-white hover:border-red-600 transition-all font-mono">
+                                    class="btn-outline justify-center w-full text-xs">
                                     <span>$this-&gt;inquire()</span>
                                     <span aria-hidden="true">&rarr;</span>
                                 </a>
