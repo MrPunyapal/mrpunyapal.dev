@@ -263,7 +263,7 @@ main.portfolio-v2 :is(
   .portfolio-talks-list
 ) > .group > .flex.flex-col {
   display:grid !important;
-  grid-template-columns:minmax(0,30%) minmax(0,42%) minmax(0,28%);
+  grid-template-columns:minmax(0,3fr) minmax(0,4.2fr) minmax(0,2.8fr);
   align-content:start;
   align-items:start;
   gap:0 clamp(1.5rem,2.5vw,2.8rem);
@@ -432,7 +432,7 @@ main.portfolio-tips .portfolio-tiles > article:hover {
     .portfolio-engineering-list,
     .portfolio-talks-list
   ) > .group > .flex.flex-col {
-    grid-template-columns:minmax(0,36%) minmax(0,64%);
+    grid-template-columns:minmax(0,3.6fr) minmax(0,6.4fr);
     row-gap:.85rem;
   }
   main.portfolio-v2 :is(
