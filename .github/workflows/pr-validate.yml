@@ -23,3 +23,14 @@ jobs:
         run: npm ci
       - name: Build all pages, blogs and tips
         run: npm run build
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+      - name: Visual smoke test, light and dark
+        run: node scripts/visual-qa.mjs
+      - name: Upload visual QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-visual-qa
+          path: visual-qa/
+          if-no-files-found: ignore
