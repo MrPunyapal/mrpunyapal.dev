@@ -1,0 +1,25 @@
+name: Validate pull request
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with content submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build all pages, blogs and tips
+        run: npm run build
