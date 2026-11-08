@@ -90,6 +90,16 @@ async function main() {
             path: screenshots + '/' + name + '-' + layout.name + '-' + theme + '.png',
             animations: 'disabled',
           });
+          // Full-page comparisons show structural changes below the fold.
+          if (['home', 'projects', 'opensource', 'services'].includes(name)
+              && ((layout.name === 'desktop' && theme === 'dark')
+                  || (layout.name === 'mobile' && theme === 'light'))) {
+            await page.screenshot({
+              path: screenshots + '/' + name + '-' + layout.name + '-' + theme + '-full.png',
+              fullPage: true,
+              animations: 'disabled',
+            });
+          }
           report.push({ name, layout: layout.name, theme, status: response.status(), ...result });
           await page.close();
         }
