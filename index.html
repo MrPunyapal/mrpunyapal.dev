@@ -257,8 +257,9 @@
     <!-- Background removed in favor of local grid animation -->
 
     <!-- Main Content - Technical Grid Layout -->
-    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 portfolio-v2 portfolio-home">
-        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10 portfolio-frame">
+    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 portfolio-v2 portfolio-home portfolio-redesign portfolio-home">
+        <div class="portfolio-rails" aria-hidden="true"><div class="portfolio-rails-inner"></div></div>
+        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10 portfolio-frame portfolio-shell">
             
             <!-- Tech Markers: Corners -->
             <div class="tech-marker -top-[4px] -left-[4px]"></div>
@@ -280,7 +281,7 @@
             <site-header active="home"></site-header>
 
             <!-- Top Section: Profile & Header Info -->
-            <div class="grid grid-cols-1 md:grid-cols-12 border-b border-slate-200 dark:border-slate-800 relative portfolio-home-hero">
+            <div class="grid grid-cols-1 md:grid-cols-12 border-b border-slate-200 dark:border-slate-800 relative portfolio-home-hero portfolio-home-hero">
                 <!-- Horizontal Line Extension -->
                 <div class="tech-line-h bottom-[-1px]"></div>
                 
@@ -452,7 +453,7 @@
             <div class="grid grid-cols-1 md:grid-cols-12 relative portfolio-home-about">
                 <!-- Connect Nodes -->
                 <div class="md:col-span-8 lg:col-span-8 p-6 sm:p-8 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800 relative">
-                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6">Connect Nodes</h2>
+                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6 portfolio-section-title">Connect Nodes</h2>
                     <div class="flex flex-wrap gap-2.5 sm:gap-3 lg:gap-3.5">
                         <a href="https://x.com/MrPunyapal" target="_blank" rel="me noopener noreferrer" class="w-10 h-10 flex items-center justify-center border border-slate-200 dark:border-slate-800 dark:text-slate-300 rounded hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all" aria-label="Visit my X profile">
                             <svg class="icon" width="16" height="16" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-x-twitter"/></svg>
@@ -492,7 +493,7 @@
 
                 <!-- Join Community -->
                 <div class="md:col-span-4 lg:col-span-4 p-6 sm:p-8 relative">
-                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6">Join Laravel Artisans Community</h2>
+                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6 portfolio-section-title">Join Laravel Artisans Community</h2>
                     <div class="flex flex-wrap gap-4">
                         <a href="https://t.me/LaravelArtisans" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center border border-slate-200 dark:border-slate-800 dark:text-slate-300 rounded hover:bg-[#26A5E4] hover:text-white hover:border-[#26A5E4] transition-all" aria-label="Join Laravel Artisans on Telegram">
                             <svg class="icon" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-telegram"/></svg>
