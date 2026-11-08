@@ -301,8 +301,9 @@
 
 
     <!-- Main Content -->
-    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 portfolio-v2 portfolio-projects">
-        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10 portfolio-frame">
+    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 portfolio-v2 portfolio-projects portfolio-redesign portfolio-projects">
+        <div class="portfolio-rails" aria-hidden="true"><div class="portfolio-rails-inner"></div></div>
+        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10 portfolio-frame portfolio-shell">
 
             <!-- Tech Markers: Corners -->
             <div class="tech-marker -top-[4px] -left-[4px]"></div>
@@ -324,7 +325,7 @@
             <site-header active="projects"></site-header>
 
             <!-- Header Section -->
-            <div class="p-6 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative portfolio-page-intro">
+            <div class="p-6 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative portfolio-page-intro portfolio-page-header">
                 <!-- Horizontal Line Extension -->
                 <div class="tech-line-h bottom-[-1px]"></div>
 
@@ -349,7 +350,7 @@
 
 
                 <!-- Engineering Work Summary -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 mt-6 sm:mt-8 portfolio-metrics">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 mt-6 sm:mt-8 portfolio-metrics portfolio-summary-grid">
                     <!-- Enterprise Systems -->
                     <div class="relative p-3.5 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
                         <svg aria-hidden="true" class="absolute top-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -464,9 +465,9 @@
             <section class="relative">
 
                 <div class="p-4 sm:p-12">
-                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6">Production Engineering & Client Work (24)</h2>
+                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6 portfolio-section-title">Production Engineering & Client Work (24)</h2>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 portfolio-tiles">
+                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 portfolio-tiles portfolio-collection-grid">
 
                         <!-- Multi-Tenant Cloud Services -->
                         <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
@@ -1203,7 +1204,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 portfolio-footer">
+        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] z-10 portfolio-footer portfolio-footer">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 // Want to collaborate on a project?
                 <a href="mailto:mrpunyapal@gmail.com"
