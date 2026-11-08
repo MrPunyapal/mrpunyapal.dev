@@ -380,7 +380,7 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
                         </a>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 relative">
+                    <div class="portfolio-tiles grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800 relative">
                         ${relatedCardsHtml}
                     </div>
                 </div>
@@ -390,7 +390,7 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
         </div>
 
         <!-- Footer -->
-        <div class="w-full max-w-6xl py-6 text-center mt-[-1px] z-10">
+        <div class="w-full max-w-6xl py-6 text-center mt-[-1px] z-10 portfolio-footer">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 // Got thoughts or a topic request?
                 <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" rel="noopener noreferrer" class="text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition-colors font-bold ml-1">
