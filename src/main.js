@@ -1,6 +1,7 @@
 import './tailwind.css';
 import './app.css';
 import './portfolio-redesign.css';
+import './portfolio-layout.css';
 import './theme.js';
 
 // Custom Element definition for <site-header>
