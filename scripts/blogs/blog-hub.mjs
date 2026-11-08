@@ -154,7 +154,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
     <!-- Browser and Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=optional">
 
     <!-- Favicon and Icons -->
     <link rel="icon" href="/favicon.png" type="image/png" sizes="128x128">
@@ -187,8 +187,8 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
     ${iconSprite}
 
     <!-- Main Content Frame -->
-    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">
-        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10">
+    <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8 portfolio-v2 portfolio-blog">
+        <div class="w-full max-w-6xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md relative z-10 portfolio-frame">
 
             <!-- Tech Markers: Corners -->
             <div class="tech-marker -top-[4px] -left-[4px]" aria-hidden="true"></div>
@@ -210,7 +210,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
             ${renderSiteHeader('blog')}
 
             <!-- Header Section -->
-            <div class="p-6 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative">
+            <div class="portfolio-page-intro p-6 sm:p-12 border-b border-slate-200 dark:border-slate-800 relative">
                 <div class="tech-line-h bottom-[-1px]" aria-hidden="true"></div>
                 <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
