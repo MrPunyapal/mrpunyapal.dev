@@ -103,6 +103,35 @@ main.portfolio-v2 .nav-active-indicator {
   background: var(--portfolio-accent);
 }
 
+/* Desktop identity borrows the compact masthead from the ZIP,
+   without replacing the source/GitHub link or original toggle control. */
+main.portfolio-v2 .portfolio-brand {
+  font-family: var(--portfolio-display);
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: -.045em;
+  white-space: nowrap;
+  color: var(--portfolio-ink);
+  text-decoration: none;
+}
+main.portfolio-v2 .portfolio-brand:hover {
+  color: var(--portfolio-accent);
+}
+main.portfolio-v2 .portfolio-brand-mark {
+  width: 9px;
+  height: 9px;
+  display: inline-block;
+  flex: none;
+  background: var(--portfolio-accent);
+  transform: rotate(45deg);
+}
+main.portfolio-v2 .site-nav-row {
+  min-height: 3.75rem;
+}
+main.portfolio-v2 .site-nav-utilities {
+  border-left-color: var(--portfolio-line);
+}
+
 /* Type hierarchy is taken from the architectural-grid prototype.
    It changes presentation, not wording or source content. */
 main.portfolio-v2 :is(h1,h2,h3) {
