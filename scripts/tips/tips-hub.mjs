@@ -411,7 +411,7 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
                 <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
 
-                <div id="tips-container" class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
+                <div id="tips-container" class="portfolio-tiles grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                     ${tipsCardsHtml}
                 </div>
 
@@ -459,7 +459,7 @@ export function generateTipsHubPage(tips, categoriesMap, subcategoriesMap, rootD
         </div>
 
         <!-- Footer -->
-        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] print:hidden">
+        <div class="w-full max-w-5xl py-6 text-center mt-[-1px] print:hidden portfolio-footer">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 // Got a tip or want to contribute?
                 <a href="https://github.com/MrPunyapal/tips" target="_blank" rel="noopener noreferrer"
