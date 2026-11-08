@@ -348,7 +348,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                 <div class="tech-marker -bottom-[4px] -left-[4px]" aria-hidden="true"></div>
                 <div class="tech-marker -bottom-[4px] -right-[4px]" aria-hidden="true"></div>
 
-                <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
+                <div id="blog-container" class="portfolio-tiles grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
                     ${blogCardsHtml}
                 </div>
 
@@ -396,7 +396,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
         </div>
 
         <!-- Footer -->
-        <div class="w-full max-w-6xl py-6 text-center mt-[-1px] z-10 print:hidden">
+        <div class="w-full max-w-6xl py-6 text-center mt-[-1px] z-10 print:hidden portfolio-footer">
             <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 // Got thoughts or a topic request?
                 <a href="https://github.com/MrPunyapal/mrpunyapal.dev" target="_blank" rel="noopener noreferrer"
