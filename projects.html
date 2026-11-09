@@ -290,6 +290,11 @@
 
 <body
     class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative antialiased transition-colors duration-200">
+    <!-- Viewport Decorative Rails -->
+    <div class="viewport-rails" aria-hidden="true">
+        <div class="rail-pulse-left"></div>
+        <div class="rail-pulse-right"></div>
+    </div>
     <!-- Icon sprite: Font Awesome Free 6.4.2 icons, CC BY 4.0 (https://fontawesome.com/license/free) -->
     <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
         <defs>
@@ -351,25 +356,14 @@
                 <!-- Engineering Work Summary -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 mt-6 sm:mt-8">
                     <!-- Enterprise Systems -->
-                    <div class="relative p-3.5 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
-                        <svg aria-hidden="true" class="absolute top-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute top-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute bottom-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute bottom-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <p class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">Enterprise Systems</p>
-                        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono space-y-1 mt-2.5">
+                    <div class="relative p-4 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+                        <div class="flex items-center gap-2.5 mb-2.5">
+                            <span class="icon-badge" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>
+                            </span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Enterprise Systems</h3>
+                        </div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono space-y-1">
                             <div>HR &amp; Workforce Systems</div>
                             <div>Healthcare &amp; Clinical Forms</div>
                             <div>Multi-Tenant Architecture</div>
@@ -377,25 +371,14 @@
                     </div>
 
                     <!-- SaaS Platforms -->
-                    <div class="relative p-3.5 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
-                        <svg aria-hidden="true" class="absolute top-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute top-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute bottom-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute bottom-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <p class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">SaaS Platforms</p>
-                        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono space-y-1 mt-2.5">
+                    <div class="relative p-4 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+                        <div class="flex items-center gap-2.5 mb-2.5">
+                            <span class="icon-badge" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                            </span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">SaaS Platforms</h3>
+                        </div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono space-y-1">
                             <div>Booking &amp; Reservations</div>
                             <div>Ecommerce &amp; Marketplaces</div>
                             <div>Business Management Apps</div>
@@ -403,25 +386,14 @@
                     </div>
 
                     <!-- Integrations & Automation -->
-                    <div class="relative p-3.5 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
-                        <svg aria-hidden="true" class="absolute top-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute top-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute bottom-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute bottom-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <p class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">Integrations &amp; Automation</p>
-                        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono space-y-1 mt-2.5">
+                    <div class="relative p-4 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+                        <div class="flex items-center gap-2.5 mb-2.5">
+                            <span class="icon-badge" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>
+                            </span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Integrations &amp; APIs</h3>
+                        </div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono space-y-1">
                             <div>Third-Party &amp; POS APIs</div>
                             <div>AI &amp; Media Workflows</div>
                             <div>Payments &amp; Webhooks</div>
@@ -429,25 +401,14 @@
                     </div>
 
                     <!-- Modernization & Quality -->
-                    <div class="relative p-3.5 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg text-center flex flex-col justify-center items-center hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
-                        <svg aria-hidden="true" class="absolute top-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute top-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute bottom-2.5 left-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <svg aria-hidden="true" class="absolute bottom-2.5 right-2.5 text-slate-300 dark:text-slate-700" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2" />
-                            <circle cx="6" cy="6" r="1.2" fill="currentColor" />
-                        </svg>
-                        <p class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">Modernization &amp; Quality</p>
-                        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono space-y-1 mt-2.5">
+                    <div class="relative p-4 sm:p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+                        <div class="flex items-center gap-2.5 mb-2.5">
+                            <span class="icon-badge" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Modernization &amp; Quality</h3>
+                        </div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono space-y-1">
                             <div>Framework Upgrades</div>
                             <div>Static Analysis &amp; PHPStan</div>
                             <div>Automated Testing</div>
@@ -456,20 +417,24 @@
                 </div>
             </div>
 
-
-
-
-
             <!-- Production Engineering & Client Work -->
             <section class="relative">
 
                 <div class="p-4 sm:p-12">
-                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6">Production Engineering & Client Work (24)</h2>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+                        <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Production Engineering &amp; Client Work (24)</h2>
+                        <div class="filter-rail" role="group" aria-label="Filter projects by category">
+                            <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All (24)</button>
+                            <button type="button" class="filter-btn" data-filter="saas" aria-pressed="false">SaaS &amp; Ecommerce</button>
+                            <button type="button" class="filter-btn" data-filter="modernization" aria-pressed="false">Modernization &amp; Quality</button>
+                            <button type="button" class="filter-btn" data-filter="enterprise" aria-pressed="false">Enterprise &amp; APIs</button>
+                        </div>
+                    </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
 
                         <!-- Multi-Tenant Cloud Services -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -483,23 +448,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Enterprise Systems</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Multi-Tenant Cloud Services Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Developed and shipped features for a production multi-tenant cloud platform, including automated DNS discovery for domains, mailstores, and Microsoft tenants. Built asynchronous processing pipelines, real-time WebSocket communication, complex Livewire and Filament interfaces, comprehensive Pest test coverage, and PHPStan Level 8 static analysis to ensure scalability and long-term maintainability.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-pink-50 text-pink-700 border border-pink-100 rounded">Livewire</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">Multi-Tenant</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">WebSockets</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Livewire</span>
+                                    <span class="tech-tag">Multi-Tenant</span>
+                                    <span class="tech-tag">WebSockets</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Enterprise Laravel Application Modernization -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="modernization" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -513,23 +479,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Modernization & Quality</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Enterprise Laravel Application Modernization</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Upgraded legacy Laravel codebases from versions 5.x and 7.x up to 11.x and 12.x across client projects. Simultaneously upgraded major dependencies including Livewire, Filament, and underlying PHP versions without downtime.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Upgrade</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Migration</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">PHP</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Upgrade</span>
+                                    <span class="tech-tag">Migration</span>
+                                    <span class="tech-tag">PHP</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Automated Code Quality Service -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="modernization" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -543,23 +510,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Modernization & Quality</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Automated Code Quality &amp; Test Engineering</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Test architecture and code quality engineering across Laravel codebases. Designed testing strategies for domain-driven applications, established project-specific Pest conventions, upgraded test suites to Pest 5, and built AI agent skills that encode application architecture and testing patterns for better AI-generated tests. Integrated Pest's PHPStan and Rector plugins, introduced PHPStan up to Level Max, wrote custom Rector rules, and increased test coverage from 0% to 100% on selected projects.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Pest</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">PHPStan</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Rector</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 rounded">AI Agents</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Pest</span>
+                                    <span class="tech-tag">PHPStan</span>
+                                    <span class="tech-tag">Rector</span>
+                                    <span class="tech-tag">AI Agents</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- TRX Mall Upload Sales Data API -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -573,17 +541,18 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Integrations & APIs</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">TRX Mall POS Sales Reporting Package</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Open-source Laravel package for integrating with the TRX Mall POS sales reporting API. Built Artisan commands, schedulable jobs, and extensible service stubs for custom sales payload transformation.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">Package</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">API</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">Automation</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Package</span>
+                                    <span class="tech-tag">API</span>
+                                    <span class="tech-tag">Automation</span>
                                 </div>
                                 <div class="mt-auto pt-2">
                                     <a href="https://github.com/Retail-Cosmos/trx-mall-upload-sales-data-api" target="_blank" rel="noopener" aria-label="View on GitHub: TRX Mall POS package"
@@ -596,7 +565,7 @@
                         </div>
 
                         <!-- Logistics & Shipping Integration Platform -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -610,23 +579,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Integrations & APIs</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Logistics &amp; Shipping Integration Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Engineered a multi-carrier shipping and logistics platform featuring barcode scanning, third-party customer lookup APIs, US ZIP code delivery zone mapping, dynamic evaluation of four shipping providers, deliverability verification, and automated shipping label PDF generation with fallback routing.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">API</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Logistics</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">Automation</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">API</span>
+                                    <span class="tech-tag">Logistics</span>
+                                    <span class="tech-tag">Automation</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Traffic Control Booking App -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -640,23 +610,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Traffic Control Equipment Booking Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Developed and shipped features for an enterprise equipment booking platform, including its complex multi-asset booking model. Integrated Dialpad APIs and Laravel Prism to automate call summarization and structured booking-data extraction while modernizing the codebase with Rector, Pint, and PHPStan to improve maintainability and developer productivity.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">Laravel Prism</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Dialpad API</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">Enterprise</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Laravel Prism</span>
+                                    <span class="tech-tag">Dialpad API</span>
+                                    <span class="tech-tag">Enterprise</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Cancer Survey App -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -670,23 +641,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Enterprise Systems</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Healthcare Patient Survey &amp; Clinical Form Builder</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Dynamic clinical form builder for oncology patient visits using Filament and Livewire. Allows healthcare professionals to design custom patient forms, calculate scores from historical visit data, and configure dynamic field visibility rules without writing code.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">Healthcare</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-600 border border-orange-100 rounded">Filament</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-pink-50 text-pink-700 border border-pink-100 rounded">Livewire</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Healthcare</span>
+                                    <span class="tech-tag">Filament</span>
+                                    <span class="tech-tag">Livewire</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Multi-Vendor Ecommerce -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -700,23 +672,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Multi-Vendor CMS &amp; Ecommerce Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Multi-vendor CMS and e-commerce application running across multiple databases and domains from a single codebase. Built Excel bulk product imports, a spreadsheet-like bulk editing interface, and a drag-and-drop menu builder with submenu support. Introduced PHPStan and Rector.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-600 border border-orange-100 rounded">Ecommerce</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">Multi-Vendor</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 rounded">Multi-Domain</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Ecommerce</span>
+                                    <span class="tech-tag">Multi-Vendor</span>
+                                    <span class="tech-tag">Multi-Domain</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- DocuSign Integration -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -730,23 +703,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Integrations & APIs</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Digital Signature &amp; Document Processing Service</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Integrated DocuSign APIs into document management systems, building secure file upload pipelines, automated signature request triggers, real-time webhook status handlers, and administrative compliance workflows.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">DocuSign</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">API</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">Automation</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">DocuSign</span>
+                                    <span class="tech-tag">API</span>
+                                    <span class="tech-tag">Automation</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Bulk WhatsApp App -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -760,23 +734,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Integrations & APIs</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Bulk WhatsApp Messaging Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Built a high-throughput bulk messaging platform utilizing WhatsApp Business APIs, featuring CSV contact list parsing, message template validation, media attachment storage, and scheduled queue broadcast pipelines.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">WhatsApp</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">Automation</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">API</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">WhatsApp</span>
+                                    <span class="tech-tag">Automation</span>
+                                    <span class="tech-tag">API</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Employee Management (Europe) -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -790,23 +765,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Enterprise Systems</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">European Enterprise HR &amp; Onboarding System</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Employee management system handling multi-step onboarding and offboarding workflows for European companies. Built tracking for leave requests, holiday calendars, bonuses, cost centers, and collective labor agreements across different job roles.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 rounded">HR</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">Workflow</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">Alpine.js</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">HR</span>
+                                    <span class="tech-tag">Workflow</span>
+                                    <span class="tech-tag">Alpine.js</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Freelance Platform -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -820,23 +796,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Freelance Marketplace Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Led the end-to-end development of a full-scale freelance marketplace over two years, building nearly all major product systems across consultant discovery, proposals, agency and client teams, hourly and fixed-price contracts, real-time communication, activity monitoring, automated billing, wallets, tax workflows, notifications, and administration. Built complex role-based workflows, contract lifecycle management, scheduled billing, WebSocket-powered chat, and desktop activity tracking comparable to mature freelance platforms.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 rounded">TALL Stack</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">WebSockets</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">Enterprise</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">TALL Stack</span>
+                                    <span class="tech-tag">WebSockets</span>
+                                    <span class="tech-tag">Enterprise</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Yacht Charter Booking Platform -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -850,23 +827,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Yacht Charter Booking Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Migrated a legacy Drupal yacht charter system to modern Laravel architecture, adding multi-lingual date-range filtering, real-time availability verification, and dynamic API pricing, yielding an 80–90% performance improvement.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">Booking</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">API</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Migration</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Booking</span>
+                                    <span class="tech-tag">API</span>
+                                    <span class="tech-tag">Migration</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Car Booking & Rental Platform -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -880,23 +858,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Car Booking &amp; Rental Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Vehicle rental platform featuring real-time search and availability, a multi-step Livewire booking flow, Filament admin panel, and Razorpay payment integration.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">Booking</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">Payments</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-600 border border-orange-100 rounded">Filament</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Booking</span>
+                                    <span class="tech-tag">Payments</span>
+                                    <span class="tech-tag">Filament</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Direct-to-Consumer E-Commerce Store -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -910,23 +889,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Direct-to-Consumer E-Commerce Store</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     E-commerce store for specialty coffee roasters. Built product catalog navigation, Stripe payment gateway integration, and a Filament administration dashboard for order processing.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-600 border border-orange-100 rounded">Ecommerce</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">Payments</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-600 border border-orange-100 rounded">Filament</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Ecommerce</span>
+                                    <span class="tech-tag">Payments</span>
+                                    <span class="tech-tag">Filament</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Audio & Digital Book Streaming Platform -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -940,23 +920,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Audio &amp; Digital Book Streaming Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Audio and music streaming application built with Laravel and Angular. Built custom UI components for digital book publishing that render uploaded book covers as 3D hardcover previews alongside streaming audio content.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-100 rounded">Angular</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">Streaming</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 rounded">UI</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">Laravel</span>
+                                    <span class="tech-tag">Angular</span>
+                                    <span class="tech-tag">Streaming</span>
+                                    <span class="tech-tag">UI</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Video Caption & Subtitle Generation API -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -970,23 +951,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Integrations & APIs</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Video Caption &amp; Subtitle Generation API</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Custom CorePHP API service for automated video captioning. Built a custom segment-based URL router for frameworkless PHP, integrated webhooks with media processing backends, and generated SRT and VTT subtitle files.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-50 text-yellow-600 border border-yellow-100 rounded">CorePHP</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">API</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">Webhooks</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">Media</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">CorePHP</span>
+                                    <span class="tech-tag">API</span>
+                                    <span class="tech-tag">Webhooks</span>
+                                    <span class="tech-tag">Media</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Power BI Analytics & Dashboard Integration -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -1000,23 +982,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Integrations & APIs</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Power BI Analytics &amp; Dashboard Integration</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Embedded Power BI analytics dashboards into a CorePHP project without official Microsoft PHP SDKs. Built custom OAuth2 authentication pipelines interacting with Azure APIs to render dashboard analytics, added 2FA support, and managed user permissions.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-50 text-yellow-600 border border-yellow-100 rounded">CorePHP</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-50 text-yellow-600 border border-yellow-100 rounded">Power BI</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">Azure</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">OAuth2</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">CorePHP</span>
+                                    <span class="tech-tag">Power BI</span>
+                                    <span class="tech-tag">Azure</span>
+                                    <span class="tech-tag">OAuth2</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- School Session & Attendance Management System -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -1030,23 +1013,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Enterprise Systems</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">School Session &amp; Attendance Management System</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     School management system for parents, schools, and admins built in CorePHP. Parents book activities and pay via Stripe or internal wallet, while automated cron jobs handle attendance tracking and late fee calculations.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-50 text-yellow-600 border border-yellow-100 rounded">CorePHP</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">Booking</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">Payments</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-cyan-50 text-cyan-700 border border-cyan-100 rounded">Automation</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">CorePHP</span>
+                                    <span class="tech-tag">Booking</span>
+                                    <span class="tech-tag">Payments</span>
+                                    <span class="tech-tag">Automation</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Event Management Messaging Integration -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="enterprise" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -1060,23 +1044,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Integrations & APIs</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Event Management Messaging Integration</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Integrated WhatsApp messaging into an existing CodeIgniter event management platform using Facebook Graph API templates alongside email notifications.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-600 border border-orange-100 rounded">CodeIgniter</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">WhatsApp</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">API</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 rounded">Integration</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">CodeIgniter</span>
+                                    <span class="tech-tag">WhatsApp</span>
+                                    <span class="tech-tag">API</span>
+                                    <span class="tech-tag">Integration</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Digital Publishing Portal & CMS -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -1090,23 +1075,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Digital Publishing Portal &amp; CMS</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Publishing content management system built with WordPress and CorePHP. Refactored legacy code, fixed existing bugs, and built custom editorial publishing tools.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">WordPress</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-50 text-yellow-600 border border-yellow-100 rounded">CorePHP</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 rounded">CMS</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Migration</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">WordPress</span>
+                                    <span class="tech-tag">CorePHP</span>
+                                    <span class="tech-tag">CMS</span>
+                                    <span class="tech-tag">Migration</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- WordPress Subdomain Content Integration -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="modernization" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -1120,23 +1106,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">Modernization & Quality</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">WordPress Subdomain Content Integration</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     Migrated a decoupled WordPress blog from a separate subdomain server onto the main server. Built custom CorePHP data-fetching scripts to render WordPress posts directly within the primary site domain.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">WordPress</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-50 text-yellow-600 border border-yellow-100 rounded">CorePHP</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Migration</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 rounded">Integration</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">WordPress</span>
+                                    <span class="tech-tag">CorePHP</span>
+                                    <span class="tech-tag">Migration</span>
+                                    <span class="tech-tag">Integration</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- News Portal & Native Android Application -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -1150,23 +1137,24 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">News Portal &amp; Native Android Application</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     News media platform built on CodeIgniter with MySQL query optimizations. Built a companion Android native app in Java using WebView with offline detection, pull-to-refresh, loading indicators, and smooth scrolling.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-600 border border-orange-100 rounded">CodeIgniter</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 border border-green-100 rounded">Android</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded">MySQL</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-50 text-yellow-600 border border-yellow-100 rounded">WebView</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">CodeIgniter</span>
+                                    <span class="tech-tag">Android</span>
+                                    <span class="tech-tag">MySQL</span>
+                                    <span class="tech-tag">WebView</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Fashion E-Commerce Platform -->
-                        <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                        <div data-project-item data-category="saas" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                             <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
@@ -1180,17 +1168,18 @@
                                 <svg aria-hidden="true" class="w-full h-full" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                             <div class="flex flex-col h-full">
-                                <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3">
+                                    <span class="font-mono text-[0.68rem] uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1 block">SaaS Platforms</span>
                                     <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Fashion E-Commerce Platform</h3>
                                 </div>
                                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3 sm:mb-4">
                                     E-commerce platform for fashion apparel built in PHP. Built product catalog management, order processing, and payment integrations for PayPal, credit cards, and Venmo.
                                 </p>
-                                <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200 rounded">PHP</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-orange-50 text-orange-600 border border-orange-100 rounded">Ecommerce</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 rounded">Payments</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200 rounded">Admin Panel</span>
+                                <div class="tag-cluster mb-2 sm:mb-4">
+                                    <span class="tech-tag">PHP</span>
+                                    <span class="tech-tag">Ecommerce</span>
+                                    <span class="tech-tag">Payments</span>
+                                    <span class="tech-tag">Admin Panel</span>
                                 </div>
                             </div>
                         </div>
@@ -1214,6 +1203,31 @@
         </div>
     </main>
 
+    <!-- Projects Category Filter -->
+    <script>
+        (function() {
+            const filterBtns = document.querySelectorAll('.filter-rail .filter-btn');
+            const projectCards = document.querySelectorAll('[data-project-item]');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+                    filterBtns.forEach(b => {
+                        const active = b === btn;
+                        b.classList.toggle('active', active);
+                        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+                    });
+                    projectCards.forEach(card => {
+                        const match = filter === 'all' || card.getAttribute('data-category') === filter;
+                        if (match) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
