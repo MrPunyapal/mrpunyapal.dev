@@ -249,7 +249,9 @@ site-header {
     .grid > .group.relative.border-r.border-b::before {
         display: none !important;
     }
-    .viewport-rails {
+    .viewport-rails,
+    .rail-pulse-h-track,
+    .rail-pulse-v-track {
         display: none !important;
     }
 }
@@ -312,6 +314,80 @@ site-header {
     100% { transform: translateY(85vh); opacity: 0; }
 }
 
+/* Inner Grid Divider Circuit Pulses */
+.rail-pulse-h-track {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+    container-type: inline-size;
+}
+
+.rail-pulse-h {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #f53003, transparent);
+    opacity: 0.65;
+    animation: rail-travel-h 8.5s linear infinite;
+}
+
+.rail-pulse-h-reverse .rail-pulse-h {
+    animation: rail-travel-h 10.5s linear infinite reverse;
+    animation-delay: -3s;
+}
+
+.dark .rail-pulse-h {
+    background: linear-gradient(to right, transparent, #ff2d20, transparent);
+}
+
+.rail-pulse-v-track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -1px;
+    width: 1px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+    container-type: size;
+}
+
+.rail-pulse-v {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 72px;
+    background: linear-gradient(to bottom, transparent, #f53003, transparent);
+    opacity: 0.65;
+    animation: rail-travel-v 5.5s linear infinite;
+}
+
+.dark .rail-pulse-v {
+    background: linear-gradient(to bottom, transparent, #ff2d20, transparent);
+}
+
+@keyframes rail-travel-h {
+    0% { transform: translateX(-120px); opacity: 0; }
+    12% { opacity: 0.7; }
+    88% { opacity: 0.7; }
+    100% { transform: translateX(100cqw); opacity: 0; }
+}
+
+@keyframes rail-travel-v {
+    0% { transform: translateY(-72px); opacity: 0; }
+    15% { opacity: 0.7; }
+    85% { opacity: 0.7; }
+    100% { transform: translateY(100cqh); opacity: 0; }
+}
+
 body:has(#mobile-sidebar:not(.hidden)) .viewport-rails,
 body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     display: none;
@@ -319,7 +395,9 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
 
 @media (prefers-reduced-motion: reduce) {
     .rail-pulse-left,
-    .rail-pulse-right {
+    .rail-pulse-right,
+    .rail-pulse-h,
+    .rail-pulse-v {
         animation: none;
         opacity: 0;
     }
