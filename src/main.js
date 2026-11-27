@@ -1,6 +1,7 @@
 import './tailwind.css';
 import './app.css';
 import './theme.js';
+import './coil-border.js';
 
 // Custom Element definition for <site-header>
 if (typeof customElements !== 'undefined' && !customElements.get('site-header')) {

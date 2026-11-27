@@ -394,27 +394,31 @@ site-header {
     animation-delay: -2s;
 }
 
-/* Global Horizontal Divider Circuit Pulses (.tech-line-h) */
+/* Global Horizontal Divider Helical Coil Pulses (.tech-line-h) */
 .tech-line-h {
     z-index: 5 !important;
-    overflow: hidden;
+    overflow: visible !important;
 }
 
 .tech-line-h::after {
     content: "";
     position: absolute;
-    top: 0;
+    top: -5px;
     left: calc(50% - 50vw);
-    width: 200px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(245, 48, 3, 0.4) 30%, #f53003 55%, rgba(245, 48, 3, 0.4) 75%, transparent);
-    opacity: 0.85;
+    width: 140px;
+    height: 11px;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M-14.00%201.50%20L-12.13%201.70%20L-10.37%202.26%20L-8.83%203.15%20L-7.59%204.26%20L-6.70%205.50%20L-6.19%206.74%20L-6.03%207.85%20L-6.17%208.74%20L-6.53%209.30%20L-7.00%209.50%20L-7.47%209.30%20L-7.83%208.74%20L-7.97%207.85%20L-7.81%206.74%20L-7.30%205.50%20L-6.41%204.26%20L-5.17%203.15%20L-3.63%202.26%20L-1.87%201.70%20L-0.00%201.50%20L1.87%201.70%20L3.63%202.26%20L5.17%203.15%20L6.41%204.26%20L7.30%205.50%20L7.81%206.74%20L7.97%207.85%20L7.83%208.74%20L7.47%209.30%20L7.00%209.50%20L6.53%209.30%20L6.17%208.74%20L6.03%207.85%20L6.19%206.74%20L6.70%205.50%20L7.59%204.26%20L8.83%203.15%20L10.37%202.26%20L12.13%201.70%20L14.00%201.50%20L15.87%201.70%20L17.63%202.26%20L19.17%203.15%20L20.41%204.26%20L21.30%205.50%20L21.81%206.74%20L21.97%207.85%20L21.83%208.74%20L21.47%209.30%20L21.00%209.50%20L20.53%209.30%20L20.17%208.74%20L20.03%207.85%20L20.19%206.74%20L20.70%205.50%20L21.59%204.26%20L22.83%203.15%20L24.37%202.26%20L26.13%201.70%20L28.00%201.50%22%20stroke%3D%22%23f53003%22%20stroke-width%3D%221.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: repeat-x;
+    background-size: 14px 11px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
+    opacity: 0.78;
     pointer-events: none;
-    animation: tech-line-pulse-h 9.5s linear infinite;
+    animation: tech-line-pulse-h 10s linear infinite;
 }
 
 .dark .tech-line-h::after {
-    background: linear-gradient(to right, transparent, rgba(255, 45, 32, 0.45) 30%, #ff2d20 55%, rgba(255, 45, 32, 0.45) 75%, transparent);
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M-14.00%201.50%20L-12.13%201.70%20L-10.37%202.26%20L-8.83%203.15%20L-7.59%204.26%20L-6.70%205.50%20L-6.19%206.74%20L-6.03%207.85%20L-6.17%208.74%20L-6.53%209.30%20L-7.00%209.50%20L-7.47%209.30%20L-7.83%208.74%20L-7.97%207.85%20L-7.81%206.74%20L-7.30%205.50%20L-6.41%204.26%20L-5.17%203.15%20L-3.63%202.26%20L-1.87%201.70%20L-0.00%201.50%20L1.87%201.70%20L3.63%202.26%20L5.17%203.15%20L6.41%204.26%20L7.30%205.50%20L7.81%206.74%20L7.97%207.85%20L7.83%208.74%20L7.47%209.30%20L7.00%209.50%20L6.53%209.30%20L6.17%208.74%20L6.03%207.85%20L6.19%206.74%20L6.70%205.50%20L7.59%204.26%20L8.83%203.15%20L10.37%202.26%20L12.13%201.70%20L14.00%201.50%20L15.87%201.70%20L17.63%202.26%20L19.17%203.15%20L20.41%204.26%20L21.30%205.50%20L21.81%206.74%20L21.97%207.85%20L21.83%208.74%20L21.47%209.30%20L21.00%209.50%20L20.53%209.30%20L20.17%208.74%20L20.03%207.85%20L20.19%206.74%20L20.70%205.50%20L21.59%204.26%20L22.83%203.15%20L24.37%202.26%20L26.13%201.70%20L28.00%201.50%22%20stroke%3D%22%23ff2d20%22%20stroke-width%3D%221.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
 }
 
 .tech-line-h.top-\[-1px\]::after {
@@ -447,9 +451,9 @@ section:nth-of-type(even) > .tech-line-h::after {
 }
 
 @keyframes tech-line-pulse-h {
-    0% { transform: translateX(-200px); opacity: 0; }
-    10% { opacity: 0.85; }
-    90% { opacity: 0.85; }
+    0% { transform: translateX(-140px); opacity: 0; }
+    10% { opacity: 0.78; }
+    90% { opacity: 0.78; }
     100% { transform: translateX(100vw); opacity: 0; }
 }
 
@@ -523,13 +527,13 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     .tech-line-h::after,
     .tech-line-v-top::after,
     .tech-line-v-bottom::after,
-    .card-border-snake rect {
+    .card-border-snake path {
         animation: none;
         opacity: 0;
     }
 }
 
-/* Perimeter Circuit & Hover Snake Animations for Summary Cards */
+/* Perimeter Helical Coil & Hover Snake Animations for Summary Cards */
 .card-border-snake {
     position: absolute;
     inset: -0.5px;
@@ -540,14 +544,14 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     z-index: 6;
 }
 
-.card-border-snake rect {
+.card-border-snake path {
     fill: none;
     stroke: #f53003;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
-.dark .card-border-snake rect {
+.dark .card-border-snake path {
     stroke: #ff2d20;
 }
 
