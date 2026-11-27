@@ -251,7 +251,8 @@ site-header {
     }
     .viewport-rails,
     .rail-pulse-v-track,
-    .summary-circuit-grid > div::before {
+    .summary-circuit-grid > div::before,
+    .summary-circuit-grid > div::after {
         display: none !important;
     }
 }
@@ -418,7 +419,8 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     .rail-pulse-right,
     .rail-pulse-v,
     .tech-line-h::after,
-    .summary-circuit-grid > div::before {
+    .summary-circuit-grid > div::before,
+    .summary-circuit-grid > div::after {
         animation: none;
         opacity: 0;
     }
@@ -502,6 +504,58 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     animation-duration: 6.5s;
     animation-direction: reverse;
     animation-delay: -1.4s;
+}
+
+/* Hover Nested Spiral Circuit Line */
+.summary-circuit-grid > div::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 0.3125rem;
+    padding: 1px;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    background: conic-gradient(
+        from var(--circuit-angle, 0deg),
+        transparent 0deg,
+        rgba(245, 48, 3, 0.08) 65deg,
+        rgba(245, 48, 3, 0.78) 125deg,
+        transparent 145deg,
+        rgba(245, 48, 3, 0.08) 245deg,
+        rgba(245, 48, 3, 0.78) 305deg,
+        transparent 325deg
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    transition: opacity 220ms ease;
+    animation: circuit-spin 2.2s linear infinite;
+    animation-play-state: paused;
+}
+
+.dark .summary-circuit-grid > div::after {
+    background: conic-gradient(
+        from var(--circuit-angle, 0deg),
+        transparent 0deg,
+        rgba(255, 45, 32, 0.1) 65deg,
+        rgba(255, 45, 32, 0.85) 125deg,
+        transparent 145deg,
+        rgba(255, 45, 32, 0.1) 245deg,
+        rgba(255, 45, 32, 0.85) 305deg,
+        transparent 325deg
+    );
+}
+
+.summary-circuit-grid > div:nth-child(even)::after {
+    animation-direction: reverse;
+}
+
+.summary-circuit-grid > div:hover::after,
+.summary-circuit-grid > div:focus-within::after {
+    opacity: 0.9;
+    animation-play-state: running;
 }
 
 @keyframes circuit-spin {
