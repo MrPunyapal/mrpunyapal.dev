@@ -8,8 +8,8 @@
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const COIL_PITCH = 24;
-const COIL_TANGENT_AMP = 2.6;
-const COIL_NORMAL_AMP = 3.4;
+const COIL_TANGENT_AMP = 2.4;
+const COIL_NORMAL_AMP = 3.0;
 const SAMPLES_PER_TURN = 18;
 
 /**
@@ -181,15 +181,15 @@ function ensureCoilMaskLayer(svg, index) {
     const shadePath = document.createElementNS(SVG_NS, 'path');
     shadePath.setAttribute('data-coil-shade', 'true');
     shadePath.setAttribute('fill', 'none');
-    shadePath.setAttribute('stroke', '#9e9e9e');
-    shadePath.setAttribute('stroke-width', '4.2');
+    shadePath.setAttribute('stroke', '#b8b8b8');
+    shadePath.setAttribute('stroke-width', '3.6');
     shadePath.setAttribute('stroke-linecap', 'round');
 
     const gapPath = document.createElementNS(SVG_NS, 'path');
     gapPath.setAttribute('data-coil-gap', 'true');
     gapPath.setAttribute('fill', 'none');
     gapPath.setAttribute('stroke', '#000000');
-    gapPath.setAttribute('stroke-width', '2.3');
+    gapPath.setAttribute('stroke-width', '2.0');
     gapPath.setAttribute('stroke-linecap', 'butt');
 
     mask.appendChild(maskRect);
