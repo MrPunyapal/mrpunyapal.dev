@@ -403,58 +403,63 @@ site-header {
 .tech-line-h::after {
     content: "";
     position: absolute;
-    top: -5px;
+    top: -4.5px;
     left: calc(50% - 50vw);
-    width: 140px;
-    height: 11px;
-    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M-14.00%201.50%20L-12.13%201.70%20L-10.37%202.26%20L-8.83%203.15%20L-7.59%204.26%20L-6.70%205.50%20L-6.19%206.74%20L-6.03%207.85%20L-6.17%208.74%20L-6.53%209.30%20L-7.00%209.50%20L-7.47%209.30%20L-7.83%208.74%20L-7.97%207.85%20L-7.81%206.74%20L-7.30%205.50%20L-6.41%204.26%20L-5.17%203.15%20L-3.63%202.26%20L-1.87%201.70%20L-0.00%201.50%20L1.87%201.70%20L3.63%202.26%20L5.17%203.15%20L6.41%204.26%20L7.30%205.50%20L7.81%206.74%20L7.97%207.85%20L7.83%208.74%20L7.47%209.30%20L7.00%209.50%20L6.53%209.30%20L6.17%208.74%20L6.03%207.85%20L6.19%206.74%20L6.70%205.50%20L7.59%204.26%20L8.83%203.15%20L10.37%202.26%20L12.13%201.70%20L14.00%201.50%20L15.87%201.70%20L17.63%202.26%20L19.17%203.15%20L20.41%204.26%20L21.30%205.50%20L21.81%206.74%20L21.97%207.85%20L21.83%208.74%20L21.47%209.30%20L21.00%209.50%20L20.53%209.30%20L20.17%208.74%20L20.03%207.85%20L20.19%206.74%20L20.70%205.50%20L21.59%204.26%20L22.83%203.15%20L24.37%202.26%20L26.13%201.70%20L28.00%201.50%22%20stroke%3D%22%23f53003%22%20stroke-width%3D%221.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+    width: 192px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2210%22%20viewBox%3D%220%200%2024%2010%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M-9.40%208.40%20L-8.87%208.36%20L-8.39%208.26%20L-7.97%208.08%20L-7.60%207.84%20L-7.27%207.53%20L-6.99%207.17%20L-6.74%206.77%20L-6.52%206.33%20M14.60%208.40%20L15.13%208.36%20L15.61%208.26%20L16.03%208.08%20L16.40%207.84%20L16.73%207.53%20L17.01%207.17%20L17.26%206.77%20L17.48%206.33%20M38.60%208.40%20L39.13%208.36%20L39.61%208.26%20L40.03%208.08%20L40.40%207.84%20L40.73%207.53%20L41.01%207.17%20L41.26%206.77%20L41.48%206.33%20M-5.48%203.67%20L-5.26%203.23%20L-5.01%202.83%20L-4.73%202.47%20L-4.40%202.16%20L-4.03%201.92%20L-3.61%201.74%20L-3.13%201.64%20L-2.60%201.60%20M18.52%203.67%20L18.74%203.23%20L18.99%202.83%20L19.27%202.47%20L19.60%202.16%20L19.97%201.92%20L20.39%201.74%20L20.87%201.64%20L21.40%201.60%20M42.52%203.67%20L42.74%203.23%20L42.99%202.83%20L43.27%202.47%20L43.60%202.16%20L43.97%201.92%20L44.39%201.74%20L44.87%201.64%20L45.40%201.60%22%20stroke%3D%22%23f53003%22%20stroke-opacity%3D%220.52%22%20stroke-width%3D%221.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M-26.60%201.60%20L-25.80%201.67%20L-24.90%201.86%20L-23.91%202.17%20L-22.84%202.60%20L-21.69%203.11%20L-20.49%203.70%20L-19.26%204.34%20L-18.00%205.00%20L-16.74%205.66%20L-15.51%206.30%20L-14.31%206.89%20L-13.16%207.40%20L-12.09%207.83%20L-11.10%208.14%20L-10.20%208.33%20L-9.40%208.40%20M-2.60%201.60%20L-1.80%201.67%20L-0.90%201.86%20L0.09%202.17%20L1.16%202.60%20L2.31%203.11%20L3.51%203.70%20L4.74%204.34%20L6.00%205.00%20L7.26%205.66%20L8.49%206.30%20L9.69%206.89%20L10.84%207.40%20L11.91%207.83%20L12.90%208.14%20L13.80%208.33%20L14.60%208.40%20M21.40%201.60%20L22.20%201.67%20L23.10%201.86%20L24.09%202.17%20L25.16%202.60%20L26.31%203.11%20L27.51%203.70%20L28.74%204.34%20L30.00%205.00%20L31.26%205.66%20L32.49%206.30%20L33.69%206.89%20L34.84%207.40%20L35.91%207.83%20L36.90%208.14%20L37.80%208.33%20L38.60%208.40%22%20stroke%3D%22%23f53003%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
     background-repeat: repeat-x;
-    background-size: 14px 11px;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
+    background-size: 24px 10px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 24%, #000 76%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 24%, #000 76%, transparent);
     opacity: 0.78;
     pointer-events: none;
-    animation: tech-line-pulse-h 10s linear infinite;
+    animation: tech-line-pulse-h 12s linear infinite, tech-line-wave-h 0.28s linear infinite;
 }
 
 .dark .tech-line-h::after {
-    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M-14.00%201.50%20L-12.13%201.70%20L-10.37%202.26%20L-8.83%203.15%20L-7.59%204.26%20L-6.70%205.50%20L-6.19%206.74%20L-6.03%207.85%20L-6.17%208.74%20L-6.53%209.30%20L-7.00%209.50%20L-7.47%209.30%20L-7.83%208.74%20L-7.97%207.85%20L-7.81%206.74%20L-7.30%205.50%20L-6.41%204.26%20L-5.17%203.15%20L-3.63%202.26%20L-1.87%201.70%20L-0.00%201.50%20L1.87%201.70%20L3.63%202.26%20L5.17%203.15%20L6.41%204.26%20L7.30%205.50%20L7.81%206.74%20L7.97%207.85%20L7.83%208.74%20L7.47%209.30%20L7.00%209.50%20L6.53%209.30%20L6.17%208.74%20L6.03%207.85%20L6.19%206.74%20L6.70%205.50%20L7.59%204.26%20L8.83%203.15%20L10.37%202.26%20L12.13%201.70%20L14.00%201.50%20L15.87%201.70%20L17.63%202.26%20L19.17%203.15%20L20.41%204.26%20L21.30%205.50%20L21.81%206.74%20L21.97%207.85%20L21.83%208.74%20L21.47%209.30%20L21.00%209.50%20L20.53%209.30%20L20.17%208.74%20L20.03%207.85%20L20.19%206.74%20L20.70%205.50%20L21.59%204.26%20L22.83%203.15%20L24.37%202.26%20L26.13%201.70%20L28.00%201.50%22%20stroke%3D%22%23ff2d20%22%20stroke-width%3D%221.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2210%22%20viewBox%3D%220%200%2024%2010%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M-9.40%208.40%20L-8.87%208.36%20L-8.39%208.26%20L-7.97%208.08%20L-7.60%207.84%20L-7.27%207.53%20L-6.99%207.17%20L-6.74%206.77%20L-6.52%206.33%20M14.60%208.40%20L15.13%208.36%20L15.61%208.26%20L16.03%208.08%20L16.40%207.84%20L16.73%207.53%20L17.01%207.17%20L17.26%206.77%20L17.48%206.33%20M38.60%208.40%20L39.13%208.36%20L39.61%208.26%20L40.03%208.08%20L40.40%207.84%20L40.73%207.53%20L41.01%207.17%20L41.26%206.77%20L41.48%206.33%20M-5.48%203.67%20L-5.26%203.23%20L-5.01%202.83%20L-4.73%202.47%20L-4.40%202.16%20L-4.03%201.92%20L-3.61%201.74%20L-3.13%201.64%20L-2.60%201.60%20M18.52%203.67%20L18.74%203.23%20L18.99%202.83%20L19.27%202.47%20L19.60%202.16%20L19.97%201.92%20L20.39%201.74%20L20.87%201.64%20L21.40%201.60%20M42.52%203.67%20L42.74%203.23%20L42.99%202.83%20L43.27%202.47%20L43.60%202.16%20L43.97%201.92%20L44.39%201.74%20L44.87%201.64%20L45.40%201.60%22%20stroke%3D%22%23ff2d20%22%20stroke-opacity%3D%220.52%22%20stroke-width%3D%221.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M-26.60%201.60%20L-25.80%201.67%20L-24.90%201.86%20L-23.91%202.17%20L-22.84%202.60%20L-21.69%203.11%20L-20.49%203.70%20L-19.26%204.34%20L-18.00%205.00%20L-16.74%205.66%20L-15.51%206.30%20L-14.31%206.89%20L-13.16%207.40%20L-12.09%207.83%20L-11.10%208.14%20L-10.20%208.33%20L-9.40%208.40%20M-2.60%201.60%20L-1.80%201.67%20L-0.90%201.86%20L0.09%202.17%20L1.16%202.60%20L2.31%203.11%20L3.51%203.70%20L4.74%204.34%20L6.00%205.00%20L7.26%205.66%20L8.49%206.30%20L9.69%206.89%20L10.84%207.40%20L11.91%207.83%20L12.90%208.14%20L13.80%208.33%20L14.60%208.40%20M21.40%201.60%20L22.20%201.67%20L23.10%201.86%20L24.09%202.17%20L25.16%202.60%20L26.31%203.11%20L27.51%203.70%20L28.74%204.34%20L30.00%205.00%20L31.26%205.66%20L32.49%206.30%20L33.69%206.89%20L34.84%207.40%20L35.91%207.83%20L36.90%208.14%20L37.80%208.33%20L38.60%208.40%22%20stroke%3D%22%23ff2d20%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
 }
 
 .tech-line-h.top-\[-1px\]::after {
-    animation-duration: 11s;
-    animation-delay: -1s;
+    animation-duration: 13s, 0.28s;
+    animation-delay: -1s, 0s;
 }
 
 .w-full.max-w-6xl > .tech-line-h.bottom-\[-1px\]::after {
-    animation-duration: 12.5s;
-    animation-direction: reverse;
-    animation-delay: -4.5s;
+    animation-duration: 14.5s, 0.28s;
+    animation-direction: reverse, reverse;
+    animation-delay: -4.5s, 0s;
 }
 
 header .tech-line-h::after {
-    animation-duration: 8s;
-    animation-delay: -0.5s;
+    animation-duration: 10s, 0.26s;
+    animation-delay: -0.5s, 0s;
 }
 
 div:nth-of-type(odd) > .tech-line-h::after,
 section:nth-of-type(odd) > .tech-line-h::after {
-    animation-duration: 10s;
-    animation-direction: reverse;
-    animation-delay: -3.2s;
+    animation-duration: 12s, 0.28s;
+    animation-direction: reverse, reverse;
+    animation-delay: -3.2s, 0s;
 }
 
 div:nth-of-type(even) > .tech-line-h::after,
 section:nth-of-type(even) > .tech-line-h::after {
-    animation-duration: 11.5s;
-    animation-delay: -6.2s;
+    animation-duration: 13.5s, 0.28s;
+    animation-delay: -6.2s, 0s;
 }
 
 @keyframes tech-line-pulse-h {
-    0% { transform: translateX(-140px); opacity: 0; }
+    0% { transform: translateX(-192px); opacity: 0; }
     10% { opacity: 0.78; }
     90% { opacity: 0.78; }
     100% { transform: translateX(100vw); opacity: 0; }
+}
+
+@keyframes tech-line-wave-h {
+    from { background-position-x: 0; }
+    to { background-position-x: -24px; }
 }
 
 /* Extending Vertical Outer Rails (.tech-line-v-top & .tech-line-v-bottom) */
@@ -556,55 +561,55 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
 }
 
 .card-border-snake .snake-ambient {
-    stroke-width: 1.25px;
-    stroke-dasharray: 14 86;
-    opacity: 0.78;
-    animation: snake-orbit 8s linear infinite;
-    transition: opacity 180ms ease;
+    stroke-width: 1.2px;
+    stroke-dasharray: 12 88;
+    opacity: 0.62;
+    animation: snake-orbit 16s linear infinite;
+    transition: opacity 200ms ease;
 }
 
 .summary-circuit-grid > div:nth-child(2) .snake-ambient {
-    stroke-dasharray: 16 84;
-    animation-duration: 9.5s;
+    stroke-dasharray: 13 87;
+    animation-duration: 19s;
     animation-direction: reverse;
-    animation-delay: -2.4s;
+    animation-delay: -4.2s;
 }
 
 .summary-circuit-grid > div:nth-child(3) .snake-ambient {
-    stroke-dasharray: 10 40 10 40;
-    animation-duration: 11s;
-    animation-delay: -4.5s;
+    stroke-dasharray: 9 41 9 41;
+    animation-duration: 21s;
+    animation-delay: -8.5s;
 }
 
 .summary-circuit-grid > div:nth-child(4) .snake-ambient {
     stroke-dasharray: 7 26 7 26 7 27;
-    animation-duration: 7.5s;
+    animation-duration: 15s;
     animation-direction: reverse;
-    animation-delay: -1.6s;
+    animation-delay: -3.1s;
 }
 
 .card-border-snake .snake-tail,
 .card-border-snake .snake-mid,
 .card-border-snake .snake-head {
     opacity: 0;
-    animation: snake-orbit 2.4s linear infinite;
+    animation: snake-orbit 6.4s linear infinite;
     animation-play-state: paused;
-    transition: opacity 180ms ease;
+    transition: opacity 200ms ease;
 }
 
 .card-border-snake .snake-tail {
     stroke-width: 1.25px;
-    stroke-dasharray: 24 76;
+    stroke-dasharray: 14 86;
 }
 
 .card-border-snake .snake-mid {
-    stroke-width: 1.5px;
-    stroke-dasharray: 0 10 14 76;
+    stroke-width: 1.7px;
+    stroke-dasharray: 0 5 9 86;
 }
 
 .card-border-snake .snake-head {
-    stroke-width: 1.75px;
-    stroke-dasharray: 0 18 6 76;
+    stroke-width: 2.25px;
+    stroke-dasharray: 0 10.5 3.5 86;
     filter: drop-shadow(0 0 3px rgba(245, 48, 3, 0.55));
 }
 
@@ -619,27 +624,27 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
 }
 
 .summary-circuit-grid > div:nth-child(even) .snake-mid {
-    stroke-dasharray: 14 86;
+    stroke-dasharray: 9 91;
 }
 
 .summary-circuit-grid > div:nth-child(even) .snake-head {
-    stroke-dasharray: 6 94;
+    stroke-dasharray: 3.5 96.5;
 }
 
 .summary-circuit-grid > div:hover .snake-ambient,
 .summary-circuit-grid > div:focus-within .snake-ambient {
-    opacity: 0.15;
+    opacity: 0.12;
 }
 
 .summary-circuit-grid > div:hover .snake-tail,
 .summary-circuit-grid > div:focus-within .snake-tail {
-    opacity: 0.3;
+    opacity: 0.28;
     animation-play-state: running;
 }
 
 .summary-circuit-grid > div:hover .snake-mid,
 .summary-circuit-grid > div:focus-within .snake-mid {
-    opacity: 0.65;
+    opacity: 0.68;
     animation-play-state: running;
 }
 
