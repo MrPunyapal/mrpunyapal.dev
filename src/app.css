@@ -604,25 +604,56 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     }
 }
 
-/* Perimeter Helical Coil & Hover Snake Animations for Summary Cards */
-.card-border-snake {
-    position: absolute;
-    inset: -0.5px;
-    width: calc(100% + 1px);
-    height: calc(100% + 1px);
-    pointer-events: none;
-    overflow: visible;
-    z-index: 6;
+/* Perimeter Helical Coil & Hover Snake Animations for Notched Summary Cards */
+.summary-circuit-grid > div {
+    background-color: transparent !important;
+    border-color: transparent !important;
 }
 
-.card-border-snake path {
+.summary-circuit-grid > div > *:not(.card-border-snake) {
+    z-index: 2;
+}
+
+.card-border-snake {
+    position: absolute;
+    inset: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    pointer-events: none;
+    overflow: visible;
+    z-index: 1;
+}
+
+.card-notched-surface {
+    fill: #ffffff;
+    stroke: #e2e8f0;
+    stroke-width: 1px;
+    transition: fill 250ms ease, stroke 250ms ease;
+}
+
+.summary-circuit-grid > div:hover .card-notched-surface {
+    fill: rgba(248, 250, 252, 0.75);
+    stroke: #cbd5e1;
+}
+
+.dark .card-notched-surface {
+    fill: rgba(15, 23, 42, 0.6);
+    stroke: #1e293b;
+}
+
+.dark .summary-circuit-grid > div:hover .card-notched-surface {
+    fill: rgba(30, 41, 59, 0.5);
+    stroke: #334155;
+}
+
+.card-border-snake g path {
     fill: none;
     stroke: #f53003;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
-.dark .card-border-snake path {
+.dark .card-border-snake g path {
     stroke: #ff2d20;
 }
 
