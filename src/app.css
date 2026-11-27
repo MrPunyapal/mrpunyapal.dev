@@ -216,6 +216,41 @@ site-header {
     background-color: rgba(69, 10, 10, 0.45) !important;
 }
 
+/* Left-Edge Accent Bar on Card Hover */
+.grid > .group.relative.border-r.border-b::before {
+    content: "";
+    position: absolute;
+    z-index: 15;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 0;
+    background: #ec3b24;
+    pointer-events: none;
+    transition: height 0.22s ease;
+}
+
+.dark .grid > .group.relative.border-r.border-b::before {
+    background: #ff5544;
+}
+
+.grid > .group.relative.border-r.border-b:hover::before,
+.grid > .group.relative.border-r.border-b:focus-within::before {
+    height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .grid > .group.relative.border-r.border-b::before {
+        transition: none;
+    }
+}
+
+@media print {
+    .grid > .group.relative.border-r.border-b::before {
+        display: none !important;
+    }
+}
+
 /* Stack Inventory Interactive Brand System */
 .stack-item {
     background-color: rgba(248, 250, 252, 0.6);
