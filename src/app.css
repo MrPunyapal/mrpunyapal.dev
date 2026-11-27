@@ -635,9 +635,20 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     transition: fill 250ms ease, stroke 250ms ease;
 }
 
+.card-notched-inner {
+    fill: none;
+    stroke: rgba(203, 213, 225, 0.72);
+    stroke-width: 1px;
+    transition: stroke 250ms ease;
+}
+
 .summary-circuit-grid > div:hover .card-notched-surface {
     fill: rgba(248, 250, 252, 0.75);
     stroke: #cbd5e1;
+}
+
+.summary-circuit-grid > div:hover .card-notched-inner {
+    stroke: rgba(148, 163, 184, 0.65);
 }
 
 .dark .card-notched-surface {
@@ -645,9 +656,17 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     stroke: #1e293b;
 }
 
+.dark .card-notched-inner {
+    stroke: rgba(51, 65, 85, 0.65);
+}
+
 .dark .summary-circuit-grid > div:hover .card-notched-surface {
     fill: rgba(30, 41, 59, 0.5);
     stroke: #334155;
+}
+
+.dark .summary-circuit-grid > div:hover .card-notched-inner {
+    stroke: rgba(71, 85, 105, 0.85);
 }
 
 .card-border-snake g path {

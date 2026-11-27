@@ -12,8 +12,9 @@ const COIL_PITCH = 24;
 const COIL_TANGENT_AMP = 2.4;
 const COIL_NORMAL_AMP = 3.0;
 const SAMPLES_PER_TURN = 18;
-const FILLET_RADIUS = 5;
-const SCOOP_RADIUS = 22;
+const FILLET_RADIUS = 7;
+const SCOOP_RADIUS = 20;
+const INNER_FRAME_INSET = 4.5;
 
 function getCornerRadii(width, height) {
     const baseSpan = SCOOP_RADIUS + 2 * FILLET_RADIUS;
@@ -129,32 +130,36 @@ function sampleNotchedRect(s, width, height) {
     return { cx: n - f * cosU, cy: f - f * sinU, tx: sinU, ty: -cosU, nx: -cosU, ny: -sinU };
 }
 
-function buildNotchedSurfacePath(width, height) {
-    const { f, R, n } = getCornerRadii(width, height);
+function buildNotchedSurfacePath(width, height, inset = 0) {
+    const { f: baseF, R: baseR, n } = getCornerRadii(width, height);
+    const d = Math.min(inset, Math.max(0, baseF - 1.5));
+    const f = baseF - d;
+    const R = baseR + d;
     const fs = f.toFixed(1);
     const rs = R.toFixed(1);
     const ns = n.toFixed(1);
+    const ds = d.toFixed(1);
     const w = width;
     const h = height;
 
     return [
-        `M${ns} 0`,
-        `L${(w - n).toFixed(1)} 0`,
-        `A${fs} ${fs} 0 0 1 ${(w - n + f).toFixed(1)} ${fs}`,
-        `A${rs} ${rs} 0 0 0 ${(w - f).toFixed(1)} ${(f + R).toFixed(1)}`,
-        `A${fs} ${fs} 0 0 1 ${w.toFixed(1)} ${ns}`,
-        `L${w.toFixed(1)} ${(h - n).toFixed(1)}`,
-        `A${fs} ${fs} 0 0 1 ${(w - f).toFixed(1)} ${(h - n + f).toFixed(1)}`,
-        `A${rs} ${rs} 0 0 0 ${(w - n + f).toFixed(1)} ${(h - f).toFixed(1)}`,
-        `A${fs} ${fs} 0 0 1 ${(w - n).toFixed(1)} ${h.toFixed(1)}`,
-        `L${ns} ${h.toFixed(1)}`,
-        `A${fs} ${fs} 0 0 1 ${(n - f).toFixed(1)} ${(h - f).toFixed(1)}`,
-        `A${rs} ${rs} 0 0 0 ${fs} ${(h - n + f).toFixed(1)}`,
-        `A${fs} ${fs} 0 0 1 0 ${(h - n).toFixed(1)}`,
-        `L0 ${ns}`,
-        `A${fs} ${fs} 0 0 1 ${fs} ${(n - f).toFixed(1)}`,
-        `A${rs} ${rs} 0 0 0 ${(n - f).toFixed(1)} ${fs}`,
-        `A${fs} ${fs} 0 0 1 ${ns} 0`,
+        `M${ns} ${ds}`,
+        `L${(w - n).toFixed(1)} ${ds}`,
+        `A${fs} ${fs} 0 0 1 ${(w - n + f).toFixed(1)} ${baseF.toFixed(1)}`,
+        `A${rs} ${rs} 0 0 0 ${(w - baseF).toFixed(1)} ${(baseF + R).toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${(w - d).toFixed(1)} ${ns}`,
+        `L${(w - d).toFixed(1)} ${(h - n).toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${(w - baseF).toFixed(1)} ${(h - n + f).toFixed(1)}`,
+        `A${rs} ${rs} 0 0 0 ${(w - n + f).toFixed(1)} ${(h - baseF).toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${(w - n).toFixed(1)} ${(h - d).toFixed(1)}`,
+        `L${ns} ${(h - d).toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${(n - f).toFixed(1)} ${(h - baseF).toFixed(1)}`,
+        `A${rs} ${rs} 0 0 0 ${baseF.toFixed(1)} ${(h - n + f).toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${ds} ${(h - n).toFixed(1)}`,
+        `L${ds} ${ns}`,
+        `A${fs} ${fs} 0 0 1 ${baseF.toFixed(1)} ${(n - f).toFixed(1)}`,
+        `A${rs} ${rs} 0 0 0 ${(n - f).toFixed(1)} ${baseF.toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${ns} ${ds}`,
         'Z',
     ].join(' ');
 }
@@ -214,7 +219,8 @@ function buildCoilGeometry(width, height) {
     }
 
     return {
-        surfacePath: buildNotchedSurfacePath(width, height),
+        surfacePath: buildNotchedSurfacePath(width, height, 0),
+        innerSurfacePath: buildNotchedSurfacePath(width, height, INNER_FRAME_INSET),
         coilPath: `${coords.join(' ')} Z`,
         backShadePath: backShadeParts.join(' '),
         backGapPath: backGapParts.join(' '),
@@ -226,6 +232,7 @@ function ensureCoilMaskLayer(svg, index) {
     if (group) {
         return {
             surfacePath: svg.querySelector('path.card-notched-surface'),
+            innerSurfacePath: svg.querySelector('path.card-notched-inner'),
             mask: svg.querySelector('mask'),
             maskRect: svg.querySelector('mask > rect'),
             shadePath: svg.querySelector('path[data-coil-shade]'),
@@ -265,6 +272,9 @@ function ensureCoilMaskLayer(svg, index) {
     const surfacePath = document.createElementNS(SVG_NS, 'path');
     surfacePath.setAttribute('class', 'card-notched-surface');
 
+    const innerSurfacePath = document.createElementNS(SVG_NS, 'path');
+    innerSurfacePath.setAttribute('class', 'card-notched-inner');
+
     group = document.createElementNS(SVG_NS, 'g');
     group.setAttribute('data-coil-group', 'true');
     group.setAttribute('mask', `url(#${maskId})`);
@@ -276,9 +286,10 @@ function ensureCoilMaskLayer(svg, index) {
 
     svg.appendChild(defs);
     svg.appendChild(surfacePath);
+    svg.appendChild(innerSurfacePath);
     svg.appendChild(group);
 
-    return { surfacePath, mask, maskRect, shadePath, gapPath, snakePaths };
+    return { surfacePath, innerSurfacePath, mask, maskRect, shadePath, gapPath, snakePaths };
 }
 
 function initCardCoilBorders() {
@@ -308,8 +319,9 @@ function initCardCoilBorders() {
             const geometry = buildCoilGeometry(width, height);
             if (!geometry) return;
 
-            const { surfacePath, mask, maskRect, shadePath, gapPath, snakePaths } = ensureCoilMaskLayer(svg, index);
+            const { surfacePath, innerSurfacePath, mask, maskRect, shadePath, gapPath, snakePaths } = ensureCoilMaskLayer(svg, index);
             surfacePath.setAttribute('d', geometry.surfacePath);
+            innerSurfacePath.setAttribute('d', geometry.innerSurfacePath);
 
             if (reducedMotion) return;
 
