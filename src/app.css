@@ -216,7 +216,7 @@ site-header {
     background-color: rgba(69, 10, 10, 0.45) !important;
 }
 
-/* Bottom-Right Corner Hairline Circuit Traces on '+' Grid Card Hover */
+/* Bottom-Right Corner Moving 1px Circuit Pulses on '+' Grid Card Hover */
 .grid > .group.relative.border-r.border-b::before {
     content: "";
     position: absolute;
@@ -225,20 +225,44 @@ site-header {
     bottom: 0;
     width: 1px;
     height: 100%;
-    background: linear-gradient(to top, #ec3b24, rgba(236, 59, 36, 0.35) 55%, transparent);
+    background: linear-gradient(
+        to top,
+        transparent 0%,
+        transparent 36%,
+        rgba(236, 59, 36, 0.35) 44%,
+        #ec3b24 50%,
+        rgba(236, 59, 36, 0.35) 56%,
+        transparent 64%,
+        transparent 100%
+    );
+    background-size: 100% 280%;
+    background-position: 0 0%;
+    background-repeat: no-repeat;
+    opacity: 0;
     pointer-events: none;
-    transform-origin: bottom center;
-    transform: scaleY(0);
-    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 180ms ease;
 }
 
 .dark .grid > .group.relative.border-r.border-b::before {
-    background: linear-gradient(to top, #ff5544, rgba(255, 85, 68, 0.45) 55%, transparent);
+    background: linear-gradient(
+        to top,
+        transparent 0%,
+        transparent 36%,
+        rgba(255, 85, 68, 0.4) 44%,
+        #ff5544 50%,
+        rgba(255, 85, 68, 0.4) 56%,
+        transparent 64%,
+        transparent 100%
+    );
+    background-size: 100% 280%;
+    background-position: 0 0%;
+    background-repeat: no-repeat;
 }
 
 .grid > .group.relative.border-r.border-b:hover::before,
 .grid > .group.relative.border-r.border-b:focus-within::before {
-    transform: scaleY(1);
+    opacity: 1;
+    animation: card-edge-pulse-v 1.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .grid > .group.relative.border-r.border-b::after {
@@ -249,20 +273,54 @@ site-header {
     bottom: -1px;
     width: 100%;
     height: 1px;
-    background: linear-gradient(to left, #ec3b24, rgba(236, 59, 36, 0.35) 55%, transparent);
+    background: linear-gradient(
+        to left,
+        transparent 0%,
+        transparent 36%,
+        rgba(236, 59, 36, 0.35) 44%,
+        #ec3b24 50%,
+        rgba(236, 59, 36, 0.35) 56%,
+        transparent 64%,
+        transparent 100%
+    );
+    background-size: 280% 100%;
+    background-position: 0% 0;
+    background-repeat: no-repeat;
+    opacity: 0;
     pointer-events: none;
-    transform-origin: right center;
-    transform: scaleX(0);
-    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 180ms ease;
 }
 
 .dark .grid > .group.relative.border-r.border-b::after {
-    background: linear-gradient(to left, #ff5544, rgba(255, 85, 68, 0.45) 55%, transparent);
+    background: linear-gradient(
+        to left,
+        transparent 0%,
+        transparent 36%,
+        rgba(255, 85, 68, 0.4) 44%,
+        #ff5544 50%,
+        rgba(255, 85, 68, 0.4) 56%,
+        transparent 64%,
+        transparent 100%
+    );
+    background-size: 280% 100%;
+    background-position: 0% 0;
+    background-repeat: no-repeat;
 }
 
 .grid > .group.relative.border-r.border-b:hover::after,
 .grid > .group.relative.border-r.border-b:focus-within::after {
-    transform: scaleX(1);
+    opacity: 1;
+    animation: card-edge-pulse-h 1.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes card-edge-pulse-v {
+    from { background-position: 0 0%; }
+    to { background-position: 0 100%; }
+}
+
+@keyframes card-edge-pulse-h {
+    from { background-position: 0% 0; }
+    to { background-position: 100% 0; }
 }
 
 .grid > .group.relative.border-r.border-b > div.bottom-0.right-0.z-10 {
@@ -338,31 +396,31 @@ site-header {
     width: 1px;
     height: 96px;
     background: linear-gradient(to bottom, transparent, #f53003, transparent);
-    opacity: 0.65;
+    opacity: 0.38;
 }
 
 .dark .rail-pulse-left,
 .dark .rail-pulse-right {
     background: linear-gradient(to bottom, transparent, #ff2d20, transparent);
-    opacity: 0.65;
+    opacity: 0.38;
 }
 
 .rail-pulse-left {
     left: 0;
     top: 18%;
-    animation: rail-travel 9s linear infinite;
+    animation: rail-travel 16s linear infinite;
 }
 
 .rail-pulse-right {
     right: 0;
     top: 62%;
-    animation: rail-travel 12s linear infinite reverse;
+    animation: rail-travel 20s linear infinite reverse;
 }
 
 @keyframes rail-travel {
     0% { transform: translateY(-120px); opacity: 0; }
-    15% { opacity: 0.7; }
-    85% { opacity: 0.7; }
+    15% { opacity: 0.4; }
+    85% { opacity: 0.4; }
     100% { transform: translateY(85vh); opacity: 0; }
 }
 
@@ -386,8 +444,8 @@ site-header {
     width: 1px;
     height: 72px;
     background: linear-gradient(to bottom, transparent, #f53003, transparent);
-    opacity: 0.65;
-    animation: rail-travel-v 5.5s linear infinite;
+    opacity: 0.38;
+    animation: rail-travel-v 12s linear infinite;
 }
 
 .dark .rail-pulse-v {
@@ -396,14 +454,14 @@ site-header {
 
 @keyframes rail-travel-v {
     0% { transform: translateY(-72px); opacity: 0; }
-    15% { opacity: 0.7; }
-    85% { opacity: 0.7; }
+    15% { opacity: 0.4; }
+    85% { opacity: 0.4; }
     100% { transform: translateY(100cqh); opacity: 0; }
 }
 
 .rail-pulse-v-reverse .rail-pulse-v {
-    animation: rail-travel-v 6.5s linear infinite reverse;
-    animation-delay: -2s;
+    animation: rail-travel-v 14s linear infinite reverse;
+    animation-delay: -3s;
 }
 
 /* Global Horizontal Divider Circuit Pulses (.tech-line-h) */
@@ -419,49 +477,49 @@ site-header {
     left: calc(50% - 50vw);
     width: 200px;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(245, 48, 3, 0.4) 30%, #f53003 55%, rgba(245, 48, 3, 0.4) 75%, transparent);
-    opacity: 0.85;
+    background: linear-gradient(to right, transparent, rgba(245, 48, 3, 0.3) 30%, #f53003 55%, rgba(245, 48, 3, 0.3) 75%, transparent);
+    opacity: 0.42;
     pointer-events: none;
-    animation: tech-line-pulse-h 9.5s linear infinite;
+    animation: tech-line-pulse-h 17s linear infinite;
 }
 
 .dark .tech-line-h::after {
-    background: linear-gradient(to right, transparent, rgba(255, 45, 32, 0.45) 30%, #ff2d20 55%, rgba(255, 45, 32, 0.45) 75%, transparent);
+    background: linear-gradient(to right, transparent, rgba(255, 45, 32, 0.32) 30%, #ff2d20 55%, rgba(255, 45, 32, 0.32) 75%, transparent);
 }
 
 .tech-line-h.top-\[-1px\]::after {
-    animation-duration: 11s;
-    animation-delay: -1s;
+    animation-duration: 19s;
+    animation-delay: -2s;
 }
 
 .w-full.max-w-6xl > .tech-line-h.bottom-\[-1px\]::after {
-    animation-duration: 12.5s;
+    animation-duration: 21s;
     animation-direction: reverse;
-    animation-delay: -4.5s;
+    animation-delay: -6.5s;
 }
 
 header .tech-line-h::after {
-    animation-duration: 8s;
-    animation-delay: -0.5s;
+    animation-duration: 15s;
+    animation-delay: -1s;
 }
 
 div:nth-of-type(odd) > .tech-line-h::after,
 section:nth-of-type(odd) > .tech-line-h::after {
-    animation-duration: 10s;
+    animation-duration: 18s;
     animation-direction: reverse;
-    animation-delay: -3.2s;
+    animation-delay: -4.5s;
 }
 
 div:nth-of-type(even) > .tech-line-h::after,
 section:nth-of-type(even) > .tech-line-h::after {
-    animation-duration: 11.5s;
-    animation-delay: -6.2s;
+    animation-duration: 20s;
+    animation-delay: -9s;
 }
 
 @keyframes tech-line-pulse-h {
     0% { transform: translateX(-200px); opacity: 0; }
-    12% { opacity: 0.85; }
-    88% { opacity: 0.85; }
+    12% { opacity: 0.42; }
+    88% { opacity: 0.42; }
     100% { transform: translateX(100vw); opacity: 0; }
 }
 
@@ -490,36 +548,36 @@ section:nth-of-type(even) > .tech-line-h::after {
 .tech-line-v-top::after {
     height: 80px;
     top: 0;
-    animation: tech-line-pulse-v-top 7.5s linear infinite;
+    animation: tech-line-pulse-v-top 14s linear infinite;
 }
 
 .tech-line-v-top.right-\[-1px\]::after {
-    animation-delay: -3.75s;
-    animation-duration: 9s;
+    animation-delay: -5.5s;
+    animation-duration: 17s;
 }
 
 .tech-line-v-bottom::after {
     height: 52px;
     top: 0;
-    animation: tech-line-pulse-v-bottom 4.8s linear infinite;
+    animation: tech-line-pulse-v-bottom 10s linear infinite;
 }
 
 .tech-line-v-bottom.right-\[-1px\]::after {
-    animation-delay: -2.4s;
-    animation-duration: 5.8s;
+    animation-delay: -4.2s;
+    animation-duration: 12s;
 }
 
 @keyframes tech-line-pulse-v-top {
     0% { transform: translateY(-80px); opacity: 0; }
-    15% { opacity: 0.75; }
-    85% { opacity: 0.75; }
+    15% { opacity: 0.42; }
+    85% { opacity: 0.42; }
     100% { transform: translateY(100vh); opacity: 0; }
 }
 
 @keyframes tech-line-pulse-v-bottom {
     0% { transform: translateY(-52px); opacity: 0; }
-    20% { opacity: 0.75; }
-    85% { opacity: 0.25; }
+    20% { opacity: 0.42; }
+    85% { opacity: 0.18; }
     100% { transform: translateY(120px); opacity: 0; }
 }
 
@@ -566,29 +624,29 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
 .card-border-snake .snake-ambient {
     stroke-width: 1px;
     stroke-dasharray: 12 88;
-    opacity: 0.65;
-    animation: snake-orbit 16s linear infinite;
+    opacity: 0.36;
+    animation: snake-orbit 21s linear infinite;
     transition: opacity 200ms ease;
 }
 
 .summary-circuit-grid > div:nth-child(2) .snake-ambient {
     stroke-dasharray: 13 87;
-    animation-duration: 19s;
+    animation-duration: 24s;
     animation-direction: reverse;
-    animation-delay: -4.2s;
+    animation-delay: -5.2s;
 }
 
 .summary-circuit-grid > div:nth-child(3) .snake-ambient {
     stroke-dasharray: 11 89;
-    animation-duration: 21s;
-    animation-delay: -8.5s;
+    animation-duration: 26s;
+    animation-delay: -10.5s;
 }
 
 .summary-circuit-grid > div:nth-child(4) .snake-ambient {
     stroke-dasharray: 12 88;
-    animation-duration: 15s;
+    animation-duration: 20s;
     animation-direction: reverse;
-    animation-delay: -3.1s;
+    animation-delay: -4.1s;
 }
 
 .card-border-snake .snake-tail,
@@ -1764,10 +1822,10 @@ a[title="Download Resume"]::before,
     -webkit-mask-composite: xor;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
-    opacity: 0.48;
+    opacity: 0;
     pointer-events: none;
-    animation: btn-border-orbit 5.6s linear infinite;
-    transition: opacity 220ms ease;
+    animation: btn-border-orbit 4.6s linear infinite;
+    transition: opacity 200ms ease;
 }
 
 .dark #random-blog-btn::before,
@@ -1884,28 +1942,9 @@ section .flex-wrap > span.rounded.border::after,
     pointer-events: none;
 }
 
-/* Primary badge per card has a quiet staggered 1px top glint every 7s */
-.blog-card span.rounded.border:first-child::after,
-.tip-card span.rounded.border:first-child::after,
-.grid > .group span.rounded.border:first-child::after {
-    animation: badge-line-glint 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.blog-card:nth-of-type(even) span.rounded.border:first-child::after,
-.tip-card:nth-of-type(even) span.rounded.border:first-child::after,
-.grid > .group:nth-of-type(even) span.rounded.border:first-child::after {
-    animation-delay: -3.4s;
-}
-
-.blog-card:nth-of-type(3n) span.rounded.border:first-child::after,
-.tip-card:nth-of-type(3n) span.rounded.border:first-child::after,
-.grid > .group:nth-of-type(3n) span.rounded.border:first-child::after {
-    animation-delay: -1.6s;
-}
-
 #active-filter-badge:not(.hidden)::after {
     background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, transparent 100%);
-    animation: badge-line-glint 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: badge-line-glint 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* Card hover triggers a crisp cascading 1px sweep across all badges inside */
@@ -1994,9 +2033,9 @@ section .flex-wrap > span.rounded.border:hover::after {
     -webkit-mask-composite: xor;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
-    opacity: 0.62;
+    opacity: 0;
     pointer-events: none;
-    animation: btn-border-orbit 5.2s linear infinite;
+    animation: btn-border-orbit 4.4s linear infinite;
     transition: opacity 200ms ease;
 }
 
