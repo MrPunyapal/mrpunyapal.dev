@@ -1,6 +1,7 @@
 /**
- * Generates concavely notched card borders and seamless helical coil SVG paths
- * wrapping those notched borders for `.card-border-snake` elements.
+ * Generates G1-smooth concavely notched card borders (rounded fillets into
+ * inward corner scoops) and seamless helical coil SVG paths wrapping those
+ * borders for `.card-border-snake` elements.
  *
  * Uses one batched layout read pass followed by batched path attribute writes
  * inside `requestAnimationFrame` so no forced reflows occur.
@@ -11,121 +12,166 @@ const COIL_PITCH = 24;
 const COIL_TANGENT_AMP = 2.4;
 const COIL_NORMAL_AMP = 3.0;
 const SAMPLES_PER_TURN = 18;
-const CORNER_NOTCH_RADIUS = 30;
+const FILLET_RADIUS = 5;
+const SCOOP_RADIUS = 22;
 
-/**
- * Sample a point, unit tangent, and outward unit normal along a concavely
- * notched rectangle perimeter of size `width x height` and corner notch `notch`.
- */
-function sampleNotchedRect(s, width, height, notch) {
-    const n = Math.min(notch, width / 3.2, height / 3.2);
-    const sx = Math.max(0, width - 2 * n);
-    const sy = Math.max(0, height - 2 * n);
-    const arc = (Math.PI * n) / 2;
-
-    if (s < sx) {
-        return { cx: n + s, cy: 0, tx: 1, ty: 0, nx: 0, ny: -1 };
-    }
-    s -= sx;
-
-    if (s < arc && n > 0) {
-        const u = s / n;
-        const sinU = Math.sin(u);
-        const cosU = Math.cos(u);
-        return {
-            cx: width - n * cosU,
-            cy: n * sinU,
-            tx: sinU,
-            ty: cosU,
-            nx: cosU,
-            ny: -sinU,
-        };
-    }
-    s -= arc;
-
-    if (s < sy) {
-        return { cx: width, cy: n + s, tx: 0, ty: 1, nx: 1, ny: 0 };
-    }
-    s -= sy;
-
-    if (s < arc && n > 0) {
-        const u = s / n;
-        const sinU = Math.sin(u);
-        const cosU = Math.cos(u);
-        return {
-            cx: width - n * sinU,
-            cy: height - n * cosU,
-            tx: -cosU,
-            ty: sinU,
-            nx: sinU,
-            ny: cosU,
-        };
-    }
-    s -= arc;
-
-    if (s < sx) {
-        return { cx: width - n - s, cy: height, tx: -1, ty: 0, nx: 0, ny: 1 };
-    }
-    s -= sx;
-
-    if (s < arc && n > 0) {
-        const u = s / n;
-        const sinU = Math.sin(u);
-        const cosU = Math.cos(u);
-        return {
-            cx: n * cosU,
-            cy: height - n * sinU,
-            tx: -sinU,
-            ty: -cosU,
-            nx: -cosU,
-            ny: sinU,
-        };
-    }
-    s -= arc;
-
-    if (s < sy) {
-        return { cx: 0, cy: height - n - s, tx: 0, ty: -1, nx: -1, ny: 0 };
-    }
-    s -= sy;
-
-    const u = n > 0 ? Math.min(Math.PI / 2, s / n) : 0;
-    const sinU = Math.sin(u);
-    const cosU = Math.cos(u);
-    return {
-        cx: n * sinU,
-        cy: n * cosU,
-        tx: cosU,
-        ty: -sinU,
-        nx: -sinU,
-        ny: -cosU,
-    };
+function getCornerRadii(width, height) {
+    const baseSpan = SCOOP_RADIUS + 2 * FILLET_RADIUS;
+    const scale = Math.min(1, width / (baseSpan * 3), height / (baseSpan * 3));
+    const f = FILLET_RADIUS * scale;
+    const R = SCOOP_RADIUS * scale;
+    return { f, R, n: R + 2 * f };
 }
 
-function buildNotchedSurfacePath(width, height, notch = CORNER_NOTCH_RADIUS) {
-    const n = Math.min(notch, width / 3.2, height / 3.2);
+/**
+ * Sample a point, unit tangent, and outward unit normal along a G1-smooth
+ * concavely notched rectangle perimeter of size `width x height`.
+ */
+function sampleNotchedRect(s, width, height) {
+    const { f, R, n } = getCornerRadii(width, height);
+    const sx = Math.max(0, width - 2 * n);
+    const sy = Math.max(0, height - 2 * n);
+    const arcF = (Math.PI * f) / 2;
+    const arcR = (Math.PI * R) / 2;
+
+    // 1. Top straight
+    if (s < sx) return { cx: n + s, cy: 0, tx: 1, ty: 0, nx: 0, ny: -1 };
+    s -= sx;
+
+    // 2. Top-right corner: fillet 1 -> scoop -> fillet 2
+    if (s < arcF && f > 0) {
+        const u = s / f;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: width - n + f * sinU, cy: f - f * cosU, tx: cosU, ty: sinU, nx: sinU, ny: -cosU };
+    }
+    s -= arcF;
+    if (s < arcR && R > 0) {
+        const u = s / R;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: width - f - R * cosU, cy: f + R * sinU, tx: sinU, ty: cosU, nx: cosU, ny: -sinU };
+    }
+    s -= arcR;
+    if (s < arcF && f > 0) {
+        const u = s / f;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: width - f + f * sinU, cy: n - f * cosU, tx: cosU, ty: sinU, nx: sinU, ny: -cosU };
+    }
+    s -= arcF;
+
+    // 3. Right straight
+    if (s < sy) return { cx: width, cy: n + s, tx: 0, ty: 1, nx: 1, ny: 0 };
+    s -= sy;
+
+    // 4. Bottom-right corner: fillet 1 -> scoop -> fillet 2
+    if (s < arcF && f > 0) {
+        const u = s / f;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: width - f + f * cosU, cy: height - n + f * sinU, tx: -sinU, ty: cosU, nx: cosU, ny: sinU };
+    }
+    s -= arcF;
+    if (s < arcR && R > 0) {
+        const u = s / R;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: width - f - R * sinU, cy: height - f - R * cosU, tx: -cosU, ty: sinU, nx: sinU, ny: cosU };
+    }
+    s -= arcR;
+    if (s < arcF && f > 0) {
+        const u = s / f;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: width - n + f * cosU, cy: height - f + f * sinU, tx: -sinU, ty: cosU, nx: cosU, ny: sinU };
+    }
+    s -= arcF;
+
+    // 5. Bottom straight
+    if (s < sx) return { cx: width - n - s, cy: height, tx: -1, ty: 0, nx: 0, ny: 1 };
+    s -= sx;
+
+    // 6. Bottom-left corner: fillet 1 -> scoop -> fillet 2
+    if (s < arcF && f > 0) {
+        const u = s / f;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: n - f * sinU, cy: height - f + f * cosU, tx: -cosU, ty: -sinU, nx: -sinU, ny: cosU };
+    }
+    s -= arcF;
+    if (s < arcR && R > 0) {
+        const u = s / R;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: f + R * cosU, cy: height - f - R * sinU, tx: -sinU, ty: -cosU, nx: -cosU, ny: sinU };
+    }
+    s -= arcR;
+    if (s < arcF && f > 0) {
+        const u = s / f;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: f - f * sinU, cy: height - n + f * cosU, tx: -cosU, ty: -sinU, nx: -sinU, ny: cosU };
+    }
+    s -= arcF;
+
+    // 7. Left straight
+    if (s < sy) return { cx: 0, cy: height - n - s, tx: 0, ty: -1, nx: -1, ny: 0 };
+    s -= sy;
+
+    // 8. Top-left corner: fillet 1 -> scoop -> fillet 2
+    if (s < arcF && f > 0) {
+        const u = s / f;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: f - f * cosU, cy: n - f * sinU, tx: sinU, ty: -cosU, nx: -cosU, ny: -sinU };
+    }
+    s -= arcF;
+    if (s < arcR && R > 0) {
+        const u = s / R;
+        const sinU = Math.sin(u), cosU = Math.cos(u);
+        return { cx: f + R * sinU, cy: f + R * cosU, tx: cosU, ty: -sinU, nx: -sinU, ny: -cosU };
+    }
+    s -= arcR;
+
+    const u = f > 0 ? Math.min(Math.PI / 2, s / f) : 0;
+    const sinU = Math.sin(u), cosU = Math.cos(u);
+    return { cx: n - f * cosU, cy: f - f * sinU, tx: sinU, ty: -cosU, nx: -cosU, ny: -sinU };
+}
+
+function buildNotchedSurfacePath(width, height) {
+    const { f, R, n } = getCornerRadii(width, height);
+    const fs = f.toFixed(1);
+    const rs = R.toFixed(1);
+    const ns = n.toFixed(1);
+    const w = width;
+    const h = height;
+
     return [
-        `M${n.toFixed(1)} 0`,
-        `L${(width - n).toFixed(1)} 0`,
-        `A${n.toFixed(1)} ${n.toFixed(1)} 0 0 0 ${width.toFixed(1)} ${n.toFixed(1)}`,
-        `L${width.toFixed(1)} ${(height - n).toFixed(1)}`,
-        `A${n.toFixed(1)} ${n.toFixed(1)} 0 0 0 ${(width - n).toFixed(1)} ${height.toFixed(1)}`,
-        `L${n.toFixed(1)} ${height.toFixed(1)}`,
-        `A${n.toFixed(1)} ${n.toFixed(1)} 0 0 0 0 ${(height - n).toFixed(1)}`,
-        `L0 ${n.toFixed(1)}`,
-        `A${n.toFixed(1)} ${n.toFixed(1)} 0 0 0 ${n.toFixed(1)} 0`,
+        `M${ns} 0`,
+        `L${(w - n).toFixed(1)} 0`,
+        `A${fs} ${fs} 0 0 1 ${(w - n + f).toFixed(1)} ${fs}`,
+        `A${rs} ${rs} 0 0 0 ${(w - f).toFixed(1)} ${(f + R).toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${w.toFixed(1)} ${ns}`,
+        `L${w.toFixed(1)} ${(h - n).toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${(w - f).toFixed(1)} ${(h - n + f).toFixed(1)}`,
+        `A${rs} ${rs} 0 0 0 ${(w - n + f).toFixed(1)} ${(h - f).toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${(w - n).toFixed(1)} ${h.toFixed(1)}`,
+        `L${ns} ${h.toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 ${(n - f).toFixed(1)} ${(h - f).toFixed(1)}`,
+        `A${rs} ${rs} 0 0 0 ${fs} ${(h - n + f).toFixed(1)}`,
+        `A${fs} ${fs} 0 0 1 0 ${(h - n).toFixed(1)}`,
+        `L0 ${ns}`,
+        `A${fs} ${fs} 0 0 1 ${fs} ${(n - f).toFixed(1)}`,
+        `A${rs} ${rs} 0 0 0 ${(n - f).toFixed(1)} ${fs}`,
+        `A${fs} ${fs} 0 0 1 ${ns} 0`,
         'Z',
     ].join(' ');
 }
 
 /**
- * Build a closed sinusoidal-helix SVG path wrapping the concavely notched
+ * Build a closed sinusoidal-helix SVG path wrapping the G1-smooth notched
  * card border, plus mask geometry so alternating half-turns shade and tuck
  * cleanly behind the 1px border line.
  */
-function buildCoilGeometry(width, height, notch = CORNER_NOTCH_RADIUS) {
+function buildCoilGeometry(width, height) {
     if (width <= 0 || height <= 0) return null;
-    const n = Math.min(notch, width / 3.2, height / 3.2);
-    const perimeter = 2 * Math.max(0, width - 2 * n) + 2 * Math.max(0, height - 2 * n) + 2 * Math.PI * n;
+    const { f, R, n } = getCornerRadii(width, height);
+    const perimeter =
+        2 * Math.max(0, width - 2 * n) +
+        2 * Math.max(0, height - 2 * n) +
+        4 * Math.PI * f +
+        2 * Math.PI * R;
     const turns = Math.max(16, Math.round(perimeter / COIL_PITCH));
     const totalSteps = turns * SAMPLES_PER_TURN;
     const coords = new Array(totalSteps);
@@ -134,7 +180,7 @@ function buildCoilGeometry(width, height, notch = CORNER_NOTCH_RADIUS) {
         const progress = i / totalSteps;
         const s = progress * perimeter;
         const theta = progress * turns * 2 * Math.PI;
-        const { cx, cy, tx, ty, nx, ny } = sampleNotchedRect(s, width, height, n);
+        const { cx, cy, tx, ty, nx, ny } = sampleNotchedRect(s, width, height);
         const alongT = -COIL_TANGENT_AMP * Math.cos(theta);
         const alongN = -COIL_NORMAL_AMP * Math.cos(theta);
         const x = cx + alongT * tx + alongN * nx;
@@ -151,7 +197,7 @@ function buildCoilGeometry(width, height, notch = CORNER_NOTCH_RADIUS) {
             const frac = 1.12 + (0.76 * step) / 8;
             const theta = (2 * k + frac) * Math.PI;
             const s = (theta / (turns * 2 * Math.PI)) * perimeter;
-            const { cx, cy, tx, ty, nx, ny } = sampleNotchedRect(s, width, height, n);
+            const { cx, cy, tx, ty, nx, ny } = sampleNotchedRect(s, width, height);
             const alongT = -COIL_TANGENT_AMP * Math.cos(theta);
             const alongN = -COIL_NORMAL_AMP * Math.cos(theta);
             const x = cx + alongT * tx + alongN * nx;
@@ -161,14 +207,14 @@ function buildCoilGeometry(width, height, notch = CORNER_NOTCH_RADIUS) {
         backShadeParts[k] = shadePts.join(' ');
 
         const sCross = ((k + 0.75) / turns) * perimeter;
-        const p1 = sampleNotchedRect((sCross - 2.6 + perimeter) % perimeter, width, height, n);
-        const p2 = sampleNotchedRect(sCross, width, height, n);
-        const p3 = sampleNotchedRect((sCross + 2.6) % perimeter, width, height, n);
+        const p1 = sampleNotchedRect((sCross - 2.6 + perimeter) % perimeter, width, height);
+        const p2 = sampleNotchedRect(sCross, width, height);
+        const p3 = sampleNotchedRect((sCross + 2.6) % perimeter, width, height);
         backGapParts[k] = `M${p1.cx.toFixed(1)} ${p1.cy.toFixed(1)} L${p2.cx.toFixed(1)} ${p2.cy.toFixed(1)} L${p3.cx.toFixed(1)} ${p3.cy.toFixed(1)}`;
     }
 
     return {
-        surfacePath: buildNotchedSurfacePath(width, height, n),
+        surfacePath: buildNotchedSurfacePath(width, height),
         coilPath: `${coords.join(' ')} Z`,
         backShadePath: backShadeParts.join(' '),
         backGapPath: backGapParts.join(' '),
