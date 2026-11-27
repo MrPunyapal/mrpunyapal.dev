@@ -1941,17 +1941,57 @@ a[title="Download Resume"]::before {
     opacity: 0.85;
 }
 
+.category-filter-btn.active-filter,
+.subcategory-filter-btn.active-subcat {
+    color: #09090b !important;
+    background-color: rgba(245, 48, 3, 0.06) !important;
+    border-color: rgba(245, 48, 3, 0.35) !important;
+    font-weight: 600;
+    box-shadow: none !important;
+}
+
+.dark .category-filter-btn.active-filter,
+.dark .subcategory-filter-btn.active-subcat {
+    color: #ffffff !important;
+    background-color: rgba(255, 45, 32, 0.09) !important;
+    border-color: rgba(255, 45, 32, 0.38) !important;
+}
+
+.category-filter-btn.active-filter > span:nth-child(2),
+.subcategory-filter-btn.active-subcat > span:nth-child(2) {
+    background-color: rgba(245, 48, 3, 0.12) !important;
+    color: #b91c1c !important;
+}
+
+.dark .category-filter-btn.active-filter > span:nth-child(2),
+.dark .subcategory-filter-btn.active-subcat > span:nth-child(2) {
+    background-color: rgba(255, 45, 32, 0.18) !important;
+    color: #fca5a5 !important;
+}
+
 .category-filter-btn.active-filter::before,
 .subcategory-filter-btn.active-subcat::before {
     background: conic-gradient(
         from var(--trace-angle),
         transparent 0deg,
-        transparent 295deg,
-        rgba(255, 255, 255, 0.45) 330deg,
-        rgba(255, 255, 255, 0.95) 350deg,
+        transparent 290deg,
+        rgba(245, 48, 3, 0.38) 324deg,
+        #f53003 348deg,
         transparent 360deg
     );
-    opacity: 0.85;
+    opacity: 0.9;
+}
+
+.dark .category-filter-btn.active-filter::before,
+.dark .subcategory-filter-btn.active-subcat::before {
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 290deg,
+        rgba(255, 45, 32, 0.42) 324deg,
+        #ff2d20 348deg,
+        transparent 360deg
+    );
 }
 
 #random-blog-btn:hover::before,
@@ -2199,6 +2239,8 @@ section .flex-wrap > span.rounded.border:hover::after {
     .category-filter-btn::before,
     .subcategory-filter-btn::before,
     .filter-btn::before,
+    .talk-action-pill::before,
+    .talk-icon-btn::before,
     .flex-wrap > a.w-10.h-10.rounded::before,
     .blog-card span.rounded.border::after,
     .tip-card span.rounded.border::after,
@@ -2533,8 +2575,115 @@ p > a.underline:focus-visible {
 }
 
 @media print {
-    .filter-btn::before {
+    .filter-btn::before,
+    .talk-action-pill::before,
+    .talk-icon-btn::before {
         display: none !important;
+    }
+}
+
+/* Talks Card Actions & Metadata Chips Consistency */
+.talk-action-pill,
+.talk-icon-btn {
+    position: relative;
+    --talk-trace: #f53003;
+}
+
+.dark .talk-action-pill,
+.dark .talk-icon-btn {
+    --talk-trace: #ff2d20;
+}
+
+.talk-icon-btn[href*="github"],
+.talk-icon-btn[href*="gist.github"] {
+    --talk-trace: #18181b;
+}
+
+.dark .talk-icon-btn[href*="github"],
+.dark .talk-icon-btn[href*="gist.github"] {
+    --talk-trace: #f4f4f5;
+}
+
+.talk-icon-btn[href*="youtu"] {
+    --talk-trace: #ef4444;
+}
+
+.talk-action-pill::before,
+.talk-icon-btn::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 288deg,
+        color-mix(in srgb, var(--talk-trace, #f53003) 38%, transparent) 322deg,
+        var(--talk-trace, #f53003) 348deg,
+        transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    animation: btn-border-orbit 6s linear infinite;
+    transition: opacity 200ms ease;
+}
+
+.talk-action-pill:hover::before,
+.talk-action-pill:focus-visible::before,
+.talk-icon-btn:hover::before,
+.talk-icon-btn:focus-visible::before {
+    opacity: 0.9;
+}
+
+.talk-icon-btn:hover,
+.talk-icon-btn:focus-visible {
+    background-color: #f4f4f5 !important;
+    border-color: #d4d4d8 !important;
+}
+
+.dark .talk-icon-btn:hover,
+.dark .talk-icon-btn:focus-visible {
+    background-color: #171717 !important;
+    border-color: #3f3f46 !important;
+}
+
+/* Interactive Talk Venue / Location Chip 1px Top Glint */
+#talk-archive a.rounded.border {
+    position: relative;
+    overflow: hidden;
+}
+
+#talk-archive a.rounded.border::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #f53003 50%, transparent 100%);
+    opacity: 0;
+    transform: translateX(-100%);
+    pointer-events: none;
+}
+
+.dark #talk-archive a.rounded.border::after {
+    background: linear-gradient(90deg, transparent 0%, #ff2d20 50%, transparent 100%);
+}
+
+#talk-archive a.rounded.border:hover::after,
+#talk-archive a.rounded.border:focus-visible::after {
+    animation: badge-line-sweep 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #talk-archive a.rounded.border::after {
+        animation: none !important;
+        opacity: 0 !important;
     }
 }
 

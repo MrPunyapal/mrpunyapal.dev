@@ -794,7 +794,7 @@
                             <svg class="icon" width="16" height="16" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-envelope"/></svg>
                             Invite me to speak
                         </a>
-                        <a href="#talk-archive" class="text-sm text-slate-500 hover:text-red-600 transition-colors">
+                        <a href="#talk-archive" class="text-sm text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors underline decoration-red-300 dark:decoration-red-500/50 underline-offset-4">
                             Browse past talks &rarr;
                         </a>
                     </div>
@@ -803,12 +803,20 @@
 
             <!-- Talks Grid Section -->
             <div class="p-4 sm:p-12 relative" id="talk-archive">
-                <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6">Talk Archive</h2>
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 sm:mb-8">
+                    <h2 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Talk Archive</h2>
+                    <div class="filter-rail" role="group" aria-label="Filter talks by category">
+                        <button type="button" class="filter-btn" data-filter="all" aria-pressed="true"><span>All</span><span class="filter-count">10</span></button>
+                        <button type="button" class="filter-btn" data-filter="tooling" aria-pressed="false">Laravel &amp; Tooling</button>
+                        <button type="button" class="filter-btn" data-filter="opensource" aria-pressed="false">Open Source &amp; Panels</button>
+                        <button type="button" class="filter-btn" data-filter="media" aria-pressed="false">Videos &amp; Slides</button>
+                    </div>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 dark:border-slate-800">
 
                     <!-- Talk: From User to Maintainer (Featured Keynote) -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 md:col-span-2">
+                    <div data-talk-item data-category="opensource" data-media="true" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 md:col-span-2">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -848,23 +856,16 @@
                             </div>
                             <div class="mt-auto pt-4 flex items-center justify-between">
                                 <a href="/laravelblr"
-                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
-                                    <svg class="icon" width="16" height="16" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-display"/></svg>
+                                    class="talk-action-pill inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-800 transition-colors">
+                                    <svg class="icon" width="14" height="14" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-display"/></svg>
                                     <span>Interactive Slide Deck</span>
                                 </a>
-                                <div class="flex gap-3">
-                                    <a href="/laravelblr"
-                                        aria-label="View 'From User to Maintainer: The Open Source Journey' slides"
-                                        class="text-slate-500 dark:text-slate-400 hover:text-red-600 transition-colors">
-                                        <svg class="icon text-lg" width="16" height="16" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-display"/></svg>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Talk: Laracon India 2026 (Featured) -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 md:col-span-2">
+                    <div data-talk-item data-category="tooling" data-media="true" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300 md:col-span-2">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -898,16 +899,16 @@
                                 </p>
                             </div>
                             <div class="mt-auto pt-4 flex items-center justify-end">
-                                <div class="flex gap-3">
+                                <div class="flex gap-2">
                                     <a href="https://youtu.be/3_rWWGSpgyw?si=xwhC_SvNwoD9qD85" target="_blank"
                                         rel="noopener noreferrer" aria-label="Watch 'Write code that can fix itself' on YouTube"
-                                        class="text-slate-500 dark:text-slate-400 hover:text-red-600 transition-colors">
-                                        <svg class="icon text-lg" width="16" height="16" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-youtube"/></svg>
+                                        class="talk-icon-btn inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                                        <svg class="icon" width="15" height="15" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-youtube"/></svg>
                                     </a>
                                     <a href="https://github.com/MrPunyapal/laracon-in-2026" target="_blank"
                                         rel="noopener noreferrer" aria-label="View 'Write code that can fix itself' repository on GitHub"
-                                        class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                        <svg class="icon text-lg" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                                        class="talk-icon-btn inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                        <svg class="icon" width="15" height="15" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                     </a>
                                 </div>
                             </div>
@@ -915,7 +916,7 @@
                     </div>
 
                     <!-- Talk: Panel Discussion -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                    <div data-talk-item data-category="opensource" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -952,7 +953,7 @@
                     </div>
 
                     <!-- Talk: Open-Source: PR to package -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                    <div data-talk-item data-category="opensource" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -988,15 +989,15 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://github.com/OSSforAll/I-AM-CONTRIBUTOR" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'Open-Source: PR to package' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <svg class="icon text-lg" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                                    class="talk-icon-btn inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    <svg class="icon" width="15" height="15" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Talk: PestPHP (Featured) -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                    <div data-talk-item data-category="tooling" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1032,15 +1033,15 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://github.com/MrPunyapal/pest-talk" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'From Zero to Tested: Laravel + PestPHP' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <svg class="icon text-lg" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                                    class="talk-icon-btn inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    <svg class="icon" width="15" height="15" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Talk 1: Types in PHP -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                    <div data-talk-item data-category="tooling" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1087,15 +1088,15 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://gist.github.com/MrPunyapal/139779b743eec108a292de95b3f958f8"
                                     target="_blank" rel="noopener noreferrer" aria-label="View 'Types in PHP at Glance with PHPStan' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <svg class="icon text-lg" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                                    class="talk-icon-btn inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    <svg class="icon" width="15" height="15" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Talk: Kozhikode Panel -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                    <div data-talk-item data-category="opensource" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1138,7 +1139,7 @@
                     </div>
 
                     <!-- Talk 2: RectorPHP -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                    <div data-talk-item data-category="tooling" data-media="true" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1183,16 +1184,16 @@
                                 </p>
                             </div>
                             <div class="mt-auto pt-4 flex items-center justify-end">
-                                <div class="flex gap-3">
+                                <div class="flex gap-2">
                                     <a href="https://youtube.com/live/N73Smm8ldCc" target="_blank"
                                          rel="noopener noreferrer" aria-label="Watch 'Refactor Laravel with RectorPHP' on YouTube"
-                                         class="text-slate-500 dark:text-slate-400 hover:text-red-600 transition-colors">
-                                         <svg class="icon text-lg" width="16" height="16" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-youtube"/></svg>
+                                         class="talk-icon-btn inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                                         <svg class="icon" width="15" height="15" viewBox="0 0 576 512" aria-hidden="true"><use href="#i-youtube"/></svg>
                                      </a>
                                      <a href="https://github.com/MrPunyapal/laravel-rectorphp" target="_blank"
                                          rel="noopener noreferrer" aria-label="View 'Refactor Laravel with RectorPHP' repository on GitHub"
-                                         class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                         <svg class="icon text-lg" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                                         class="talk-icon-btn inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                         <svg class="icon" width="15" height="15" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                      </a>
                                  </div>
                             </div>
@@ -1200,7 +1201,7 @@
                     </div>
 
                     <!-- Talk 3: FilamentPHP -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                    <div data-talk-item data-category="tooling" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1242,15 +1243,15 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://github.com/MrPunyapal/filament-demo" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'Spark Your Laravel Apps with FilamentPHP' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <svg class="icon text-lg" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                                    class="talk-icon-btn inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    <svg class="icon" width="15" height="15" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Talk 4: Broadcasting -->
-                    <div class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
+                    <div data-talk-item data-category="tooling" class="group relative p-4 sm:p-8 bg-white dark:bg-slate-900/60 border-r border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors duration-300">
                         <!-- TL Marker (Gray) -->
                         <div
                             class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-slate-200 dark:text-slate-800 bg-white dark:bg-slate-900 z-10">
@@ -1287,8 +1288,8 @@
                             <div class="mt-auto pt-4 flex items-center justify-end">
                                 <a href="https://github.com/MrPunyapal/broadcast-with-laravel" target="_blank"
                                     rel="noopener noreferrer" aria-label="View 'Broadcasting in Laravel' repository on GitHub"
-                                    class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                    <svg class="icon text-lg" width="16" height="16" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
+                                    class="talk-icon-btn inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    <svg class="icon" width="15" height="15" viewBox="0 0 496 512" aria-hidden="true"><use href="#i-github"/></svg>
                                 </a>
                             </div>
                         </div>
@@ -1312,6 +1313,35 @@
         </div>
     </main>
 
+    <!-- Talks Category Filter -->
+    <script>
+        (function() {
+            const filterBtns = document.querySelectorAll('#talk-archive .filter-rail .filter-btn');
+            const talkCards = document.querySelectorAll('[data-talk-item]');
+            if (filterBtns.length === 0 || talkCards.length === 0) return;
+
+            let filterRaf = 0;
+
+            filterBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const filter = btn.getAttribute('data-filter');
+                    if (filterRaf) cancelAnimationFrame(filterRaf);
+                    filterRaf = requestAnimationFrame(function() {
+                        filterRaf = 0;
+                        filterBtns.forEach(function(b) {
+                            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+                        });
+                        talkCards.forEach(function(card) {
+                            const match = filter === 'all'
+                                || (filter === 'media' && card.getAttribute('data-media') === 'true')
+                                || card.getAttribute('data-category') === filter;
+                            card.classList.toggle('hidden', !match);
+                        });
+                    });
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
