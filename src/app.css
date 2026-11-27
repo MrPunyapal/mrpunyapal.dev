@@ -250,7 +250,6 @@ site-header {
         display: none !important;
     }
     .viewport-rails,
-    .rail-pulse-h-track,
     .rail-pulse-v-track,
     .summary-circuit-grid > div::before {
         display: none !important;
@@ -315,39 +314,7 @@ site-header {
     100% { transform: translateY(85vh); opacity: 0; }
 }
 
-/* Inner Grid Divider Circuit Pulses */
-.rail-pulse-h-track {
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 5;
-    container-type: inline-size;
-}
-
-.rail-pulse-h {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 120px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #f53003, transparent);
-    opacity: 0.65;
-    animation: rail-travel-h 8.5s linear infinite;
-}
-
-.rail-pulse-h-reverse .rail-pulse-h {
-    animation: rail-travel-h 10.5s linear infinite reverse;
-    animation-delay: -3s;
-}
-
-.dark .rail-pulse-h {
-    background: linear-gradient(to right, transparent, #ff2d20, transparent);
-}
-
+/* Inner Vertical Divider Circuit Pulse */
 .rail-pulse-v-track {
     position: absolute;
     top: 0;
@@ -375,18 +342,70 @@ site-header {
     background: linear-gradient(to bottom, transparent, #ff2d20, transparent);
 }
 
-@keyframes rail-travel-h {
-    0% { transform: translateX(-120px); opacity: 0; }
-    12% { opacity: 0.7; }
-    88% { opacity: 0.7; }
-    100% { transform: translateX(100cqw); opacity: 0; }
-}
-
 @keyframes rail-travel-v {
     0% { transform: translateY(-72px); opacity: 0; }
     15% { opacity: 0.7; }
     85% { opacity: 0.7; }
     100% { transform: translateY(100cqh); opacity: 0; }
+}
+
+/* Global Horizontal Divider Circuit Pulses (.tech-line-h) */
+.tech-line-h {
+    z-index: 5 !important;
+    overflow: hidden;
+}
+
+.tech-line-h::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: calc(50% - 50vw);
+    width: 140px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #f53003, transparent);
+    opacity: 0.7;
+    pointer-events: none;
+    animation: tech-line-pulse-h 10s linear infinite;
+}
+
+.dark .tech-line-h::after {
+    background: linear-gradient(to right, transparent, #ff2d20, transparent);
+}
+
+.tech-line-h.top-\[-1px\]::after {
+    animation-duration: 11s;
+    animation-delay: -1s;
+}
+
+.w-full.max-w-6xl > .tech-line-h.bottom-\[-1px\]::after {
+    animation-duration: 13s;
+    animation-direction: reverse;
+    animation-delay: -5s;
+}
+
+header .tech-line-h::after {
+    animation-duration: 8.5s;
+    animation-delay: -0.5s;
+}
+
+div:nth-of-type(odd) > .tech-line-h::after,
+section:nth-of-type(odd) > .tech-line-h::after {
+    animation-duration: 10.5s;
+    animation-direction: reverse;
+    animation-delay: -3.2s;
+}
+
+div:nth-of-type(even) > .tech-line-h::after,
+section:nth-of-type(even) > .tech-line-h::after {
+    animation-duration: 12s;
+    animation-delay: -6.5s;
+}
+
+@keyframes tech-line-pulse-h {
+    0% { transform: translateX(-140px); opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% { transform: translateX(100vw); opacity: 0; }
 }
 
 body:has(#mobile-sidebar:not(.hidden)) .viewport-rails,
@@ -397,8 +416,8 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
 @media (prefers-reduced-motion: reduce) {
     .rail-pulse-left,
     .rail-pulse-right,
-    .rail-pulse-h,
     .rail-pulse-v,
+    .tech-line-h::after,
     .summary-circuit-grid > div::before {
         animation: none;
         opacity: 0;
