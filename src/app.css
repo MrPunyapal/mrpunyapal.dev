@@ -2241,6 +2241,10 @@ section .flex-wrap > span.rounded.border:hover::after {
     .filter-btn::before,
     .talk-action-pill::before,
     .talk-icon-btn::before,
+    #drawer-apply-btn::before,
+    #drawer-reset-btn::before,
+    #reset-filters-btn::before,
+    #close-filter-drawer-btn::before,
     .flex-wrap > a.w-10.h-10.rounded::before,
     .blog-card span.rounded.border::after,
     .tip-card span.rounded.border::after,
@@ -2577,9 +2581,107 @@ p > a.underline:focus-visible {
 @media print {
     .filter-btn::before,
     .talk-action-pill::before,
-    .talk-icon-btn::before {
+    .talk-icon-btn::before,
+    #drawer-apply-btn::before,
+    #drawer-reset-btn::before,
+    #reset-filters-btn::before,
+    #close-filter-drawer-btn::before {
         display: none !important;
     }
+}
+
+/* Filter Drawer Action & Reset Buttons Consistency (Blog & Tips) */
+#drawer-apply-btn,
+#reset-filters-btn {
+    position: relative;
+    color: #991b1b;
+    background-color: rgba(245, 48, 3, 0.08);
+    border-color: rgba(245, 48, 3, 0.35);
+}
+
+.dark #drawer-apply-btn,
+.dark #reset-filters-btn {
+    color: #ffffff;
+    background-color: rgba(255, 45, 32, 0.10);
+    border-color: rgba(255, 45, 32, 0.38);
+}
+
+#drawer-apply-btn:hover,
+#drawer-apply-btn:focus-visible,
+#reset-filters-btn:hover,
+#reset-filters-btn:focus-visible {
+    background-color: rgba(245, 48, 3, 0.13);
+    border-color: rgba(245, 48, 3, 0.55);
+}
+
+.dark #drawer-apply-btn:hover,
+.dark #drawer-apply-btn:focus-visible,
+.dark #reset-filters-btn:hover,
+.dark #reset-filters-btn:focus-visible {
+    background-color: rgba(255, 45, 32, 0.16);
+    border-color: rgba(255, 45, 32, 0.58);
+}
+
+#drawer-reset-btn,
+#close-filter-drawer-btn {
+    position: relative;
+}
+
+#drawer-apply-btn::before,
+#reset-filters-btn::before,
+#drawer-reset-btn::before,
+#close-filter-drawer-btn::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 290deg,
+        rgba(245, 48, 3, 0.38) 324deg,
+        #f53003 348deg,
+        transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0.72;
+    pointer-events: none;
+    animation: btn-border-orbit 6.4s linear infinite;
+    transition: opacity 200ms ease;
+}
+
+.dark #drawer-apply-btn::before,
+.dark #reset-filters-btn::before,
+.dark #drawer-reset-btn::before,
+.dark #close-filter-drawer-btn::before {
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 290deg,
+        rgba(255, 45, 32, 0.42) 324deg,
+        #ff2d20 348deg,
+        transparent 360deg
+    );
+}
+
+#drawer-reset-btn::before,
+#close-filter-drawer-btn::before {
+    opacity: 0;
+}
+
+#drawer-apply-btn:hover::before,
+#drawer-apply-btn:focus-visible::before,
+#reset-filters-btn:hover::before,
+#reset-filters-btn:focus-visible::before,
+#drawer-reset-btn:hover::before,
+#drawer-reset-btn:focus-visible::before,
+#close-filter-drawer-btn:hover::before,
+#close-filter-drawer-btn:focus-visible::before {
+    opacity: 0.95;
 }
 
 /* Talks Card Actions & Metadata Chips Consistency */
