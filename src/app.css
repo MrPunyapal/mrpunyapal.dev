@@ -216,46 +216,48 @@ site-header {
     background-color: rgba(69, 10, 10, 0.45) !important;
 }
 
-/* Left-Edge Accent Bar & Top-Edge Circuit Trace on Card Hover */
+/* Bottom-Right Corner Hairline Circuit Traces on '+' Grid Card Hover */
 .grid > .group.relative.border-r.border-b::before {
     content: "";
     position: absolute;
     z-index: 15;
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 0;
-    background: #ec3b24;
+    right: -1px;
+    bottom: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to top, #ec3b24, rgba(236, 59, 36, 0.35) 55%, transparent);
     pointer-events: none;
-    transition: height 0.22s ease;
+    transform-origin: bottom center;
+    transform: scaleY(0);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .dark .grid > .group.relative.border-r.border-b::before {
-    background: #ff5544;
+    background: linear-gradient(to top, #ff5544, rgba(255, 85, 68, 0.45) 55%, transparent);
 }
 
 .grid > .group.relative.border-r.border-b:hover::before,
 .grid > .group.relative.border-r.border-b:focus-within::before {
-    height: 100%;
+    transform: scaleY(1);
 }
 
 .grid > .group.relative.border-r.border-b::after {
     content: "";
     position: absolute;
     z-index: 15;
-    top: -1px;
-    left: 0;
+    right: 0;
+    bottom: -1px;
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, #ec3b24, rgba(236, 59, 36, 0.35) 55%, transparent);
+    background: linear-gradient(to left, #ec3b24, rgba(236, 59, 36, 0.35) 55%, transparent);
     pointer-events: none;
-    transform-origin: left center;
+    transform-origin: right center;
     transform: scaleX(0);
     transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .dark .grid > .group.relative.border-r.border-b::after {
-    background: linear-gradient(to right, #ff5544, rgba(255, 85, 68, 0.45) 55%, transparent);
+    background: linear-gradient(to left, #ff5544, rgba(255, 85, 68, 0.45) 55%, transparent);
 }
 
 .grid > .group.relative.border-r.border-b:hover::after,
@@ -263,17 +265,17 @@ site-header {
     transform: scaleX(1);
 }
 
-.grid > .group.relative.border-r.border-b > div.top-0.left-0.z-10 {
+.grid > .group.relative.border-r.border-b > div.bottom-0.right-0.z-10 {
     transition: color 0.18s ease;
 }
 
-.grid > .group.relative.border-r.border-b:hover > div.top-0.left-0.z-10,
-.grid > .group.relative.border-r.border-b:focus-within > div.top-0.left-0.z-10 {
+.grid > .group.relative.border-r.border-b:hover > div.bottom-0.right-0.z-10,
+.grid > .group.relative.border-r.border-b:focus-within > div.bottom-0.right-0.z-10 {
     color: #ec3b24 !important;
 }
 
-.dark .grid > .group.relative.border-r.border-b:hover > div.top-0.left-0.z-10,
-.dark .grid > .group.relative.border-r.border-b:focus-within > div.top-0.left-0.z-10 {
+.dark .grid > .group.relative.border-r.border-b:hover > div.bottom-0.right-0.z-10,
+.dark .grid > .group.relative.border-r.border-b:focus-within > div.bottom-0.right-0.z-10 {
     color: #ff5544 !important;
 }
 
