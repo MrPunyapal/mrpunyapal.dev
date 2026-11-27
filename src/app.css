@@ -291,7 +291,16 @@ site-header {
     }
     .viewport-rails,
     .rail-pulse-v-track,
-    .card-border-snake {
+    .card-border-snake,
+    #random-blog-btn::before,
+    #random-tip-btn::before,
+    a[href$="/feed.xml"]::before,
+    #toggle-filter-btn::before,
+    #load-more-btn::before,
+    a[title="Download Resume"]::before,
+    .blog-card span.rounded.border::after,
+    .tip-card span.rounded.border::after,
+    .grid > .group span.rounded.border::after {
         display: none !important;
     }
 }
@@ -1708,4 +1717,274 @@ html:not(.dark) .tip-content blockquote {
     color: #ffdcd7;
     background-color: #67060c;
 }
+
+/* Smooth 1px Perimeter & Top-Edge Moving Lines for Action Buttons and Badges */
+@property --trace-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+#random-blog-btn,
+#random-tip-btn,
+a[href$="/feed.xml"],
+#toggle-filter-btn,
+#load-more-btn,
+a[title="Download Resume"],
+.category-filter-btn,
+.subcategory-filter-btn {
+    position: relative;
+}
+
+#random-blog-btn::before,
+#random-tip-btn::before,
+a[href$="/feed.xml"]::before,
+#toggle-filter-btn::before,
+#load-more-btn::before,
+a[title="Download Resume"]::before,
+.category-filter-btn::before,
+.subcategory-filter-btn::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 292deg,
+        rgba(245, 48, 3, 0.35) 326deg,
+        #f53003 348deg,
+        transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0.48;
+    pointer-events: none;
+    animation: btn-border-orbit 5.6s linear infinite;
+    transition: opacity 220ms ease;
+}
+
+.dark #random-blog-btn::before,
+.dark #random-tip-btn::before,
+.dark #toggle-filter-btn::before,
+.dark #load-more-btn::before,
+.dark a[title="Download Resume"]::before {
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 292deg,
+        rgba(255, 45, 32, 0.4) 326deg,
+        #ff2d20 348deg,
+        transparent 360deg
+    );
+}
+
+a[href$="/feed.xml"]::before {
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 292deg,
+        rgba(245, 158, 11, 0.38) 326deg,
+        #f59e0b 348deg,
+        transparent 360deg
+    );
+    animation-duration: 6.4s;
+    animation-direction: reverse;
+    animation-delay: -1.8s;
+}
+
+#toggle-filter-btn::before {
+    animation-duration: 6s;
+    animation-delay: -3.2s;
+}
+
+#load-more-btn::before,
+a[title="Download Resume"]::before {
+    animation-duration: 6.8s;
+    animation-delay: -2.4s;
+}
+
+.category-filter-btn::before,
+.subcategory-filter-btn::before {
+    opacity: 0;
+    animation-duration: 4.8s;
+}
+
+.category-filter-btn:hover::before,
+.category-filter-btn:focus-visible::before,
+.subcategory-filter-btn:hover::before,
+.subcategory-filter-btn:focus-visible::before {
+    opacity: 0.85;
+}
+
+.category-filter-btn.active-filter::before,
+.subcategory-filter-btn.active-subcat::before {
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 295deg,
+        rgba(255, 255, 255, 0.45) 330deg,
+        rgba(255, 255, 255, 0.95) 350deg,
+        transparent 360deg
+    );
+    opacity: 0.85;
+}
+
+#random-blog-btn:hover::before,
+#random-blog-btn:focus-visible::before,
+#random-tip-btn:hover::before,
+#random-tip-btn:focus-visible::before,
+a[href$="/feed.xml"]:hover::before,
+a[href$="/feed.xml"]:focus-visible::before,
+#toggle-filter-btn:hover::before,
+#toggle-filter-btn:focus-visible::before,
+#toggle-filter-btn[aria-expanded="true"]::before,
+#load-more-btn:hover::before,
+#load-more-btn:focus-visible::before,
+a[title="Download Resume"]:hover::before,
+a[title="Download Resume"]:focus-visible::before {
+    opacity: 1;
+}
+
+@keyframes btn-border-orbit {
+    from { --trace-angle: 0deg; }
+    to { --trace-angle: 360deg; }
+}
+
+/* Badge 1px Top-Edge Glint Lines */
+.blog-card span.rounded.border,
+.tip-card span.rounded.border,
+.grid > .group span.rounded.border,
+section .flex-wrap > span.rounded.border,
+#active-filter-badge {
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-card span.rounded.border::after,
+.tip-card span.rounded.border::after,
+.grid > .group span.rounded.border::after,
+section .flex-wrap > span.rounded.border::after,
+#active-filter-badge::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, currentColor 50%, transparent 100%);
+    opacity: 0;
+    transform: translateX(-100%);
+    pointer-events: none;
+}
+
+/* Primary badge per card has a quiet staggered 1px top glint every 7s */
+.blog-card span.rounded.border:first-child::after,
+.tip-card span.rounded.border:first-child::after,
+.grid > .group span.rounded.border:first-child::after {
+    animation: badge-line-glint 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.blog-card:nth-of-type(even) span.rounded.border:first-child::after,
+.tip-card:nth-of-type(even) span.rounded.border:first-child::after,
+.grid > .group:nth-of-type(even) span.rounded.border:first-child::after {
+    animation-delay: -3.4s;
+}
+
+.blog-card:nth-of-type(3n) span.rounded.border:first-child::after,
+.tip-card:nth-of-type(3n) span.rounded.border:first-child::after,
+.grid > .group:nth-of-type(3n) span.rounded.border:first-child::after {
+    animation-delay: -1.6s;
+}
+
+#active-filter-badge:not(.hidden)::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, transparent 100%);
+    animation: badge-line-glint 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Card hover triggers a crisp cascading 1px sweep across all badges inside */
+.blog-card:hover span.rounded.border::after,
+.blog-card:focus-within span.rounded.border::after,
+.tip-card:hover span.rounded.border::after,
+.tip-card:focus-within span.rounded.border::after,
+.grid > .group:hover span.rounded.border::after,
+.grid > .group:focus-within span.rounded.border::after,
+section .flex-wrap > span.rounded.border:hover::after {
+    animation: badge-line-sweep 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.blog-card:hover span.rounded.border:nth-child(2)::after,
+.tip-card:hover span.rounded.border:nth-child(2)::after,
+.grid > .group:hover span.rounded.border:nth-child(2)::after {
+    animation-delay: 80ms;
+}
+
+.grid > .group:hover span.rounded.border:nth-child(3)::after {
+    animation-delay: 160ms;
+}
+
+.grid > .group:hover span.rounded.border:nth-child(4)::after {
+    animation-delay: 240ms;
+}
+
+.grid > .group:hover span.rounded.border:nth-child(n+5)::after {
+    animation-delay: 320ms;
+}
+
+@keyframes badge-line-glint {
+    0%, 74% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    82% {
+        opacity: 0.72;
+    }
+    92% {
+        opacity: 0.72;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes badge-line-sweep {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.85;
+    }
+    80% {
+        opacity: 0.85;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #random-blog-btn::before,
+    #random-tip-btn::before,
+    a[href$="/feed.xml"]::before,
+    #toggle-filter-btn::before,
+    #load-more-btn::before,
+    a[title="Download Resume"]::before,
+    .category-filter-btn::before,
+    .subcategory-filter-btn::before,
+    .blog-card span.rounded.border::after,
+    .tip-card span.rounded.border::after,
+    .grid > .group span.rounded.border::after,
+    section .flex-wrap > span.rounded.border::after,
+    #active-filter-badge::after {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+}
+
 
