@@ -251,7 +251,8 @@ site-header {
     }
     .viewport-rails,
     .rail-pulse-h-track,
-    .rail-pulse-v-track {
+    .rail-pulse-v-track,
+    .summary-circuit-grid > div::before {
         display: none !important;
     }
 }
@@ -397,9 +398,96 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     .rail-pulse-left,
     .rail-pulse-right,
     .rail-pulse-h,
-    .rail-pulse-v {
+    .rail-pulse-v,
+    .summary-circuit-grid > div::before {
         animation: none;
         opacity: 0;
+    }
+}
+
+/* Perimeter Circuit Pulse Varieties for Summary Cards */
+@property --circuit-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.summary-circuit-grid > div::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 0.5rem;
+    padding: 1px;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.7;
+    background: conic-gradient(
+        from var(--circuit-angle, 0deg),
+        transparent 0deg,
+        transparent 305deg,
+        rgba(245, 48, 3, 0.85) 338deg,
+        transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: circuit-spin 7.5s linear infinite;
+}
+
+.dark .summary-circuit-grid > div::before {
+    background: conic-gradient(
+        from var(--circuit-angle, 0deg),
+        transparent 0deg,
+        transparent 305deg,
+        rgba(255, 45, 32, 0.9) 338deg,
+        transparent 360deg
+    );
+}
+
+.summary-circuit-grid > div:nth-child(2)::before {
+    animation-duration: 9s;
+    animation-direction: reverse;
+    animation-delay: -2.2s;
+}
+
+.summary-circuit-grid > div:nth-child(3)::before {
+    background: conic-gradient(
+        from var(--circuit-angle, 0deg),
+        transparent 0deg,
+        transparent 130deg,
+        rgba(245, 48, 3, 0.75) 160deg,
+        transparent 180deg,
+        transparent 310deg,
+        rgba(245, 48, 3, 0.75) 340deg,
+        transparent 360deg
+    );
+    animation-duration: 11s;
+    animation-delay: -4.5s;
+}
+
+.dark .summary-circuit-grid > div:nth-child(3)::before {
+    background: conic-gradient(
+        from var(--circuit-angle, 0deg),
+        transparent 0deg,
+        transparent 130deg,
+        rgba(255, 45, 32, 0.85) 160deg,
+        transparent 180deg,
+        transparent 310deg,
+        rgba(255, 45, 32, 0.85) 340deg,
+        transparent 360deg
+    );
+}
+
+.summary-circuit-grid > div:nth-child(4)::before {
+    animation-duration: 6.5s;
+    animation-direction: reverse;
+    animation-delay: -1.4s;
+}
+
+@keyframes circuit-spin {
+    to {
+        --circuit-angle: 360deg;
     }
 }
 
