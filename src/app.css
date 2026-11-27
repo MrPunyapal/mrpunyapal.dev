@@ -364,7 +364,8 @@ site-header {
     .flex-wrap > a.w-10.h-10.rounded::before,
     .blog-card span.rounded.border::after,
     .tip-card span.rounded.border::after,
-    .grid > .group span.rounded.border::after {
+    .grid > .group span.rounded.border::after,
+    .filter-rail {
         display: none !important;
     }
     a.underline.decoration-red-300,
@@ -2383,6 +2384,64 @@ p > a.underline:focus-visible {
 @keyframes link-underline-pulse {
     from { background-position: 100% 100%, 0 100%; }
     to { background-position: 0% 100%, 0 100%; }
+}
+
+/* Segmented Filter Rail for Projects Ledger */
+.filter-rail {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #e2e8f0;
+    border-left: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+}
+
+.dark .filter-rail {
+    border-color: #1e293b;
+    background-color: rgba(15, 23, 42, 0.72);
+}
+
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.65rem 1.1rem;
+    background: transparent;
+    border: none;
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    font-family: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, monospace;
+    font-size: 0.75rem;
+    color: #64748b;
+    cursor: pointer;
+    transition: color 140ms ease, background-color 140ms ease;
+}
+
+.dark .filter-btn {
+    border-color: #1e293b;
+    color: #94a3b8;
+}
+
+.filter-btn:hover {
+    color: #0f172a;
+    background-color: #f1f5f9;
+}
+
+.dark .filter-btn:hover {
+    color: #f8fafc;
+    background-color: rgba(30, 41, 59, 0.55);
+}
+
+.filter-btn[aria-pressed="true"] {
+    color: #0f172a;
+    background-color: #ffffff;
+    font-weight: 600;
+    box-shadow: inset 0 -2px 0 #f53003;
+}
+
+.dark .filter-btn[aria-pressed="true"] {
+    color: #ffffff;
+    background-color: #0d0d10;
+    box-shadow: inset 0 -2px 0 #ff2d20;
 }
 
 
