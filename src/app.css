@@ -251,8 +251,7 @@ site-header {
     }
     .viewport-rails,
     .rail-pulse-v-track,
-    .summary-circuit-grid > div::before,
-    .summary-circuit-grid > div::after {
+    .card-border-snake {
         display: none !important;
     }
 }
@@ -419,149 +418,129 @@ body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
     .rail-pulse-right,
     .rail-pulse-v,
     .tech-line-h::after,
-    .summary-circuit-grid > div::before,
-    .summary-circuit-grid > div::after {
+    .card-border-snake rect {
         animation: none;
         opacity: 0;
     }
 }
 
-/* Perimeter Circuit Pulse Varieties for Summary Cards */
-@property --circuit-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-.summary-circuit-grid > div::before {
-    content: "";
+/* Perimeter Circuit & Hover Snake Animations for Summary Cards */
+.card-border-snake {
     position: absolute;
-    inset: -1px;
-    border-radius: 0.5rem;
-    padding: 1px;
+    inset: -0.5px;
+    width: calc(100% + 1px);
+    height: calc(100% + 1px);
     pointer-events: none;
-    z-index: 5;
-    opacity: 0.7;
-    background: conic-gradient(
-        from var(--circuit-angle, 0deg),
-        transparent 0deg,
-        transparent 305deg,
-        rgba(245, 48, 3, 0.85) 338deg,
-        transparent 360deg
-    );
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask-composite: exclude;
-    animation: circuit-spin 7.5s linear infinite;
+    overflow: visible;
+    z-index: 6;
 }
 
-.dark .summary-circuit-grid > div::before {
-    background: conic-gradient(
-        from var(--circuit-angle, 0deg),
-        transparent 0deg,
-        transparent 305deg,
-        rgba(255, 45, 32, 0.9) 338deg,
-        transparent 360deg
-    );
+.card-border-snake rect {
+    fill: none;
+    stroke: #f53003;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-.summary-circuit-grid > div:nth-child(2)::before {
-    animation-duration: 9s;
+.dark .card-border-snake rect {
+    stroke: #ff2d20;
+}
+
+.card-border-snake .snake-ambient {
+    stroke-width: 1px;
+    stroke-dasharray: 12 88;
+    opacity: 0.6;
+    animation: snake-orbit 8s linear infinite;
+    transition: opacity 180ms ease;
+}
+
+.summary-circuit-grid > div:nth-child(2) .snake-ambient {
+    animation-duration: 9.5s;
     animation-direction: reverse;
-    animation-delay: -2.2s;
+    animation-delay: -2.4s;
 }
 
-.summary-circuit-grid > div:nth-child(3)::before {
-    background: conic-gradient(
-        from var(--circuit-angle, 0deg),
-        transparent 0deg,
-        transparent 130deg,
-        rgba(245, 48, 3, 0.75) 160deg,
-        transparent 180deg,
-        transparent 310deg,
-        rgba(245, 48, 3, 0.75) 340deg,
-        transparent 360deg
-    );
+.summary-circuit-grid > div:nth-child(3) .snake-ambient {
+    stroke-dasharray: 10 40 10 40;
     animation-duration: 11s;
     animation-delay: -4.5s;
 }
 
-.dark .summary-circuit-grid > div:nth-child(3)::before {
-    background: conic-gradient(
-        from var(--circuit-angle, 0deg),
-        transparent 0deg,
-        transparent 130deg,
-        rgba(255, 45, 32, 0.85) 160deg,
-        transparent 180deg,
-        transparent 310deg,
-        rgba(255, 45, 32, 0.85) 340deg,
-        transparent 360deg
-    );
-}
-
-.summary-circuit-grid > div:nth-child(4)::before {
-    animation-duration: 6.5s;
+.summary-circuit-grid > div:nth-child(4) .snake-ambient {
+    animation-duration: 7s;
     animation-direction: reverse;
-    animation-delay: -1.4s;
+    animation-delay: -1.6s;
 }
 
-/* Hover Nested Spiral Circuit Line */
-.summary-circuit-grid > div::after {
-    content: "";
-    position: absolute;
-    inset: 3px;
-    border-radius: 0.3125rem;
-    padding: 1px;
-    pointer-events: none;
-    z-index: 5;
+.card-border-snake .snake-tail,
+.card-border-snake .snake-mid,
+.card-border-snake .snake-head {
     opacity: 0;
-    background: conic-gradient(
-        from var(--circuit-angle, 0deg),
-        transparent 0deg,
-        rgba(245, 48, 3, 0.08) 65deg,
-        rgba(245, 48, 3, 0.78) 125deg,
-        transparent 145deg,
-        rgba(245, 48, 3, 0.08) 245deg,
-        rgba(245, 48, 3, 0.78) 305deg,
-        transparent 325deg
-    );
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask-composite: exclude;
-    transition: opacity 220ms ease;
-    animation: circuit-spin 2.2s linear infinite;
+    animation: snake-orbit 2.4s linear infinite;
     animation-play-state: paused;
+    transition: opacity 180ms ease;
 }
 
-.dark .summary-circuit-grid > div::after {
-    background: conic-gradient(
-        from var(--circuit-angle, 0deg),
-        transparent 0deg,
-        rgba(255, 45, 32, 0.1) 65deg,
-        rgba(255, 45, 32, 0.85) 125deg,
-        transparent 145deg,
-        rgba(255, 45, 32, 0.1) 245deg,
-        rgba(255, 45, 32, 0.85) 305deg,
-        transparent 325deg
-    );
+.card-border-snake .snake-tail {
+    stroke-width: 1.25px;
+    stroke-dasharray: 24 76;
 }
 
-.summary-circuit-grid > div:nth-child(even)::after {
+.card-border-snake .snake-mid {
+    stroke-width: 1.5px;
+    stroke-dasharray: 0 10 14 76;
+}
+
+.card-border-snake .snake-head {
+    stroke-width: 1.75px;
+    stroke-dasharray: 0 18 6 76;
+    filter: drop-shadow(0 0 3px rgba(245, 48, 3, 0.55));
+}
+
+.dark .card-border-snake .snake-head {
+    filter: drop-shadow(0 0 4px rgba(255, 45, 32, 0.7));
+}
+
+.summary-circuit-grid > div:nth-child(even) .snake-tail,
+.summary-circuit-grid > div:nth-child(even) .snake-mid,
+.summary-circuit-grid > div:nth-child(even) .snake-head {
     animation-direction: reverse;
 }
 
-.summary-circuit-grid > div:hover::after,
-.summary-circuit-grid > div:focus-within::after {
-    opacity: 0.9;
+.summary-circuit-grid > div:nth-child(even) .snake-mid {
+    stroke-dasharray: 14 86;
+}
+
+.summary-circuit-grid > div:nth-child(even) .snake-head {
+    stroke-dasharray: 6 94;
+}
+
+.summary-circuit-grid > div:hover .snake-ambient,
+.summary-circuit-grid > div:focus-within .snake-ambient {
+    opacity: 0.15;
+}
+
+.summary-circuit-grid > div:hover .snake-tail,
+.summary-circuit-grid > div:focus-within .snake-tail {
+    opacity: 0.3;
     animation-play-state: running;
 }
 
-@keyframes circuit-spin {
-    to {
-        --circuit-angle: 360deg;
-    }
+.summary-circuit-grid > div:hover .snake-mid,
+.summary-circuit-grid > div:focus-within .snake-mid {
+    opacity: 0.65;
+    animation-play-state: running;
+}
+
+.summary-circuit-grid > div:hover .snake-head,
+.summary-circuit-grid > div:focus-within .snake-head {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+@keyframes snake-orbit {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -100; }
 }
 
 /* Stack Inventory Interactive Brand System */
