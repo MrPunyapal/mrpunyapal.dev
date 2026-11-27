@@ -300,6 +300,7 @@ site-header {
     #toggle-filter-btn::before,
     #load-more-btn::before,
     a[title="Download Resume"]::before,
+    .flex-wrap > a.w-10.h-10.rounded::before,
     .blog-card span.rounded.border::after,
     .tip-card span.rounded.border::after,
     .grid > .group span.rounded.border::after {
@@ -1970,6 +1971,108 @@ section .flex-wrap > span.rounded.border:hover::after {
     }
 }
 
+/* Social Node Brand-Matched 1px Perimeter Orbit Lines */
+.flex-wrap > a.w-10.h-10.rounded {
+    position: relative;
+}
+
+.flex-wrap > a.w-10.h-10.rounded::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 285deg,
+        color-mix(in srgb, var(--social-trace, #f53003) 38%, transparent) 320deg,
+        var(--social-trace, #f53003) 348deg,
+        transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0.62;
+    pointer-events: none;
+    animation: btn-border-orbit 5.2s linear infinite;
+    transition: opacity 200ms ease;
+}
+
+.flex-wrap > a.w-10.h-10.rounded:hover::before,
+.flex-wrap > a.w-10.h-10.rounded:focus-visible::before {
+    opacity: 1;
+}
+
+.flex-wrap > a.w-10.h-10.rounded:nth-child(even)::before {
+    animation-direction: reverse;
+    animation-duration: 5.8s;
+    animation-delay: -1.4s;
+}
+
+.flex-wrap > a.w-10.h-10.rounded:nth-child(3n)::before {
+    animation-duration: 6.4s;
+    animation-delay: -2.9s;
+}
+
+.flex-wrap > a.w-10.h-10.rounded:nth-child(4n)::before {
+    animation-duration: 4.8s;
+    animation-delay: -4.1s;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href*="x.com"],
+.flex-wrap > a.w-10.h-10.rounded[href*="threads.net"] {
+    --social-trace: #0f172a;
+}
+
+.dark .flex-wrap > a.w-10.h-10.rounded[href*="x.com"],
+.dark .flex-wrap > a.w-10.h-10.rounded[href*="threads.net"] {
+    --social-trace: #e2e8f0;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href*="dev-null.sh"] {
+    --social-trace: #d9480f;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href*="github.com"] {
+    --social-trace: #1e293b;
+}
+
+.dark .flex-wrap > a.w-10.h-10.rounded[href*="github.com"] {
+    --social-trace: #94a3b8;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href*="linkedin.com"],
+.flex-wrap > a.w-10.h-10.rounded[href*="facebook.com"] {
+    --social-trace: #2563eb;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href*="youtube.com"] {
+    --social-trace: #dc2626;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href*="pinkary.com"],
+.flex-wrap > a.w-10.h-10.rounded[href*="instagram.com"] {
+    --social-trace: #ec4899;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href*="bsky.app"] {
+    --social-trace: #0ea5e9;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href^="mailto:"] {
+    --social-trace: #ef4444;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href*="t.me"] {
+    --social-trace: #26A5E4;
+}
+
+.flex-wrap > a.w-10.h-10.rounded[href*="discord.gg"] {
+    --social-trace: #5865F2;
+}
+
 @media (prefers-reduced-motion: reduce) {
     #random-blog-btn::before,
     #random-tip-btn::before,
@@ -1979,6 +2082,7 @@ section .flex-wrap > span.rounded.border:hover::after {
     a[title="Download Resume"]::before,
     .category-filter-btn::before,
     .subcategory-filter-btn::before,
+    .flex-wrap > a.w-10.h-10.rounded::before,
     .blog-card span.rounded.border::after,
     .tip-card span.rounded.border::after,
     .grid > .group span.rounded.border::after,
