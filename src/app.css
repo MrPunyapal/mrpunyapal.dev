@@ -407,25 +407,25 @@ site-header {
 .dark .rail-pulse-left,
 .dark .rail-pulse-right {
     background: linear-gradient(to bottom, transparent, #ff2d20, transparent);
-    opacity: 0.38;
+    opacity: 0.5;
 }
 
 .rail-pulse-left {
     left: 0;
     top: 18%;
-    animation: rail-travel 16s linear infinite;
+    animation: rail-travel 12s linear infinite;
 }
 
 .rail-pulse-right {
     right: 0;
     top: 62%;
-    animation: rail-travel 20s linear infinite reverse;
+    animation: rail-travel 15s linear infinite reverse;
 }
 
 @keyframes rail-travel {
     0% { transform: translateY(-120px); opacity: 0; }
-    15% { opacity: 0.4; }
-    85% { opacity: 0.4; }
+    15% { opacity: 0.52; }
+    85% { opacity: 0.52; }
     100% { transform: translateY(85vh); opacity: 0; }
 }
 
@@ -449,8 +449,8 @@ site-header {
     width: 1px;
     height: 72px;
     background: linear-gradient(to bottom, transparent, #f53003, transparent);
-    opacity: 0.38;
-    animation: rail-travel-v 12s linear infinite;
+    opacity: 0.52;
+    animation: rail-travel-v 8.5s linear infinite;
 }
 
 .dark .rail-pulse-v {
@@ -459,14 +459,14 @@ site-header {
 
 @keyframes rail-travel-v {
     0% { transform: translateY(-72px); opacity: 0; }
-    15% { opacity: 0.4; }
-    85% { opacity: 0.4; }
+    15% { opacity: 0.55; }
+    85% { opacity: 0.55; }
     100% { transform: translateY(100cqh); opacity: 0; }
 }
 
 .rail-pulse-v-reverse .rail-pulse-v {
-    animation: rail-travel-v 14s linear infinite reverse;
-    animation-delay: -3s;
+    animation: rail-travel-v 10.5s linear infinite reverse;
+    animation-delay: -2.5s;
 }
 
 /* Global Horizontal Divider Circuit Pulses (.tech-line-h) */
@@ -482,49 +482,49 @@ site-header {
     left: calc(50% - 50vw);
     width: 200px;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(245, 48, 3, 0.3) 30%, #f53003 55%, rgba(245, 48, 3, 0.3) 75%, transparent);
-    opacity: 0.42;
+    background: linear-gradient(to right, transparent, rgba(245, 48, 3, 0.35) 30%, #f53003 55%, rgba(245, 48, 3, 0.35) 75%, transparent);
+    opacity: 0.58;
     pointer-events: none;
-    animation: tech-line-pulse-h 17s linear infinite;
+    animation: tech-line-pulse-h 12.5s linear infinite;
 }
 
 .dark .tech-line-h::after {
-    background: linear-gradient(to right, transparent, rgba(255, 45, 32, 0.32) 30%, #ff2d20 55%, rgba(255, 45, 32, 0.32) 75%, transparent);
+    background: linear-gradient(to right, transparent, rgba(255, 45, 32, 0.38) 30%, #ff2d20 55%, rgba(255, 45, 32, 0.38) 75%, transparent);
 }
 
 .tech-line-h.top-\[-1px\]::after {
-    animation-duration: 19s;
+    animation-duration: 13s;
     animation-delay: -2s;
 }
 
 .w-full.max-w-6xl > .tech-line-h.bottom-\[-1px\]::after {
-    animation-duration: 21s;
+    animation-duration: 13.5s;
     animation-direction: reverse;
-    animation-delay: -6.5s;
+    animation-delay: -4.5s;
 }
 
 header .tech-line-h::after {
-    animation-duration: 15s;
+    animation-duration: 10.5s;
     animation-delay: -1s;
 }
 
 div:nth-of-type(odd) > .tech-line-h::after,
 section:nth-of-type(odd) > .tech-line-h::after {
-    animation-duration: 18s;
+    animation-duration: 12s;
     animation-direction: reverse;
-    animation-delay: -4.5s;
+    animation-delay: -3.5s;
 }
 
 div:nth-of-type(even) > .tech-line-h::after,
 section:nth-of-type(even) > .tech-line-h::after {
-    animation-duration: 20s;
-    animation-delay: -9s;
+    animation-duration: 14s;
+    animation-delay: -7s;
 }
 
 @keyframes tech-line-pulse-h {
     0% { transform: translateX(-200px); opacity: 0; }
-    12% { opacity: 0.42; }
-    88% { opacity: 0.42; }
+    12% { opacity: 0.58; }
+    88% { opacity: 0.58; }
     100% { transform: translateX(100vw); opacity: 0; }
 }
 
@@ -553,36 +553,36 @@ section:nth-of-type(even) > .tech-line-h::after {
 .tech-line-v-top::after {
     height: 80px;
     top: 0;
-    animation: tech-line-pulse-v-top 14s linear infinite;
+    animation: tech-line-pulse-v-top 9.5s linear infinite;
 }
 
 .tech-line-v-top.right-\[-1px\]::after {
-    animation-delay: -5.5s;
-    animation-duration: 17s;
+    animation-delay: -4.5s;
+    animation-duration: 11.5s;
 }
 
 .tech-line-v-bottom::after {
-    height: 52px;
+    height: 64px;
     top: 0;
-    animation: tech-line-pulse-v-bottom 10s linear infinite;
+    animation: tech-line-pulse-v-bottom 5.5s linear infinite;
 }
 
 .tech-line-v-bottom.right-\[-1px\]::after {
-    animation-delay: -4.2s;
-    animation-duration: 12s;
+    animation-delay: -2.75s;
+    animation-duration: 6.8s;
 }
 
 @keyframes tech-line-pulse-v-top {
     0% { transform: translateY(-80px); opacity: 0; }
-    15% { opacity: 0.42; }
-    85% { opacity: 0.42; }
+    15% { opacity: 0.55; }
+    85% { opacity: 0.55; }
     100% { transform: translateY(100vh); opacity: 0; }
 }
 
 @keyframes tech-line-pulse-v-bottom {
-    0% { transform: translateY(-52px); opacity: 0; }
-    20% { opacity: 0.42; }
-    85% { opacity: 0.18; }
+    0% { transform: translateY(-64px); opacity: 0; }
+    18% { opacity: 0.68; }
+    82% { opacity: 0.38; }
     100% { transform: translateY(120px); opacity: 0; }
 }
 
@@ -1858,10 +1858,10 @@ a[title="Download Resume"]::before,
     -webkit-mask-composite: xor;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
-    opacity: 0;
+    opacity: 0.36;
     pointer-events: none;
-    animation: btn-border-orbit 4.6s linear infinite;
-    transition: opacity 200ms ease;
+    animation: btn-border-orbit 9.5s linear infinite;
+    transition: opacity 220ms ease;
 }
 
 .dark #random-blog-btn::before,
@@ -1888,20 +1888,20 @@ a[href$="/feed.xml"]::before {
         #f59e0b 348deg,
         transparent 360deg
     );
-    animation-duration: 6.4s;
+    animation-duration: 10.5s;
     animation-direction: reverse;
-    animation-delay: -1.8s;
+    animation-delay: -2.2s;
 }
 
 #toggle-filter-btn::before {
-    animation-duration: 6s;
-    animation-delay: -3.2s;
+    animation-duration: 10s;
+    animation-delay: -4.2s;
 }
 
 #load-more-btn::before,
 a[title="Download Resume"]::before {
-    animation-duration: 6.8s;
-    animation-delay: -2.4s;
+    animation-duration: 11s;
+    animation-delay: -3s;
 }
 
 .category-filter-btn::before,
@@ -2069,10 +2069,24 @@ section .flex-wrap > span.rounded.border:hover::after {
     -webkit-mask-composite: xor;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
-    opacity: 0;
+    opacity: 0.34;
     pointer-events: none;
-    animation: btn-border-orbit 4.4s linear infinite;
-    transition: opacity 200ms ease;
+    animation: btn-border-orbit 9.5s linear infinite;
+    transition: opacity 220ms ease;
+}
+
+.flex-wrap > a.w-10.h-10.rounded:hover,
+.flex-wrap > a.w-10.h-10.rounded:focus-visible {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: var(--social-trace, #0f172a) !important;
+}
+
+.dark .flex-wrap > a.w-10.h-10.rounded:hover,
+.dark .flex-wrap > a.w-10.h-10.rounded:focus-visible {
+    background-color: rgba(30, 41, 59, 0.55) !important;
+    border-color: #334155 !important;
+    color: var(--social-trace, #ffffff) !important;
 }
 
 .flex-wrap > a.w-10.h-10.rounded:hover::before,
@@ -2082,18 +2096,18 @@ section .flex-wrap > span.rounded.border:hover::after {
 
 .flex-wrap > a.w-10.h-10.rounded:nth-child(even)::before {
     animation-direction: reverse;
-    animation-duration: 5.8s;
-    animation-delay: -1.4s;
+    animation-duration: 10.5s;
+    animation-delay: -2.4s;
 }
 
 .flex-wrap > a.w-10.h-10.rounded:nth-child(3n)::before {
-    animation-duration: 6.4s;
-    animation-delay: -2.9s;
+    animation-duration: 11.5s;
+    animation-delay: -4.9s;
 }
 
 .flex-wrap > a.w-10.h-10.rounded:nth-child(4n)::before {
-    animation-duration: 4.8s;
-    animation-delay: -4.1s;
+    animation-duration: 8.8s;
+    animation-delay: -6.2s;
 }
 
 .flex-wrap > a.w-10.h-10.rounded[href*="x.com"],
