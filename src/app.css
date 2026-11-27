@@ -358,13 +358,17 @@ site-header {
     #toggle-filter-btn::before,
     #load-more-btn::before,
     a[title="Download Resume"]::before,
+    a[href*="github.com/sponsors/"].border.rounded::before,
+    a[href*="subject=Sponsorship"].border::before,
+    a[href="mailto:mrpunyapal@gmail.com"].px-5.py-2::before,
     .flex-wrap > a.w-10.h-10.rounded::before,
     .blog-card span.rounded.border::after,
     .tip-card span.rounded.border::after,
     .grid > .group span.rounded.border::after {
         display: none !important;
     }
-    a.underline.decoration-red-300 {
+    a.underline.decoration-red-300,
+    p > a.underline {
         animation: none !important;
         background-image: none !important;
         text-decoration: underline !important;
@@ -2169,6 +2173,9 @@ section .flex-wrap > span.rounded.border:hover::after {
     #toggle-filter-btn::before,
     #load-more-btn::before,
     a[title="Download Resume"]::before,
+    a[href*="github.com/sponsors/"].border.rounded::before,
+    a[href*="subject=Sponsorship"].border::before,
+    a[href="mailto:mrpunyapal@gmail.com"].px-5.py-2::before,
     .category-filter-btn::before,
     .subcategory-filter-btn::before,
     .flex-wrap > a.w-10.h-10.rounded::before,
@@ -2180,15 +2187,116 @@ section .flex-wrap > span.rounded.border:hover::after {
         animation: none !important;
         opacity: 0 !important;
     }
-    a.underline.decoration-red-300 {
+    a.underline.decoration-red-300,
+    p > a.underline {
         animation: none !important;
         background-image: none !important;
         text-decoration: underline !important;
     }
 }
 
-/* Moving 1px Underline Spark on Inline Prose Links (Hover/Focus Only) */
-a.underline.decoration-red-300 {
+/* Primary Action CTA 1px Perimeter Orbit Lines (Sponsor, Inquire, Speak) */
+a[href*="github.com/sponsors/"].border.rounded,
+a[href*="subject=Sponsorship"].border,
+a[href="mailto:mrpunyapal@gmail.com"].px-5.py-2 {
+    position: relative;
+}
+
+a[href*="github.com/sponsors/"].border.rounded::before,
+a[href*="subject=Sponsorship"].border::before,
+a[href="mailto:mrpunyapal@gmail.com"].px-5.py-2::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 285deg,
+        color-mix(in srgb, var(--cta-trace, #f53003) 38%, transparent) 322deg,
+        var(--cta-trace, #f53003) 348deg,
+        transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0.44;
+    pointer-events: none;
+    animation: btn-border-orbit 9s linear infinite;
+    transition: opacity 220ms ease;
+}
+
+a[href*="github.com/sponsors/"].border.rounded {
+    --cta-trace: #db2777;
+}
+
+.dark a[href*="github.com/sponsors/"].border.rounded {
+    --cta-trace: #f472b6;
+}
+
+a[href*="github.com/sponsors/"].border.rounded::before {
+    animation-direction: reverse;
+    animation-duration: 9.5s;
+}
+
+a[href*="github.com/sponsors/"].border.rounded:hover,
+a[href*="github.com/sponsors/"].border.rounded:focus-visible {
+    background-color: rgba(236, 72, 153, 0.08) !important;
+    border-color: #f9a8d4 !important;
+    color: #be185d !important;
+}
+
+.dark a[href*="github.com/sponsors/"].border.rounded:hover,
+.dark a[href*="github.com/sponsors/"].border.rounded:focus-visible {
+    background-color: rgba(236, 72, 153, 0.14) !important;
+    border-color: #831843 !important;
+    color: #f9a8d4 !important;
+}
+
+a[href*="subject=Sponsorship"].border {
+    --cta-trace: #dc2626;
+}
+
+.dark a[href*="subject=Sponsorship"].border {
+    --cta-trace: #ff5544;
+}
+
+a[href*="subject=Sponsorship"].border:hover,
+a[href*="subject=Sponsorship"].border:focus-visible {
+    background-color: rgba(245, 48, 3, 0.08) !important;
+    border-color: #fca5a5 !important;
+    color: #dc2626 !important;
+}
+
+.dark a[href*="subject=Sponsorship"].border:hover,
+.dark a[href*="subject=Sponsorship"].border:focus-visible {
+    background-color: rgba(255, 45, 32, 0.14) !important;
+    border-color: #7f1d1d !important;
+    color: #f87171 !important;
+}
+
+a[href="mailto:mrpunyapal@gmail.com"].px-5.py-2 {
+    --cta-trace: #dc2626;
+}
+
+.dark a[href="mailto:mrpunyapal@gmail.com"].px-5.py-2 {
+    --cta-trace: #ff5544;
+}
+
+a[href*="github.com/sponsors/"].border.rounded:hover::before,
+a[href*="github.com/sponsors/"].border.rounded:focus-visible::before,
+a[href*="subject=Sponsorship"].border:hover::before,
+a[href*="subject=Sponsorship"].border:focus-visible::before,
+a[href="mailto:mrpunyapal@gmail.com"].px-5.py-2:hover::before,
+a[href="mailto:mrpunyapal@gmail.com"].px-5.py-2:focus-visible::before {
+    opacity: 1;
+}
+
+/* Moving 1px Underline Spark on Inline Paragraph Links */
+a.underline.decoration-red-300,
+p > a.underline {
     text-decoration: none;
     padding-bottom: 2px;
     background-image:
@@ -2199,27 +2307,58 @@ a.underline.decoration-red-300 {
     background-repeat: no-repeat;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
+    animation: link-underline-glint 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.dark a.underline.decoration-red-300 {
+.dark a.underline.decoration-red-300,
+.dark p > a.underline {
     background-image:
         linear-gradient(90deg, transparent 0%, transparent 32%, #ff5544 50%, transparent 68%, transparent 100%),
         linear-gradient(#991b1b, #991b1b);
 }
 
+p > a.underline:nth-of-type(2n) {
+    animation-delay: -3.2s;
+}
+
+p > a.underline:nth-of-type(3n) {
+    animation-delay: -6.4s;
+}
+
+p > a.underline:nth-of-type(4n) {
+    animation-delay: -9.5s;
+}
+
+p:nth-of-type(even) > a.underline {
+    animation-delay: -4.8s;
+}
+
+p:nth-of-type(even) > a.underline:nth-of-type(2n) {
+    animation-delay: -8.1s;
+}
+
 a.underline.decoration-red-300:hover,
-a.underline.decoration-red-300:focus-visible {
+a.underline.decoration-red-300:focus-visible,
+p > a.underline:hover,
+p > a.underline:focus-visible {
     background-image:
         linear-gradient(90deg, transparent 0%, transparent 32%, #f53003 50%, transparent 68%, transparent 100%),
         linear-gradient(#f87171, #f87171);
-    animation: link-underline-pulse 1.35s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: link-underline-pulse 1.25s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .dark a.underline.decoration-red-300:hover,
-.dark a.underline.decoration-red-300:focus-visible {
+.dark a.underline.decoration-red-300:focus-visible,
+.dark p > a.underline:hover,
+.dark p > a.underline:focus-visible {
     background-image:
         linear-gradient(90deg, transparent 0%, transparent 32%, #ff5544 50%, transparent 68%, transparent 100%),
         linear-gradient(#ef4444, #ef4444);
+}
+
+@keyframes link-underline-glint {
+    0%, 88% { background-position: 100% 100%, 0 100%; }
+    100% { background-position: 0% 100%, 0 100%; }
 }
 
 @keyframes link-underline-pulse {
