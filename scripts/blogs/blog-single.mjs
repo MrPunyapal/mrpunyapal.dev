@@ -236,6 +236,13 @@ export function generateSingleBlogPage(post, allPosts, rootDir) {
 </head>
 
 <body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    <!-- Viewport Guide Rails & Circuit Lines -->
+    <div class="viewport-rails" aria-hidden="true">
+        <div class="viewport-rails-inner">
+            <div class="rail-pulse-left"></div>
+            <div class="rail-pulse-right"></div>
+        </div>
+    </div>
     ${iconSprite}
 
     <!-- Main Content Frame -->

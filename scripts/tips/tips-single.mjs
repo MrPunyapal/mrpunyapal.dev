@@ -292,6 +292,13 @@ export function generateSingleTipPage(tip, allTips, rootDir) {
 </head>
 
 <body class="font-sans m-0 p-0 min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 leading-relaxed relative overflow-x-hidden antialiased transition-colors duration-200">
+    <!-- Viewport Guide Rails & Circuit Lines -->
+    <div class="viewport-rails" aria-hidden="true">
+        <div class="viewport-rails-inner">
+            <div class="rail-pulse-left"></div>
+            <div class="rail-pulse-right"></div>
+        </div>
+    </div>
 
     <!-- Main Content Frame -->
     <main class="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-1 sm:pt-2 pb-8 sm:pb-12 gap-8">

@@ -249,6 +249,80 @@ site-header {
     .grid > .group.relative.border-r.border-b::before {
         display: none !important;
     }
+    .viewport-rails {
+        display: none !important;
+    }
+}
+
+/* Viewport Guide Rails: Moving Red Circuit Pulse Animation */
+.viewport-rails {
+    position: fixed;
+    inset: 0;
+    padding-inline: 0.75rem;
+    pointer-events: none;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 640px) {
+    .viewport-rails {
+        padding-inline: 1.5rem;
+    }
+}
+
+.viewport-rails-inner {
+    width: 100%;
+    max-width: 72rem;
+    height: 100%;
+    position: relative;
+}
+
+.rail-pulse-left,
+.rail-pulse-right {
+    position: absolute;
+    width: 1px;
+    height: 96px;
+    background: linear-gradient(to bottom, transparent, #f53003, transparent);
+    opacity: 0.65;
+}
+
+.dark .rail-pulse-left,
+.dark .rail-pulse-right {
+    background: linear-gradient(to bottom, transparent, #ff2d20, transparent);
+    opacity: 0.65;
+}
+
+.rail-pulse-left {
+    left: 0;
+    top: 18%;
+    animation: rail-travel 9s linear infinite;
+}
+
+.rail-pulse-right {
+    right: 0;
+    top: 62%;
+    animation: rail-travel 12s linear infinite reverse;
+}
+
+@keyframes rail-travel {
+    0% { transform: translateY(-120px); opacity: 0; }
+    15% { opacity: 0.7; }
+    85% { opacity: 0.7; }
+    100% { transform: translateY(85vh); opacity: 0; }
+}
+
+body:has(#mobile-sidebar:not(.hidden)) .viewport-rails,
+body:has(#filter-drawer-panel:not(.hidden)) .viewport-rails {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rail-pulse-left,
+    .rail-pulse-right {
+        animation: none;
+        opacity: 0;
+    }
 }
 
 /* Stack Inventory Interactive Brand System */
