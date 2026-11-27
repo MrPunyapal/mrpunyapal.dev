@@ -364,6 +364,11 @@ site-header {
     .grid > .group span.rounded.border::after {
         display: none !important;
     }
+    a.underline.decoration-red-300 {
+        animation: none !important;
+        background-image: none !important;
+        text-decoration: underline !important;
+    }
 }
 
 /* Viewport Guide Rails: Moving Red Circuit Pulse Animation */
@@ -2130,6 +2135,51 @@ section .flex-wrap > span.rounded.border:hover::after {
         animation: none !important;
         opacity: 0 !important;
     }
+    a.underline.decoration-red-300 {
+        animation: none !important;
+        background-image: none !important;
+        text-decoration: underline !important;
+    }
+}
+
+/* Moving 1px Underline Spark on Inline Prose Links (Hover/Focus Only) */
+a.underline.decoration-red-300 {
+    text-decoration: none;
+    padding-bottom: 2px;
+    background-image:
+        linear-gradient(90deg, transparent 0%, transparent 32%, #f53003 50%, transparent 68%, transparent 100%),
+        linear-gradient(#fca5a5, #fca5a5);
+    background-size: 260% 1px, 100% 1px;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+.dark a.underline.decoration-red-300 {
+    background-image:
+        linear-gradient(90deg, transparent 0%, transparent 32%, #ff5544 50%, transparent 68%, transparent 100%),
+        linear-gradient(#991b1b, #991b1b);
+}
+
+a.underline.decoration-red-300:hover,
+a.underline.decoration-red-300:focus-visible {
+    background-image:
+        linear-gradient(90deg, transparent 0%, transparent 32%, #f53003 50%, transparent 68%, transparent 100%),
+        linear-gradient(#f87171, #f87171);
+    animation: link-underline-pulse 1.35s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.dark a.underline.decoration-red-300:hover,
+.dark a.underline.decoration-red-300:focus-visible {
+    background-image:
+        linear-gradient(90deg, transparent 0%, transparent 32%, #ff5544 50%, transparent 68%, transparent 100%),
+        linear-gradient(#ef4444, #ef4444);
+}
+
+@keyframes link-underline-pulse {
+    from { background-position: 100% 100%, 0 100%; }
+    to { background-position: 0% 100%, 0 100%; }
 }
 
 
