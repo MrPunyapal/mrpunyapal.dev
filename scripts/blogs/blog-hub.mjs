@@ -269,7 +269,7 @@ export function generateBlogHubPage(posts, categoriesMap, subcategoriesMap, root
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
                             </svg>
                             <span>Filters</span>
-                            <span id="active-filter-badge" class="hidden text-[10px] font-mono px-1.5 py-0.2 rounded bg-red-600 text-white font-bold">1</span>
+                            <span id="active-filter-badge" class="hidden text-[10px] font-mono px-1.5 py-0.2 rounded bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-900/60 font-bold">1</span>
                         </button>
                     </div>
 

@@ -2043,8 +2043,12 @@ section .flex-wrap > span.rounded.border::after,
 }
 
 #active-filter-badge:not(.hidden)::after {
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #f53003 50%, transparent 100%);
     animation: badge-line-glint 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.dark #active-filter-badge:not(.hidden)::after {
+    background: linear-gradient(90deg, transparent 0%, #ff2d20 50%, transparent 100%);
 }
 
 /* Card hover triggers a crisp cascading 1px sweep across all badges inside */
@@ -2245,6 +2249,12 @@ section .flex-wrap > span.rounded.border:hover::after {
     #drawer-reset-btn::before,
     #reset-filters-btn::before,
     #close-filter-drawer-btn::before,
+    .copy-code-btn::before,
+    #copy-link-btn::before,
+    a[href^="https://twitter.com/intent/tweet"]::before,
+    a[href^="https://x.com/intent/tweet"]::before,
+    a[href^="/blog?q="]::after,
+    a[href^="/tips?q="]::after,
     .flex-wrap > a.w-10.h-10.rounded::before,
     .blog-card span.rounded.border::after,
     .tip-card span.rounded.border::after,
@@ -2585,9 +2595,116 @@ p > a.underline:focus-visible {
     #drawer-apply-btn::before,
     #drawer-reset-btn::before,
     #reset-filters-btn::before,
-    #close-filter-drawer-btn::before {
+    #close-filter-drawer-btn::before,
+    .copy-code-btn::before,
+    #copy-link-btn::before,
+    a[href^="https://twitter.com/intent/tweet"]::before,
+    a[href^="https://x.com/intent/tweet"]::before {
         display: none !important;
     }
+}
+
+/* Detail Page Controls Consistency (Copy Code, Share on X, Copy Link, Tag Glints) */
+.copy-code-btn,
+#copy-link-btn,
+a[href^="https://twitter.com/intent/tweet"],
+a[href^="https://x.com/intent/tweet"] {
+    position: relative;
+    --detail-trace: #f53003;
+}
+
+.dark .copy-code-btn,
+.dark #copy-link-btn,
+.dark a[href^="https://twitter.com/intent/tweet"],
+.dark a[href^="https://x.com/intent/tweet"] {
+    --detail-trace: #ff2d20;
+}
+
+a[href^="https://twitter.com/intent/tweet"],
+a[href^="https://x.com/intent/tweet"] {
+    --detail-trace: #18181b;
+}
+
+.dark a[href^="https://twitter.com/intent/tweet"],
+.dark a[href^="https://x.com/intent/tweet"] {
+    --detail-trace: #f4f4f5;
+}
+
+.copy-code-btn.border-emerald-500,
+#copy-link-btn.border-emerald-500 {
+    --detail-trace: #10b981;
+}
+
+.copy-code-btn::before,
+#copy-link-btn::before,
+a[href^="https://twitter.com/intent/tweet"]::before,
+a[href^="https://x.com/intent/tweet"]::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--trace-angle),
+        transparent 0deg,
+        transparent 288deg,
+        color-mix(in srgb, var(--detail-trace, #f53003) 38%, transparent) 322deg,
+        var(--detail-trace, #f53003) 348deg,
+        transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    animation: btn-border-orbit 6s linear infinite;
+    transition: opacity 200ms ease;
+}
+
+.copy-code-btn:hover::before,
+.copy-code-btn:focus-visible::before,
+.copy-code-btn.border-emerald-500::before,
+#copy-link-btn:hover::before,
+#copy-link-btn:focus-visible::before,
+#copy-link-btn.border-emerald-500::before,
+a[href^="https://twitter.com/intent/tweet"]:hover::before,
+a[href^="https://twitter.com/intent/tweet"]:focus-visible::before,
+a[href^="https://x.com/intent/tweet"]:hover::before,
+a[href^="https://x.com/intent/tweet"]:focus-visible::before {
+    opacity: 0.92;
+}
+
+a[href^="/blog?q="],
+a[href^="/tips?q="] {
+    position: relative;
+    overflow: hidden;
+}
+
+a[href^="/blog?q="]::after,
+a[href^="/tips?q="]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #f53003 50%, transparent 100%);
+    opacity: 0;
+    transform: translateX(-100%);
+    pointer-events: none;
+}
+
+.dark a[href^="/blog?q="]::after,
+.dark a[href^="/tips?q="]::after {
+    background: linear-gradient(90deg, transparent 0%, #ff2d20 50%, transparent 100%);
+}
+
+a[href^="/blog?q="]:hover::after,
+a[href^="/blog?q="]:focus-visible::after,
+a[href^="/tips?q="]:hover::after,
+a[href^="/tips?q="]:focus-visible::after {
+    animation: badge-line-sweep 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Filter Drawer Action & Reset Buttons Consistency (Blog & Tips) */
