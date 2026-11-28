@@ -1465,8 +1465,17 @@ header:hover > .tech-marker,
 section:hover > .tech-marker,
 div.border-b.relative:hover > .tech-marker,
 div.relative[class*="border-r"]:hover > .tech-marker,
+div.relative[class*="border-r"]:has(+ div:hover) > .tech-marker,
+site-header:has(+ :is(section, div):hover) header > .tech-marker,
+header:has(+ :is(section, div):hover) > .tech-marker,
+:is(section, div.border-b.relative):has(+ :is(section, div.relative):hover) > .tech-marker,
+:is(.max-w-5xl, .max-w-6xl):has(> :is(site-header, header):hover) > .tech-marker[class*="-top-"],
+:is(.max-w-5xl, .max-w-6xl):has(> :is(section, div.relative):last-child:hover) > .tech-marker[class*="-bottom-"],
 section:focus-within > .tech-marker,
-div.border-b.relative:focus-within > .tech-marker {
+div.border-b.relative:focus-within > .tech-marker,
+site-header:has(+ :is(section, div):focus-within) header > .tech-marker,
+header:has(+ :is(section, div):focus-within) > .tech-marker,
+:is(section, div.border-b.relative):has(+ :is(section, div.relative):focus-within) > .tech-marker {
     border-color: rgba(245, 48, 3, 0.65);
     transform: scale(1.14);
 }
@@ -1475,8 +1484,17 @@ div.border-b.relative:focus-within > .tech-marker {
 .dark section:hover > .tech-marker,
 .dark div.border-b.relative:hover > .tech-marker,
 .dark div.relative[class*="border-r"]:hover > .tech-marker,
+.dark div.relative[class*="border-r"]:has(+ div:hover) > .tech-marker,
+.dark site-header:has(+ :is(section, div):hover) header > .tech-marker,
+.dark header:has(+ :is(section, div):hover) > .tech-marker,
+.dark :is(section, div.border-b.relative):has(+ :is(section, div.relative):hover) > .tech-marker,
+.dark :is(.max-w-5xl, .max-w-6xl):has(> :is(site-header, header):hover) > .tech-marker[class*="-top-"],
+.dark :is(.max-w-5xl, .max-w-6xl):has(> :is(section, div.relative):last-child:hover) > .tech-marker[class*="-bottom-"],
 .dark section:focus-within > .tech-marker,
-.dark div.border-b.relative:focus-within > .tech-marker {
+.dark div.border-b.relative:focus-within > .tech-marker,
+.dark site-header:has(+ :is(section, div):focus-within) header > .tech-marker,
+.dark header:has(+ :is(section, div):focus-within) > .tech-marker,
+.dark :is(section, div.border-b.relative):has(+ :is(section, div.relative):focus-within) > .tech-marker {
     border-color: rgba(255, 45, 32, 0.72);
 }
 
@@ -1484,8 +1502,17 @@ header:hover > .tech-marker::after,
 section:hover > .tech-marker::after,
 div.border-b.relative:hover > .tech-marker::after,
 div.relative[class*="border-r"]:hover > .tech-marker::after,
+div.relative[class*="border-r"]:has(+ div:hover) > .tech-marker::after,
+site-header:has(+ :is(section, div):hover) header > .tech-marker::after,
+header:has(+ :is(section, div):hover) > .tech-marker::after,
+:is(section, div.border-b.relative):has(+ :is(section, div.relative):hover) > .tech-marker::after,
+:is(.max-w-5xl, .max-w-6xl):has(> :is(site-header, header):hover) > .tech-marker[class*="-top-"]::after,
+:is(.max-w-5xl, .max-w-6xl):has(> :is(section, div.relative):last-child:hover) > .tech-marker[class*="-bottom-"]::after,
 section:focus-within > .tech-marker::after,
-div.border-b.relative:focus-within > .tech-marker::after {
+div.border-b.relative:focus-within > .tech-marker::after,
+site-header:has(+ :is(section, div):focus-within) header > .tech-marker::after,
+header:has(+ :is(section, div):focus-within) > .tech-marker::after,
+:is(section, div.border-b.relative):has(+ :is(section, div.relative):focus-within) > .tech-marker::after {
     opacity: 1;
     transform: scale(1.15);
 }
